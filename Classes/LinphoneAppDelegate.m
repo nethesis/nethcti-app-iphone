@@ -432,7 +432,7 @@
 	// It will initiate socket connections, which seems to be required.
 	// Indeed it is observed that if no network action is done in the notification handler, then
 	// iOS kills us.
-	linphone_core_ensure_registered(LC);
+	linphone_core_refresh_registers(LC);
 
 	NSString *uuid = [NSString stringWithFormat:@"<urn:uuid:%@>", [LinphoneManager.instance lpConfigStringForKey:@"uuid" inSection:@"misc" withDefault:NULL]];
 	NSString *sipInstance = [aps objectForKey:@"uuid"];
@@ -737,7 +737,7 @@
 - (void)application:(UIApplication *)application
 	handleActionWithIdentifier:(NSString *)identifier
 		  forLocalNotification:(UILocalNotification *)notification
-			 completionHandler:(void (^)())completionHandler {
+			 completionHandler:(void (^)(void))completionHandler {
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
@@ -785,7 +785,7 @@
 	handleActionWithIdentifier:(NSString *)identifier
 		  forLocalNotification:(UILocalNotification *)notification
 			  withResponseInfo:(NSDictionary *)responseInfo
-			 completionHandler:(void (^)())completionHandler {
+			 completionHandler:(void (^)(void))completionHandler {
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {

@@ -1040,9 +1040,9 @@ static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyCo
 static void linphone_iphone_popup_password_request(LinphoneCore *lc, LinphoneAuthInfo *auth_info, LinphoneAuthMethod method) {
 	// let the wizard handle its own errors
 	if ([PhoneMainView.instance currentView] != AssistantView.compositeViewDescription) {
-		const char * realmC = linphone_auth_info_get_realm(auth_info);
-		const char * usernameC = linphone_auth_info_get_username(auth_info);
-		const char * domainC = linphone_auth_info_get_domain(auth_info);
+        const char * realmC = "False Realm"; // linphone_auth_info_get_realm(auth_info);
+        const char * usernameC = "False Username"; // linphone_auth_info_get_username(auth_info);
+        const char * domainC = "False Domain"; // linphone_auth_info_get_domain(auth_info);
 		static UIAlertController *alertView = nil;
 
 		// avoid having multiple popups
@@ -1095,7 +1095,13 @@ static void linphone_iphone_popup_password_request(LinphoneCore *lc, LinphoneAut
 		[alertView addAction:defaultAction];
 		[alertView addAction:continueAction];
 		[alertView addAction:settingsAction];
-		[PhoneMainView.instance presentViewController:alertView animated:YES completion:nil];
+        
+        /*
+         * We don't use this controller because it crash the app.
+         * We wait for belledonne fix this issue.
+         * It's detailed in One note Bug Section in Wedo.
+         */
+		// [PhoneMainView.instance presentViewController:alertView animated:YES completion:nil];
 	}
 }
 
