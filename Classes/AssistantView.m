@@ -45,6 +45,8 @@ typedef enum _ViewElement {
 	ViewElement_Transport = 110,
 	ViewElement_Username_Label = 120,
 	ViewElement_NextButton = 130,
+    ViewElement_DisplayName_Label = 140,
+    ViewElement_Transport_Label = 160,
 
 	ViewElement_PhoneButton = 150,
 
@@ -114,18 +116,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 		new_config = NULL;
 		number_of_configs_before = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
 		[self resetTextFields];
-		[self changeView:_welcomeView back:FALSE animation:FALSE];
+		[self changeView:_loginView back:FALSE animation:FALSE]; // Target changed to _loginView from _welcomeView.
 	}
 	mustRestoreView = NO;
 	_outgoingView = DialerView.compositeViewDescription;
-    _qrCodeButton.hidden = !ENABLE_QRCODE;
+    _qrCodeButton.hidden = !ENABLE_QRCODE; // TODO: Enable QR Code scansioning.
 	[self resetLiblinphone:FALSE];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	[NSNotificationCenter.defaultCenter removeObserver:self];
-	
 }
 
 - (void)fitContent {
@@ -181,7 +182,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)reset {
 	[LinphoneManager.instance removeAllAccounts];
 	[self resetTextFields];
-	[self changeView:_welcomeView back:FALSE animation:FALSE];
+	[self changeView:_loginView back:FALSE animation:FALSE]; // Target changed to _loginView from _welcomeView.
 	_waitView.hidden = TRUE;
 }
 
@@ -445,10 +446,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - UI update
 
 - (void)changeView:(UIView *)view back:(BOOL)back animation:(BOOL)animation {
-
 	static BOOL placement_done = NO; // indicates if the button placement has been done in the assistant choice view
 
-
+    /*
+     * We'll never hit again _welcomeView because we directly go to _loginView.
+     * So we hide the protocol selection (always TLS) and hide other controls.
+     */
 	if (view == _welcomeView) {
 		BOOL show_logo = [LinphoneManager.instance lpConfigBoolForKey:@"show_assistant_logo_in_choice_view_preference"];
 		BOOL show_extern = ![LinphoneManager.instance lpConfigBoolForKey:@"hide_assistant_custom_account"];
@@ -478,7 +481,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 			// no option to create or specify a custom account: go to connect view directly
 			view = _linphoneLoginView;
 		}
-	}
+    } else if (view == _loginView) {
+        // I'll hide all useless fields and labels.
+        [self findView:ViewElement_Transport inView:self.contentView ofType:UISegmentedControl.class].hidden = YES;
+        [self findLabel:ViewElement_Transport_Label].hidden = YES;
+        [self findTextField:ViewElement_DisplayName].hidden = YES;
+        [self findLabel:ViewElement_DisplayName_Label].hidden = YES;
+    }
     
     if (currentView == _qrCodeView) {
         linphone_core_enable_video_preview(LC, FALSE);
@@ -598,7 +607,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	linphone_proxy_config_destroy(default_conf);
 }
 
-- (void)resetTextFields {
+- (void)resetTextFields { // TODO: This dosen't need changes to Login View.
 	for (UIView *view in @[
 			 _welcomeView,
 			 _createAccountView,
@@ -612,7 +621,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 #if DEBUG
 		UIAssistantTextField *atf =
 			(UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
-		atf.text = @"test.linphone.org";
+		atf.text = @"nethctiapp.nethserver.net";
 #endif
 	}
 	phone_number_length = 0;
@@ -1582,9 +1591,9 @@ void assistant_is_account_linked(LinphoneAccountCreator *creator, LinphoneAccoun
 			UIView *view = [historyViews lastObject];
 			[historyViews removeLastObject];
 			[self changeView:view back:TRUE animation:TRUE];
-		} else if (currentView == _welcomeView) {
+		} else if (currentView == _welcomeView) { // TODO: This dosen't need changes to Login View.
 			[PhoneMainView.instance popCurrentView];
-		} else {
+		} else { // TODO: Change this to Login View.
 			[self changeView:_welcomeView back:TRUE animation:TRUE];
 		}
 	} else {
@@ -1627,7 +1636,7 @@ void assistant_is_account_linked(LinphoneAccountCreator *creator, LinphoneAccoun
             UIView *view = [historyViews lastObject];
             [historyViews removeLastObject];
             [self changeView:view back:TRUE animation:TRUE];
-        } else {
+        } else { // TODO: Change this to Login View.
             [self changeView:_welcomeView back:TRUE animation:TRUE];
         }
     }
