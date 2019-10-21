@@ -37,16 +37,12 @@ typedef enum _ViewElement {
 	ViewElement_Email = 103,
 	ViewElement_Domain = 104,
 	ViewElement_URL = 105,
-	ViewElement_DisplayName = 106,
 	ViewElement_Phone = 107,
 	ViewElement_SMSCode = 108,
 	ViewElement_PhoneCC = 109,
 	ViewElement_TextFieldCount = ViewElement_PhoneCC - 100 + 1,
-	ViewElement_Transport = 110,
 	ViewElement_Username_Label = 120,
 	ViewElement_NextButton = 130,
-    ViewElement_DisplayName_Label = 140,
-    ViewElement_Transport_Label = 160,
 
 	ViewElement_PhoneButton = 150,
 
@@ -481,12 +477,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 			// no option to create or specify a custom account: go to connect view directly
 			view = _linphoneLoginView;
 		}
-    } else if (view == _loginView) {
-        // I'll hide all useless fields and labels.
-        [self findView:ViewElement_Transport inView:self.contentView ofType:UISegmentedControl.class].hidden = YES;
-        [self findLabel:ViewElement_Transport_Label].hidden = YES;
-        [self findTextField:ViewElement_DisplayName].hidden = YES;
-        [self findLabel:ViewElement_DisplayName_Label].hidden = YES;
     }
     
     if (currentView == _qrCodeView) {
@@ -754,7 +744,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 				return TRUE;
 			  }];
 
-	UIAssistantTextField *displayName = [self findTextField:ViewElement_DisplayName];
+	/*UIAssistantTextField *displayName = [self findTextField:ViewElement_DisplayName];
 	[displayName showError:[AssistantView
 							   errorForLinphoneAccountCreatorUsernameStatus:LinphoneAccountCreatorUsernameStatusInvalid]
 					  when:^BOOL(NSString *inputEntry) {
@@ -766,7 +756,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 						}
 						return s != LinphoneAccountCreatorUsernameStatusOk;
 					  }];
-
+*/
 	UIAssistantTextField *smsCode = [self findTextField:ViewElement_SMSCode];
 	[smsCode showError:nil when:^BOOL(NSString *inputEntry) {
 		return inputEntry.length != 4;
@@ -1351,7 +1341,6 @@ void assistant_is_account_linked(LinphoneAccountCreator *creator, LinphoneAccoun
 		_waitView.hidden = NO;
 		NSString *domain = [self findTextField:ViewElement_Domain].text;
 		NSString *username = [self findTextField:ViewElement_Username].text;
-		NSString *displayName = [self findTextField:ViewElement_DisplayName].text;
 		NSString *pwd = [self findTextField:ViewElement_Password].text;
 		LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
 		LinphoneAddress *addr = linphone_address_new(NULL);
@@ -1364,16 +1353,9 @@ void assistant_is_account_linked(LinphoneAccountCreator *creator, LinphoneAccoun
 		linphone_address_set_username(addr, username.UTF8String);
 		linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
 		linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
-		if (displayName && ![displayName isEqualToString:@""]) {
-			linphone_address_set_display_name(addr, displayName.UTF8String);
-		}
+			linphone_address_set_display_name(addr, username.UTF8String);
 		linphone_proxy_config_set_identity_address(config, addr);
-		// set transport
-		UISegmentedControl *transports = (UISegmentedControl *)[self findView:ViewElement_Transport
-																	   inView:self.contentView
-																	   ofType:UISegmentedControl.class];
-		if (transports) {
-			NSString *type = [transports titleForSegmentAtIndex:[transports selectedSegmentIndex]];
+			NSString *type = @"TLS";
 			linphone_proxy_config_set_route(
 				config,
 				[NSString stringWithFormat:@"%s;transport=%s", domain.UTF8String, type.lowercaseString.UTF8String]
@@ -1382,16 +1364,15 @@ void assistant_is_account_linked(LinphoneAccountCreator *creator, LinphoneAccoun
 				config,
 				[NSString stringWithFormat:@"%s;transport=%s", domain.UTF8String, type.lowercaseString.UTF8String]
 					.UTF8String);
-		}
 
 		linphone_proxy_config_enable_publish(config, FALSE);
 		linphone_proxy_config_enable_register(config, TRUE);
 
 		LinphoneAuthInfo *info =
 			linphone_auth_info_new(linphone_address_get_username(addr), // username
-								   NULL,								// user id
+								   linphone_address_get_username(addr),								// user id
 								   pwd.UTF8String,						// passwd
-								   NULL,								// ha1
+								   NULL,                                // ha1
 								   linphone_address_get_domain(addr),   // realm - assumed to be domain
 								   linphone_address_get_domain(addr)	// domain
 								   );
