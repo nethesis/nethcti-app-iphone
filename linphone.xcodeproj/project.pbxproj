@@ -5482,7 +5482,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_CFLAGS = (
@@ -5493,7 +5493,7 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.2\\\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone;
 				PRODUCT_NAME = linphone;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5539,7 +5539,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DBCTBX_LOG_DOMAIN=\\\"ios\\\"";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
@@ -5585,7 +5585,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_CFLAGS = (
@@ -5596,7 +5596,7 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.2-97-g79456e7\\\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone;
 				PRODUCT_NAME = linphone;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5642,7 +5642,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DBCTBX_LOG_DOMAIN=\\\"ios\\\"";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
@@ -5688,7 +5688,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_CFLAGS = (
@@ -5699,7 +5699,7 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.2-97-g79456e7\\\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone;
 				PRODUCT_NAME = linphone;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5745,7 +5745,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DBCTBX_LOG_DOMAIN=\\\"ios\\\"";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
@@ -5791,7 +5791,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_CFLAGS = (
@@ -5802,7 +5802,7 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.2-97-g79456e7\\\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone;
 				PRODUCT_NAME = linphone;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5848,7 +5848,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = latestChatroomsWidget/Info.plist;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.latestChatroomsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestChatroomsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5888,7 +5888,7 @@
 				INFOPLIST_FILE = latestChatroomsWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.latestChatroomsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestChatroomsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5930,7 +5930,7 @@
 				INFOPLIST_FILE = latestChatroomsWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.latestChatroomsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestChatroomsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5972,7 +5972,7 @@
 				INFOPLIST_FILE = latestChatroomsWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.latestChatroomsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestChatroomsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6012,7 +6012,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = richNotifications/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.richNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6052,7 +6052,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = richNotifications/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.richNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6093,7 +6093,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = richNotifications/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.richNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6134,7 +6134,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = richNotifications/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.richNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6177,9 +6177,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = latestCallsWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.linphone.phone.latestCallsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestCallsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6218,9 +6218,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = latestCallsWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = org.linphone.phone.latestCallsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestCallsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6260,9 +6260,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = latestCallsWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = org.linphone.phone.latestCallsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestCallsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6302,9 +6302,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = latestCallsWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = org.linphone.phone.latestCallsWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.latestCallsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6343,9 +6343,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.linphoneExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone.linphoneExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -6382,9 +6382,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.linphoneExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone.linphoneExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
@@ -6421,9 +6421,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.linphoneExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone.linphoneExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -6461,9 +6461,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.linphoneExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.phone.Linphone.linphoneExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -6506,7 +6506,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DBCTBX_LOG_DOMAIN=\\\"ios\\\"";
@@ -6756,7 +6756,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.belledonne-communications.tester.liblinphoneTester";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.liblinphoneTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6808,7 +6808,7 @@
 				INFOPLIST_FILE = "LiblinphoneTester/LinphoneTester-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.belledonne-communications.tester.liblinphoneTester";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.liblinphoneTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6861,7 +6861,7 @@
 				INFOPLIST_FILE = "LiblinphoneTester/LinphoneTester-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.belledonne-communications.tester.liblinphoneTester";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.liblinphoneTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6914,7 +6914,7 @@
 				INFOPLIST_FILE = "LiblinphoneTester/LinphoneTester-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.belledonne-communications.tester.liblinphoneTester";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.liblinphoneTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
