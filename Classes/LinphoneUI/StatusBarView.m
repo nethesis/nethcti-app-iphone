@@ -23,7 +23,6 @@
 #import <UserNotifications/UserNotifications.h>
 
 @implementation StatusBarView {
-
 	NSTimer *callQualityTimer;
 	NSTimer *callSecurityTimer;
 	int messagesUnreadCount;
@@ -42,33 +41,12 @@
 	[super viewWillAppear:animated];
 
 	// Set observer
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(registrationUpdate:)
-											   name:kLinphoneRegistrationUpdate
-											 object:nil];
-
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(globalStateUpdate:)
-											   name:kLinphoneGlobalStateUpdate
-											 object:nil];
-
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(notifyReceived:)
-											   name:kLinphoneNotifyReceived
-											 object:nil];
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(mainViewChanged:)
-											   name:kLinphoneMainViewChange
-											 object:nil];
-
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(callUpdate:)
-											   name:kLinphoneCallUpdate
-											 object:nil];
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(onCallEncryptionChanged:)
-											   name:kLinphoneCallEncryptionChanged
-											 object:nil];
+	[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(registrationUpdate:) name:kLinphoneRegistrationUpdate object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(globalStateUpdate:) name:kLinphoneGlobalStateUpdate object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(notifyReceived:) name:kLinphoneNotifyReceived object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(mainViewChanged:) name:kLinphoneMainViewChange object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(callUpdate:) name:kLinphoneCallUpdate object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(onCallEncryptionChanged:) name:kLinphoneCallEncryptionChanged object:nil];
 
 	// Update to default state
 	LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
@@ -93,6 +71,7 @@
 		[callQualityTimer invalidate];
 		callQualityTimer = nil;
 	}
+    
 	if (callSecurityTimer != nil) {
 		[callSecurityTimer invalidate];
 		callSecurityTimer = nil;
@@ -106,6 +85,10 @@
 
 #pragma mark - Event Functions
 
+/**
+ * Handle the update.
+ * @param notif The nofication received.
+ */
 - (void)registrationUpdate:(NSNotification *)notif {
 	LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
 	[self proxyConfigUpdate:config];
@@ -137,6 +120,7 @@
 		(linphone_content_get_buffer(content) == NULL)) {
 		return;
 	}
+    
 	const uint8_t *bodyTmp = linphone_content_get_buffer(content);
 	const char *body = (const char *)bodyTmp;
 	if ((body = strstr(body, "voice-message: ")) == NULL) {
@@ -150,7 +134,6 @@
 
 	// save in lpconfig for future
 	lp_config_set_int(linphone_core_get_config(LC), "app", "voice_mail_messages_count", messagesUnreadCount);
-
 	[self updateVoicemail];
 }
 
@@ -180,6 +163,7 @@
 			return [UIImage imageNamed:@"led_connected.png"];
 	}
 }
+
 - (void)proxyConfigUpdate:(LinphoneProxyConfig *)config {
 	LinphoneRegistrationState state = LinphoneRegistrationNone;
 	NSString *message = nil;

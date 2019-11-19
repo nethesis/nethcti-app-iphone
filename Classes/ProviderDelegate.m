@@ -10,7 +10,7 @@
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
 #include "linphone/linphonecore.h"
-#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
 @implementation ProviderDelegate

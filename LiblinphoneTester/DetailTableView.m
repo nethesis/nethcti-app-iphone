@@ -192,7 +192,7 @@ static NSString *const kAllTestsName = @"Run All tests";
 
 	dispatch_async(queue, ^{
 	  for (NSIndexPath *index in paths) {
-		  TestItem *test = _tests[index.row];
+          TestItem *test = self->_tests[index.row];
 		  LOGI(@"Should launch test %@", test);
 		  NSString *testSuite = test.suite;
 		  if ([test.suite isEqualToString:@"All"]) {
@@ -221,7 +221,7 @@ static NSString *const kAllTestsName = @"Run All tests";
 			[self updateItem:paths withAnimation:TRUE];
 		  });
 	  }
-	  in_progress = FALSE;
+        self->in_progress = FALSE;
 	});
 }
 
