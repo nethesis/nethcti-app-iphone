@@ -20,10 +20,14 @@ extension NethCTIAPI {
     }
     
     @objc public class ApiCredentials: NSObject {
+        /**
+         Init a new instance of ApiCredentials, optionally with Username or Password.
+         Username or password can be nulls, because users can log in to NethCTI with authtoken directly.
+         */
         init(username: String?, password: String?) {
-            UserDefaults.standard.set(password!, forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue)
-            UserDefaults.standard.set(username!, forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
-            print("API_MESSAGE: Credentials setted \(username!):\(password!).")
+            UserDefaults.standard.set(username, forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
+            UserDefaults.standard.set(password, forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue)
+            print("API_MESSAGE: Credentials setted \(username ?? "no name"):\(password ?? "no pwd").")
         }
         
         /**
@@ -56,8 +60,19 @@ extension NethCTIAPI {
                 return false;
             }
             
-            UserDefaults.standard.set(t, forKey:ApiClientIdentifier.TokenDefaultKey.rawValue);
+            UserDefaults.standard.set(t, forKey:ApiClientIdentifier.TokenDefaultKey.rawValue)
             print("API_MESSAGE: Token setted from \(sum) to \(t).")
+            return true;
+        }
+        
+        public func setToken(token: String) -> Bool {
+            guard let t = token as String? else {
+                print("No token provided.")
+                return false;
+            }
+            
+            UserDefaults.standard.set(t, forKey: ApiClientIdentifier.TokenDefaultKey.rawValue)
+            print("API_MESSAGE: Token setted to \(t).")
             return true;
         }
         

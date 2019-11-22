@@ -12,7 +12,7 @@ import Foundation
     fileprivate var credentials: ApiCredentials?
     fileprivate var server: String?
     
-    @objc init(user:String, pass:String, url:String){
+    @objc init(user:String?, pass:String?, url:String){
         // Here I check if user have some credentials.
         guard let c = ApiCredentials.init(username: user, password: pass) as ApiCredentials? else {
             print("API_ERROR: No credentials provided.");
@@ -116,7 +116,6 @@ import Foundation
             print("API_ERROR: No authentication provided.")
             return
         }
-        print("API_MESSAGE: Authentication provided.")
         
         // Set the url.
         let endPoint = "\(server!)/authentication/logout"
@@ -129,6 +128,15 @@ import Foundation
         self.baseCall(url: url, method: "POST", headers: postArgs, body: nil, successHandler: successHandler)
     }
     
+    @objc public func setAuthToken(token: String) -> Void {
+        guard let t = token as String? else {
+            print("API_ERROR: No token provided.")
+            return
+        }
+        
+        _ = self.credentials?.setToken(token: t)
+    }
+    
     /**
      Make a GET me request to NethCTI server.
      */
@@ -138,7 +146,6 @@ import Foundation
             errorHandler("No authentication provided.")
             return
         }
-        print("API_MESSAGE: Authentication provided.")
         
         // Set the url.
         let endPoint = "\(server!)/user/me"

@@ -29,7 +29,7 @@
 #import "UIAssistantTextField.h"
 #import "UITextField+DoneButton.h"
 #import "LinphoneAppDelegate.h"
-#import "Linphone-Swift.h"
+#import "NethCTI-Swift.h"
 
 typedef enum _ViewElement {
     ViewElement_Username = 100,
@@ -1414,9 +1414,10 @@ _waitView.hidden = YES; \
         
         NethCTIAPI* api = [[NethCTIAPI alloc] initWithUser:username pass:pwd url:domain];
         [api postLoginWithSuccessHandler:^(NSString * _Nullable digest) {
-            NSLog(@"API_MESSAGE: Digest received: %@", digest);
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-                NSLog(@"API_MESSAGE: User received: %@", [meUser name]);
+                // TODO: We can use this to perform Login easly.
+                // dispatch_async(dispatch_get_main_queue(), ^{
+                // });
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSString * _Nullable error) {
                 NSLog(@"API_ERROR: %@", error);
@@ -1628,28 +1629,33 @@ _waitView.hidden = YES; \
     }
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.urlLabel.text = [notif.userInfo objectForKey:@"qrcode"];
-    });
+    NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
+    NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
+    NethCTIAPI* api = [[NethCTIAPI alloc] initWithUser:components[0] pass:nil url:components[2]];
+    [api setAuthTokenWithToken:components[1]];
+    [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+        // TODO: We can use this to perform Login easly.
+        // dispatch_async(dispatch_get_main_queue(), ^{
+        // });
+        [self performLogin:meUser domain:components[2]];
+    } errorHandler:^(NSString * _Nullable error) {
+        NSLog(@"API_ERROR: %@", error);
+    }];
     
     if ([historyViews count] > 0) {
-        // TODO: Testare questo comportamento.
-        // La pagina deve tornare correttamente al login con i valori corretti.
-        // Se ciò non fosse allora deve esserci un modo per passare lo username e il token di autenticazione.
-        // Dopodiché bisogna recuperare le informazioni tramite le API dell'Intern e del Secret.
+        // TODO: Test this behavior.
+        // This mage must return correct fields to login page.
         if (currentView == _qrCodeView) {
             UIView *view = [historyViews lastObject];
             [historyViews removeLastObject];
             [self changeView:view back:TRUE animation:TRUE];
+            
         } else {
-            // TODO: Change this to Login View.
-            // TODO: Valutare la rimozione di questa parte di codice.
-            // In teoria l'unico modo che si deve avere per arrivare alla pagina del qrcode è quella bel bottone.
-            // Arrivarci in qualunque altro modo deve essere illegale.
-            // Cercare di trovare il modo per controllare la pagina precedente e restituire un qualche messaggio.
+            // TODO: This code can be safely removed?
             [self changeView:_welcomeView back:TRUE animation:TRUE];
         }
     }
+    
 }
-
-@end
+     
+     @end
