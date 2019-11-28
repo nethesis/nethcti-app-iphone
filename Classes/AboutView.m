@@ -27,69 +27,74 @@
 
 static UICompositeViewDescription *compositeDescription = nil;
 + (UICompositeViewDescription *)compositeViewDescription {
-	if (compositeDescription == nil) {
-		compositeDescription = [[UICompositeViewDescription alloc] init:self.class
-															  statusBar:StatusBarView.class
-																 tabBar:nil
-															   sideMenu:SideMenuView.class
-															 fullscreen:false
-														 isLeftFragment:YES
-														   fragmentWith:nil];
-	}
-	return compositeDescription;
+    if (compositeDescription == nil) {
+        compositeDescription = [[UICompositeViewDescription alloc] init:self.class
+                                                              statusBar:StatusBarView.class
+                                                                 tabBar:nil
+                                                               sideMenu:SideMenuView.class
+                                                             fullscreen:false
+                                                         isLeftFragment:YES
+                                                           fragmentWith:nil];
+    }
+    return compositeDescription;
 }
 
 - (UICompositeViewDescription *)compositeViewDescription {
-	return self.class.compositeViewDescription;
+    return self.class.compositeViewDescription;
 }
 
 #pragma mark - ViewController Functions
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	NSString *name = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-	_nameLabel.text = name;
-	NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    [super viewDidLoad];
+    
+    // Set the bundle name and version.
+    NSString *name = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    _nameLabel.text = name;
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *curVersion = [NSString stringWithFormat:@"version %@(%@)",[infoDict objectForKey:@"CFBundleShortVersionString"], [infoDict objectForKey:@"CFBundleVersion"]];
-	_appVersionLabel.text = [NSString stringWithFormat:@"%@ iOS %@", name, curVersion];
-	_libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", name, LINPHONE_SDK_VERSION];
-	UITapGestureRecognizer *tapGestureRecognizer =
-		[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLicenceTap)];
-	tapGestureRecognizer.numberOfTapsRequired = 1;
-	[_licenceLabel addGestureRecognizer:tapGestureRecognizer];
-	_licenceLabel.userInteractionEnabled = YES;
-	UITapGestureRecognizer *tapGestureRecognizerPolicy =
-		[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPolicyTap)];
-	tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
-	[_policyLabel addGestureRecognizer:tapGestureRecognizerPolicy];
-	_policyLabel.userInteractionEnabled = YES;
+    _appVersionLabel.text = [NSString stringWithFormat:@"%@ iOS %@", name, curVersion];
+    _libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", name, LINPHONE_SDK_VERSION];
+    
+    // Set the license tap gesture.
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLicenceTap)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [_licenceLabel addGestureRecognizer:tapGestureRecognizer];
+    _licenceLabel.userInteractionEnabled = YES;
+    
+    // Set the policy tap gesture.
+    UITapGestureRecognizer *tapGestureRecognizerPolicy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPolicyTap)];
+    tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
+    [_policyLabel addGestureRecognizer:tapGestureRecognizerPolicy];
+    _policyLabel.userInteractionEnabled = YES;
 }
 
 #pragma mark - Action Functions
 
 - (IBAction)onLinkTap:(id)sender {
-	UIGestureRecognizer *gest = sender;
-	NSString *url = ((UILabel *)gest.view).text;
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
+    UIGestureRecognizer *gest = sender;
+    NSString *url = ((UILabel *)gest.view).text;
+    if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
+        LOGE(@"Failed to open %@, invalid URL", url);
+    }
 }
 
 - (IBAction)onPolicyTap {
-	NSString *url = @"https://www.linphone.org/terms-and-privacy";
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
+    NSString *url = @"https://www.linphone.org/terms-and-privacy";
+    if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
+        LOGE(@"Failed to open %@, invalid URL", url);
+    }
 }
 
 - (IBAction)onLicenceTap {
-	NSString *url = @"https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html";
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
+    NSString *url = @"https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html";
+    if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
+        LOGE(@"Failed to open %@, invalid URL", url);
+    }
 }
 
 - (IBAction)onDialerBackClick:(id)sender {
-	[PhoneMainView.instance popCurrentView];
+    [PhoneMainView.instance popCurrentView];
 }
+
 @end

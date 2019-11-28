@@ -1,12 +1,12 @@
 
 /* Class = "UILabel"; text = "https://www.linphone.org"; ObjectID = "1pe-zf-cQh"; */
-"1pe-zf-cQh.text" = "https://www.linphone.org";
+"1pe-zf-cQh.text" = "https://www.nethesis.org";
 
 /* Class = "UILabel"; text = "Visit our privacy policy"; ObjectID = "5Nl-Fs-ggi"; */
-"5Nl-Fs-ggi.text" = "Visit our privacy policy";
+"5Nl-Fs-ggi.text" = "Leggi le nostre regole della privacy";
 
 /* Class = "UIButton"; accessibilityLabel = "Add contact"; ObjectID = "ETk-tB-ZNl"; */
-"ETk-tB-ZNl.accessibilityLabel" = "Add contact";
+"ETk-tB-ZNl.accessibilityLabel" = "Aggiungi contatto";
 
 /* Class = "UILabel"; text = "Linphone Core 3.14.0"; ObjectID = "ZYk-v1-CYZ"; */
 "ZYk-v1-CYZ.text" = "Linphone Core 3.14.0";
@@ -15,7 +15,7 @@
 "g2W-u5-yxg.text" = "Linphone Core 3.9.0";
 
 /* Class = "UILabel"; text = "Linphone iOS 8.0"; ObjectID = "gLk-Bc-zvx"; */
-"gLk-Bc-zvx.text" = "Linphone iOS 8.0";
+"gLk-Bc-zvx.text" = "NethCTI iOS 1.0.0";
 
 /* Class = "UILabel"; text = "GNU General Public License V2\n© 2010-2019 Belledonne Communications"; ObjectID = "gVK-Xc-S59"; */
 "gVK-Xc-S59.text" = "GNU General Public License V2\n© 2010-2019 Belledonne Communications";
@@ -24,16 +24,16 @@
 "iNt-9d-7si.text" = "ABOUT";
 
 /* Class = "UILabel"; text = "https://www.linphone.org"; ObjectID = "jGU-DX-XcO"; */
-"jGU-DX-XcO.text" = "https://www.linphone.org";
+"jGU-DX-XcO.text" = "https://www.nethesis.org";
 
 /* Class = "UILabel"; text = "Visit our privacy policy"; ObjectID = "nld-cR-eba"; */
-"nld-cR-eba.text" = "Visit our privacy policy";
+"nld-cR-eba.text" = "Leggi le nostre regole della privacy";
 
 /* Class = "UILabel"; text = "Linphone iPhone 3.0"; ObjectID = "oYk-ih-BBi"; */
 "oYk-ih-BBi.text" = "Linphone iPhone 3.0";
 
 /* Class = "UIButton"; accessibilityLabel = "Add contact"; ObjectID = "vX8-wO-ZEN"; */
-"vX8-wO-ZEN.accessibilityLabel" = "Add contact";
+"vX8-wO-ZEN.accessibilityLabel" = "Aggiungi contatto";
 
 /* Class = "UILabel"; text = "GNU General Public License V2 © 2010-2019 Belledonne Communications"; ObjectID = "vqn-sI-DiC"; */
 "vqn-sI-DiC.text" = "GNU General Public License V2 © 2010-2019 Belledonne Communications";

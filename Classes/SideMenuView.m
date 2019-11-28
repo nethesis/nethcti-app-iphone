@@ -26,6 +26,7 @@
 	}
 #pragma deploymate pop
 }
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[_sideMenuTableViewController viewWillAppear:animated];

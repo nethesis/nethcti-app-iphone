@@ -1591,10 +1591,11 @@ _waitView.hidden = YES; \
             UIView *view = [historyViews lastObject];
             [historyViews removeLastObject];
             [self changeView:view back:TRUE animation:TRUE];
-        } else if (currentView == _welcomeView) { // TODO: This dosen't need changes to Login View.
-            [PhoneMainView.instance popCurrentView];
+        // } else if (currentView == _welcomeView) { // TODO: This dosen't need changes to Login View.
+        //    [PhoneMainView.instance popCurrentView];
         } else { // TODO: Change this to Login View.
-            [self changeView:_welcomeView back:TRUE animation:TRUE];
+            // [self changeView:_welcomeView back:TRUE animation:TRUE];
+            [PhoneMainView.instance popCurrentView];
         }
     } else {
         [self onDialerClick:nil];
