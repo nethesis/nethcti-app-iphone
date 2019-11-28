@@ -2161,6 +2161,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3CA68FA23688BCB00804474 /* ApiCalls */,
 				22E0A81D111C44E100B04932 /* AboutView.h */,
 				22E0A81C111C44E100B04932 /* AboutView.m */,
 				636316D31A1DEBCB0009B839 /* AboutView.xib */,
@@ -4753,6 +4754,7 @@
 				6308F9C51BF0DD6600D1234B /* XMLRPCHelper.m in Sources */,
 				D3ED3E871586291E006C0DE4 /* TabBarView.m in Sources */,
 				D3ED3EA71587334E006C0DE4 /* HistoryListTableView.m in Sources */,
+				C3CA690023688E1300804474 /* RestManager.swift in Sources */,
 				61AEBEBD2191990A00F35E7F /* DevicesListView.m in Sources */,
 				D3ED3EB81587392C006C0DE4 /* HistoryListView.m in Sources */,
 				24A345A61D95798A00881A5C /* UIShopTableCell.m in Sources */,
@@ -5673,7 +5675,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"4.2-97-g79456e7\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"4.2\\\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.nethcti.nethcti;
 				PRODUCT_NAME = NethCTI;
@@ -5797,7 +5799,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"4.2-97-g79456e7\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"4.2\\\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.nethcti.nethcti;
 				PRODUCT_NAME = NethCTI;
@@ -5920,7 +5922,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"4.2-97-g79456e7\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"4.2\\\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.wedoit.nethcti.nethcti;
 				PRODUCT_NAME = NethCTI;
