@@ -876,7 +876,6 @@
 }
 
 - (void)attemptRemoteConfiguration {
-
 	[NSNotificationCenter.defaultCenter addObserver:self
 										   selector:@selector(ConfigurationStateUpdateEvent:)
 											   name:kLinphoneConfiguringStateUpdate

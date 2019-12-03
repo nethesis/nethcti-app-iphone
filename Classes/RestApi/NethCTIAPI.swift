@@ -72,10 +72,10 @@ import Foundation
      Make a request with the new request handler above this function.
      This may be the only call that don't need authentication.
      */
-    @objc public func postLogin(successHandler: @escaping (String?) -> Void) -> Void {
+    @objc public func postLogin(successHandler: @escaping (String?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
         let todoEndpoint: String = "\(server!)/authentication/login"
         guard let url = URL(string: todoEndpoint) else {
-            print("API_ERROR: cannot create URL.")
+            errorHandler("Cannot create URL.")
             return
         }
         
@@ -84,20 +84,20 @@ import Foundation
             data, response, error in
             // Error handling.
             guard error == nil else {
-                print("API_ERROR: Error calling POST on /authentication/login")
+                errorHandler("Error calling POST on /authentication/login.")
                 print(error!)
                 return
             }
             
             // Responde handling.
             guard let httpResponse = response as? HTTPURLResponse else {
-                print("API_ERROR: did not receive response.")
+                errorHandler("Did not receive response.")
                 return
             }
             
             // Digest handling.
             guard let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
-                print("API_ERROR: didn't find www-authenticate header.")
+                errorHandler("AUTHENTICATE-HEADER-MISSING.")
                 return
             }
             _ = self.credentials!.setToken(digest:digest)

@@ -169,10 +169,9 @@
 #if VERBOSE_MATCH_FAIL
     NSMutableString *path = [NSMutableString string];
     for ( UIView *v = view.superview; v != nil; v = v.superview ) {
-        [path insertString:[NSString stringWithFormat:@"%@ => ", NSStringFromClass([v class])] atIndex:0];
+        [path insertString:[NSString stringWithFormat:@"%@,%ld => ", NSStringFromClass([v class]), (long)v.tag] atIndex:0];
     }
-    NSLog(@"Couldn't find match for %@%@", path, NSStringFromClass([view class]));
-    
+    NSLog(@"Couldn't find match for %@%@, %ld", path, NSStringFromClass([view class]), view.tag);
 #endif
     
     return nil;

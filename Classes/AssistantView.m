@@ -1401,8 +1401,18 @@ _waitView.hidden = YES; \
 }
 
 -(void)performLogin:(PortableNethUser*)meUser domain:(NSString*)domain {
-    // [self performSelectorOnMainThread:@selector(exLinphoneLogin:domain:) withObject:@[meUser, domain] waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, domain] waitUntilDone:YES];
+}
+
+-(void)showErrorController:(NSString*)error {
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
+                                                                     message:NSLocalizedString(error, nil)
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [errView addAction:defaultAction];
+    [self presentViewController:errView animated:YES completion:nil];
 }
 
 - (IBAction)onLoginClick:(id)sender {
@@ -1422,6 +1432,13 @@ _waitView.hidden = YES; \
             } errorHandler:^(NSString * _Nullable error) {
                 NSLog(@"API_ERROR: %@", error);
             }];
+        } errorHandler:^(NSString* _Nullable error) {
+            if([error isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
+                [self performSelectorOnMainThread:@selector(showErrorController:)
+                                       withObject:@"Bad credentials, check them and retry later."
+                                    waitUntilDone:YES];
+            }
+            NSLog(@"API_ERROR: %@", error);
         }];
     });
 }
