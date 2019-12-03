@@ -721,6 +721,7 @@
 		C35E33BE23758DFE00CC5C24 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33BD23758DFE00CC5C24 /* Action.swift */; };
 		C35F91ED23745A5C001A4D7F /* SwiftRestApi in Resources */ = {isa = PBXBuildFile; fileRef = C35F91EC23745A5C001A4D7F /* SwiftRestApi */; };
 		C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */; };
+		C36482CB23967B02006BE61D /* neth_splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C36482CA23967B01006BE61D /* neth_splashscreen.png */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
 		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
 		C5D3371994961EDAE2311A1E /* Pods_liblinphoneTesterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D252FEC7DD06DD5695A320A1 /* Pods_liblinphoneTesterTests.framework */; };
@@ -1824,6 +1825,7 @@
 		C35E33BD23758DFE00CC5C24 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		C35F91EC23745A5C001A4D7F /* SwiftRestApi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftRestApi; sourceTree = "<group>"; };
 		C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.swift; sourceTree = "<group>"; };
+		C36482CA23967B01006BE61D /* neth_splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_splashscreen.png; sourceTree = "<group>"; };
 		C38D9EDD238FFDF60065C731 /* color_neth_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_A.png; sourceTree = "<group>"; };
 		C38D9EE1239009010065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2702,6 +2704,7 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C36482CA23967B01006BE61D /* neth_splashscreen.png */,
 				633FEBE21D3CD5570014B822 /* add_field_default.png */,
 				633FEBE31D3CD5570014B822 /* add_field_default@2x.png */,
 				633FEBE41D3CD5570014B822 /* add_field_over.png */,
@@ -4185,6 +4188,7 @@
 				633FEE0D1D3CD5590014B822 /* chat_attachment_disabled@2x.png in Resources */,
 				639E9CA61C0DB7F200019A75 /* UIChatCreateCell.xib in Resources */,
 				8CBD7BAC20B6B82F00E5DCC0 /* UIChatCreateCollectionViewCell.xib in Resources */,
+				C36482CB23967B02006BE61D /* neth_splashscreen.png in Resources */,
 				633FEEA31D3CD55A0014B822 /* numpad_1_default.png in Resources */,
 				633FEEA51D3CD55A0014B822 /* numpad_1_over.png in Resources */,
 				633FEF2E1D3CD55A0014B822 /* route_speaker_default.png in Resources */,
