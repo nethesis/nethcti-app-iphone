@@ -477,7 +477,7 @@
 
 	LCSipTransports transportValue = {port_preference, port_preference, -1, -1};
 
-	// will also update the sip_*_port section of the config
+	// Will also update the sip_*_port section of the config.
 	if (linphone_core_set_sip_transports(LC, &transportValue)) {
 		LOGE(@"cannot set transport");
 	}
@@ -983,7 +983,7 @@
 	[self setInteger:-1 forKey:@"current_proxy_config_preference"];
 
 	if (isDefault) {
-		// if we removed the default proxy config, set another one instead
+		// If we removed the default proxy config, set another one instead.
 		if (linphone_core_get_proxy_config_list(LC) != NULL) {
 			linphone_core_set_default_proxy_index(LC, 0);
 		}

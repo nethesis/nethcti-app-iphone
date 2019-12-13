@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	// remove separators between empty items, cf
+	// Remove separators between empty items, cf
 	// http://stackoverflow.com/questions/1633966/can-i-force-a-uitableview-to-hide-the-separator-between-empty-cells
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -46,13 +46,16 @@
 
 	_sideMenuEntries = [[NSMutableArray alloc] init];
 
-	[_sideMenuEntries
-		addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Assistant", nil)
-                                                 image:[UIImage imageNamed:@"menu_assistant.png"]
-											  tapBlock:^() {
-												[PhoneMainView.instance
-													changeCurrentView:AssistantView.compositeViewDescription];
-											  }]];
+    // If an account is configured, I must hide the Assistant row.
+    BOOL account_configured = (linphone_core_get_default_proxy_config(LC) == NULL);
+    if(account_configured) {
+        [_sideMenuEntries
+            addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Assistant", nil)
+                                                     image:[UIImage imageNamed:@"menu_assistant.png"]
+                                                  tapBlock:^() {
+            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        }]];
+    }
     
 	BOOL mustLink = ([LinphoneManager.instance lpConfigIntForKey:@"must_link_account_time"] > 0);
 	if (mustLink) {
@@ -60,26 +63,23 @@
 			addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Link my account", nil)
                                                      image:[UIImage imageNamed:@"menu_link_account.png"]
 												  tapBlock:^() {
-													[PhoneMainView.instance
-														changeCurrentView:AssistantLinkView.compositeViewDescription];
-												  }]];
+            [PhoneMainView.instance changeCurrentView:AssistantLinkView.compositeViewDescription];
+        }]];
 	}
     
 	[_sideMenuEntries
 		addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", nil)
                                                  image:[UIImage imageNamed:@"menu_options.png"]
 											  tapBlock:^() {
-												[PhoneMainView.instance
-													changeCurrentView:SettingsView.compositeViewDescription];
-											  }]];
+        [PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
+    }]];
     
     [_sideMenuEntries
      addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
                                               image:[UIImage imageNamed:@"menu_recordings.png"]
                                            tapBlock:^() {
-                                               [PhoneMainView.instance
-                                                changeCurrentView:RecordingsListView.compositeViewDescription];
-                                           }]];
+        [PhoneMainView.instance changeCurrentView:RecordingsListView.compositeViewDescription];
+    }]];
     
 	InAppProductsManager *iapm = LinphoneManager.instance.iapManager;
 	if (iapm.enabled){
@@ -87,18 +87,26 @@
 			addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Shop", nil)
                                                      image:nil
 												  tapBlock:^() {
-													[PhoneMainView.instance
-														changeCurrentView:ShopView.compositeViewDescription];
-												  }]];
+            [PhoneMainView.instance changeCurrentView:ShopView.compositeViewDescription];
+        }]];
 	}
     
 	[_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"About", nil)
                                                                image:[UIImage imageNamed:@"menu_about.png"]
 															tapBlock:^() {
-															  [PhoneMainView.instance
-																  changeCurrentView:AboutView.compositeViewDescription];
-
-															}]];
+        [PhoneMainView.instance changeCurrentView:AboutView.compositeViewDescription];
+    }]];
+    
+    if(!account_configured) {
+        [_sideMenuEntries
+            addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
+                                                     image:[UIImage imageNamed:@"quit_default.png"]
+                                                  tapBlock:^() {
+            LinphoneCoreSettingsStore* store = [[LinphoneCoreSettingsStore alloc] init];
+            [store removeAccount];
+            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        }]];
+    }
 }
 
 #pragma mark - Table View Controller
@@ -109,7 +117,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
 		BOOL hasDefault = (linphone_core_get_default_proxy_config(LC) != NULL);
-		// default account is shown in the header already
+		// Default account is shown in the header already.
 		size_t count = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
 		return MAX(0, (int)count - (hasDefault ? 1 : 0));
 	} else {
@@ -120,7 +128,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] init];
 	if (indexPath.section == 0) {
-		// do not display default account here, it is already in header view
+		// Do not display default account here, it is already in header view.
 		int idx =
 			linphone_core_get_default_proxy_config(LC)
 				? bctbx_list_index(linphone_core_get_proxy_config_list(LC), linphone_core_get_default_proxy_config(LC))

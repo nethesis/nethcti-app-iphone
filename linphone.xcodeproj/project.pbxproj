@@ -714,6 +714,8 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		A634ABAFCB39B6AAE4CA991D /* Pods_linphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CEDD144CABFAA70A29AF27 /* Pods_linphone.framework */; };
+		C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87D923A3EA5500F4B2DA /* quit_default.png */; };
+		C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87DA23A3EA5600F4B2DA /* quit_over.png */; };
 		C33BF99623717474003461CC /* NethCTIAPI.ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */; };
 		C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B723758C0400CC5C24 /* NethUser.swift */; };
 		C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B923758CB500CC5C24 /* Endpoints.swift */; };
@@ -1818,6 +1820,8 @@
 		ABB887316C42EE876A3051A9 /* Pods-linphoneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-linphoneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-linphoneTests/Pods-linphoneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE06BDE664323B2A53469696 /* Pods-liblinphoneTesterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liblinphoneTesterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-liblinphoneTesterTests/Pods-liblinphoneTesterTests.release.xcconfig"; sourceTree = "<group>"; };
 		BEBE8FB918176C388C01CFF7 /* Pods_linphoneExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_linphoneExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31B87D923A3EA5500F4B2DA /* quit_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_default.png; sourceTree = "<group>"; };
+		C31B87DA23A3EA5600F4B2DA /* quit_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_over.png; sourceTree = "<group>"; };
 		C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
@@ -2704,7 +2708,8 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				C36482CA23967B01006BE61D /* neth_splashscreen.png */,
+				C31B87D923A3EA5500F4B2DA /* quit_default.png */,
+				C31B87DA23A3EA5600F4B2DA /* quit_over.png */,
 				633FEBE21D3CD5570014B822 /* add_field_default.png */,
 				633FEBE31D3CD5570014B822 /* add_field_default@2x.png */,
 				633FEBE41D3CD5570014B822 /* add_field_over.png */,
@@ -2999,6 +3004,7 @@
 				633FECDD1D3CD5580014B822 /* micro_disabled@2x.png */,
 				633FECDE1D3CD5580014B822 /* micro_selected.png */,
 				633FECDF1D3CD5580014B822 /* micro_selected@2x.png */,
+				C36482CA23967B01006BE61D /* neth_splashscreen.png */,
 				8CE24F491F8234A20077AC0A /* next_default.png */,
 				8CE24F4A1F8234A30077AC0A /* next_default@2x.png */,
 				8CB2B8F71F86229C0015CEE2 /* next_disabled.png */,
@@ -3809,6 +3815,7 @@
 				633FEE2E1D3CD5590014B822 /* color_F.png in Resources */,
 				633FEDC51D3CD5590014B822 /* call_hangup_disabled@2x.png in Resources */,
 				633FEEDF1D3CD55A0014B822 /* numpad_8_over~ipad.png in Resources */,
+				C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */,
 				8CD99A372090A824008A7CDA /* splashscreen@2x.png in Resources */,
 				24BFAAA9209B0630004F47A7 /* linphone_logo@2x.png in Resources */,
 				633FEE071D3CD5590014B822 /* chat_add_default@2x.png in Resources */,
@@ -4042,6 +4049,7 @@
 				615A2811217F1FDE0060F920 /* chat_add_group@2x.png in Resources */,
 				D34F6F9E1594D3FB0095705B /* InAppSettings.bundle in Resources */,
 				633FEE4D1D3CD5590014B822 /* delete_field_default@2x.png in Resources */,
+				C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */,
 				615A28362180720D0060F920 /* security_toogle_background_grey@2x.png in Resources */,
 				639CEB091A1DF4FA004DE38F /* UIChatCell.xib in Resources */,
 				633FEE961D3CD55A0014B822 /* micro_disabled.png in Resources */,
