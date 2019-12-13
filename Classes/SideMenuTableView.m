@@ -53,6 +53,7 @@
 												[PhoneMainView.instance
 													changeCurrentView:AssistantView.compositeViewDescription];
 											  }]];
+    
 	BOOL mustLink = ([LinphoneManager.instance lpConfigIntForKey:@"must_link_account_time"] > 0);
 	if (mustLink) {
 		[_sideMenuEntries
@@ -63,7 +64,6 @@
 														changeCurrentView:AssistantLinkView.compositeViewDescription];
 												  }]];
 	}
-
     
 	[_sideMenuEntries
 		addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", nil)
@@ -72,6 +72,7 @@
 												[PhoneMainView.instance
 													changeCurrentView:SettingsView.compositeViewDescription];
 											  }]];
+    
     [_sideMenuEntries
      addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
                                               image:[UIImage imageNamed:@"menu_recordings.png"]
@@ -79,6 +80,7 @@
                                                [PhoneMainView.instance
                                                 changeCurrentView:RecordingsListView.compositeViewDescription];
                                            }]];
+    
 	InAppProductsManager *iapm = LinphoneManager.instance.iapManager;
 	if (iapm.enabled){
 		[_sideMenuEntries
@@ -89,6 +91,7 @@
 														changeCurrentView:ShopView.compositeViewDescription];
 												  }]];
 	}
+    
 	[_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"About", nil)
                                                                image:[UIImage imageNamed:@"menu_about.png"]
 															tapBlock:^() {
