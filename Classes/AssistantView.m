@@ -1341,7 +1341,6 @@ _waitView.hidden = YES; \
 - (void)exLinphoneLogin:(NSArray*)objs {
     PortableNethUser* meUser = (PortableNethUser*)[objs objectAtIndex:0];
     NSString* domain = (NSString*)[objs objectAtIndex:1];
-    NSString* username = [meUser username];
     NSString* intern = [meUser intern];
     NSString* secret = [meUser secret];
     // From here the Username and Password became another things.
@@ -1356,7 +1355,7 @@ _waitView.hidden = YES; \
     linphone_address_set_username(addr, intern.UTF8String);
     linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
     linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
-    linphone_address_set_display_name(addr, username.UTF8String);
+    linphone_address_set_display_name(addr, [meUser name].UTF8String);
     linphone_proxy_config_set_identity_address(config, addr);
     NSString *type = @"TLS";
     linphone_proxy_config_set_route(
@@ -1373,8 +1372,8 @@ _waitView.hidden = YES; \
     
     LinphoneAuthInfo *info =
     linphone_auth_info_new(linphone_address_get_username(addr), // username
-                           linphone_address_get_username(addr),                                // user id
-                           secret.UTF8String,                        // passwd
+                           linphone_address_get_username(addr), // user id
+                           secret.UTF8String,                   // passwd
                            NULL,                                // ha1
                            linphone_address_get_domain(addr),   // realm - assumed to be domain
                            linphone_address_get_domain(addr)    // domain
