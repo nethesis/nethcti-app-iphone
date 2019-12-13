@@ -171,7 +171,7 @@
     for ( UIView *v = view.superview; v != nil; v = v.superview ) {
         [path insertString:[NSString stringWithFormat:@"%@,%ld => ", NSStringFromClass([v class]), (long)v.tag] atIndex:0];
     }
-    NSLog(@"Couldn't find match for %@%@, %ld", path, NSStringFromClass([view class]), view.tag);
+    NSLog(@"Couldn't find match for %@%@, %ld", path, NSStringFromClass([view class]), (long)view.tag);
 #endif
     
     return nil;
