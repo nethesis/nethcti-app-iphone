@@ -102,8 +102,20 @@
             addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
                                                      image:[UIImage imageNamed:@"quit_default.png"]
                                                   tapBlock:^() {
-            LinphoneCoreSettingsStore* store = [[LinphoneCoreSettingsStore alloc] init];
-            [store removeAccount];
+            
+            LinphoneProxyConfig *def = nil; // Deprecated.
+            linphone_core_get_default_proxy([LinphoneManager getLc], &def);
+            LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
+
+            const LinphoneAuthInfo *ai = linphone_proxy_config_find_auth_info(config);
+            linphone_core_remove_proxy_config(LC, config);
+            if (ai) {
+                linphone_core_remove_auth_info(LC, ai);
+            }
+            
+            // linphone_core_refresh_registers(LC);
+            linphone_proxy_config_done(config);
+
             [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
         }]];
     }

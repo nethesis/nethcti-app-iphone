@@ -1648,13 +1648,14 @@ _waitView.hidden = YES; \
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
     NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
     NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
-    NethCTIAPI* api = [[NethCTIAPI alloc] initWithUser:components[0] pass:nil url:components[2]];
-    [api setAuthTokenWithToken:components[1]];
+    NethCTIAPI* api = [[NethCTIAPI alloc] initWithUser:components[0] pass:nil url:components[2]]; // We don't need the user password because we already have the auth token.
+    [api setAuthTokenWithToken:components[1]]; // Setted here.
     [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
         // TODO: We can use this to perform Login easly.
         // dispatch_async(dispatch_get_main_queue(), ^{
         // });
-        [self performLogin:meUser domain:components[2]];
+        // [self performLogin:meUser domain:components[2]];
+        [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
     } errorHandler:^(NSString * _Nullable error) {
         NSLog(@"API_ERROR: %@", error);
     }];
@@ -1666,13 +1667,11 @@ _waitView.hidden = YES; \
             UIView *view = [historyViews lastObject];
             [historyViews removeLastObject];
             [self changeView:view back:TRUE animation:TRUE];
-            
         } else {
             // TODO: This code can be safely removed?
             [self changeView:_welcomeView back:TRUE animation:TRUE];
         }
     }
-    
 }
      
      @end
