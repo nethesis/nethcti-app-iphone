@@ -1661,19 +1661,22 @@ _waitView.hidden = YES; \
     } errorHandler:^(NSString * _Nullable error) {
         NSLog(@"API_ERROR: %@", error);
     }];
-    
+    /*
     if ([historyViews count] > 0) {
         // TODO: Test this behavior.
         // This mage must return correct fields to login page.
         if (currentView == _qrCodeView) {
             UIView *view = [historyViews lastObject];
             [historyViews removeLastObject];
-            [self changeView:view back:TRUE animation:TRUE];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeView:view back:TRUE animation:TRUE];
+            });
         } else {
             // TODO: This code can be safely removed?
             [self changeView:_welcomeView back:TRUE animation:TRUE];
         }
     }
+     */
 }
      
      @end
