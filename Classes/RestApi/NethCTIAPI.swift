@@ -75,7 +75,7 @@ import Foundation
     @objc public func postLogin(successHandler: @escaping (String?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
         let todoEndpoint: String = "\(server!)/authentication/login"
         guard let url = URL(string: todoEndpoint) else {
-            errorHandler("Cannot create URL.")
+            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
@@ -113,14 +113,14 @@ import Foundation
     @objc public func postLogout(successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         let b = self.checkCredentials() as Bool?
         if b != nil && b! {
-            print("API_ERROR: No authentication provided.")
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
         // Set the url.
         let endPoint = "\(server!)/authentication/logout"
         guard let url = URL(string: endPoint) else {
-            print("API_ERROR: cannot create URL.")
+            print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
@@ -143,29 +143,26 @@ import Foundation
     @objc public func getMe(successHandler: @escaping (PortableNethUser?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
         let b = self.checkCredentials() as Bool?
         if b != nil && !b! {
-            errorHandler("No authentication provided.")
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
-        // Set the url.
-        let endPoint = "\(server!)/user/me"
+        let endPoint = "\(server!)/user/me" // Set the endpoint URL.
         guard let url = URL(string: endPoint) else {
-            errorHandler("Cannot create URL.")
+            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
         let getHeaders = credentials!.getAuthenticatedCredentials()
         self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
             data, response, error in
-            // Error handling.
-            guard error == nil else {
+            guard error == nil else { // Error handling.
                 errorHandler("Error calling GET on /user/me")
                 print(error!)
                 return
             }
             
-            // Responde handling. Must be inizialized the userData obj to continue.
-            guard let responseData = data else {
+            guard let responseData = data else { // Responde handling.
                 errorHandler("No data provided.")
                 return;
             }
@@ -174,6 +171,43 @@ import Foundation
                 let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 let nethUser = try NethUser(from: userDict)
                 successHandler(PortableNethUser(from: nethUser!))
+            } catch {
+                errorHandler("json error: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
+    
+    @objc public func getPresence(successHandler: @escaping() -> Void, errorHandler: @escaping(String?) -> Void) -> Void { // Ready for the second release.
+        let b = self.checkCredentials() as Bool?
+        if b != nil && !b! {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue);
+            return
+        }
+        
+        let endPoint = "\(server!)/user/me" // Set the endpoint URL.
+        guard let url = URL(string:endPoint) else {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            return
+        }
+        
+        let getHeaders = credentials!.getAuthenticatedCredentials()
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
+            data, response, error in
+            guard error == nil else {
+                errorHandler("Error calling GET on /user/presence")
+                print(error!)
+                return
+            }
+            
+            guard let responseData = data else { // Response handling.
+                errorHandler("No data provided.")
+                return
+            }
+            
+            do{
+                _ = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                successHandler()
             } catch {
                 errorHandler("json error: \(error.localizedDescription)")
                 return

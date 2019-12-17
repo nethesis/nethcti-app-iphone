@@ -13,7 +13,7 @@ extension NethCTIAPI {
      Those enums was used for stored credentials. VERY IMPORTANT!
      */
     public enum ApiClientIdentifier : String {
-        case SuiteNameKey = "NethCTIUserDefaults"
+        case SuiteNameKey = "io.wedoit.nethcti3"
         case UserDefaultKey = "UserDefaultKey"
         case PasswordDefaultKey = "PasswordDefaultKey"
         case TokenDefaultKey = "TokenDefaultKey"
@@ -53,7 +53,7 @@ extension NethCTIAPI {
                 return false;
             }
             
-            let splitted = d.components(separatedBy: " ")
+            let splitted = d.components(separatedBy: " ") // "Digest 1234567890"
             let sum = "\(getUsername()!):\(getPassword()!):\(splitted[1])"
             guard let t = sum.hmac(key: getPassword()!) as String? else {
                 print("No token generated.")

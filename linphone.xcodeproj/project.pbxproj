@@ -721,11 +721,11 @@
 		C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B923758CB500CC5C24 /* Endpoints.swift */; };
 		C35E33BC23758DD600CC5C24 /* EndpointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */; };
 		C35E33BE23758DFE00CC5C24 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33BD23758DFE00CC5C24 /* Action.swift */; };
-		C35F91ED23745A5C001A4D7F /* SwiftRestApi in Resources */ = {isa = PBXBuildFile; fileRef = C35F91EC23745A5C001A4D7F /* SwiftRestApi */; };
 		C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */; };
 		C36482CB23967B02006BE61D /* neth_splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C36482CA23967B01006BE61D /* neth_splashscreen.png */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
 		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
+		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
 		C5D3371994961EDAE2311A1E /* Pods_liblinphoneTesterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D252FEC7DD06DD5695A320A1 /* Pods_liblinphoneTesterTests.framework */; };
 		C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */; };
 		CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF15F21C20E4F9A3008B1DE6 /* UIImageViewDeletable.m */; };
@@ -1827,7 +1827,6 @@
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointExtensions.swift; sourceTree = "<group>"; };
 		C35E33BD23758DFE00CC5C24 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		C35F91EC23745A5C001A4D7F /* SwiftRestApi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftRestApi; sourceTree = "<group>"; };
 		C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.swift; sourceTree = "<group>"; };
 		C36482CA23967B01006BE61D /* neth_splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_splashscreen.png; sourceTree = "<group>"; };
 		C38D9EDD238FFDF60065C731 /* color_neth_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_A.png; sourceTree = "<group>"; };
@@ -1835,6 +1834,8 @@
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3AE8A6E238808A2000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AboutView.strings; sourceTree = "<group>"; };
 		C3AE8A7023881C74000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
+		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
+		C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
 		C90FAA7615AF54E6002091CB /* HistoryDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDetailsView.h; sourceTree = "<group>"; };
 		C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailsView.m; sourceTree = "<group>"; };
 		C9B3A6FD15B485DB006F52EE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Utils/Utils.h; sourceTree = "<group>"; };
@@ -3279,7 +3280,9 @@
 		C33BF99223717014003461CC /* RestApi */ = {
 			isa = PBXGroup;
 			children = (
+				C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */,
 				C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */,
+				C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */,
 				C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */,
 				C35E33B723758C0400CC5C24 /* NethUser.swift */,
 				C35E33B923758CB500CC5C24 /* Endpoints.swift */,
@@ -3292,7 +3295,6 @@
 		D326483415887D4400930C67 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C35F91EC23745A5C001A4D7F /* SwiftRestApi */,
 				C33BF99223717014003461CC /* RestApi */,
 				D37E3ECA1619C27A0087659A /* CAAnimationBlocks */,
 				D380801215C299D0005BE9BC /* ColorSpaceUtilites.m */,
@@ -4310,7 +4312,6 @@
 				633FEDB41D3CD5590014B822 /* call_alt_back_disabled.png in Resources */,
 				633FEE631D3CD5590014B822 /* footer_chat_default@2x.png in Resources */,
 				615A281B217F6F9C0060F920 /* security_2_indicator.png in Resources */,
-				C35F91ED23745A5C001A4D7F /* SwiftRestApi in Resources */,
 				633FEE661D3CD5590014B822 /* footer_contacts_default.png in Resources */,
 				633FEDC11D3CD5590014B822 /* call_back_disabled@2x.png in Resources */,
 				633FEEEE1D3CD55A0014B822 /* numpad_hash_over@2x.png in Resources */,
@@ -4784,6 +4785,7 @@
 				D35E7597159460580066B1C1 /* ChatsListView.m in Sources */,
 				D35E759F159460B70066B1C1 /* SettingsView.m in Sources */,
 				63B81A101B57DA33009604A6 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */,
 				F03CA84318C72F1A0008889D /* UITextViewNoDefine.m in Sources */,
 				63B81A0D1B57DA33009604A6 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */,
@@ -5529,7 +5531,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5570,7 +5572,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
@@ -5655,7 +5657,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5693,7 +5695,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Distr";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
@@ -5779,7 +5781,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5817,7 +5819,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
@@ -5902,7 +5904,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5940,7 +5942,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
@@ -6469,7 +6471,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6488,6 +6490,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6512,7 +6515,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LVD55J8NH8;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6529,6 +6532,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "VS: WildCard Development";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6554,7 +6558,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6572,6 +6576,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6597,7 +6602,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LVD55J8NH8;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6615,6 +6620,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI Wedo Dev Prov Prof";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

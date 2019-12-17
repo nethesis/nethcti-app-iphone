@@ -483,8 +483,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     if (currentView == _qrCodeView) {
         linphone_core_enable_video_preview(LC, FALSE);
         linphone_core_enable_qrcode_video_preview(LC, FALSE);
-        LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
-        delegate.onlyPortrait = FALSE;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
+            delegate.onlyPortrait = FALSE;
+        });
     }
     
     // Animation
