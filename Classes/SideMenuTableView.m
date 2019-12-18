@@ -118,6 +118,8 @@
         linphone_core_remove_auth_info(LC, ai); // Remove the authentication infos.
     }
     
+    linphone_core_clear_proxy_config(LC);
+    linphone_core_clear_all_auth_info(LC);
     linphone_proxy_config_done(config); // Confirm the actual configuration. ???
 }
 
