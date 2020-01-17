@@ -1,4 +1,5 @@
 
+NethCTI is a free VoIP and video softphone based on Linphone and the SIP protocol.
 Linphone is an open source softphone for voice and video over IP calling and instant messaging. It is fully SIP-based, for all calling, presence and IM features.
 General description is available from [linphone web site](https://www.linphone.org/technical-corner/linphone)
 

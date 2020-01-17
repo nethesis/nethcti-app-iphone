@@ -199,7 +199,9 @@
 	for (; count < 50; count++) {
 		LinphoneChatMessage *msg =
 			linphone_chat_room_create_message(room, [[NSString stringWithFormat:@"Message %lu", count + 1] UTF8String]);
-		linphone_chat_room_send_chat_message(room, msg);
+        // linphone_chat_room_send_chat_message(room, msg);
+        // Above method is deprecated. I'll use the next one.
+        linphone_chat_message_send(msg);
 	}
 
 	for (int i = 0; i < 50; i++) {

@@ -16,6 +16,8 @@ def basic_pods
 		pod 'Fabric', '~> 1.9.0'
 		pod 'Crashlytics', '~> 3.12.0'
 		pod 'Firebase/Performance'
+		pod 'Alamofire', '~> 4.7'
+		pod 'SwiftyJSON', '~> 4.0'
 	end
 end
 

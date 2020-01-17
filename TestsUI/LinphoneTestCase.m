@@ -83,7 +83,7 @@
 }
 
 - (NSString *)accountDomain {
-	return @"test.linphone.org";
+	return @"nethctiapp.nethserver.net";
 }
 
 - (NSString *)accountProxyRoute {

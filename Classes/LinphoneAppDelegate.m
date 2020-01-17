@@ -297,15 +297,25 @@
 	if (bgStartId != UIBackgroundTaskInvalid)
 		[[UIApplication sharedApplication] endBackgroundTask:bgStartId];
 
-    //Enable all notification type. VoIP Notifications don't present a UI but we will use this to show local nofications later
+    // Enable all notification type.
+    // VoIP Notifications don't present a UI but we will use this to show local nofications later.
     UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert| UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
 
-    //register the notification settings
+    // Register the notification settings.
     [application registerUserNotificationSettings:notificationSettings];
 
-    //output what state the app is in. This will be used to see when the app is started in the background
+    // Output what state the app is in.
+    // This will be used to see when the app is started in the background.
     LOGI(@"app launched with state : %li", (long)application.applicationState);
     LOGI(@"FINISH LAUNCHING WITH OPTION : %@", launchOptions.description);
+    
+    // Set default settings by Nethesis.
+    // This may be a problem if user can set this settings.
+    LinphoneVideoPolicy policy;
+    policy.automatically_initiate = YES; // Video start automatically.
+    policy.automatically_accept = YES; // Video accept automatically.
+    linphone_core_set_video_policy(LC, &policy);
+    linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
     
     UIApplicationShortcutItem *shortcutItem = [launchOptions objectForKey:@"UIApplicationLaunchOptionsShortcutItemKey"];
     if (shortcutItem) {
@@ -449,7 +459,7 @@
 	// It will initiate socket connections, which seems to be required.
 	// Indeed it is observed that if no network action is done in the notification handler, then
 	// iOS kills us.
-	linphone_core_ensure_registered(LC);
+	linphone_core_refresh_registers(LC);
 
 	NSString *uuid = [NSString stringWithFormat:@"<urn:uuid:%@>", [LinphoneManager.instance lpConfigStringForKey:@"uuid" inSection:@"misc" withDefault:NULL]];
 	NSString *sipInstance = [aps objectForKey:@"uuid"];
@@ -754,7 +764,7 @@
 - (void)application:(UIApplication *)application
 	handleActionWithIdentifier:(NSString *)identifier
 		  forLocalNotification:(UILocalNotification *)notification
-			 completionHandler:(void (^)())completionHandler {
+			 completionHandler:(void (^)(void))completionHandler {
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
@@ -802,7 +812,7 @@
 	handleActionWithIdentifier:(NSString *)identifier
 		  forLocalNotification:(UILocalNotification *)notification
 			  withResponseInfo:(NSDictionary *)responseInfo
-			 completionHandler:(void (^)())completionHandler {
+			 completionHandler:(void (^)(void))completionHandler {
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
@@ -893,7 +903,6 @@
 }
 
 - (void)attemptRemoteConfiguration {
-
 	[NSNotificationCenter.defaultCenter addObserver:self
 										   selector:@selector(ConfigurationStateUpdateEvent:)
 											   name:kLinphoneConfiguringStateUpdate

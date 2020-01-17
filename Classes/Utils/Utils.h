@@ -93,7 +93,7 @@ typedef enum {
 #import <UIKit/UIColor.h>
 #import <UIKit/UIKit.h>
 
-#define LINPHONE_MAIN_COLOR [UIColor colorWithRed:207.0f / 255.0f green:76.0f / 255.0f blue:41.0f / 255.0f alpha:1.0f]
+#define LINPHONE_MAIN_COLOR [UIColor colorWithRed:0.0f / 255.0f green:162.0f / 255.0f blue:222.0f / 255.0f alpha:1.0f]
 #define LINPHONE_SETTINGS_BG_IOS7 [UIColor colorWithRed:164 / 255. green:175 / 255. blue:183 / 255. alpha:1.0]
 
 @interface UIColor (LightAndDark)

@@ -86,8 +86,8 @@ INIT_WITH_COMMON_CF {
 	} else {
 		self.returnKeyType = UIReturnKeyDone;
 	}
-
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	_lastText = textField.text;
 	[self checkDisplayError];

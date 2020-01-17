@@ -201,7 +201,9 @@
 						snprintf(tmp, sizeof(tmp) - 1, "%s", linphone_address_get_domain(proxy_addr));
 					[self setCString:tmp forKey:@"account_proxy_preference"];
 				}
-				const char *tname = "udp";
+				/*
+                 The transport we'll ever be the tls.
+                 const char *tname = "udp";
 				switch (linphone_address_get_transport(proxy_addr)) {
 					case LinphoneTransportTcp:
 						tname = "tcp";
@@ -212,6 +214,9 @@
 					default:
 						break;
 				}
+                */
+                const char *tname = "tls";
+				linphone_address_destroy(proxy_addr);
 				linphone_address_unref(proxy_addr);
 				[self setCString:tname forKey:@"account_transport_preference"];
 			}
@@ -255,10 +260,13 @@
 	}
 }
 
+/**
+ This function seems to work as a loader of saved settings.
+ */
 - (void)transformLinphoneCoreToKeys {
 	LinphoneManager *lm = LinphoneManager.instance;
 
-	// root section
+	// Root Section.
 	{
 		const bctbx_list_t *accounts = linphone_core_get_proxy_config_list(LC);
 		size_t count = bctbx_list_size(accounts);
@@ -276,10 +284,10 @@
 			   forKey:@"account_mandatory_advanced_preference"];
 	}
 
-	// account section
+	// Account section.
 	{ [self transformAccountToKeys:nil]; }
 
-	// audio section
+	// Audio section.
 	{
 		[self transformCodecsToKeys:linphone_core_get_audio_codecs(LC)];
 		[self setFloat:linphone_core_get_playback_gain_db(LC) forKey:@"playback_gain_preference"];
@@ -292,7 +300,7 @@
 		[self setInteger:[lm lpConfigIntForKey:@"eq_active" inSection:@"sound" withDefault:0] forKey:@"eq_active"];
 	}
 
-	// video section
+	// Video section.
 	{
 		[self transformCodecsToKeys:linphone_core_get_video_codecs(LC)];
 
@@ -320,7 +328,7 @@
 		[self setInteger:linphone_core_get_download_bandwidth(LC) forKey:@"download_bandwidth_preference"];
 	}
 
-	// call section
+	// Call section.
 	{
 		[self setBool:linphone_core_get_use_info_for_dtmf(LC) forKey:@"sipinfo_dtmf_preference"];
 		[self setBool:linphone_core_get_use_rfc2833_for_dtmf(LC) forKey:@"rfc_dtmf_preference"];
@@ -335,7 +343,7 @@
 			   forKey:@"pref_accept_early_media_preference"];
 	}
 
-	// chat section
+	// Chat section.
 	{
 		[self setCString:linphone_core_get_file_transfer_server(LC) forKey:@"file_transfer_server_url_preference"];
         int maxSize = linphone_core_get_max_size_for_auto_download_incoming_files(LC);
@@ -343,7 +351,7 @@
         [self setInteger:maxSize forKey:@"auto_download_incoming_files_max_size"];        
 	}
 
-	// network section
+	// Network section.
 	{
 		LinphoneNatPolicy *np = linphone_core_get_nat_policy(LC);
 		[self setBool:[lm lpConfigBoolForKey:@"edge_opt_preference" withDefault:NO] forKey:@"edge_opt_preference"];
@@ -469,7 +477,7 @@
 
 	LCSipTransports transportValue = {port_preference, port_preference, -1, -1};
 
-	// will also update the sip_*_port section of the config
+	// Will also update the sip_*_port section of the config.
 	if (linphone_core_set_sip_transports(LC, &transportValue)) {
 		LOGE(@"cannot set transport");
 	}
@@ -957,7 +965,7 @@
 	[self setInteger:-1 forKey:@"current_proxy_config_preference"];
 
 	if (isDefault) {
-		// if we removed the default proxy config, set another one instead
+		// If we removed the default proxy config, set another one instead.
 		if (linphone_core_get_proxy_config_list(LC) != NULL) {
 			linphone_core_set_default_proxy_index(LC, 0);
 		}
