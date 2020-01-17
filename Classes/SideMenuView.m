@@ -17,7 +17,7 @@
 
 #pragma deploymate push "ignored-api-availability"
 	if (UIDevice.currentDevice.systemVersion.doubleValue >= 7) {
-		// it's better to detect only pan from screen edges
+		// It's better to detect only pan from screen edges
 		UIScreenEdgePanGestureRecognizer *pan =
 			[[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(onLateralSwipe:)];
 		pan.edges = UIRectEdgeRight;
@@ -26,6 +26,7 @@
 	}
 #pragma deploymate pop
 }
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[_sideMenuTableViewController viewWillAppear:animated];
@@ -46,7 +47,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	_grayBackground.hidden = YES;
-	// should be better than that with alpha animation..
+	// Should be better than that with alpha animation..
 }
 
 - (void)updateHeader {
@@ -59,7 +60,7 @@
 		_presenceImage.image = [StatusBarView imageForState:linphone_proxy_config_get_state(default_proxy)];
 	} else {
 		_nameLabel.text = linphone_core_get_proxy_config_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);
-		// display direct IP:port address so that we can be reached
+		// Display direct IP:port address so that we can be reached.
 		LinphoneAddress *addr = linphone_core_get_primary_contact_parsed(LC);
 		if (addr) {
 			char *as_string = linphone_address_as_string(addr);
@@ -86,7 +87,7 @@
 }
 
 - (IBAction)onAvatarClick:(id)sender {
-	// hide ourself because we are on top of image picker
+	// Hide ourself because we are on top of image picker.
 	if (!IPAD) {
 		[PhoneMainView.instance.mainViewController hideSideMenu:YES];
 	}
@@ -118,7 +119,7 @@
     _avatarImage.image = [LinphoneUtils selfAvatar];
     [LinphoneManager.instance loadAvatar];
 
-	// Dismiss popover on iPad
+	// Dismiss popover on iPad.
 	if (IPAD) {
 		[VIEW(ImagePickerView).popoverController dismissPopoverAnimated:TRUE];
 	} else {

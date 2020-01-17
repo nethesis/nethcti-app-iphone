@@ -20,7 +20,7 @@
 #import "UIBluetoothButton.h"
 #import "../Utils/AudioHelper.h"
 #import "Utils.h"
-#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 #include "linphone/linphonecore.h"
