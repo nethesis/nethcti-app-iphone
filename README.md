@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/BelledonneCommunications/linphone-iphone.svg?branch=master)](https://travis-ci.org/BelledonneCommunications/linphone-iphone)
 
-Linphone is a free VoIP and video softphone based on the SIP protocol.
+NethCTI is a free VoIP and video softphone based on Linphone and the SIP protocol.
 
 ![Dialer screenshot](http://www.linphone.org/img/slideshow-phone.png)
 
