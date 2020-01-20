@@ -1305,7 +1305,7 @@ _waitView.hidden = YES; \
 			account_creator,
 			((UITextField *)[self findView:ViewElement_SMSCode inView:_contentView ofType:UITextField.class])
 				.text.UTF8String);
-		if (linphone_account_creator_get_password(account_creator) == NULL &&
+		/*if (linphone_account_creator_get_password(account_creator) == NULL &&
 			linphone_account_creator_get_ha1(account_creator) == NULL) {
 			if ([_activationTitle.text isEqualToString:@"USE LINPHONE ACCOUNT"]) {
 				linphone_account_creator_login_linphone_account(account_creator);
@@ -1317,7 +1317,7 @@ _waitView.hidden = YES; \
 			linphone_account_creator_set_language(account_creator, [[language substringToIndex:2] UTF8String]);
 			linphone_account_creator_link_account(account_creator);
 			linphone_account_creator_activate_alias(account_creator);
-		}
+		}*/
     });
 }
 

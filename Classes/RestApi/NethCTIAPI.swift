@@ -36,12 +36,29 @@ import Foundation
         return credentials != nil && server != nil
     }
     
+    public var authKeyForNotificatore : String {
+        return getStringFromInfo(keyString: "AppApnsAuthKey")
+    }
+    
+    public var baseUrlForNotificatore : String {
+        return getStringFromInfo(keyString:"AppApnsBaseUrl")
+    }
+    
+    private func getStringFromInfo(keyString:String) -> String {
+        let path = Bundle.main.path(forResource: "Info", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        let keyValue: AnyObject? = dict?.value(forKey: keyString) as AnyObject?
+        var stringNative :String = String()
+        if let nsString:NSString = keyValue as? NSString {
+            stringNative = nsString as String
+        }
+        return stringNative;
+    }
+    
     /**
      This is a basic call that have to be configured.
      */
-    private func baseCall(url: URL, method: String,
-                          headers: [String: String]?, body: [String: String]?,
-                          successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    private func baseCall(url: URL, method: String, headers: [String: String]?, body: [String: String]?, successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         
@@ -164,7 +181,7 @@ import Foundation
             
             guard let responseData = data else { // Responde handling.
                 errorHandler("No data provided.")
-                return;
+                return
             }
             
             do{
@@ -176,6 +193,25 @@ import Foundation
                 return
             }
         }
+    }
+    
+    @objc public func registerDeviceId(deviceToken: String, withUser user: String, successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+        guard let d = deviceToken as String? else {
+            return // Device Token and User have to be not null.
+        }
+        guard let u = user as String? else {
+            return
+        }
+        let endpointBaseUrl = "http://notificatore.apexnet.it/Notificatore.aspx"
+        let plistEndpoint = self.baseUrlForNotificatore
+        let apnsAppKey = "NETHCTI_APP"
+        let plistAppKey = self.authKeyForNotificatore
+        let endpointUrl = "\(endpointBaseUrl)?CMD=initapp&os=1&appkey=\(apnsAppKey)&devtoken=\(d)&user=\(u)"
+        print("API CALL: Notification endpoint url: \(endpointUrl)")
+        
+        let url = URL(string: endpointUrl)
+        
+        self.baseCall(url: url!, method: "GET", headers: nil, body: nil, successHandler: successHandler)
     }
     
     @objc public func getPresence(successHandler: @escaping() -> Void, errorHandler: @escaping(String?) -> Void) -> Void { // Ready for the second release.

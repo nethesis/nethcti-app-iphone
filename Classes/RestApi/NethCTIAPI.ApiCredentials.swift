@@ -13,10 +13,12 @@ extension NethCTIAPI {
      Those enums was used for stored credentials. VERY IMPORTANT!
      */
     public enum ApiClientIdentifier : String {
-        case SuiteNameKey = "io.wedoit.nethcti3"
-        case UserDefaultKey = "UserDefaultKey"
-        case PasswordDefaultKey = "PasswordDefaultKey"
-        case TokenDefaultKey = "TokenDefaultKey"
+        case SuiteNameKey = "it.nethesis.nethcti3"          // Name of the UserDefaults suite.
+        case UserDefaultKey = "UserDefaultKey"              // Logged username.
+        case PasswordDefaultKey = "PasswordDefaultKey"      // Logged password.
+        case NethTokenDefaultKey = "TokenDefaultKey"        // Logged token for nethcti servers.
+        case DeviceIdDefaultKey = "DeviceIdDefaultKey"      // Logged deviceId for Notificatore.
+        case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
     }
     
     @objc public class ApiCredentials: NSObject {
@@ -60,18 +62,21 @@ extension NethCTIAPI {
                 return false;
             }
             
-            UserDefaults.standard.set(t, forKey:ApiClientIdentifier.TokenDefaultKey.rawValue)
+            UserDefaults.standard.set(t, forKey:ApiClientIdentifier.NethTokenDefaultKey.rawValue)
             print("API_MESSAGE: Token setted from \(sum) to \(t).")
             return true;
         }
         
+        /**
+         Set a generated token from QrCode data provisioning.
+         */
         public func setToken(token: String) -> Bool {
             guard let t = token as String? else {
                 print("No token provided.")
                 return false;
             }
             
-            UserDefaults.standard.set(t, forKey: ApiClientIdentifier.TokenDefaultKey.rawValue)
+            UserDefaults.standard.set(t, forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
             print("API_MESSAGE: Token setted to \(t).")
             return true;
         }
@@ -88,7 +93,7 @@ extension NethCTIAPI {
          TODO: Make this function stronger.
          */
         public func getAuthenticatedCredentials() -> [String: String]? {
-            let token = UserDefaults.standard.string(forKey: ApiClientIdentifier.TokenDefaultKey.rawValue)
+            let token = UserDefaults.standard.string(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
             return ["Authorization": "\(getUsername()!):\(token!)"] as [String: String]
         }
     }

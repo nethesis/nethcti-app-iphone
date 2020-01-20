@@ -42,6 +42,7 @@ target 'linphone' do
   # Pods for linphone
   basic_pods
 	pod 'SVProgressHUD'
+	pod 'Alamofire', '~> 4.7'
 
   target 'linphoneTests' do
     inherit! :search_paths
