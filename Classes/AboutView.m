@@ -20,6 +20,7 @@
 #import "PhoneMainView.h"
 #import "LinphoneManager.h"
 #import "LinphoneIOSVersion.h"
+#import "Utils/Utils.h"
 
 @implementation AboutView
 
@@ -67,6 +68,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
     [_policyLabel addGestureRecognizer:tapGestureRecognizerPolicy];
     _policyLabel.userInteractionEnabled = YES;
+    
+    // Change title label color.
+    _titleLabel.textColor = LINPHONE_MAIN_COLOR;
 }
 
 #pragma mark - Action Functions

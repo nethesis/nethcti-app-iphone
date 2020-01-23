@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusBarView">
             <connections>
+                <outlet property="backgroundImage" destination="mcm-kl-NzJ" id="4h8-tb-Cdt"/>
                 <outlet property="callQualityButton" destination="SKk-s0-5HE" id="22M-FN-kRs"/>
                 <outlet property="callSecurityButton" destination="27" id="29"/>
                 <outlet property="incallView" destination="0Vp-VF-wmX" id="mLI-RY-bfW"/>
@@ -23,9 +24,10 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="mcm-kl-NzJ" userLabel="backgroundView">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mcm-kl-NzJ" userLabel="backgroundView">
                     <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-VF-wmX" userLabel="incallView">
                     <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
@@ -111,7 +113,6 @@
     </objects>
     <resources>
         <image name="call_quality_indicator_4.png" width="31.200000762939453" height="32"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
         <image name="led_disconnected.png" width="19.200000762939453" height="19.200000762939453"/>
         <image name="menu.png" width="30.399999618530273" height="29.600000381469727"/>
         <image name="security_ok.png" width="22.399999618530273" height="28.799999237060547"/>

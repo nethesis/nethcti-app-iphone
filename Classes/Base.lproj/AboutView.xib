@@ -15,6 +15,7 @@
                 <outlet property="licenceLabel" destination="gVK-Xc-S59" id="XPV-ct-oGP"/>
                 <outlet property="policyLabel" destination="5Nl-Fs-ggi" id="xXc-PS-Eda"/>
                 <outlet property="portraitView" destination="HJH-1o-RXN" id="Hoa-uk-q9s"/>
+                <outlet property="titleLabel" destination="iNt-9d-7si" id="mzd-bx-SoO"/>
                 <outlet property="view" destination="HJH-1o-RXN" id="t5Y-ob-1WC"/>
             </connections>
         </placeholder>

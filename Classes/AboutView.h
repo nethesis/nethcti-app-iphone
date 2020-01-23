@@ -23,6 +23,7 @@
 
 @interface AboutView : TPMultiLayoutViewController <UICompositeViewDelegate>
 
+@property(weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property(weak, nonatomic) IBOutlet UILabel *appVersionLabel;

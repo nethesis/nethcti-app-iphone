@@ -22,6 +22,8 @@
 #import "PhoneMainView.h"
 #import <UserNotifications/UserNotifications.h>
 
+#import "Utils.h"
+
 @implementation StatusBarView {
 	NSTimer *callQualityTimer;
 	NSTimer *callSecurityTimer;
@@ -51,6 +53,8 @@
 	// Update to default state
 	LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
 	messagesUnreadCount = lp_config_get_int(linphone_core_get_config(LC), "app", "voice_mail_messages_count", 0);
+    
+    _backgroundImage.backgroundColor = LINPHONE_MAIN_COLOR;
 
 	[self proxyConfigUpdate:config];
 	[self updateUI:linphone_core_get_calls_nb(LC)];

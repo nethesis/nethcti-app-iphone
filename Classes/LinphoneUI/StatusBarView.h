@@ -26,6 +26,7 @@
 	UIConfirmationDialog *securityDialog;
 }
 
+@property(weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property(weak, nonatomic) IBOutlet UIButton *registrationState;
 @property(nonatomic, strong) IBOutlet UIButton *callSecurityButton;
 @property(weak, nonatomic) IBOutlet UIButton *voicemailButton;
