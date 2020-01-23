@@ -15,86 +15,94 @@ extension NethCTIAPI {
     public enum ApiClientIdentifier : String {
         case SuiteNameKey = "it.nethesis.nethcti3"          // Name of the UserDefaults suite.
         case UserDefaultKey = "UserDefaultKey"              // Logged username.
-        case PasswordDefaultKey = "PasswordDefaultKey"      // Logged password.
-        case NethTokenDefaultKey = "TokenDefaultKey"        // Logged token for nethcti servers.
+        case DomainDefaultKey = "DomainDefaultKey"          // Domain to call for neth apis.
+        case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
         case DeviceIdDefaultKey = "DeviceIdDefaultKey"      // Logged deviceId for Notificatore.
         case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
     }
     
     @objc public class ApiCredentials: NSObject {
         /**
-         Init a new instance of ApiCredentials, optionally with Username or Password.
-         Username or password can be nulls, because users can log in to NethCTI with authtoken directly.
+         Singleton init method.
          */
-        init(username: String?, password: String?) {
-            UserDefaults.standard.set(username, forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
-            UserDefaults.standard.set(password, forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue)
-            print("API_MESSAGE: Credentials setted \(username ?? "no name"):\(password ?? "no pwd").")
+        private override init() {}
+        private static let _singletonInstance = ApiCredentials()
+        public class func sharedInstance() -> ApiCredentials {
+            return ApiCredentials._singletonInstance
         }
         
         /**
-         Get the username.
+         Get or set a username.
          */
-        public func getUsername() -> String? {
-            return UserDefaults.standard.string(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
+        @objc public var Username: String {
+            get {
+                UserDefaults.standard.string(forKey: ApiClientIdentifier.UserDefaultKey.rawValue) ?? "No username."
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
+            }
         }
         
         /**
-         Get the password.
+         Get or set a domain.
          */
-        public func getPassword() -> String? {
-            return UserDefaults.standard.string(forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue)
+        @objc public var Domain: String {
+            get {
+                UserDefaults.standard.string(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue) ?? "No domain."
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
+            }
+        }
+        
+        /**
+         Get or set the nethesis authorization token.
+         */
+        @objc public var NethApiToken: String {
+            get {
+                UserDefaults.standard.string(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue) ?? "No token."
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
+            }
         }
         
         /**
          Generate the authorization token.
          */
-        public func setToken(digest: String) -> Bool {
+        public func setToken(password: String, digest: String) -> String {
             guard let d = digest as String? else {
-                print("No digest provided.")
-                return false;
+                let message = "No digest provided."
+                print(message)
+                return message;
             }
             
             let splitted = d.components(separatedBy: " ") // "Digest 1234567890"
-            let sum = "\(getUsername()!):\(getPassword()!):\(splitted[1])"
-            guard let t = sum.hmac(key: getPassword()!) as String? else {
-                print("No token generated.")
-                return false;
+            let sum = "\(self.Username):\(password):\(splitted[1])"
+            guard let t = sum.hmac(key: password) as String? else {
+                let message = "No token generated."
+                print(message)
+                return message;
             }
             
-            UserDefaults.standard.set(t, forKey:ApiClientIdentifier.NethTokenDefaultKey.rawValue)
+            self.NethApiToken = t
             print("API_MESSAGE: Token setted from \(sum) to \(t).")
-            return true;
-        }
-        
-        /**
-         Set a generated token from QrCode data provisioning.
-         */
-        public func setToken(token: String) -> Bool {
-            guard let t = token as String? else {
-                print("No token provided.")
-                return false;
-            }
-            
-            UserDefaults.standard.set(t, forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
-            print("API_MESSAGE: Token setted to \(t).")
-            return true;
+            return t;
         }
         
         /**
          Prepare the login credential as form-data.
          */
-        public func getAuthenticationCredentials() -> [String: String]? {
-            return ["username": getUsername()!, "password": getPassword()!] as [String: String]
+        func getAuthenticationCredentials(password: String) -> [String: String]? {
+            return ["username": self.Username, "password": password] as [String: String]
         }
         
         /**
          Use this after a successful login.
          TODO: Make this function stronger.
          */
-        public func getAuthenticatedCredentials() -> [String: String]? {
-            let token = UserDefaults.standard.string(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
-            return ["Authorization": "\(getUsername()!):\(token!)"] as [String: String]
+        func getAuthenticatedCredentials() -> [String: String]? {
+            return ["Authorization": "\(self.Username):\(self.NethApiToken)"] as [String: String]
         }
     }
 }

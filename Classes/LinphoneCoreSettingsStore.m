@@ -155,7 +155,7 @@
 		[self setObject:@"" forKey:@"account_mandatory_domain_preference"];
 		[self setCString:"" forKey:@"account_display_name_preference"];
 		[self setObject:@"" forKey:@"account_proxy_preference"];
-		[self setObject:@"udp" forKey:@"account_transport_preference"];
+		[self setObject:@"tls" forKey:@"account_transport_preference"];
 		[self setBool:NO forKey:@"account_outbound_proxy_preference"];
 		[self setBool:NO forKey:@"account_avpf_preference"];
 		[self setBool:YES forKey:@"account_is_default_preference"];
@@ -201,9 +201,10 @@
 						snprintf(tmp, sizeof(tmp) - 1, "%s", linphone_address_get_domain(proxy_addr));
 					[self setCString:tmp forKey:@"account_proxy_preference"];
 				}
-				/*
-                 The transport we'll ever be the tls.
-                 const char *tname = "udp";
+                
+                const char *tname = "tls";
+                 /*
+                  The transport we'll ever be the tls.
 				switch (linphone_address_get_transport(proxy_addr)) {
 					case LinphoneTransportTcp:
 						tname = "tcp";
@@ -215,8 +216,6 @@
 						break;
 				}
                 */
-                const char *tname = "tls";
-				linphone_address_destroy(proxy_addr);
 				linphone_address_unref(proxy_addr);
 				[self setCString:tname forKey:@"account_transport_preference"];
 			}

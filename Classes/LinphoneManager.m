@@ -49,6 +49,8 @@
 #import "ChatConversationView.h"
 #import <UserNotifications/UserNotifications.h>
 
+#import "NethCTI-Swift.h"
+
 #define LINPHONE_LOGS_MAX_ENTRY 5000
 
 static LinphoneCore *theLinphoneCore = nil;
@@ -2561,6 +2563,10 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 		} else {
 			timeout = @"";
 		}
+        
+        [[NethCTIAPI sharedInstance] registerDeviceId:tokenString successHandler:^(NSString* response) {
+            LOGE(response);
+        }];
 
 		NSString *params = [NSString
 				    stringWithFormat:@"app-id=%@.voip.%@;pn-type=apple;pn-tok=%@;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;pn-"

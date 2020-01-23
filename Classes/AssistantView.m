@@ -618,9 +618,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     ]) {
         [AssistantView cleanTextField:view];
 #if DEBUG
-        UIAssistantTextField *atf =
-        (UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
-        atf.text = @"nethctiapp.nethserver.net";
+        // We don't set the sip address default text anymore.
+        // UIAssistantTextField *atf = (UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
 #endif
     }
     phone_number_length = 0;
@@ -1409,6 +1408,8 @@ _waitView.hidden = YES; \
     if (config) {
         [[LinphoneManager instance] configurePushTokenForProxyConfig:config];
         if (linphone_core_add_proxy_config(LC, config) != -1) {
+            // set boolean
+            [[LinphoneManager instance] lpConfigSetBool:YES forKey:@"hide_run_assistant_preference"];
             linphone_core_set_default_proxy_config(LC, config);
             // reload address book to prepend proxy config domain to contacts' phone number
             // todo: STOP doing that!
@@ -1445,8 +1446,8 @@ _waitView.hidden = YES; \
         NSString* username = [NSString stringWithUTF8String:[self findTextField:ViewElement_Username].text.UTF8String];
         NSString* pwd = [NSString stringWithUTF8String:[self findTextField:ViewElement_Password].text.UTF8String];
         
-        NethCTIAPI* api = [[NethCTIAPI alloc] initWithUser:username pass:pwd url:domain];
-        [api postLoginWithSuccessHandler:^(NSString * _Nullable digest) {
+        NethCTIAPI* api = [NethCTIAPI sharedInstance];
+        [api postLoginWithUsername:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
                 // TODO: We can use this to perform Login easly.
                 // dispatch_async(dispatch_get_main_queue(), ^{
@@ -1455,7 +1456,7 @@ _waitView.hidden = YES; \
             } errorHandler:^(NSString * _Nullable error) {
                 NSLog(@"API_ERROR: %@", error);
             }];
-        } errorHandler:^(NSString* _Nullable error) {
+        } errorHandler:^(NSString * _Nullable error) {
             if([error isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
                 [self performSelectorOnMainThread:@selector(showErrorController:)
                                        withObject:@"Bad credentials, check them and retry later."
@@ -1687,8 +1688,8 @@ _waitView.hidden = YES; \
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
     NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
     NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
-    NethCTIAPI* api = [[NethCTIAPI alloc] initWithUser:components[0] pass:nil url:components[2]]; // We don't need the user password because we already have the auth token.
-    [api setAuthTokenWithToken:components[1]]; // Setted here.
+    NethCTIAPI* api = [NethCTIAPI sharedInstance];
+    [api setAuthTokenWithUsername:components[0] token:components[1] domain:components[2]];
     [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
         // TODO: We can use this to perform Login easly.
         // dispatch_async(dispatch_get_main_queue(), ^{
