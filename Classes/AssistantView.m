@@ -1411,8 +1411,10 @@ _waitView.hidden = YES; \
             // set boolean
             [[LinphoneManager instance] lpConfigSetBool:YES forKey:@"hide_run_assistant_preference"];
             linphone_core_set_default_proxy_config(LC, config);
-            // reload address book to prepend proxy config domain to contacts' phone number
-            // todo: STOP doing that!
+            
+            // Register for Voip Notifications like Linphone.
+            LinphoneAppDelegate* delegate = (LinphoneAppDelegate *)[[UIApplication sharedApplication] delegate];
+            [delegate registerForNotifications];
             
             [[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
             [PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];

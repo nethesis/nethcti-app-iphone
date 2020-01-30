@@ -89,7 +89,7 @@
 	[instance becomeActive];
 
 	if (instance.fastAddressBook.needToUpdate) {
-		//Update address book for external changes
+		// Update address book for external changes
 		if (PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription || PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription) {
 			[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
 		}
@@ -436,6 +436,21 @@
 	}
 }
 
+/**
+ This function convert the Notificatore's custom fields to Linphone expected fields.
+ */
+- (void)nethAdaptPayload:(NSDictionary *)userInfo {
+    NSMutableDictionary* mut = userInfo.mutableCopy;
+    NSString* cf1 = [mut objectForKey:@"custom-field-1"];
+    NSString* cf2 = [mut objectForKey:@"custom-field-2"];
+    
+    NSMutableDictionary* aps = ((NSDictionary*)[mut objectForKey:@"aps"]).mutableCopy;
+    [aps setValue:cf1 forKey:@"loc-key"];
+    [aps setValue:cf2 forKey:@"call-id"];
+    [mut setValue:aps forKey:@"aps"];
+    [self processRemoteNotification:mut];
+}
+
 - (void)processRemoteNotification:(NSDictionary *)userInfo {
 	if (linphone_core_get_calls(LC)) {
 		// if there are calls, obviously our TCP socket shall be working
@@ -449,7 +464,7 @@
 		return;
 	}
 
-	NSString *loc_key = [aps objectForKey:@"loc-key"] ?: [[aps objectForKey:@"alert"] objectForKey:@"loc-key"];
+    NSString *loc_key = [aps objectForKey:@"loc-key"] ?: [[aps objectForKey:@"alert"] objectForKey:@"loc-key"];
 	if (!loc_key) {
 		LOGE(@"Notification [%p] has no loc_key, it's impossible to process it.", userInfo);
 		return;
@@ -469,6 +484,7 @@
 		return;
 	}
 
+    
 	NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
 	if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive && [self addLongTaskIDforCallID:callId])
 		[LinphoneManager.instance startPushLongRunningTask:loc_key callId:callId];
@@ -570,7 +586,7 @@
 	LOGI(@"[PushKit] Notification [%p] received with payload : %@", userInfo, userInfo.description);
 	[self configureUINotification];
 	//to avoid IOS to suspend the app before being able to launch long running task
-	[self processRemoteNotification:userInfo];
+	[self nethAdaptPayload:userInfo];
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion {
@@ -765,7 +781,7 @@
 	handleActionWithIdentifier:(NSString *)identifier
 		  forLocalNotification:(UILocalNotification *)notification
 			 completionHandler:(void (^)(void))completionHandler {
-
+                 LOGE(@"APNS SERVER: Received.");
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
 		LinphoneCallAppData *data = (__bridge LinphoneCallAppData *)linphone_call_get_user_data(call);
@@ -813,7 +829,6 @@
 		  forLocalNotification:(UILocalNotification *)notification
 			  withResponseInfo:(NSDictionary *)responseInfo
 			 completionHandler:(void (^)(void))completionHandler {
-
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
 		LinphoneCallAppData *data = (__bridge LinphoneCallAppData *)linphone_call_get_user_data(call);
@@ -854,6 +869,7 @@
 #pragma mark - Remote configuration Functions (URL Handler)
 
 - (void)ConfigurationStateUpdateEvent:(NSNotification *)notif {
+    LOGE(@"APNS SERVER: Received.");
 	LinphoneConfiguringState state = [[notif.userInfo objectForKey:@"state"] intValue];
 	if (state == LinphoneConfiguringSuccessful) {
 		[NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneConfiguringStateUpdate object:nil];
