@@ -312,8 +312,8 @@
     // Set default settings by Nethesis.
     // This may be a problem if user can set this settings.
     LinphoneVideoPolicy policy;
-    policy.automatically_initiate = YES; // Video start automatically.
-    policy.automatically_accept = YES; // Video accept automatically.
+    // policy.automatically_initiate = YES; // Video start automatically.
+    // policy.automatically_accept = YES; // Video accept automatically.
     linphone_core_set_video_policy(LC, &policy);
     linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
     
