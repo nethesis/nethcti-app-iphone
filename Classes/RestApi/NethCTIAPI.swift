@@ -191,8 +191,8 @@ import Foundation
                 let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 let nethUser = try NethUser(from: userDict)
                 successHandler(PortableNethUser(from: nethUser!))
-            } catch {
-                errorHandler("json error: \(error.localizedDescription)")
+            } catch (let errorThrown) {
+                errorHandler("json error: \(errorThrown.localizedDescription)")
                 return
             }
         }
