@@ -559,12 +559,12 @@
 
 - (void)application:(UIApplication *)application
 	didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-	LOGI(@"%@ : %@", NSStringFromSelector(_cmd), deviceToken);
+	LOGI(@"WEDO: %@ : %@", NSStringFromSelector(_cmd), deviceToken);
 	[LinphoneManager.instance setPushNotificationToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-	LOGI(@"%@ : %@", NSStringFromSelector(_cmd), [error localizedDescription]);
+	LOGI(@"WEDO: %@ : %@", NSStringFromSelector(_cmd), [error localizedDescription]);
 	[LinphoneManager.instance setPushNotificationToken:nil];
 }
 
@@ -590,11 +590,13 @@
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion {
+    LOGI(@"[WEDO] didReceiveIncomingPushWithPayload withCompletionHandler.");
 	[self processPush:payload.dictionaryPayload];
 	dispatch_async(dispatch_get_main_queue(), ^{completion();});
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
+    LOGI(@"[WEDO] didReceiveIncomingPushWithPayload.");
 	[self processPush:payload.dictionaryPayload];
 }
 

@@ -563,6 +563,7 @@ static void linphone_iphone_display_status(struct _LinphoneCore *lc, const char 
 
 
 - (void)onCall:(LinphoneCall *)call StateChanged:(LinphoneCallState)state withMessage:(const char *)message {
+    //LOGD(@"[WEDO] Stato chiamata: %@ with message: %@", state, message);
 	// Handling wrapper
 	LinphoneCallAppData *data = (__bridge LinphoneCallAppData *)linphone_call_get_user_data(call);
 	if (!data) {
@@ -2565,7 +2566,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 		}
         
         [[NethCTIAPI sharedInstance] registerDeviceId:tokenString successHandler:^(NSString* response) {
-            LOGE(response);
+            LOGD(response);
         }];
 
 		NSString *params = [NSString
