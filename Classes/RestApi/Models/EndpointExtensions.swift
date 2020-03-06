@@ -24,17 +24,19 @@ extension Extension {
     init?(from:[String:Any]){
         guard let id = from["id"] as? String,
             let type = from["type"] as? String,
-            let secret = from["secret"] as? String,
-            let username = from["username"] as? String,
             let extensionDescription = from["description"] as? String,
             let actions = from["actions"] as? [String: Any] else {
                 return nil
         }
         
+        // Secret and username can be nil.
+        let secret = from["secret"] as? String
+        let username = from["username"] as? String
+        
         self.id = id
         self.type = type
-        self.secret = secret
-        self.username = username
+        self.secret = secret ?? ""
+        self.username = username ?? ""
         self.extensionDescription = extensionDescription
         self.actions = Actions(from:actions)!
     }

@@ -36,7 +36,7 @@ extension NethCTIAPI {
          */
         @objc public var Username: String {
             get {
-                UserDefaults.standard.string(forKey: ApiClientIdentifier.UserDefaultKey.rawValue) ?? "No username."
+                return UserDefaults.standard.string(forKey: ApiClientIdentifier.UserDefaultKey.rawValue) ?? "No username."
             }
             set {
                 UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
@@ -48,7 +48,7 @@ extension NethCTIAPI {
          */
         @objc public var Domain: String {
             get {
-                UserDefaults.standard.string(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue) ?? "No domain."
+                return UserDefaults.standard.string(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue) ?? "No domain."
             }
             set {
                 UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
@@ -60,7 +60,7 @@ extension NethCTIAPI {
          */
         @objc public var NethApiToken: String {
             get {
-                UserDefaults.standard.string(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue) ?? "No token."
+                return UserDefaults.standard.string(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue) ?? "No token."
             }
             set {
                 UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
