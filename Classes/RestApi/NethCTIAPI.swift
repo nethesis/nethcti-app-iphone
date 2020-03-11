@@ -214,7 +214,11 @@ import Foundation
         
         let plistEndpoint = self.baseUrlForNotificatore
         let plistAppKey = self.authKeyForNotificatore
-        let endpointUrl = "\(plistEndpoint)?CMD=initapp&os=1&appkey=\(plistAppKey)&devtoken=\(d)&user=\(user)@\(domain)"
+        var endpointUrl = "\(plistEndpoint)?CMD=initapp&os=1&appkey=\(plistAppKey)&devtoken=\(d)"
+        if(user != "" && domain != "") {
+            endpointUrl += "&user=\(user)@\(domain)";
+        }
+        
         print("APNS SERVER: Notification endpoint url: \(endpointUrl)")
         let url = URL(string: endpointUrl)
         self.baseCall(url: url!, method: "GET", headers: nil, body: nil) {

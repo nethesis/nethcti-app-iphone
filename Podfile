@@ -16,23 +16,8 @@ def basic_pods
 		pod 'Fabric', '~> 1.9.0'
 		pod 'Crashlytics', '~> 3.12.0'
 		pod 'Firebase/Performance'
-		pod 'Alamofire', '~> 4.7'
 		pod 'SwiftyJSON', '~> 4.0'
 	end
-end
-
-target 'liblinphoneTester' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for liblinphoneTester
-  basic_pods
-  
-  target 'liblinphoneTesterTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
 
 target 'linphone' do
@@ -42,13 +27,6 @@ target 'linphone' do
   # Pods for linphone
   basic_pods
 	pod 'SVProgressHUD'
-	pod 'Alamofire', '~> 4.7'
-
-  target 'linphoneTests' do
-    inherit! :search_paths
-		pod 'KIF', :configurations => ['Debug']
-    # Pods for testing
-  end
 
 end
 
