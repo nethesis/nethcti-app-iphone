@@ -2522,6 +2522,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	}
 	_pushNotificationToken = apushNotificationToken;
 
+    /*
 	@try {
 		const MSList *proxies = linphone_core_get_proxy_config_list(LC);
 		while (proxies) {
@@ -2531,6 +2532,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	} @catch (NSException* e) {
 		LOGW(@"%s: linphone core not ready yet, ignoring push token", __FUNCTION__);
 	}
+     */
 }
 
 - (void)configurePushTokenForProxyConfig:(LinphoneProxyConfig *)proxyCfg {

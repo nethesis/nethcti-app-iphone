@@ -31,6 +31,8 @@
 #include "LinphoneManager.h"
 #include "linphone/linphonecore.h"
 
+#import "NethCTI-Swift.h"
+
 #ifdef USE_CRASHLYTHICSS
 #include "FIRApp.h"
 #endif
@@ -146,18 +148,12 @@
 #pragma deploymate push "ignored-api-availability"
 
 - (void)registerForNotifications {
-	if (_alreadyRegisteredForNotification)
-		return;
-
-	_alreadyRegisteredForNotification = true;
 	self.voipRegistry = [[PKPushRegistry alloc] initWithQueue:dispatch_get_main_queue()];
 	self.voipRegistry.delegate = self;
 
 	// Initiate registration.
 	LOGI(@"[PushKit] Connecting for push notifications");
 	self.voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
-
-	[self configureUINotification];
 }
 
 - (void)configureUINotification {
@@ -268,6 +264,8 @@
 	BOOL background_mode = [instance lpConfigBoolForKey:@"backgroundmode_preference"];
 	BOOL start_at_boot = [instance lpConfigBoolForKey:@"start_at_boot_preference"];
 	[self registerForNotifications]; // Register for notifications must be done ASAP to give a chance for first SIP register to be done with right token. Specially true in case of remote provisionning or re-install with new type of signing certificate, like debug to release.
+    [self configureUINotification];
+    
 	if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
 		self.del = [[ProviderDelegate alloc] init];
 		[LinphoneManager.instance setProviderDelegate:self.del];
@@ -572,6 +570,15 @@
 
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(PKPushType)type {
 	LOGI(@"[PushKit] credentials updated with voip token: %@", credentials.token);
+    const unsigned char *tokenBuffer = [credentials.token bytes];
+    NSMutableString *tokenString = [NSMutableString stringWithCapacity:[credentials.token length] * 2];
+    for (int i = 0; i < [credentials.token length]; ++i) {
+        [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
+    }
+    [[NethCTIAPI sharedInstance] registerDeviceId:tokenString successHandler:^(NSString* response) {
+        LOGD(response);
+        NSLog(@"WEDO - chiamato notifictore");
+    }];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[LinphoneManager.instance setPushNotificationToken:credentials.token];
 	});
