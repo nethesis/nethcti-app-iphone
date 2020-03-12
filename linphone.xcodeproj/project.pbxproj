@@ -119,7 +119,7 @@
 		61AE364F20C00B370089D9D3 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AE364E20C00B370089D9D3 /* ShareViewController.m */; };
 		61AE365220C00B370089D9D3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61AE365020C00B370089D9D3 /* MainInterface.storyboard */; };
 		61AE365620C00B370089D9D3 /* NethCTI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61AE364B20C00B370089D9D3 /* NethCTI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		61AEBEA321906AFC00F35E7F /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		61AEBEA321906AFC00F35E7F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		61AEBEBD2191990A00F35E7F /* DevicesListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AEBEBC2191990A00F35E7F /* DevicesListView.m */; };
 		61AEBEBF2191991F00F35E7F /* DevicesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61AEBEBE2191991F00F35E7F /* DevicesListView.xib */; };
 		61AEBEC22191D7C800F35E7F /* UIDevicesDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AEBEC12191D7C800F35E7F /* UIDevicesDetails.m */; };
@@ -638,7 +638,7 @@
 		63E27A321C4FECD000D332AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E27A311C4FECD000D332AE /* LaunchScreen.xib */; };
 		63E27A521C50EDB000D332AE /* hold.mkv in Resources */ = {isa = PBXBuildFile; fileRef = 63E27A511C50EB2700D332AE /* hold.mkv */; };
 		63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E59A3E1ADE70D900646FB3 /* InAppProductsManager.m */; };
-		63E802DB1C625AEF000D5509 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		63E802DB1C625AEF000D5509 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		63EC8D391D7438660066547B /* AssistantLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63EC8D3B1D7438660066547B /* AssistantLinkView.xib */; };
 		63F1DF441BCE618E00EDED90 /* UIAddressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1DF431BCE618E00EDED90 /* UIAddressTextField.m */; };
 		63F1DF4B1BCE983200EDED90 /* CallConferenceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1DF4A1BCE983200EDED90 /* CallConferenceTableView.m */; };
@@ -692,6 +692,11 @@
 		A634ABAFCB39B6AAE4CA991D /* Pods_linphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CEDD144CABFAA70A29AF27 /* Pods_linphone.framework */; };
 		C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87D923A3EA5500F4B2DA /* quit_default.png */; };
 		C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87DA23A3EA5600F4B2DA /* quit_over.png */; };
+		C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */; };
+		C339F39B241A538A00447319 /* neth-splash-landscape_2208x1242.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F399241A538A00447319 /* neth-splash-landscape_2208x1242.png */; };
+		C339F39D241A722300447319 /* color_neth_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F39C241A722300447319 /* color_neth_launch.png */; };
+		C339F3A0241A764E00447319 /* neth-splash-part2.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F39E241A764D00447319 /* neth-splash-part2.png */; };
+		C339F3A1241A764E00447319 /* neth-splash-part1.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F39F241A764E00447319 /* neth-splash-part1.png */; };
 		C33BF99623717474003461CC /* NethCTIAPI.ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */; };
 		C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B723758C0400CC5C24 /* NethUser.swift */; };
 		C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B923758CB500CC5C24 /* Endpoints.swift */; };
@@ -1759,6 +1764,11 @@
 		BEBE8FB918176C388C01CFF7 /* Pods_linphoneExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_linphoneExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31B87D923A3EA5500F4B2DA /* quit_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_default.png; sourceTree = "<group>"; };
 		C31B87DA23A3EA5600F4B2DA /* quit_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_over.png; sourceTree = "<group>"; };
+		C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-portrait_1242x2208.png"; sourceTree = "<group>"; };
+		C339F399241A538A00447319 /* neth-splash-landscape_2208x1242.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-landscape_2208x1242.png"; sourceTree = "<group>"; };
+		C339F39C241A722300447319 /* color_neth_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_launch.png; sourceTree = "<group>"; };
+		C339F39E241A764D00447319 /* neth-splash-part2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-part2.png"; sourceTree = "<group>"; };
+		C339F39F241A764E00447319 /* neth-splash-part1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-part1.png"; sourceTree = "<group>"; };
 		C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
@@ -1985,7 +1995,7 @@
 			files = (
 				61DD7E1F2372E88F001BDD01 /* CoreLocation.framework in Frameworks */,
 				6180D6FE21EE41A800AD9CB6 /* QuickLook.framework in Frameworks */,
-				61AEBEA321906AFC00F35E7F /* (null) in Frameworks */,
+				61AEBEA321906AFC00F35E7F /* BuildFile in Frameworks */,
 				D37DC7181594AF3400B2A5EB /* MessageUI.framework in Frameworks */,
 				61F1997520C6B1D5006B069A /* AVKit.framework in Frameworks */,
 				249660951FD6A35F001D55AA /* Photos.framework in Frameworks */,
@@ -2341,7 +2351,7 @@
 			path = LinphoneUI;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+		29B97314FDCFA39411CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				8C23BCB71D82AAC3005F19BB /* linphone.entitlements */,
@@ -2606,6 +2616,11 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C339F39F241A764E00447319 /* neth-splash-part1.png */,
+				C339F39E241A764D00447319 /* neth-splash-part2.png */,
+				C339F39C241A722300447319 /* color_neth_launch.png */,
+				C339F399241A538A00447319 /* neth-splash-landscape_2208x1242.png */,
+				C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */,
 				C31B87D923A3EA5500F4B2DA /* quit_default.png */,
 				C31B87DA23A3EA5600F4B2DA /* quit_over.png */,
 				633FEBE21D3CD5570014B822 /* add_field_default.png */,
@@ -3548,7 +3563,7 @@
 				fr,
 				it,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -3648,6 +3663,7 @@
 				633FEDC61D3CD5590014B822 /* call_incoming.png in Resources */,
 				633FEF2D1D3CD55A0014B822 /* route_earpiece_selected@2x.png in Resources */,
 				638F1A621C2021B2004B8E02 /* DialerView~ipad.xib in Resources */,
+				C339F39B241A538A00447319 /* neth-splash-landscape_2208x1242.png in Resources */,
 				615A2817217F280C0060F920 /* chat_list_indicator.png in Resources */,
 				633FEEFF1D3CD55A0014B822 /* options_add_call_disabled@2x.png in Resources */,
 				633FEF091D3CD55A0014B822 /* options_start_conference_disabled@2x.png in Resources */,
@@ -3661,7 +3677,7 @@
 				633FEED41D3CD55A0014B822 /* numpad_7_default@2x.png in Resources */,
 				633FEEE01D3CD55A0014B822 /* numpad_8_over~ipad@2x.png in Resources */,
 				633FEDDC1D3CD5590014B822 /* call_start_body_disabled~ipad.png in Resources */,
-				63E802DB1C625AEF000D5509 /* (null) in Resources */,
+				63E802DB1C625AEF000D5509 /* BuildFile in Resources */,
 				633FEE2E1D3CD5590014B822 /* color_F.png in Resources */,
 				633FEDC51D3CD5590014B822 /* call_hangup_disabled@2x.png in Resources */,
 				633FEEDF1D3CD55A0014B822 /* numpad_8_over~ipad.png in Resources */,
@@ -3685,6 +3701,7 @@
 				633FEECA1D3CD55A0014B822 /* numpad_5~ipad@2x.png in Resources */,
 				633FEE101D3CD5590014B822 /* chat_list_indicator~ipad.png in Resources */,
 				633FEF331D3CD55A0014B822 /* route_speaker_selected@2x.png in Resources */,
+				C339F39D241A722300447319 /* color_neth_launch.png in Resources */,
 				633FEE6C1D3CD5590014B822 /* footer_dialer_disabled.png in Resources */,
 				633FEF231D3CD55A0014B822 /* route_bluetooth_default@2x.png in Resources */,
 				633FED9C1D3CD5590014B822 /* add_field_default.png in Resources */,
@@ -3895,6 +3912,7 @@
 				8CBD7BA920B6B82A00E5DCC0 /* UIChatConversationImdnTableViewCell.xib in Resources */,
 				615A28442180C0900060F920 /* recording@2x.png in Resources */,
 				615A2813217F24D40060F920 /* security_1_indicator.png in Resources */,
+				C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */,
 				24BFAAA7209B0630004F47A7 /* callkit_logo.png in Resources */,
 				615A2811217F1FDE0060F920 /* chat_add_group@2x.png in Resources */,
 				D34F6F9E1594D3FB0095705B /* InAppSettings.bundle in Resources */,
@@ -3924,6 +3942,7 @@
 				633FEE1D1D3CD5590014B822 /* chat_start_body_default~ipad@2x.png in Resources */,
 				633FEEEB1D3CD55A0014B822 /* numpad_hash_default.png in Resources */,
 				633FEF221D3CD55A0014B822 /* route_bluetooth_default.png in Resources */,
+				C339F3A1241A764E00447319 /* neth-splash-part1.png in Resources */,
 				633FEE701D3CD5590014B822 /* footer_history_disabled.png in Resources */,
 				633FEDC91D3CD5590014B822 /* call_missed@2x.png in Resources */,
 				633FEEAE1D3CD55A0014B822 /* numpad_2_over@2x.png in Resources */,
@@ -4037,6 +4056,7 @@
 				633FEDB01D3CD5590014B822 /* call_add_disabled.png in Resources */,
 				63EC8D391D7438660066547B /* AssistantLinkView.xib in Resources */,
 				C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */,
+				C339F3A0241A764E00447319 /* neth-splash-part2.png in Resources */,
 				633FEE971D3CD55A0014B822 /* micro_disabled@2x.png in Resources */,
 				D38187CD15FE346700C3EDCA /* HistoryDetailsView.xib in Resources */,
 				633FEEA21D3CD55A0014B822 /* numpad_0~ipad@2x.png in Resources */,
@@ -5182,7 +5202,7 @@
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
@@ -5305,7 +5325,7 @@
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
@@ -5430,7 +5450,7 @@
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
@@ -5554,7 +5574,7 @@
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "arm64 armv7";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
