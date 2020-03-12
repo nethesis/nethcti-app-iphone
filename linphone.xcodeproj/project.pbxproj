@@ -5173,7 +5173,9 @@
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.3\\\"",
+					"-DDEBUG=1",
 				);
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
@@ -5297,7 +5299,9 @@
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.3\\\"",
+					"-DDEBUG=0",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
@@ -5422,7 +5426,9 @@
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.3\\\"",
+					"-DDEBUG=1",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
@@ -5546,7 +5552,9 @@
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.3\\\"",
+					"-DDEBUG=0",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";

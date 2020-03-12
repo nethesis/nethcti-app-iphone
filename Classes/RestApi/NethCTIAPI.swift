@@ -28,8 +28,12 @@ import Foundation
         return "https://\(domain)/webrest"
     }
     
-    private var authKeyForNotificatore : String {
-        return getStringFromInfo(keyString: "AppApnsAuthKey")
+    private var authKeyForSandboxNotificatore : String {
+        return getStringFromInfo(keyString: "AppApnsAuthKeySandbox")
+    }
+    
+    private var authKeyForProductionNotificatore: String {
+        return getStringFromInfo(keyString: "AppApnsAuthKeyProduction")
     }
     
     private var baseUrlForNotificatore : String {
@@ -205,15 +209,30 @@ import Foundation
         guard let d = deviceId as String? else {
             return
         }
+        
         guard let user = ApiCredentials.sharedInstance().Username as String? else {
             return
         }
+        
         guard let domain = ApiCredentials.sharedInstance().Domain as String? else {
             return
         }
         
         let plistEndpoint = self.baseUrlForNotificatore
-        let plistAppKey = self.authKeyForNotificatore
+        var plistAppKey = "Empty";
+        var mode = "Sandbox";
+        
+        #if DEBUG
+        // You reach this code only in sandbox.
+        mode = "Sandbox";
+        plistAppKey = self.authKeyForSandboxNotificatore
+        #else
+        // You reach this code only in production.
+        mode = "Production";
+        plistAppKey = self.authKeyForProductionNotificatore
+        #endif
+        print("[WEDO] - You are in \(mode) mode, with app key: \(plistAppKey)");
+        
         var endpointUrl = "\(plistEndpoint)?CMD=initapp&os=1&appkey=\(plistAppKey)&devtoken=\(d)"
         if(user != "" && domain != "") {
             endpointUrl += "&user=\(user)@\(domain)";

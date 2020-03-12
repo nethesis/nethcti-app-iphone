@@ -577,7 +577,7 @@
     }
     [[NethCTIAPI sharedInstance] registerDeviceId:tokenString successHandler:^(NSString* response) {
         LOGD(response);
-        NSLog(@"WEDO - chiamato notifictore");
+        NSLog(@"WEDO - chiamato notificatore");
     }];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[LinphoneManager.instance setPushNotificationToken:credentials.token];
