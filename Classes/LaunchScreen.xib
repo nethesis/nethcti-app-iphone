@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
-                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-kY-xHP" userLabel="bottomBarImage">
+                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-kY-xHP" userLabel="bottomBarImage">
                     <rect key="frame" x="127" y="656" width="119" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </imageView>
@@ -27,23 +27,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
                     <subviews>
                         <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="neth-splash-part1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-nR-x0f" userLabel="titleImage">
-                            <rect key="frame" x="39" y="236" width="297" height="101"/>
+                            <rect key="frame" x="27" y="213" width="320" height="93"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="300" id="kUh-9Q-CjK"/>
-                                <constraint firstAttribute="width" secondItem="pz0-nR-x0f" secondAttribute="height" multiplier="3:1" id="u8E-eB-L3k"/>
+                                <constraint firstAttribute="width" constant="320" id="kUh-9Q-CjK"/>
+                                <constraint firstAttribute="width" secondItem="pz0-nR-x0f" secondAttribute="height" multiplier="17:5" id="u8E-eB-L3k"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-vL-IBs" userLabel="descLabel">
-                            <rect key="frame" x="-2" y="144" width="375" height="20"/>
+                            <rect key="frame" x="0.0" y="145" width="375" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="neth-splash-part2.png" translatesAutoresizingMaskIntoConstraints="NO" id="HrW-vR-knT" userLabel="subtitleImage">
-                            <rect key="frame" x="88" y="27" width="199" height="78"/>
+                            <rect key="frame" x="138" y="28" width="100" height="46"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="200" id="kmM-NP-H8x"/>
-                                <constraint firstAttribute="width" secondItem="HrW-vR-knT" secondAttribute="height" multiplier="67:26" id="rp2-Oy-WOB"/>
+                                <constraint firstAttribute="width" constant="100" id="kmM-NP-H8x"/>
+                                <constraint firstAttribute="width" secondItem="HrW-vR-knT" secondAttribute="height" multiplier="19:9" id="rp2-Oy-WOB"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -51,14 +51,14 @@
                     <constraints>
                         <constraint firstItem="HrW-vR-knT" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="afX-zT-0It"/>
                         <constraint firstItem="pz0-nR-x0f" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="cXR-Bz-hYv"/>
-                        <constraint firstItem="pz0-nR-x0f" firstAttribute="top" secondItem="4JK-Mw-ZzG" secondAttribute="top" constant="236" id="hHl-TL-x61"/>
+                        <constraint firstAttribute="bottom" secondItem="pz0-nR-x0f" secondAttribute="bottom" constant="27" id="e9j-Uy-Qpa"/>
                         <constraint firstItem="HrW-vR-knT" firstAttribute="top" secondItem="4JK-Mw-ZzG" secondAttribute="top" constant="27" id="mYr-jX-ADw"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="4JK-Mw-ZzG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6fi-r8-ESa"/>
+                <constraint firstItem="4JK-Mw-ZzG" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6fi-r8-ESa"/>
                 <constraint firstItem="xtr-QP-6We" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="S0t-qQ-1mD"/>
                 <constraint firstItem="4JK-Mw-ZzG" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="XAn-nK-UZ1"/>
                 <constraint firstItem="4JK-Mw-ZzG" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="XPw-QG-ILP"/>
@@ -73,7 +73,7 @@
         </view>
     </objects>
     <resources>
-        <image name="color_neth_A.png" width="2" height="2"/>
+        <image name="color_neth_launch.png" width="2" height="2"/>
         <image name="neth-splash-part1.png" width="956" height="155"/>
         <image name="neth-splash-part2.png" width="504" height="127"/>
         <image name="neth-splash-portrait_1242x2208.png" width="1242" height="2208"/>
