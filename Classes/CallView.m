@@ -128,6 +128,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_starButton setDtmf:true];
 	[_hashButton setDigit:'#'];
 	[_hashButton setDtmf:true];
+    
+}
+
+- (void)nethCTIViewPersonalizatio {
+    [_chatButton setEnabled:NO];
+    [_chatButton setHidden:YES];
+    [_chatNotificationView setHidden:YES];
 }
 
 - (void)dealloc {
@@ -897,13 +904,15 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 - (void)messageReceived:(NSNotification *)notif {
 	[self updateUnreadMessage:TRUE];
 }
+
+// Chat Notification View now is hidden.
 - (void)updateUnreadMessage:(BOOL)appear {
 	int unreadMessage = [LinphoneManager unreadMessageCount];
 	if (unreadMessage > 0) {
 		_chatNotificationLabel.text = [NSString stringWithFormat:@"%i", unreadMessage];
-		[_chatNotificationView startAnimating:appear];
+		// [_chatNotificationView startAnimating:appear];
 	} else {
-		[_chatNotificationView stopAnimating:appear];
+		// [_chatNotificationView stopAnimating:appear];
 	}
 }
 @end

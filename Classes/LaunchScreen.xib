@@ -23,36 +23,36 @@
                     <rect key="frame" x="127" y="656" width="119" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </imageView>
-                <view hidden="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JK-Mw-ZzG">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
+                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JK-Mw-ZzG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="333.66666666666669"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="neth-splash-part1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-nR-x0f" userLabel="titleImage">
-                            <rect key="frame" x="27" y="213" width="320" height="93"/>
+                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo_nethCTI_portrait.png" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-nR-x0f" userLabel="titleImage">
+                            <rect key="frame" x="51.666666666666657" y="258.66666666666669" width="272" height="39"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="320" id="kUh-9Q-CjK"/>
-                                <constraint firstAttribute="width" secondItem="pz0-nR-x0f" secondAttribute="height" multiplier="17:5" id="u8E-eB-L3k"/>
+                                <constraint firstAttribute="height" constant="39" id="kUh-9Q-CjK"/>
+                                <constraint firstAttribute="width" secondItem="pz0-nR-x0f" secondAttribute="height" multiplier="17:5" constant="139.40000000000001" id="u8E-eB-L3k"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-vL-IBs" userLabel="descLabel">
-                            <rect key="frame" x="0.0" y="145" width="375" height="20"/>
+                            <rect key="frame" x="0.0" y="151" width="376" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="neth-splash-part2.png" translatesAutoresizingMaskIntoConstraints="NO" id="HrW-vR-knT" userLabel="subtitleImage">
-                            <rect key="frame" x="138" y="28" width="100" height="46"/>
+                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo_nethesis.png" translatesAutoresizingMaskIntoConstraints="NO" id="HrW-vR-knT" userLabel="subtitleImage">
+                            <rect key="frame" x="138" y="36" width="99" height="47"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="kmM-NP-H8x"/>
+                                <constraint firstAttribute="height" constant="47" id="kmM-NP-H8x"/>
                                 <constraint firstAttribute="width" secondItem="HrW-vR-knT" secondAttribute="height" multiplier="19:9" id="rp2-Oy-WOB"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="tintColor" red="0.18823529411764706" green="0.61960784313725492" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="pz0-nR-x0f" secondAttribute="bottom" constant="36" id="Al1-LL-47M"/>
+                        <constraint firstItem="pz0-nR-x0f" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="En3-FL-Lj7"/>
                         <constraint firstItem="HrW-vR-knT" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="afX-zT-0It"/>
-                        <constraint firstItem="pz0-nR-x0f" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="cXR-Bz-hYv"/>
-                        <constraint firstAttribute="bottom" secondItem="pz0-nR-x0f" secondAttribute="bottom" constant="27" id="e9j-Uy-Qpa"/>
-                        <constraint firstItem="HrW-vR-knT" firstAttribute="top" secondItem="4JK-Mw-ZzG" secondAttribute="top" constant="27" id="mYr-jX-ADw"/>
+                        <constraint firstItem="HrW-vR-knT" firstAttribute="top" secondItem="4JK-Mw-ZzG" secondAttribute="top" constant="36" id="mYr-jX-ADw"/>
                     </constraints>
                 </view>
             </subviews>
@@ -74,8 +74,8 @@
     </objects>
     <resources>
         <image name="color_neth_launch.png" width="2" height="2"/>
-        <image name="neth-splash-part1.png" width="956" height="155"/>
-        <image name="neth-splash-part2.png" width="504" height="127"/>
+        <image name="logo_nethCTI_portrait.png" width="929" height="143"/>
+        <image name="logo_nethesis.png" width="491" height="117"/>
         <image name="neth-splash-portrait_1242x2208.png" width="1242" height="2208"/>
     </resources>
 </document>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,6 +15,7 @@
                 <outlet property="bottomBar" destination="mga-O5-mUn" id="ObF-wX-nBD"/>
                 <outlet property="callPauseButton" destination="7f5-7T-fV3" id="A5d-op-0Iq"/>
                 <outlet property="callView" destination="9" id="TKY-dp-lKv"/>
+                <outlet property="chatButton" destination="Dh2-iA-2NB" id="WzU-4F-DMm"/>
                 <outlet property="chatNotificationLabel" destination="Saa-p5-chV" id="XEA-19-Jur"/>
                 <outlet property="chatNotificationView" destination="d9Y-2a-CDI" id="Cys-zI-ApZ"/>
                 <outlet property="conferenceCallsTable" destination="sif-q0-7oE" id="Fjr-dB-s4q"/>
@@ -630,7 +633,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" tag="57" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRu-dB-r3e" userLabel="numpadButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="167" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
                                             <state key="normal" image="footer_dialer_default.png" backgroundImage="color_C.png">
@@ -644,7 +647,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="58" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpw-A4-BZO" userLabel="hangupButton" customClass="UIHangUpButton">
-                                            <rect key="frame" x="167" y="0.0" width="333" height="63"/>
+                                            <rect key="frame" x="250" y="0.0" width="422" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Hangup"/>
                                             <state key="normal" image="call_hangup_default.png" backgroundImage="color_D.png">
@@ -653,7 +656,7 @@
                                             <state key="highlighted" backgroundImage="color_I.png"/>
                                         </button>
                                         <button opaque="NO" tag="59" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7u-65-OPV" userLabel="chatButton" customClass="UIIconButton">
-                                            <rect key="frame" x="500" y="0.0" width="167" height="63"/>
+                                            <rect key="frame" x="667" y="0.0" width="167" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Hangup"/>
                                             <state key="normal" image="footer_chat_default.png" backgroundImage="color_C.png">
@@ -665,7 +668,7 @@
                                             </connections>
                                         </button>
                                         <view hidden="YES" autoresizesSubviews="NO" userInteractionEnabled="NO" tag="70" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d9Y-2a-CDI" userLabel="chatNotificationView" customClass="UIBouncingView">
-                                            <rect key="frame" x="605" y="1" width="40" height="22"/>
+                                            <rect key="frame" x="772" y="1" width="40" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="71" contentMode="scaleAspectFit" fixedFrame="YES" image="history_chat_indicator.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPO-PM-4zJ" userLabel="chatNotificationImage">
@@ -1159,7 +1162,7 @@
                                     <state key="normal" image="button:GQK-F8-oLr:image">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="22238CD3-8C0D-4B3F-BAF6-071C34AF0185"/>
+                                    <state key="disabled" image="E8B9AFD2-BC55-45A7-89EB-1A68600E20EF"/>
                                     <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onRecordClick:" destination="-1" eventType="touchUpInside" id="IFO-tT-oog"/>
@@ -1261,7 +1264,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" tag="57" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyf-if-w6d" userLabel="numpadButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="82" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
                                             <state key="normal" image="footer_dialer_default.png" backgroundImage="color_C.png">
@@ -1275,7 +1278,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="58" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QnR-fw-05z" userLabel="hangupButton" customClass="UIHangUpButton">
-                                            <rect key="frame" x="82" y="0.0" width="165" height="63"/>
+                                            <rect key="frame" x="125" y="0.0" width="208" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Hangup"/>
                                             <state key="normal" image="call_hangup_default.png" backgroundImage="color_D.png">
@@ -1283,8 +1286,8 @@
                                             </state>
                                             <state key="highlighted" backgroundImage="color_I.png"/>
                                         </button>
-                                        <button opaque="NO" tag="59" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh2-iA-2NB" userLabel="chatButton" customClass="UIIconButton">
-                                            <rect key="frame" x="247" y="0.0" width="86" height="63"/>
+                                        <button hidden="YES" opaque="NO" tag="59" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh2-iA-2NB" userLabel="chatButton" customClass="UIIconButton">
+                                            <rect key="frame" x="333" y="0.0" width="86" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Hangup"/>
                                             <state key="normal" image="footer_chat_default.png" backgroundImage="color_C.png">
@@ -1341,7 +1344,7 @@
         </view>
     </objects>
     <resources>
-        <image name="22238CD3-8C0D-4B3F-BAF6-071C34AF0185" width="33" height="33">
+        <image name="E8B9AFD2-BC55-45A7-89EB-1A68600E20EF" width="33" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
 S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDBkaHxQkKCkwMzZASElNUFUkbnVsbNYNDg8QERITFBUW
