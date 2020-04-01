@@ -79,6 +79,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *recordButtonOnView;
 
 @property(weak, nonatomic) IBOutlet UIView *bottomBar;
+
+// NethCTI personalization. This button have to be hidden.
+@property(weak, nonatomic) IBOutlet UIButton *chatButton;
+
 @property(nonatomic, strong) IBOutlet UIDigitButton *oneButton;
 @property(nonatomic, strong) IBOutlet UIDigitButton *twoButton;
 @property(nonatomic, strong) IBOutlet UIDigitButton *threeButton;

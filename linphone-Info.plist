@@ -114,7 +114,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Share photos with your friends and customize avatars</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Make calls with your friends</string>
+	<string>Make calls with your friends, we don't send your contacts to any server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Linphone will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -136,7 +136,7 @@
 		</dict>
 	</dict>
 	<key>NSVoIPUsageDescription</key>
-	<string>Make audio/video calls</string>
+	<string>Make audio/video calls with sip protocol.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

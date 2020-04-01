@@ -26,8 +26,6 @@
 #import "CoreTelephony/CTCallCenter.h"
 #import "CoreTelephony/CTCall.h"
 
-#import "LinphoneCoreSettingsStore.h"
-
 #include "LinphoneManager.h"
 #include "linphone/linphonecore.h"
 
@@ -307,21 +305,30 @@
     LOGI(@"app launched with state : %li", (long)application.applicationState);
     LOGI(@"FINISH LAUNCHING WITH OPTION : %@", launchOptions.description);
     
-    // Set default settings by Nethesis.
-    // This may be a problem if user can set this settings.
-    LinphoneVideoPolicy policy;
-    // policy.automatically_initiate = YES; // Video start automatically.
-    // policy.automatically_accept = YES; // Video accept automatically.
-    linphone_core_set_video_policy(LC, &policy);
-    linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
-    
     UIApplicationShortcutItem *shortcutItem = [launchOptions objectForKey:@"UIApplicationLaunchOptionsShortcutItemKey"];
     if (shortcutItem) {
         _shortcutItem = shortcutItem;
         return NO;
     }
+    
+    [self setDefaultNethesis];
 
 	return YES;
+}
+
+- (void)setDefaultNethesis {
+    // Set default settings by Nethesis.
+    // This may be a problem if user can set this settings.
+    LinphoneVideoPolicy policy;
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"it.nethesis.nethcti"];
+    bool first_time_access = [defaults valueForKey:@"first_time_access_app"];
+    if(first_time_access) {
+        policy.automatically_initiate = NO; // Video start automatically.
+        policy.automatically_accept = NO; // Video accept automatically.
+        [defaults setBool:NO forKey:@"first_time_access_app"];
+    }
+    linphone_core_set_video_policy(LC, &policy);
+    linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,49 +15,67 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_C.png" translatesAutoresizingMaskIntoConstraints="NO" id="xtr-QP-6We" userLabel="backgroundColor">
+                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="neth-splash-portrait_1242x2208.png" translatesAutoresizingMaskIntoConstraints="NO" id="xtr-QP-6We" userLabel="backgroundColor">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
-                <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4JK-Mw-ZzG">
-                    <rect key="frame" x="87" y="191" width="200" height="285"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="neth_splashscreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-nR-x0f" userLabel="logoImage">
-                            <rect key="frame" x="-85" y="8" width="371" height="219"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-vL-IBs" userLabel="descLabel">
-                            <rect key="frame" x="-85" y="235" width="371" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <attributedString key="attributedText">
-                                <fragment content="NethCTI">
-                                    <attributes>
-                                        <color key="NSColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="26" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                </view>
-                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-kY-xHP" userLabel="bottomBarImage">
+                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-kY-xHP" userLabel="bottomBarImage">
                     <rect key="frame" x="127" y="656" width="119" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </imageView>
+                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="4JK-Mw-ZzG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="333.66666666666669"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo_nethCTI_portrait.png" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-nR-x0f" userLabel="titleImage">
+                            <rect key="frame" x="51.666666666666657" y="258.66666666666669" width="272" height="39"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="39" id="kUh-9Q-CjK"/>
+                                <constraint firstAttribute="width" secondItem="pz0-nR-x0f" secondAttribute="height" multiplier="17:5" constant="139.40000000000001" id="u8E-eB-L3k"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-vL-IBs" userLabel="descLabel">
+                            <rect key="frame" x="0.0" y="151" width="376" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo_nethesis.png" translatesAutoresizingMaskIntoConstraints="NO" id="HrW-vR-knT" userLabel="subtitleImage">
+                            <rect key="frame" x="138" y="36" width="99" height="47"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="47" id="kmM-NP-H8x"/>
+                                <constraint firstAttribute="width" secondItem="HrW-vR-knT" secondAttribute="height" multiplier="19:9" id="rp2-Oy-WOB"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="tintColor" red="0.18823529411764706" green="0.61960784313725492" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="pz0-nR-x0f" secondAttribute="bottom" constant="36" id="Al1-LL-47M"/>
+                        <constraint firstItem="pz0-nR-x0f" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="En3-FL-Lj7"/>
+                        <constraint firstItem="HrW-vR-knT" firstAttribute="centerX" secondItem="4JK-Mw-ZzG" secondAttribute="centerX" id="afX-zT-0It"/>
+                        <constraint firstItem="HrW-vR-knT" firstAttribute="top" secondItem="4JK-Mw-ZzG" secondAttribute="top" constant="36" id="mYr-jX-ADw"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4JK-Mw-ZzG" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6fi-r8-ESa"/>
+                <constraint firstItem="xtr-QP-6We" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="S0t-qQ-1mD"/>
+                <constraint firstItem="4JK-Mw-ZzG" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="XAn-nK-UZ1"/>
+                <constraint firstItem="4JK-Mw-ZzG" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="XPw-QG-ILP"/>
+                <constraint firstItem="xtr-QP-6We" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XvJ-bP-rUE"/>
+                <constraint firstItem="4JK-Mw-ZzG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eh8-tE-70L"/>
+                <constraint firstItem="xtr-QP-6We" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="kru-Wn-Ja0"/>
+                <constraint firstItem="xtr-QP-6We" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="seL-sS-1Rq"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="345.6521739130435" y="673.32589285714278"/>
+            <point key="canvasLocation" x="345.6521739130435" y="672.96195652173924"/>
         </view>
     </objects>
     <resources>
-        <image name="color_C.png" width="2" height="2"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
-        <image name="neth_splashscreen.png" width="192" height="192"/>
+        <image name="color_neth_launch.png" width="2" height="2"/>
+        <image name="logo_nethCTI_portrait.png" width="929" height="143"/>
+        <image name="logo_nethesis.png" width="491" height="117"/>
+        <image name="neth-splash-portrait_1242x2208.png" width="1242" height="2208"/>
     </resources>
 </document>

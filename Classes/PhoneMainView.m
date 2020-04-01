@@ -633,18 +633,16 @@ static RootViewManager *rootViewManagerInstance = nil;
 			// black bg: white text on black background
 			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-			[UIView animateWithDuration:0.3f
-							 animations:^{
-							   statusBarBG.backgroundColor = [UIColor blackColor];
-							 }];
+			[UIView animateWithDuration:0.3f animations:^{
+                statusBarBG.backgroundColor = [UIColor blackColor];
+            }];
 
 		} else {
 			// light bg: black text on white bg
 			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-			[UIView animateWithDuration:0.3f
-							 animations:^{
-							   statusBarBG.backgroundColor = [UIColor colorWithWhite:0.935 alpha:1];
-							 }];
+			[UIView animateWithDuration:0.3f animations:^{
+                statusBarBG.backgroundColor = [UIColor colorWithWhite:0.935 alpha:1];
+            }];
 		}
 	}
 #pragma deploymate pop
