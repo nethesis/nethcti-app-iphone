@@ -33,8 +33,24 @@
 	if (self) {
 		dict = [[NSMutableDictionary alloc] init];
 		changedDict = [[NSMutableDictionary alloc] init];
+        [self setDefaultNethesis];
 	}
 	return self;
+}
+
+- (void)setDefaultNethesis {
+    // Set default settings by Nethesis.
+    // This may be a problem if user can set this settings.
+    LinphoneVideoPolicy policy;
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"it.nethesis.nethcti"];
+    bool first_time_access = [defaults valueForKey:@"first_time_access_settings"];
+    if(first_time_access) {
+        policy.automatically_initiate = NO; // Video start automatically.
+        policy.automatically_accept = NO; // Video accept automatically.
+        [defaults setBool:NO forKey:@"first_time_access_settings"];
+    }
+    linphone_core_set_video_policy(LC, &policy);
+    linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
 }
 
 - (void)setCString:(const char *)value forKey:(NSString *)key {
