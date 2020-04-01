@@ -12,7 +12,7 @@
 			<key>Key</key>
 			<string>start_video_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -22,7 +22,7 @@
 			<key>Key</key>
 			<string>accept_video_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
