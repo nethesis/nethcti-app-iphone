@@ -2,11 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AppApnsAuthKeyProduction</key>
-	<string>NETHCTI_APP</string>
-	<key>AppApnsAuthKeySandbox</key>
-	<string>NETHCTI_APP_DEV</string>
+	<key>AppApnsAuthKey</key>
+	<string>e795fca4-a99e-410b-b7a5-ad32f2141448</string>
+	<key>AppApnsAuthKeyDev</key>
+	<string>9b7008dc-20c2-4157-8b3e-5b97a9ff5061</string>
 	<key>AppApnsBaseUrl</key>
+	<string>https://push.wedo.io</string>
+	<key>AppApnsBaseUrl_Dev</key>
 	<string>http://notificatore.apexnet.it/Notificatore.aspx</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
@@ -97,6 +99,17 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>apexnet.it</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.0</string>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>wedo.io</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

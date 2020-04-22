@@ -19,24 +19,23 @@ import Foundation
         return ["Content-type": "application/json"];
     }
     
-    private func checkCredentials() -> Bool {
-        let credentials = ApiCredentials.sharedInstance()
-        return credentials.Username != "No username." && credentials.Domain != "No domain."
-    }
-    
     private func transformDomain(_ domain:String) -> String {
         return "https://\(domain)/webrest"
     }
     
-    private var authKeyForSandboxNotificatore : String {
-        return getStringFromInfo(keyString: "AppApnsAuthKeySandbox")
+    private var authKeyForSandNot : String {
+        return getStringFromInfo(keyString: "AppApnsAuthKeyDev")
     }
     
-    private var authKeyForProductionNotificatore: String {
-        return getStringFromInfo(keyString: "AppApnsAuthKeyProduction")
+    private var authKeyForProdNot : String {
+        return getStringFromInfo(keyString: "AppApnsAuthKey")
     }
     
-    private var baseUrlForNotificatore : String {
+    private var baseUrlForSandNot : String {
+        return getStringFromInfo(keyString: "AppApnsBaseUrl_Dev")
+    }
+    
+    private var baseUrlForProdNot : String {
         return getStringFromInfo(keyString: "AppApnsBaseUrl")
     }
     
@@ -54,13 +53,13 @@ import Foundation
     /**
      This is a basic call that have to be configured.
      */
-    private func baseCall(url: URL, method: String, headers: [String: String]?, body: [String: String]?, successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    private func baseCall(url: URL, method: String, headers: [String: Any]?, body: [String: Any]?, successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         
         // Headers handling.
         if let h = headers {
-            urlRequest.allHTTPHeaderFields = h
+            urlRequest.allHTTPHeaderFields = h as? [String : String]
         } else {
             urlRequest.allHTTPHeaderFields = getDefaultHeaders()
         }
@@ -88,15 +87,15 @@ import Foundation
      This may be the only call that don't need authentication.
      */
     @objc public func postLogin(username:String, password:String, domain:String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
-        ApiCredentials.sharedInstance().Username = username
-        ApiCredentials.sharedInstance().Domain = domain
+        ApiCredentials.Username = username
+        ApiCredentials.Domain = domain
         let loginEndpoint = "\(self.transformDomain(domain))/authentication/login"
         guard let url = URL(string: loginEndpoint) else {
             errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
-        let postStr = ApiCredentials.sharedInstance().getAuthenticationCredentials(password: password)
+        let postStr = ApiCredentials.getAuthenticationCredentials(password: password)
         self.baseCall(url: url, method: "POST", headers: nil, body: postStr) {
             data, response, error in
             // Error handling.
@@ -118,7 +117,7 @@ import Foundation
                 return
             }
             // I return to caller method.
-            successHandler(ApiCredentials.sharedInstance().setToken(password: password, digest: digest))
+            successHandler(ApiCredentials.setToken(password: password, digest: digest))
         }
     }
     
@@ -126,20 +125,20 @@ import Foundation
      Make a POST logout request to NethCTI server.
      */
     @objc public func postLogout(successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
-        let b = self.checkCredentials() as Bool?
+        let b = ApiCredentials.checkCredentials() as Bool?
         if b != nil && b! {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
         // Set the url.
-        let endPoint = "\(self.transformDomain(ApiCredentials.sharedInstance().Domain))/authentication/logout"
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
         guard let url = URL(string: endPoint) else {
             print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
-        let postArgs = ApiCredentials.sharedInstance().getAuthenticatedCredentials()
+        let postArgs = ApiCredentials.getAuthenticatedCredentials()
         self.baseCall(url: url, method: "POST", headers: postArgs, body: nil, successHandler: successHandler)
     }
     
@@ -157,27 +156,27 @@ import Foundation
             return
         }
         
-        ApiCredentials.sharedInstance().Username = u
-        ApiCredentials.sharedInstance().NethApiToken = t
-        ApiCredentials.sharedInstance().Domain = d
+        ApiCredentials.Username = u
+        ApiCredentials.NethApiToken = t
+        ApiCredentials.Domain = d
     }
     
     /**
      Make a GET me request to NethCTI server.
      */
     @objc public func getMe(successHandler: @escaping (PortableNethUser?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
-        if !self.checkCredentials() {
+        if !ApiCredentials.checkCredentials() {
             errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
-        let endPoint = "\(self.transformDomain(ApiCredentials.sharedInstance().Domain))/user/me" // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/user/me" // Set the endpoint URL.
         guard let url = URL(string: endPoint) else {
             errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
-        let getHeaders = ApiCredentials.sharedInstance().getAuthenticatedCredentials()
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
             data, response, error in
             guard error == nil else { // Error handling.
@@ -202,75 +201,76 @@ import Foundation
         }
     }
     
-    /**
-     Use this function to register at any time the device token to Notificatore.
-     */
-    @objc public func registerDeviceId(_ deviceId: String, successHandler: @escaping (String?) -> Void) -> Void {
-        guard let d = deviceId as String? else {
-            return
+    @objc public func registerPushToken(_ deviceId: String, success:@escaping (String?) -> Void) -> Void {
+        // Check input values.
+        guard
+            let d = deviceId as String?,
+            let user = ApiCredentials.Username as String?,
+            let domain = ApiCredentials.Domain as String? else {
+                print("[WEDO] Missing information for notificator.")
+                return
         }
         
-        guard let user = ApiCredentials.sharedInstance().Username as String? else {
-            return
-        }
-        
-        guard let domain = ApiCredentials.sharedInstance().Domain as String? else {
-            return
-        }
-        
-        let plistEndpoint = self.baseUrlForNotificatore
-        var plistAppKey = "Empty";
-        var mode = "Sandbox";
-        
+        // Generate the necessary headers. Content type is already in the header.
+        var headers: [String: Any] = getDefaultHeaders()
+        headers["X-HTTP-Method-Override"] = "Register"
         #if DEBUG
-        // You reach this code only in sandbox.
-        mode = "Sandbox";
-        plistAppKey = self.authKeyForSandboxNotificatore
+        headers["X-AuthKey"] = self.authKeyForSandNot
+        let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
+        let mode = "Sandbox";
         #else
-        // You reach this code only in production.
-        mode = "Production";
-        plistAppKey = self.authKeyForProductionNotificatore
+        headers["X-AuthKey"] = self.authKeyForSandNot
+        let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
+        let mode = "Production";
         #endif
-        print("[WEDO] - You are in \(mode) mode, with app key: \(plistAppKey)");
         
-        var endpointUrl = "\(plistEndpoint)?CMD=initapp&os=1&appkey=\(plistAppKey)&devtoken=\(d)"
-        if(user != "" && domain != "") {
-            endpointUrl += "&user=\(user)@\(domain)";
+        // Generate the necessary bodies.
+        var body: [String: Any] = [:]
+        body["Os"] = 1
+        body["DevToken"] = d
+        body["RegID"] = d
+        body["User"] = "\(user)@\(domain)" // Nethesis user with domain.
+        body["Language"] = ""
+        body["Custom"] = ""
+        
+        // Build the final endpoint to notificator.
+        print("APNS SERVER: You are in \(mode) Notification endpoint url: \(endpointUrl)")
+        guard let url = URL(string: endpointUrl) else {
+            return
         }
         
-        print("APNS SERVER: Notification endpoint url: \(endpointUrl)")
-        let url = URL(string: endpointUrl)
-        self.baseCall(url: url!, method: "GET", headers: nil, body: nil) {
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body) {
             data, response, error in
-            guard error == nil else {
-                print("APNS SERVER: %s", error!)
-                return
-            }
-            guard let responseData = data as Data? else {
-                print("APNS SERVER: No data provided.")
-                return
+            guard
+                error == nil,
+                let responseData = data as Data? else {
+                    print("APNS SERVER: No data provided, error: \(error!)")
+                    return
             }
             
             let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-            let logString = "APNS SERVER response: \(String(describing: dataString))"
-            successHandler(logString)
+            let logString = "[WEDO] response: \(String(describing: dataString))"
+            success(logString)
         }
     }
     
     @objc public func getPresence(successHandler: @escaping() -> Void, errorHandler: @escaping(String?) -> Void) -> Void { // Ready for the second release.
-        let b = self.checkCredentials() as Bool?
+        let b = ApiCredentials.checkCredentials() as Bool?
         if b != nil && !b! {
             errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue);
             return
         }
         
-        let endPoint = "\(ApiCredentials.sharedInstance().Domain)/user/me" // Set the endpoint URL.
+        let endPoint = "\(ApiCredentials.Domain)/user/me" // Set the endpoint URL.
         guard let url = URL(string:endPoint) else {
             errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
         }
         
-        let getHeaders = ApiCredentials.sharedInstance().getAuthenticatedCredentials()
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
             data, response, error in
             guard error == nil else {

@@ -2567,7 +2567,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 			timeout = @"";
 		}
         
-        [[NethCTIAPI sharedInstance] registerDeviceId:tokenString successHandler:^(NSString* response) {
+        [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(NSString* response) {
             LOGD(response);
         }];
 

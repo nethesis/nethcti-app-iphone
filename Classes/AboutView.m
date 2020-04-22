@@ -55,7 +55,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *curVersion = [NSString stringWithFormat:@"version %@(%@)",[infoDict objectForKey:@"CFBundleShortVersionString"], [infoDict objectForKey:@"CFBundleVersion"]];
     _appVersionLabel.text = [NSString stringWithFormat:@"%@ iOS %@", name, curVersion];
-    _libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", name, LINPHONE_SDK_VERSION];
+    _libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", @"Linphone", LINPHONE_SDK_VERSION];
     
     // Set the license tap gesture.
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLicenceTap)];
@@ -84,6 +84,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onPolicyTap {
+    // TODO: This link must change.
     NSString *url = @"https://www.linphone.org/terms-and-privacy";
     if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
         LOGE(@"Failed to open %@, invalid URL", url);

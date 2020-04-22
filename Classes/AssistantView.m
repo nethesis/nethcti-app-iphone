@@ -1451,9 +1451,6 @@ _waitView.hidden = YES; \
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
         [api postLoginWithUsername:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-                // TODO: We can use this to perform Login easly.
-                // dispatch_async(dispatch_get_main_queue(), ^{
-                // });
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSString * _Nullable error) {
                 NSLog(@"API_ERROR: %@", error);

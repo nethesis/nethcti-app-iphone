@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "NethCTI.app"
-               BlueprintName = "linphone"
+               BlueprintName = "NethCTI"
                ReferencedContainer = "container:linphone.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,15 +41,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "NethCTI.app"
-            BlueprintName = "linphone"
-            ReferencedContainer = "container:linphone.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -62,6 +53,17 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "NethCTI.app"
+            BlueprintName = "NethCTI"
+            ReferencedContainer = "container:linphone.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -79,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "NethCTI.app"
-            BlueprintName = "linphone"
+            BlueprintName = "NethCTI"
             ReferencedContainer = "container:linphone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -110,7 +112,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "NethCTI.app"
-            BlueprintName = "linphone"
+            BlueprintName = "NethCTI"
             ReferencedContainer = "container:linphone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
