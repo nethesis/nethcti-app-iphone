@@ -1,6 +1,8 @@
 //
-//  RestApiManager.swift
-//  linphone
+//  ApiCredentials.swift
+//  Wedo S.R.L.
+//
+//  Use this class to manage the credentials of the user to access to Nethesis APIs.
 //
 //  Created by Administrator on 05/11/2019.
 //
@@ -34,7 +36,7 @@ extension NethCTIAPI {
         /**
          Get or set a username.
          */
-        @objc public var Username: String {
+        @objc public class var Username: String {
             get {
                 return UserDefaults.standard.string(forKey: ApiClientIdentifier.UserDefaultKey.rawValue) ?? ""
             }
@@ -46,7 +48,7 @@ extension NethCTIAPI {
         /**
          Get or set a domain.
          */
-        @objc public var Domain: String {
+        @objc public class var Domain: String {
             get {
                 return UserDefaults.standard.string(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue) ?? ""
             }
@@ -58,7 +60,7 @@ extension NethCTIAPI {
         /**
          Get or set the nethesis authorization token.
          */
-        @objc public var NethApiToken: String {
+        @objc public class var NethApiToken: String {
             get {
                 return UserDefaults.standard.string(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue) ?? "No token."
             }
@@ -70,22 +72,23 @@ extension NethCTIAPI {
         /**
          Generate the authorization token.
          */
-        public func setToken(password: String, digest: String) -> String {
+        public class func setToken(password: String, digest: String) -> String {
             guard let d = digest as String? else {
                 let message = "No digest provided."
                 print(message)
                 return message;
             }
             
-            let splitted = d.components(separatedBy: " ") // "Digest 1234567890"
-            let sum = "\(self.Username):\(password):\(splitted[1])"
+            // The token is in the "Digest 1234567890" form. Need to be split.
+            let splitted = d.components(separatedBy: " ")
+            let sum = "\(Username):\(password):\(splitted[1])"
             guard let t = sum.hmac(key: password) as String? else {
                 let message = "No token generated."
                 print(message)
                 return message;
             }
             
-            self.NethApiToken = t
+            NethApiToken = t
             print("API_MESSAGE: Token setted from \(sum) to \(t).")
             return t;
         }
@@ -93,16 +96,20 @@ extension NethCTIAPI {
         /**
          Prepare the login credential as form-data.
          */
-        func getAuthenticationCredentials(password: String) -> [String: String]? {
-            return ["username": self.Username, "password": password] as [String: String]
+        public class func getAuthenticationCredentials(password: String) -> [String: String]? {
+            return ["username": Username, "password": password] as [String: String]
         }
         
         /**
          Use this after a successful login.
          TODO: Make this function stronger.
          */
-        func getAuthenticatedCredentials() -> [String: String]? {
-            return ["Authorization": "\(self.Username):\(self.NethApiToken)"] as [String: String]
+        public class func getAuthenticatedCredentials() -> [String: String]? {
+            return ["Authorization": "\(Username):\(NethApiToken)"] as [String: String]
+        }
+        
+        public class func checkCredentials() -> Bool {
+            return Username != "" && Domain != ""
         }
     }
 }

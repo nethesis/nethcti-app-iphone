@@ -582,7 +582,7 @@
     for (int i = 0; i < [credentials.token length]; ++i) {
         [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
     }
-    [[NethCTIAPI sharedInstance] registerDeviceId:tokenString successHandler:^(NSString* response) {
+    [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(NSString* response) {
         LOGD(response);
         NSLog(@"WEDO - chiamato notifictore");
     }];
