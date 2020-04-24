@@ -22,6 +22,7 @@
 #import "LinphoneAppDelegate.h"
 #import "Log.h"
 #import "PhoneMainView.h"
+#import "NethCTI-Swift.h"
 
 static RootViewManager *rootViewManagerInstance = nil;
 
@@ -45,6 +46,12 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 		currentViewController = portrait;
 		self.viewDescriptionStack = [NSMutableArray array];
+        
+        [[NethCTIAPI sharedInstance] getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
+            LOGI([NSString stringWithFormat:@"%li", [contacts count]]);
+        } errorHandler:^(NSString * _Nullable error) {
+            LOGE(@"Chiamata terminata in errore.");
+        }];
 	}
 	return self;
 }

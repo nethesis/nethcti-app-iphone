@@ -15,10 +15,6 @@ import Foundation
         return NethCTIAPI._singletonInstance;
     }
     
-    private func getDefaultHeaders() -> [String: String] {
-        return ["Content-type": "application/json"];
-    }
-    
     private func transformDomain(_ domain:String) -> String {
         return "https://\(domain)/webrest"
     }
@@ -61,13 +57,13 @@ import Foundation
         if let h = headers {
             urlRequest.allHTTPHeaderFields = h as? [String : String]
         } else {
-            urlRequest.allHTTPHeaderFields = getDefaultHeaders()
+            urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
         }
         
         // Body handling.
         if let b = body {
             do { // I try to use data.
-                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: b, options: [JSONSerialization.WritingOptions.prettyPrinted])
+                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: b, options: .prettyPrinted)
             } catch {
                 return
             }
@@ -75,9 +71,10 @@ import Foundation
             urlRequest.httpBody = nil // I don't need data.
         }
         
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
-        let session = URLSession(configuration: configuration)
+        let myDefault = URLSessionConfiguration.default
+        myDefault.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        if #available(iOS 11.0, *) { myDefault.waitsForConnectivity = true }
+        let session = URLSession(configuration: myDefault)
         let task = session.dataTask(with: urlRequest, completionHandler: successHandler)
         task.resume()
     }
@@ -212,7 +209,7 @@ import Foundation
         }
         
         // Generate the necessary headers. Content type is already in the header.
-        var headers: [String: Any] = getDefaultHeaders()
+        var headers: [String: Any] = [:]
         headers["X-HTTP-Method-Override"] = "Register"
         #if DEBUG
         headers["X-AuthKey"] = self.authKeyForSandNot
@@ -285,8 +282,59 @@ import Foundation
             }
             
             do{
+                // Nothing here atm.
                 _ = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 successHandler()
+            } catch {
+                errorHandler("json error: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
+    
+    /**
+     Make a request to proxy to get contacts by some parameters.
+     View: Name or Company;
+     Limit: Number of contacts to take;
+     Offset: Starting point from taking contacts;
+     Term: Search term to filter by;
+     */
+    @objc public func getContacts(view:String, limit:Int, offset:Int, term:String, successHandler: @escaping(NethPhoneBookReturn) -> Void, errorHandler: @escaping(String?) -> Void) -> Void {
+        // Build the request.
+        let b = ApiCredentials.checkCredentials() as Bool?
+        if b != nil && !b! {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue);
+            return
+        }
+        
+        let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/search/\(term)?view=\(view)&limit=\(limit)&offset=\(offset)"
+        guard let url = URL(string:endpoint) else {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        // Make the request.
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
+            data, response, error in
+            guard error == nil else {
+                errorHandler("Error calling GET on /user/presence")
+                print(error!)
+                return
+            }
+            
+            guard let responseData = data else { // Response handling.
+                errorHandler("No data provided.")
+                return
+            }
+
+            // Receive the results.
+            do{
+                // Convert to phonebook.
+                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                let contacts = try NethPhoneBookReturn(raw: rawContacts)
+                successHandler(contacts)
             } catch {
                 errorHandler("json error: \(error.localizedDescription)")
                 return
