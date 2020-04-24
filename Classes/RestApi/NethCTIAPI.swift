@@ -216,8 +216,8 @@ import Foundation
         let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
         let mode = "Sandbox";
         #else
-        headers["X-AuthKey"] = self.authKeyForSandNot
-        let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
+        headers["X-AuthKey"] = self.authKeyForProdNot
+        let endpointUrl = "\(self.authKeyForProdNot)/NotificaPush"
         let mode = "Production";
         #endif
         
