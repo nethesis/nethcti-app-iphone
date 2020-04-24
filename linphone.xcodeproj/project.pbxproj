@@ -701,6 +701,11 @@
 		C339F3AC241A98FF00447319 /* iOs_background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F3A9241A98FE00447319 /* iOs_background_portrait.png */; };
 		C339F3AD241A98FF00447319 /* logo_nethesis.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F3AA241A98FF00447319 /* logo_nethesis.png */; };
 		C33BF99623717474003461CC /* NethCTIAPI.ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */; };
+		C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD420244F008100767A47 /* NethPhoneBookResult.swift */; };
+		C33FD423244F013B00767A47 /* NethContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD422244F013B00767A47 /* NethContact.swift */; };
+		C33FD425244F039F00767A47 /* NethContactType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD424244F039F00767A47 /* NethContactType.swift */; };
+		C33FD427244F03C300767A47 /* NethContactSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD426244F03C300767A47 /* NethContactSource.swift */; };
+		C33FD429244F03F000767A47 /* NethContactOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD428244F03F000767A47 /* NethContactOwner.swift */; };
 		C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B723758C0400CC5C24 /* NethUser.swift */; };
 		C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B923758CB500CC5C24 /* Endpoints.swift */; };
 		C35E33BC23758DD600CC5C24 /* EndpointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */; };
@@ -1777,6 +1782,11 @@
 		C339F3A9241A98FE00447319 /* iOs_background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOs_background_portrait.png; sourceTree = "<group>"; };
 		C339F3AA241A98FF00447319 /* logo_nethesis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_nethesis.png; sourceTree = "<group>"; };
 		C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
+		C33FD420244F008100767A47 /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
+		C33FD422244F013B00767A47 /* NethContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
+		C33FD424244F039F00767A47 /* NethContactType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactType.swift; sourceTree = "<group>"; };
+		C33FD426244F03C300767A47 /* NethContactSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactSource.swift; sourceTree = "<group>"; };
+		C33FD428244F03F000767A47 /* NethContactOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactOwner.swift; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointExtensions.swift; sourceTree = "<group>"; };
@@ -2365,6 +2375,7 @@
 			children = (
 				8C23BCB71D82AAC3005F19BB /* linphone.entitlements */,
 				614D09CD21E74D5400C43EDF /* GoogleService-Info.plist */,
+				C33FD41F244EFCF100767A47 /* NethModels */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				61AE364C20C00B370089D9D3 /* linphoneExtension */,
 				5EEE8F9C20C80C23006E4176 /* latestCallsWidget */,
@@ -3212,6 +3223,18 @@
 				C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */,
 			);
 			path = RestApi;
+			sourceTree = "<group>";
+		};
+		C33FD41F244EFCF100767A47 /* NethModels */ = {
+			isa = PBXGroup;
+			children = (
+				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
+				C33FD422244F013B00767A47 /* NethContact.swift */,
+				C33FD424244F039F00767A47 /* NethContactType.swift */,
+				C33FD426244F03C300767A47 /* NethContactSource.swift */,
+				C33FD428244F03F000767A47 /* NethContactOwner.swift */,
+			);
+			path = NethModels;
 			sourceTree = "<group>";
 		};
 		C3C6979623D20419004B6240 /* Models */ = {
@@ -4419,6 +4442,7 @@
 				63B81A0F1B57DA33009604A6 /* TPKeyboardAvoidingTableView.m in Sources */,
 				CF1DE92D210A0F5D00A0A97E /* UILinphoneAudioPlayer.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				C33FD429244F03F000767A47 /* NethContactOwner.swift in Sources */,
 				8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */,
 				1D3623260D0F684500981E51 /* LinphoneAppDelegate.m in Sources */,
 				CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */,
@@ -4433,6 +4457,7 @@
 				2214EB7A12F846B1002A5394 /* UICallButton.m in Sources */,
 				6352A5751BE0D4B800594C1C /* CallSideMenuView.m in Sources */,
 				2214EB8912F84EBB002A5394 /* UIHangUpButton.m in Sources */,
+				C33FD425244F039F00767A47 /* NethContactType.swift in Sources */,
 				630CF5571AF7CE1500539F7A /* UITextField+DoneButton.m in Sources */,
 				2214EBF312F86360002A5394 /* UIMutedMicroButton.m in Sources */,
 				8C9C5E111F83BD97006987FA /* UIChatCreateCollectionViewCell.m in Sources */,
@@ -4502,7 +4527,10 @@
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
 				D37C639B15AADEF6009D0BAC /* ContactDetailsTableView.m in Sources */,
 				63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */,
+				C33FD423244F013B00767A47 /* NethContact.swift in Sources */,
 				D3C6526715AC1A8F0092A874 /* UIContactDetailsCell.m in Sources */,
+				C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */,
+				C33FD427244F03C300767A47 /* NethContactSource.swift in Sources */,
 				631348301B6F7B6600C6BDCB /* UIRoundBorderedButton.m in Sources */,
 				C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */,
 				63FB30351A680E73008CA393 /* UIRoundedImageView.m in Sources */,
