@@ -85,7 +85,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)onPolicyTap {
     // TODO: This link must change.
-    NSString *url = @"https://www.linphone.org/terms-and-privacy";
+    NSString *url = @"https://blog.nethesis.it/terms-and-privacy-nethcti-app/";
     if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
         LOGE(@"Failed to open %@, invalid URL", url);
     }
