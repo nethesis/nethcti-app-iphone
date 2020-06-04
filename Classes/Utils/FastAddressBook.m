@@ -101,7 +101,7 @@
 				}
 				numbers = numbers->next;
 			}
-		}
+        }
 	}
 	return contact;
 }
@@ -217,6 +217,9 @@
 		linphone_friend_list_update_subscriptions(fl);
 		lists = lists->next;
 	}
+    
+    // TODO: Mettere qui.
+    
 	[NSNotificationCenter.defaultCenter
 	 postNotificationName:kLinphoneAddressBookUpdate
 	 object:self];

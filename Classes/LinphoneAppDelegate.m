@@ -150,7 +150,7 @@
 	self.voipRegistry.delegate = self;
 
 	// Initiate registration.
-	LOGI(@"[PushKit] Connecting for push notifications");
+	// LOGI(@"[PushKit] Connecting for push notifications");
 	self.voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
 }
 
@@ -158,7 +158,7 @@
 	if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max)
 		return;
 
-	LOGI(@"Connecting for UNNotifications");
+	// LOGI(@"Connecting for UNNotifications");
 	// Call category
 	UNNotificationAction *act_ans =
 	[UNNotificationAction actionWithIdentifier:@"Answer"
@@ -584,7 +584,7 @@
     }
     [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(NSString* response) {
         LOGD(response);
-        NSLog(@"WEDO - chiamato notifictore");
+        NSLog(@"WEDO - chiamato notificatore");
     }];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[LinphoneManager.instance setPushNotificationToken:credentials.token];

@@ -39,6 +39,9 @@ import Foundation
         return getStringFromInfo(keyString: "AppApnsBaseUrl")
     }
     
+    /**
+ Get a string from the info.plist resource file.
+ */
     private func getStringFromInfo(keyString:String) -> String {
         let path = Bundle.main.path(forResource: "Info", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
@@ -219,8 +222,8 @@ import Foundation
         let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
         let mode = "Sandbox";
         #else
-        headers["X-AuthKey"] = self.authKeyForSandNot
-        let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
+        headers["X-AuthKey"] = self.authKeyForProdNot
+        let endpointUrl = "\(self.baseUrlForProdNot)/NotificaPush"
         let mode = "Production";
         #endif
         
@@ -234,7 +237,7 @@ import Foundation
         body["Custom"] = ""
         
         // Build the final endpoint to notificator.
-        print("APNS SERVER: You are in \(mode) Notification endpoint url: \(endpointUrl)")
+        print("[WEDO] [APNS SERVER]: You are in \(mode) Notification endpoint url: \(endpointUrl)")
         guard let url = URL(string: endpointUrl) else {
             return
         }
@@ -247,12 +250,12 @@ import Foundation
             guard
                 error == nil,
                 let responseData = data as Data? else {
-                    print("APNS SERVER: No data provided, error: \(error!)")
+                    print("[WEDO] [APNS SERVER]: No data provided, error: \(error!)")
                     return
             }
             
             let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-            let logString = "[WEDO] response: \(String(describing: dataString))"
+            let logString = "[WEDO] [APNS SERVER]: response: \(String(describing: dataString))"
             success(logString)
         }
     }
