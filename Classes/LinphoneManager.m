@@ -2485,6 +2485,9 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 		char *caddr = linphone_address_as_string(addr);
 		call = linphone_core_get_current_call(theLinphoneCore);
 		linphone_call_transfer(call, caddr);
+        
+        // TODO: Mettere in pausa la call con c1
+        // linphone_call_transfer_to_another(call, caddr);
 		LinphoneManager.instance.nextCallIsTransfer = NO;
 		ms_free(caddr);
 	} else {
@@ -2567,8 +2570,13 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 			timeout = @"";
 		}
         
-        [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(NSString* response) {
-            LOGD(response);
+        [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(BOOL response) {
+            NSString* log = [NSString stringWithFormat:@"[WEDO PUSH] Token String: %@", tokenString];
+            LOGD(log);
+            if(response)
+                LOGD(@"[WEDO PUSH] Notificatore: risultato positivo.");
+            else
+                LOGE(@"[WEDO PUSH] Notificatore: risultato negativo");
         }];
 
 		NSString *params = [NSString

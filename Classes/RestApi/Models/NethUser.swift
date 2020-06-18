@@ -45,10 +45,10 @@ extension NethUser {
     init?(from:NethUser){
         self.name = from.name
         self.username = from.username
-        let ext = from.endpoints.endpointsExtension.first(where: { (Extension) -> Bool in
+        let mobile = from.endpoints.endpointsExtension.first(where: { (Extension) -> Bool in
             Extension.type == "mobile"
         })!
-        self.secret = ext.secret
-        self.intern = ext.username
+        self.secret = mobile.secret
+        self.intern = mobile.username
     }
 }

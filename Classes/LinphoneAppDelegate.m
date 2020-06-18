@@ -582,9 +582,11 @@
     for (int i = 0; i < [credentials.token length]; ++i) {
         [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
     }
-    [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(NSString* response) {
-        LOGD(response);
-        NSLog(@"WEDO - chiamato notificatore");
+    [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(BOOL response) {
+        if(response)
+            LOGD(@"[WEDO PUSH] chiamato notificatore: risultato positivo.");
+        else
+            LOGE(@"[WEDO PUSH] chiamato notificatore: risultato negativo");
     }];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[LinphoneManager.instance setPushNotificationToken:credentials.token];

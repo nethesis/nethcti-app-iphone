@@ -15,10 +15,6 @@ import Foundation
         return NethCTIAPI._singletonInstance;
     }
     
-    private func getDefaultHeaders() -> [String: String] {
-        return ["Content-type": "application/json"];
-    }
-    
     private func transformDomain(_ domain:String) -> String {
         return "https://\(domain)/webrest"
     }
@@ -64,13 +60,13 @@ import Foundation
         if let h = headers {
             urlRequest.allHTTPHeaderFields = h as? [String : String]
         } else {
-            urlRequest.allHTTPHeaderFields = getDefaultHeaders()
+            urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
         }
         
         // Body handling.
         if let b = body {
             do { // I try to use data.
-                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: b, options: [JSONSerialization.WritingOptions.prettyPrinted])
+                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: b, options: .prettyPrinted)
             } catch {
                 return
             }
@@ -78,9 +74,10 @@ import Foundation
             urlRequest.httpBody = nil // I don't need data.
         }
         
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
-        let session = URLSession(configuration: configuration)
+        let myDefault = URLSessionConfiguration.default
+        myDefault.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        if #available(iOS 11.0, *) { myDefault.waitsForConnectivity = true }
+        let session = URLSession(configuration: myDefault)
         let task = session.dataTask(with: urlRequest, completionHandler: successHandler)
         task.resume()
     }
@@ -127,13 +124,29 @@ import Foundation
     /**
      Make a POST logout request to NethCTI server.
      */
-    @objc public func postLogout(successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    @objc public func postLogout(successHandler: @escaping (String?) -> Void) -> Void {
         let b = ApiCredentials.checkCredentials() as Bool?
         if b != nil && b! {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
+        // Before unregister from notificatore.
+        registerPushToken("", success: {
+            result in
+            // Check result.
+            if (result) {
+                // After clear credentials.
+                ApiCredentials.clear()
+                successHandler("Logged out.")
+            } else {
+                print("[WEDO PUSH] Error unloading notificatore.")
+                successHandler("Not logged out.")
+            }
+        })
+        return
+        
+        // Logout from Nethesis. Dosen't need anymore.
         // Set the url.
         let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
         guard let url = URL(string: endPoint) else {
@@ -142,7 +155,22 @@ import Foundation
         }
         
         let postArgs = ApiCredentials.getAuthenticatedCredentials()
-        self.baseCall(url: url, method: "POST", headers: postArgs, body: nil, successHandler: successHandler)
+        self.baseCall(url: url, method: "POST", headers: postArgs, body: nil)
+        {
+            data, response, error in
+            // Error handling.
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            // Responde handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return
+            }
+            
+            successHandler("Logged out.")
+        }
     }
     
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
@@ -204,7 +232,7 @@ import Foundation
         }
     }
     
-    @objc public func registerPushToken(_ deviceId: String, success:@escaping (String?) -> Void) -> Void {
+    @objc public func registerPushToken(_ deviceId: String, success:@escaping (Bool) -> Void) -> Void {
         // Check input values.
         guard
             let d = deviceId as String?,
@@ -215,7 +243,7 @@ import Foundation
         }
         
         // Generate the necessary headers. Content type is already in the header.
-        var headers: [String: Any] = getDefaultHeaders()
+        var headers: [String: Any] = [:]
         headers["X-HTTP-Method-Override"] = "Register"
         #if DEBUG
         headers["X-AuthKey"] = self.authKeyForSandNot
@@ -247,16 +275,18 @@ import Foundation
                       headers: headers,
                       body: body) {
             data, response, error in
+                        // If there's n
             guard
                 error == nil,
                 let responseData = data as Data? else {
                     print("[WEDO] [APNS SERVER]: No data provided, error: \(error!)")
+                    success(false)
                     return
             }
             
             let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-            let logString = "[WEDO] [APNS SERVER]: response: \(String(describing: dataString))"
-            success(logString)
+            print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
+            success(true)
         }
     }
     
@@ -288,8 +318,59 @@ import Foundation
             }
             
             do{
+                // Nothing here atm.
                 _ = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 successHandler()
+            } catch {
+                errorHandler("json error: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
+    
+    /**
+     Make a request to proxy to get contacts by some parameters.
+     View: Name or Company;
+     Limit: Number of contacts to take;
+     Offset: Starting point from taking contacts;
+     Term: Search term to filter by;
+     */
+    @objc public func getContacts(view:String, limit:Int, offset:Int, term:String, successHandler: @escaping(NethPhoneBookReturn) -> Void, errorHandler: @escaping(String?) -> Void) -> Void {
+        // Build the request.
+        let b = ApiCredentials.checkCredentials() as Bool?
+        if b != nil && !b! {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue);
+            return
+        }
+        
+        let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/search/\(term)?view=\(view)&limit=\(limit)&offset=\(offset)"
+        guard let url = URL(string:endpoint) else {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        // Make the request.
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
+            data, response, error in
+            guard error == nil else {
+                errorHandler("Error calling GET on /user/presence")
+                print(error!)
+                return
+            }
+            
+            guard let responseData = data else { // Response handling.
+                errorHandler("No data provided.")
+                return
+            }
+
+            // Receive the results.
+            do{
+                // Convert to phonebook.
+                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                let contacts = try NethPhoneBookReturn(raw: rawContacts)
+                successHandler(contacts)
             } catch {
                 errorHandler("json error: \(error.localizedDescription)")
                 return

@@ -9,6 +9,8 @@
 	<key>AppApnsBaseUrl</key>
 	<string>https://push.wedo.io</string>
 	<key>AppApnsBaseUrl_Dev</key>
+	<string>https://push.wedo.io</string>
+	<key>AppApnsBaseUrl_Dev2</key>
 	<string>http://notificatore.apexnet.it/Notificatore.aspx</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
