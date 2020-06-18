@@ -704,6 +704,7 @@
 		C33FD425244F039F00767A47 /* NethContactType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD424244F039F00767A47 /* NethContactType.swift */; };
 		C33FD427244F03C300767A47 /* NethContactSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD426244F03C300767A47 /* NethContactSource.swift */; };
 		C33FD429244F03F000767A47 /* NethContactOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD428244F03F000767A47 /* NethContactOwner.swift */; };
+		C34CFBA7249BAB7800D22DB8 /* neth_dialer_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */; };
 		C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B723758C0400CC5C24 /* NethUser.swift */; };
 		C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B923758CB500CC5C24 /* Endpoints.swift */; };
 		C35E33BC23758DD600CC5C24 /* EndpointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */; };
@@ -1783,6 +1784,7 @@
 		C33FD424244F039F00767A47 /* NethContactType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactType.swift; sourceTree = "<group>"; };
 		C33FD426244F03C300767A47 /* NethContactSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactSource.swift; sourceTree = "<group>"; };
 		C33FD428244F03F000767A47 /* NethContactOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactOwner.swift; sourceTree = "<group>"; };
+		C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_dialer_background.png; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointExtensions.swift; sourceTree = "<group>"; };
@@ -2632,6 +2634,7 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */,
 				C339F3A9241A98FE00447319 /* iOs_background_portrait.png */,
 				C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */,
 				C339F3AA241A98FF00447319 /* logo_nethesis.png */,
@@ -3961,6 +3964,7 @@
 				8CD99A1C20908C27008A7CDA /* callkit_logo@2x.png in Resources */,
 				633FEE251D3CD5590014B822 /* chat_start_body_over~ipad@2x.png in Resources */,
 				633FEDF91D3CD5590014B822 /* camera_disabled@2x.png in Resources */,
+				C34CFBA7249BAB7800D22DB8 /* neth_dialer_background.png in Resources */,
 				633FEE161D3CD5590014B822 /* chat_send_disabled.png in Resources */,
 				615A282421805B260060F920 /* security_toogle_icon_green.png in Resources */,
 				633FEE1A1D3CD5590014B822 /* chat_start_body_default.png in Resources */,
