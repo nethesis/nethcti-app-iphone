@@ -25,15 +25,6 @@ extension NethCTIAPI {
     
     @objc public class ApiCredentials: NSObject {
         /**
-         Singleton init method.
-         */
-        private override init() {}
-        private static let _singletonInstance = ApiCredentials()
-        public class func sharedInstance() -> ApiCredentials {
-            return ApiCredentials._singletonInstance
-        }
-        
-        /**
          Get or set a username.
          */
         @objc public class var Username: String {
@@ -110,6 +101,12 @@ extension NethCTIAPI {
         
         public class func checkCredentials() -> Bool {
             return Username != "" && Domain != ""
+        }
+        
+        public class func clear() -> Void {
+            UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
+            UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
+            UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
         }
     }
 }

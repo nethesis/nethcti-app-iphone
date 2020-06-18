@@ -28,6 +28,8 @@
 #import "LinphoneManager.h"
 #import "RecordingsListView.h"
 
+#import "NethCTI-Swift.h"
+
 @implementation SideMenuEntry
 
 - (id)initWithTitle:(NSString *)atitle image:(UIImage *)image tapBlock:(SideMenuEntryBlock)tapBlock {
@@ -132,6 +134,10 @@
     linphone_core_clear_proxy_config(LC);
     linphone_core_clear_all_auth_info(LC);
     linphone_proxy_config_done(config); // Confirm the actual configuration. ???
+    
+    [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result){
+        LOGW(result);
+    }];
 }
 
 #pragma mark - Table View Controller

@@ -124,13 +124,29 @@ import Foundation
     /**
      Make a POST logout request to NethCTI server.
      */
-    @objc public func postLogout(successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    @objc public func postLogout(successHandler: @escaping (String?) -> Void) -> Void {
         let b = ApiCredentials.checkCredentials() as Bool?
         if b != nil && b! {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
+        // Before unregister from notificatore.
+        registerPushToken("", success: {
+            result in
+            // Check result.
+            if (result) {
+                // After clear credentials.
+                ApiCredentials.clear()
+                successHandler("Logged out.")
+            } else {
+                print("[WEDO PUSH] Error unloading notificatore.")
+                successHandler("Not logged out.")
+            }
+        })
+        return
+        
+        // Logout from Nethesis. Dosen't need anymore.
         // Set the url.
         let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
         guard let url = URL(string: endPoint) else {
@@ -139,7 +155,22 @@ import Foundation
         }
         
         let postArgs = ApiCredentials.getAuthenticatedCredentials()
-        self.baseCall(url: url, method: "POST", headers: postArgs, body: nil, successHandler: successHandler)
+        self.baseCall(url: url, method: "POST", headers: postArgs, body: nil)
+        {
+            data, response, error in
+            // Error handling.
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            // Responde handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return
+            }
+            
+            successHandler("Logged out.")
+        }
     }
     
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
@@ -201,7 +232,7 @@ import Foundation
         }
     }
     
-    @objc public func registerPushToken(_ deviceId: String, success:@escaping (String?) -> Void) -> Void {
+    @objc public func registerPushToken(_ deviceId: String, success:@escaping (Bool) -> Void) -> Void {
         // Check input values.
         guard
             let d = deviceId as String?,
@@ -244,16 +275,18 @@ import Foundation
                       headers: headers,
                       body: body) {
             data, response, error in
+                        // If there's n
             guard
                 error == nil,
                 let responseData = data as Data? else {
                     print("[WEDO] [APNS SERVER]: No data provided, error: \(error!)")
+                    success(false)
                     return
             }
             
             let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-            let logString = "[WEDO] [APNS SERVER]: response: \(String(describing: dataString))"
-            success(logString)
+            print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
+            success(true)
         }
     }
     
