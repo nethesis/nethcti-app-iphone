@@ -23,6 +23,7 @@
 #import "TPMultiLayoutViewController.h"
 #include "linphone/linphonecore.h"
 #import "UIRoundedImageView.h"
+#import "../NethModels/TransferCallManager.h"
 
 @interface CallOutgoingView : TPMultiLayoutViewController <UICompositeViewDelegate> {
 }

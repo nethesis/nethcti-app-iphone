@@ -31,6 +31,7 @@
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
 #import "Utils.h"
+#import "../NethModels/TransferCallManager.h"
 
 #include "linphone/linphonecore.h"
 
@@ -184,6 +185,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   selector:@selector(callDurationUpdate)
 								   userInfo:nil
 									repeats:YES];
+    
+    if([[TransferCallManager sharedManager] isCallTransfer])
+        [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
+    else
+        [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -324,9 +330,17 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 			[self hidePad:TRUE animated:TRUE];
 			[self hideOptions:TRUE animated:TRUE];
 			[self hideRoutes:TRUE animated:TRUE];
+            [self drawOptionButton];
 		default:
 			break;
 	}
+}
+
+- (void)drawOptionButton {
+    if([[TransferCallManager sharedManager] isCallTransfer])
+        [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
+    else
+        [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
 }
 
 - (void)toggleControls:(id)sender {
@@ -829,14 +843,21 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onOptionsClick:(id)sender {
-	if ([_optionsView isHidden]) {
-		[self hideOptions:FALSE animated:ANIMATED];
-	} else {
-		[self hideOptions:TRUE animated:ANIMATED];
-	}
+    if([[TransferCallManager sharedManager] isCallTransfer]) {
+        [LinphoneManager.instance transferCall];
+    } else {
+        if ([_optionsView isHidden]) {
+            [self hideOptions:FALSE animated:ANIMATED];
+        } else {
+            [self hideOptions:TRUE animated:ANIMATED];
+        }
+    }
 }
 
 - (IBAction)onOptionsTransferClick:(id)sender {
+    // Say that we wanna trasfer a call to another.
+    [[TransferCallManager sharedManager] isCallTransfer:YES];
+    
 	[self hideOptions:TRUE animated:TRUE];
 	DialerView *view = VIEW(DialerView);
 	[view setAddress:@""];

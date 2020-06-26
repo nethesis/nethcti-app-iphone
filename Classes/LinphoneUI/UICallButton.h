@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "UIIconButton.h"
+#import "../../NethModels/TransferCallManager.h"
 
 @interface UICallButton : UIIconButton {
 }

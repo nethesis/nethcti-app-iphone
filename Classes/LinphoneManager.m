@@ -739,7 +739,17 @@ static void linphone_iphone_display_status(struct _LinphoneCore *lc, const char 
 	static BOOL speaker_already_enabled = FALSE;
 
 	// Disable speaker when no more call
-	if ((state == LinphoneCallEnd || state == LinphoneCallError)) {
+	if (state == LinphoneCallEnd || state == LinphoneCallError) {
+        // Resume the previous call.
+        if([[TransferCallManager sharedManager] isCallTransfer] &&
+           [[TransferCallManager sharedManager] getmTransferCall] != nil) {
+            linphone_call_resume([[TransferCallManager sharedManager] getmTransferCall]);
+        }
+        
+        // No more call trasfer.
+        [[TransferCallManager sharedManager] isCallTransfer:NO];
+        [[TransferCallManager sharedManager] setmTransferCall:nil];
+        
 		[HistoryListTableView saveDataToUserDefaults];
 		[[UIDevice currentDevice] setProximityMonitoringEnabled:FALSE];
 		speaker_already_enabled = FALSE;
@@ -2481,13 +2491,14 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	}
     
 	LinphoneCall *call;
-	if (LinphoneManager.instance.nextCallIsTransfer) {
+	if (LinphoneManager.instance.nextCallIsTransfer && false) {
 		char *caddr = linphone_address_as_string(addr);
 		call = linphone_core_get_current_call(theLinphoneCore);
-		linphone_call_transfer(call, caddr);
+		// linphone_call_transfer(call, caddr);
         
         // TODO: Mettere in pausa la call con c1
-        // linphone_call_transfer_to_another(call, caddr);
+        LinphoneCall *dest = [[TransferCallManager sharedManager] getmTransferCall];
+        linphone_call_transfer_to_another(call, dest);
 		LinphoneManager.instance.nextCallIsTransfer = NO;
 		ms_free(caddr);
 	} else {
@@ -2515,6 +2526,15 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	linphone_call_params_destroy(lcallParams);
     
 	return TRUE;
+}
+
+- (void)transferCall{
+    if ([[TransferCallManager sharedManager] isCallTransfer] && [[TransferCallManager sharedManager] getmTransferCall] != nil) {
+        LinphoneCall *call = linphone_core_get_current_call(theLinphoneCore);
+        LinphoneCall *dest = [[TransferCallManager sharedManager] getmTransferCall];
+        linphone_call_transfer_to_another(call, dest);
+        LinphoneManager.instance.nextCallIsTransfer = NO;
+    }
 }
 
 #pragma mark - Property Functions

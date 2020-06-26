@@ -120,6 +120,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (IBAction)onDeclineClick:(id)sender {
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
+        [[TransferCallManager sharedManager] isCallTransfer:NO];
+        [[TransferCallManager sharedManager] setmTransferCall:nil];
 		linphone_call_terminate(call);
 	}
 }
