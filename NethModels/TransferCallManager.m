@@ -38,6 +38,9 @@
 }
 
 -(void) isCallTransfer:(BOOL) is{
+    if(!is)
+        [self setmTransferCall:nil];
+    
     isTransfer = is;
 }
 

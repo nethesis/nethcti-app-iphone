@@ -59,9 +59,9 @@ import Foundation
         // Headers handling.
         if let h = headers {
             urlRequest.allHTTPHeaderFields = h as? [String : String]
-        } else {
-            urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
         }
+        
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
         
         // Body handling.
         if let b = body {

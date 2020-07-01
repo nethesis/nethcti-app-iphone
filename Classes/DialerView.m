@@ -398,6 +398,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onBackClick:(id)event {
+    [[TransferCallManager sharedManager] isCallTransfer:NO];
 	[PhoneMainView.instance popToView:CallView.compositeViewDescription];
 }
 

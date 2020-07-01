@@ -20,7 +20,7 @@ def basic_pods
 	end
 end
 
-target 'linphone' do
+target 'NethCTI' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   use_frameworks!
 
@@ -76,7 +76,7 @@ post_install do |installer|
 			
 	app_project = Xcodeproj::Project.open(Dir.glob("*.xcodeproj")[0])
 	app_project.native_targets.each do |target|
-		if target.name == 'linphone'
+		if target.name == 'NethCTI'
 			target.build_configurations.each do |config|
 				if ENV['USE_CRASHLYTHICS'].nil?
 					if config.name == "Debug" then
