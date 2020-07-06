@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -1509,13 +1509,14 @@ _waitView.hidden = YES; \
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     //[UIViewController attemptRotationToDeviceOrientation];
     AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
-    if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC)] containsString:[backCamera uniqueID]]) {
+    if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
+        
         bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
         NSMutableArray *devices = [NSMutableArray array];
         
         while (deviceList) {
             char *data = deviceList->data;
-            [devices addObject:[NSString stringWithUTF8String:data]];
+            if (data) [devices addObject:[NSString stringWithUTF8String:data]];
             deviceList = deviceList->next;
         }
         bctbx_list_free(deviceList);

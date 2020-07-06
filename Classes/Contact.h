@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -43,6 +43,8 @@
 
 - (instancetype)initWithCNContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(LinphoneFriend *) friend;
+- (void)reloadFriend;
+- (void)clearFriend;
 
 - (BOOL)setSipAddress:(NSString *)sip atIndex:(NSInteger)index;
 - (BOOL)setEmail:(NSString *)email atIndex:(NSInteger)index;

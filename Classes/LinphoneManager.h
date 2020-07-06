@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -34,7 +34,8 @@
 #include "linphone/linphonecore.h"
 #include "bctoolbox/list.h"
 #import "OrderedDictionary.h"
-#import "ProviderDelegate.h"
+
+#import "linphoneapp-Swift.h"
 
 extern NSString *const LINPHONERC_APPLICATION_KEY;
 
@@ -59,6 +60,8 @@ extern NSString *const kLinphoneFileTransferRecvUpdate;
 extern NSString *const kLinphoneQRCodeFound;
 extern NSString *const kLinphoneChatCreateViewChange;
 
+extern NSString *const kLinphoneMsgNotificationAppGroupId;
+
 typedef enum _NetworkType {
     network_none = 0,
     network_2g,
@@ -75,16 +78,6 @@ typedef struct _CallContext {
     LinphoneCall* call;
     bool_t cameraIsEnabled;
 } CallContext;
-
-@interface LinphoneCallAppData :NSObject {
-    @public
-	bool_t batteryWarningShown;
-    UILocalNotification *notification;
-    NSMutableDictionary *userInfos;
-	bool_t videoRequested; /*set when user has requested for video*/
-    NSTimer* timer;
-};
-@end
 
 typedef struct _LinphoneManagerSounds {
     SystemSoundID vibrate;
@@ -113,6 +106,7 @@ typedef struct _LinphoneManagerSounds {
 + (void)instanceRelease;
 #endif
 + (LinphoneCore*) getLc;
++ (BOOL)isLcInitialized;
 + (BOOL)runningOnIpad;
 + (BOOL)isNotIphone3G;
 + (NSString *)getPreferenceForCodec: (const char*) name withRate: (int) rate;
@@ -123,23 +117,20 @@ typedef struct _LinphoneManagerSounds {
 
 - (void)playMessageSound;
 - (void)resetLinphoneCore;
-- (void)startLinphoneCore;
+- (void)launchLinphoneCore;
 - (void)destroyLinphoneCore;
+- (void)startLinphoneCore;
 - (BOOL)resignActive;
 - (void)becomeActive;
 - (BOOL)enterBackgroundMode;
 - (void)addPushCallId:(NSString*) callid;
+- (void)configurePushTokenForProxyConfigs;
 - (void)configurePushTokenForProxyConfig: (LinphoneProxyConfig*)cfg;
 - (BOOL)popPushCallID:(NSString*) callId;
 - (void)acceptCallForCallId:(NSString*)callid;
-- (LinphoneCall *)callByCallId:(NSString *)call_id;
-- (void)cancelLocalNotifTimerForCallId:(NSString*)callid;
-- (void)startPushLongRunningTask:(NSString *)loc_key callId:(NSString *)callId;
 + (BOOL)langageDirectionIsRTL;
 
 - (void)refreshRegisters;
-
-- (bool)allowSpeaker;
 
 - (void)configureVbrCodecs;
 
@@ -150,13 +141,12 @@ typedef struct _LinphoneManagerSounds {
 + (NSString *)documentFile:(NSString *)file;
 + (NSString*)dataFile:(NSString*)file;
 + (NSString*)cacheDirectory;
+// migration
++ (NSString *)oldPreferenceFile:(NSString *)file;
++ (NSString *)oldDataFile:(NSString *)file;
 
-- (void)acceptCall:(LinphoneCall *)call evenWithVideo:(BOOL)video;
 - (void)send:(NSString *)replyText toChatRoom:(LinphoneChatRoom *)room;
 - (void)call:(const LinphoneAddress *)address;
-- (BOOL)doCall:(const LinphoneAddress *)iaddr;
-- (BOOL)doCallWithSas:(const LinphoneAddress *)iaddr isSas:(BOOL)isSas;
-- (void)transferCall;
 
 +(id)getMessageAppDataForKey:(NSString*)key inMessage:(LinphoneChatMessage*)msg;
 +(void)setValueInMessageAppData:(id)value forKey:(NSString*)key inMessage:(LinphoneChatMessage*)msg;
@@ -190,8 +180,6 @@ typedef struct _LinphoneManagerSounds {
 
 - (void)shouldPresentLinkPopup;
 
-- (void)setProviderDelegate:(ProviderDelegate *)del;
-
 - (void) setLinphoneManagerAddressBookMap:(OrderedDictionary*) addressBook;
 - (OrderedDictionary*) getLinphoneManagerAddressBookMap;
 
@@ -203,7 +191,9 @@ typedef struct _LinphoneManagerSounds {
 - (void)loadAvatar;
 - (void)migrationPerAccount;
 
-@property ProviderDelegate *providerDelegate;
+- (void)setupGSMInteraction;
+- (void)setBluetoothEnabled:(BOOL)enable;
+- (BOOL)isCTCallCenterExist;
 
 @property (readonly) BOOL isTesting;
 @property(readonly, strong) FastAddressBook *fastAddressBook;
@@ -212,13 +202,11 @@ typedef struct _LinphoneManagerSounds {
 @property (readonly) const char*  backCamId;
 @property(strong, nonatomic) NSString *SSID;
 @property (readonly) sqlite3* database;
-@property(nonatomic, strong) NSData *pushNotificationToken;
+@property(nonatomic, strong) NSData *pushKitToken;
+@property(nonatomic, strong) NSData *remoteNotificationToken;
 @property (readonly) LinphoneManagerSounds sounds;
 @property (readonly) NSMutableArray *logs;
-@property (nonatomic, assign) BOOL speakerBeforePause;
-@property (nonatomic, assign) BOOL speakerEnabled;
 @property (nonatomic, assign) BOOL bluetoothAvailable;
-@property (nonatomic, assign) BOOL bluetoothEnabled;
 @property (readonly) NSString* contactSipField;
 @property (readonly,copy) NSString* contactFilter;
 @property (copy) void (^silentPushCompletion)(UIBackgroundFetchResult);
@@ -226,11 +214,11 @@ typedef struct _LinphoneManagerSounds {
 @property (readonly) LpConfig *configDb;
 @property(readonly) InAppProductsManager *iapManager;
 @property(strong, nonatomic) NSMutableArray *fileTransferDelegates;
-@property BOOL nextCallIsTransfer;
 @property BOOL conf;
 @property NSDictionary *pushDict;
 @property(strong, nonatomic) OrderedDictionary *linphoneManagerAddressBookMap;
 @property (nonatomic, assign) BOOL contactsUpdated;
+@property (nonatomic, assign) BOOL canConfigurePushTokenForProxyConfigs; // used to register at the right time when receiving push notif tokens
 @property UIImage *avatar;
 
 @end

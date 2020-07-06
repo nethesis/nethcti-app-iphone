@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -167,6 +167,9 @@
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+		return;
+	}
 	if (animated) {
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.3];

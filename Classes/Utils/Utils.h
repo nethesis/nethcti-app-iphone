@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -52,7 +52,6 @@ typedef enum {
 
 + (NSMutableDictionary <NSString *, PHAsset *> *)photoAssetsDictionary;
 
-+ (NSString *)recordingFilePathFromCall:(const LinphoneAddress *)iaddr;
 + (NSArray *)parseRecordingName:(NSString *)filename;
 
 @end

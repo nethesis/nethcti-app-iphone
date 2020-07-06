@@ -165,6 +165,7 @@ CGRect IASKCGRectSwap(CGRect rect);
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapToEndEdit:)];   
     tapGesture.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:tapGesture];
+	self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
 }
 
 - (void)viewDidUnload {
@@ -222,7 +223,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 	[super viewDidAppear:animated];
 
 	NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
-	IASK_IF_IOS4_OR_GREATER([dc addObserver:self selector:@selector(synchronizeSettings) name:UIApplicationDidEnterBackgroundNotification object:[UIApplication sharedApplication]];);
+	IASK_IF_IOS4_OR_GREATER([dc addObserver:self selector:@selector(synchronizeSettings) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];);
 	IASK_IF_IOS4_OR_GREATER([dc addObserver:self selector:@selector(reload) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];);
 	[dc addObserver:self selector:@selector(synchronizeSettings) name:UIApplicationWillTerminateNotification object:[UIApplication sharedApplication]];
 }
@@ -242,8 +243,8 @@ CGRect IASKCGRectSwap(CGRect rect);
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+- (BOOL)shouldAutorotate {
+	return YES;
 }
 
 - (void)didReceiveMemoryWarning {

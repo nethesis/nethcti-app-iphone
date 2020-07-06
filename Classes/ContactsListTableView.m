@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -44,7 +44,7 @@ NSArray *sortedAddresses;
 }
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
-	if (!_ongoing && ((PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription) || (IPAD && PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription))) {
+	if ((!_ongoing && (PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription)) || (IPAD && PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription)) {
 		[self loadData];
 	}
 }
@@ -368,7 +368,11 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.sectionHeaderHeight);
 	UIView *tempView = [[UIView alloc] initWithFrame:frame];
-	tempView.backgroundColor = [UIColor whiteColor];
+	if (@available(iOS 13, *)) {
+		tempView.backgroundColor = [UIColor systemBackgroundColor];
+	} else {
+		tempView.backgroundColor = [UIColor whiteColor];
+	}
 
 	UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
 	tempLabel.backgroundColor = [UIColor clearColor];
@@ -394,6 +398,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
 			[view setContact:contact];
 		} else {
+			if (IPAD) {
+				[view resetContact];
+				view.isAdding = FALSE;
+			}
 			[view editContact:contact address:[ContactSelection getAddAddress]];
 		}
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -93,20 +93,20 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)onRoutesBluetoothClick:(id)sender {
 	[self hideRoutes:TRUE animated:TRUE];
-	[LinphoneManager.instance setSpeakerEnabled:FALSE];
+	[CallManager.instance enableSpeakerWithEnable:FALSE];
 	[LinphoneManager.instance setBluetoothEnabled:TRUE];
 }
 
 - (IBAction)onRoutesEarpieceClick:(id)sender {
 	[self hideRoutes:TRUE animated:TRUE];
-	[LinphoneManager.instance setSpeakerEnabled:FALSE];
+	[CallManager.instance enableSpeakerWithEnable:FALSE];
 	[LinphoneManager.instance setBluetoothEnabled:FALSE];
 }
 
 - (IBAction)onRoutesSpeakerClick:(id)sender {
 	[self hideRoutes:TRUE animated:TRUE];
 	[LinphoneManager.instance setBluetoothEnabled:FALSE];
-	[LinphoneManager.instance setSpeakerEnabled:TRUE];
+	[CallManager.instance enableSpeakerWithEnable:TRUE];
 }
 
 - (IBAction)onRoutesClick:(id)sender {
@@ -120,9 +120,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (IBAction)onDeclineClick:(id)sender {
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
-        [[TransferCallManager sharedManager] isCallTransfer:NO];
-        [[TransferCallManager sharedManager] setmTransferCall:nil];
-		linphone_call_terminate(call);
+		[CallManager.instance terminateCallWithCall:call];
 	}
 }
 
@@ -133,8 +131,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[_routesButton setOn];
 	}
 
-	_routesBluetoothButton.selected = LinphoneManager.instance.bluetoothEnabled;
-	_routesSpeakerButton.selected = LinphoneManager.instance.speakerEnabled;
+	_routesBluetoothButton.selected = CallManager.instance.bluetoothEnabled;
+	_routesSpeakerButton.selected = CallManager.instance.speakerEnabled;
 	_routesEarpieceButton.selected = !_routesBluetoothButton.selected && !_routesSpeakerButton.selected;
 
 	if (hidden != _routesView.hidden) {

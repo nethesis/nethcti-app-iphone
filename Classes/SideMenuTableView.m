@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -158,8 +158,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [[UITableViewCell alloc] init];
-	if (indexPath.section == 0) {
-		// Do not display default account here, it is already in header view.
+
+	// isLcInitialized called here because this is called when going in bg after LC destroy
+	if (indexPath.section == 0 && [LinphoneManager isLcInitialized]) {
+		// do not display default account here, it is already in header view
 		int idx =
 			linphone_core_get_default_proxy_config(LC)
 				? bctbx_list_index(linphone_core_get_proxy_config_list(LC), linphone_core_get_default_proxy_config(LC))
@@ -178,7 +180,7 @@
 		cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_G.png"]];
 	} else {
 		SideMenuEntry *entry = [_sideMenuEntries objectAtIndex:indexPath.row];
-        cell.imageView.image = entry->img;
+		cell.imageView.image = entry->img;
 		cell.textLabel.text = entry->title;
 	}
 	return cell;

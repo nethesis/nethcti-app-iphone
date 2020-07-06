@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -19,6 +19,8 @@
 
 #import "UIHangUpButton.h"
 #import "LinphoneManager.h"
+
+#import "linphoneapp-Swift.h"
 
 @implementation UIHangUpButton
 
@@ -97,11 +99,11 @@
 		LinphoneManager.instance.conf = TRUE;
 		linphone_core_terminate_conference(LC);
 	} else if (currentcall != NULL) {
-		linphone_call_terminate(currentcall);
+		[CallManager.instance terminateCallWithCall:currentcall];
 	} else {
 		const MSList *calls = linphone_core_get_calls(LC);
 		if (bctbx_list_size(calls) == 1) { // Only one call
-			linphone_call_terminate((LinphoneCall *)(calls->data));
+			[CallManager.instance terminateCallWithCall:(calls->data)];
 		}
 	}
 }

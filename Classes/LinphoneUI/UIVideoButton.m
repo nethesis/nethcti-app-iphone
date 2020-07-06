@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -42,9 +42,9 @@ INIT_WITH_COMMON_CF {
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
-		LinphoneCallAppData *callAppData = (__bridge LinphoneCallAppData *)linphone_call_get_user_data(call);
-		callAppData->videoRequested =
-			TRUE; /* will be used later to notify user if video was not activated because of the linphone core*/
+		CallAppData *data = [CallManager getAppDataWithCall:call];
+		data.videoRequested = TRUE;/* will be used later to notify user if video was not activated because of the linphone core*/
+		[CallManager setAppDataWithCall:call appData:data];
 		LinphoneCallParams *call_params = linphone_core_create_call_params(LC,call);
 		linphone_call_params_enable_video(call_params, TRUE);
 		linphone_call_update(call, call_params);
@@ -58,7 +58,7 @@ INIT_WITH_COMMON_CF {
 
 	if (!linphone_core_video_display_enabled(LC))
 		return;
-	[LinphoneManager.instance setSpeakerEnabled:FALSE];
+	[CallManager.instance enableSpeakerWithEnable:FALSE];
 	[self setEnabled:FALSE];
 	[waitView startAnimating];
 
