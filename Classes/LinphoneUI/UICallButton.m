@@ -88,10 +88,10 @@
 	if ([address length] > 0) {
 		LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:address];
         
-        if([[TransferCallManager sharedManager] isCallTransfer]) {
+        if([TransferCallManager.instance isCallTransfer]) {
             LinphoneCore *core = [LinphoneManager getLc];
             LinphoneCall *call = linphone_core_get_current_call(core);
-            [[TransferCallManager sharedManager] setmTransferCall:call];
+            TransferCallManager.instance.mTransferCall = call;
         }
         
         [LinphoneManager.instance call:addr];

@@ -20,7 +20,7 @@
 #import "UIHangUpButton.h"
 #import "LinphoneManager.h"
 
-#import "linphoneapp-Swift.h"
+#import "NethCTI-Swift.h"
 
 @implementation UIHangUpButton
 

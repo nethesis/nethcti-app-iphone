@@ -34,7 +34,7 @@
 
 #include "linphone/linphonecore.h"
 
-#import "linphoneapp-Swift.h"
+#import "NethCTI-Swift.h"
 
 const NSInteger SECURE_BUTTON_TAG = 5;
 
@@ -185,7 +185,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   userInfo:nil
 									repeats:YES];
     
-    if([[TransferCallManager sharedManager] isCallTransfer])
+    if(TransferCallManager.instance.isCallTransfer)
         [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
     else
         [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
@@ -351,7 +351,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (void)drawOptionButton {
-    if([[TransferCallManager sharedManager] isCallTransfer])
+    if(TransferCallManager.instance.isCallTransfer)
         [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
     else
         [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
@@ -854,8 +854,8 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onOptionsClick:(id)sender {
-    if([[TransferCallManager sharedManager] isCallTransfer]) {
-        [LinphoneManager.instance transferCall];
+    if([TransferCallManager.instance isCallTransfer]) {
+        [CallManager.instance transferCall];
     } else {
         if ([_optionsView isHidden]) {
             [self hideOptions:FALSE animated:ANIMATED];
@@ -867,7 +867,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 
 - (IBAction)onOptionsTransferClick:(id)sender {
     // Say that we wanna trasfer a call to another.
-    [[TransferCallManager sharedManager] isCallTransfer:YES];
+    TransferCallManager.instance.isCallTransfer = YES;
     
 	[self hideOptions:TRUE animated:TRUE];
 	DialerView *view = VIEW(DialerView);

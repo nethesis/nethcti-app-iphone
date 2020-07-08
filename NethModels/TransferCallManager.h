@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TransferCallManager : NSObject {
+@interface TransferCallManagere : NSObject {
     LinphoneCall *call;
     BOOL isTransfer;
 }

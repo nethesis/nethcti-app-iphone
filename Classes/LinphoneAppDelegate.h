@@ -24,7 +24,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import <UserNotificationsUI/UserNotificationsUI.h>
 #import <CoreLocation/CoreLocation.h>
-#import "linphoneapp-Swift.h"
+#import "NethCTI-Swift.h"
 
 
 @interface LinphoneAppDelegate : NSObject <UIApplicationDelegate, PKPushRegistryDelegate, UNUserNotificationCenterDelegate, CLLocationManagerDelegate> {

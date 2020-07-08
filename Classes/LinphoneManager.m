@@ -77,7 +77,7 @@ NSString *const kLinphoneFileTransferRecvUpdate = @"LinphoneFileTransferRecvUpda
 NSString *const kLinphoneQRCodeFound = @"LinphoneQRCodeFound";
 NSString *const kLinphoneChatCreateViewChange = @"LinphoneChatCreateViewChange";
 
-NSString *const kLinphoneMsgNotificationAppGroupId = @"group.org.linphone.phone.msgNotification";
+NSString *const kLinphoneMsgNotificationAppGroupId = @"group.it.nethesis.nethcti3.msgNotification";
 
 const int kLinphoneAudioVbrCodecDefaultBitrate = 36; /*you can override this from linphonerc or linphonerc-factory*/
 
@@ -1889,8 +1889,8 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 			timeout = @"";
 		}
         
-        [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(BOOL response) {
-            NSString* log = [NSString stringWithFormat:@"[WEDO PUSH] Token String: %@", tokenString];
+        [[NethCTIAPI sharedInstance] registerPushToken:token success:^(BOOL response) {
+            NSString* log = [NSString stringWithFormat:@"[WEDO PUSH] Token String: %@", token];
             LOGD(log);
             if(response)
                 LOGD(@"[WEDO PUSH] Notificatore: risultato positivo.");

@@ -61,7 +61,7 @@ post_install do |installer|
 	app_project = Xcodeproj::Project.open(Dir.glob("*.xcodeproj")[0])
 	app_project.native_targets.each do |target|
 		target.build_configurations.each do |config|
-			if target.name == "linphone" || target.name == 'msgNotificationService' || target.name == 'msgNotificationContent'
+			if target.name == "NethCTI" || target.name == 'msgNotificationService' || target.name == 'msgNotificationContent'
 				if ENV['USE_CRASHLYTICS'].nil?
 					if config.name == "Debug" then
 						config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
@@ -80,7 +80,7 @@ post_install do |installer|
 				end
 			end
 
-			if target.name == "linphone"
+			if target.name == "NethCTI"
 				config.build_settings['OTHER_CFLAGS'] = '-DBCTBX_LOG_DOMAIN=\"ios\"',
 																							'-DCHECK_VERSION_UPDATE=FALSE',
 																							'-DENABLE_QRCODE=TRUE',

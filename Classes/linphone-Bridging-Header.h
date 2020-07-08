@@ -4,6 +4,7 @@
 
 
 
+#import <CommonCrypto/CommonCrypto.h>
 #import <UIKit/UIkit.h>
 #import "FastAddressBook.h"
 #import "Log.h"

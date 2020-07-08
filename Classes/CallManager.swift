@@ -295,6 +295,25 @@ import AVFoundation
 			}
 		}
 	}
+    
+    /**
+     Transfer the current call to another, like attended transfer.
+     */
+    @objc func transferCall() {
+        guard TransferCallManager.instance().isCallTransfer,
+            let pointer = TransferCallManager.instance().mTransferCall,
+            let call = Call.getSwiftObject(cObject: pointer) as Call? else {
+                print("[WEDO] Can't transfer a call")
+                return
+        }
+
+        do{
+            try CallManager.instance().lc!.currentCall!.transferToAnother(dest: call)
+        } catch (let errorThrown) {
+            print("[WEDO] Error in transfer to another: \(errorThrown.localizedDescription)")
+            return
+        }
+    }
 
 	@objc func groupCall() {
 		if (CallManager.callKitEnabled()) {
