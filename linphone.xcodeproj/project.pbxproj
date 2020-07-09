@@ -693,6 +693,7 @@
 		C3775A3424B607F100AF95F3 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3775A3324B607F100AF95F3 /* Pods_msgNotificationService.framework */; };
 		C3775A3624B6080500AF95F3 /* linphonesw.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3775A3524B6080500AF95F3 /* linphonesw.framework */; };
 		C387A653243F4E9F007FF4DE /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C387A650243F4E9E007FF4DE /* NethLocalizable.strings */; };
+		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
 		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
 		C3990D1224B5B25600EE834B /* NethContactOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3990D1124B5B25600EE834B /* NethContactOwner.swift */; };
@@ -1702,6 +1703,7 @@
 		C3775A3524B6080500AF95F3 /* linphonesw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = linphonesw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C387A651243F4E9E007FF4DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
 		C387A652243F4E9E007FF4DE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
+		C38D455324B7131A006B0B6E /* NotReturnMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
 		C38D9EDD238FFDF60065C731 /* color_neth_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_A.png; sourceTree = "<group>"; };
 		C38D9EE1239009010065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3042,6 +3044,7 @@
 				C33FD426244F03C300767A47 /* NethContactSource.swift */,
 				C3990D1124B5B25600EE834B /* NethContactOwner.swift */,
 				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
+				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
 			);
 			path = NethModels;
 			sourceTree = "<group>";
@@ -4278,6 +4281,7 @@
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
 				D37C639B15AADEF6009D0BAC /* ContactDetailsTableView.m in Sources */,
 				C3990D1224B5B25600EE834B /* NethContactOwner.swift in Sources */,
+				C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */,
 				63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */,
 				C33FD423244F013B00767A47 /* NethContact.swift in Sources */,
 				D3C6526715AC1A8F0092A874 /* UIContactDetailsCell.m in Sources */,

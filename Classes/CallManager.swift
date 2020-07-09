@@ -267,7 +267,8 @@ import AVFoundation
 			try addr.setDomain(newValue: ConfigManager.instance().lpConfigStringForKey(key: "domain", section: "assistant"))
 		}
 
-		if (CallManager.instance().nextCallIsTransfer) {
+        // TODO: Qui dovrei mettere la gestione del trasferimento o no della chiamata.
+		if (CallManager.instance().nextCallIsTransfer && false) {
 			let call = CallManager.instance().lc!.currentCall
 			try call?.transfer(referTo: addr.asString())
 			CallManager.instance().nextCallIsTransfer = false
@@ -309,6 +310,7 @@ import AVFoundation
 
         do{
             try CallManager.instance().lc!.currentCall!.transferToAnother(dest: call)
+            CallManager.instance().nextCallIsTransfer = false
         } catch (let errorThrown) {
             print("[WEDO] Error in transfer to another: \(errorThrown.localizedDescription)")
             return
@@ -510,6 +512,24 @@ class CoreManagerDelegate: CoreDelegate {
 				break
 			case .End,
 				 .Error:
+                // Try to resume a previous call.
+                if(TransferCallManager.instance().isCallTransfer &&
+                    TransferCallManager.instance().mTransferCall != nil) {
+                    guard let pointer = TransferCallManager.instance().mTransferCall else { return }
+                    let call = Call.getSwiftObject(cObject: pointer)
+                    do {
+                        try call.resume()
+                    } catch (let errorThrown) {
+                        print("[WEDO] Error in resuming previous call: \(errorThrown.localizedDescription)")
+                        return
+                    }
+                }
+                
+                // No more call transfer.
+                TransferCallManager.instance().isCallTransfer = false
+                TransferCallManager.instance().mTransferCall = nil
+                
+                // Other Linphone stuff.
 				UIDevice.current.isProximityMonitoringEnabled = false
 				CoreManagerDelegate.speaker_already_enabled = false
 				if (CallManager.instance().lc!.callsNb == 0) {

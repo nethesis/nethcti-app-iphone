@@ -148,7 +148,7 @@ import Foundation
         
         // Logout from Nethesis. Dosen't need anymore.
         // Set the url.
-        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
+        /* let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
         guard let url = URL(string: endPoint) else {
             print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
@@ -170,7 +170,7 @@ import Foundation
             }
             
             successHandler("Logged out.")
-        }
+        }*/
     }
     
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
@@ -265,7 +265,7 @@ import Foundation
         body["Custom"] = ""
         
         // Build the final endpoint to notificator.
-        print("[WEDO] [APNS SERVER]: You are in \(mode) Notification endpoint url: \(endpointUrl)")
+        print("[WEDO] [APNS SERVER]: You are in \(mode) Notification endpoint url \(endpointUrl) sending \(d)")
         guard let url = URL(string: endpointUrl) else {
             return
         }

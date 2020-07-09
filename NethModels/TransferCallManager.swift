@@ -33,8 +33,16 @@ class TransferCallManager: NSObject {
         }
         
         set {
-            guard let tcall = Call.getSwiftObject(cObject: newValue!) as Call? else {
+            // If we get a nil pointer, we save it.
+            guard let callPointer = newValue as OpaquePointer? else {
+                self.call = nil
+                return
+            }
+                
+            guard let tcall = Call.getSwiftObject(cObject: callPointer) as Call? else {
+                // Error when we can't get the call from a not nil pointer.
                 print("[WEDO] Fail to get call to transfer.")
+                return
             }
             
             self.call = tcall

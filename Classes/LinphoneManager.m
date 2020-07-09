@@ -1889,14 +1889,16 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 			timeout = @"";
 		}
         
-        [[NethCTIAPI sharedInstance] registerPushToken:token success:^(BOOL response) {
+        /*
+         * Now we complete token registration when we receive it, skipping this process.
+         [[NethCTIAPI sharedInstance] registerPushToken:token success:^(BOOL response) {
             NSString* log = [NSString stringWithFormat:@"[WEDO PUSH] Token String: %@", token];
             LOGD(log);
             if(response)
                 LOGD(@"[WEDO PUSH] Notificatore: risultato positivo.");
             else
                 LOGE(@"[WEDO PUSH] Notificatore: risultato negativo");
-        }];
+        }];*/
 
 		// dummy value, for later use
 		NSString *teamId = @"ABCD1234";
