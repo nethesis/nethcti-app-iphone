@@ -167,9 +167,12 @@ import AVFoundation
 	@objc func displayIncomingCall(callId: String) {
 		let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
 		if (uuid != nil) {
-			// This call was declined.
-			providerDelegate.reportIncomingCall(call:nil, uuid: uuid!, handle: "Calling", hasVideo: true)
-			providerDelegate.endCall(uuid: uuid!)
+			let callInfo = providerDelegate.callInfos[uuid!]
+			if (callInfo?.declined ?? false) {
+				// This call was declined.
+				providerDelegate.reportIncomingCall(call:nil, uuid: uuid!, handle: "Calling", hasVideo: true)
+				providerDelegate.endCall(uuid: uuid!)
+			}
 			return
 		}
 
@@ -390,6 +393,9 @@ import AVFoundation
 			Log.directLog(BCTBX_LOG_MESSAGE, text: "Mark call \(callId) as declined.")
 			let uuid = UUID()
 			providerDelegate.uuids.updateValue(uuid, forKey: callId)
+			let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
+			callInfo.declined = true
+			providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
 		} else {
 			// end call
 			providerDelegate.endCall(uuid: uuid!)
@@ -414,15 +420,6 @@ import AVFoundation
 
 class CoreManagerDelegate: CoreDelegate {
 	static var speaker_already_enabled : Bool = false
-
-	func getProxyConfigByIncomingCall(call:Call, lc:Core) ->ProxyConfig? {
-		let addr = call.toAddress
-		let proxylist = lc.proxyConfigList
-		if let index = proxylist.firstIndex(where: { $0.identityAddress?.asStringUriOnly() == addr?.asStringUriOnly() }) {
-			return proxylist[index]
-		}
-		return nil
-	}
 
 	override func onCallStateChanged(lc: Core, call: Call, cstate: Call.State, message: String) {
 		let addr = call.remoteAddress;
@@ -456,10 +453,7 @@ class CoreManagerDelegate: CoreDelegate {
 							CallManager.instance().acceptCall(call: call, hasVideo: video)
 						}
 					} else {
-						let cfg = getProxyConfigByIncomingCall(call: call, lc: lc)
-					    if (!((cfg?.isPushNotificationAllowed ?? true) && CallManager.instance().alreadyRegisteredForNotification && UIApplication.shared.isRegisteredForRemoteNotifications)) {
-							CallManager.instance().displayIncomingCall(call: call, handle: address, hasVideo: video, callId: callId!)
-						}
+						CallManager.instance().displayIncomingCall(call: call, handle: address, hasVideo: video, callId: callId!)
 					}
 				} else if (UIApplication.shared.applicationState != .active) {
 					// not support callkit , use notif
