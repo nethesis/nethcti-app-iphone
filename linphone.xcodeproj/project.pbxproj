@@ -5006,7 +5006,7 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.0\\\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";

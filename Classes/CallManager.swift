@@ -180,8 +180,10 @@ import AVFoundation
 		if (call != nil) {
 			let addr = FastAddressBook.displayName(for: call?.remoteAddress?.getCobject) ?? "Unknow"
 			let video = UIApplication.shared.applicationState == .active && (lc!.videoActivationPolicy?.automaticallyAccept ?? false) && (call!.remoteParams?.videoEnabled ?? false)
+            // Calllkit mostra tutti i dettagli della chiamata.
 			displayIncomingCall(call: call, handle: addr, hasVideo: video, callId: callId)
 		} else {
+            // Callkit mostra solo la chiamata ricevuta.
 			displayIncomingCall(call: nil, handle: "Calling", hasVideo: true, callId: callId)
 		}
 	}
