@@ -477,7 +477,8 @@
 	// support only for calls
 	NSDictionary *aps = [userInfo objectForKey:@"aps"];
 	//NSString *loc_key = [aps objectForKey:@"loc-key"] ?: [[aps objectForKey:@"alert"] objectForKey:@"loc-key"];
-	NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
+	//NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
+    NSString *callId = @"123";
 
 	if([CallManager callKitEnabled]) {
 		// Since ios13, a new Incoming call must be displayed when the callkit is enabled and app is in background.

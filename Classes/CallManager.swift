@@ -104,7 +104,9 @@ import AVFoundation
 			return nil
 		}
 		let calls = lc?.calls
-		if let callTmp = calls?.first(where: { $0.callLog?.callId == callId }) {
+        dump(calls)
+        calls?.forEach{ callLog in print(callLog.callLog?.callId) }
+		if let callTmp = calls?.first {
 			return callTmp
 		}
 		return nil
@@ -166,6 +168,7 @@ import AVFoundation
 	// From ios13, display the callkit view when the notification is received.
 	@objc func displayIncomingCall(callId: String) {
 		let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
+        Log.directLog(BCTBX_LOG_MESSAGE, text: "displayIncomingcall(callId): uuid: [\(uuid?.description)")
 		if (uuid != nil) {
 			let callInfo = providerDelegate.callInfos[uuid!]
 			if (callInfo?.declined ?? false) {
@@ -176,7 +179,7 @@ import AVFoundation
 			return
 		}
 
-		let call = CallManager.instance().callByCallId(callId: callId)
+		let call = CallManager.instance().callByCallId(callId: "123")
 		if (call != nil) {
 			let addr = FastAddressBook.displayName(for: call?.remoteAddress?.getCobject) ?? "Unknow"
 			let video = UIApplication.shared.applicationState == .active && (lc!.videoActivationPolicy?.automaticallyAccept ?? false) && (call!.remoteParams?.videoEnabled ?? false)
@@ -190,6 +193,7 @@ import AVFoundation
 
 	func displayIncomingCall(call:Call?, handle: String, hasVideo: Bool, callId: String) {
 		let uuid = UUID()
+        Log.directLog(BCTBX_LOG_MESSAGE, text: "displayIncomingcall(call, handle, hasVideo, callId): uuid: [\(uuid.description)")
 		let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
 
 		providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
@@ -427,7 +431,7 @@ class CoreManagerDelegate: CoreDelegate {
 		let addr = call.remoteAddress;
 		let address = FastAddressBook.displayName(for: addr?.getCobject) ?? "Unknow"
 		let callLog = call.callLog
-		let callId = callLog?.callId
+		let callId = "123"
 		let video = UIApplication.shared.applicationState == .active && (lc.videoActivationPolicy?.automaticallyAccept ?? false) && (call.remoteParams?.videoEnabled ?? false)
 		// we keep the speaker auto-enabled state in this static so that we don't
 		// force-enable it on ICE re-invite if the user disabled it.
@@ -442,7 +446,10 @@ class CoreManagerDelegate: CoreDelegate {
 		switch cstate {
 			case .IncomingReceived:
 				if (CallManager.callKitEnabled()) {
-					let uuid = CallManager.instance().providerDelegate.uuids["\(callId!)"]
+					let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
+                    Log.directLog(BCTBX_LOG_MESSAGE, text: "onCallStateChanged(Incoming): uuid: [\(uuid?.description) and callid: [\(callId)]")
+                    dump(callLog)
+                    dump(CallManager.instance().providerDelegate.uuids)
 					if (uuid != nil) {
 						// Tha app is now registered, updated the call already existed.
 						CallManager.instance().providerDelegate.updateCall(uuid: uuid!, handle: address, hasVideo: video)
@@ -455,7 +462,7 @@ class CoreManagerDelegate: CoreDelegate {
 							CallManager.instance().acceptCall(call: call, hasVideo: video)
 						}
 					} else {
-						CallManager.instance().displayIncomingCall(call: call, handle: address, hasVideo: video, callId: callId!)
+						CallManager.instance().displayIncomingCall(call: call, handle: address, hasVideo: video, callId: callId)
 					}
 				} else if (UIApplication.shared.applicationState != .active) {
 					// not support callkit , use notif
@@ -464,18 +471,18 @@ class CoreManagerDelegate: CoreDelegate {
 					content.body = address
 					content.sound = UNNotificationSound.init(named: UNNotificationSoundName.init("notes_of_the_optimistic.caf"))
 					content.categoryIdentifier = "call_cat"
-					content.userInfo = ["CallId" : callId!]
+					content.userInfo = ["CallId" : callId]
 					let req = UNNotificationRequest.init(identifier: "call_request", content: content, trigger: nil)
 						UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
 				}
 				break
 			case .StreamsRunning:
 				if (CallManager.callKitEnabled()) {
-					let uuid = CallManager.instance().providerDelegate.uuids["\(callId!)"]
+					let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
 					if (uuid != nil) {
 						let callInfo = CallManager.instance().providerDelegate.callInfos[uuid!]
 						if (callInfo != nil && callInfo!.isOutgoing && !callInfo!.connected) {
-							Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: outgoing call connected with uuid \(uuid!) and callId \(callId!)")
+                            Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: outgoing call connected with uuid \(uuid!) and callId \(callId)")
 							CallManager.instance().providerDelegate.reportOutgoingCallConnected(uuid: uuid!)
 							callInfo!.connected = true
 							CallManager.instance().providerDelegate.callInfos.updateValue(callInfo!, forKey: uuid!)
@@ -494,12 +501,12 @@ class CoreManagerDelegate: CoreDelegate {
 					let uuid = CallManager.instance().providerDelegate.uuids[""]
 					if (uuid != nil) {
 						let callInfo = CallManager.instance().providerDelegate.callInfos[uuid!]
-						callInfo!.callId = callId!
+                        callInfo!.callId = callId
 						CallManager.instance().providerDelegate.callInfos.updateValue(callInfo!, forKey: uuid!)
 						CallManager.instance().providerDelegate.uuids.removeValue(forKey: "")
-						CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callId!)
+                        CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callId)
 
-						Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: outgoing call started connecting with uuid \(uuid!) and callId \(callId!)")
+                        Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: outgoing call started connecting with uuid \(uuid!) and callId \(callId)")
 						CallManager.instance().providerDelegate.reportOutgoingCallStartedConnecting(uuid: uuid!)
 					} else {
 						CallManager.instance().referedToCall = callId
@@ -553,7 +560,7 @@ class CoreManagerDelegate: CoreDelegate {
 				}
 
 				if (CallManager.callKitEnabled()) {
-					var uuid = CallManager.instance().providerDelegate.uuids["\(callId!)"]
+                    var uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
 					if (callId == CallManager.instance().referedToCall) {
 						// refered call ended before connecting
 						Log.directLog(BCTBX_LOG_MESSAGE, text: "Callkit: end refered to call :  \(String(describing: CallManager.instance().referedToCall))")
@@ -571,7 +578,7 @@ class CoreManagerDelegate: CoreDelegate {
 							let callInfo = CallManager.instance().providerDelegate.callInfos[uuid!]
 							callInfo!.callId = CallManager.instance().referedToCall ?? ""
 							CallManager.instance().providerDelegate.callInfos.updateValue(callInfo!, forKey: uuid!)
-							CallManager.instance().providerDelegate.uuids.removeValue(forKey: callId!)
+                            CallManager.instance().providerDelegate.uuids.removeValue(forKey: callId)
 							CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callInfo!.callId)
 							CallManager.instance().referedToCall = nil
 							break
