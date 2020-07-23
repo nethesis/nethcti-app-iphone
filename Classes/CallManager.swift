@@ -70,13 +70,6 @@ import AVFoundation
 		let sCall = Call.getSwiftObject(cObject: call)
 		return getAppData(sCall: sCall)
 	}
-    
-    @objc public var mProviderDelegate: ProviderDelegate? {
-        get {
-            return self.providerDelegate
-        }
-    }
-    
 	
 	static func getAppData(sCall:Call) -> CallAppData? {
 		if (sCall.userData == nil) {
@@ -459,10 +452,9 @@ class CoreManagerDelegate: CoreDelegate {
 			CallManager.setAppData(sCall: call, appData: appData)
 		}
 
-        dump(video)
-        dump(CallManager.instance().providerDelegate.uuids)
-        dump(CallManager.instance().providerDelegate.callInfos)
-        
+        //dump(video)
+        //dump(CallManager.instance().providerDelegate.uuids)
+        //dump(CallManager.instance().providerDelegate.callInfos)
 
 		switch cstate {
 			case .IncomingReceived:
