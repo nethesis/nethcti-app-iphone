@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -79,7 +79,7 @@
 	_linphoneImage.hidden = TRUE;
 	if(_contact) {
 		[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-		_linphoneImage.hidden =
+		_linphoneImage.hidden = [LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"] ||
 			! ((_contact.friend && linphone_presence_model_get_basic_status(linphone_friend_get_presence_model(_contact.friend)) == LinphonePresenceBasicStatusOpen) || [FastAddressBook contactHasValidSipDomain:_contact]);
 	}
 }

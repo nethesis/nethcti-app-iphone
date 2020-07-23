@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -61,6 +61,7 @@
 - (void)touchUp:(id)sender {
 	NSString *address = addressField.text;
 	if (address.length == 0) {
+        // Get the last number called.
 		LinphoneCallLog *log = linphone_core_get_last_outgoing_call_log(LC);
 		if (log) {
 			const LinphoneAddress *to = linphone_call_log_get_to_address(log);
@@ -83,15 +84,13 @@
 			// return after filling the address, let the user confirm the call by pressing again
 			return;
 		}
-	}
-
-	if ([address length] > 0) {
+	} else if ([address length] > 0) {
+        // Start a call.
 		LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:address];
-        
-        if([[TransferCallManager sharedManager] isCallTransfer]) {
+        if([TransferCallManager.instance isCallTransfer]) {
             LinphoneCore *core = [LinphoneManager getLc];
             LinphoneCall *call = linphone_core_get_current_call(core);
-            [[TransferCallManager sharedManager] setmTransferCall:call];
+            TransferCallManager.instance.mTransferCall = call;
         }
         
         [LinphoneManager.instance call:addr];
@@ -109,7 +108,7 @@
 		[self setImage:[UIImage imageNamed:@"call_audio_start_disabled.png"] forState:UIControlStateDisabled];
 	}
 
-	if (LinphoneManager.instance.nextCallIsTransfer) {
+    if (CallManager.instance.nextCallIsTransfer || TransferCallManager.instance.isCallTransfer) {
 		[self setImage:[UIImage imageNamed:@"call_transfer_default.png"] forState:UIControlStateNormal];
 		[self setImage:[UIImage imageNamed:@"call_transfer_disabled.png"] forState:UIControlStateDisabled];
 	} else if (linphone_core_get_calls_nb(LC) > 0) {

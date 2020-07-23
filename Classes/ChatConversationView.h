@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -31,6 +31,7 @@
 #import "Utils/HPGrowingTextView/HPGrowingTextView.h"
 #import "UIImageViewDeletable.h"
 #import "UIConfirmationDialog.h"
+#import "UIInterfaceStyleButton.h"
 
 #include "linphone/linphonecore.h"
 
@@ -53,15 +54,17 @@
 	BOOL composingVisible;
     UIConfirmationDialog *securityDialog;
     UIRefreshControl *refreshControl;
+	BOOL isOneToOne;
 }
 
 @property(nonatomic) LinphoneChatRoom *chatRoom;
 @property(nonatomic) LinphoneChatRoomCbs *chatRoomCbs;
 @property(nonatomic) Boolean markAsRead;
+@property(nonatomic) const char *peerAddress;
 
 @property (strong, nonatomic) FileDataSource *FileDataSource;
 
-@property(weak, nonatomic) IBOutlet UIIconButton *backButton;
+@property(weak, nonatomic) IBOutlet UIButton *backButton;
 @property(nonatomic, strong) IBOutlet ChatConversationTableView *tableController;
 @property(weak, nonatomic) IBOutlet HPGrowingTextView *messageField;
 @property(weak, nonatomic) IBOutlet UIView *topBar;
@@ -74,9 +77,9 @@
 @property(strong, nonatomic) IBOutlet UILabel *composeLabel;
 @property(strong, nonatomic) IBOutlet UIView *composeIndicatorView;
 @property(nonatomic, strong) IBOutlet UIButton *pictureButton;
-@property(weak, nonatomic) IBOutlet UIIconButton *callButton;
+@property(weak, nonatomic) IBOutlet UIButton *callButton;
 @property(weak, nonatomic) IBOutlet UIBackToCallButton *backToCallButton;
-@property (weak, nonatomic) IBOutlet UIIconButton *infoButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *particpantsLabel;
 //@property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;
 @property NSMutableArray <UIImage *> *imagesArray;
@@ -85,6 +88,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *imagesCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *imagesView;
 @property (weak, nonatomic) IBOutlet UIButton *encryptedButton;
+@property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
 
 + (void)markAsRead:(LinphoneChatRoom *)chatRoom;
 + (void)autoDownload:(LinphoneChatMessage *)message;
@@ -103,9 +107,11 @@
 - (void)update;
 - (void)openFileWithURL:(NSURL *)url;
 - (void)clearMessageView;
+- (void)configureMessageField;
 
 - (void)showFileDownloadError;
 - (NSURL *)getICloudFileUrl:(NSString *)name;
 - (BOOL)writeFileInICloud:(NSData *)data fileURL:(NSURL *)fileURL;
+- (void)removeCallBacks;
 
 @end

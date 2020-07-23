@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -138,6 +138,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 		tableController.editing = NO;
 	}
 	[self refreshButtons];
+	[_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
+	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
+		self.linphoneButton.hidden = TRUE;
+		self.selectedButtonImage.hidden = TRUE;
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -205,6 +210,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[tableController loadData];
 	}
 	_selectedButtonImage.frame = frame;
+	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
+		allButton.selected = FALSE;
+	}
 }
 
 - (void)refreshButtons {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -34,7 +34,7 @@
 @property(nonatomic, strong) IBOutlet UIButton *addContactButton;
 @property(nonatomic, strong) IBOutlet UICallButton *callButton;
 @property(nonatomic, strong) IBOutlet UIButton *backButton;
-@property(weak, nonatomic) IBOutlet UIIconButton *backspaceButton;
+@property(weak, nonatomic) IBOutlet UIButton *backspaceButton;
 
 @property(nonatomic, strong) IBOutlet UIDigitButton *oneButton;
 @property(nonatomic, strong) IBOutlet UIDigitButton *twoButton;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addGroupChatButton;
 @property(weak, nonatomic) IBOutlet UIBackToCallButton *backToCallButton;
 @property (weak, nonatomic) IBOutlet UIView *waitView;
+@property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
 
 - (IBAction)onAddGroupChatClick:(id)event;
 - (IBAction)onAddClick:(id)event;

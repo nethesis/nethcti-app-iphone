@@ -691,7 +691,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mbT-xm-bKk" userLabel="activateDescLabel">
                     <rect key="frame" x="36" y="192" width="303" height="96"/>
                     <accessibility key="accessibilityConfiguration" label="Account setup assistant"/>
-                    <string key="text">Your account is created. Please check your mails to validate your account. 
+                    <string key="text">Your account is created. Please check your mails to validate your account.
 Once it is done, come back here and click on the button.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

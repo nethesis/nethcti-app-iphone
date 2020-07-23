@@ -58,14 +58,10 @@
                             <rect key="frame" x="245" y="600" width="310" height="450"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view clipsSubviews="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
+                                <view clipsSubviews="YES" alpha="0.90000000000000002" tag="5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
                                     <rect key="frame" x="0.0" y="0.0" width="310" height="80"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="56Z-ia-Pln" userLabel="backgroundColor">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <textField opaque="NO" clearsContextBeforeDrawing="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
                                             <rect key="frame" x="8" y="0.0" width="239" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -78,7 +74,7 @@
                                                 <outlet property="delegate" destination="-1" id="190"/>
                                             </connections>
                                         </textField>
-                                        <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIIconButton">
+                                        <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
                                             <rect key="frame" x="245" y="0.0" width="60" height="80"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="backspace_default.png">
@@ -91,6 +87,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
                                     <rect key="frame" x="0.0" y="80" width="310" height="290"/>
@@ -254,7 +251,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </view>
                                 <view tag="22" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="182" userLabel="bottomBar">
                                     <rect key="frame" x="0.0" y="370" width="310" height="80"/>
@@ -263,6 +260,7 @@
                                         <button hidden="YES" opaque="NO" tag="23" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="183" userLabel="backButton">
                                             <rect key="frame" x="0.0" y="0.0" width="102" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" image="call_alt_back_default.png" backgroundImage="color_F.png">

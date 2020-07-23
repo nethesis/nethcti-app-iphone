@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -20,8 +20,9 @@
 #ifndef AudioHelper_h
 #define AudioHelper_h
 
-#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
+
+@import AVFoundation;
 
 @interface AudioHelper : NSObject
 

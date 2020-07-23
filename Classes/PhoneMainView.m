@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -25,6 +25,8 @@
 #import "NethCTI-Swift.h"
 
 static RootViewManager *rootViewManagerInstance = nil;
+
+@class CallManager;
 
 @implementation RootViewManager {
 	PhoneMainView *currentViewController;
@@ -368,6 +370,10 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 	switch (state) {
 		case LinphoneCallIncomingReceived:
+			if (!CallManager.callKitEnabled) {
+				[self displayIncomingCall:call];
+			}
+			break;
 		case LinphoneCallIncomingEarlyMedia: {
 			if (linphone_core_get_calls_nb(LC) > 1 ||
 				(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max)) {
@@ -381,36 +387,15 @@ static RootViewManager *rootViewManagerInstance = nil;
 		}
 		case LinphoneCallPausedByRemote:
 		case LinphoneCallConnected: {
-			if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max && call) {
-				NSString *callId =
-					[NSString stringWithUTF8String:linphone_call_log_get_call_id(linphone_call_get_call_log(call))];
-				NSUUID *uuid = [LinphoneManager.instance.providerDelegate.uuids objectForKey:callId];
-				if (uuid) {
-					[LinphoneManager.instance.providerDelegate.provider reportOutgoingCallWithUUID:uuid
-																		   startedConnectingAtDate:nil];
-				}
+			if (![LinphoneManager.instance isCTCallCenterExist]) {
+				/*only register CT call center CB for connected call*/
+				[LinphoneManager.instance setupGSMInteraction];
+				[[UIDevice currentDevice] setProximityMonitoringEnabled:!(CallManager.instance.speakerEnabled || CallManager.instance.bluetoothEnabled)];
 			}
 			break;
 		}
 		case LinphoneCallStreamsRunning: {
 			[self changeCurrentView:CallView.compositeViewDescription];
-			if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max && call) {
-				NSString *callId =
-					[NSString stringWithUTF8String:linphone_call_log_get_call_id(linphone_call_get_call_log(call))];
-				NSUUID *uuid = [LinphoneManager.instance.providerDelegate.uuids objectForKey:callId];
-				if (uuid) {
-					[LinphoneManager.instance.providerDelegate.provider reportOutgoingCallWithUUID:uuid
-																				   connectedAtDate:nil];
-					NSString *address = [FastAddressBook displayNameForAddress:linphone_call_get_remote_address(call)];
-					CXCallUpdate *update = [[CXCallUpdate alloc] init];
-					update.remoteHandle = [[CXHandle alloc] initWithType:CXHandleTypeGeneric value:address];
-					update.supportsGrouping = TRUE;
-					update.supportsDTMF = TRUE;
-					update.supportsHolding = TRUE;
-					update.supportsUngrouping = TRUE;
-					[LinphoneManager.instance.providerDelegate.provider reportCallWithUUID:uuid updated:update];
-				}
-			}
 			break;
 		}
 		case LinphoneCallUpdatedByRemote: {
@@ -444,40 +429,22 @@ static RootViewManager *rootViewManagerInstance = nil;
 			break;
 		case LinphoneCallOutgoingEarlyMedia:
 		case LinphoneCallOutgoingProgress: {
-			if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max && call &&
-				(linphone_core_get_calls_nb(LC) < 2)) {
-				// Link call ID to UUID
-				NSString *callId =
-					[NSString stringWithUTF8String:linphone_call_log_get_call_id(linphone_call_get_call_log(call))];
-				NSUUID *uuid = [LinphoneManager.instance.providerDelegate.uuids objectForKey:@""];
-				if (uuid) {
-					[LinphoneManager.instance.providerDelegate.uuids removeObjectForKey:@""];
-					[LinphoneManager.instance.providerDelegate.uuids setObject:uuid forKey:callId];
-					[LinphoneManager.instance.providerDelegate.calls setObject:callId forKey:uuid];
-				}
-			}
 			break;
 		}
+        case LinphoneCallReleased:
+            if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+					[PhoneMainView.instance popToView:DialerView.compositeViewDescription];
+					[CoreManager.instance stopLinphoneCore];
+                });
+            }
+            break;
 		case LinphoneCallOutgoingRinging:
 		case LinphoneCallPaused:
 		case LinphoneCallPausing:
 		case LinphoneCallRefered:
-		case LinphoneCallReleased:
 			break;
 		case LinphoneCallResuming: {
-			if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max && call) {
-				NSUUID *uuid = (NSUUID *)[LinphoneManager.instance.providerDelegate.uuids
-					objectForKey:[NSString stringWithUTF8String:linphone_call_log_get_call_id(
-																	linphone_call_get_call_log(call))]];
-				if (!uuid) {
-					break;
-				}
-				CXSetHeldCallAction *act = [[CXSetHeldCallAction alloc] initWithCallUUID:uuid onHold:NO];
-				CXTransaction *tr = [[CXTransaction alloc] initWithAction:act];
-				[LinphoneManager.instance.providerDelegate.controller requestTransaction:tr
-																			  completion:^(NSError *err){
-																			  }];
-			}
 			break;
 		}
 		case LinphoneCallUpdating:
@@ -796,16 +763,16 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 - (void)displayIncomingCall:(LinphoneCall *)call {
 	LinphoneCallLog *callLog = linphone_call_get_call_log(call);
-	NSString *callId = [NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)];
+    NSString *callId = [NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)];
 
 	if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
 		LinphoneManager *lm = LinphoneManager.instance;
-		BOOL callIDFromPush = [lm popPushCallID:callId];
+		BOOL callIDFromPush = [lm popPushCallID:[NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)]];
 		BOOL autoAnswer = [lm lpConfigBoolForKey:@"autoanswer_notif_preference"];
-
+        
 		if (callIDFromPush && autoAnswer) {
 			// accept call automatically
-			[lm acceptCall:call evenWithVideo:YES];
+			[CallManager.instance acceptCallWithCall:call hasVideo:NO];
 		} else {
 			AudioServicesPlaySystemSound(lm.sounds.vibrate);
 			CallIncomingView *view = VIEW(CallIncomingView);
@@ -823,10 +790,10 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call && linphone_call_params_video_enabled(linphone_call_get_current_params(call))) {
-		LinphoneCallAppData *callData = (__bridge LinphoneCallAppData *)linphone_call_get_user_data(call);
-		if (callData != nil) {
+		CallAppData *data = [CallManager getAppDataWithCall:call];
+		if (data != nil) {
 			if (state == UIDeviceBatteryStateUnplugged) {
-				if (level <= 0.2f && !callData->batteryWarningShown) {
+				if (level <= 0.2f && !data.batteryWarningShown) {
 					LOGI(@"Battery warning");
 					DTActionSheet *sheet = [[DTActionSheet alloc]
 						initWithTitle:NSLocalizedString(@"Battery is running low. Stop video ?", nil)];
@@ -841,12 +808,13 @@ static RootViewManager *rootViewManagerInstance = nil;
 												  linphone_call_update(call, params);
 												}];
 					[sheet showInView:self.view];
-					callData->batteryWarningShown = TRUE;
+					data.batteryWarningShown = TRUE;
 				}
 			}
 			if (level > 0.2f) {
-				callData->batteryWarningShown = FALSE;
+				data.batteryWarningShown = FALSE;
 			}
+			[CallManager setAppDataWithCall:call appData:data];
 		}
 	}
 }
@@ -857,11 +825,11 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)incomingCallAccepted:(LinphoneCall *)call evenWithVideo:(BOOL)video {
-	[LinphoneManager.instance acceptCall:call evenWithVideo:video];
+	[CallManager.instance acceptCallWithCall:call hasVideo:video];
 }
 
 - (void)incomingCallDeclined:(LinphoneCall *)call {
-	linphone_call_terminate(call);
+	[CallManager.instance terminateCallWithCall:call];
 }
 
 #pragma mark - Chat room Functions
@@ -916,7 +884,7 @@ static RootViewManager *rootViewManagerInstance = nil;
             [self presentViewController:errView animated:YES completion:nil];
             return nil;
         }
-		LinphoneChatRoom *basicRoom = linphone_core_create_chat_room_5(LC, addresses->data);
+		LinphoneChatRoom *basicRoom = linphone_core_get_chat_room(LC, addresses->data);
         [self goToChatRoom:basicRoom];
         return nil;
     }
@@ -953,6 +921,7 @@ static RootViewManager *rootViewManagerInstance = nil;
     if (view.chatRoom != cr)
         [view clearMessageView];
 	view.chatRoom = cr;
+    view.peerAddress = linphone_address_as_string(linphone_chat_room_get_peer_address(cr));
 	self.currentRoom = view.chatRoom;
 	if (PhoneMainView.instance.currentView == view.compositeViewDescription)
 		[view configureForRoom:FALSE];

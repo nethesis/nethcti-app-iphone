@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -31,5 +31,5 @@
 
 - (IBAction)onSecurityCallClick:(id)sender;
 - (id)initWithIdentifier:(NSString *)identifier;
-- (void)update:(BOOL)listOpen isMyself:(BOOL)isMyself;
+- (void)update:(BOOL)listOpen;
 @end

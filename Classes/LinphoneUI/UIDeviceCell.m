@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -36,6 +36,10 @@
 }
 
 - (void)update {
+	if (!_device) {
+		LOGE(@"Can not update, because the device is null.");
+		return;
+	}
     [_securityButton setImage:[FastAddressBook imageForSecurityLevel:linphone_participant_device_get_security_level(_device)] forState:UIControlStateNormal];
     
     _deviceLabel.text = [NSString stringWithUTF8String:linphone_participant_device_get_name(_device) ? :
@@ -55,10 +59,7 @@
 
 - (IBAction)onSecurityCallClick:(id)sender {
     const LinphoneAddress *addr = linphone_participant_device_get_address(_device);
-    if (addr)
-        [LinphoneManager.instance doCallWithSas:addr isSas:TRUE];
-    else
-        LOGE(@"CallKit : No call address");
+	[CallManager.instance startCallWithAddr:(LinphoneAddress *)addr isSas:TRUE];
 }
 
 @end

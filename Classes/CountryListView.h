@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone 
  *
@@ -20,13 +20,14 @@
 #import <UIKit/UIKit.h>
 #import "PhoneMainView.h"
 
-@protocol CountryListViewDelegate <NSObject,UISearchDisplayDelegate,UISearchBarDelegate>
+@protocol CountryListViewDelegate <NSObject>
 - (void)didSelectCountry:(NSDictionary *)country;
 @end
 
-@interface CountryListView : UIViewController<UICompositeViewDelegate>
+@interface CountryListView : UIViewController<UICompositeViewDelegate,UISearchResultsUpdating,UISearchBarDelegate>
 
 @property (nonatomic, weak) id<CountryListViewDelegate>delegate;
+@property(strong, nonatomic) UISearchController *searchController;
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope;
 

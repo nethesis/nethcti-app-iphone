@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -298,7 +298,11 @@
 
 	CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
 	UIView *tempView = [[UIView alloc] initWithFrame:frame];
-	tempView.backgroundColor = [UIColor whiteColor];
+	if (@available(iOS 13, *)) {
+		tempView.backgroundColor = [UIColor systemBackgroundColor];
+	} else {
+		tempView.backgroundColor = [UIColor whiteColor];
+	}
 
 	UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
 	tempLabel.backgroundColor = [UIColor clearColor];

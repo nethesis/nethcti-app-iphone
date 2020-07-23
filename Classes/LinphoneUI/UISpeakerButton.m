@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -17,7 +17,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "UISpeakerButton.h"
 #import "Utils.h"
@@ -47,16 +46,16 @@ INIT_WITH_COMMON_CF {
 }
 
 - (void)onOn {
-	[LinphoneManager.instance setSpeakerEnabled:TRUE];
+	[CallManager.instance enableSpeakerWithEnable:TRUE];
 }
 
 - (void)onOff {
-	[LinphoneManager.instance setSpeakerEnabled:FALSE];
+	[CallManager.instance enableSpeakerWithEnable:FALSE];
 }
 
 - (bool)onUpdate {
-	self.enabled = [LinphoneManager.instance allowSpeaker];
-	return [LinphoneManager.instance speakerEnabled];
+	self.enabled = [CallManager.instance allowSpeaker];
+	return CallManager.instance.speakerEnabled;
 }
 
 @end

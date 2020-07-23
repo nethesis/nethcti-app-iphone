@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2019 Belledonne Communications SARL.
+ * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
  * This file is part of linphone-iphone
  *
@@ -61,6 +61,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	linphone_core_reset_missed_calls_count(LC);
 	// Fake event
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
+	[_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
