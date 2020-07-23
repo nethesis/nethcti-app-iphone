@@ -35,7 +35,7 @@ import AVFoundation
 */
 @objc class CallManager: NSObject {
 	static var theCallManager: CallManager?
-	let providerDelegate: ProviderDelegate! // to support callkit
+    let providerDelegate: ProviderDelegate! // to support callkit
 	let callController: CXCallController! // to support callkit
 	let manager: CoreManagerDelegate! // callbacks of the linphonecore
 	var lc: Core?
@@ -70,6 +70,13 @@ import AVFoundation
 		let sCall = Call.getSwiftObject(cObject: call)
 		return getAppData(sCall: sCall)
 	}
+    
+    @objc public var mProviderDelegate: ProviderDelegate? {
+        get {
+            return self.providerDelegate
+        }
+    }
+    
 	
 	static func getAppData(sCall:Call) -> CallAppData? {
 		if (sCall.userData == nil) {
@@ -104,11 +111,9 @@ import AVFoundation
 			return nil
 		}
 		let calls = lc?.calls
-        dump(calls)
-        calls?.forEach{ callLog in print(callLog.callLog?.callId) }
-		if let callTmp = calls?.first {
-			return callTmp
-		}
+		if let callTmp = calls?.first(where: { $0.callLog?.callId == callId }) {
+            return callTmp
+        }
 		return nil
 	}
 
@@ -168,8 +173,7 @@ import AVFoundation
 	// From ios13, display the callkit view when the notification is received.
 	@objc func displayIncomingCall(callId: String) {
 		let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
-        Log.directLog(BCTBX_LOG_MESSAGE, text: "displayIncomingcall(callId): uuid: [\(uuid?.description)")
-		if (uuid != nil) {
+        if (uuid != nil) {
 			let callInfo = providerDelegate.callInfos[uuid!]
 			if (callInfo?.declined ?? false) {
 				// This call was declined.
@@ -179,21 +183,21 @@ import AVFoundation
 			return
 		}
 
-		let call = CallManager.instance().callByCallId(callId: "123")
+		let call = CallManager.instance().callByCallId(callId: callId)
 		if (call != nil) {
 			let addr = FastAddressBook.displayName(for: call?.remoteAddress?.getCobject) ?? "Unknow"
 			let video = UIApplication.shared.applicationState == .active && (lc!.videoActivationPolicy?.automaticallyAccept ?? false) && (call!.remoteParams?.videoEnabled ?? false)
             // Calllkit mostra tutti i dettagli della chiamata.
 			displayIncomingCall(call: call, handle: addr, hasVideo: video, callId: callId)
 		} else {
+            let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
             // Callkit mostra solo la chiamata ricevuta.
-			displayIncomingCall(call: nil, handle: "Calling", hasVideo: true, callId: callId)
+			displayIncomingCall(call: nil, handle: "Calling", hasVideo: video, callId: callId)
 		}
 	}
 
 	func displayIncomingCall(call:Call?, handle: String, hasVideo: Bool, callId: String) {
 		let uuid = UUID()
-        Log.directLog(BCTBX_LOG_MESSAGE, text: "displayIncomingcall(call, handle, hasVideo, callId): uuid: [\(uuid.description)")
 		let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
 
 		providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
@@ -212,6 +216,7 @@ import AVFoundation
 
 	func acceptCall(call: Call, hasVideo:Bool) {
 		do {
+            Log.directLog(BCTBX_LOG_MESSAGE, text: hasVideo ? "HASVIDEO: true" : "HASVIDEO: false")
 			let callParams = try lc!.createCallParams(call: call)
 			callParams.videoEnabled = hasVideo
 			if (ConfigManager.instance().lpConfigBoolForKey(key: "edge_opt_preference")) {
@@ -263,6 +268,8 @@ import AVFoundation
 		let displayName = FastAddressBook.displayName(for: addr.getCobject)
 
 		let lcallParams = try CallManager.instance().lc!.createCallParams(call: nil)
+        //Forse video to false
+        lcallParams.videoEnabled = false
 		if ConfigManager.instance().lpConfigBoolForKey(key: "edge_opt_preference") && AppManager.network() == .network_2g {
 			Log.directLog(BCTBX_LOG_MESSAGE, text: "Enabling low bandwidth mode")
 			lcallParams.lowBandwidthEnabled = true
@@ -431,7 +438,17 @@ class CoreManagerDelegate: CoreDelegate {
 		let addr = call.remoteAddress;
 		let address = FastAddressBook.displayName(for: addr?.getCobject) ?? "Unknow"
 		let callLog = call.callLog
-		let callId = "123"
+        let uuid : UUID? = CallManager.instance().providerDelegate.uuids[CallIdTest.instance().callId!]
+        if(uuid != nil && CallIdTest.instance().callId! != callLog!.callId) {
+            CallManager.instance().providerDelegate.uuids.removeValue(forKey: CallIdTest.instance().callId!)
+            CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callLog!.callId)
+            
+            let ci : CallInfo = CallManager.instance().providerDelegate.callInfos[uuid!] ?? CallInfo.newIncomingCallInfo(callId: callLog!.callId)
+            ci.callId = callLog!.callId
+            CallManager.instance().providerDelegate.callInfos.updateValue(ci, forKey: uuid!)
+        }
+        
+        let callId = callLog!.callId
 		let video = UIApplication.shared.applicationState == .active && (lc.videoActivationPolicy?.automaticallyAccept ?? false) && (call.remoteParams?.videoEnabled ?? false)
 		// we keep the speaker auto-enabled state in this static so that we don't
 		// force-enable it on ICE re-invite if the user disabled it.
@@ -442,14 +459,17 @@ class CoreManagerDelegate: CoreDelegate {
 			CallManager.setAppData(sCall: call, appData: appData)
 		}
 
+        dump(video)
+        dump(CallManager.instance().providerDelegate.uuids)
+        dump(CallManager.instance().providerDelegate.callInfos)
+        
 
 		switch cstate {
 			case .IncomingReceived:
+                //Force video to false
+                let video = false
 				if (CallManager.callKitEnabled()) {
 					let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
-                    Log.directLog(BCTBX_LOG_MESSAGE, text: "onCallStateChanged(Incoming): uuid: [\(uuid?.description) and callid: [\(callId)]")
-                    dump(callLog)
-                    dump(CallManager.instance().providerDelegate.uuids)
 					if (uuid != nil) {
 						// Tha app is now registered, updated the call already existed.
 						CallManager.instance().providerDelegate.updateCall(uuid: uuid!, handle: address, hasVideo: video)

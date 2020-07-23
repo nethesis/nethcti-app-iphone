@@ -38,6 +38,8 @@
 @synthesize configURL;
 @synthesize window;
 
+@class CallIdTest;
+
 #pragma mark - Lifecycle Functions
 
 - (id)init {
@@ -477,13 +479,15 @@
 	// support only for calls
 	NSDictionary *aps = [userInfo objectForKey:@"aps"];
 	//NSString *loc_key = [aps objectForKey:@"loc-key"] ?: [[aps objectForKey:@"alert"] objectForKey:@"loc-key"];
-	//NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
-    NSString *callId = @"123";
+	NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
+    [CallIdTest.instance setMCallId:callId];
 
 	if([CallManager callKitEnabled]) {
 		// Since ios13, a new Incoming call must be displayed when the callkit is enabled and app is in background.
 		// Otherwise it will cause a crash.
-		[CallManager.instance displayIncomingCallWithCallId:callId];
+        if(UIApplication.sharedApplication.applicationState != UIApplicationStateActive) {
+            [CallManager.instance displayIncomingCallWithCallId:callId];
+        }
 	} else {
 		if (linphone_core_get_calls(LC)) {
 			// if there are calls, obviously our TCP socket shall be working

@@ -26,6 +26,8 @@
 
 static RootViewManager *rootViewManagerInstance = nil;
 
+@class CallManager;
+
 @implementation RootViewManager {
 	PhoneMainView *currentViewController;
 }
@@ -761,16 +763,16 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 - (void)displayIncomingCall:(LinphoneCall *)call {
 	LinphoneCallLog *callLog = linphone_call_get_call_log(call);
-    NSString *callId = @"123";
+    NSString *callId = [NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)];
 
 	if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
 		LinphoneManager *lm = LinphoneManager.instance;
-		BOOL callIDFromPush = [lm popPushCallID:callId];
+		BOOL callIDFromPush = [lm popPushCallID:[NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)]];
 		BOOL autoAnswer = [lm lpConfigBoolForKey:@"autoanswer_notif_preference"];
-
+        
 		if (callIDFromPush && autoAnswer) {
 			// accept call automatically
-			[CallManager.instance acceptCallWithCall:call hasVideo:YES];
+			[CallManager.instance acceptCallWithCall:call hasVideo:NO];
 		} else {
 			AudioServicesPlaySystemSound(lm.sounds.vibrate);
 			CallIncomingView *view = VIEW(CallIncomingView);

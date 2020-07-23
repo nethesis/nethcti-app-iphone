@@ -36,7 +36,7 @@ import os
 	
 	static func newIncomingCallInfo(callId: String) -> CallInfo {
 		let callInfo = CallInfo()
-		callInfo.callId = "123"
+		callInfo.callId = callId
 		return callInfo
 	}
 	
@@ -86,7 +86,6 @@ class ProviderDelegate: NSObject {
 
 		let callInfo = callInfos[uuid]
 		let callId = callInfo?.callId
-        dump(callInfos)
 		Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: report new incoming call with call-id: [\(String(describing: callId))] and UUID: [\(uuid.description)]")
 		provider.reportNewIncomingCall(with: uuid, update: update) { error in
 			if error == nil {
@@ -162,12 +161,10 @@ extension ProviderDelegate: CXProviderDelegate {
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
 		let uuid = action.callUUID
 		let callInfo = callInfos[uuid]
-		let callId = "123"
+        let callId = callInfo?.callId
 		Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: answer call with call-id: \(String(describing: callId)) and UUID: \(uuid.description).")
-        dump(callInfo)
 
 		let call = CallManager.instance().callByCallId(callId: callId)
-        dump(call)
 		if (call == nil || call?.state != Call.State.IncomingReceived) {
 			// The application is not yet registered or the call is not yet received, mark the call as accepted. The audio session must be configured here.
 			CallManager.configAudioSession(audioSession: AVAudioSession.sharedInstance())
@@ -176,7 +173,7 @@ extension ProviderDelegate: CXProviderDelegate {
 			CallManager.instance().providerDelegate.endCallNotExist(uuid: uuid, timeout: .now() + 10)
 		} else {
             Log.directLog(BCTBX_LOG_MESSAGE, text: "Sono nell'else")
-			CallManager.instance().acceptCall(call: call!, hasVideo: call!.params?.videoEnabled ?? false)
+			CallManager.instance().acceptCall(call: call!, hasVideo: false)
 		}
 		action.fulfill()
 	}

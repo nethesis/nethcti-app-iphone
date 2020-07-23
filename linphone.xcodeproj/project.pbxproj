@@ -667,6 +667,7 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
+		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
 		C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87D923A3EA5500F4B2DA /* quit_default.png */; };
 		C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87DA23A3EA5600F4B2DA /* quit_over.png */; };
 		C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */; };
@@ -1723,6 +1724,7 @@
 		ADCA571A7CF61077747BFE53 /* Pods-msgNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationService/Pods-msgNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C77D3BA284DC519E80F23C /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD0A9494E833034EB559687 /* Pods-msgNotificationContent.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationContent.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationContent/Pods-msgNotificationContent.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
+		BB4BF16824C887F300667B10 /* CallIdTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
 		C31B87D923A3EA5500F4B2DA /* quit_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_default.png; sourceTree = "<group>"; };
 		C31B87DA23A3EA5600F4B2DA /* quit_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_over.png; sourceTree = "<group>"; };
 		C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-portrait_1242x2208.png"; sourceTree = "<group>"; };
@@ -3091,6 +3093,7 @@
 				C3990D1124B5B25600EE834B /* NethContactOwner.swift */,
 				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
 				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
+				BB4BF16824C887F300667B10 /* CallIdTest.swift */,
 			);
 			path = NethModels;
 			sourceTree = "<group>";
@@ -4304,6 +4307,7 @@
 				C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */,
 				570742611D5A09B8004B9C84 /* ShopView.m in Sources */,
 				63F1DF4F1BCE985F00EDED90 /* UICallConferenceCell.m in Sources */,
+				BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */,
 				D37DC6C11594AE1800B2A5EB /* LinphoneCoreSettingsStore.m in Sources */,
 				63CD4B4F1A5AAC8C00B84282 /* DTAlertView.m in Sources */,
 				D3EA53FD159850E80037DC6B /* LinphoneManager.m in Sources */,
@@ -5017,6 +5021,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
 					"-Werror=incomplete-implementation",
@@ -5145,6 +5150,7 @@
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
 					"-Werror=incomplete-implementation",
@@ -5275,6 +5281,7 @@
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
 					"-Werror=incomplete-implementation",
@@ -5404,6 +5411,7 @@
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/RestApi/linphone-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Werror=objc-method-access",
 					"-Werror=incomplete-implementation",
@@ -5884,7 +5892,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 30;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
