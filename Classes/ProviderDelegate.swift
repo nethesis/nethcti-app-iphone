@@ -161,7 +161,7 @@ extension ProviderDelegate: CXProviderDelegate {
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
 		let uuid = action.callUUID
 		let callInfo = callInfos[uuid]
-		let callId = callInfo?.callId
+        let callId = callInfo?.callId
 		Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: answer call with call-id: \(String(describing: callId)) and UUID: \(uuid.description).")
 
 		let call = CallManager.instance().callByCallId(callId: callId)
@@ -172,7 +172,8 @@ extension ProviderDelegate: CXProviderDelegate {
 			callInfos.updateValue(callInfo!, forKey: uuid)
 			CallManager.instance().providerDelegate.endCallNotExist(uuid: uuid, timeout: .now() + 10)
 		} else {
-			CallManager.instance().acceptCall(call: call!, hasVideo: call!.params?.videoEnabled ?? false)
+            Log.directLog(BCTBX_LOG_MESSAGE, text: "Sono nell'else")
+			CallManager.instance().acceptCall(call: call!, hasVideo: false)
 		}
 		action.fulfill()
 	}
