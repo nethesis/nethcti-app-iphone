@@ -3,6 +3,8 @@ platform :ios, '9.0'
 source "https://gitlab.linphone.org/BC/public/podspec.git"
 source "https://github.com/CocoaPods/Specs.git"
 
+#PODFILE_PATH='/Users/simoneraffaelli/Work/Belledonne/linphone-sdk/ninjabuild'
+
 def all_pods
 	if ENV['PODFILE_PATH'].nil?
 		pod 'linphone-sdk', '4.4.0'
