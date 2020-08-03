@@ -1451,11 +1451,13 @@ _waitView.hidden = YES; \
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
         [api postLoginWithUsername:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+                /* Crash
                 [api getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
                     LOGI([NSString stringWithFormat:@"%li", [contacts count]]);
                 } errorHandler:^(NSString * _Nullable error) {
                     LOGE(@"Chiamata terminata in errore.");
                 }];
+                */
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSString * _Nullable error) {
                 NSLog(@"API_ERROR: %@", error);
