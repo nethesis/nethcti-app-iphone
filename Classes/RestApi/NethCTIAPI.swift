@@ -116,6 +116,10 @@ import Foundation
                 errorHandler("AUTHENTICATE-HEADER-MISSING.")
                 return
             }
+            
+            self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
+                //ignored
+            }
             // I return to caller method.
             successHandler(ApiCredentials.setToken(password: password, digest: digest))
         }
@@ -126,13 +130,13 @@ import Foundation
      */
     @objc public func postLogout(successHandler: @escaping (String?) -> Void) -> Void {
         let b = ApiCredentials.checkCredentials() as Bool?
-        if b != nil && b! {
+        if b != nil && !b! {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
         // Before unregister from notificatore.
-        registerPushToken("", success: {
+        registerPushToken(ApiCredentials.DeviceToken, unregister: true, success: {
             result in
             // Check result.
             if (result) {
@@ -232,12 +236,13 @@ import Foundation
         }
     }
     
-    @objc public func registerPushToken(_ deviceId: String, success:@escaping (Bool) -> Void) -> Void {
+    @objc public func registerPushToken(_ deviceId: String, unregister: Bool, success:@escaping (Bool) -> Void) -> Void {
         // Check input values.
         guard
             let d = deviceId as String?,
             let user = ApiCredentials.Username as String?,
-            let domain = ApiCredentials.Domain as String? else {
+            let domain = ApiCredentials.Domain as String?,
+            !user.isEmpty && !domain.isEmpty else {
                 print("[WEDO] Missing information for notificator.")
                 return
         }
@@ -250,9 +255,9 @@ import Foundation
         let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
         let mode = "Sandbox";
         #else
-        headers["X-AuthKey"] = self.authKeyForProdNot
-        let endpointUrl = "\(self.baseUrlForProdNot)/NotificaPush"
-        let mode = "Production";
+        headers["X-AuthKey"] = self.authKeyForSandNot
+        let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
+        let mode = "Sandbox";
         #endif
         
         // Generate the necessary bodies.
@@ -260,7 +265,7 @@ import Foundation
         body["Os"] = 1
         body["DevToken"] = d
         body["RegID"] = d
-        body["User"] = "\(user)@\(domain)" // Nethesis user with domain.
+        body["User"] = unregister ? "" : "\(user)@\(domain)"
         body["Language"] = ""
         body["Custom"] = ""
         

@@ -6115,7 +6115,7 @@
 				228B19A61302902F00F154D3 /* DistributionAdhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		EA5F25E1232BD3E300475F2E /* Build configuration list for PBXNativeTarget "msgNotificationService" */ = {
 			isa = XCConfigurationList;

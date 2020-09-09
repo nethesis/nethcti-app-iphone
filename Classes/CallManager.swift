@@ -185,7 +185,7 @@ import AVFoundation
 		} else {
             let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
             // Callkit mostra solo la chiamata ricevuta.
-			displayIncomingCall(call: nil, handle: "Calling", hasVideo: video, callId: callId)
+			displayIncomingCall(call: nil, handle: "Calling abcd", hasVideo: video, callId: callId)
 		}
 	}
 

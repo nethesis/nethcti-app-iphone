@@ -61,6 +61,18 @@ extension NethCTIAPI {
         }
         
         /**
+         Get or set deviceToken
+         */
+        @objc public class var DeviceToken: String {
+            get {
+                return UserDefaults.standard.string(forKey: ApiClientIdentifier.DeviceIdDefaultKey.rawValue) ?? ""
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.DeviceIdDefaultKey.rawValue)
+            }
+        }
+        
+        /**
          Generate the authorization token.
          */
         public class func setToken(password: String, digest: String) -> String {
