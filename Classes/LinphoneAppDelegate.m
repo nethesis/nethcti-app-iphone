@@ -579,7 +579,8 @@
     for (int i = 0; i < [credentials.token length]; ++i) {
         [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
     }
-    [[NethCTIAPI sharedInstance] registerPushToken:tokenString success:^(BOOL response) {
+    [ApiCredentials setDeviceToken:tokenString];
+    [[NethCTIAPI sharedInstance] registerPushToken:tokenString unregister: FALSE success:^(BOOL response) {
         if(response)
             LOGD(@"[WEDO PUSH] chiamato notificatore: risultato positivo.");
         else
