@@ -117,9 +117,6 @@ import Foundation
                 return
             }
             
-            self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
-                //ignored
-            }
             // I return to caller method.
             successHandler(ApiCredentials.setToken(password: password, digest: digest))
         }
@@ -228,6 +225,11 @@ import Foundation
             do{
                 let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 let nethUser = try NethUser(from: userDict)
+                
+                self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
+                    //ignored
+                }
+                
                 successHandler(PortableNethUser(from: nethUser!))
             } catch (let errorThrown) {
                 errorHandler("json error: \(errorThrown.localizedDescription)")
