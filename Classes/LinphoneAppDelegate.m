@@ -347,14 +347,16 @@
     // This may be a problem if user can set this settings.
     LinphoneVideoPolicy policy;
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"it.nethesis.nethcti"];
-    bool first_time_access = [defaults valueForKey:@"first_time_access_app"];
-    if(first_time_access) {
+    bool has_already_launched_once = [defaults valueForKey:@"has_already_launched_once"];
+    if(!has_already_launched_once) {
         policy.automatically_initiate = NO; // Video start automatically.
         policy.automatically_accept = NO; // Video accept automatically.
-        [defaults setBool:NO forKey:@"first_time_access_app"];
+        
+        linphone_core_set_video_policy(LC, &policy);
+        linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
+        
+        [defaults setBool:YES forKey:@"has_already_launched_once"];
     }
-    linphone_core_set_video_policy(LC, &policy);
-    linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

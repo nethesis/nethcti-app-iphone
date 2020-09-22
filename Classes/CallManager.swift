@@ -261,8 +261,6 @@ import AVFoundation
 		let displayName = FastAddressBook.displayName(for: addr.getCobject)
 
 		let lcallParams = try CallManager.instance().lc!.createCallParams(call: nil)
-        //Forse video to false
-        lcallParams.videoEnabled = false
 		if ConfigManager.instance().lpConfigBoolForKey(key: "edge_opt_preference") && AppManager.network() == .network_2g {
 			Log.directLog(BCTBX_LOG_MESSAGE, text: "Enabling low bandwidth mode")
 			lcallParams.lowBandwidthEnabled = true
@@ -476,8 +474,6 @@ class CoreManagerDelegate: CoreDelegate {
 
 		switch cstate {
 			case .IncomingReceived:
-                //Force video to false
-                let video = false
 				if (CallManager.callKitEnabled()) {
 					let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
 					if (uuid != nil) {
