@@ -80,6 +80,8 @@
 }
 
 - (void)shouldHideEncryptedChatView:(BOOL)hasLime {
+    _encryptedChatView.hidden = true;
+    /*
     _encryptedChatView.hidden = !hasLime;
     CGRect newFrame = _optionsView.frame;
     if (!hasLime) {
@@ -89,6 +91,7 @@
         newFrame.origin.x = _addressLabel.frame.origin.x;
     }
     _optionsView.frame = newFrame;
+     */
 }
 
 - (void)shouldHideLinphoneImageOfAddress {

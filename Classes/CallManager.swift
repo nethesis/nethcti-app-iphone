@@ -261,8 +261,6 @@ import AVFoundation
 		let displayName = FastAddressBook.displayName(for: addr.getCobject)
 
 		let lcallParams = try CallManager.instance().lc!.createCallParams(call: nil)
-        //Forse video to false
-        lcallParams.videoEnabled = false
 		if ConfigManager.instance().lpConfigBoolForKey(key: "edge_opt_preference") && AppManager.network() == .network_2g {
 			Log.directLog(BCTBX_LOG_MESSAGE, text: "Enabling low bandwidth mode")
 			lcallParams.lowBandwidthEnabled = true
@@ -432,6 +430,8 @@ class CoreManagerDelegate: CoreDelegate {
 		let address = FastAddressBook.displayName(for: addr?.getCobject) ?? "Unknow"
 		let callLog = call.callLog
         let uuid : UUID? = CallManager.instance().providerDelegate.uuids[CallIdTest.instance().callId!]
+        
+        /*  Gestione CallId assente in notifica push  */
         if(uuid != nil && CallIdTest.instance().callId! != callLog!.callId) {
             CallManager.instance().providerDelegate.uuids.removeValue(forKey: CallIdTest.instance().callId!)
             CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callLog!.callId)
@@ -442,6 +442,26 @@ class CoreManagerDelegate: CoreDelegate {
         }
         
         let callId = callLog!.callId
+
+        Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallId: \(callId), state: \(cstate), message: \(message)")
+        
+        /* Catch 488 Not Acceptable Here  */
+        if((cstate == .OutgoingRinging || cstate == .Error) && CallManager.instance().providerDelegate.uuids[callId] == nil && !TransferCallManager.instance().isCallTransfer) {
+            let map = CallManager.instance().providerDelegate.uuids.keys.sorted().last.map({ ($0, CallManager.instance().providerDelegate.uuids[$0]!) })
+            if(map != nil) {
+                let lastuuid = map?.1
+                let oldCallInfos = CallManager.instance().providerDelegate.callInfos[lastuuid!]
+                    
+                Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallIdSwitch: Old: \(map?.0), New: \(callId)")
+                
+                CallManager.instance().providerDelegate.uuids.removeValue(forKey: map!.0)
+                CallManager.instance().providerDelegate.uuids.updateValue(lastuuid!, forKey: callId)
+                oldCallInfos?.callId = callId
+                
+                dump(CallManager.instance().providerDelegate.uuids)
+            }
+        }
+        
 		let video = UIApplication.shared.applicationState == .active && (lc.videoActivationPolicy?.automaticallyAccept ?? false) && (call.remoteParams?.videoEnabled ?? false)
 		// we keep the speaker auto-enabled state in this static so that we don't
 		// force-enable it on ICE re-invite if the user disabled it.
@@ -452,14 +472,8 @@ class CoreManagerDelegate: CoreDelegate {
 			CallManager.setAppData(sCall: call, appData: appData)
 		}
 
-        //dump(video)
-        //dump(CallManager.instance().providerDelegate.uuids)
-        //dump(CallManager.instance().providerDelegate.callInfos)
-
 		switch cstate {
 			case .IncomingReceived:
-                //Force video to false
-                let video = false
 				if (CallManager.callKitEnabled()) {
 					let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
 					if (uuid != nil) {
