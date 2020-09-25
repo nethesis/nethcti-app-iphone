@@ -131,7 +131,7 @@
 	<key>NSContactsUsageDescription</key>
 	<string>Make calls with your friends, we don't send your contacts to any server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Linphone will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes</string>
+	<string>NethCTI will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Use microphone to make audio calls</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
