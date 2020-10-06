@@ -1,0 +1,25 @@
+/* 
+  InfoPlist.strings
+  linphone
+
+  Created by Administrator on 25/09/2020.
+  
+*/
+
+"NSCameraUsageDescription" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
+
+"NSLocationWhenInUseUsageDescription" = "NethCTI non userà, conserverà o condividerà la tua posizione. L'autorizzazione concede solo di rilevare i cambiamenti alla connessione Wifi.";
+
+"NSContactsUsageDescription" = "Chiama i tuoi amici. Non invieremo i tuoi contatti a nessun server esterno.";
+
+"NSBluetoothPeripheralUsageDescription" = "Puoi usare i tuoi auricolari bluetooth";
+
+"NSPhotoLibraryAddUsageDescription" = "Aggiungi i file trasferiti alla tua libreria";
+
+"NSMicrophoneUsageDescription" = "Usa il microfono per poter effettuare chiamate audio";
+
+"NethCTI will not send your contacts to any server" = "NethCTI non invierà i tuoi contatti a nessun server";
+
+"NSPhotoLibraryUsageDescription" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
+
+"NSVoIPUsageDescription" = "Effettua chiamate audio/video attraverso il protocollo SIP";

@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSContactsUsageDescription</key>
-	<string>NethCTI will not send your contacts to any server.</string>
+	<string>NethCTI will not send your contacts to any server</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

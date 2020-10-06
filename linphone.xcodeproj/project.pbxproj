@@ -669,6 +669,7 @@
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
+		C3006727251E260700F5E478 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3006725251E260700F5E478 /* InfoPlist.strings */; };
 		C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87D923A3EA5500F4B2DA /* quit_default.png */; };
 		C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87DA23A3EA5600F4B2DA /* quit_over.png */; };
 		C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */; };
@@ -977,52 +978,6 @@
 		615A28412180C0820060F920 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
 		615A28432180C08F0060F920 /* recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recording@2x.png"; sourceTree = "<group>"; };
 		6180D6FD21EE41A800AD9CB6 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
-		6187B1B524B3271500D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/AboutView.strings; sourceTree = "<group>"; };
-		6187B1B624B3271500D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
-		6187B1B724B3271600D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/AssistantView.strings; sourceTree = "<group>"; };
-		6187B1B824B3271600D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
-		6187B1B924B3271700D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/CallIncomingView.strings; sourceTree = "<group>"; };
-		6187B1BA24B3271700D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/CallOutgoingView.strings; sourceTree = "<group>"; };
-		6187B1BB24B3271700D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/CallView.strings; sourceTree = "<group>"; };
-		6187B1BC24B3271800D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "hu.lproj/CallView~ipad.strings"; sourceTree = "<group>"; };
-		6187B1BD24B3271800D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ChatConversationCreateView.strings; sourceTree = "<group>"; };
-		6187B1BE24B3271900D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ChatConversationImdnView.strings; sourceTree = "<group>"; };
-		6187B1BF24B3271900D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ChatConversationInfoView.strings; sourceTree = "<group>"; };
-		6187B1C024B3271A00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ChatConversationView.strings; sourceTree = "<group>"; };
-		6187B1C124B3271A00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ChatsListView.strings; sourceTree = "<group>"; };
-		6187B1C224B3271A00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ContactDetailsView.strings; sourceTree = "<group>"; };
-		6187B1C324B3271B00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ContactsListView.strings; sourceTree = "<group>"; };
-		6187B1C424B3271B00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/CountryListView.strings; sourceTree = "<group>"; };
-		6187B1C524B3271B00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/DialerView.strings; sourceTree = "<group>"; };
-		6187B1C624B3271C00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "hu.lproj/DialerView~ipad.strings"; sourceTree = "<group>"; };
-		6187B1C724B3271C00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/FirstLoginView.strings; sourceTree = "<group>"; };
-		6187B1C824B3271D00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
-		6187B1C924B3271D00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/HistoryListView.strings; sourceTree = "<group>"; };
-		6187B1CA24B3271E00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ImageView.strings; sourceTree = "<group>"; };
-		6187B1CB24B3271E00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UICallConferenceCell.strings; sourceTree = "<group>"; };
-		6187B1CC24B3271E00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UICallPausedCell.strings; sourceTree = "<group>"; };
-		6187B1CD24B3271F00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatBubblePhotoCell.strings; sourceTree = "<group>"; };
-		6187B1CE24B3271F00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatBubbleTextCell.strings; sourceTree = "<group>"; };
-		6187B1CF24B3271F00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatCell.strings; sourceTree = "<group>"; };
-		6187B1D024B3272000D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatConversationImdnTableViewCell.strings; sourceTree = "<group>"; };
-		6187B1D124B3272000D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatConversationInfoTableViewCell.strings; sourceTree = "<group>"; };
-		6187B1D224B3272100D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatCreateCell.strings; sourceTree = "<group>"; };
-		6187B1D324B3272100D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIChatCreateCollectionViewCell.strings; sourceTree = "<group>"; };
-		6187B1D424B3272100D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UICompositeView.strings; sourceTree = "<group>"; };
-		6187B1D524B3272200D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "hu.lproj/UICompositeView~ipad.strings"; sourceTree = "<group>"; };
-		6187B1D624B3272200D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIConfirmationDialog.strings; sourceTree = "<group>"; };
-		6187B1D724B3272300D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIContactCell.strings; sourceTree = "<group>"; };
-		6187B1D824B3272300D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIContactDetailsCell.strings; sourceTree = "<group>"; };
-		6187B1D924B3272400D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/UIHistoryCell.strings; sourceTree = "<group>"; };
-		6187B1DA24B3272400D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/PhoneMainView.strings; sourceTree = "<group>"; };
-		6187B1DB24B3272400D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/SettingsView.strings; sourceTree = "<group>"; };
-		6187B1DC24B3272500D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/ShopView.strings; sourceTree = "<group>"; };
-		6187B1DD24B3272500D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/SideMenuView.strings; sourceTree = "<group>"; };
-		6187B1DE24B3272600D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = "hu.lproj/SideMenuView~ipad.strings"; sourceTree = "<group>"; };
-		6187B1DF24B3272600D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/StatusBarView.strings; sourceTree = "<group>"; };
-		6187B1E024B3272700D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/TabBarView.strings; sourceTree = "<group>"; };
-		6187B1E124B3272C00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/MainInterface.strings; sourceTree = "<group>"; };
-		6187B1E224B3272D00D580FB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		61AE364B20C00B370089D9D3 /* linphoneExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = linphoneExtension.appex; path = NethCTI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		61AE364D20C00B370089D9D3 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		61AE364E20C00B370089D9D3 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
@@ -1044,7 +999,6 @@
 		61CCC3E021933B660060EDEA /* UIDeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIDeviceCell.xib; sourceTree = "<group>"; };
 		61DD7E1E2372E88F001BDD01 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		61E8E46923C5EA2B00434E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShopView.strings; sourceTree = "<group>"; };
-		61E8E46B23C5EA2E00434E71 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ShopView.strings; sourceTree = "<group>"; };
 		61F1996E20C6B1D5006B069A /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		6306440B1BECB08500134C72 /* FirstLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoginView.h; sourceTree = "<group>"; };
 		6306440C1BECB08500134C72 /* FirstLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoginView.m; sourceTree = "<group>"; };
@@ -1515,7 +1469,6 @@
 		635775241B6673EC00C8B704 /* HistoryDetailsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailsTableView.m; sourceTree = "<group>"; };
 		636316D21A1DEBCB0009B839 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutView.xib; sourceTree = "<group>"; };
 		636316D51A1DEC650009B839 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SettingsView.xib; sourceTree = "<group>"; };
-		636316DB1A1DEDD80009B839 /* ru */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
 		636BC9951B5F921B00C754CE /* UIIconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIIconButton.h; sourceTree = "<group>"; };
 		636BC9961B5F921B00C754CE /* UIIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIIconButton.m; sourceTree = "<group>"; };
 		63701DDD1BA32039006A9AE3 /* UIConfirmationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConfirmationDialog.h; sourceTree = "<group>"; };
@@ -1544,16 +1497,11 @@
 		639E9CAD1C0DB80300019A75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UIContactDetailsCell.xib; sourceTree = "<group>"; };
 		639E9CB11C0DB83000019A75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SideMenuView.xib; sourceTree = "<group>"; };
 		639E9CB41C0DB88200019A75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PhoneMainView.xib; sourceTree = "<group>"; };
-		63AADBC51B6A0FF200AA16FD /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
-		63AADBC61B6A0FF200AA16FD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63AADBC71B6A0FF200AA16FD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63AADBCA1B6A0FF200AA16FD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		63AADBCB1B6A0FF200AA16FD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63AADBD71B6A0FF200AA16FD /* linphonerc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linphonerc; sourceTree = "<group>"; };
 		63AADBD81B6A0FF200AA16FD /* linphonerc-factory */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "linphonerc-factory"; sourceTree = "<group>"; };
 		63AADBDA1B6A0FF200AA16FD /* linphonerc~ipad */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "linphonerc~ipad"; sourceTree = "<group>"; };
-		63AADBDD1B6A0FF200AA16FD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		63AADBE11B6A0FF200AA16FD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63AADBE31B6A0FF200AA16FD /* assistant_external_sip.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = assistant_external_sip.rc; sourceTree = "<group>"; };
 		63AADBE41B6A0FF200AA16FD /* assistant_linphone_create.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = assistant_linphone_create.rc; sourceTree = "<group>"; };
 		63AADBE51B6A0FF200AA16FD /* assistant_linphone_existing.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = assistant_linphone_existing.rc; sourceTree = "<group>"; };
@@ -1625,7 +1573,6 @@
 		8C300D981E40E0CC00728EF3 /* lime_ko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lime_ko.png; sourceTree = "<group>"; };
 		8C300D991E40E0CC00728EF3 /* lime_ko@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lime_ko@2x.png"; sourceTree = "<group>"; };
 		8C3EAA191EB8D9C300B732B6 /* linphonetester.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = linphonetester.framework; path = "liblinphone-sdk/apple-darwin/Frameworks/linphonetester.framework"; sourceTree = "<group>"; };
-		8C435FC320BD41C6004CCA25 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C5BCEC61EB3859200A9AAEF /* bctoolbox-tester.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "bctoolbox-tester.framework"; path = "liblinphone-sdk/apple-darwin/Frameworks/bctoolbox-tester.framework"; sourceTree = "<group>"; };
 		8C5D1B991D9BC48100DC6539 /* UIShopTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIShopTableCell.h; sourceTree = "<group>"; };
 		8C5D1B9B1D9BC48100DC6539 /* UIShopTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIShopTableCell.xib; sourceTree = "<group>"; };
@@ -1652,47 +1599,6 @@
 		8CBD7BA720B6B82400E5DCC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UIChatConversationInfoTableViewCell.xib; sourceTree = "<group>"; };
 		8CBD7BAA20B6B82A00E5DCC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UIChatConversationImdnTableViewCell.xib; sourceTree = "<group>"; };
 		8CBD7BAD20B6B82F00E5DCC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UIChatCreateCollectionViewCell.xib; sourceTree = "<group>"; };
-		8CBD7BB120B6B86900E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AssistantView.strings; sourceTree = "<group>"; };
-		8CBD7BB220B6B86A00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
-		8CBD7BB320B6B86B00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CallIncomingView.strings; sourceTree = "<group>"; };
-		8CBD7BB420B6B86B00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CallOutgoingView.strings; sourceTree = "<group>"; };
-		8CBD7BB520B6B86C00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CallView.strings; sourceTree = "<group>"; };
-		8CBD7BB620B6B86D00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/CallView~ipad.strings"; sourceTree = "<group>"; };
-		8CBD7BB720B6B86E00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ChatConversationInfoView.strings; sourceTree = "<group>"; };
-		8CBD7BB820B6B86F00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ChatConversationImdnView.strings; sourceTree = "<group>"; };
-		8CBD7BB920B6B87000E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ChatConversationCreateView.strings; sourceTree = "<group>"; };
-		8CBD7BBA20B6B87000E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ChatConversationView.strings; sourceTree = "<group>"; };
-		8CBD7BBB20B6B87100E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ChatsListView.strings; sourceTree = "<group>"; };
-		8CBD7BBC20B6B87200E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ContactDetailsView.strings; sourceTree = "<group>"; };
-		8CBD7BBD20B6B87300E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ContactsListView.strings; sourceTree = "<group>"; };
-		8CBD7BBE20B6B87400E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CountryListView.strings; sourceTree = "<group>"; };
-		8CBD7BBF20B6B87400E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DialerView.strings; sourceTree = "<group>"; };
-		8CBD7BC020B6B87500E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/DialerView~ipad.strings"; sourceTree = "<group>"; };
-		8CBD7BC120B6B87600E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FirstLoginView.strings; sourceTree = "<group>"; };
-		8CBD7BC220B6B87600E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
-		8CBD7BC320B6B87700E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HistoryListView.strings; sourceTree = "<group>"; };
-		8CBD7BC420B6B87800E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ImageView.strings; sourceTree = "<group>"; };
-		8CBD7BC520B6B87800E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UICallConferenceCell.strings; sourceTree = "<group>"; };
-		8CBD7BC620B6B87900E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UICallPausedCell.strings; sourceTree = "<group>"; };
-		8CBD7BC720B6B87A00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatBubblePhotoCell.strings; sourceTree = "<group>"; };
-		8CBD7BC820B6B87B00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatBubbleTextCell.strings; sourceTree = "<group>"; };
-		8CBD7BC920B6B87B00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatCell.strings; sourceTree = "<group>"; };
-		8CBD7BCA20B6B87D00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatConversationInfoTableViewCell.strings; sourceTree = "<group>"; };
-		8CBD7BCB20B6B87E00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatConversationImdnTableViewCell.strings; sourceTree = "<group>"; };
-		8CBD7BCC20B6B87E00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatCreateCollectionViewCell.strings; sourceTree = "<group>"; };
-		8CBD7BCD20B6B88000E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIChatCreateCell.strings; sourceTree = "<group>"; };
-		8CBD7BCE20B6B88100E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UICompositeView.strings; sourceTree = "<group>"; };
-		8CBD7BCF20B6B88200E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/UICompositeView~ipad.strings"; sourceTree = "<group>"; };
-		8CBD7BD020B6B88400E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIConfirmationDialog.strings; sourceTree = "<group>"; };
-		8CBD7BD120B6B88500E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIContactCell.strings; sourceTree = "<group>"; };
-		8CBD7BD220B6B88700E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIContactDetailsCell.strings; sourceTree = "<group>"; };
-		8CBD7BD320B6B88900E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UIHistoryCell.strings; sourceTree = "<group>"; };
-		8CBD7BD420B6B88A00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PhoneMainView.strings; sourceTree = "<group>"; };
-		8CBD7BD520B6B88C00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SettingsView.strings; sourceTree = "<group>"; };
-		8CBD7BD720B6B88E00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SideMenuView.strings; sourceTree = "<group>"; };
-		8CBD7BD820B6B88F00E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/SideMenuView~ipad.strings"; sourceTree = "<group>"; };
-		8CBD7BD920B6B89000E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/StatusBarView.strings; sourceTree = "<group>"; };
-		8CBD7BDA20B6B89000E5DCC0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TabBarView.strings; sourceTree = "<group>"; };
 		8CBD7BDF20B6C1E200E5DCC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UIChatConversationImdnTableViewCell.strings; sourceTree = "<group>"; };
 		8CBD7BE120B6C1E500E5DCC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UIChatConversationInfoTableViewCell.strings; sourceTree = "<group>"; };
 		8CBD7BE320B6C1E900E5DCC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UIChatCreateCollectionViewCell.strings; sourceTree = "<group>"; };
@@ -1724,6 +1630,8 @@
 		B8C77D3BA284DC519E80F23C /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD0A9494E833034EB559687 /* Pods-msgNotificationContent.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationContent.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationContent/Pods-msgNotificationContent.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
 		BB4BF16824C887F300667B10 /* CallIdTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
+		C3006726251E260700F5E478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C3006728251E276A00F5E478 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C31B87D923A3EA5500F4B2DA /* quit_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_default.png; sourceTree = "<group>"; };
 		C31B87DA23A3EA5600F4B2DA /* quit_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_over.png; sourceTree = "<group>"; };
 		C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-portrait_1242x2208.png"; sourceTree = "<group>"; };
@@ -1932,37 +1840,6 @@
 		F095482C1883F15400E8A69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TabBarView.xib; sourceTree = "<group>"; };
 		F095482E1883F15500E8A69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AssistantView.xib; sourceTree = "<group>"; };
 		F09548301883F15500E8A69B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AssistantViewScreens.xib; sourceTree = "<group>"; };
-		F09548321883F20A00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ChatConversationView.strings; sourceTree = "<group>"; };
-		F09548341883F25F00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ChatsListView.strings; sourceTree = "<group>"; };
-		F09548381883F29C00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ContactDetailsView.strings; sourceTree = "<group>"; };
-		F095483A1883F2CA00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ContactsListView.strings; sourceTree = "<group>"; };
-		F095483C1883F2E300E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DialerView.strings; sourceTree = "<group>"; };
-		F09548421883F51B00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HistoryListView.strings; sourceTree = "<group>"; };
-		F09548441883F52900E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ImageView.strings; sourceTree = "<group>"; };
-		F09548461883F54200E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CallView.strings; sourceTree = "<group>"; };
-		F09548481883F55800E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CallIncomingView.strings; sourceTree = "<group>"; };
-		F09548561883F61600E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TabBarView.strings; sourceTree = "<group>"; };
-		F095485A1883F67B00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AssistantView.strings; sourceTree = "<group>"; };
-		F095485E1883F6EA00E8A69B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
-		F0AF06F11A24BA760086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ChatConversationView.strings; sourceTree = "<group>"; };
-		F0AF06F21A24BA760086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ChatsListView.strings; sourceTree = "<group>"; };
-		F0AF06F41A24BA760086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ContactDetailsView.strings; sourceTree = "<group>"; };
-		F0AF06F51A24BA760086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ContactsListView.strings; sourceTree = "<group>"; };
-		F0AF06F61A24BA760086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DialerView.strings; sourceTree = "<group>"; };
-		F0AF06F91A24BA760086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
-		F0AF06FA1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/HistoryListView.strings; sourceTree = "<group>"; };
-		F0AF06FB1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ImageView.strings; sourceTree = "<group>"; };
-		F0AF06FC1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CallView.strings; sourceTree = "<group>"; };
-		F0AF06FD1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CallIncomingView.strings; sourceTree = "<group>"; };
-		F0AF07021A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/UIChatCell.strings; sourceTree = "<group>"; };
-		F0AF07041A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/UICompositeView.strings; sourceTree = "<group>"; };
-		F0AF07061A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/UIContactCell.strings; sourceTree = "<group>"; };
-		F0AF07091A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/UIHistoryCell.strings; sourceTree = "<group>"; };
-		F0AF070A1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TabBarView.strings; sourceTree = "<group>"; };
-		F0AF070C1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/StatusBarView.strings; sourceTree = "<group>"; };
-		F0AF070E1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SettingsView.strings; sourceTree = "<group>"; };
-		F0AF070F1A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AssistantView.strings; sourceTree = "<group>"; };
-		F0AF07111A24BA770086C9C1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		F0B026F21AA710AF00FF49F7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		F0B89C2118DC89E30050B60E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F0BB8C311936246600974404 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
@@ -3029,6 +2906,7 @@
 				63AADBDA1B6A0FF200AA16FD /* linphonerc~ipad */,
 				63AADBC41B6A0FF200AA16FD /* Localizable.strings */,
 				63CDC4511C3BDE370085F529 /* sounds */,
+				C3006725251E260700F5E478 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3437,16 +3315,7 @@
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
-				ru,
 				Base,
-				ar,
-				de,
-				ja,
-				nl,
-				zh_TW,
-				zh_CN,
-				fr,
-				hu,
 				it,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
@@ -3845,6 +3714,7 @@
 				61586B87217A17160038AC45 /* menu_assistant@2x.png in Resources */,
 				633FEE9A1D3CD55A0014B822 /* nowebcamCIF.jpg in Resources */,
 				61586B89217A17220038AC45 /* menu_link_account.png in Resources */,
+				C3006727251E260700F5E478 /* InfoPlist.strings in Resources */,
 				633FEF351D3CD55A0014B822 /* routes_default@2x.png in Resources */,
 				633FEEDB1D3CD55A0014B822 /* numpad_8_default.png in Resources */,
 				633FEE5C1D3CD5590014B822 /* edit_disabled.png in Resources */,
@@ -4442,8 +4312,6 @@
 			children = (
 				570742571D5A0691004B9C84 /* Base */,
 				61E8E46923C5EA2B00434E71 /* en */,
-				61E8E46B23C5EA2E00434E71 /* fr */,
-				6187B1DC24B3272500D580FB /* hu */,
 			);
 			name = ShopView.xib;
 			sourceTree = "<group>";
@@ -4452,7 +4320,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				61AE365120C00B370089D9D3 /* Base */,
-				6187B1E124B3272C00D580FB /* hu */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -4461,8 +4328,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				631098511D4660630041F2B3 /* Base */,
-				8CBD7BBE20B6B87400E5DCC0 /* fr */,
-				6187B1C424B3271B00D580FB /* hu */,
 			);
 			name = CountryListView.xib;
 			sourceTree = "<group>";
@@ -4471,8 +4336,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				63130FB11C1ED06900371918 /* Base */,
-				8CBD7BD820B6B88F00E5DCC0 /* fr */,
-				6187B1DE24B3272600D580FB /* hu */,
 			);
 			name = "SideMenuView~ipad.xib";
 			sourceTree = "<group>";
@@ -4481,8 +4344,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				634610111B6140A500548952 /* Base */,
-				8CBD7BB420B6B86B00E5DCC0 /* fr */,
-				6187B1BA24B3271700D580FB /* hu */,
 			);
 			name = CallOutgoingView.xib;
 			sourceTree = "<group>";
@@ -4491,7 +4352,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				636316D21A1DEBCB0009B839 /* Base */,
-				6187B1B524B3271500D580FB /* hu */,
 				C3AE8A6E238808A2000B669A /* it */,
 			);
 			name = AboutView.xib;
@@ -4501,9 +4361,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				636316D51A1DEC650009B839 /* Base */,
-				F0AF070E1A24BA770086C9C1 /* ar */,
-				8CBD7BD520B6B88C00E5DCC0 /* fr */,
-				6187B1DB24B3272400D580FB /* hu */,
 			);
 			name = SettingsView.xib;
 			sourceTree = "<group>";
@@ -4512,8 +4369,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				638F1A611C2021B2004B8E02 /* Base */,
-				8CBD7BC020B6B87500E5DCC0 /* fr */,
-				6187B1C624B3271C00D580FB /* hu */,
 			);
 			name = "DialerView~ipad.xib";
 			sourceTree = "<group>";
@@ -4522,8 +4377,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				638F1A871C2167C2004B8E02 /* Base */,
-				8CBD7BB620B6B86D00E5DCC0 /* fr */,
-				6187B1BC24B3271800D580FB /* hu */,
 			);
 			name = "CallView~ipad.xib";
 			sourceTree = "<group>";
@@ -4532,8 +4385,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				638F1A901C21993D004B8E02 /* Base */,
-				8CBD7BCF20B6B88200E5DCC0 /* fr */,
-				6187B1D524B3272200D580FB /* hu */,
 			);
 			name = "UICompositeView~ipad.xib";
 			sourceTree = "<group>";
@@ -4542,9 +4393,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639CEAFE1A1DF4D9004DE38F /* Base */,
-				F0AF070C1A24BA770086C9C1 /* ar */,
-				8CBD7BD920B6B89000E5DCC0 /* fr */,
-				6187B1DF24B3272600D580FB /* hu */,
 			);
 			name = StatusBarView.xib;
 			path = LinphoneUI;
@@ -4554,9 +4402,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639CEB011A1DF4E4004DE38F /* Base */,
-				F0AF07091A24BA770086C9C1 /* ar */,
-				8CBD7BD320B6B88900E5DCC0 /* fr */,
-				6187B1D924B3272400D580FB /* hu */,
 			);
 			name = UIHistoryCell.xib;
 			sourceTree = "<group>";
@@ -4565,9 +4410,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639CEB041A1DF4EB004DE38F /* Base */,
-				F0AF07041A24BA770086C9C1 /* ar */,
-				8CBD7BCE20B6B88100E5DCC0 /* fr */,
-				6187B1D424B3272100D580FB /* hu */,
 			);
 			name = UICompositeView.xib;
 			sourceTree = "<group>";
@@ -4576,9 +4418,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639CEB0A1A1DF4FA004DE38F /* Base */,
-				F0AF07021A24BA770086C9C1 /* ar */,
-				8CBD7BC920B6B87B00E5DCC0 /* fr */,
-				6187B1CF24B3271F00D580FB /* hu */,
 			);
 			name = UIChatCell.xib;
 			sourceTree = "<group>";
@@ -4587,8 +4426,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9C941C0DB7BE00019A75 /* Base */,
-				8CBD7BC120B6B87600E5DCC0 /* fr */,
-				6187B1C724B3271C00D580FB /* hu */,
 			);
 			name = FirstLoginView.xib;
 			sourceTree = "<group>";
@@ -4597,8 +4434,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9C9E1C0DB7DF00019A75 /* Base */,
-				8CBD7BC620B6B87900E5DCC0 /* fr */,
-				6187B1CC24B3271E00D580FB /* hu */,
 			);
 			name = UICallPausedCell.xib;
 			sourceTree = "<group>";
@@ -4607,8 +4442,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CA11C0DB7E500019A75 /* Base */,
-				8CBD7BC720B6B87A00E5DCC0 /* fr */,
-				6187B1CD24B3271F00D580FB /* hu */,
 			);
 			name = UIChatBubblePhotoCell.xib;
 			sourceTree = "<group>";
@@ -4617,8 +4450,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CA41C0DB7EA00019A75 /* Base */,
-				8CBD7BC820B6B87B00E5DCC0 /* fr */,
-				6187B1CE24B3271F00D580FB /* hu */,
 			);
 			name = UIChatBubbleTextCell.xib;
 			sourceTree = "<group>";
@@ -4627,8 +4458,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CA71C0DB7F200019A75 /* Base */,
-				8CBD7BCD20B6B88000E5DCC0 /* fr */,
-				6187B1D224B3272100D580FB /* hu */,
 			);
 			name = UIChatCreateCell.xib;
 			sourceTree = "<group>";
@@ -4637,8 +4466,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CAA1C0DB7FB00019A75 /* Base */,
-				8CBD7BD020B6B88400E5DCC0 /* fr */,
-				6187B1D624B3272200D580FB /* hu */,
 			);
 			name = UIConfirmationDialog.xib;
 			sourceTree = "<group>";
@@ -4647,8 +4474,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CAD1C0DB80300019A75 /* Base */,
-				8CBD7BD220B6B88700E5DCC0 /* fr */,
-				6187B1D824B3272300D580FB /* hu */,
 			);
 			name = UIContactDetailsCell.xib;
 			sourceTree = "<group>";
@@ -4657,8 +4482,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CB11C0DB83000019A75 /* Base */,
-				8CBD7BD720B6B88E00E5DCC0 /* fr */,
-				6187B1DD24B3272500D580FB /* hu */,
 			);
 			name = SideMenuView.xib;
 			sourceTree = "<group>";
@@ -4667,8 +4490,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CB41C0DB88200019A75 /* Base */,
-				8CBD7BD420B6B88A00E5DCC0 /* fr */,
-				6187B1DA24B3272400D580FB /* hu */,
 			);
 			name = PhoneMainView.xib;
 			sourceTree = "<group>";
@@ -4676,13 +4497,7 @@
 		63AADBC41B6A0FF200AA16FD /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				63AADBC51B6A0FF200AA16FD /* ar */,
-				63AADBC61B6A0FF200AA16FD /* de */,
 				63AADBC71B6A0FF200AA16FD /* en */,
-				63AADBCB1B6A0FF200AA16FD /* ja */,
-				63AADBDD1B6A0FF200AA16FD /* nl */,
-				63AADBE11B6A0FF200AA16FD /* ru */,
-				8C435FC320BD41C6004CCA25 /* fr */,
 				C38D9EE323900AC70065C731 /* it */,
 			);
 			name = Localizable.strings;
@@ -4692,8 +4507,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				63B8D68D1BCBE65600C12B09 /* Base */,
-				8CBD7BB920B6B87000E5DCC0 /* fr */,
-				6187B1BD24B3271800D580FB /* hu */,
 			);
 			name = ChatConversationCreateView.xib;
 			sourceTree = "<group>";
@@ -4702,7 +4515,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				63EC8D3A1D7438660066547B /* Base */,
-				6187B1B624B3271500D580FB /* hu */,
 				C3AE8A7023881C74000B669A /* it */,
 			);
 			name = AssistantLinkView.xib;
@@ -4712,8 +4524,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				63F1DF521BCE986A00EDED90 /* Base */,
-				8CBD7BC520B6B87800E5DCC0 /* fr */,
-				6187B1CB24B3271E00D580FB /* hu */,
 			);
 			name = UICallConferenceCell.xib;
 			sourceTree = "<group>";
@@ -4722,8 +4532,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8CBD7BA120B6B7FD00E5DCC0 /* Base */,
-				8CBD7BB720B6B86E00E5DCC0 /* fr */,
-				6187B1BF24B3271900D580FB /* hu */,
 			);
 			name = ChatConversationInfoView.xib;
 			sourceTree = "<group>";
@@ -4732,8 +4540,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8CBD7BA420B6B80D00E5DCC0 /* Base */,
-				8CBD7BB820B6B86F00E5DCC0 /* fr */,
-				6187B1BE24B3271900D580FB /* hu */,
 			);
 			name = ChatConversationImdnView.xib;
 			sourceTree = "<group>";
@@ -4742,9 +4548,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8CBD7BA720B6B82400E5DCC0 /* Base */,
-				8CBD7BCA20B6B87D00E5DCC0 /* fr */,
 				8CBD7BE120B6C1E500E5DCC0 /* en */,
-				6187B1D124B3272000D580FB /* hu */,
 			);
 			name = UIChatConversationInfoTableViewCell.xib;
 			sourceTree = "<group>";
@@ -4753,9 +4557,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8CBD7BAA20B6B82A00E5DCC0 /* Base */,
-				8CBD7BCB20B6B87E00E5DCC0 /* fr */,
 				8CBD7BDF20B6C1E200E5DCC0 /* en */,
-				6187B1D024B3272000D580FB /* hu */,
 			);
 			name = UIChatConversationImdnTableViewCell.xib;
 			sourceTree = "<group>";
@@ -4764,11 +4566,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				8CBD7BAD20B6B82F00E5DCC0 /* Base */,
-				8CBD7BCC20B6B87E00E5DCC0 /* fr */,
 				8CBD7BE320B6C1E900E5DCC0 /* en */,
-				6187B1D324B3272100D580FB /* hu */,
 			);
 			name = UIChatCreateCollectionViewCell.xib;
+			sourceTree = "<group>";
+		};
+		C3006725251E260700F5E478 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3006726251E260700F5E478 /* en */,
+				C3006728251E276A00F5E478 /* it */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		C387A650243F4E9E007FF4DE /* NethLocalizable.strings */ = {
@@ -4792,10 +4601,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548221883F15400E8A69B /* Base */,
-				F09548441883F52900E8A69B /* ru */,
-				F0AF06FB1A24BA770086C9C1 /* ar */,
-				8CBD7BC420B6B87800E5DCC0 /* fr */,
-				6187B1CA24B3271E00D580FB /* hu */,
 			);
 			name = ImageView.xib;
 			sourceTree = "<group>";
@@ -4804,10 +4609,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548181883F15300E8A69B /* Base */,
-				F09548321883F20A00E8A69B /* ru */,
-				F0AF06F11A24BA760086C9C1 /* ar */,
-				8CBD7BBA20B6B87000E5DCC0 /* fr */,
-				6187B1C024B3271A00D580FB /* hu */,
 			);
 			name = ChatConversationView.xib;
 			sourceTree = "<group>";
@@ -4816,10 +4617,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548191883F15300E8A69B /* Base */,
-				F09548341883F25F00E8A69B /* ru */,
-				F0AF06F21A24BA760086C9C1 /* ar */,
-				8CBD7BBB20B6B87100E5DCC0 /* fr */,
-				6187B1C124B3271A00D580FB /* hu */,
 			);
 			name = ChatsListView.xib;
 			sourceTree = "<group>";
@@ -4828,10 +4625,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F095481B1883F15300E8A69B /* Base */,
-				F09548381883F29C00E8A69B /* ru */,
-				F0AF06F41A24BA760086C9C1 /* ar */,
-				8CBD7BBC20B6B87200E5DCC0 /* fr */,
-				6187B1C224B3271A00D580FB /* hu */,
 			);
 			name = ContactDetailsView.xib;
 			sourceTree = "<group>";
@@ -4840,10 +4633,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F095481C1883F15300E8A69B /* Base */,
-				F095483A1883F2CA00E8A69B /* ru */,
-				F0AF06F51A24BA760086C9C1 /* ar */,
-				8CBD7BBD20B6B87300E5DCC0 /* fr */,
-				6187B1C324B3271B00D580FB /* hu */,
 			);
 			name = ContactsListView.xib;
 			sourceTree = "<group>";
@@ -4852,10 +4641,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F095481D1883F15300E8A69B /* Base */,
-				F095483C1883F2E300E8A69B /* ru */,
-				F0AF06F61A24BA760086C9C1 /* ar */,
-				8CBD7BBF20B6B87400E5DCC0 /* fr */,
-				6187B1C524B3271B00D580FB /* hu */,
 			);
 			name = DialerView.xib;
 			sourceTree = "<group>";
@@ -4864,10 +4649,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548201883F15400E8A69B /* Base */,
-				636316DB1A1DEDD80009B839 /* ru */,
-				F0AF06F91A24BA760086C9C1 /* ar */,
-				8CBD7BC220B6B87600E5DCC0 /* fr */,
-				6187B1C824B3271D00D580FB /* hu */,
 			);
 			name = HistoryDetailsView.xib;
 			sourceTree = "<group>";
@@ -4876,10 +4657,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548211883F15400E8A69B /* Base */,
-				F09548421883F51B00E8A69B /* ru */,
-				F0AF06FA1A24BA770086C9C1 /* ar */,
-				8CBD7BC320B6B87700E5DCC0 /* fr */,
-				6187B1C924B3271D00D580FB /* hu */,
 			);
 			name = HistoryListView.xib;
 			sourceTree = "<group>";
@@ -4888,10 +4665,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548241883F15400E8A69B /* Base */,
-				F09548481883F55800E8A69B /* ru */,
-				F0AF06FD1A24BA770086C9C1 /* ar */,
-				8CBD7BB320B6B86B00E5DCC0 /* fr */,
-				6187B1B924B3271700D580FB /* hu */,
 			);
 			name = CallIncomingView.xib;
 			sourceTree = "<group>";
@@ -4900,10 +4673,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F095482E1883F15500E8A69B /* Base */,
-				F095485A1883F67B00E8A69B /* ru */,
-				F0AF070F1A24BA770086C9C1 /* ar */,
-				8CBD7BB120B6B86900E5DCC0 /* fr */,
-				6187B1B724B3271600D580FB /* hu */,
 			);
 			name = AssistantView.xib;
 			sourceTree = "<group>";
@@ -4912,10 +4681,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F095482C1883F15400E8A69B /* Base */,
-				F09548561883F61600E8A69B /* ru */,
-				F0AF070A1A24BA770086C9C1 /* ar */,
-				8CBD7BDA20B6B89000E5DCC0 /* fr */,
-				6187B1E024B3272700D580FB /* hu */,
 			);
 			name = TabBarView.xib;
 			path = LinphoneUI;
@@ -4925,10 +4690,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548231883F15400E8A69B /* Base */,
-				F09548461883F54200E8A69B /* ru */,
-				F0AF06FC1A24BA770086C9C1 /* ar */,
-				8CBD7BB520B6B86C00E5DCC0 /* fr */,
-				6187B1BB24B3271700D580FB /* hu */,
 			);
 			name = CallView.xib;
 			sourceTree = "<group>";
@@ -4937,10 +4698,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548301883F15500E8A69B /* Base */,
-				F095485E1883F6EA00E8A69B /* ru */,
-				F0AF07111A24BA770086C9C1 /* ar */,
-				8CBD7BB220B6B86A00E5DCC0 /* fr */,
-				6187B1B824B3271600D580FB /* hu */,
 			);
 			name = AssistantViewScreens.xib;
 			sourceTree = "<group>";
@@ -4949,7 +4706,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA8CB82E239F96CA00C330CC /* Base */,
-				6187B1E224B3272D00D580FB /* hu */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -4958,9 +4714,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F088488C19FF8C41007FFCF3 /* Base */,
-				F0AF07061A24BA770086C9C1 /* ar */,
-				8CBD7BD120B6B88500E5DCC0 /* fr */,
-				6187B1D724B3272300D580FB /* hu */,
 			);
 			name = UIContactCell.xib;
 			sourceTree = "<group>";
@@ -4985,7 +4738,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
@@ -5120,7 +4873,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5251,7 +5004,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5381,7 +5134,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5452,7 +5205,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
@@ -5497,7 +5250,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
@@ -5539,7 +5292,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
@@ -5582,7 +5335,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
@@ -5690,7 +5443,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5747,7 +5500,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5798,7 +5551,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5849,7 +5602,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5899,7 +5652,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5955,7 +5708,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6005,7 +5758,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6055,7 +5808,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
