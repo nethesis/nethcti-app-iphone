@@ -584,8 +584,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		return;
 	}
 
-	BOOL shouldDisableVideo =
-		(!currentCall || !linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall)));
+	BOOL shouldDisableVideo = (!currentCall || !linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall)));
 	if (videoHidden != shouldDisableVideo) {
 		if (!shouldDisableVideo) {
 			[self displayVideoCall:animated];
