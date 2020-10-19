@@ -83,6 +83,7 @@ class ProviderDelegate: NSObject {
 		let update = CXCallUpdate()
 		update.remoteHandle = CXHandle(type:.generic, value: handle)
 		update.hasVideo = hasVideo
+        Log.directLog(BCTBX_LOG_MESSAGE, text: "WEDO: reportInomingCall()->hasVideo [\(update.hasVideo)]")
 
 		let callInfo = callInfos[uuid]
 		let callId = callInfo?.callId
@@ -111,6 +112,7 @@ class ProviderDelegate: NSObject {
 		let update = CXCallUpdate()
 		update.remoteHandle = CXHandle(type:.generic, value:handle)
 		update.hasVideo = hasVideo
+        Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - updateCall()->hasVideo \(hasVideo)")
 		provider.reportCall(with:uuid, updated:update);
 	}
 
@@ -172,7 +174,6 @@ extension ProviderDelegate: CXProviderDelegate {
 			callInfos.updateValue(callInfo!, forKey: uuid)
 			CallManager.instance().providerDelegate.endCallNotExist(uuid: uuid, timeout: .now() + 10)
 		} else {
-            Log.directLog(BCTBX_LOG_MESSAGE, text: "Sono nell'else")
 			CallManager.instance().acceptCall(call: call!, hasVideo: false)
 		}
 		action.fulfill()

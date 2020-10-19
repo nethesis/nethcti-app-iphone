@@ -209,7 +209,7 @@ import AVFoundation
 
 	func acceptCall(call: Call, hasVideo:Bool) {
 		do {
-            Log.directLog(BCTBX_LOG_MESSAGE, text: hasVideo ? "HASVIDEO: true" : "HASVIDEO: false")
+            Log.directLog(BCTBX_LOG_MESSAGE, text: hasVideo ? "WEDO: HASVIDEO: true" : "HASVIDEO: false")
 			let callParams = try lc!.createCallParams(call: call)
 			callParams.videoEnabled = hasVideo
 			if (ConfigManager.instance().lpConfigBoolForKey(key: "edge_opt_preference")) {
@@ -261,6 +261,7 @@ import AVFoundation
 		let displayName = FastAddressBook.displayName(for: addr.getCobject)
 
 		let lcallParams = try CallManager.instance().lc!.createCallParams(call: nil)
+        //lcallParams.videoEnabled = false//Force video to be disabled
 		if ConfigManager.instance().lpConfigBoolForKey(key: "edge_opt_preference") && AppManager.network() == .network_2g {
 			Log.directLog(BCTBX_LOG_MESSAGE, text: "Enabling low bandwidth mode")
 			lcallParams.lowBandwidthEnabled = true
@@ -283,6 +284,7 @@ import AVFoundation
 			//We set the record file name here because we can't do it after the call is started.
 			let writablePath = AppManager.recordingFilePathFromCall(address: addr.username )
 			Log.directLog(BCTBX_LOG_DEBUG, text: "record file path: \(writablePath)")
+            Log.directLog(BCTBX_LOG_DEBUG, text: "Wedo - VideoParams: \(lcallParams.videoEnabled)")
 			lcallParams.recordFile = writablePath
 			if (isSas) {
 				lcallParams.mediaEncryption = .ZRTP
@@ -298,6 +300,7 @@ import AVFoundation
 					/* will be used later to notify user if video was not activated because of the linphone core*/
 				} else {
 					data!.videoRequested = lcallParams.videoEnabled
+                    Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO: doCall()->data.videoRequested \(data!.videoRequested)")
 					CallManager.setAppData(sCall: call!, appData: data)
 				}
 			}
@@ -457,11 +460,8 @@ class CoreManagerDelegate: CoreDelegate {
                 CallManager.instance().providerDelegate.uuids.removeValue(forKey: map!.0)
                 CallManager.instance().providerDelegate.uuids.updateValue(lastuuid!, forKey: callId)
                 oldCallInfos?.callId = callId
-                
-                dump(CallManager.instance().providerDelegate.uuids)
             }
         }
-        
 		let video = UIApplication.shared.applicationState == .active && (lc.videoActivationPolicy?.automaticallyAccept ?? false) && (call.remoteParams?.videoEnabled ?? false)
 		// we keep the speaker auto-enabled state in this static so that we don't
 		// force-enable it on ICE re-invite if the user disabled it.
@@ -508,7 +508,7 @@ class CoreManagerDelegate: CoreDelegate {
 					if (uuid != nil) {
 						let callInfo = CallManager.instance().providerDelegate.callInfos[uuid!]
 						if (callInfo != nil && callInfo!.isOutgoing && !callInfo!.connected) {
-                            Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: outgoing call connected with uuid \(uuid!) and callId \(callId)")
+                            Log.directLog(BCTBX_LOG_MESSAGE, text: "WEDO: CallKit: outgoing call connected with uuid \(uuid!) and callId \(callId)")
 							CallManager.instance().providerDelegate.reportOutgoingCallConnected(uuid: uuid!)
 							callInfo!.connected = true
 							CallManager.instance().providerDelegate.callInfos.updateValue(callInfo!, forKey: uuid!)
@@ -535,7 +535,7 @@ class CoreManagerDelegate: CoreDelegate {
 						CallManager.instance().providerDelegate.uuids.removeValue(forKey: "")
                         CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callId)
 
-                        Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: outgoing call started connecting with uuid \(uuid!) and callId \(callId)")
+                        Log.directLog(BCTBX_LOG_MESSAGE, text: "WEDO: CallKit: outgoing call started connecting with uuid \(uuid!) and callId \(callId)")
 						CallManager.instance().providerDelegate.reportOutgoingCallStartedConnecting(uuid: uuid!)
 					} else {
 						CallManager.instance().referedToCall = callId
