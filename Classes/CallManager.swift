@@ -449,7 +449,7 @@ class CoreManagerDelegate: CoreDelegate {
         Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallId: \(callId), state: \(cstate), message: \(message)")
         
         /* Catch 488 Not Acceptable Here  */
-        if((cstate == .OutgoingRinging || cstate == .Error) && CallManager.instance().providerDelegate.uuids[callId] == nil && !TransferCallManager.instance().isCallTransfer) {
+        if((cstate == .OutgoingRinging || cstate == .Error || cstate == .OutgoingEarlyMedia) && CallManager.instance().providerDelegate.uuids[callId] == nil && !TransferCallManager.instance().isCallTransfer) {
             let map = CallManager.instance().providerDelegate.uuids.keys.sorted().first.map({ ($0, CallManager.instance().providerDelegate.uuids[$0]!) })
             if(map != nil) {
                 let lastuuid = map?.1
