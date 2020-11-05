@@ -435,7 +435,7 @@ class CoreManagerDelegate: CoreDelegate {
         let uuid : UUID? = CallManager.instance().providerDelegate.uuids[CallIdTest.instance().callId!]
         
         /*  Gestione CallId assente in notifica push  */
-        if(uuid != nil && CallIdTest.instance().callId! != callLog!.callId) {
+        if(cstate == .IncomingReceived && uuid != nil && CallIdTest.instance().callId! != callLog!.callId) {
             CallManager.instance().providerDelegate.uuids.removeValue(forKey: CallIdTest.instance().callId!)
             CallManager.instance().providerDelegate.uuids.updateValue(uuid!, forKey: callLog!.callId)
             
@@ -450,7 +450,7 @@ class CoreManagerDelegate: CoreDelegate {
         
         /* Catch 488 Not Acceptable Here  */
         if((cstate == .OutgoingRinging || cstate == .Error) && CallManager.instance().providerDelegate.uuids[callId] == nil && !TransferCallManager.instance().isCallTransfer) {
-            let map = CallManager.instance().providerDelegate.uuids.keys.sorted().last.map({ ($0, CallManager.instance().providerDelegate.uuids[$0]!) })
+            let map = CallManager.instance().providerDelegate.uuids.keys.sorted().first.map({ ($0, CallManager.instance().providerDelegate.uuids[$0]!) })
             if(map != nil) {
                 let lastuuid = map?.1
                 let oldCallInfos = CallManager.instance().providerDelegate.callInfos[lastuuid!]
