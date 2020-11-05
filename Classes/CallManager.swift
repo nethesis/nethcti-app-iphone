@@ -449,12 +449,25 @@ class CoreManagerDelegate: CoreDelegate {
         Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallId: \(callId), state: \(cstate), message: \(message)")
         
         /* Catch 488 Not Acceptable Here  */
-        if((cstate == .OutgoingRinging || cstate == .Error || cstate == .OutgoingEarlyMedia) && CallManager.instance().providerDelegate.uuids[callId] == nil && !TransferCallManager.instance().isCallTransfer) {
-            let map = CallManager.instance().providerDelegate.uuids.keys.sorted().first.map({ ($0, CallManager.instance().providerDelegate.uuids[$0]!) })
+        if((cstate == .OutgoingRinging || cstate == .Error || cstate == .OutgoingEarlyMedia || cstate == .End) && CallManager.instance().providerDelegate.uuids[callId] == nil && !TransferCallManager.instance().isCallTransfer) {
+            var uuids = CallManager.instance().providerDelegate.uuids
+            if(uuids.count > 1) {
+                for (k, _) in CallManager.instance().providerDelegate.uuids {
+                    if (CallManager.instance().findCall(callId: k) != nil) {
+                        uuids.removeValue(forKey: k)
+                    }
+                }
+                Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - uuids count = \(uuids.count)")
+                if(uuids.count != 1) {
+                    uuids = CallManager.instance().providerDelegate.uuids
+                }
+                
+            }
+            let map = CallManager.instance().providerDelegate.uuids.keys.sorted().first.map({ ($0, uuids[$0]) })
             if(map != nil) {
                 let lastuuid = map?.1
                 let oldCallInfos = CallManager.instance().providerDelegate.callInfos[lastuuid!]
-                    
+                
                 Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallIdSwitch: Old: \(map?.0), New: \(callId)")
                 
                 CallManager.instance().providerDelegate.uuids.removeValue(forKey: map!.0)
@@ -462,6 +475,7 @@ class CoreManagerDelegate: CoreDelegate {
                 oldCallInfos?.callId = callId
             }
         }
+        
 		let video = UIApplication.shared.applicationState == .active && (lc.videoActivationPolicy?.automaticallyAccept ?? false) && (call.remoteParams?.videoEnabled ?? false)
 		// we keep the speaker auto-enabled state in this static so that we don't
 		// force-enable it on ICE re-invite if the user disabled it.
