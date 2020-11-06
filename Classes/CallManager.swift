@@ -463,7 +463,7 @@ class CoreManagerDelegate: CoreDelegate {
                 }
                 
             }
-            let map = CallManager.instance().providerDelegate.uuids.keys.sorted().first.map({ ($0, uuids[$0]) })
+            let map = uuids.first
             if(map != nil) {
                 let lastuuid = map?.1
                 let oldCallInfos = CallManager.instance().providerDelegate.callInfos[lastuuid!]
@@ -474,6 +474,7 @@ class CoreManagerDelegate: CoreDelegate {
                 CallManager.instance().providerDelegate.uuids.updateValue(lastuuid!, forKey: callId)
                 oldCallInfos?.callId = callId
             }
+            
         }
         
 		let video = UIApplication.shared.applicationState == .active && (lc.videoActivationPolicy?.automaticallyAccept ?? false) && (call.remoteParams?.videoEnabled ?? false)
