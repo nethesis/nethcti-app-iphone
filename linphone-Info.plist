@@ -43,7 +43,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string>linphone_icon_72@2x</string>
 			<key>CFBundleURLName</key>
-			<string>org.linphone.phone</string>
+			<string>it.nethesis.nethcti3</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>sip</string>
@@ -55,7 +55,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string>linphone_icon_72@2x</string>
 			<key>CFBundleURLName</key>
-			<string>org.linphone.phone</string>
+			<string>it.nethesis.nethcti3</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>linphone-config</string>
@@ -83,6 +83,20 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>linphone-widget</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLIconFile</key>
+			<string>linphone_icon_72@2x</string>
+			<key>CFBundleURLName</key>
+			<string>it.nethesis.nethcti3</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tel</string>
 			</array>
 		</dict>
 	</array>

@@ -166,7 +166,7 @@
 
 	// default values
 	{
-		[self setBool:NO forKey:@"account_pushnotification_preference"];
+		[self setBool:YES forKey:@"account_pushnotification_preference"];
 		[self setObject:@"" forKey:@"account_mandatory_username_preference"];
 		[self setObject:@"" forKey:@"account_mandatory_domain_preference"];
 		[self setCString:"" forKey:@"account_display_name_preference"];
@@ -573,7 +573,7 @@
 		linphone_address_destroy(linphoneAddress);
 		const char *password = [accountPassword UTF8String];
 		const char *ha1 = [accountHa1 UTF8String];
-
+        
 		if (linphone_proxy_config_set_identity(proxyCfg, identity) == -1) {
 			error = NSLocalizedString(@"Invalid username or domain", nil);
 			goto bad_proxy;
@@ -588,7 +588,7 @@
 			error = NSLocalizedString(@"Invalid route", nil);
 			goto bad_proxy;
 		}
-
+        
 		LinphoneNatPolicy *policy = linphone_proxy_config_get_nat_policy(proxyCfg) ?: linphone_core_create_nat_policy(LC);
 		linphone_nat_policy_enable_stun(policy, use_ice); // We always use STUN with ICE
 		linphone_nat_policy_enable_ice(policy, use_ice);
@@ -655,7 +655,7 @@
 			linphone_auth_info_destroy(info);
 			ms_free(realm);
 		}
-
+    
 	bad_proxy:
 		if (proxy)
 			ms_free(proxy);

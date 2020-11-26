@@ -1369,26 +1369,30 @@ _waitView.hidden = YES; \
     // From here the Username and Password became another things.
     LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
     LinphoneAddress *addr = linphone_address_new(NULL);
-    LinphoneAddress *tmpAddr = linphone_address_new([NSString stringWithFormat:@"sip:%@",domain].UTF8String);
+    NSMutableString *address = [NSString stringWithFormat:@"sip:%@",domain].mutableCopy;
+    if(meUser.proxyPort != -1) {
+        [address appendString:[NSString stringWithFormat:@":%ld", meUser.proxyPort]];
+        linphone_proxy_config_set_push_notification_allowed(config, YES); //Ativa flag pushNotification
+        linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], YES); //Attiva flag Media Encryption Mandatory
+    }
+    LinphoneAddress *tmpAddr = linphone_address_new(address.UTF8String);
     if (tmpAddr == nil) {
         [self displayAssistantConfigurationError];
         return;
     }
     
     linphone_address_set_username(addr, intern.UTF8String);
-    linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
+    
     linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
     linphone_address_set_display_name(addr, [meUser name].UTF8String);
+    //char * c = linphone_address_as_string(addr);
+    //linphone_proxy_config_set_identity(config, c);
     linphone_proxy_config_set_identity_address(config, addr);
+    linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
     NSString *type = @"TLS";
-    linphone_proxy_config_set_route(
-                                    config,
-                                    [NSString stringWithFormat:@"%s;transport=%s", domain.UTF8String, type.lowercaseString.UTF8String]
-                                    .UTF8String);
-    linphone_proxy_config_set_server_addr(
-                                          config,
-                                          [NSString stringWithFormat:@"%s;transport=%s", domain.UTF8String, type.lowercaseString.UTF8String]
-                                          .UTF8String);
+    char * fullAddr = ms_strdup([NSString stringWithFormat:@"%s;transport=%s", address.UTF8String, type.lowercaseString.UTF8String].UTF8String);
+    linphone_proxy_config_set_route(config, fullAddr);
+    linphone_proxy_config_set_server_addr(config, fullAddr);
     
     linphone_proxy_config_enable_publish(config, FALSE);
     linphone_proxy_config_enable_register(config, TRUE);
@@ -1458,6 +1462,9 @@ _waitView.hidden = YES; \
                     LOGE(@"Chiamata terminata in errore.");
                 }];
                 */
+                if(meUser.proxyPort != nil) {
+                    linphone_core_set_http_proxy_port(LinphoneManager.getLc, meUser.proxyPort);
+                }
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSString * _Nullable error) {
                 NSLog(@"API_ERROR: %@", error);
@@ -1702,6 +1709,11 @@ _waitView.hidden = YES; \
         // dispatch_async(dispatch_get_main_queue(), ^{
         // });
         // [self performLogin:meUser domain:components[2]];
+        
+        if(meUser.proxyPort != nil) {
+            linphone_core_set_http_proxy_port(LinphoneManager.getLc, meUser.proxyPort);
+        }
+        
         [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
     } errorHandler:^(NSString * _Nullable error) {
         NSLog(@"API_ERROR: %@", error);

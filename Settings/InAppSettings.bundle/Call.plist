@@ -90,7 +90,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 			<key>Key</key>
 			<string>media_encrption_mandatory_preference</string>
 			<key>Title</key>
@@ -100,7 +100,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>None</string>
+			<string>SRTP</string>
 			<key>Key</key>
 			<string>media_encryption_preference</string>
 			<key>Title</key>
