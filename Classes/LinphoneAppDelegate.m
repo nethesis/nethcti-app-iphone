@@ -29,6 +29,9 @@
 #include "LinphoneManager.h"
 #include "linphone/linphonecore.h"
 
+#import <Intents/Intents.h>
+#import <IntentsUI/IntentsUI.h>
+
 #ifdef USE_CRASHLYTICS
 #include "FIRApp.h"
 #endif
@@ -263,23 +266,6 @@
 	LinphoneManager *instance = [LinphoneManager instance];
 	//init logs asap
 	[Log enableLogs:[[LinphoneManager instance] lpConfigIntForKey:@"debugenable_preference"]];
-	
-	//Starting with iOS 13, the CNCopyCurrentNetworkInfo API will no longer return valid Wi-Fi SSID and BSSID information.
-	//Use the CoreLocation API to request the user’s consent to access location information.
-	if (@available(iOS 13.0, *)) {
-		CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-		switch(status) {
-			case kCLAuthorizationStatusDenied:
-			case kCLAuthorizationStatusRestricted:
-			case kCLAuthorizationStatusNotDetermined:
-				locationManager = [[CLLocationManager alloc]init];
-				locationManager.delegate = self;
-				[locationManager requestWhenInUseAuthorization];
-				break;
-			default:
-				break;
-		}
-	}
 
 	if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
 		[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -440,10 +426,20 @@
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
 	if ([userActivity.activityType isEqualToString:@"INStartVideoCallIntent"]) {
-		LOGI(@"CallKit: satrt video.");
+		LOGI(@"CallKit: start video.");
 		CallView *view = VIEW(CallView);
 		[view.videoButton setOn];
 	}
+    if ([userActivity.activityType isEqualToString:@"INStartAudioCallIntent"]) { // tel URI handler.
+            INInteraction *interaction = userActivity.interaction;
+            INStartAudioCallIntent *startAudioCallIntent = (INStartAudioCallIntent *)interaction.intent;
+            INPerson *contact = startAudioCallIntent.contacts[0];
+            INPersonHandle *personHandle = contact.personHandle;
+            [CallManager.instance performActionWhenCoreIsOnAction:^(void) {
+                [LinphoneManager.instance call: [LinphoneUtils normalizeSipOrPhoneAddress:personHandle.value]];
+            }];
+
+        }
 	return YES;
 }
 
