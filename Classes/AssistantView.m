@@ -1369,17 +1369,23 @@ _waitView.hidden = YES; \
     // From here the Username and Password became another things.
     LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
     LinphoneAddress *addr = linphone_address_new(NULL);
-    
     NSMutableString *address = [NSString stringWithFormat:@"sip:%@",domain].mutableCopy;
+    
+    //NethCTI Proxy Settings
+    linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
     if(meUser.proxyPort != -1) {
         [address appendString:[NSString stringWithFormat:@":%ld", meUser.proxyPort]];
         linphone_proxy_config_set_push_notification_allowed(config, YES); //Ativa flag pushNotification
-        linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
         linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], YES); //Attiva flag Media Encryption Mandatory
         linphone_core_set_http_proxy_port([LinphoneManager getLc], (int) meUser.proxyPort); //Setta la porta del proxy nel Core
+        linphone_proxy_config_set_expires(config, 604800); //Imposta l'expire al valore voluto dal proxy
+    } else {
+        linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], NO); //Disattiva flag Media Encryption Mandatory
+        linphone_proxy_config_set_push_notification_allowed(config, NO); //Disattiva flag pushNotification
+        linphone_proxy_config_set_expires(config, 3600); //Imposta l'expire al valore di default
     }
+    
     LinphoneAddress *tmpAddr = linphone_address_new(address.UTF8String);
-        
     if (tmpAddr == nil) {
         [self displayAssistantConfigurationError];
         return;
