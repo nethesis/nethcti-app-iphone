@@ -313,15 +313,29 @@ import AVFoundation
      Transfer the current call to another, like attended transfer.
      */
     @objc func transferCall() {
-        guard TransferCallManager.instance().isCallTransfer,
-            let pointer = TransferCallManager.instance().mTransferCall,
-            let call = Call.getSwiftObject(cObject: pointer) as Call? else {
-                print("[WEDO] Can't transfer a call")
+        guard TransferCallManager.instance().isCallTransfer else {
+            print("[WEDO] Can't transfer a call: You are not transfering.")
+            return
+        }
+        
+        // Get the origin call pointer.
+        guard let originPointer = TransferCallManager.instance().mTransferCallOrigin,
+            let origin = Call.getSwiftObject(cObject: originPointer) as Call? else {
+                print("[WEDO] Can't transfer a call: missing origin call pointer.")
                 return
         }
+        
+        // Get the destination call pointer.
+        guard let destinationPointer = TransferCallManager.instance().mTransferCallDestination,
+              let destination = Call.getSwiftObject(cObject: destinationPointer) as Call? else {
+                   print("[WEDO] Can't transfer a call: missing destination call pointer.")
+                   return
+           }
 
         do{
-            try CallManager.instance().lc!.currentCall!.transferToAnother(dest: call)
+            try destination.transferToAnother(dest: origin)
+            // Reset state of Transfer Call Manager after doing his work.
+            TransferCallManager.instance().isCallTransfer = false
             CallManager.instance().nextCallIsTransfer = false
         } catch (let errorThrown) {
             print("[WEDO] Error in transfer to another: \(errorThrown.localizedDescription)")
@@ -604,8 +618,8 @@ class CoreManagerDelegate: CoreDelegate {
 				 .Error:
                 // Try to resume a previous call.
                 if(TransferCallManager.instance().isCallTransfer &&
-                    TransferCallManager.instance().mTransferCall != nil) {
-                    guard let pointer = TransferCallManager.instance().mTransferCall else { return }
+                    TransferCallManager.instance().mTransferCallOrigin != nil) {
+                    guard let pointer = TransferCallManager.instance().mTransferCallOrigin else { return }
                     let call = Call.getSwiftObject(cObject: pointer)
                     do {
                         try call.resume()
@@ -617,7 +631,7 @@ class CoreManagerDelegate: CoreDelegate {
                 
                 // No more call transfer.
                 TransferCallManager.instance().isCallTransfer = false
-                TransferCallManager.instance().mTransferCall = nil
+                TransferCallManager.instance().mTransferCallOrigin = nil
                 
                 // Other Linphone stuff.
 				UIDevice.current.isProximityMonitoringEnabled = false
