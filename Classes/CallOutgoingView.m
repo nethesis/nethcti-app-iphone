@@ -121,7 +121,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (call) {
         TransferCallManager.instance.isCallTransfer = NO;
-        TransferCallManager.instance.mTransferCall = nil;
+        TransferCallManager.instance.mTransferCallOrigin = nil;
+        TransferCallManager.instance.mTransferCallDestination = nil;
 		[CallManager.instance terminateCallWithCall:call];
 	}
 }
