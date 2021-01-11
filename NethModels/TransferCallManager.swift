@@ -9,11 +9,12 @@ import Foundation
 import linphonesw
 
 class TransferCallManager: NSObject {
-    var call: Call?
+    var origin: Call?
+    var destination: Call?
     var isTransfer: Bool
     
     fileprivate override init(){
-        call = nil
+        origin = nil
         isTransfer = false
     }
     private static var _singletonInstance: TransferCallManager?
@@ -25,17 +26,18 @@ class TransferCallManager: NSObject {
     }
     
     /**
-     Get or set the call that we are transfering.
+     Get or set the origin call pointer before completing the transfer.
      */
-    @objc public var mTransferCall: OpaquePointer? {
+    @objc public var mTransferCallOrigin: OpaquePointer? {
         get {
-            return call?.getCobject
+            return origin?.getCobject
         }
         
         set {
             // If we get a nil pointer, we save it.
             guard let callPointer = newValue as OpaquePointer? else {
-                self.call = nil
+                self.origin = nil
+                // TODO: Set the destination call to nil too?
                 return
             }
                 
@@ -45,7 +47,32 @@ class TransferCallManager: NSObject {
                 return
             }
             
-            self.call = tcall
+            self.origin = tcall
+        }
+    }
+    
+    /**
+     Get or set the destination call pointer before completing the transfer.
+     */
+    @objc public var mTransferCallDestination: OpaquePointer? {
+        get {
+            return destination?.getCobject
+        }
+        set {
+            // If we get a nil pointer, we save it.
+            guard let callPointer = newValue as OpaquePointer? else {
+                self.destination = nil
+                // TODO: Set the origin call to nil too?
+                return
+            }
+                
+            guard let tcall = Call.getSwiftObject(cObject: callPointer) as Call? else {
+                // Error when we can't get the call from a not nil pointer.
+                print("[WEDO] Fail to get call to transfer.")
+                return
+            }
+            
+            self.destination = tcall
         }
     }
     
@@ -58,8 +85,10 @@ class TransferCallManager: NSObject {
         }
         
         set {
+            // If we are not transfering anymore, set all pointer to nil.
             if(!newValue) {
-                mTransferCall = nil
+                mTransferCallOrigin = nil
+                mTransferCallDestination = nil
             }
             
             isTransfer = newValue;
