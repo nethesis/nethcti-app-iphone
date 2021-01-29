@@ -1463,24 +1463,27 @@ _waitView.hidden = YES; \
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
         [api postLoginWithUsername:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-                /* Crash
+                
+                // Wedo: here we fetch the Nethcti Phonebook. No authentication provided at app start and at login.
                 [api getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
-                    LOGI([NSString stringWithFormat:@"%li", [contacts count]]);
+                    printf("%d", 'R');
+                    LOGD(@"WEDO:Received contacts");
                 } errorHandler:^(NSString * _Nullable error) {
-                    LOGE(@"Chiamata terminata in errore.");
+                    LOGE(@"WEDO:Error received when fetching contacts.%@", error);
                 }];
-                */
+                
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSString * _Nullable error) {
-                NSLog(@"API_ERROR: %@", error);
+                // Get me error handling.
+                LOGE(@"API_ERROR: %@", error);
             }];
         } errorHandler:^(NSString * _Nullable error) {
+            // Post login error handling.
             if([error isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
                 [self performSelectorOnMainThread:@selector(showErrorController:)
                                        withObject:@"Bad credentials, check them and retry later."
                                     waitUntilDone:YES];
             }
-            NSLog(@"API_ERROR: %@", error);
         }];
     });
 }

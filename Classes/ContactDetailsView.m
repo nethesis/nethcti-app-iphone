@@ -87,13 +87,13 @@
 }
 
 - (void)saveData {
-	if (_contact == NULL) {
-		[PhoneMainView.instance popCurrentView];
-		return;
-	}
-        PhoneMainView.instance.currentName = _contact.displayName;
-        _nameLabel.text = PhoneMainView.instance.currentName;
-
+    if (_contact == NULL) {
+        [PhoneMainView.instance popCurrentView];
+        return;
+    }
+    PhoneMainView.instance.currentName = _contact.displayName;
+    _nameLabel.text = PhoneMainView.instance.currentName;
+    
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
     while (sips) {
@@ -108,7 +108,7 @@
             linphone_address_destroy(addr);
         }
     }
-        [LinphoneManager.instance.fastAddressBook saveContact:_contact];
+    [LinphoneManager.instance.fastAddressBook saveContact:_contact];
 }
 
 - (void)selectContact:(Contact *)acontact andReload:(BOOL)reload {

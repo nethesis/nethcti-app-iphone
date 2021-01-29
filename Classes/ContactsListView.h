@@ -75,7 +75,7 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 @property(strong, nonatomic) IBOutlet ContactsListTableView *tableController;
 @property(strong, nonatomic) IBOutlet UIView *topBar;
 @property(nonatomic, strong) IBOutlet UIButton *allButton;
-@property(nonatomic, strong) IBOutlet UIButton *linphoneButton;
+@property(nonatomic, strong) IBOutlet UIButton *linphoneButton; // sipButton in .xib file
 @property(nonatomic, strong) IBOutlet UIButton *addButton;
 @property(strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property(weak, nonatomic) IBOutlet UIImageView *selectedButtonImage;

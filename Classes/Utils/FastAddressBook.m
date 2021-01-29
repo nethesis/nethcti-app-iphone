@@ -181,6 +181,9 @@
 			LOGD(@"CNContactStore authorization granted");
 			
 			NSError *contactError;
+            /*
+             CNContactStore = The object that fetches and saves contacts, groups, and containers from the user's contacts database.
+             */
 			CNContactStore* store = [[CNContactStore alloc] init];
 			[store containersMatchingPredicate:[CNContainer predicateForContainersWithIdentifiers:@[ store.defaultContainerIdentifier]] error:&contactError];
 			NSArray *keysToFetch = @[
@@ -192,6 +195,7 @@
 									 ];
 			CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
 			
+            // Wedo: here contacts from iPad phonebook are loaded.
 			success = [store enumerateContactsWithFetchRequest:request error:&contactError usingBlock:^(CNContact *__nonnull contact, BOOL *__nonnull stop) {
 				if (contactError) {
 				  NSLog(@"error fetching contacts %@",
@@ -223,6 +227,7 @@
 		}
 		[self dumpContactsDisplayNamesToUserDefaults];
 
+        // Wedo: here we notify un update for the AddressBook.
 		[NSNotificationCenter.defaultCenter
 		 postNotificationName:kLinphoneAddressBookUpdate
 		 object:self];

@@ -142,7 +142,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
 		self.linphoneButton.hidden = TRUE;
 		self.selectedButtonImage.hidden = TRUE;
-	}
+    } 
+    
+    [[NethCTIAPI sharedInstance] getFirstsContactsWithSuccessHandler:^(NSArray<Contact *> * _Nonnull contacts) {
+        for (Contact* nethContact in contacts)
+            [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+    } errorHandler:^(NSString * _Nullable error) {
+        LOGI(@"WEDO: %s", error);
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -200,9 +207,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 		linphoneButton.selected = FALSE;
 		[tableController loadData];
 	} else if (view == ContactsLinphone && !linphoneButton.selected) {
-		//REQUIRED TO RELOAD WITH FILTER
+		// REQUIRED TO RELOAD WITH FILTER
 		[LinphoneManager.instance setContactsUpdated:TRUE];
 		frame.origin.x = linphoneButton.frame.origin.x;
+        // Wedo: Here we have to start fetch Nethesis Contacts
 		[ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
 		[ContactSelection enableEmailFilter:FALSE];
 		linphoneButton.selected = TRUE;

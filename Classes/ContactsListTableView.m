@@ -132,13 +132,15 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 - (void)loadData {
 	_ongoing = TRUE;
 	LOGI(@"====>>>> Load contact list - Start");
-	NSString* previous = [PhoneMainView.instance  getPreviousViewName];
+	NSString* previous = [PhoneMainView.instance getPreviousViewName];
 	addressBookMap = [LinphoneManager.instance getLinphoneManagerAddressBookMap];
 	BOOL updated = [LinphoneManager.instance getContactsUpdated];
 	if(([previous isEqualToString:@"ContactsDetailsView"] && updated) || updated || [addressBookMap count] == 0){
+        // Here contacts are updated.
 		[LinphoneManager.instance setContactsUpdated:FALSE];
 		@synchronized(addressBookMap) {
 			NSDictionary *allContacts = [[NSMutableDictionary alloc] initWithDictionary:LinphoneManager.instance.fastAddressBook.addressBookMap];
+            // Those are only sip addresses sorted by first and last name.
 			sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
 				Contact* first =  [allContacts objectForKey:a];
 				Contact* second =  [allContacts objectForKey:b];
@@ -150,7 +152,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 			
 			
 			LOGI(@"====>>>> Load contact list - Start 2 !!");
-			//Set all contacts from ContactCell to nil
+			// Set all contacts from ContactCell to nil
 			for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j){
 				for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
 				{
