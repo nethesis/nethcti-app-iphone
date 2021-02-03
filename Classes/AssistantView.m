@@ -1461,7 +1461,8 @@ _waitView.hidden = YES; \
         NSString* pwd = [NSString stringWithUTF8String:[self findTextField:ViewElement_Password].text.UTF8String];
         
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
-        [api postLoginWithUsername:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
+        [api saveCredentialsWithUsername:username password:pwd domain:domain];
+        [api postLoginWithSuccessHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
                 
                 // Wedo: here we fetch the Nethcti Phonebook. No authentication provided at app start and at login.

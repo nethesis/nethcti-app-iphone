@@ -82,21 +82,37 @@ import Foundation
         task.resume()
     }
     
+    @objc public func saveCredentials(username:String, password:String, domain:String) -> Void {
+        ApiCredentials.Username = username
+        ApiCredentials.Domain = domain
+        ApiCredentials.Password = password
+    }
+    
     /**
      Make a request with the new request handler above this function.
      This may be the only call that don't need authentication.
      */
-    @objc public func postLogin(username:String, password:String, domain:String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
-        ApiCredentials.Username = username
-        ApiCredentials.Domain = domain
+    @objc public func postLogin(successHandler: @escaping (String?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
+        if !ApiCredentials.checkCredentials() {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            return
+        }
         
-        guard let loginEndpoint = "\(self.transformDomain(domain))/authentication/login" as String?,
+        guard let domain = ApiCredentials.Domain as String?,
+              let transformedDomain = self.transformDomain(domain) as String?,
+              let loginEndpoint = "\(transformedDomain)/authentication/login" as String?,
               let url = URL(string: loginEndpoint) else {
             errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
-        let postStr = ApiCredentials.getAuthenticationCredentials(password: password)
+        guard let password = ApiCredentials.Password as String?,
+              let postStr = ApiCredentials.getAuthenticationCredentials(password: password) else {
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            return
+        }
+        
         self.baseCall(url: url, method: "POST", headers: nil, body: postStr) {
             data, response, error in
             // Error handling.
@@ -145,6 +161,7 @@ import Foundation
                 successHandler("Not logged out.")
             }
         })
+        ApiCredentials.clear()
         return
         
         // Logout from Nethesis. Dosen't need anymore.
@@ -345,6 +362,7 @@ import Foundation
         // Build the request.
         if !ApiCredentials.checkCredentials() {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         /*let b = ApiCredentials.checkCredentials() as Bool?

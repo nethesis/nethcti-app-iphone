@@ -36,6 +36,7 @@
 @property(nonatomic, strong) NSMutableArray *emails;
 @property(nonatomic, strong) NSMutableArray *phones;
 @property BOOL added;
+@property BOOL nethesis;
 
 - (void)setAvatar:(UIImage *)avatar;
 - (UIImage *)avatar;
@@ -43,6 +44,9 @@
 
 - (instancetype)initWithCNContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(LinphoneFriend *) friend;
+- (instancetype)initNethWithCNContact:(CNContact *)contact;
+- (instancetype)initNethWithFriend:(LinphoneFriend *) friend;
+
 - (void)reloadFriend;
 - (void)clearFriend;
 

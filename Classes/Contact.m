@@ -23,11 +23,24 @@
 @implementation Contact
 
 - (instancetype)initWithCNContact:(CNContact *)acncontact {
-  return [self initWithPerson:acncontact andFriend:NULL];
+    return [[self initWithPerson:acncontact andFriend:NULL] nethesisValue:NO];
 }
 
 - (instancetype)initWithFriend:(LinphoneFriend *)afriend {
-	return [self initWithPerson:NULL andFriend:afriend];
+    return [[self initWithPerson:NULL andFriend:afriend] nethesisValue:NO];
+}
+
+- (instancetype)initNethWithCNContact:(CNContact *)acncontact {
+    return [[self initWithPerson:acncontact andFriend:NULL] nethesisValue:YES];
+}
+
+- (instancetype)initNethWithFriend:(LinphoneFriend *)afriend {
+    return [[self initWithPerson:NULL andFriend:afriend] nethesisValue:YES];
+}
+
+- (Contact *)nethesisValue:(BOOL)Nethesis {
+    self.nethesis = Nethesis;
+    return self;
 }
 
 - (instancetype)initWithPerson:(CNContact *)acncontact

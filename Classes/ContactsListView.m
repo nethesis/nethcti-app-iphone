@@ -106,6 +106,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    
+    // WEDO: Start neth contacts load.
+    // [self loadNethContacts:YES];
+    // [tableController loadData];
+    
 	tableController.tableView.accessibilityIdentifier = @"Contacts table";
 	[self changeView:ContactsAll];
 	/*if ([tableController totalNumberOfItems] == 0) {
@@ -142,13 +147,31 @@ static UICompositeViewDescription *compositeDescription = nil;
 	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
 		self.linphoneButton.hidden = TRUE;
 		self.selectedButtonImage.hidden = TRUE;
-    } 
-    
-    [[NethCTIAPI sharedInstance] getFirstsContactsWithSuccessHandler:^(NSArray<Contact *> * _Nonnull contacts) {
+    }
+}
+
+-(void)loadNethContacts:(BOOL)retry {
+    NethCTIAPI* api = [NethCTIAPI sharedInstance];
+    [api getFirstsContactsWithSuccessHandler:^(NSArray<Contact *> * _Nonnull contacts) {
         for (Contact* nethContact in contacts)
-            [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+            @synchronized(LinphoneManager.instance.fastAddressBook) {
+                @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                    [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+                }
+            }
     } errorHandler:^(NSString * _Nullable error) {
-        LOGI(@"WEDO: %s", error);
+        // Try another login. TO BE REMOVED.
+        if(retry) {
+            [api postLoginWithSuccessHandler:^(NSString * _Nullable success) {
+                // We are in, so retry phonebook download.
+                [self loadNethContacts:NO];
+                LOGI(@"WEDO: %s", success);
+            } errorHandler:^(NSString * _Nullable error) {
+                LOGE(@"WEDO: %s", error);
+            }];
+            return;
+        }
+        LOGE(@"WEDO: %s", error);
     }];
 }
 

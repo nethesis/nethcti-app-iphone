@@ -167,26 +167,34 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 				@synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
 					contact = [LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:addr];
 				}
-				BOOL add = true;
-				// Do not add the contact directly if we set some filter
-				if ([ContactSelection getSipFilter] ||
-					[ContactSelection emailFilterEnabled]) {
-				  add = false;
-				}
-				if ([FastAddressBook contactHasValidSipDomain:contact]) {
-				  add = true;
-				}else if (contact.friend &&
-					linphone_presence_model_get_basic_status(
-						linphone_friend_get_presence_model(
-							contact.friend)) ==
-						LinphonePresenceBasicStatusOpen) {
-				  add = true;
-				}
+                
+                BOOL add = true;
+                // Do not add the contact directly if we set some filter
+                if ([ContactSelection getSipFilter] ||
+                    [ContactSelection emailFilterEnabled]) {
+                    add = false;
+                }
+                
+                if ([FastAddressBook contactHasValidSipDomain:contact]) {
+                    add = true;
+                }else if (contact.friend &&
+                    linphone_presence_model_get_basic_status(
+                        linphone_friend_get_presence_model(contact.friend)) == LinphonePresenceBasicStatusOpen) {
+                    add = true;
+                }
 
 				if (!add && [ContactSelection emailFilterEnabled]) {
 				  // Add this contact if it has an email
 				  add = (contact.emails.count > 0);
 				}
+                
+                // Wedo Nethesis Filter
+                if([ContactSelection getSipFilter]) {
+                    LOGI(@"WEDO: SipFilter: %@", [ContactSelection getSipFilter]);
+                    if(contact.nethesis) {
+                        add = YES;
+                    }
+                }
 
 				NSMutableString *name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
 				if (add && name != nil) {

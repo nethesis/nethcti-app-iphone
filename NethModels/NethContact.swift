@@ -100,7 +100,7 @@ import Foundation
      */
     @objc public func toLinphoneContact() -> Contact {
         // Init a blank contact. CNContact is the iOS Contact.
-        let contact = Contact.init(cnContact: CNContact.init())
+        let contact = Contact.init(nethWith: CNContact.init())
         contact!.firstName = self.name
         contact!.lastName = self.name
         contact!.displayName = self.name
