@@ -109,6 +109,8 @@ import Foundation
         contact!.addPhoneNumber(self.homephone)
         contact!.addPhoneNumber(self.workphone)
         contact!.addPhoneNumber(self.cellphone)
+        contact!.company = self.company
+        contact!.title = self.title
         return contact!
     }
 }

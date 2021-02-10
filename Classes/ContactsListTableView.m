@@ -189,11 +189,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 				}
                 
                 // Wedo Nethesis Filter
-                if([ContactSelection getSipFilter]) {
-                    LOGI(@"WEDO: SipFilter: %@", [ContactSelection getSipFilter]);
-                    if(contact.nethesis) {
-                        add = YES;
-                    }
+                if(([ContactSelection getSipFilter] && contact.nethesis) || (![ContactSelection getSipFilter] && !contact.nethesis)) {
+                    add = YES;
+                } else {
+                    add = NO;
                 }
 
 				NSMutableString *name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
@@ -247,6 +246,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		}
 		// Reset Address book
 		[addressBookMap removeAllObjects];
+        // WEDO: Here we have to recall Nethesis APIs.
 		NSMutableArray *subAr = [NSMutableArray new];
 		NSMutableArray *subArBegin = [NSMutableArray new];
 		NSMutableArray *subArContain = [NSMutableArray new];
