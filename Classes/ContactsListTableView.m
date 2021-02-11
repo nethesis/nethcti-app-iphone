@@ -383,11 +383,11 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 - (NSInteger)tableView:(UITableView *)tableView countRow:(NSIndexPath *)indexPath {
     NSInteger rowCount = 0;
     
-    for (NSInteger i = 0 ; i < tableView.numberOfSections; i ++) {
+    for (NSInteger i = 0 ; i < indexPath.section; i ++) {
         rowCount += [tableView numberOfRowsInSection:i];
     }
     
-    return rowCount;
+    return rowCount + indexPath.row;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
