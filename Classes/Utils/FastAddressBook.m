@@ -283,6 +283,7 @@
          postNotificationName:kLinphoneAddressBookUpdate
          object:self];
         @synchronized (_addressBookMap) {
+            [LinphoneManager.instance setContactsUpdated:TRUE];
             _isLoading = NO;
         }
     } error:^(NSString * _Nullable error) {

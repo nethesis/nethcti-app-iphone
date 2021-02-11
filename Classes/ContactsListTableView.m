@@ -154,12 +154,14 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 			
 			LOGI(@"====>>>> Load contact list - Start 2 !!");
 			// Set all contacts from ContactCell to nil
-			for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j){
-				for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-				{
-					[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
-				}
-			}
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j){
+                    for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
+                    {
+                        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
+                    }
+                }
+            });
 			
 			// Reset Address book
 			[addressBookMap removeAllObjects];
