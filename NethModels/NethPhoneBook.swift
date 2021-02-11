@@ -12,7 +12,10 @@ import linphonesw
  Singleton store of number of phonebook rows already downloaded from remote phonebook and max contacts to download.
  */
 class NethPhoneBook: NSObject {
+    /// Total number of contacts in neth user phonebook.
     var count: Int
+    
+    /// Current contacts number loaded from user phonebook.
     var rows: Int
     
     fileprivate override init() {
@@ -38,10 +41,11 @@ class NethPhoneBook: NSObject {
         return rows < count && index + 20 > rows
     }
     
-    /**
-     Increment the number of contacts loaded.
-     */
-    @objc public func load(_ number: Int, max: Int) -> Void {
+    /// Increment the number of contacts loaded.
+    /// - Parameters:
+    ///   - number: number of contacts loaded in the last api call.
+    ///   - max: max contacts number in the user phonebook.
+    @objc public func load(_ number: Int, max: Int) {
         rows += number;
         count = max;
     }

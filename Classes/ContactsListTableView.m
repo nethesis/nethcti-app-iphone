@@ -130,6 +130,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (void)loadData {
+    [LinphoneManager.instance.fastAddressBook loadNethContacts:YES];
 	_ongoing = TRUE;
 	LOGI(@"====>>>> Load contact list - Start");
 	NSString* previous = [PhoneMainView.instance getPreviousViewName];
@@ -358,6 +359,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger rowI = [self tableView:tableView countRow:indexPath];
+    if([[NethPhoneBook instance] hasMore:rowI]) {
+        [[LinphoneManager.instance fastAddressBook] loadNethContacts:YES];
+    }
 	NSString *kCellId = NSStringFromClass(UIContactCell.class);
 	UIContactCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
 	if (cell == nil) {
@@ -373,6 +378,16 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	[super accessoryForCell:cell atPath:indexPath];
     cell.contentView.userInteractionEnabled = false;
 	return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView countRow:(NSIndexPath *)indexPath {
+    NSInteger rowCount = 0;
+    
+    for (NSInteger i = 0 ; i < tableView.numberOfSections; i ++) {
+        rowCount += [tableView numberOfRowsInSection:i];
+    }
+    
+    return rowCount;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

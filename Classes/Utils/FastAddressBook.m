@@ -263,6 +263,48 @@
 		[_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
 }
 
+-(void)loadNethContacts:(BOOL)retry {
+    @synchronized (_addressBookMap) {
+        if(_isLoading) return;
+        _isLoading = YES;
+    }
+    
+    NethCTIAPI* api = [NethCTIAPI sharedInstance];
+    [api fetchContacts: @"name" t: @"" success:^(NSArray<Contact *> * _Nonnull contacts) {
+        for (Contact* nethContact in contacts)
+            @synchronized(LinphoneManager.instance.fastAddressBook) {
+                @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                    [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+                }
+            }
+        
+        // Wedo: here we notify un update for the AddressBook.
+        [NSNotificationCenter.defaultCenter
+         postNotificationName:kLinphoneAddressBookUpdate
+         object:self];
+        @synchronized (_addressBookMap) {
+            _isLoading = NO;
+        }
+    } error:^(NSString * _Nullable error) {
+        // Try another login. TO BE REMOVED.
+        if(retry) {
+            [api postLoginWithSuccessHandler:^(NSString * _Nullable success) {
+                // We are in, so retry phonebook download.
+                [self loadNethContacts:NO];
+            } errorHandler:^(NSString * _Nullable error) {
+                LOGE(@"WEDO: %s", error);
+            }];
+            return;
+        } else {
+            LOGE(@"WEDO: %s", error);
+            
+           @synchronized (_addressBookMap) {
+               _isLoading = NO;
+           }
+        }
+    }];
+}
+
 #pragma mark - Tools
 
 + (NSString *)localizedLabel:(NSString *)label {

@@ -106,10 +106,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
-    // WEDO: Start neth contacts load.
-    // [self loadNethContacts:YES];
-    // [tableController loadData];
+    [[NethPhoneBook instance] reset];
     
 	tableController.tableView.accessibilityIdentifier = @"Contacts table";
 	[self changeView:ContactsAll];
@@ -150,65 +147,31 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
 }
 
--(void)loadNethContacts:(BOOL)retry {
-    NethCTIAPI* api = [NethCTIAPI sharedInstance];
-    [api getFirstsContactsWithSuccessHandler:^(NSArray<Contact *> * _Nonnull contacts) {
-        for (Contact* nethContact in contacts)
-            @synchronized(LinphoneManager.instance.fastAddressBook) {
-                @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
-                    [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
-                }
-            }
-    } errorHandler:^(NSString * _Nullable error) {
-        // Try another login. TO BE REMOVED.
-        if(retry) {
-            [api postLoginWithSuccessHandler:^(NSString * _Nullable success) {
-                // We are in, so retry phonebook download.
-                [self loadNethContacts:NO];
-                LOGI(@"WEDO: %s", success);
-            } errorHandler:^(NSString * _Nullable error) {
-                LOGE(@"WEDO: %s", error);
-            }];
-            return;
-        }
-        LOGE(@"WEDO: %s", error);
-    }];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	if (![FastAddressBook isAuthorized]) {
-		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
-																		 message:NSLocalizedString(@"You must authorize the application to have access to address book.\n"
-																								   "Toggle the application in Settings > Privacy > Contacts",
-																								   nil)
-																  preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
-																style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction * action) {}];
-		
-		[errView addAction:defaultAction];
-		[self presentViewController:errView animated:YES completion:nil];
-		[PhoneMainView.instance popCurrentView];
-	}
-	
-	// show message toast when add contact from address
-	if ([ContactSelection getAddAddress] != nil && addAddressFromOthers) {
-		UIAlertController *infoView = [UIAlertController
-									   alertControllerWithTitle:NSLocalizedString(@"Info", nil)
-									   message:NSLocalizedString(@"Select a contact or create a new one.",nil)
-									   preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
-																style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction *action){
-															  }];
-		
-		[infoView addAction:defaultAction];
-		addAddressFromOthers = FALSE;
-		[PhoneMainView.instance presentViewController:infoView animated:YES completion:nil];
-	}
+    [super viewDidAppear:animated];
+    if (![FastAddressBook isAuthorized]) {
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil) preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [errView addAction:defaultAction];
+        [self presentViewController:errView animated:YES completion:nil];
+        [PhoneMainView.instance popCurrentView];
+    }
+    
+    // show message toast when add contact from address
+    if ([ContactSelection getAddAddress] != nil && addAddressFromOthers) {
+        UIAlertController *infoView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Info", nil) message:NSLocalizedString(@"Select a contact or create a new one.",nil) preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        }];
+        
+        [infoView addAction:defaultAction];
+        addAddressFromOthers = FALSE;
+        [PhoneMainView.instance presentViewController:infoView animated:YES completion:nil];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {

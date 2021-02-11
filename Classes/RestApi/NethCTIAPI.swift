@@ -406,11 +406,13 @@ import Foundation
         }
     }
     
+    let cLimit = 50
+    
     /**
      Make a request only to return the objective c hidden NethContact class.
      */
     @objc public func getFirstsContacts(successHandler: @escaping([Contact]) -> Void, errorHandler: @escaping(String?) -> Void) -> Void {
-        getContacts(view: "name", limit: 5, offset: 0, term: "", successHandler: {
+        getContacts(view: "name", limit: cLimit, offset: 0, term: "", successHandler: {
             phoneBookReturn in
             successHandler(phoneBookReturn.rows.map({ (NethContact) -> Contact in
                 NethContact.toLinphoneContact()
@@ -418,5 +420,19 @@ import Foundation
         }, errorHandler: {error in
             errorHandler("API ERROR: Error while getting contacts with: \(error!)")
         })
+    }
+    
+    @objc public func fetchContacts(_ v: String, t: String, success:@escaping([Contact]) -> Void, error:@escaping(String?) -> Void) {
+        let semaphore = DispatchSemaphore (value: 0)
+        let index = NethPhoneBook.instance().rows
+        getContacts(view: v, limit: cLimit, offset: index, term: t, successHandler:  {
+            phoneBookReturn in
+            NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
+            success(phoneBookReturn.rows.map({ (NethContact) -> Contact in
+                NethContact.toLinphoneContact()
+            }))
+            semaphore.signal()
+        }, errorHandler: error)
+        semaphore.wait()
     }
 }

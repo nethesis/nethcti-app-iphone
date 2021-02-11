@@ -27,8 +27,10 @@
 
 @property(readonly, nonatomic) NSMutableDictionary *addressBookMap;
 @property BOOL needToUpdate;
+@property(atomic) BOOL isLoading;
 
 - (void)fetchContactsInBackGroundThread;
+- (void)loadNethContacts:(BOOL)retry;
 - (BOOL)deleteContact:(Contact *)contact;
 - (BOOL)deleteCNContact:(CNContact *)CNContact;
 - (BOOL)deleteAllContacts;
