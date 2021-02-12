@@ -20,16 +20,19 @@ function start_fetch() {
 
 function fetch(counter) {
   var name = "";
+  var surname = "";
   if(names.length > 0) {
     name = randomName();
+    surname = randomName();
   } else {
     name = randomId(5);
+    surname = randomId(10);
   }
   name = capitalize(name);
 
   let form = new FormData();
   form.append("type", "public");
-  form.append("name", "" + name);
+  form.append("name", name + " " + surname);
   form.append("workphone", "" + makeNumber());
   form.append("company", "Wedo");
   form.append("title", "Developer");
