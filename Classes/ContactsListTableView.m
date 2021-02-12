@@ -239,10 +239,8 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	LOGI(@"Load search contact list");
 	@synchronized(addressBookMap) {
 		//Set all contacts from ContactCell to nil
-		for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j)
-		{
-			for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-			{
+		for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
+			for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
 				[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
 			}
 		}
@@ -254,27 +252,19 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		NSMutableArray *subArContain = [NSMutableArray new];
 		[addressBookMap insertObject:subAr forKey:@"" selector:@selector(caseInsensitiveCompare:)];
 		for (NSString *addr in sortedAddresses) {
-                  @synchronized(
-                      LinphoneManager.instance.fastAddressBook.addressBookMap) {
-                    Contact *contact =
-                        [LinphoneManager.instance.fastAddressBook.addressBookMap
-                            objectForKey:addr];
+                  @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                    Contact *contact = [LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:addr];
 
                     BOOL add = true;
                     // Do not add the contact directly if we set some filter
-                    if ([ContactSelection getSipFilter] ||
-                        [ContactSelection emailFilterEnabled]) {
+                    if ([ContactSelection getSipFilter] || [ContactSelection emailFilterEnabled]) {
                       add = false;
                     }
                     NSString *filter = [ContactSelection getNameOrEmailFilter];
                     if ([FastAddressBook contactHasValidSipDomain:contact]) {
                       add = true;
                     }
-                    if (contact.friend &&
-                        linphone_presence_model_get_basic_status(
-                            linphone_friend_get_presence_model(
-                                contact.friend)) ==
-                            LinphonePresenceBasicStatusOpen) {
+                    if (contact.friend && linphone_presence_model_get_basic_status(linphone_friend_get_presence_model(contact.friend)) == LinphonePresenceBasicStatusOpen) {
                       add = true;
                     }
 
