@@ -184,7 +184,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)changeView:(ContactsCategory)view {
 	CGRect frame = _selectedButtonImage.frame;
 	if (view == ContactsAll && !allButton.selected) {
-		//REQUIRED TO RELOAD WITH FILTER
+		// REQUIRED TO RELOAD WITH FILTER.
 		[LinphoneManager.instance setContactsUpdated:TRUE];
 		frame.origin.x = allButton.frame.origin.x;
 		[ContactSelection setSipFilter:nil];
@@ -193,10 +193,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 		linphoneButton.selected = FALSE;
 		[tableController loadData];
 	} else if (view == ContactsLinphone && !linphoneButton.selected) {
-		// REQUIRED TO RELOAD WITH FILTER
+        /*
+         * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
+         * Those contacts have contact.nethesis at YES instead of NO.
+         */
+		// REQUIRED TO RELOAD WITH FILTER.
+        [LinphoneManager.instance.fastAddressBook loadNethContacts:YES];
 		[LinphoneManager.instance setContactsUpdated:TRUE];
 		frame.origin.x = linphoneButton.frame.origin.x;
-        // Wedo: Here we have to start fetch Nethesis Contacts
 		[ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
 		[ContactSelection enableEmailFilter:FALSE];
 		linphoneButton.selected = TRUE;

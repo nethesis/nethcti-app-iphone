@@ -268,7 +268,7 @@
         if(_isLoading) return;
         _isLoading = YES;
     }
-    
+    // TODO: Fetch contacts based on view and search term selected by user.
     NethCTIAPI* api = [NethCTIAPI sharedInstance];
     [api fetchContacts: @"name" t: @"" success:^(NSArray<Contact *> * _Nonnull contacts) {
         for (Contact* nethContact in contacts)
@@ -278,16 +278,13 @@
                 }
             }
         
-        // Wedo: here we notify un update for the AddressBook.
-        [NSNotificationCenter.defaultCenter
-         postNotificationName:kLinphoneAddressBookUpdate
-         object:self];
+        // Mark contact as updated if loaded are more than 0.
+        [LinphoneManager.instance setContactsUpdated:(contacts.count > 0)];
         @synchronized (_addressBookMap) {
-            [LinphoneManager.instance setContactsUpdated:TRUE];
             _isLoading = NO;
         }
     } error:^(NSString * _Nullable error) {
-        // Try another login. TO BE REMOVED.
+        // Try another login. TO BE REMOVED WHEN AUTHTOKEN DOSEN'T EXPIRE ANYMORE.
         if(retry) {
             [api postLoginWithSuccessHandler:^(NSString * _Nullable success) {
                 // We are in, so retry phonebook download.
@@ -298,10 +295,9 @@
             return;
         } else {
             LOGE(@"WEDO: %s", error);
-            
-           @synchronized (_addressBookMap) {
-               _isLoading = NO;
-           }
+        }
+        @synchronized (_addressBookMap) {
+            _isLoading = NO;
         }
     }];
 }

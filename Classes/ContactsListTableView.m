@@ -129,8 +129,9 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return nil;
 }
 
+/// Load data from addressBookMap and show them filtered.
+/// Don't refuse this with the fetchRemoteContactsmethod, that populate the addressBookMap.
 - (void)loadData {
-    [LinphoneManager.instance.fastAddressBook loadNethContacts:YES];
 	_ongoing = TRUE;
 	LOGI(@"====>>>> Load contact list - Start");
 	NSString* previous = [PhoneMainView.instance getPreviousViewName];
@@ -155,9 +156,8 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 			LOGI(@"====>>>> Load contact list - Start 2 !!");
 			// Set all contacts from ContactCell to nil
             dispatch_async(dispatch_get_main_queue(), ^{
-                for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j){
-                    for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-                    {
+                for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
+                    for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
                         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
                     }
                 }
@@ -173,8 +173,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                 
                 BOOL add = true;
                 // Do not add the contact directly if we set some filter
-                if ([ContactSelection getSipFilter] ||
-                    [ContactSelection emailFilterEnabled]) {
+                if ([ContactSelection getSipFilter] || [ContactSelection emailFilterEnabled]) {
                     add = false;
                 }
                 
@@ -191,7 +190,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 				  add = (contact.emails.count > 0);
 				}
                 
-                // Wedo Nethesis Filter
+                // Wedo Nethesis Filter. Show in SipView only Nethesis contacts. Can be renamed to NethesisView.
                 if(([ContactSelection getSipFilter] && contact.nethesis) || (![ContactSelection getSipFilter] && !contact.nethesis)) {
                     add = YES;
                 } else {
@@ -218,8 +217,8 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 					}
 				}
 			}
-			// since we refresh the tableview, we must perform this on main
-			// thread
+            
+			// since we refresh the tableview, we must perform this on main thread
 			dispatch_async(dispatch_get_main_queue(), ^(void) {
 				if (IPAD) {
 					if (!([self totalNumberOfItems] > 0)) {
@@ -361,10 +360,15 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger rowI = [self tableView:tableView countRow:indexPath];
-    if([[NethPhoneBook instance] hasMore:rowI]) {
-        [[LinphoneManager.instance fastAddressBook] loadNethContacts:YES];
+    if([ContactSelection getSipFilter]) { // If no need to download contacts, don't do it!
+        NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
+        if([[NethPhoneBook instance] hasMore:rowIndex]) {
+            [[LinphoneManager.instance fastAddressBook] loadNethContacts:YES];
+            // Wedo: here we notify un update for the AddressBook.
+            [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+        }
     }
+    
 	NSString *kCellId = NSStringFromClass(UIContactCell.class);
 	UIContactCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
 	if (cell == nil) {
@@ -382,14 +386,16 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return cell;
 }
 
+
+/// Utility method: count a table view row absolute index.
+/// @param tableView where count rows.
+/// @param indexPath pointer to current row.
 - (NSInteger)tableView:(UITableView *)tableView countRow:(NSIndexPath *)indexPath {
     NSInteger rowCount = 0;
-    
-    for (NSInteger i = 0 ; i < indexPath.section; i ++) {
+    for (NSInteger i = 0 ; i < indexPath.section; i ++) { // Add previous sections rows.
         rowCount += [tableView numberOfRowsInSection:i];
     }
-    
-    return rowCount + indexPath.row;
+    return rowCount + indexPath.row; // Add current section row.
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
