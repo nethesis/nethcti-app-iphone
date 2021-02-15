@@ -28,23 +28,30 @@ function fetch(counter) {
     name = randomId(5);
     surname = randomId(10);
   }
-  name = capitalize(name);
 
   let form = new FormData();
   form.append("type", "public");
   form.append("name", name + " " + surname);
-  form.append("workphone", "" + makeNumber());
-  form.append("company", "Wedo");
+  form.append("workphone", "" + makeNumber(10));
+  form.append("extension", "" + makeNumber(4));
+  form.append("company", random_company());
   form.append("title", "Developer");
   form.append("notes", "Made from Daniele Tentoni js script.");
+  debugger;
   // form.append("extension", "" + name);
+
+  let authToken = $("#authTokenInput").val();
+  if(!authToken) {
+  	alert("Insert auth token");
+  	return;
+  }
 
   $.ajax({
     data: form,
     cache: false,
     contentType: false,
     headers: {
-      "Authorization": "andrea:73aeb0e22afb5d9393d477e28d67ef54a24d3e54"
+      "Authorization": authToken
     },
     method: "POST",
     mimeType: "multipart/form-data",
@@ -53,7 +60,7 @@ function fetch(counter) {
     url: "https://nethctiapp.nethserver.net/webrest/phonebook/create",
     success: function (response) {
       let next = counter - 1;
-      console.log("Success call for " + name);
+      console.log("Success call for " + name + " " + surname);
       console.log("Process request " + next);
       if(next > 0)
         fetch(next);
@@ -64,7 +71,7 @@ function fetch(counter) {
 }
 
 function randomName() {
-  return names[Math.floor(Math.random() * names.length)];
+  return capitalize(names[Math.floor(Math.random() * names.length)]);
 }
 
 // Generate a random string.
@@ -76,19 +83,24 @@ function makeId(length) {
     // This is a randomId.
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
-  return result;
+  return capitalize(result);
 }
 
 // Generate a random number.
-function makeNumber() {
+function makeNumber(length) {
   let characters = '0123456789';
   let charactersLength = characters.length;
   var result = '';
-  for (var i = 0; i < 10; i++ ) {
+  for (var i = 0; i < length; i++ ) {
     // This is a randomId.
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
+}
+
+function random_company() {
+	let companies = ["Wedo", "Nethesis", "MyCompany"];
+	return companies[Math.floor(Math.random() * companies.length)];
 }
 
 // Capitalize first char of a string.
