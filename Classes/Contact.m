@@ -122,6 +122,11 @@
 }
 
 - (NSString *)displayName {
+    // Why Linphone had overwritten this property?
+    if(_nethesis) {
+        return _displayName;
+    }
+    
 	if (_friend) {
 		const char *friend_name = linphone_friend_get_name(_friend);
 		if (friend_name)

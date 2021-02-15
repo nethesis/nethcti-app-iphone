@@ -354,7 +354,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
             NSString *searchText = [ContactSelection getNameOrEmailFilter];
             [LinphoneManager.instance.fastAddressBook loadNeth:@"name" withTerm:searchText shouldRetry:YES];
             // Wedo: here we notify un update for the AddressBook.
-            [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+            // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
         }
     }
     

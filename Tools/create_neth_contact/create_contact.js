@@ -37,7 +37,6 @@ function fetch(counter) {
   form.append("company", random_company());
   form.append("title", "Developer");
   form.append("notes", "Made from Daniele Tentoni js script.");
-  debugger;
   // form.append("extension", "" + name);
 
   let authToken = $("#authTokenInput").val();
@@ -99,7 +98,7 @@ function makeNumber(length) {
 }
 
 function random_company() {
-	let companies = ["Wedo", "Nethesis", "MyCompany"];
+	let companies = ["Wedo", "Nethesis", "Google", "Facebook", "Tesla", "Tulips", "Amazon"];
 	return companies[Math.floor(Math.random() * companies.length)];
 }
 
