@@ -28,22 +28,27 @@
 #pragma mark - Property Functions
 
 - (NSMutableArray *)getSectionData:(NSInteger)section {
-	if (section == ContactSections_Number) {
-          return _contact.phones;
-        } else if (section == ContactSections_Sip) {
-          return _contact.sipAddresses;
-        } else if (section == ContactSections_Email) {
-          if ([LinphoneManager.instance
-                  lpConfigBoolForKey:@"show_contacts_emails_preference"] ==
-              true) {
+    if (section == ContactSections_Number) {
+        return _contact.phones;
+    } else if (section == ContactSections_Sip) {
+        return _contact.sipAddresses;
+    } else if (section == ContactSections_Email) {
+        BOOL showEmails = [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"];
+        if (showEmails == true) {
             return _contact.emails;
-          }
-        } else if (section == ContactSections_Company) {
+        }
+    }
+    
+    // WEDO: Nethesis only fields.
+    if(_contact.nethesis) {
+        if (section == ContactSections_Company) {
             return [NSMutableArray arrayWithObject:_contact.company];
         } else if(section == ContactSections_Title) {
             return [NSMutableArray arrayWithObject:_contact.title];
         }
-        return nil;
+    }
+    
+    return nil;
 }
 
 - (void)removeEmptyEntry:(UITableView *)tableview section:(NSInteger)section animated:(BOOL)animated {
