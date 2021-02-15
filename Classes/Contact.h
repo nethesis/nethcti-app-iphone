@@ -46,8 +46,6 @@
 
 - (instancetype)initWithCNContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(LinphoneFriend *) friend;
-- (instancetype)initNethWithCNContact:(CNContact *)contact;
-- (instancetype)initNethWithFriend:(LinphoneFriend *) friend;
 
 - (void)reloadFriend;
 - (void)clearFriend;

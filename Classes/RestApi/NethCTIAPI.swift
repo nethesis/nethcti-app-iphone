@@ -423,7 +423,6 @@ import Foundation
     }
     
     @objc public func fetchContacts(_ v: String, t: String, success:@escaping([Contact]) -> Void, error:@escaping(String?) -> Void) {
-        let semaphore = DispatchSemaphore (value: 0)
         let index = NethPhoneBook.instance().rows
         getContacts(view: v, limit: cLimit, offset: index, term: t, successHandler:  {
             phoneBookReturn in
@@ -431,8 +430,6 @@ import Foundation
             success(phoneBookReturn.rows.map({ (NethContact) -> Contact in
                 NethContact.toLinphoneContact()
             }))
-            semaphore.signal()
         }, errorHandler: error)
-        semaphore.wait()
     }
 }

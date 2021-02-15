@@ -197,8 +197,9 @@ static UICompositeViewDescription *compositeDescription = nil;
          * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
          * Those contacts have contact.nethesis at YES instead of NO.
          */
-		// REQUIRED TO RELOAD WITH FILTER.
-        [LinphoneManager.instance.fastAddressBook loadNethContacts:YES];
+        NSString *searchText = [ContactSelection getNameOrEmailFilter];
+        [LinphoneManager.instance.fastAddressBook loadNeth:@"name" withTerm:searchText shouldRetry:YES];
+        // REQUIRED TO RELOAD WITH FILTER.
 		[LinphoneManager.instance setContactsUpdated:TRUE];
 		frame.origin.x = linphoneButton.frame.origin.x;
 		[ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
@@ -279,10 +280,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 	// display searchtext in UPPERCASE
 	// searchBar.text = [searchText uppercaseString];
 	[ContactSelection setNameOrEmailFilter:searchText];
-	if (searchText.length == 0) {
+	if (searchText.length == 0) { // No filter, no search data.
 		[LinphoneManager.instance setContactsUpdated:TRUE];
 		[tableController loadData];
 	} else {
+        // Before loading searched data, we have to search them!
+        [LinphoneManager.instance.fastAddressBook loadNeth:@"name" withTerm:searchText shouldRetry:YES];
 		[tableController loadSearchedData];
 	}
 }

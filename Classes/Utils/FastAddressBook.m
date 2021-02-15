@@ -263,32 +263,43 @@
 		[_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
 }
 
--(void)loadNethContacts:(BOOL)retry {
+/// Load Nethesis Contacts from remote phonebook.
+/// @param view Type of contacts to show. Can be:
+/// - name
+/// - company
+/// - all
+/// @param term Term to search inside contact name.
+/// @param retry TO BE REMOVED: after a 401, login and retry one time.
+-(void)loadNeth:(NSString *)view withTerm:(NSString *)term shouldRetry:(BOOL)retry {
     @synchronized (_addressBookMap) {
         if(_isLoading) return;
         _isLoading = YES;
     }
     // TODO: Fetch contacts based on view and search term selected by user.
     NethCTIAPI* api = [NethCTIAPI sharedInstance];
-    [api fetchContacts: @"name" t: @"" success:^(NSArray<Contact *> * _Nonnull contacts) {
-        for (Contact* nethContact in contacts)
+    [api fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
+        for (Contact* nethContact in contacts) {
             @synchronized(LinphoneManager.instance.fastAddressBook) {
                 @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
                     [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+                    // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
                 }
             }
+            // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+        }
         
         // Mark contact as updated if loaded are more than 0.
         [LinphoneManager.instance setContactsUpdated:(contacts.count > 0)];
         @synchronized (_addressBookMap) {
             _isLoading = NO;
         }
+        [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
     } error:^(NSString * _Nullable error) {
-        // Try another login. TO BE REMOVED WHEN AUTHTOKEN DOSEN'T EXPIRE ANYMORE.
+        // Try another login. TO BE REMOVED WHEN AUTHTOKEN DOSEN'T EXPIRE ANYMORE => Users have to return to login view.
         if(retry) {
             [api postLoginWithSuccessHandler:^(NSString * _Nullable success) {
                 // We are in, so retry phonebook download.
-                [self loadNethContacts:NO];
+                [self loadNeth:view withTerm:term shouldRetry:NO];
             } errorHandler:^(NSString * _Nullable error) {
                 LOGE(@"WEDO: %s", error);
             }];

@@ -30,7 +30,7 @@
 @property(atomic) BOOL isLoading;
 
 - (void)fetchContactsInBackGroundThread;
-- (void)loadNethContacts:(BOOL)retry;
+- (void)loadNeth:(NSString *)view withTerm:(NSString *)term shouldRetry:(BOOL)retry;
 - (BOOL)deleteContact:(Contact *)contact;
 - (BOOL)deleteCNContact:(CNContact *)CNContact;
 - (BOOL)deleteAllContacts;
