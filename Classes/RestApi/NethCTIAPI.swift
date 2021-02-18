@@ -62,6 +62,7 @@ import Foundation
         }
         
         urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        urlRequest.addValue("no-exp", forHTTPHeaderField: "Auth-Exp")
         
         // Body handling.
         if let b = body {
@@ -147,9 +148,8 @@ import Foundation
         })
         return
         
-        // Logout from Nethesis. Dosen't need anymore.
         // Set the url.
-        /* let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
         guard let url = URL(string: endPoint) else {
             print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
@@ -171,7 +171,7 @@ import Foundation
             }
             
             successHandler("Logged out.")
-        }*/
+        }
     }
     
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
