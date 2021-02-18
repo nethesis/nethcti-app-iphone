@@ -1462,25 +1462,25 @@ _waitView.hidden = YES; \
         
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
         [api saveCredentialsWithUsername:username password:pwd domain:domain];
-        [api postLoginWithSuccessHandler:^(NSString * _Nullable digest) {
+        [api postLogin:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
                 
                 // Wedo: here we fetch the Nethcti Phonebook. No authentication provided at app start and at login.
                 [api getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
                     printf("%d", 'R');
                     LOGD(@"WEDO:Received contacts");
-                } errorHandler:^(NSString * _Nullable error) {
-                    LOGE(@"WEDO:Error received when fetching contacts.%@", error);
+                } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                    LOGE(@"WEDO:Error received when fetching contacts: %@", string);
                 }];
                 
                 [self performLogin:meUser domain:domain];
-            } errorHandler:^(NSString * _Nullable error) {
+            } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 // Get me error handling.
-                LOGE(@"API_ERROR: %@", error);
+                LOGE(@"API_ERROR: %@", string);
             }];
-        } errorHandler:^(NSString * _Nullable error) {
+        } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             // Post login error handling.
-            if([error isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
+            if([string isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
                 [self performSelectorOnMainThread:@selector(showErrorController:)
                                        withObject:@"Bad credentials, check them and retry later."
                                     waitUntilDone:YES];
@@ -1719,8 +1719,8 @@ _waitView.hidden = YES; \
         // });
         // [self performLogin:meUser domain:components[2]];
         [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
-    } errorHandler:^(NSString * _Nullable error) {
-        NSLog(@"API_ERROR: %@", error);
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        NSLog(@"API_ERROR: %@", string);
     }];
     /*
     if ([historyViews count] > 0) {

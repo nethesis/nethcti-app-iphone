@@ -265,12 +265,12 @@
 
 /// Load Nethesis Contacts from remote phonebook.
 /// @param view Type of contacts to show. Can be:
-/// - name
-/// - company
-/// - all
+/// - person: to fetch only persons
+/// - company: to fetch only companies
+/// - all: to fetch all contacts
 /// @param term Term to search inside contact name.
 /// @param retry TO BE REMOVED: after a 401, login and retry one time.
--(void)loadNeth:(NSString *)view withTerm:(NSString *)term shouldRetry:(BOOL)retry {
+-(void)loadNeth:(NSString *)view withTerm:(NSString *)term {
     @synchronized (_addressBookMap) {
         if(_isLoading) return;
         _isLoading = YES;
@@ -294,21 +294,9 @@
             _isLoading = NO;
         }
         [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
-    } error:^(NSString * _Nullable error) {
-        // Try another login. TO BE REMOVED WHEN AUTHTOKEN DOSEN'T EXPIRE ANYMORE => Users have to return to login view.
-        if(retry) {
-            [api postLoginWithSuccessHandler:^(NSString * _Nullable success) {
-                // We are in, so retry phonebook download.
-                [self loadNeth:view withTerm:term shouldRetry:NO];
-            } errorHandler:^(NSString * _Nullable error) {
-                LOGE(@"WEDO: %s", error);
-            }];
-            return;
-        } else {
-            LOGE(@"WEDO: %s", error);
-        }
-        @synchronized (_addressBookMap) {
-            _isLoading = NO;
+    } error:^(NSInteger code, NSString * _Nullable string) {
+        if(code == 401) {
+            [LinphoneManager.instance clearProxies];
         }
     }];
 }

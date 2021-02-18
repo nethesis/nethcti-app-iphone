@@ -2285,4 +2285,27 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	_avatar = ret;
 }
 
+#pragma mark - Proxy internal helper
+- (void)clearProxies {
+    LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC); // Get the default proxy configured.
+
+    const LinphoneAuthInfo *ai = linphone_proxy_config_find_auth_info(config);
+    linphone_core_remove_proxy_config(LC, config); // Remove the selected proxy config.
+    if (ai) {
+        linphone_core_remove_auth_info(LC, ai); // Remove the authentication infos.
+    }
+    
+    linphone_core_clear_proxy_config(LC);
+    linphone_core_clear_all_auth_info(LC);
+    linphone_proxy_config_done(config); // Confirm the actual configuration. ???
+    
+    [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result){
+        LOGW(result);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // May be run only on UI thread.
+            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        });
+    }];
+}
+
 @end

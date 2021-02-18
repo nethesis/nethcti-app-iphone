@@ -352,7 +352,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
         if([[NethPhoneBook instance] hasMore:rowIndex]) {
             NSString *searchText = [ContactSelection getNameOrEmailFilter];
-            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText shouldRetry:YES];
+            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
             // Wedo: here we notify un update for the AddressBook.
             // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
         }

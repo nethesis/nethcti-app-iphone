@@ -133,10 +133,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     [tap setDelegate:self];
     [self.view addGestureRecognizer:tap];
     
-    _pickerData  = @[@"company", @"all", @"name"];
+    _pickerData = @[@"company", @"all", @"person"];
     self.filterPicker.dataSource = self;
     self.filterPicker.delegate = self;
-    [self.filterPicker select: pickerFilter];
+    [self.filterPicker selectRow:[_pickerData indexOfObject:pickerFilter] inComponent:0 animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -225,7 +225,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSString *text = pickerFilter;
     NSString *text2 = _searchBar.text;
     [LinphoneManager.instance.fastAddressBook resetNeth];
-    [LinphoneManager.instance.fastAddressBook loadNeth: text withTerm: text2 shouldRetry:YES];
+    [LinphoneManager.instance.fastAddressBook loadNeth: text withTerm: text2];
 }
 
 -(NSString*) getSelectedPickerItem {
@@ -253,7 +253,7 @@ static UICompositeViewDescription *compositeDescription = nil;
          * Those contacts have contact.nethesis at YES instead of NO.
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
-        [LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText shouldRetry:YES];
+        [LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText];
         // REQUIRED TO RELOAD WITH FILTER.
         [LinphoneManager.instance setContactsUpdated:TRUE];
         frame.origin.x = linphoneButton.frame.origin.x;
@@ -342,7 +342,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         [tableController loadData];
     } else {
         // Before loading searched data, we have to search them!
-        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText shouldRetry:YES];
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
         [tableController loadSearchedData];
     }
 }
