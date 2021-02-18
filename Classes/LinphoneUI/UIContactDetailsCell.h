@@ -43,6 +43,7 @@
 
 - (id)initWithIdentifier:(NSString *)identifier;
 - (void)setAddress:(NSString *)address;
+- (void)setNonAddress:(NSString *)value;
 - (void)hideDeleteButton:(BOOL)hidden;
 - (void)shouldHideLinphoneImageOfAddress;
 
