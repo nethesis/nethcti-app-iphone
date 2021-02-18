@@ -143,14 +143,18 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		@synchronized(addressBookMap) {
 			NSDictionary *allContacts = [[NSMutableDictionary alloc] initWithDictionary:LinphoneManager.instance.fastAddressBook.addressBookMap];
             // Those are only sip addresses sorted by first and last name.
-			sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-				Contact* first =  [allContacts objectForKey:a];
-				Contact* second =  [allContacts objectForKey:b];
-				if([[first.firstName lowercaseString] compare:[second.firstName lowercaseString]] == NSOrderedSame)
-					return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
-				else
-					return [[first.firstName lowercaseString] compare:[second.firstName lowercaseString]];
-			}];
+            sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                Contact* first =  [allContacts objectForKey:a];
+                Contact* second =  [allContacts objectForKey:b];
+                if([[ContactSelection getPickerFilter] isEqual:@"all"]) {
+                    return [[first.company lowercaseString] compare:[second.company lowercaseString]];
+                } else {
+                    if([[first.firstName lowercaseString] compare:[second.firstName lowercaseString]] == NSOrderedSame)
+                        return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
+                    else
+                        return [[first.firstName lowercaseString] compare:[second.firstName lowercaseString]];
+                }
+            }];
 			
 			
 			LOGI(@"====>>>> Load contact list - Start 2 !!");
@@ -193,25 +197,37 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                 // Wedo Nethesis Filter. Show in SipView only Nethesis contacts. Can be renamed to NethesisView.
                 add = [self testNethesis:contact];
 
-				NSMutableString *name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
-				if (add && name != nil) {
-					NSString *firstChar = [[name substringToIndex:1] uppercaseString];
-					// Put in correct subAr
-					if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
-						firstChar = @"#";
-					}
-					NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
-					if (subAr == nil) {
-						subAr = [[NSMutableArray alloc] init];
-						[addressBookMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
-					}
-					NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
-							return [[self displayNameForContact:obj1] compare:[self displayNameForContact:obj2] options:NSCaseInsensitiveSearch];
-					}];
-					if (![subAr containsObject:contact]) {
-						[subAr insertObject:contact atIndex:idx];
-					}
-				}
+                NSMutableString *name = [[NSMutableString alloc] initWithString:@""];
+                if(![ContactSelection getSipFilter] && !contact.nethesis) {
+                    name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
+                } else  if(contact.company && contact.company.length > 0) {
+                    name = [[NSMutableString alloc] initWithString: contact.company];
+                } else {
+                    // Same as first.
+                    name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
+                }
+                
+                if (add && name != nil) {
+                    NSString *firstChar = [[name substringToIndex:1] uppercaseString];
+                    // Put in correct subAr
+                    if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
+                        firstChar = @"#";
+                    }
+                    NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
+                    if (subAr == nil) {
+                        subAr = [[NSMutableArray alloc] init];
+                        [addressBookMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
+                    }
+                    NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
+                        if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
+                            return [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]];
+                        else
+                            return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
+                    }];
+                    if (![subAr containsObject:contact]) {
+                        [subAr insertObject:contact atIndex:idx];
+                    }
+                }
 			}
             
 			// since we refresh the tableview, we must perform this on main thread
