@@ -31,6 +31,7 @@
 
 - (void)fetchContactsInBackGroundThread;
 - (void)loadNeth:(NSString *)view withTerm:(NSString *)term shouldRetry:(BOOL)retry;
+- (void)resetNeth;
 - (BOOL)deleteContact:(Contact *)contact;
 - (BOOL)deleteCNContact:(CNContact *)CNContact;
 - (BOOL)deleteAllContacts;

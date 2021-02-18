@@ -313,6 +313,11 @@
     }];
 }
 
+- (void) resetNeth {
+    [_addressBookMap removeAllObjects];
+    [NethPhoneBook.instance reset];
+}
+
 #pragma mark - Tools
 
 + (NSString *)localizedLabel:(NSString *)label {

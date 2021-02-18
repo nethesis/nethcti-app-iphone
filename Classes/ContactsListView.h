@@ -68,9 +68,21 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
  */
 + (NSString *)getNameOrEmailFilter;
 
+/*!
+ * Filters contacts by name and/or email fuzzy matching pattern.
+ * @param fuzzyName fuzzy word to match. Use nil to disable it.
+ */
++ (void)setPickerFilter:(NSString *)value;
+
+/*!
+ * Weither contacts are filtered by name and/or email.
+ * @return the filter used, or nil if none.
+ */
++ (NSString *)getPickerFilter;
+
 @end
 
-@interface ContactsListView : UIViewController <UICompositeViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate>
+@interface ContactsListView : UIViewController <UICompositeViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(strong, nonatomic) IBOutlet ContactsListTableView *tableController;
 @property(strong, nonatomic) IBOutlet UIView *topBar;
@@ -80,6 +92,7 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 @property(strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property(weak, nonatomic) IBOutlet UIImageView *selectedButtonImage;
 @property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
+@property (weak, nonatomic) IBOutlet UIPickerView *filterPicker;
 
 - (IBAction)onAllClick:(id)event;
 - (IBAction)onLinphoneClick:(id)event;
