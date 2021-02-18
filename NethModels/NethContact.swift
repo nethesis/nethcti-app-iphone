@@ -103,7 +103,6 @@ import Foundation
         let contact = Contact.init(cnContact: CNContact.init())
         contact!.nethesis = true
         contact!.firstName = self.name
-        contact!.displayName = "\(self.company.prefix(3)) \(self.name)".trimmingCharacters(in: CharacterSet(charactersIn: " "))
         contact!.addEmail(self.homeemail)
         contact!.addEmail(self.workemail)
         contact!.addPhoneNumber(self.homephone)
@@ -111,6 +110,7 @@ import Foundation
         contact!.addPhoneNumber(self.cellphone)
         contact!.company = self.company
         contact!.title = self.title
+        contact!.displayName = "\(self.name) - \(self.company)".trimmingCharacters(in: CharacterSet(arrayLiteral: " ", "-"))
         return contact!
     }
 }
