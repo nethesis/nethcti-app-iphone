@@ -72,7 +72,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -107,7 +107,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -121,7 +121,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_video_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_video_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_video_start_disabled.png"/>
@@ -203,7 +203,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -238,7 +238,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -252,7 +252,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_video_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_video_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_video_start_disabled.png"/>
@@ -313,6 +313,5 @@
         <image name="color_F.png" width="2" height="2"/>
         <image name="color_I.png" width="2" height="2"/>
         <image name="color_L.png" width="2" height="2"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
     </resources>
 </document>

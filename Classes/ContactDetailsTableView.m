@@ -28,18 +28,27 @@
 #pragma mark - Property Functions
 
 - (NSMutableArray *)getSectionData:(NSInteger)section {
-	if (section == ContactSections_Number) {
-          return _contact.phones;
-        } else if (section == ContactSections_Sip) {
-          return _contact.sipAddresses;
-        } else if (section == ContactSections_Email) {
-          if ([LinphoneManager.instance
-                  lpConfigBoolForKey:@"show_contacts_emails_preference"] ==
-              true) {
+    if (section == ContactSections_Number) {
+        return _contact.phones;
+    } else if (section == ContactSections_Sip) {
+        return _contact.sipAddresses;
+    } else if (section == ContactSections_Email) {
+        BOOL showEmails = [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"];
+        if (showEmails == true) {
             return _contact.emails;
-          }
         }
-        return nil;
+    }
+    
+    // WEDO: Nethesis only fields.
+    if(_contact.nethesis) {
+        if (section == ContactSections_Company) {
+            return [NSMutableArray arrayWithObject:_contact.company];
+        } else if(section == ContactSections_Title) {
+            return [NSMutableArray arrayWithObject:_contact.title];
+        }
+    }
+    
+    return nil;
 }
 
 - (void)removeEmptyEntry:(UITableView *)tableview section:(NSInteger)section animated:(BOOL)animated {
@@ -60,7 +69,11 @@
 		rmed = [_contact removeSipAddressAtIndex:path.row];
 	} else if (path.section == ContactSections_Email) {
 		rmed = [_contact removeEmailAtIndex:path.row];
-	} else {
+    } else if (path.section == ContactSections_Company) {
+        rmed = YES;
+    } else if (path.section == ContactSections_Title) {
+        rmed = YES;
+    } else {
 		rmed = NO;
 	}
 
@@ -73,29 +86,29 @@
 }
 
 - (void)addEntry:(UITableView *)tableview section:(NSInteger)section animated:(BOOL)animated value:(NSString *)value {
-	bool added = FALSE;
-	if (section == ContactSections_Number) {
-		if ([_contact.phones count] == [_contact.person.phoneNumbers count])
-		added = [_contact addPhoneNumber:value];
-	} else if (section == ContactSections_Sip) {
-          if ([_contact.sipAddresses count] == [self countSipAddressFromCNContact:_contact.person]) //[_contact.person.instantMessageAddresses count])
+    bool added = FALSE;
+    if (section == ContactSections_Number) {
+        if ([_contact.phones count] == [_contact.person.phoneNumbers count])
+            added = [_contact addPhoneNumber:value];
+    } else if (section == ContactSections_Sip) {
+        if ([_contact.sipAddresses count] == [self countSipAddressFromCNContact:_contact.person]) //[_contact.person.instantMessageAddresses count])
             added = [_contact addSipAddress:value];
-        } else if (section == ContactSections_Email) {
-			if ([_contact.emails count] ==
-				[_contact.person.emailAddresses count])
-          added = [_contact addEmail:value];
-        }
-        if (added) {
-          NSUInteger count = [self getSectionData:section].count;
-          [tableview
-              insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:count - 1
-                                                           inSection:section] ]
-                    withRowAnimation:animated ? UITableViewRowAnimationFade
-                                              : UITableViewRowAnimationNone];
-        } else {
-          LOGW(@"Cannot add entry '%@' in section %d, skipping", value,
-               section);
-        }
+    } else if (section == ContactSections_Email) {
+        if ([_contact.emails count] ==
+            [_contact.person.emailAddresses count])
+            added = [_contact addEmail:value];
+    }
+    if (added) {
+        NSUInteger count = [self getSectionData:section].count;
+        [tableview
+         insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:count - 1
+                                                      inSection:section] ]
+         withRowAnimation:animated ? UITableViewRowAnimationFade
+         : UITableViewRowAnimationNone];
+    } else {
+        LOGW(@"Cannot add entry '%@' in section %d, skipping", value,
+             section);
+    }
 }
 
 -(NSInteger)countSipAddressFromCNContact:(CNContact*) mCNContact{
@@ -156,84 +169,95 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == ContactSections_FirstName || section == ContactSections_LastName) {
-		/*first and last name only when editting */
-		return (self.tableView.isEditing) ? 1 : 0;
-	} else if (section == ContactSections_Sip) {
-		return _contact.sipAddresses.count;
-	} else if (section == ContactSections_Number) {
-          return _contact.phones.count;
-        } else if (section == ContactSections_Email) {
-          BOOL showEmails = [LinphoneManager.instance
-              lpConfigBoolForKey:@"show_contacts_emails_preference"];
-          return showEmails ? _contact.emails.count : 0;
-        }
-        return 0;
+    if (section == ContactSections_FirstName || section == ContactSections_LastName) {
+        /*first and last name only when editting */
+        return (self.tableView.isEditing) ? 1 : 0;
+    } else if (section == ContactSections_Sip) {
+        return _contact.sipAddresses.count;
+    } else if (section == ContactSections_Number) {
+        return _contact.phones.count;
+    } else if (section == ContactSections_Email) {
+        BOOL showEmails = [LinphoneManager.instance
+                           lpConfigBoolForKey:@"show_contacts_emails_preference"];
+        return showEmails ? _contact.emails.count : 0;
+    } else if(section == ContactSections_Company) {
+        return _contact.company.length > 0;
+    } else if(section == ContactSections_Title) {
+        return _contact.title.length > 0;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *kCellId = @"UIContactDetailsCell";
-	UIContactDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
-	if (cell == nil) {
-		cell = [[UIContactDetailsCell alloc] initWithIdentifier:kCellId];
-		cell.waitView = _waitView;
-		[cell.editTextfield setDelegate:self];
-	}
-
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-	cell.indexPath = indexPath;
-	[cell hideDeleteButton:NO];
-	[cell.editTextfield setKeyboardType:UIKeyboardTypeDefault];
-	NSString *value = @"";
-	if (indexPath.section == ContactSections_FirstName) {
-		value = _contact.firstName;
-		[cell hideDeleteButton:YES];
-	} else if (indexPath.section == ContactSections_LastName) {
-		value = _contact.lastName;
-		[cell hideDeleteButton:YES];
-	} else if ([indexPath section] == ContactSections_Number) {
-          value = _contact.phones[indexPath.row];
-          [cell.editTextfield setKeyboardType:UIKeyboardTypePhonePad];
-        } else if ([indexPath section] == ContactSections_Sip) {
-          value = _contact.sipAddresses[indexPath.row];
-          LinphoneAddress *addr = NULL;
-          if ([LinphoneManager.instance
-                  lpConfigBoolForKey:@"contact_display_username_only"] &&
-              (addr = linphone_core_interpret_url(LC, [value UTF8String]))) {
+    static NSString *kCellId = @"UIContactDetailsCell";
+    UIContactDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    if (cell == nil) {
+        cell = [[UIContactDetailsCell alloc] initWithIdentifier:kCellId];
+        cell.waitView = _waitView;
+        [cell.editTextfield setDelegate:self];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.indexPath = indexPath;
+    [cell hideDeleteButton:NO];
+    [cell.editTextfield setKeyboardType:UIKeyboardTypeDefault];
+    NSString *value = @"";
+    if (indexPath.section == ContactSections_FirstName) {
+        value = _contact.firstName;
+        [cell hideDeleteButton:YES];
+    } else if (indexPath.section == ContactSections_LastName) {
+        value = _contact.lastName;
+        [cell hideDeleteButton:YES];
+    } else if ([indexPath section] == ContactSections_Number) {
+        value = _contact.phones[indexPath.row];
+        [cell.editTextfield setKeyboardType:UIKeyboardTypePhonePad];
+    } else if ([indexPath section] == ContactSections_Sip) {
+        value = _contact.sipAddresses[indexPath.row];
+        LinphoneAddress *addr = NULL;
+        if ([LinphoneManager.instance
+             lpConfigBoolForKey:@"contact_display_username_only"] &&
+            (addr = linphone_core_interpret_url(LC, [value UTF8String]))) {
             value =
-                [NSString stringWithCString:linphone_address_get_username(addr)
-                                   encoding:[NSString defaultCStringEncoding]];
+            [NSString stringWithCString:linphone_address_get_username(addr)
+                               encoding:[NSString defaultCStringEncoding]];
             linphone_address_destroy(addr);
-          }
-          [cell.editTextfield setKeyboardType:UIKeyboardTypeASCIICapable];
-        } else if ([indexPath section] == ContactSections_Email) {
-          value = _contact.emails[indexPath.row];
-          [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
         }
-        if ([value hasPrefix:@" "])
-          value = [value substringFromIndex:1];
-        [cell setAddress:value];
-        cell.contentView.userInteractionEnabled = false;
-        return cell;
+        [cell.editTextfield setKeyboardType:UIKeyboardTypeASCIICapable];
+    } else if ([indexPath section] == ContactSections_Email) {
+        value = _contact.emails[indexPath.row];
+        [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
+    } else if([indexPath section] == ContactSections_Company) {
+        value = _contact.company;
+        [cell hideDeleteButton:YES];
+    } else if([indexPath section] == ContactSections_Title) {
+        value = _contact.title;
+        [cell hideDeleteButton:YES];
+    }
+    
+    if ([value hasPrefix:@" "])
+        value = [value substringFromIndex:1];
+    [cell setAddress:value];
+    cell.contentView.userInteractionEnabled = false;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView
-	commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-	 forRowAtIndexPath:(NSIndexPath *)indexPath {
-	[LinphoneUtils findAndResignFirstResponder:[self tableView]];
-	if (editingStyle == UITableViewCellEditingStyleInsert) {
-		[tableView beginUpdates];
-                [self addEntry:tableView
-                       section:[indexPath section]
-                      animated:TRUE
-                         value:@" "];
-                [tableView endUpdates];
-        } else if (editingStyle == UITableViewCellEditingStyleDelete) {
-          [tableView beginUpdates];
-          [self removeEntry:tableView indexPath:indexPath animated:TRUE];
-          [tableView endUpdates];
-        }
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [LinphoneUtils findAndResignFirstResponder:[self tableView]];
+    if (editingStyle == UITableViewCellEditingStyleInsert) {
+        [tableView beginUpdates];
+        [self addEntry:tableView
+               section:[indexPath section]
+              animated:TRUE
+                 value:@" "];
+        [tableView endUpdates];
+    } else if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView beginUpdates];
+        [self removeEntry:tableView indexPath:indexPath animated:TRUE];
+        [tableView endUpdates];
+    }
 }
 
 #pragma mark - UITableViewDelegate Functions
@@ -269,64 +293,70 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	NSString *text = nil;
-	BOOL canAddEntry = self.tableView.isEditing;
-	NSString *addEntryName = nil;
-	if (section == ContactSections_FirstName && self.tableView.isEditing) {
-		text = NSLocalizedString(@"First name", nil);
-		canAddEntry = NO;
-	} else if (section == ContactSections_LastName && self.tableView.isEditing) {
-		text = NSLocalizedString(@"Last name", nil);
-		canAddEntry = NO;
-	} else if ([self getSectionData:section].count > 0 || self.tableView.isEditing) {
-		if (section == ContactSections_Number) {
-			text = NSLocalizedString(@"Phone numbers", nil);
-			addEntryName = NSLocalizedString(@"Add new phone number", nil);
-		} else if (section == ContactSections_Sip) {
-			text = NSLocalizedString(@"SIP addresses", nil);
-			addEntryName = NSLocalizedString(@"Add new SIP address", nil);
-		} else if (section == ContactSections_Email &&
-				   [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
-			text = NSLocalizedString(@"Email addresses", nil);
-			addEntryName = NSLocalizedString(@"Add new email", nil);
-		}
-	}
-
-	if (!text) {
-		return nil;
-	}
-
-	CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
-	UIView *tempView = [[UIView alloc] initWithFrame:frame];
-	if (@available(iOS 13, *)) {
-		tempView.backgroundColor = [UIColor systemBackgroundColor];
-	} else {
-		tempView.backgroundColor = [UIColor whiteColor];
-	}
-
-	UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
-	tempLabel.backgroundColor = [UIColor clearColor];
-	tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
-	tempLabel.text = text.uppercaseString;
-	tempLabel.textAlignment = NSTextAlignmentCenter;
-	tempLabel.font = [UIFont systemFontOfSize:15];
-	tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-	[tempView addSubview:tempLabel];
-
-	if (canAddEntry) {
-		frame.origin.x = (tableView.frame.size.width - 30 /*image size*/) / 2 - 5 /*right offset*/;
-		UIIconButton *tempAddButton = [[UIIconButton alloc] initWithFrame:frame];
-		[tempAddButton setImage:[UIImage imageNamed:@"add_field_default.png"] forState:UIControlStateNormal];
-		[tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateHighlighted];
-		[tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateSelected];
-		[tempAddButton addTarget:self action:@selector(onAddClick:) forControlEvents:UIControlEventTouchUpInside];
-		tempAddButton.tag = section;
-		tempAddButton.accessibilityLabel = addEntryName;
-		tempAddButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-		[tempView addSubview:tempAddButton];
-	}
-
-	return tempView;
+    NSString *text = nil;
+    BOOL canAddEntry = self.tableView.isEditing;
+    NSString *addEntryName = nil;
+    if (section == ContactSections_FirstName && self.tableView.isEditing) {
+        text = NSLocalizedString(@"First name", nil);
+        canAddEntry = NO;
+    } else if (section == ContactSections_LastName && self.tableView.isEditing) {
+        text = NSLocalizedString(@"Last name", nil);
+        canAddEntry = NO;
+    } else if ([self getSectionData:section].count > 0 || self.tableView.isEditing) {
+        if (section == ContactSections_Number) {
+            text = NSLocalizedString(@"Phone numbers", nil);
+            addEntryName = NSLocalizedString(@"Add new phone number", nil);
+        } else if (section == ContactSections_Sip) {
+            text = NSLocalizedString(@"SIP addresses", nil);
+            addEntryName = NSLocalizedString(@"Add new SIP address", nil);
+        } else if (section == ContactSections_Email &&
+                   [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
+            text = NSLocalizedString(@"Email addresses", nil);
+            addEntryName = NSLocalizedString(@"Add new email", nil);
+        } else if(section == ContactSections_Company) {
+            text = @"Company";
+            canAddEntry = NO;
+        } else if(section == ContactSections_Title) {
+            text = @"Title";
+            canAddEntry = NO;
+        }
+    }
+    
+    if (!text) {
+        return nil;
+    }
+    
+    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+    UIView *tempView = [[UIView alloc] initWithFrame:frame];
+    if (@available(iOS 13, *)) {
+        tempView.backgroundColor = [UIColor systemBackgroundColor];
+    } else {
+        tempView.backgroundColor = [UIColor whiteColor];
+    }
+    
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
+    tempLabel.backgroundColor = [UIColor clearColor];
+    tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
+    tempLabel.text = text.uppercaseString;
+    tempLabel.textAlignment = NSTextAlignmentCenter;
+    tempLabel.font = [UIFont systemFontOfSize:15];
+    tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [tempView addSubview:tempLabel];
+    
+    if (canAddEntry) {
+        frame.origin.x = (tableView.frame.size.width - 30 /*image size*/) / 2 - 5 /*right offset*/;
+        UIIconButton *tempAddButton = [[UIIconButton alloc] initWithFrame:frame];
+        [tempAddButton setImage:[UIImage imageNamed:@"add_field_default.png"] forState:UIControlStateNormal];
+        [tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateHighlighted];
+        [tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateSelected];
+        [tempAddButton addTarget:self action:@selector(onAddClick:) forControlEvents:UIControlEventTouchUpInside];
+        tempAddButton.tag = section;
+        tempAddButton.accessibilityLabel = addEntryName;
+        tempAddButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [tempView addSubview:tempAddButton];
+    }
+    
+    return tempView;
 }
 
 - (void)onAddClick:(id)sender {
@@ -371,45 +401,45 @@
 }
 
 - (void)textFieldUpdated:(UITextField *)textField {
-	UIView *view = [textField superview];
-	while (view != nil && ![view isKindOfClass:[UIContactDetailsCell class]])
-		view = [view superview];
-	if (view != nil) {
-		UIContactDetailsCell *cell = (UIContactDetailsCell *)view;
-		// we cannot use indexPathForCell method here because if the cell is not visible anymore,
-		// it will return nil..
-		NSIndexPath *path = [self.tableView indexPathForCell:cell]; // [self.tableView indexPathForCell:cell];
-		ContactSections sect = (ContactSections)[path section];
-		NSString *value = [textField text];
-
-		switch (sect) {
-			case ContactSections_FirstName:
-				_contact.firstName = value;
-				break;
-			case ContactSections_LastName:
-				_contact.lastName = value;
-				break;
-			case ContactSections_Sip:
-				[_contact setSipAddress:value atIndex:path.row];
-				value = _contact.sipAddresses[path.row]; // in case of reformatting
-				break;
-			case ContactSections_Email:
-				[_contact setEmail:value atIndex:path.row];
-				value = _contact.emails[path.row]; // in case of reformatting
-				break;
-			case ContactSections_Number:
-				[_contact setPhoneNumber:value atIndex:path.row];
-                                value =
-                                    _contact.phones[path.row]; // in case of
-                                                               // reformatting
-                                break;
-                        case ContactSections_MAX:
-                        case ContactSections_None:
-                          break;
-                        }
-                        cell.editTextfield.text = value;
-                        _editButton.enabled = [self isValid];
+    UIView *view = [textField superview];
+    while (view != nil && ![view isKindOfClass:[UIContactDetailsCell class]])
+        view = [view superview];
+    if (view != nil) {
+        UIContactDetailsCell *cell = (UIContactDetailsCell *)view;
+        // we cannot use indexPathForCell method here because if the cell is not visible anymore,
+        // it will return nil..
+        NSIndexPath *path = [self.tableView indexPathForCell:cell]; // [self.tableView indexPathForCell:cell];
+        ContactSections sect = (ContactSections)[path section];
+        NSString *value = [textField text];
+        
+        switch (sect) {
+            case ContactSections_FirstName:
+                _contact.firstName = value;
+                break;
+            case ContactSections_LastName:
+                _contact.lastName = value;
+                break;
+            case ContactSections_Sip:
+                [_contact setSipAddress:value atIndex:path.row];
+                value = _contact.sipAddresses[path.row]; // in case of reformatting
+                break;
+            case ContactSections_Email:
+                [_contact setEmail:value atIndex:path.row];
+                value = _contact.emails[path.row]; // in case of reformatting
+                break;
+            case ContactSections_Number:
+                [_contact setPhoneNumber:value atIndex:path.row];
+                value = _contact.phones[path.row]; // in case of reformatting
+                break;
+            case ContactSections_MAX:
+            case ContactSections_None:
+            case ContactSections_Company:
+            case ContactSections_Title:
+                break;
         }
+        cell.editTextfield.text = value;
+        _editButton.enabled = [self isValid];
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

@@ -693,6 +693,7 @@
 		C35E33BE23758DFE00CC5C24 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33BD23758DFE00CC5C24 /* Action.swift */; };
 		C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */; };
 		C36482CB23967B02006BE61D /* neth_splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C36482CA23967B01006BE61D /* neth_splashscreen.png */; };
+		C37672F025C17D6100AB1F82 /* NethPhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */; };
 		C387A653243F4E9F007FF4DE /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C387A650243F4E9E007FF4DE /* NethLocalizable.strings */; };
 		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
@@ -1654,6 +1655,7 @@
 		C35E33BD23758DFE00CC5C24 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.swift; sourceTree = "<group>"; };
 		C36482CA23967B01006BE61D /* neth_splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_splashscreen.png; sourceTree = "<group>"; };
+		C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBook.swift; sourceTree = "<group>"; };
 		C3775A3324B607F100AF95F3 /* Pods_msgNotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_msgNotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3775A3524B6080500AF95F3 /* linphonesw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = linphonesw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C387A651243F4E9E007FF4DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
@@ -2971,6 +2973,7 @@
 				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
 				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
 				BB4BF16824C887F300667B10 /* CallIdTest.swift */,
+				C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */,
 			);
 			path = NethModels;
 			sourceTree = "<group>";
@@ -4188,6 +4191,7 @@
 				D3EA5411159853750037DC6B /* UIChatCell.m in Sources */,
 				D3F26BF115986B73005F9CAB /* CallIncomingView.m in Sources */,
 				D31B4B21159876C0002E6C72 /* UICompositeView.m in Sources */,
+				C37672F025C17D6100AB1F82 /* NethPhoneBook.swift in Sources */,
 				D31AAF5E159B3919002C6B02 /* CallPausedTableView.m in Sources */,
 				8C9C5E0D1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.m in Sources */,
 				631098491D4660580041F2B3 /* CountryListView.m in Sources */,

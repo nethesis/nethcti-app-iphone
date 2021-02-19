@@ -30,6 +30,8 @@ typedef enum _ContactSections {
 	ContactSections_Sip,
 	ContactSections_Number,
 	ContactSections_Email,
+    ContactSections_Company,
+    ContactSections_Title,
 	ContactSections_MAX
 } ContactSections;
 

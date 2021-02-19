@@ -71,6 +71,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     // Change title label color.
     _titleLabel.textColor = LINPHONE_MAIN_COLOR;
+    _descriptionLabel.textColor = LINPHONE_MAIN_COLOR;
 }
 
 #pragma mark - Action Functions

@@ -277,7 +277,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Call"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                    <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -335,7 +335,6 @@
         <image name="numpad_9_over.png" width="84.800003051757812" height="79.199996948242188"/>
         <image name="numpad_hash_default.png" width="84.800003051757812" height="78.400001525878906"/>
         <image name="numpad_hash_over.png" width="84.800003051757812" height="78.400001525878906"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
         <image name="numpad_over_background.png" width="2" height="2"/>
         <image name="numpad_star_default.png" width="84.800003051757812" height="81.599998474121094"/>
         <image name="numpad_star_over.png" width="84.800003051757812" height="81.599998474121094"/>

@@ -291,7 +291,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Call"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                            <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -589,7 +589,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Call"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="call_audio_start_default.png" backgroundImage="color_neth_A.png">
+                                            <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -643,7 +643,6 @@
         <image name="color_E.png" width="2" height="2"/>
         <image name="color_F.png" width="2" height="2"/>
         <image name="color_L.png" width="2" height="2"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
         <image name="contact_add_default.png" width="55.200000762939453" height="47.200000762939453"/>
         <image name="contact_add_disabled.png" width="55.200000762939453" height="47.200000762939453"/>
         <image name="dialer_background.png" width="1200" height="1030"/>

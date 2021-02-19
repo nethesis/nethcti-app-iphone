@@ -185,10 +185,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   userInfo:nil
 									repeats:YES];
     
-    if(TransferCallManager.instance.isCallTransfer)
-        [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
-    else
-        [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
+    [self drawOptionButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -350,6 +347,9 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	}
 }
 
+/**
+ Draw option button with option or transfer call icon.
+ */
 - (void)drawOptionButton {
     if(TransferCallManager.instance.isCallTransfer)
         [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];

@@ -638,74 +638,74 @@ static void linphone_iphone_configuring_status_changed(LinphoneCore *lc, Linphon
 #pragma mark - Registration State Functions
 
 - (void)onRegister:(LinphoneCore *)lc
-cfg:(LinphoneProxyConfig *)cfg
-state:(LinphoneRegistrationState)state
-message:(const char *)cmessage {
-	LOGI(@"New registration state: %s (message: %s)", linphone_registration_state_to_string(state), cmessage);
-
-	LinphoneReason reason = linphone_proxy_config_get_error(cfg);
-	NSString *message = nil;
-	switch (reason) {
-	case LinphoneReasonBadCredentials:
-		message = NSLocalizedString(@"Bad credentials, check your account settings", nil);
-		break;
-	case LinphoneReasonNoResponse:
-		message = NSLocalizedString(@"No response received from remote", nil);
-		break;
-	case LinphoneReasonUnsupportedContent:
-		message = NSLocalizedString(@"Unsupported content", nil);
-		break;
-	case LinphoneReasonIOError:
-		message = NSLocalizedString(
-					    @"Cannot reach the server: either it is an invalid address or it may be temporary down.", nil);
-		break;
-
-	case LinphoneReasonUnauthorized:
-		message = NSLocalizedString(@"Operation is unauthorized because missing credential", nil);
-		break;
-	case LinphoneReasonNoMatch:
-		message = NSLocalizedString(@"Operation could not be executed by server or remote client because it "
-					    @"didn't have any context for it",
-					    nil);
-		break;
-	case LinphoneReasonMovedPermanently:
-		message = NSLocalizedString(@"Resource moved permanently", nil);
-		break;
-	case LinphoneReasonGone:
-		message = NSLocalizedString(@"Resource no longer exists", nil);
-		break;
-	case LinphoneReasonTemporarilyUnavailable:
-		message = NSLocalizedString(@"Temporarily unavailable", nil);
-		break;
-	case LinphoneReasonAddressIncomplete:
-		message = NSLocalizedString(@"Address incomplete", nil);
-		break;
-	case LinphoneReasonNotImplemented:
-		message = NSLocalizedString(@"Not implemented", nil);
-		break;
-	case LinphoneReasonBadGateway:
-		message = NSLocalizedString(@"Bad gateway", nil);
-		break;
-	case LinphoneReasonServerTimeout:
-		message = NSLocalizedString(@"Server timeout", nil);
-		break;
-	case LinphoneReasonNotAcceptable:
-	case LinphoneReasonDoNotDisturb:
-	case LinphoneReasonDeclined:
-	case LinphoneReasonNotFound:
-	case LinphoneReasonNotAnswered:
-	case LinphoneReasonBusy:
-	case LinphoneReasonNone:
-	case LinphoneReasonUnknown:
-		message = NSLocalizedString(@"Unknown error", nil);
-		break;
-	}
-
-	// Post event
-	NSDictionary *dict =
-		[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:state], @"state",
-		 [NSValue valueWithPointer:cfg], @"cfg", message, @"message", nil];
-	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneRegistrationUpdate object:self userInfo:dict];
+               cfg:(LinphoneProxyConfig *)cfg
+             state:(LinphoneRegistrationState)state
+           message:(const char *)cmessage {
+    LOGI(@"New registration state: %s (message: %s)", linphone_registration_state_to_string(state), cmessage);
+    
+    LinphoneReason reason = linphone_proxy_config_get_error(cfg);
+    NSString *message = nil;
+    switch (reason) {
+        case LinphoneReasonBadCredentials:
+            message = NSLocalizedString(@"Bad credentials, check your account settings", nil);
+            break;
+        case LinphoneReasonNoResponse:
+            message = NSLocalizedString(@"No response received from remote", nil);
+            break;
+        case LinphoneReasonUnsupportedContent:
+            message = NSLocalizedString(@"Unsupported content", nil);
+            break;
+        case LinphoneReasonIOError:
+            message = NSLocalizedString(
+                                        @"Cannot reach the server: either it is an invalid address or it may be temporary down.", nil);
+            break;
+        case LinphoneReasonUnauthorized:
+            message = NSLocalizedString(@"Operation is unauthorized because missing credential", nil);
+            break;
+        case LinphoneReasonNoMatch:
+            message = NSLocalizedString(@"Operation could not be executed by server or remote client because it "
+                                        @"didn't have any context for it",
+                                        nil);
+            break;
+        case LinphoneReasonMovedPermanently:
+            message = NSLocalizedString(@"Resource moved permanently", nil);
+            break;
+        case LinphoneReasonGone:
+            message = NSLocalizedString(@"Resource no longer exists", nil);
+            break;
+        case LinphoneReasonTemporarilyUnavailable:
+            message = NSLocalizedString(@"Temporarily unavailable", nil);
+            break;
+        case LinphoneReasonAddressIncomplete:
+            message = NSLocalizedString(@"Address incomplete", nil);
+            break;
+        case LinphoneReasonNotImplemented:
+            message = NSLocalizedString(@"Not implemented", nil);
+            break;
+        case LinphoneReasonBadGateway:
+            message = NSLocalizedString(@"Bad gateway", nil);
+            break;
+        case LinphoneReasonServerTimeout:
+            message = NSLocalizedString(@"Server timeout", nil);
+            break;
+        case LinphoneReasonNotAcceptable:
+        case LinphoneReasonDoNotDisturb:
+        case LinphoneReasonDeclined:
+        case LinphoneReasonNotFound:
+        case LinphoneReasonNotAnswered:
+        case LinphoneReasonBusy:
+        case LinphoneReasonNone:
+        case LinphoneReasonUnknown:
+        case LinphoneReasonSessionIntervalTooSmall:
+            message = NSLocalizedString(@"Unknown error", nil);
+            break;
+    }
+    
+    // Post event
+    NSDictionary *dict =
+    [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:state], @"state",
+     [NSValue valueWithPointer:cfg], @"cfg", message, @"message", nil];
+    [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneRegistrationUpdate object:self userInfo:dict];
 }
 
 static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyConfig *cfg,
@@ -2283,6 +2283,29 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 		ret = [UIImage imageNamed:@"avatar.png"];
 	}
 	_avatar = ret;
+}
+
+#pragma mark - Proxy internal helper
+- (void)clearProxies {
+    LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC); // Get the default proxy configured.
+
+    const LinphoneAuthInfo *ai = linphone_proxy_config_find_auth_info(config);
+    linphone_core_remove_proxy_config(LC, config); // Remove the selected proxy config.
+    if (ai) {
+        linphone_core_remove_auth_info(LC, ai); // Remove the authentication infos.
+    }
+    
+    linphone_core_clear_proxy_config(LC);
+    linphone_core_clear_all_auth_info(LC);
+    linphone_proxy_config_done(config); // Confirm the actual configuration. ???
+    
+    [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result){
+        LOGW(result);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // May be run only on UI thread.
+            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        });
+    }];
 }
 
 @end

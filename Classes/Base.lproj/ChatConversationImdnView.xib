@@ -62,7 +62,7 @@
                             <rect key="frame" x="8" y="74" width="359" height="89"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="wJQ-zl-d5O" userLabel="backgroundColorImage">
+                                <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="wJQ-zl-d5O" userLabel="backgroundColorImage">
                                     <rect key="frame" x="0.0" y="0.0" width="359" height="89"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -82,7 +82,7 @@
                                     <color key="textColor" red="0.98766469960000003" green="0.27512490750000002" blue="0.029739789660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_neth_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mxm-1h-7dz" userLabel="bottomBarColor">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mxm-1h-7dz" userLabel="bottomBarColor">
                                     <rect key="frame" x="0.0" y="88" width="359" height="1"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 </imageView>
@@ -117,6 +117,5 @@
         <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
         <image name="color_A.png" width="2" height="2"/>
         <image name="color_E.png" width="2" height="2"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
     </resources>
 </document>

@@ -553,7 +553,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             //fetch phone locale
             for (NSString* lang in [NSLocale preferredLanguages]) {
                 NSUInteger idx = [lang rangeOfString:@"-"].location;
-                idx = (idx == NSNotFound) ? idx = 0 : idx + 1;
+                idx = (idx == NSNotFound) ? 0 : idx + 1;
                 if ((country = [CountryListView countryWithIso:[lang substringFromIndex:idx]]) != nil)
                     break;
             }
@@ -1461,26 +1461,30 @@ _waitView.hidden = YES; \
         NSString* pwd = [NSString stringWithUTF8String:[self findTextField:ViewElement_Password].text.UTF8String];
         
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
-        [api postLoginWithUsername:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
+        [api saveCredentialsWithUsername:username password:pwd domain:domain];
+        [api postLogin:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-                /* Crash
+                
+                // Wedo: here we fetch the Nethcti Phonebook. No authentication provided at app start and at login.
                 [api getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
-                    LOGI([NSString stringWithFormat:@"%li", [contacts count]]);
-                } errorHandler:^(NSString * _Nullable error) {
-                    LOGE(@"Chiamata terminata in errore.");
+                    printf("%d", 'R');
+                    LOGD(@"WEDO:Received contacts");
+                } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                    LOGE(@"WEDO:Error received when fetching contacts: %@", string);
                 }];
-                */
+                
                 [self performLogin:meUser domain:domain];
-            } errorHandler:^(NSString * _Nullable error) {
-                NSLog(@"API_ERROR: %@", error);
+            } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                // Get me error handling.
+                LOGE(@"API_ERROR: %@", string);
             }];
-        } errorHandler:^(NSString * _Nullable error) {
-            if([error isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
+        } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+            // Post login error handling.
+            if([string isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
                 [self performSelectorOnMainThread:@selector(showErrorController:)
                                        withObject:@"Bad credentials, check them and retry later."
                                     waitUntilDone:YES];
             }
-            NSLog(@"API_ERROR: %@", error);
         }];
     });
 }
@@ -1715,8 +1719,8 @@ _waitView.hidden = YES; \
         // });
         // [self performLogin:meUser domain:components[2]];
         [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
-    } errorHandler:^(NSString * _Nullable error) {
-        NSLog(@"API_ERROR: %@", error);
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        NSLog(@"API_ERROR: %@", string);
     }];
     /*
     if ([historyViews count] > 0) {

@@ -23,11 +23,11 @@
 @implementation Contact
 
 - (instancetype)initWithCNContact:(CNContact *)acncontact {
-  return [self initWithPerson:acncontact andFriend:NULL];
+    return [self initWithPerson:acncontact andFriend:NULL];
 }
 
 - (instancetype)initWithFriend:(LinphoneFriend *)afriend {
-	return [self initWithPerson:NULL andFriend:afriend];
+    return [self initWithPerson:NULL andFriend:afriend];
 }
 
 - (instancetype)initWithPerson:(CNContact *)acncontact
@@ -98,6 +98,7 @@
        self.firstName ?: @"", self.lastName ?: @"", self.phones.count,
        self.sipAddresses.count, self.emails.count);
   */
+    self.nethesis = NO; // Start from simple contact.
   return self;
 }
 
@@ -121,6 +122,11 @@
 }
 
 - (NSString *)displayName {
+    // Why Linphone had overwritten this property?
+    if(_nethesis) {
+        return _displayName;
+    }
+    
 	if (_friend) {
 		const char *friend_name = linphone_friend_get_name(_friend);
 		if (friend_name)

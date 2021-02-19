@@ -181,6 +181,9 @@
 			LOGD(@"CNContactStore authorization granted");
 			
 			NSError *contactError;
+            /*
+             CNContactStore = The object that fetches and saves contacts, groups, and containers from the user's contacts database.
+             */
 			CNContactStore* store = [[CNContactStore alloc] init];
 			[store containersMatchingPredicate:[CNContainer predicateForContainersWithIdentifiers:@[ store.defaultContainerIdentifier]] error:&contactError];
 			NSArray *keysToFetch = @[
@@ -192,6 +195,7 @@
 									 ];
 			CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
 			
+            // Wedo: here contacts from iPad phonebook are loaded.
 			success = [store enumerateContactsWithFetchRequest:request error:&contactError usingBlock:^(CNContact *__nonnull contact, BOOL *__nonnull stop) {
 				if (contactError) {
 				  NSLog(@"error fetching contacts %@",
@@ -223,6 +227,7 @@
 		}
 		[self dumpContactsDisplayNamesToUserDefaults];
 
+        // Wedo: here we notify un update for the AddressBook.
 		[NSNotificationCenter.defaultCenter
 		 postNotificationName:kLinphoneAddressBookUpdate
 		 object:self];
@@ -256,6 +261,49 @@
 
 	for (NSString *sip in mContact.sipAddresses)
 		[_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
+}
+
+/// Load Nethesis Contacts from remote phonebook.
+/// @param view Type of contacts to show. Can be:
+/// - person: to fetch only persons
+/// - company: to fetch only companies
+/// - all: to fetch all contacts
+/// @param term Term to search inside contact name.
+/// @param retry TO BE REMOVED: after a 401, login and retry one time.
+-(void)loadNeth:(NSString *)view withTerm:(NSString *)term {
+    @synchronized (_addressBookMap) {
+        if(_isLoading) return;
+        _isLoading = YES;
+    }
+    // TODO: Fetch contacts based on view and search term selected by user.
+    NethCTIAPI* api = [NethCTIAPI sharedInstance];
+    [api fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
+        for (Contact* nethContact in contacts) {
+            @synchronized(LinphoneManager.instance.fastAddressBook) {
+                @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                    [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+                    // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+                }
+            }
+            // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+        }
+        
+        // Mark contact as updated if loaded are more than 0.
+        [LinphoneManager.instance setContactsUpdated:(contacts.count > 0)];
+        @synchronized (_addressBookMap) {
+            _isLoading = NO;
+        }
+        [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+    } error:^(NSInteger code, NSString * _Nullable string) {
+        if(code == 401) {
+            [LinphoneManager.instance clearProxies];
+        }
+    }];
+}
+
+- (void) resetNeth {
+    [_addressBookMap removeAllObjects];
+    [NethPhoneBook.instance reset];
 }
 
 #pragma mark - Tools

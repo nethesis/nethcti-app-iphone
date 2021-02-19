@@ -50,7 +50,11 @@
 #pragma mark -
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
-  if (!inhibUpdate && ![_tableController isEditing] &&
+    __block bool isEdit = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        isEdit = [_tableController isEditing];
+    });
+    if (!inhibUpdate && !isEdit &&
       (PhoneMainView.instance.currentView == self.compositeViewDescription) &&
       (_nameLabel.text == PhoneMainView.instance.currentName)) {
     [self resetData];
@@ -87,13 +91,13 @@
 }
 
 - (void)saveData {
-	if (_contact == NULL) {
-		[PhoneMainView.instance popCurrentView];
-		return;
-	}
-        PhoneMainView.instance.currentName = _contact.displayName;
-        _nameLabel.text = PhoneMainView.instance.currentName;
-
+    if (_contact == NULL) {
+        [PhoneMainView.instance popCurrentView];
+        return;
+    }
+    PhoneMainView.instance.currentName = _contact.displayName;
+    _nameLabel.text = PhoneMainView.instance.currentName;
+    
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
     while (sips) {
@@ -108,7 +112,7 @@
             linphone_address_destroy(addr);
         }
     }
-        [LinphoneManager.instance.fastAddressBook saveContact:_contact];
+    [LinphoneManager.instance.fastAddressBook saveContact:_contact];
 }
 
 - (void)selectContact:(Contact *)acontact andReload:(BOOL)reload {
