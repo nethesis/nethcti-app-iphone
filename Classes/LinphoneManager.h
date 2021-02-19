@@ -195,6 +195,8 @@ typedef struct _LinphoneManagerSounds {
 - (void)setBluetoothEnabled:(BOOL)enable;
 - (BOOL)isCTCallCenterExist;
 
+- (void)clearProxies;
+
 @property (readonly) BOOL isTesting;
 @property(readonly, strong) FastAddressBook *fastAddressBook;
 @property (readonly) NetworkType network;

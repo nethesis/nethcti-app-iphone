@@ -90,7 +90,9 @@
         if([TransferCallManager.instance isCallTransfer]) {
             LinphoneCore *core = [LinphoneManager getLc];
             LinphoneCall *call = linphone_core_get_current_call(core);
-            TransferCallManager.instance.mTransferCall = call;
+            
+            // Save the origin address for attended transfer.
+            TransferCallManager.instance.mTransferCallOrigin = call;
         }
         
         [LinphoneManager.instance call:addr];

@@ -32,17 +32,22 @@
 @property(nonatomic, retain) NSString *firstName;
 @property(nonatomic, retain) NSString *lastName;
 @property(nonatomic, retain) NSString *displayName;
+@property(nonatomic, retain) NSString *company;
+@property(nonatomic, retain) NSString *title;
 @property(nonatomic, strong) NSMutableArray *sipAddresses;
 @property(nonatomic, strong) NSMutableArray *emails;
 @property(nonatomic, strong) NSMutableArray *phones;
 @property BOOL added;
+@property BOOL nethesis;
 
 - (void)setAvatar:(UIImage *)avatar;
 - (UIImage *)avatar;
 - (NSString *)displayName;
+- (NSString *)displayCompany;
 
 - (instancetype)initWithCNContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(LinphoneFriend *) friend;
+
 - (void)reloadFriend;
 - (void)clearFriend;
 

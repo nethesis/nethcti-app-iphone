@@ -44,19 +44,18 @@ NSArray *sortedAddresses;
 }
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
-	if ((!_ongoing && (PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription)) || (IPAD && PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription)) {
-		[self loadData];
-	}
+    if ((!_ongoing && (PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription)) ||
+        (IPAD &&
+         (PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription ||
+          PhoneMainView.instance.currentView == ContactDetailsViewNethesis.compositeViewDescription))) {
+        [self loadData];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	if (IPAD) {
-		if (![self selectFirstRow]) {
-			ContactDetailsView *view = VIEW(ContactDetailsView);
-			[view setContact:nil];
-		}
-	}
+	if (IPAD && ![self selectFirstRow])
+        [self setNilContact];
 }
 
 - (id)init {
@@ -129,34 +128,43 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return nil;
 }
 
+/// Load data from addressBookMap and show them filtered.
+/// Don't refuse this with the fetchRemoteContactsmethod, that populate the addressBookMap.
 - (void)loadData {
 	_ongoing = TRUE;
 	LOGI(@"====>>>> Load contact list - Start");
-	NSString* previous = [PhoneMainView.instance  getPreviousViewName];
+	NSString* previous = [PhoneMainView.instance getPreviousViewName];
 	addressBookMap = [LinphoneManager.instance getLinphoneManagerAddressBookMap];
 	BOOL updated = [LinphoneManager.instance getContactsUpdated];
 	if(([previous isEqualToString:@"ContactsDetailsView"] && updated) || updated || [addressBookMap count] == 0){
+        // Here contacts are updated.
 		[LinphoneManager.instance setContactsUpdated:FALSE];
 		@synchronized(addressBookMap) {
 			NSDictionary *allContacts = [[NSMutableDictionary alloc] initWithDictionary:LinphoneManager.instance.fastAddressBook.addressBookMap];
-			sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-				Contact* first =  [allContacts objectForKey:a];
-				Contact* second =  [allContacts objectForKey:b];
-				if([[first.firstName lowercaseString] compare:[second.firstName lowercaseString]] == NSOrderedSame)
-					return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
-				else
-					return [[first.firstName lowercaseString] compare:[second.firstName lowercaseString]];
-			}];
+            // Those are only sip addresses sorted by first and last name.
+            sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                Contact* first =  [allContacts objectForKey:a];
+                Contact* second =  [allContacts objectForKey:b];
+                if([[ContactSelection getPickerFilter] isEqual:@"all"]) {
+                    return [[first.company lowercaseString] compare:[second.company lowercaseString]];
+                } else {
+                    if([[first.firstName lowercaseString] compare:[second.firstName lowercaseString]] == NSOrderedSame)
+                        return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
+                    else
+                        return [[first.firstName lowercaseString] compare:[second.firstName lowercaseString]];
+                }
+            }];
 			
 			
 			LOGI(@"====>>>> Load contact list - Start 2 !!");
-			//Set all contacts from ContactCell to nil
-			for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j){
-				for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-				{
-					[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
-				}
-			}
+			// Set all contacts from ContactCell to nil
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
+                    for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
+                        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
+                    }
+                }
+            });
 			
 			// Reset Address book
 			[addressBookMap removeAllObjects];
@@ -165,56 +173,66 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 				@synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
 					contact = [LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:addr];
 				}
-				BOOL add = true;
-				// Do not add the contact directly if we set some filter
-				if ([ContactSelection getSipFilter] ||
-					[ContactSelection emailFilterEnabled]) {
-				  add = false;
-				}
-				if ([FastAddressBook contactHasValidSipDomain:contact]) {
-				  add = true;
-				}else if (contact.friend &&
-					linphone_presence_model_get_basic_status(
-						linphone_friend_get_presence_model(
-							contact.friend)) ==
-						LinphonePresenceBasicStatusOpen) {
-				  add = true;
-				}
+                
+                BOOL add = true;
+                // Do not add the contact directly if we set some filter
+                if ([ContactSelection getSipFilter] || [ContactSelection emailFilterEnabled]) {
+                    add = false;
+                }
+                
+                if ([FastAddressBook contactHasValidSipDomain:contact]) {
+                    add = true;
+                }else if (contact.friend &&
+                    linphone_presence_model_get_basic_status(
+                        linphone_friend_get_presence_model(contact.friend)) == LinphonePresenceBasicStatusOpen) {
+                    add = true;
+                }
 
 				if (!add && [ContactSelection emailFilterEnabled]) {
 				  // Add this contact if it has an email
 				  add = (contact.emails.count > 0);
 				}
+                
+                // Wedo Nethesis Filter. Show in SipView only Nethesis contacts. Can be renamed to NethesisView.
+                add = [self testNethesis:contact];
 
-				NSMutableString *name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
-				if (add && name != nil) {
-					NSString *firstChar = [[name substringToIndex:1] uppercaseString];
-					// Put in correct subAr
-					if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
-						firstChar = @"#";
-					}
-					NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
-					if (subAr == nil) {
-						subAr = [[NSMutableArray alloc] init];
-						[addressBookMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
-					}
-					NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
-							return [[self displayNameForContact:obj1] compare:[self displayNameForContact:obj2] options:NSCaseInsensitiveSearch];
-					}];
-					if (![subAr containsObject:contact]) {
-						[subAr insertObject:contact atIndex:idx];
-					}
-				}
+                NSMutableString *name = [[NSMutableString alloc] initWithString:@""];
+                if(![ContactSelection getSipFilter] && !contact.nethesis) {
+                    name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
+                } else  if(contact.company && contact.company.length > 0) {
+                    name = [[NSMutableString alloc] initWithString: contact.company];
+                } else {
+                    // Same as first.
+                    name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
+                }
+                
+                if (add && name != nil) {
+                    NSString *firstChar = [[name substringToIndex:1] uppercaseString];
+                    // Put in correct subAr
+                    if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
+                        firstChar = @"#";
+                    }
+                    NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
+                    if (subAr == nil) {
+                        subAr = [[NSMutableArray alloc] init];
+                        [addressBookMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
+                    }
+                    NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
+                        if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
+                            return [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]];
+                        else
+                            return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
+                    }];
+                    if (![subAr containsObject:contact]) {
+                        [subAr insertObject:contact atIndex:idx];
+                    }
+                }
 			}
-			// since we refresh the tableview, we must perform this on main
-			// thread
+            
+			// since we refresh the tableview, we must perform this on main thread
 			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				if (IPAD) {
-					if (!([self totalNumberOfItems] > 0)) {
-						ContactDetailsView *view = VIEW(ContactDetailsView);
-						[view setContact:nil];
-					}
-				}
+				if (IPAD && !([self totalNumberOfItems] > 0))
+                    [self setNilContact];
 			});
 		}
 		[LinphoneManager.instance setLinphoneManagerAddressBookMap:addressBookMap];
@@ -225,113 +243,112 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (void)loadSearchedData {
-	LOGI(@"Load search contact list");
-	@synchronized(addressBookMap) {
-		//Set all contacts from ContactCell to nil
-		for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j)
-		{
-			for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i)
-			{
-				[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
-			}
-		}
-		// Reset Address book
-		[addressBookMap removeAllObjects];
-		NSMutableArray *subAr = [NSMutableArray new];
-		NSMutableArray *subArBegin = [NSMutableArray new];
-		NSMutableArray *subArContain = [NSMutableArray new];
-		[addressBookMap insertObject:subAr forKey:@"" selector:@selector(caseInsensitiveCompare:)];
-		for (NSString *addr in sortedAddresses) {
-                  @synchronized(
-                      LinphoneManager.instance.fastAddressBook.addressBookMap) {
-                    Contact *contact =
-                        [LinphoneManager.instance.fastAddressBook.addressBookMap
-                            objectForKey:addr];
-
-                    BOOL add = true;
-                    // Do not add the contact directly if we set some filter
-                    if ([ContactSelection getSipFilter] ||
-                        [ContactSelection emailFilterEnabled]) {
-                      add = false;
-                    }
-                    NSString *filter = [ContactSelection getNameOrEmailFilter];
-                    if ([FastAddressBook contactHasValidSipDomain:contact]) {
-                      add = true;
-                    }
-                    if (contact.friend &&
-                        linphone_presence_model_get_basic_status(
-                            linphone_friend_get_presence_model(
-                                contact.friend)) ==
-                            LinphonePresenceBasicStatusOpen) {
-                      add = true;
-                    }
-
-                    if (!add && [ContactSelection emailFilterEnabled]) {
-                      // Add this contact if it has an email
-                      add = (contact.emails.count > 0);
-                    }
-                    NSInteger idx_begin = -1;
-                    NSInteger idx_sort = -1;
-                    NSMutableString *name =
-                        [self displayNameForContact:contact]
-                            ? [[NSMutableString alloc]
-                                  initWithString:
-                                      [self displayNameForContact:contact]]
-                            : nil;
-                    if (add && name != nil) {
-                      if ([[contact displayName]
-                              rangeOfString:filter
-                                    options:NSCaseInsensitiveSearch]
-                              .location == 0) {
-                        if (![subArBegin containsObject:contact]) {
-                          idx_begin = idx_begin + 1;
-                          [subArBegin insertObject:contact atIndex:idx_begin];
-                        }
-                      } else if ([[contact displayName]
-                                     rangeOfString:filter
-                                           options:NSCaseInsensitiveSearch]
-                                     .location != NSNotFound) {
-                        if (![subArContain containsObject:contact]) {
-                          idx_sort = idx_sort + 1;
-                          [subArContain insertObject:contact atIndex:idx_sort];
-                        }
-                      }
-                    }
-                  }
-                }
-                [subArBegin
-                    sortUsingComparator:^NSComparisonResult(
-                        Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
-                      return [[self displayNameForContact:obj1]
-                          compare:[self displayNameForContact:obj2]
-                          options:NSCaseInsensitiveSearch];
-                    }];
-
-                [subArContain
-                    sortUsingComparator:^NSComparisonResult(
-                        Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
-                      return [[self displayNameForContact:obj1]
-                          compare:[self displayNameForContact:obj2]
-                          options:NSCaseInsensitiveSearch];
-                    }];
-
-                [subAr addObjectsFromArray:subArBegin];
-                [subAr addObjectsFromArray:subArContain];
-                [super loadData];
-
-                // since we refresh the tableview, we must perform this on main
-                // thread
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                  if (IPAD) {
-                    if (!([self totalNumberOfItems] > 0)) {
-                      ContactDetailsView *view = VIEW(ContactDetailsView);
-                      [view setContact:nil];
-                    }
-                  }
-                });
+    LOGI(@"Load search contact list");
+    @synchronized(addressBookMap) {
+        //Set all contacts from ContactCell to nil
+        for (NSInteger j = 0; j < [self.tableView numberOfSections]; ++j) {
+            for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:j]; ++i) {
+                [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] setContact:nil];
+            }
         }
+        // Reset Address book
+        [addressBookMap removeAllObjects];
+        NSMutableArray *subAr = [NSMutableArray new];
+        NSMutableArray *subArBegin = [NSMutableArray new];
+        NSMutableArray *subArContain = [NSMutableArray new];
+        [addressBookMap insertObject:subAr forKey:@"" selector:@selector(caseInsensitiveCompare:)];
+        for (NSString *addr in sortedAddresses) {
+            @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                Contact *contact = [LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:addr];
+                
+                BOOL add = true;
+                // Do not add the contact directly if we set some filter
+                if ([ContactSelection getSipFilter] || [ContactSelection emailFilterEnabled]) {
+                    add = false;
+                }
+                
+                if ([FastAddressBook contactHasValidSipDomain:contact]) {
+                    add = true;
+                }
+                if (contact.friend && linphone_presence_model_get_basic_status(linphone_friend_get_presence_model(contact.friend)) == LinphonePresenceBasicStatusOpen) {
+                    add = true;
+                }
+                
+                if (!add && [ContactSelection emailFilterEnabled]) {
+                    // Add this contact if it has an email
+                    add = (contact.emails.count > 0);
+                }
+                NSInteger idx_begin = -1;
+                NSInteger idx_sort = -1;
+                NSMutableString *name = [self displayNameForContact:contact]
+                    ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]]
+                    : nil;
+                
+                // Wedo Nethesis Filter. Show in SipView only Nethesis contacts. Can be renamed to NethesisView.
+                add = [self testNethesis:contact];
+                
+                if (add && name != nil) {
+                    NSString *filter = [ContactSelection getNameOrEmailFilter];
+                    NSRange range = [[contact displayName] rangeOfString:filter options:NSCaseInsensitiveSearch];
+                    if (range.location == 0) {
+                        if (![subArBegin containsObject:contact]) {
+                            idx_begin = idx_begin + 1;
+                            [subArBegin insertObject:contact atIndex:idx_begin];
+                        }
+                    } else if ([[contact displayName]
+                                rangeOfString:filter
+                                options:NSCaseInsensitiveSearch]
+                               .location != NSNotFound) {
+                        if (![subArContain containsObject:contact]) {
+                            idx_sort = idx_sort + 1;
+                            [subArContain insertObject:contact atIndex:idx_sort];
+                        }
+                    }
+                }
+            }
+        }
+        [subArBegin
+         sortUsingComparator:^NSComparisonResult(
+                                                 Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
+            return [[self displayNameForContact:obj1]
+                    compare:[self displayNameForContact:obj2]
+                    options:NSCaseInsensitiveSearch];
+        }];
+        
+        [subArContain
+         sortUsingComparator:^NSComparisonResult(
+                                                 Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
+            return [[self displayNameForContact:obj1]
+                    compare:[self displayNameForContact:obj2]
+                    options:NSCaseInsensitiveSearch];
+        }];
+        
+        [subAr addObjectsFromArray:subArBegin];
+        [subAr addObjectsFromArray:subArContain];
+        [super loadData];
+        
+        // since we refresh the tableview, we must perform this on main
+        // thread
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            if (IPAD && !([self totalNumberOfItems] > 0))
+                [self setNilContact];
+        });
+    }
 }
 
+- (BOOL)testNethesis:(Contact *)contact {
+    return ([ContactSelection getSipFilter] && contact.nethesis) || (![ContactSelection getSipFilter] && !contact.nethesis);
+}
+
+- (void)setNilContact {
+    if([ContactSelection getSipFilter]) {
+        ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+        [view setContact:nil];
+    } else {
+        ContactDetailsView *view = VIEW(ContactDetailsView);
+        [view setContact:nil];
+    }
+}
 
 #pragma mark - UITableViewDataSource Functions
 
@@ -348,6 +365,16 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if([ContactSelection getSipFilter]) { // If no need to download contacts, don't do it!
+        NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
+        if([[NethPhoneBook instance] hasMore:rowIndex]) {
+            NSString *searchText = [ContactSelection getNameOrEmailFilter];
+            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+            // Wedo: here we notify un update for the AddressBook.
+            // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+        }
+    }
+    
 	NSString *kCellId = NSStringFromClass(UIContactCell.class);
 	UIContactCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
 	if (cell == nil) {
@@ -363,6 +390,18 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	[super accessoryForCell:cell atPath:indexPath];
     cell.contentView.userInteractionEnabled = false;
 	return cell;
+}
+
+
+/// Utility method: count a table view row absolute index.
+/// @param tableView where count rows.
+/// @param indexPath pointer to current row.
+- (NSInteger)tableView:(UITableView *)tableView countRow:(NSIndexPath *)indexPath {
+    NSInteger rowCount = 0;
+    for (NSInteger i = 0 ; i < indexPath.section; i ++) { // Add previous sections rows.
+        rowCount += [tableView numberOfRowsInSection:i];
+    }
+    return rowCount + indexPath.row; // Add current section row.
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -393,17 +432,31 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		Contact *contact = subAr[indexPath.row];
 
 		// Go to Contact details view
-		ContactDetailsView *view = VIEW(ContactDetailsView);
-		[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-		if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
-			[view setContact:contact];
-		} else {
-			if (IPAD) {
-				[view resetContact];
-				view.isAdding = FALSE;
-			}
-			[view editContact:contact address:[ContactSelection getAddAddress]];
-		}
+        if([ContactSelection getSipFilter]) {
+            ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+                [view setContact:contact];
+            } else {
+                if (IPAD) {
+                    [view resetContact];
+                    view.isAdding = FALSE;
+                }
+                [view editContact:contact address:[ContactSelection getAddAddress]];
+            }
+        } else {
+            ContactDetailsView *view = VIEW(ContactDetailsView);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+                [view setContact:contact];
+            } else {
+                if (IPAD) {
+                    [view resetContact];
+                    view.isAdding = FALSE;
+                }
+                [view editContact:contact address:[ContactSelection getAddAddress]];
+            }
+        }
 	}
 }
 

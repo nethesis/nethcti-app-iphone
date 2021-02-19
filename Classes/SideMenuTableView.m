@@ -115,30 +115,12 @@
             addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
                                                      image:[UIImage imageNamed:@"quit_default.png"]
                                                   tapBlock:^() {
-            [self clearProxies]; // Remove remote sip proxies info.
-            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+            [LinphoneManager.instance clearProxies]; // Remove remote sip proxies info.
         }]];
     }
 }
 
-#pragma mark - Proxy internal helper
-- (void)clearProxies {
-    LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC); // Get the default proxy configured.
 
-    const LinphoneAuthInfo *ai = linphone_proxy_config_find_auth_info(config);
-    linphone_core_remove_proxy_config(LC, config); // Remove the selected proxy config.
-    if (ai) {
-        linphone_core_remove_auth_info(LC, ai); // Remove the authentication infos.
-    }
-    
-    linphone_core_clear_proxy_config(LC);
-    linphone_core_clear_all_auth_info(LC);
-    linphone_proxy_config_done(config); // Confirm the actual configuration. ???
-    
-    [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result){
-        LOGW(result);
-    }];
-}
 
 #pragma mark - Table View Controller
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

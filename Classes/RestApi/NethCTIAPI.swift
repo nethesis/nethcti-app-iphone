@@ -36,8 +36,8 @@ import Foundation
     }
     
     /**
- Get a string from the info.plist resource file.
- */
+     Get a string from the info.plist resource file.
+     */
     private func getStringFromInfo(keyString:String) -> String {
         let path = Bundle.main.path(forResource: "Info", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
@@ -52,7 +52,9 @@ import Foundation
     /**
      This is a basic call that have to be configured.
      */
-    private func baseCall(url: URL, method: String, headers: [String: Any]?, body: [String: Any]?, successHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Void {
+    private func baseCall(url: URL, method: String, headers: [String: Any]?, body: [String: Any]?,
+                          successHandler: @escaping (Data?, URLResponse?) -> Void,
+                          errorHandler: @escaping(Error?, URLResponse?) -> Void) -> Void {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         
@@ -62,6 +64,7 @@ import Foundation
         }
         
         urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        urlRequest.addValue("no-exp", forHTTPHeaderField: "Auth-Exp") // Header for mobile calls.
         
         // Body handling.
         if let b = body {
@@ -78,56 +81,78 @@ import Foundation
         myDefault.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         if #available(iOS 11.0, *) { myDefault.waitsForConnectivity = true }
         let session = URLSession(configuration: myDefault)
-        let task = session.dataTask(with: urlRequest, completionHandler: successHandler)
+        let task = session.dataTask(with: urlRequest) {
+            data, response, error in
+            if let e = error {
+                Log.directLog(BCTBX_LOG_ERROR, text: e.localizedDescription)
+                errorHandler(e, response)
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode != 200 {
+                errorHandler(error, response)
+                return;
+            }
+            else {
+                successHandler(data, response)
+            }
+        }
         task.resume()
+    }
+    
+    @objc public func saveCredentials(username:String, password:String, domain:String) -> Void {
+        ApiCredentials.Username = username
+        ApiCredentials.Domain = domain
+        ApiCredentials.Password = password
     }
     
     /**
      Make a request with the new request handler above this function.
      This may be the only call that don't need authentication.
      */
-    @objc public func postLogin(username:String, password:String, domain:String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
-        ApiCredentials.Username = username
-        ApiCredentials.Domain = domain
-        let loginEndpoint = "\(self.transformDomain(domain))/authentication/login"
-        guard let url = URL(string: loginEndpoint) else {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
+    @objc public func postLogin(_ successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
+        if !ApiCredentials.checkCredentials() {
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
-        let postStr = ApiCredentials.getAuthenticationCredentials(password: password)
-        self.baseCall(url: url, method: "POST", headers: nil, body: postStr) {
-            data, response, error in
-            // Error handling.
-            guard error == nil else {
-                errorHandler("Error calling POST on /authentication/login.")
-                print(error!)
-                return
-            }
-            
-            // Responde handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                errorHandler("Did not receive response.")
-                return
-            }
-            
-            // Digest handling.
-            guard let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
-                errorHandler("AUTHENTICATE-HEADER-MISSING.")
-                return
-            }
-            
-            // I return to caller method.
-            successHandler(ApiCredentials.setToken(password: password, digest: digest))
+        guard let domain = ApiCredentials.Domain as String?,
+              let transformedDomain = self.transformDomain(domain) as String?,
+              let loginEndpoint = "\(transformedDomain)/authentication/login" as String?,
+              let url = URL(string: loginEndpoint) else {
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
+            return
         }
+        
+        guard let password = ApiCredentials.Password as String?,
+              let postStr = ApiCredentials.getAuthenticationCredentials(password: password) else {
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            return
+        }
+        
+        self.baseCall(url: url, method: "POST", headers: nil, body: postStr, successHandler: {
+            data, response in
+            errorHandler(-2, "Why am I here? Post Login need to return a 401 status code, not 200.")
+        }, errorHandler: {
+            error, response in
+            // Error and Digest handling.
+            guard let httpResponse = response as? HTTPURLResponse,
+                  let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
+                errorHandler(-2, "AUTHENTICATE-HEADER-MISSING.")
+                return
+            }
+            
+            successHandler(ApiCredentials.setToken(password: password, digest: digest))
+        })
     }
     
     /**
      Make a POST logout request to NethCTI server.
      */
     @objc public func postLogout(successHandler: @escaping (String?) -> Void) -> Void {
-        let b = ApiCredentials.checkCredentials() as Bool?
-        if b != nil && !b! {
+        if !ApiCredentials.checkCredentials() {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
@@ -137,41 +162,36 @@ import Foundation
             result in
             // Check result.
             if (result) {
-                // After clear credentials.
-                ApiCredentials.clear()
-                successHandler("Logged out.")
+                // Logout from asterisk.
+                // Set the url.
+                let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
+                guard let url = URL(string: endPoint) else {
+                    print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
+                    return
+                }
+                
+                let postArgs = ApiCredentials.getAuthenticatedCredentials()
+                self.baseCall(url: url, method: "POST", headers: postArgs, body: nil, successHandler: {
+                    data, response in
+                    // Here we are sure that status code is 200.
+                    ApiCredentials.clear()
+                    successHandler("Logged out.")
+                }, errorHandler: {error, response in
+                    // Error handling.
+                    guard error == nil,
+                          let httpResponse = response as? HTTPURLResponse else {
+                        successHandler("Unknown error: Not logged out.")
+                        return
+                    }
+                    
+                    successHandler("\(httpResponse.statusCode): Not logged out.")
+                    return
+                })
             } else {
                 print("[WEDO PUSH] Error unloading notificatore.")
                 successHandler("Not logged out.")
             }
         })
-        return
-        
-        // Logout from Nethesis. Dosen't need anymore.
-        // Set the url.
-        /* let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
-        guard let url = URL(string: endPoint) else {
-            print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
-            return
-        }
-        
-        let postArgs = ApiCredentials.getAuthenticatedCredentials()
-        self.baseCall(url: url, method: "POST", headers: postArgs, body: nil)
-        {
-            data, response, error in
-            // Error handling.
-            guard error == nil else {
-                print(error!)
-                return
-            }
-            
-            // Responde handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-            
-            successHandler("Logged out.")
-        }*/
     }
     
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
@@ -196,29 +216,23 @@ import Foundation
     /**
      Make a GET me request to NethCTI server.
      */
-    @objc public func getMe(successHandler: @escaping (PortableNethUser?) -> Void, errorHandler: @escaping (String?) -> Void) -> Void {
+    @objc public func getMe(successHandler: @escaping (PortableNethUser?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
         if !ApiCredentials.checkCredentials() {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
         let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/user/me" // Set the endpoint URL.
         guard let url = URL(string: endPoint) else {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
-        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
-            data, response, error in
-            guard error == nil else { // Error handling.
-                errorHandler("Error calling GET on /user/me")
-                print(error!)
-                return
-            }
-            
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
+            data, response in
             guard let responseData = data else { // Responde handling.
-                errorHandler("No data provided.")
+                errorHandler(-2, "No data provided.")
                 return
             }
             
@@ -232,10 +246,19 @@ import Foundation
                 
                 successHandler(PortableNethUser(from: nethUser!))
             } catch (let errorThrown) {
-                errorHandler("json error: \(errorThrown.localizedDescription)")
+                errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
                 return
             }
-        }
+        }, errorHandler: {
+            error, response in
+            // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /user/me: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /user/me")
+            return
+        })
     }
     
     @objc public func registerPushToken(_ deviceId: String, unregister: Bool, success:@escaping (Bool) -> Void) -> Void {
@@ -245,8 +268,8 @@ import Foundation
             let user = ApiCredentials.Username as String?,
             let domain = ApiCredentials.Domain as String?,
             !user.isEmpty && !domain.isEmpty else {
-                print("[WEDO] Missing information for notificator.")
-                return
+            print("[WEDO] Missing information for notificator.")
+            return
         }
         
         // Generate the necessary headers. Content type is already in the header.
@@ -277,50 +300,40 @@ import Foundation
             return
         }
         
-        self.baseCall(url: url,
-                      method: "POST",
-                      headers: headers,
-                      body: body) {
-            data, response, error in
-                        // If there's n
-            guard
-                error == nil,
-                let responseData = data as Data? else {
-                    print("[WEDO] [APNS SERVER]: No data provided, error: \(error!)")
-                    success(false)
-                    return
+        self.baseCall(url: url, method: "POST", headers: headers, body: body, successHandler: {
+            data, response in
+            guard let responseData = data as Data? else {
+                print("[WEDO] [APNS SERVER]: No data provided")
+                success(false)
+                return
             }
             
             let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
             print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
             success(true)
-        }
+        }, errorHandler: { error, response in
+            success(false)
+        })
     }
     
-    @objc public func getPresence(successHandler: @escaping() -> Void, errorHandler: @escaping(String?) -> Void) -> Void { // Ready for the second release.
-        let b = ApiCredentials.checkCredentials() as Bool?
-        if b != nil && !b! {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue);
+    @objc public func getPresence(successHandler: @escaping() -> Void, errorHandler: @escaping(Int, String?) -> Void) -> Void { // Ready for the second release.
+        if !ApiCredentials.checkCredentials() {
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
         let endPoint = "\(ApiCredentials.Domain)/user/me" // Set the endpoint URL.
         guard let url = URL(string:endPoint) else {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
         }
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
-        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
-            data, response, error in
-            guard error == nil else {
-                errorHandler("Error calling GET on /user/presence")
-                print(error!)
-                return
-            }
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
+            data, response in
             
             guard let responseData = data else { // Response handling.
-                errorHandler("No data provided.")
+                errorHandler(-2, "No data provided.")
                 return
             }
             
@@ -329,10 +342,19 @@ import Foundation
                 _ = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 successHandler()
             } catch {
-                errorHandler("json error: \(error.localizedDescription)")
+                errorHandler(-2, "json error: \(error.localizedDescription)")
                 return
             }
-        }
+        }, errorHandler: {
+            error, response in
+            // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /user/presence: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /user/presence")
+            return
+        })
     }
     
     /**
@@ -342,36 +364,30 @@ import Foundation
      Offset: Starting point from taking contacts;
      Term: Search term to filter by;
      */
-    @objc public func getContacts(view:String, limit:Int, offset:Int, term:String, successHandler: @escaping(NethPhoneBookReturn) -> Void, errorHandler: @escaping(String?) -> Void) -> Void {
+    @objc public func getContacts(view:String, limit:Int, offset:Int, term:String, successHandler: @escaping(NethPhoneBookReturn) -> Void, errorHandler: @escaping(Int, String?) -> Void) -> Void {
         // Build the request.
-        let b = ApiCredentials.checkCredentials() as Bool?
-        if b != nil && !b! {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue);
+        if !ApiCredentials.checkCredentials() {
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
         
         let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/search/\(term)?view=\(view)&limit=\(limit)&offset=\(offset)"
         guard let url = URL(string:endpoint) else {
-            errorHandler(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
         }
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
         // Make the request.
-        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil) {
-            data, response, error in
-            guard error == nil else {
-                errorHandler("Error calling GET on /user/presence")
-                print(error!)
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
+            data, response in
+            guard let responseData = data else { // Response handling.
+                errorHandler(1, "No data provided.")
                 return
             }
             
-            guard let responseData = data else { // Response handling.
-                errorHandler("No data provided.")
-                return
-            }
-
             // Receive the results.
             do{
                 // Convert to phonebook.
@@ -379,9 +395,31 @@ import Foundation
                 let contacts = try NethPhoneBookReturn(raw: rawContacts)
                 successHandler(contacts)
             } catch {
-                errorHandler("json error: \(error.localizedDescription)")
+                errorHandler(1, "json error: \(error.localizedDescription)")
                 return
             }
-        }
+        }, errorHandler: {
+            error, response in
+            // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
+            return
+        })
+    }
+    
+    let cLimit = 50
+    
+    @objc public func fetchContacts(_ v: String, t: String, success:@escaping([Contact]) -> Void, error:@escaping(Int, String?) -> Void) {
+        let index = NethPhoneBook.instance().rows
+        getContacts(view: v, limit: cLimit, offset: index, term: t, successHandler:  {
+            phoneBookReturn in
+            NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
+            success(phoneBookReturn.rows.map({ (NethContact) -> Contact in
+                NethContact.toLinphoneContact()
+            }))
+        }, errorHandler: error)
     }
 }

@@ -46,10 +46,10 @@
 	_addressLabel.text = _editTextfield.text = address;
 	char *normAddr = (char *)_addressLabel.text.UTF8String;
 	LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
-	if(_addressLabel.text && cfg && linphone_proxy_config_is_phone_number(cfg, _addressLabel.text.UTF8String)) {
-		normAddr = linphone_proxy_config_normalize_phone_number(cfg,
-																_addressLabel.text.UTF8String);
-	}
+    const BOOL isPhone = linphone_proxy_config_is_phone_number(cfg, _addressLabel.text.UTF8String);
+	if(_addressLabel.text && cfg && isPhone)
+		normAddr = linphone_proxy_config_normalize_phone_number(cfg, _addressLabel.text.UTF8String);
+	
 	LinphoneAddress *addr = linphone_core_interpret_url(LC, normAddr);
 	_chatButton.enabled = _callButton.enabled = (addr != NULL);
 
@@ -61,22 +61,40 @@
 	contact = addr ? [FastAddressBook getContactWithAddress:(addr)] : NULL;
 
 	_linphoneImage.hidden = TRUE;
-	if (contact) {
+    if (contact) {
         const LinphonePresenceModel *model = contact.friend ? linphone_friend_get_presence_model_for_uri_or_tel(contact.friend, _addressLabel.text.UTF8String) : NULL;
         
-		self.linphoneImage.hidden = [LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"] ||
-			!((model && linphone_presence_model_get_basic_status(model) == LinphonePresenceBasicStatusOpen) ||
-			  (cfg && !linphone_proxy_config_is_phone_number(cfg,
-													  _addressLabel.text.UTF8String) &&
-			   [FastAddressBook isSipURIValid:_addressLabel.text]));
-        ContactDetailsView *contactDetailsView = VIEW(ContactDetailsView);
-        self.inviteButton.hidden = !ENABLE_SMS_INVITE || [[contactDetailsView.contact sipAddresses] count] > 0 || !self.linphoneImage.hidden;
-		[self shouldHideEncryptedChatView:cfg && linphone_proxy_config_get_conference_factory_uri(cfg) && model && linphone_presence_model_has_capability(model, LinphoneFriendCapabilityLimeX3dh)];
-	}
+        // Hide here contact info.
+        self.linphoneImage.hidden = [LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"] ||
+        !((model && linphone_presence_model_get_basic_status(model) == LinphonePresenceBasicStatusOpen) ||
+          (cfg && !isPhone && [FastAddressBook isSipURIValid:_addressLabel.text]));
+        Contact * selectedContact;
+        if([ContactSelection getSipFilter]) {
+            // Hard Nethesis.
+            ContactDetailsViewNethesis *contactDetailsView = VIEW(ContactDetailsViewNethesis);
+            selectedContact = contactDetailsView.contact;
+        } else {
+            // Easy Linphone.
+            ContactDetailsView *contactDetailsView = VIEW(ContactDetailsView);
+            selectedContact = contactDetailsView.contact;
+        }
+        self.inviteButton.hidden = !ENABLE_SMS_INVITE || [[selectedContact sipAddresses] count] > 0 || !self.linphoneImage.hidden;
+        [self shouldHideEncryptedChatView:cfg && linphone_proxy_config_get_conference_factory_uri(cfg) && model && linphone_presence_model_has_capability(model, LinphoneFriendCapabilityLimeX3dh)];
+    }
 
 	if (addr) {
 		linphone_address_unref(addr);
 	}
+}
+
+/// Prepare cell view to be shown if the value is not an address which can be called.
+/// @param value a simple string which doesn't contains an address.
+- (void)setNonAddress:(NSString *)value {
+    _addressLabel.text = value;
+    LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+    const BOOL isPhone = linphone_proxy_config_is_phone_number(cfg, _addressLabel.text.UTF8String);
+    _chatButton.enabled = _callButton.enabled = NO;
+    _inviteButton.hidden = _linphoneImage.hidden = _callButton.hidden = YES;
 }
 
 - (void)shouldHideEncryptedChatView:(BOOL)hasLime {
@@ -168,7 +186,9 @@
 }
 
 - (IBAction)onDeleteClick:(id)sender {
-	UITableView *tableView = VIEW(ContactDetailsView).tableController.tableView;
+	UITableView *tableView = [ContactSelection getSipFilter] ?
+    VIEW(ContactDetailsView).tableController.tableView :
+    VIEW(ContactDetailsViewNethesis).tableController.tableView;
 	NSIndexPath *indexPath = [tableView indexPathForCell:self];
 	[tableView.dataSource tableView:tableView
 				 commitEditingStyle:UITableViewCellEditingStyleDelete
