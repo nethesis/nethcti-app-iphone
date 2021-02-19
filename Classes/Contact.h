@@ -43,6 +43,7 @@
 - (void)setAvatar:(UIImage *)avatar;
 - (UIImage *)avatar;
 - (NSString *)displayName;
+- (NSString *)displayCompany;
 
 - (instancetype)initWithCNContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(LinphoneFriend *) friend;
