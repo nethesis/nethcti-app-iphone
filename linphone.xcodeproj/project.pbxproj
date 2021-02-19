@@ -706,6 +706,9 @@
 		C3ACAF2F24B48A2900269A95 /* msgNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA8CB827239F96CA00C330CC /* msgNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
+		C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */; };
+		C3F4DAE925E0069400713A0B /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3F4DAE725E0069400713A0B /* ContactDetailsViewNethesis.xib */; };
+		C3F4DAED25E006A200713A0B /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */; };
 		C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */; };
 		CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF15F21C20E4F9A3008B1DE6 /* UIImageViewDeletable.m */; };
 		CF15F21F20E4F9A3008B1DE6 /* UIImageViewDeletable.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF15F21D20E4F9A3008B1DE6 /* UIImageViewDeletable.xib */; };
@@ -1671,6 +1674,12 @@
 		C3AE8A7023881C74000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
+		C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewNethesis.m; sourceTree = "<group>"; };
+		C3F4DAE825E0069400713A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContactDetailsViewNethesis.xib; sourceTree = "<group>"; };
+		C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewNethesis.h; sourceTree = "<group>"; };
+		C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewNethesis.m; sourceTree = "<group>"; };
+		C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewNethesis.h; sourceTree = "<group>"; };
+		C3F4DAEE25E006B200713A0B /* ContactSections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSections.h; sourceTree = "<group>"; };
 		C90FAA7615AF54E6002091CB /* HistoryDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDetailsView.h; sourceTree = "<group>"; };
 		C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailsView.m; sourceTree = "<group>"; };
 		C9B3A6FD15B485DB006F52EE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Utils/Utils.h; sourceTree = "<group>"; };
@@ -1974,6 +1983,12 @@
 				8CBD7BA220B6B7FD00E5DCC0 /* ChatConversationInfoView.xib */,
 				D32B6E2715A5BC430033019F /* ChatConversationTableView.h */,
 				D32B6E2815A5BC430033019F /* ChatConversationTableView.m */,
+				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
+				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
+				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
+				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
+				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
+				C3F4DAE725E0069400713A0B /* ContactDetailsViewNethesis.xib */,
 				D3F795D315A582800077328B /* ChatConversationView.h */,
 				D3F795D415A582800077328B /* ChatConversationView.m */,
 				D38187B015FE340100C3EDCA /* ChatConversationView.xib */,
@@ -3344,6 +3359,7 @@
 				633FEDC41D3CD5590014B822 /* call_hangup_disabled.png in Resources */,
 				633FEDA81D3CD5590014B822 /* backspace_default.png in Resources */,
 				636316D11A1DEBCB0009B839 /* AboutView.xib in Resources */,
+				C3F4DAE925E0069400713A0B /* ContactDetailsViewNethesis.xib in Resources */,
 				8CBD7BA620B6B82400E5DCC0 /* UIChatConversationInfoTableViewCell.xib in Resources */,
 				244523AF1E8266CC0037A187 /* chat_delivered.png in Resources */,
 				CF7602F8210898CC00749F76 /* rec_on_default.png in Resources */,
@@ -4122,6 +4138,7 @@
 				633756451B67D2B200E21BAD /* SideMenuView.m in Sources */,
 				8CD99A422090CE6F008A7CDA /* UIChatConversationImdnTableViewCell.m in Sources */,
 				22E0A822111C44E100B04932 /* AboutView.m in Sources */,
+				C3F4DAED25E006A200713A0B /* ContactDetailsTableViewNethesis.m in Sources */,
 				633671611BCBAAD200BFCBDE /* ChatConversationCreateView.m in Sources */,
 				634610061B61330300548952 /* UILabel+Boldify.m in Sources */,
 				2248E90E12F7E4CF00220D9C /* UIDigitButton.m in Sources */,
@@ -4149,6 +4166,7 @@
 				D3F83EEC1582021700336684 /* CallView.m in Sources */,
 				CF7602D7210867E800749F76 /* RecordingsListView.m in Sources */,
 				63F1DF4B1BCE983200EDED90 /* CallConferenceTableView.m in Sources */,
+				C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */,
 				D3F83F8E15822ABE00336684 /* PhoneMainView.m in Sources */,
 				6377AC801BDE4069007F7625 /* UIBackToCallButton.m in Sources */,
 				6308F9C51BF0DD6600D1234B /* XMLRPCHelper.m in Sources */,
@@ -4599,6 +4617,14 @@
 				C38D9EE1239009010065C731 /* it */,
 			);
 			name = AssistantViewScreens.strings;
+			sourceTree = "<group>";
+		};
+		C3F4DAE725E0069400713A0B /* ContactDetailsViewNethesis.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3F4DAE825E0069400713A0B /* Base */,
+			);
+			name = ContactDetailsViewNethesis.xib;
 			sourceTree = "<group>";
 		};
 		D37EE11016035793003608A6 /* ImageView.xib */ = {

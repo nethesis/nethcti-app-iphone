@@ -22,8 +22,9 @@
 
 #import "Contact.h"
 #import "LinphoneUI/UIToggleButton.h"
+#import "ContactSections.h"
 
-@interface ContactDetailsTableView : UITableViewController <UITextFieldDelegate>
+@interface ContactDetailsTableViewNethesis : UITableViewController <UITextFieldDelegate>
 
 @property(strong, nonatomic) Contact *contact;
 @property(weak, nonatomic) IBOutlet UIToggleButton *editButton;

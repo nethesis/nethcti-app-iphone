@@ -44,19 +44,18 @@ NSArray *sortedAddresses;
 }
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
-	if ((!_ongoing && (PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription)) || (IPAD && PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription)) {
-		[self loadData];
-	}
+    if ((!_ongoing && (PhoneMainView.instance.currentView == ContactsListView.compositeViewDescription)) ||
+        (IPAD &&
+         (PhoneMainView.instance.currentView == ContactDetailsView.compositeViewDescription ||
+          PhoneMainView.instance.currentView == ContactDetailsViewNethesis.compositeViewDescription))) {
+        [self loadData];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	if (IPAD) {
-		if (![self selectFirstRow]) {
-			ContactDetailsView *view = VIEW(ContactDetailsView);
-			[view setContact:nil];
-		}
-	}
+	if (IPAD && ![self selectFirstRow])
+        [self setNilContact];
 }
 
 - (id)init {
@@ -232,12 +231,8 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
             
 			// since we refresh the tableview, we must perform this on main thread
 			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				if (IPAD) {
-					if (!([self totalNumberOfItems] > 0)) {
-						ContactDetailsView *view = VIEW(ContactDetailsView);
-						[view setContact:nil];
-					}
-				}
+				if (IPAD && !([self totalNumberOfItems] > 0))
+                    [self setNilContact];
 			});
 		}
 		[LinphoneManager.instance setLinphoneManagerAddressBookMap:addressBookMap];
@@ -335,18 +330,24 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         // since we refresh the tableview, we must perform this on main
         // thread
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            if (IPAD) {
-                if (!([self totalNumberOfItems] > 0)) {
-                    ContactDetailsView *view = VIEW(ContactDetailsView);
-                    [view setContact:nil];
-                }
-            }
+            if (IPAD && !([self totalNumberOfItems] > 0))
+                [self setNilContact];
         });
     }
 }
 
 - (BOOL)testNethesis:(Contact *)contact {
     return ([ContactSelection getSipFilter] && contact.nethesis) || (![ContactSelection getSipFilter] && !contact.nethesis);
+}
+
+- (void)setNilContact {
+    if([ContactSelection getSipFilter]) {
+        ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+        [view setContact:nil];
+    } else {
+        ContactDetailsView *view = VIEW(ContactDetailsView);
+        [view setContact:nil];
+    }
 }
 
 #pragma mark - UITableViewDataSource Functions
@@ -431,17 +432,31 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		Contact *contact = subAr[indexPath.row];
 
 		// Go to Contact details view
-		ContactDetailsView *view = VIEW(ContactDetailsView);
-		[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-		if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
-			[view setContact:contact];
-		} else {
-			if (IPAD) {
-				[view resetContact];
-				view.isAdding = FALSE;
-			}
-			[view editContact:contact address:[ContactSelection getAddAddress]];
-		}
+        if([ContactSelection getSipFilter]) {
+            ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+                [view setContact:contact];
+            } else {
+                if (IPAD) {
+                    [view resetContact];
+                    view.isAdding = FALSE;
+                }
+                [view editContact:contact address:[ContactSelection getAddAddress]];
+            }
+        } else {
+            ContactDetailsView *view = VIEW(ContactDetailsView);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+                [view setContact:contact];
+            } else {
+                if (IPAD) {
+                    [view resetContact];
+                    view.isAdding = FALSE;
+                }
+                [view editContact:contact address:[ContactSelection getAddAddress]];
+            }
+        }
 	}
 }
 

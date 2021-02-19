@@ -179,10 +179,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
 	Contact *contact = [FastAddressBook getContactWithAddress:addr];
 	if (contact) {
-		ContactDetailsView *view = VIEW(ContactDetailsView);
-		[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-		[ContactSelection setSelectionMode:ContactSelectionModeNone];
-		[view setContact:contact];
+        if(contact.nethesis) {
+            ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            [ContactSelection setSelectionMode:ContactSelectionModeNone];
+            [view setContact:contact];
+        } else {
+            ContactDetailsView *view = VIEW(ContactDetailsView);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            [ContactSelection setSelectionMode:ContactSelectionModeNone];
+            [view setContact:contact];
+        }
 	}
 }
 

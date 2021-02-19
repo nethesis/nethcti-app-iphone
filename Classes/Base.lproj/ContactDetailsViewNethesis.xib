@@ -313,13 +313,13 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="36.956521739130437" y="184.48660714285714"/>
         </view>
-        <tableViewController id="20" userLabel="tableController" customClass="ContactDetailsTableView">
+        <tableViewController id="20" userLabel="tableController" customClass="ContactDetailsTableViewNethesis">
             <extendedEdge key="edgesForExtendedLayout"/>
             <connections>
                 <outlet property="editButton" destination="8" id="wZf-wX-YIu"/>
                 <outlet property="view" destination="19" id="26"/>
             </connections>
-            <point key="canvasLocation" x="-430" y="-516"/>
+            <point key="canvasLocation" x="-500" y="-518"/>
         </tableViewController>
         <tapGestureRecognizer id="8bV-f4-pLL" userLabel="onAvatarClick">
             <connections>

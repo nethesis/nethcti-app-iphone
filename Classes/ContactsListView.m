@@ -106,7 +106,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                                                sideMenu:SideMenuView.class
                                                              fullscreen:false
                                                          isLeftFragment:YES
-                                                           fragmentWith:ContactDetailsView.class];
+                                                           fragmentWith:ContactDetailsView.class]; // We have to change it for Nethesis?
     }
     return compositeDescription;
 }
@@ -287,13 +287,24 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onAddContactClick:(id)event {
-    ContactDetailsView *view = VIEW(ContactDetailsView);
-    [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-    view.isAdding = TRUE;
-    if ([ContactSelection getAddAddress] == nil) {
-        [view newContact];
+    if([ContactSelection getSipFilter]) {
+        ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        view.isAdding = TRUE;
+        if ([ContactSelection getAddAddress] == nil) {
+            [view newContact];
+        } else {
+            [view newContact:[ContactSelection getAddAddress]];
+        }
     } else {
-        [view newContact:[ContactSelection getAddAddress]];
+        ContactDetailsView *view = VIEW(ContactDetailsView);
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        view.isAdding = TRUE;
+        if ([ContactSelection getAddAddress] == nil) {
+            [view newContact];
+        } else {
+            [view newContact:[ContactSelection getAddAddress]];
+        }
     }
 }
 
