@@ -54,7 +54,7 @@ import Foundation
      */
     private func baseCall(url: URL, method: String, headers: [String: Any]?, body: [String: Any]?,
                           successHandler: @escaping (Data?, URLResponse?) -> Void,
-                          errorHandler: @escaping(Int) -> Void) -> Void {
+                          errorHandler: @escaping(Error?, URLResponse?) -> Void) -> Void {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         
@@ -84,13 +84,13 @@ import Foundation
             data, response, error in
             if let e = error {
                 Log.directLog(BCTBX_LOG_ERROR, text: e.localizedDescription)
-                errorHandler(-1)
+                errorHandler(e, response)
                 return
             }
             
             if let httpResponse = response as? HTTPURLResponse,
                httpResponse.statusCode != 200 {
-                errorHandler(httpResponse.statusCode)
+                errorHandler(error, response)
                 return;
             }
             else {
@@ -133,25 +133,17 @@ import Foundation
         
         self.baseCall(url: url, method: "POST", headers: nil, body: postStr, successHandler: {
             data, response in
-            
-            // Responde handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                errorHandler(-2, "Did not receive response.")
-                return
-            }
-            
-            // Digest handling.
-            guard let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
+            errorHandler(-2, "Why am I here? Post Login need to return a 401 status code, not 200.")
+        }, errorHandler: {
+            error, response in
+            // Error and Digest handling.
+            guard let httpResponse = response as? HTTPURLResponse,
+                  let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
                 errorHandler(-2, "AUTHENTICATE-HEADER-MISSING.")
                 return
             }
             
-            // I return to caller method.
             successHandler(ApiCredentials.setToken(password: password, digest: digest))
-        }, errorHandler: {
-            error in
-            // Error handling.
-            errorHandler(error, "Error calling POST on /authentication/login.")
         })
     }
     
@@ -263,8 +255,13 @@ import Foundation
                 return
             }
         }, errorHandler: {
-            error in // Error handling.
-            errorHandler(error, "Error calling GET on /user/me")
+            error, response in
+            // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /user/me: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /user/me")
             return
         })
     }
@@ -319,7 +316,7 @@ import Foundation
             let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
             print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
             success(true)
-        }, errorHandler: { error in
+        }, errorHandler: { error, response in
             success(false)
         })
     }
@@ -353,8 +350,14 @@ import Foundation
                 errorHandler(-2, "json error: \(error.localizedDescription)")
                 return
             }
-        }, errorHandler: {error in
-            errorHandler(error, "Error calling GET on /user/presence")
+        }, errorHandler: {
+            error, response in
+            // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /user/presence: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /user/presence")
             return
         })
     }
@@ -400,8 +403,14 @@ import Foundation
                 errorHandler(1, "json error: \(error.localizedDescription)")
                 return
             }
-        }, errorHandler: { error in
-            errorHandler(error, "Error calling GET on /phonebook/search: Unauthorized exception")
+        }, errorHandler: {
+            error, response in
+            // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
             return
         })
     }
