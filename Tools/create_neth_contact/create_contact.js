@@ -1,4 +1,8 @@
 var names = [];
+let companies = ["Wedo", "Nethesis", "Google", "Facebook", "Tesla", "Tulips", "Amazon"];
+let titles = ["Software Developer", "System Administrator", "DevOps Engineer", "CEO", "CIO", "CTO", "KT"];
+let characters = '0123456789';
+
 $(document).ready(function () {
   // Fetch document at upload.
   $("#inputfile").on("change", function() {
@@ -35,7 +39,7 @@ function fetch(counter) {
   form.append("workphone", "" + makeNumber(10));
   form.append("extension", "" + makeNumber(4));
   form.append("company", random_company());
-  form.append("title", "Developer");
+  form.append("title", random_title());
   form.append("notes", "Made from Daniele Tentoni js script.");
   // form.append("extension", "" + name);
 
@@ -87,19 +91,20 @@ function makeId(length) {
 
 // Generate a random number.
 function makeNumber(length) {
-  let characters = '0123456789';
-  let charactersLength = characters.length;
   var result = '';
   for (var i = 0; i < length; i++ ) {
     // This is a randomId.
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return result;
 }
 
 function random_company() {
-	let companies = ["Wedo", "Nethesis", "Google", "Facebook", "Tesla", "Tulips", "Amazon"];
 	return companies[Math.floor(Math.random() * companies.length)];
+}
+
+function random_title() {
+	return titles[Math.floor(Math.random() * titles.length)];
 }
 
 // Capitalize first char of a string.
