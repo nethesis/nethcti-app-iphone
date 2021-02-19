@@ -282,10 +282,8 @@
             @synchronized(LinphoneManager.instance.fastAddressBook) {
                 @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
                     [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
-                    // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
                 }
             }
-            // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
         }
         
         // Mark contact as updated if loaded are more than 0.
@@ -302,7 +300,11 @@
 }
 
 - (void) resetNeth {
-    [_addressBookMap removeAllObjects];
+    [_addressBookMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * _Nonnull stop) {
+            if (((Contact*) obj).nethesis == YES) {
+                [_addressBookMap removeObjectForKey:key];
+            }
+    }];
     [NethPhoneBook.instance reset];
 }
 
