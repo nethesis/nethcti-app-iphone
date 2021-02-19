@@ -135,11 +135,12 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	LOGI(@"====>>>> Load contact list - Start");
 	NSString* previous = [PhoneMainView.instance getPreviousViewName];
 	addressBookMap = [LinphoneManager.instance getLinphoneManagerAddressBookMap];
+    OrderedDictionary *myMap = [[OrderedDictionary alloc] initWithDictionary:addressBookMap copyItems:YES];
 	BOOL updated = [LinphoneManager.instance getContactsUpdated];
-	if(([previous isEqualToString:@"ContactsDetailsView"] && updated) || updated || [addressBookMap count] == 0){
+	if(([previous isEqualToString:@"ContactsDetailsView"] && updated) || updated || [myMap count] == 0){
         // Here contacts are updated.
 		[LinphoneManager.instance setContactsUpdated:FALSE];
-		@synchronized(addressBookMap) {
+		@synchronized(myMap) {
 			NSDictionary *allContacts = [[NSMutableDictionary alloc] initWithDictionary:LinphoneManager.instance.fastAddressBook.addressBookMap];
             // Those are only sip addresses sorted by first and last name.
             sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
@@ -165,9 +166,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     }
                 }
             });
+            LOGI(@"====>>>> Load contact list - Start 3 !!");
 			
 			// Reset Address book
-			[addressBookMap removeAllObjects];
+			[myMap removeAllObjects];
 			for (NSString *addr in sortedAddresses) {
 				Contact *contact = nil;
 				@synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
@@ -212,10 +214,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     if ([firstChar characterAtIndex:0] < 'A' || [firstChar characterAtIndex:0] > 'Z') {
                         firstChar = @"#";
                     }
-                    NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
+                    NSMutableArray *subAr = [myMap objectForKey:firstChar];
                     if (subAr == nil) {
                         subAr = [[NSMutableArray alloc] init];
-                        [addressBookMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
+                        [myMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
                     }
                     NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
                         if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
@@ -228,14 +230,16 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     }
                 }
 			}
-            
+            LOGI(@"====>>>> Load contact list - Start 4 !!");
 			// since we refresh the tableview, we must perform this on main thread
 			dispatch_async(dispatch_get_main_queue(), ^(void) {
 				if (IPAD && !([self totalNumberOfItems] > 0))
                     [self setNilContact];
 			});
 		}
-		[LinphoneManager.instance setLinphoneManagerAddressBookMap:addressBookMap];
+        LOGI(@"====>>>> Load contact list - Start 5 !!");
+		[LinphoneManager.instance setLinphoneManagerAddressBookMap:myMap];
+        addressBookMap = [[OrderedDictionary alloc] initWithDictionary:myMap copyItems:YES];;
 	}
 	LOGI(@"====>>>> Load contact list - End");
 	[super loadData];
@@ -380,15 +384,19 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	if (cell == nil) {
 		cell = [[UIContactCell alloc] initWithIdentifier:kCellId];
 	}
-	NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
-	Contact *contact = subAr[indexPath.row];
-
-	// Cached avatar
-	UIImage *image = [FastAddressBook imageForContact:contact];
-	[cell.avatarImage setImage:image bordered:NO withRoundedRadius:YES];
-	[cell setContact:contact];
-	[super accessoryForCell:cell atPath:indexPath];
-    cell.contentView.userInteractionEnabled = false;
+    // if(addressBookMap.count > [indexPath section]) { // HackerMAN!
+        NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
+        // if (subAr.count > indexPath.row) {
+            Contact *contact = subAr[indexPath.row];
+            
+            // Cached avatar
+            UIImage *image = [FastAddressBook imageForContact:contact];
+            [cell.avatarImage setImage:image bordered:NO withRoundedRadius:YES];
+            [cell setContact:contact];
+            [super accessoryForCell:cell atPath:indexPath];
+            cell.contentView.userInteractionEnabled = false;
+        // }
+    // }
 	return cell;
 }
 
