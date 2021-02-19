@@ -39,15 +39,7 @@
         }
     }
     
-    // WEDO: Nethesis only fields.
-    if(_contact.nethesis) {
-        if (section == ContactSections_Company) {
-            return [NSMutableArray arrayWithObject:_contact.company];
-        } else if(section == ContactSections_Title) {
-            return [NSMutableArray arrayWithObject:_contact.title];
-        }
-    }
-    
+    // To hide section return this value.
     return nil;
 }
 
@@ -69,10 +61,6 @@
 		rmed = [_contact removeSipAddressAtIndex:path.row];
 	} else if (path.section == ContactSections_Email) {
 		rmed = [_contact removeEmailAtIndex:path.row];
-    } else if (path.section == ContactSections_Company) {
-        rmed = YES;
-    } else if (path.section == ContactSections_Title) {
-        rmed = YES;
     } else {
 		rmed = NO;
 	}
@@ -169,7 +157,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == ContactSections_FirstName || section == ContactSections_LastName) {
+    if (section == ContactSections_FirstName ||
+        section == ContactSections_LastName ||
+        section == ContactSections_Company ||
+        section == ContactSections_Title) {
         /*first and last name only when editting */
         return (self.tableView.isEditing) ? 1 : 0;
     } else if (section == ContactSections_Sip) {
@@ -180,12 +171,8 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if(section == ContactSections_Company) {
-        return _contact.company.length > 0;
-    } else if(section == ContactSections_Title) {
-        return _contact.title.length > 0;
-    }
-    return 0;
+    } else
+        return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -314,10 +301,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
         } else if(section == ContactSections_Company) {
-            text = @"Company";
+            text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
             canAddEntry = NO;
         } else if(section == ContactSections_Title) {
-            text = @"Title";
+            text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
             canAddEntry = NO;
         }
     }

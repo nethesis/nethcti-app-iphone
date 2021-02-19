@@ -97,6 +97,7 @@
     }
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
+    _companyLabel.text = _contact.displayCompany;
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -128,7 +129,11 @@
 
 	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-	[_tableController setContact:_contact];
+    _companyLabel.text = _contact.displayCompany;
+    CGRect frame = _companyLabel.frame;
+    frame.size.height = _contact.company.length > 0 ? _nameLabel.frame.size.height : 0;
+    _companyLabel.frame = frame;
+    [_tableController setContact:_contact];
 
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
@@ -393,6 +398,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
+    _companyLabel.hidden = editing;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
     [self recomputeTableViewSize:editing];
@@ -404,10 +410,19 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)recomputeTableViewSize:(BOOL)editing {
     CGRect frame = _tableController.tableView.frame;
-    frame.origin.y = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
+    const int avatarFrame = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
     if ([self viewIsCurrentlyPortrait] && !editing) {
-        frame.origin.y += _nameLabel.frame.size.height;
-    }
+        const int labelFrame = _nameLabel.frame.size.height + _companyLabel.frame.size.height; // Add here more label heights.
+        frame.origin.y = avatarFrame + labelFrame;
+    } else if(![self viewIsCurrentlyPortrait]) {
+        CGRect frame = _nameLabel.frame;
+        frame.origin.y = 8;
+        frame.origin.x = _companyLabel.frame.origin.x;
+        frame.size.width = _companyLabel.frame.size.width;
+        _nameLabel.frame = frame;
+        const int labelFrame = _nameLabel.frame.origin.y + _nameLabel.frame.size.height + _companyLabel.frame.size.height; // Add here more label heights.
+        frame.origin.y = avatarFrame > labelFrame ? avatarFrame : labelFrame;
+    } // Missing one case?
     
     frame.size.height = _tableController.tableView.contentSize.height;
     _tableController.tableView.frame = frame;
