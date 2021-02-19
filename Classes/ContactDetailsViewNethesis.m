@@ -50,15 +50,13 @@
 #pragma mark -
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
-    __block bool isEdit = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
-        isEdit = [_tableController isEditing];
+        if (!inhibUpdate && ![_tableController isEditing] &&
+            (PhoneMainView.instance.currentView == self.compositeViewDescription) &&
+            (_nameLabel.text == PhoneMainView.instance.currentName)) {
+            [self resetData];
+        }
     });
-    if (!inhibUpdate && !isEdit &&
-      (PhoneMainView.instance.currentView == self.compositeViewDescription) &&
-      (_nameLabel.text == PhoneMainView.instance.currentName)) {
-    [self resetData];
-  }
 }
 
 - (void)resetData {
