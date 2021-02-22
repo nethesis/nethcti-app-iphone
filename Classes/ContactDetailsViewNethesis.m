@@ -241,7 +241,16 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
+    
+    // Since Linphone use hidden properties, this bypass his code.
+    CGRect deleteRect = _deleteButton.frame;
+    deleteRect.size.height = 0;
+    _deleteButton.frame = deleteRect;
+    
+    CGRect editRect = _editButton.frame;
+    editRect.size.height = 0;
+    _editButton.frame = editRect;
+    
 	// if we use fragments, remove back button
 	if (IPAD) {
 		_backButton.hidden = YES;
