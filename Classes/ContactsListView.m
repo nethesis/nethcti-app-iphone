@@ -144,7 +144,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [ContactSelection setNameOrEmailFilter:@""];
     _searchBar.showsCancelButton = (_searchBar.text.length > 0);
     
-    [self resizeTableView:allButton.selected];
+    [self resizeTableView: YES]; // allButton.selected]; Hide picker.
     
     if (tableController.isEditing) {
         tableController.editing = NO;
@@ -190,20 +190,25 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void) resizeTableView:(BOOL) check {
-    int y =0;
+    int y = 0, diff = 0;
     if(check) {
         y =  _searchBar.frame.origin.y + _searchBar.frame.size.height;
+        diff = _filterPicker.frame.size.height;
     } else {
-        y =  _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
+        y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
+        diff = 0;
     }
-    [tableController.tableView setFrame:CGRectMake(tableController.tableView.frame.origin.x,
-                                                   y,
-                                                   tableController.tableView.frame.size.width,
-                                                   tableController.tableView.frame.size.height)];
-    [tableController.emptyView setFrame:CGRectMake(tableController.emptyView.frame.origin.x,
-                                                   y,
-                                                   tableController.emptyView.frame.size.width,
-                                                   tableController.emptyView.frame.size.height)];
+    
+    CGRect tableRect = CGRectMake(tableController.tableView.frame.origin.x,
+                                  y,
+                                  tableController.tableView.frame.size.width,
+                                  tableController.tableView.frame.size.height + diff);
+    CGRect emptyRect = CGRectMake(tableController.emptyView.frame.origin.x,
+                                  y,
+                                  tableController.emptyView.frame.size.width,
+                                  tableController.emptyView.frame.size.height + diff);
+    [tableController.tableView setFrame: tableRect];
+    [tableController.emptyView setFrame: emptyRect];
 }
 
 // The number of columns of data
@@ -283,7 +288,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)onLinphoneClick:(id)event {
     [self changeView:ContactsLinphone];
-    [self resizeTableView:NO];
+    [self resizeTableView:YES];
 }
 
 - (IBAction)onAddContactClick:(id)event {
