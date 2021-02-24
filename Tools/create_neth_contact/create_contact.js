@@ -1,6 +1,6 @@
 var names = [];
-let companies = ["Wedo", "Nethesis", "Google", "Facebook", "Tesla", "Tulips", "Amazon"];
-let titles = ["Software Developer", "System Administrator", "DevOps Engineer", "CEO", "CIO", "CTO", "KT"];
+let companies = ["Wedo", "Nethesis", "Google", "Facebook", "Tesla", "Tulips", "Amazon", "Barilla", "Dell", "Ferrero", "IBM", "San Benedetto", "Cisco", "Lavazza", "Ferrovie dello Stato", "Fiat", "Renault", "Citroen", "Iveco", "Piaggio", "Suzuki"];
+let titles = ["Software Developer", "System Administrator", "DevOps Engineer", "CEO", "CIO", "CTO", "KT", "Consulente alle Vendite", "Consulente Aziendale", "Responsabile Risorse Umane"];
 let characters = '0123456789';
 
 $(document).ready(function () {
