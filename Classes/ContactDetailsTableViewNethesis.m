@@ -38,9 +38,9 @@
         if (showEmails == true) {
             return _contact.emails;
         }
-    } else if(section == ContactSections_OwnerId) {
+    } else if(section == ContactSections_OwnerId && _contact.ownerId.length > 0) {
         return [[NSMutableArray alloc] initWithObjects:_contact.ownerId, nil];
-    } else if(section == ContactSections_Notes) {
+    } else if(section == ContactSections_Notes && _contact.notes.length > 0) {
         return [[NSMutableArray alloc] initWithObjects:_contact.notes, nil];
     }
     
