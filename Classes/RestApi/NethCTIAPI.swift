@@ -410,7 +410,7 @@ import Foundation
         })
     }
     
-    let cLimit = 50
+    let cLimit = 100
     
     @objc public func fetchContacts(_ v: String, t: String, success:@escaping([Contact]) -> Void, error:@escaping(Int, String?) -> Void) {
         let index = NethPhoneBook.instance().rows

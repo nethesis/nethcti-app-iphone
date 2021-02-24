@@ -27,6 +27,7 @@
 // this is broken design... but we need this to know which cell was modified
 // last... must be totally revamped
 @property(strong) NSIndexPath *indexPath;
+@property (atomic) BOOL isAddress;
 
 @property(weak, nonatomic) IBOutlet UIView *defaultView;
 @property(weak, nonatomic) IBOutlet UILabel *addressLabel;

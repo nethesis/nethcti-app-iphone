@@ -28,6 +28,7 @@
 #pragma mark - Property Functions
 
 - (NSMutableArray *)getSectionData:(NSInteger)section {
+    // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_Number) {
         return _contact.phones;
     } else if (section == ContactSections_Sip) {
@@ -37,6 +38,10 @@
         if (showEmails == true) {
             return _contact.emails;
         }
+    } else if(section == ContactSections_OwnerId && _contact.ownerId.length > 0) {
+        return [[NSMutableArray alloc] initWithObjects:_contact.ownerId, nil];
+    } else if(section == ContactSections_Notes && _contact.notes.length > 0) {
+        return [[NSMutableArray alloc] initWithObjects:_contact.notes, nil];
     }
     
     // To hide section return this value.
@@ -157,6 +162,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName ||
         section == ContactSections_LastName ||
         section == ContactSections_Company ||
@@ -171,6 +177,9 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
+    } else if((section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
+              (section == ContactSections_Notes &&_contact.notes.length > 0)) {
+        return 1;
     } else
         return 0;
 }
@@ -185,11 +194,13 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.contentView.userInteractionEnabled = false;
     
     cell.indexPath = indexPath;
     [cell hideDeleteButton:NO];
     [cell.editTextfield setKeyboardType:UIKeyboardTypeDefault];
     NSString *value = @"";
+    // NewContactSections: Add here a row for new ContactSection.
     if (indexPath.section == ContactSections_FirstName) {
         value = _contact.firstName;
         [cell hideDeleteButton:YES];
@@ -220,12 +231,22 @@
     } else if([indexPath section] == ContactSections_Title) {
         value = _contact.title;
         [cell hideDeleteButton:YES];
+    } else if([indexPath section] == ContactSections_OwnerId) {
+        [cell hideDeleteButton:YES];
+        [cell setNonAddress:_contact.ownerId];
+        // CGRect rect = cell.frame;
+        // rect.size.height = rect.size.height - cell.optionsView.frame.size.height;
+        // cell.frame = rect;
+        return cell;
+    } else if([indexPath section] == ContactSections_Notes) {
+        [cell hideDeleteButton:YES];
+        [cell setNonAddress:_contact.notes];
+        return cell;
     }
     
     if ([value hasPrefix:@" "])
         value = [value substringFromIndex:1];
     [cell setAddress:value];
-    cell.contentView.userInteractionEnabled = false;
     return cell;
 }
 
@@ -283,11 +304,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *text = nil;
     BOOL canAddEntry = self.tableView.isEditing;
     NSString *addEntryName = nil;
+    // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName && self.tableView.isEditing) {
         text = NSLocalizedString(@"First name", nil);
         canAddEntry = NO;
     } else if (section == ContactSections_LastName && self.tableView.isEditing) {
         text = NSLocalizedString(@"Last name", nil);
+        canAddEntry = NO;
+    } else if(section == ContactSections_Company && self.tableView.isEditing) {
+        text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+        canAddEntry = NO;
+    } else if(section == ContactSections_Title && self.tableView.isEditing) {
+        text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
         canAddEntry = NO;
     } else if ([self getSectionData:section].count > 0 || self.tableView.isEditing) {
         if (section == ContactSections_Number) {
@@ -300,11 +328,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_Company) {
-            text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+        } else if(section == ContactSections_OwnerId) { // Owner id isn't editable.
+            text = NSLocalizedStringFromTable(@"Created by", @"NethLocalizable", @"");
             canAddEntry = NO;
-        } else if(section == ContactSections_Title) {
-            text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
+        } else if(section == ContactSections_Notes) {
+            text = NSLocalizedStringFromTable(@"Notes", @"NethLocalizable", @"");
             canAddEntry = NO;
         }
     }
@@ -362,12 +390,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (tableView.isEditing) {
-		return 44;
-	} else {
-		return 88;
-	}
+    if(tableView.isEditing) {
+        return 44;
+    } else if (indexPath.section == ContactSections_OwnerId) {
+        return 44;
+    } else if (indexPath.section == ContactSections_Notes) { // Multiline?
+        return 44;
+    }
+    return 88;
+    // return tableView.isEditing || indexPath.section == ContactSections_OwnerId || indexPath.section == ContactSections_Notes ? 44 : 88;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 	return 1e-5;
 }
@@ -399,6 +432,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         ContactSections sect = (ContactSections)[path section];
         NSString *value = [textField text];
         
+        // NewContactSections: Add here a row for new ContactSection.
         switch (sect) {
             case ContactSections_FirstName:
                 _contact.firstName = value;
@@ -418,10 +452,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 [_contact setPhoneNumber:value atIndex:path.row];
                 value = _contact.phones[path.row]; // in case of reformatting
                 break;
+            case ContactSections_Company:
+            case ContactSections_Notes:
+            case ContactSections_OwnerId:
+            case ContactSections_Title:
             case ContactSections_MAX:
             case ContactSections_None:
-            case ContactSections_Company:
-            case ContactSections_Title:
                 break;
         }
         cell.editTextfield.text = value;

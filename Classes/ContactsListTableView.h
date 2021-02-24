@@ -25,8 +25,7 @@
 #import "OrderedDictionary.h"
 
 @interface ContactsListTableView : UICheckBoxTableView {
-  @private
-	OrderedDictionary *addressBookMap;
+  @private OrderedDictionary *addressBookMap;
 }
 @property(nonatomic) BOOL ongoing;
 - (void)loadData;

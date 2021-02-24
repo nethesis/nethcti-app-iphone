@@ -1,28 +1,52 @@
 var names = [];
-let companies = ["Wedo", "Nethesis", "Google", "Facebook", "Tesla", "Tulips", "Amazon"];
-let titles = ["Software Developer", "System Administrator", "DevOps Engineer", "CEO", "CIO", "CTO", "KT"];
+var companies = [];
+let titles = ["Software Developer", "System Administrator", "DevOps Engineer", "CEO", "CIO", "CTO", "KT", "Consulente alle Vendite", "Consulente Aziendale", "Responsabile Risorse Umane"];
 let characters = '0123456789';
 
 $(document).ready(function () {
   // Fetch document at upload.
+  $("#make-call-button").on("click", function(e) {
+    e.preventDefault();
+    start_fetch();
+  });
   $("#inputfile").on("change", function() {
-    let fr = new FileReader();
+    read_names(this.files[0]);
+  });
+  $("#companiesfile").on("change", function() {
+    read_companies(this.files[0]);
+  });
+  $("#make-call-spinner").hide();
+});
+
+const read_names = (f) => {
+	let fr = new FileReader();
     fr.onload = function() {
       $('#output').text(fr.result);
       names = ("" + fr.result).split("\n");
-      console.log(names.length);
+      console.log("Names: " + names.length);
     }
-    fr.readAsText(this.files[0]);
-  });
-});
-
-function start_fetch() {
-  let n = $("#callNumber").val();
-  if(n > 0) fetch(n);
-  else fetch(1);
+    fr.readAsText(f);
 }
 
-function fetch(counter) {
+const read_companies = (f) => {
+	let fr = new FileReader();
+    fr.onload = function() {
+      $('#output').text(fr.result);
+      companies = ("" + fr.result).split("\n");
+      console.log("Companies: " + companies.length);
+    }
+    fr.readAsText(f);
+}
+
+function start_fetch() {
+	let n = $("#callNumber").val();
+  $("#make-call-spinner").show();
+  $("#results").text("");
+	if(n > 0) fetch(n, n);
+	else fetch(1, 1);
+}
+
+function fetch(tot, counter) {
   var name = "";
   var surname = "";
   if(names.length > 0) {
@@ -32,14 +56,16 @@ function fetch(counter) {
     name = randomId(5);
     surname = randomId(10);
   }
+  let company = random_company();
+  let title = random_title();
 
   let form = new FormData();
   form.append("type", "public");
   form.append("name", name + " " + surname);
   form.append("workphone", "" + makeNumber(10));
   form.append("extension", "" + makeNumber(4));
-  form.append("company", random_company());
-  form.append("title", random_title());
+  form.append("company", company);
+  form.append("title", title);
   form.append("notes", "Made from Daniele Tentoni js script.");
   // form.append("extension", "" + name);
 
@@ -62,13 +88,17 @@ function fetch(counter) {
     timeout: 0,
     url: "https://nethctiapp.nethserver.net/webrest/phonebook/create",
     success: function (response) {
-      let next = counter - 1;
-      console.log("Success call for " + name + " " + surname);
-      console.log("Process request " + next);
-      if(next > 0)
-        fetch(next);
-      else
-        console.log("Finish");
+    	let next = counter - 1;
+    	let text = $('#results').text();
+    	$("#results").text(text + name + " " + surname + " " + company + " " + title + "\n");
+    	console.log("Process request " + next);
+      let perc = (tot - next) / tot * 100;
+      $("#call-progress").css('width', perc + '%').attr('aria-valuenow', perc);
+    	if(next > 0) {
+    		fetch(tot, next);
+    	} else {
+        $("#make-call-spinner").hide();
+    	}
     }
   });
 }
@@ -78,7 +108,7 @@ function randomName() {
 }
 
 // Generate a random string.
-function makeId(length) {
+function randomId(length) {
   let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let charactersLength = characters.length;
   var result = '';

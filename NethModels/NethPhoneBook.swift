@@ -38,7 +38,7 @@ class NethPhoneBook: NSObject {
      If rows is equal or more the count of phonebook contact, no more contacts need to be downloaded.
      */
     @objc public func hasMore(_ index: Int) -> Bool {
-        return rows < count && index + 20 > rows
+        return rows < count && index + 50 > rows
     }
     
     /// Increment the number of contacts loaded.

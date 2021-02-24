@@ -9,5 +9,6 @@ import Foundation
 
 enum NethContactType: String {
     case typeExtension = "extension"
+    case typePrivate = "private"
     case typePublic = "public"
 }
