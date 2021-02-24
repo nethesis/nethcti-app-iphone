@@ -84,6 +84,7 @@ static NSString* pickerFilter = @"all";
 
 {
     NSArray *_pickerData;
+    int tableViewHeight;
 }
 
 @synthesize tableController;
@@ -144,6 +145,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [ContactSelection setNameOrEmailFilter:@""];
     _searchBar.showsCancelButton = (_searchBar.text.length > 0);
     
+    tableViewHeight = tableController.tableView.frame.size.height;
     [self resizeTableView: YES]; // allButton.selected]; Hide picker.
     
     if (tableController.isEditing) {
@@ -190,25 +192,23 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void) resizeTableView:(BOOL) check {
-    int y = 0, diff = 0;
+    CGRect tableRect = tableController.tableView.frame;
+    CGRect emptyRect = tableController.emptyView.frame;
+    
+    // Get original height and change accordly to check value.
     if(check) {
-        y =  _searchBar.frame.origin.y + _searchBar.frame.size.height;
-        diff = _filterPicker.frame.size.height;
+        tableRect.origin.y = emptyRect.origin.y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight - _filterPicker.frame.size.height;
     } else {
-        y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
-        diff = 0;
+        tableRect.origin.y = emptyRect.origin.y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight;
     }
     
-    CGRect tableRect = CGRectMake(tableController.tableView.frame.origin.x,
-                                  y,
-                                  tableController.tableView.frame.size.width,
-                                  tableController.tableView.frame.size.height + diff);
-    CGRect emptyRect = CGRectMake(tableController.emptyView.frame.origin.x,
-                                  y,
-                                  tableController.emptyView.frame.size.width,
-                                  tableController.emptyView.frame.size.height + diff);
-    [tableController.tableView setFrame: tableRect];
-    [tableController.emptyView setFrame: emptyRect];
+    // Why application crash at this point? Why is in a background thread?
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [tableController.tableView setFrame: tableRect];
+        [tableController.emptyView setFrame: emptyRect];
+    });
 }
 
 // The number of columns of data
