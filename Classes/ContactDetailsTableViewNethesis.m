@@ -234,6 +234,9 @@
     } else if([indexPath section] == ContactSections_OwnerId) {
         [cell hideDeleteButton:YES];
         [cell setNonAddress:_contact.ownerId];
+        // CGRect rect = cell.frame;
+        // rect.size.height = rect.size.height - cell.optionsView.frame.size.height;
+        // cell.frame = rect;
         return cell;
     } else if([indexPath section] == ContactSections_Notes) {
         [cell hideDeleteButton:YES];
@@ -325,11 +328,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_OwnerId) {
-            text = @"OwnerID";
+        } else if(section == ContactSections_OwnerId) { // Owner id isn't editable.
+            text = NSLocalizedStringFromTable(@"Created by", @"NethLocalizable", @"");
             canAddEntry = NO;
         } else if(section == ContactSections_Notes) {
-            text = @"Note";
+            text = NSLocalizedStringFromTable(@"Notes", @"NethLocalizable", @"");
             canAddEntry = NO;
         }
     }
@@ -387,12 +390,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (tableView.isEditing) {
-		return 44;
-	} else {
-		return 88;
-	}
+    if(tableView.isEditing) {
+        return 44;
+    } else if (indexPath.section == ContactSections_OwnerId) {
+        return 44;
+    } else if (indexPath.section == ContactSections_Notes) { // Multiline?
+        return 44;
+    }
+    return 88;
+    // return tableView.isEditing || indexPath.section == ContactSections_OwnerId || indexPath.section == ContactSections_Notes ? 44 : 88;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 	return 1e-5;
 }

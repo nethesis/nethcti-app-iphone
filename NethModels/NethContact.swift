@@ -110,6 +110,7 @@ import Foundation
         contact!.addPhoneNumber(self.homephone)
         contact!.addPhoneNumber(self.workphone)
         contact!.addPhoneNumber(self.cellphone)
+        contact!.addSipAddress(self.rowExtension)
         contact!.company = self.company
         contact!.notes = self.notes
         contact!.ownerId = self.ownerID

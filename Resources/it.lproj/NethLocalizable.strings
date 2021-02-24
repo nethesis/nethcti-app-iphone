@@ -6,6 +6,10 @@
   
 */
 
+/*
+ * Info.plist transitions.
+ */
+
 "Hello! Join me on NethCTI 3! You can download it for free at: link" = "Ciao! Raggiungimi su NethCTI 3! Puoi scaricarlo gratuitamente all'indirizzo: https://apps.apple.com/it/app/nethcti-3/id1490557831?ign-mpt=uo%3D2";
 
 "Share photos with your friends and customize avatars" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
@@ -22,12 +26,24 @@
 
 "NethCTI will not send your contacts to any server" = "NethCTI non invierà i tuoi contatti a nessun server";
 
+/*
+ * Phonebook filters.
+ */
+
 "company" = "Azienda";
 
 "all" = "Tutto";
 
 "person" = "Persona";
 
+/*
+ * Contact details.
+ */
+
 "Company" = "Azienda";
+
+"Notes" = "Note";
+
+"Created by" = "Creato da";
 
 "Title" = "Titolo";

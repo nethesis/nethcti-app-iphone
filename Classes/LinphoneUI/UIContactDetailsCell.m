@@ -85,16 +85,25 @@
 	if (addr) {
 		linphone_address_unref(addr);
 	}
+    
+    _isAddress = YES;
 }
 
 /// Prepare cell view to be shown if the value is not an address which can be called.
 /// @param value a simple string which doesn't contains an address.
 - (void)setNonAddress:(NSString *)value {
     _addressLabel.text = value;
-    LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
-    const BOOL isPhone = linphone_proxy_config_is_phone_number(cfg, _addressLabel.text.UTF8String);
     _chatButton.enabled = _callButton.enabled = NO;
     _inviteButton.hidden = _linphoneImage.hidden = _callButton.hidden = YES;
+    // [self resizeCell];
+    
+    _isAddress = NO;
+}
+
+- (void)resizeCell {
+    CGRect frame = self.frame;
+    frame.size.height = _isAddress ? 88 : 44;
+    self.frame = _defaultView.frame = frame;
 }
 
 - (void)shouldHideEncryptedChatView:(BOOL)hasLime {
