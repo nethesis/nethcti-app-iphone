@@ -10,7 +10,7 @@ import Foundation
 // MARK: - NethContact
 @objcMembers class NethContact: NSObject {
     let id: Int
-    let ownerID: NethContactOwner
+    let ownerID: String
     let type: NethContactType
     let homeemail, workemail, homephone, workphone: String
     let cellphone, fax, title, company: String
@@ -21,7 +21,7 @@ import Foundation
     let speeddialNum: String
     let source: NethContactSource
     
-    init(id: Int, ownerID: NethContactOwner, type: NethContactType, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: NethContactSource) {
+    init(id: Int, ownerID: String, type: NethContactType, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: NethContactSource) {
         self.id = id
         self.ownerID = ownerID
         self.type = type
@@ -55,10 +55,7 @@ import Foundation
     
     init(raw: [String:Any]) {
         self.id = raw["id"] as! Int
-        if let ownerID = raw["ownerID"] as? String,
-           let nethOwner = NethContactOwner(rawValue: ownerID) {
-            self.ownerID = nethOwner
-        } else { self.ownerID = .admin }
+        self.ownerID = raw["owner_id"] as? String ?? ""
         if let type = raw["type"] as? String,
            let nethType = NethContactType(rawValue: type) {
             self.type = nethType
@@ -70,7 +67,12 @@ import Foundation
         self.cellphone = raw["cellphone"] as? String ?? ""
         self.fax = raw["fax"] as? String ?? ""
         self.title = raw["title"] as? String ?? ""
-        self.company = raw["company"] as? String ?? ""
+        if let company = raw["company"] as? String,
+           company != "" {
+            self.company = company
+        } else {
+            self.company = ""
+        }
         self.notes = raw["notes"] as? String ?? ""
         self.name = raw["name"] as? String ?? ""
         self.homestreet = raw["homestreet"] as? String ?? ""
@@ -109,6 +111,8 @@ import Foundation
         contact!.addPhoneNumber(self.workphone)
         contact!.addPhoneNumber(self.cellphone)
         contact!.company = self.company
+        contact!.notes = self.notes
+        contact!.ownerId = self.ownerID
         contact!.title = self.title
         contact!.displayName = "\(self.name) - \(self.company)".trimmingCharacters(in: CharacterSet(arrayLiteral: " ", "-"))
         return contact!

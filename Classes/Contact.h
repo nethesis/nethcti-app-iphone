@@ -32,12 +32,16 @@
 @property(nonatomic, retain) NSString *firstName;
 @property(nonatomic, retain) NSString *lastName;
 @property(nonatomic, retain) NSString *displayName;
-@property(nonatomic, retain) NSString *company;
-@property(nonatomic, retain) NSString *title;
 @property(nonatomic, strong) NSMutableArray *sipAddresses;
 @property(nonatomic, strong) NSMutableArray *emails;
 @property(nonatomic, strong) NSMutableArray *phones;
 @property BOOL added;
+
+// Nethesis fields.
+@property(nonatomic, retain) NSString *company;
+@property(nonatomic, retain) NSString *notes;
+@property(nonatomic, retain) NSString *ownerId;
+@property(nonatomic, retain) NSString *title;
 @property BOOL nethesis;
 
 - (void)setAvatar:(UIImage *)avatar;
