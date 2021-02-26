@@ -10,8 +10,6 @@
  * Info.plist transitions.
  */
 
-"Hello! Join me on NethCTI 3! You can download it for free at: link" = "Ciao! Raggiungimi su NethCTI 3! Puoi scaricarlo gratuitamente all'indirizzo: https://apps.apple.com/it/app/nethcti-3/id1490557831?ign-mpt=uo%3D2";
-
 "Share photos with your friends and customize avatars" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
 
 "NethCTI will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes" = "NethCTI non userà, conserverà o condividerà la tua posizione. L'autorizzazione concede solo di rilevare i cambiamenti alla connessione Wifi.";
