@@ -684,7 +684,6 @@
 		C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD420244F008100767A47 /* NethPhoneBookResult.swift */; };
 		C33FD423244F013B00767A47 /* NethContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD422244F013B00767A47 /* NethContact.swift */; };
 		C33FD425244F039F00767A47 /* NethContactType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD424244F039F00767A47 /* NethContactType.swift */; };
-		C33FD427244F03C300767A47 /* NethContactSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD426244F03C300767A47 /* NethContactSource.swift */; };
 		C342BA1924B5D49200003F8D /* UIInterfaceStyleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135761B240E81BA005304D4 /* UIInterfaceStyleButton.m */; };
 		C34CFBA7249BAB7800D22DB8 /* neth_dialer_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */; };
 		C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B723758C0400CC5C24 /* NethUser.swift */; };
@@ -698,7 +697,6 @@
 		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
 		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
-		C3990D1224B5B25600EE834B /* NethContactOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3990D1124B5B25600EE834B /* NethContactOwner.swift */; };
 		C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3990D1324B5B67100EE834B /* TransferCallManager.swift */; };
 		C39F991824D0345800B3039C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6C88323FABF690076A018 /* Utils.swift */; };
 		C39F991924D0345800B3039C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */; };
@@ -1651,7 +1649,6 @@
 		C33FD420244F008100767A47 /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
 		C33FD422244F013B00767A47 /* NethContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
 		C33FD424244F039F00767A47 /* NethContactType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactType.swift; sourceTree = "<group>"; };
-		C33FD426244F03C300767A47 /* NethContactSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactSource.swift; sourceTree = "<group>"; };
 		C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_dialer_background.png; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
@@ -1668,7 +1665,6 @@
 		C38D9EDD238FFDF60065C731 /* color_neth_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_A.png; sourceTree = "<group>"; };
 		C38D9EE1239009010065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C3990D1124B5B25600EE834B /* NethContactOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactOwner.swift; sourceTree = "<group>"; };
 		C3990D1324B5B67100EE834B /* TransferCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
 		C3A1263D25E8FF9200DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3A1263F25E8FF9C00DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
@@ -2987,8 +2983,6 @@
 				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
 				C33FD422244F013B00767A47 /* NethContact.swift */,
 				C33FD424244F039F00767A47 /* NethContactType.swift */,
-				C33FD426244F03C300767A47 /* NethContactSource.swift */,
-				C3990D1124B5B25600EE834B /* NethContactOwner.swift */,
 				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
 				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
 				BB4BF16824C887F300667B10 /* CallIdTest.swift */,
@@ -4228,13 +4222,11 @@
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
 				D37C639B15AADEF6009D0BAC /* ContactDetailsTableView.m in Sources */,
-				C3990D1224B5B25600EE834B /* NethContactOwner.swift in Sources */,
 				C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */,
 				63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */,
 				C33FD423244F013B00767A47 /* NethContact.swift in Sources */,
 				D3C6526715AC1A8F0092A874 /* UIContactDetailsCell.m in Sources */,
 				C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */,
-				C33FD427244F03C300767A47 /* NethContactSource.swift in Sources */,
 				631348301B6F7B6600C6BDCB /* UIRoundBorderedButton.m in Sources */,
 				C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */,
 				63FB30351A680E73008CA393 /* UIRoundedImageView.m in Sources */,

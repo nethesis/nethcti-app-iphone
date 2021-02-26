@@ -38,7 +38,9 @@
         if (showEmails == true) {
             return _contact.emails;
         }
-    } else if(section == ContactSections_Company && _contact.company.length > 0)
+    }
+    // Can you refactor this Linphone code?
+    else if(section == ContactSections_Company && _contact.company.length > 0)
         return [[NSMutableArray alloc] initWithObjects:_contact.company, nil];
     else if(section == ContactSections_HomeLocation && _contact.homeLocation.length > 0)
         return [[NSMutableArray alloc] initWithObjects:_contact.homeLocation, nil];
@@ -46,6 +48,8 @@
         return [[NSMutableArray alloc] initWithObjects:_contact.notes, nil];
     else if(section == ContactSections_OwnerId && _contact.ownerId.length > 0)
         return [[NSMutableArray alloc] initWithObjects:_contact.ownerId, nil];
+    else if(section == ContactSections_Source && _contact.source.length > 0)
+        return [[NSMutableArray alloc] initWithObjects:_contact.source, nil];
     else if(section == ContactSections_Title && _contact.title.length > 0)
         return [[NSMutableArray alloc] initWithObjects:_contact.title, nil];
     else if(section == ContactSections_WorkLocation && _contact.workLocation.length > 0)
@@ -172,7 +176,7 @@
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName ||
         section == ContactSections_LastName) {
-        /*first and last name only when editting */
+        // Those fields are only editable.
         return (self.tableView.isEditing) ? 1 : 0;
     } else if (section == ContactSections_Sip) {
         return _contact.sipAddresses.count;
@@ -185,10 +189,13 @@
     } else if((section == ContactSections_Company && _contact.company.length > 0) ||
               (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
               (section == ContactSections_Notes &&_contact.notes.length > 0) ||
-              (section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
               (section == ContactSections_Title && _contact.title.length > 0) ||
               (section == ContactSections_WorkLocation && _contact.workLocation.length > 0)) {
         return 1;
+    } else if((section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
+              (section == ContactSections_Source && _contact.source.length > 0)) {
+        // Those fields are not editable.
+        return self.tableView.isEditing ? 0 : 1;
     }
     
     return 0; // The section doesn't show any row.
@@ -247,6 +254,9 @@
         return cell;
     } else if(section == ContactSections_OwnerId) {
         [cell setNonAddress:_contact.ownerId];
+        return cell;
+    } else if(section == ContactSections_Source) {
+        [cell setNonAddress:_contact.source];
         return cell;
     } else if(section == ContactSections_Title) {
         [cell setNonAddress:_contact.title];
@@ -316,6 +326,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *text = nil;
     BOOL canAddEntry = self.tableView.isEditing;
     NSString *addEntryName = nil;
+    BOOL sectionHasRows = [self getSectionData:section].count > 0;
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName && self.tableView.isEditing) {
         text = NSLocalizedString(@"First name", nil);
@@ -323,7 +334,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     } else if (section == ContactSections_LastName && self.tableView.isEditing) {
         text = NSLocalizedString(@"Last name", nil);
         canAddEntry = NO;
-    } else if ([self getSectionData:section].count > 0 || self.tableView.isEditing) {
+    } else if (sectionHasRows || self.tableView.isEditing) {
+        // Show those editable fields section titles.
         if (section == ContactSections_Number) {
             text = NSLocalizedString(@"Phone numbers", nil);
             addEntryName = NSLocalizedString(@"Add new phone number", nil);
@@ -343,8 +355,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         } else if(section == ContactSections_Notes) {
             text = NSLocalizedStringFromTable(@"Notes", @"NethLocalizable", @"");
             canAddEntry = NO;
-        } else if(section == ContactSections_OwnerId) { // Owner id isn't editable.
+        } else if(section == ContactSections_OwnerId && !self.tableView.isEditing) { // Owner id isn't editable.
             text = NSLocalizedStringFromTable(@"Created by", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Source && !self.tableView.isEditing) { // Source isn't editable.
+            text = NSLocalizedStringFromTable(@"Source", @"NethLocalizable", @"");
             canAddEntry = NO;
         } else if(section == ContactSections_Title) {
             text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
@@ -467,11 +482,26 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 value = _contact.phones[path.row]; // in case of reformatting
                 break;
             case ContactSections_Company:
+                _contact.company = value;
+                break;
             case ContactSections_HomeLocation:
+                _contact.homeLocation = value;
+                break;
             case ContactSections_Notes:
+                _contact.notes = value;
+                break;
             case ContactSections_OwnerId:
+                _contact.ownerId = value;
+                break;
+            case ContactSections_Source:
+                _contact.source = value;
+                break;
             case ContactSections_Title:
+                _contact.title = value;
+                break;
             case ContactSections_WorkLocation:
+                _contact.workLocation = value;
+                break;
             case ContactSections_MAX:
             case ContactSections_None:
                 break;

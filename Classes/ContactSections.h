@@ -19,7 +19,8 @@ typedef enum _ContactSections {
     ContactSections_Company,
     ContactSections_HomeLocation,
     ContactSections_Notes,
-    ContactSections_OwnerId,
+    ContactSections_OwnerId, // Not editable.
+    ContactSections_Source, // Not editable.
     ContactSections_Title,
     ContactSections_WorkLocation,
     ContactSections_MAX

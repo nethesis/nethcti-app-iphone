@@ -19,9 +19,9 @@ import Foundation
     let workstreet, workpob, workcity, workprovince: String
     let workpostalcode, workcountry, url, rowExtension: String
     let speeddialNum: String
-    let source: NethContactSource
+    let source: String
     
-    init(id: Int, ownerID: String, type: NethContactType, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: NethContactSource) {
+    init(id: Int, ownerID: String, type: NethContactType, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: String) {
         self.id = id
         self.ownerID = ownerID
         self.type = type
@@ -90,10 +90,7 @@ import Foundation
         self.url = raw["url"] as? String ?? ""
         self.rowExtension = raw["extension"] as? String ?? ""
         self.speeddialNum = raw["speeddial_num"] as? String ?? ""
-        if let source = raw["source"] as? String,
-           let nethSource = NethContactSource(rawValue: source) {
-            self.source = nethSource
-        } else { self.source = .centralized }
+        self.source = raw["source"] as? String ?? ""
     }
     
     /**
@@ -115,6 +112,7 @@ import Foundation
         contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homecountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.notes = self.notes
         contact!.ownerId = self.ownerID
+        contact!.source = self.source
         contact!.title = self.title
         contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.displayName = "\(self.name) - \(self.company)".trimmingCharacters(in: CharacterSet(arrayLiteral: " ", "-"))

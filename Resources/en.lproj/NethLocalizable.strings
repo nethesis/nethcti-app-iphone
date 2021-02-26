@@ -22,12 +22,14 @@
 
 "Company" = "Company";
 
-"Home location" = "Home location";
+"Home location" = "Home";
 
 "Notes" = "Notes";
 
 "Created by" = "Created by";
 
-"Title" = "Title";
+"Source" = "Source";
 
-"Work location" = "Work location";
+"Title" = "Job";
+
+"Work location" = "Work";
