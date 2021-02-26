@@ -39,6 +39,7 @@
 
 // Nethesis fields.
 @property(nonatomic, retain) NSString *company;
+@property(nonatomic, retain) NSString *homeLocation;
 @property(nonatomic, retain) NSString *notes;
 @property(nonatomic, retain) NSString *ownerId;
 @property(nonatomic, retain) NSString *title;

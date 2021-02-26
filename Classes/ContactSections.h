@@ -17,6 +17,7 @@ typedef enum _ContactSections {
     ContactSections_Email,
     // Nethesis fields.
     ContactSections_Company,
+    ContactSections_HomeLocation,
     ContactSections_Notes,
     ContactSections_OwnerId,
     ContactSections_Title,

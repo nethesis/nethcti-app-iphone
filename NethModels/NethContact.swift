@@ -112,6 +112,7 @@ import Foundation
         contact!.addPhoneNumber(self.cellphone)
         contact!.addSipAddress(self.rowExtension)
         contact!.company = self.company
+        contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homepob)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.notes = self.notes
         contact!.ownerId = self.ownerID
         contact!.title = self.title
