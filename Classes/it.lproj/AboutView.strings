@@ -15,7 +15,7 @@
 "g2W-u5-yxg.text" = "Linphone Core 3.9.0";
 
 /* Class = "UILabel"; text = "Linphone iOS 8.0"; ObjectID = "gLk-Bc-zvx"; */
-"gLk-Bc-zvx.text" = "NethCTI iOS 1.0.0";
+"gLk-Bc-zvx.text" = "NethCTI iOS 1.0.0"; // This will be overwritten.
 
 /* Class = "UILabel"; text = "GNU General Public License V2\n© 2010-2019 Belledonne Communications"; ObjectID = "gVK-Xc-S59"; */
 "gVK-Xc-S59.text" = "GNU General Public License V2\n© 2010-2020 Nethesis srl";

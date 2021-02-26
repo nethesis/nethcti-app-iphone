@@ -702,6 +702,7 @@
 		C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3990D1324B5B67100EE834B /* TransferCallManager.swift */; };
 		C39F991824D0345800B3039C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6C88323FABF690076A018 /* Utils.swift */; };
 		C39F991924D0345800B3039C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */; };
+		C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */; };
 		C3ACAF2C24B48A2900269A95 /* linphoneExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61AE364B20C00B370089D9D3 /* linphoneExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF2F24B48A2900269A95 /* msgNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA8CB827239F96CA00C330CC /* msgNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -1666,6 +1667,8 @@
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3990D1124B5B25600EE834B /* NethContactOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactOwner.swift; sourceTree = "<group>"; };
 		C3990D1324B5B67100EE834B /* TransferCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
+		C3A1264625E9512900DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
+		C3A1264825E9513100DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3ACAF2B24B469DA00269A95 /* NethCTIDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NethCTIDebug.entitlements; sourceTree = "<group>"; };
 		C3AE8A6E238808A2000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AboutView.strings; sourceTree = "<group>"; };
 		C3AE8A7023881C74000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
@@ -2909,6 +2912,7 @@
 				63AADBC41B6A0FF200AA16FD /* Localizable.strings */,
 				63CDC4511C3BDE370085F529 /* sounds */,
 				C3006725251E260700F5E478 /* InfoPlist.strings */,
+				C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3607,6 +3611,7 @@
 				633FEDDE1D3CD5590014B822 /* call_start_body_over.png in Resources */,
 				24BFAAA0209B0630004F47A7 /* contacts_sip_default@2x.png in Resources */,
 				8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */,
+				C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */,
 				633FEDFB1D3CD5590014B822 /* camera_selected@2x.png in Resources */,
 				633FEF051D3CD55A0014B822 /* options_selected@2x.png in Resources */,
 				633FEDD61D3CD5590014B822 /* call_start_body_default.png in Resources */,
@@ -4599,6 +4604,15 @@
 				C38D9EE1239009010065C731 /* it */,
 			);
 			name = AssistantViewScreens.strings;
+			sourceTree = "<group>";
+		};
+		C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3A1264625E9512900DFFCA8 /* en */,
+				C3A1264825E9513100DFFCA8 /* it */,
+			);
+			name = BrandLocalizable.strings;
 			sourceTree = "<group>";
 		};
 		D37EE11016035793003608A6 /* ImageView.xib */ = {
