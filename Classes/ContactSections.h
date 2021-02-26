@@ -21,6 +21,7 @@ typedef enum _ContactSections {
     ContactSections_Notes,
     ContactSections_OwnerId,
     ContactSections_Title,
+    ContactSections_WorkLocation,
     ContactSections_MAX
 } ContactSections;
 

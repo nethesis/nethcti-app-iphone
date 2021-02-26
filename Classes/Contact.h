@@ -43,6 +43,7 @@
 @property(nonatomic, retain) NSString *notes;
 @property(nonatomic, retain) NSString *ownerId;
 @property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *workLocation;
 @property BOOL nethesis;
 
 - (void)setAvatar:(UIImage *)avatar;

@@ -112,10 +112,11 @@ import Foundation
         contact!.addPhoneNumber(self.cellphone)
         contact!.addSipAddress(self.rowExtension)
         contact!.company = self.company
-        contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homepob)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homecountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.notes = self.notes
         contact!.ownerId = self.ownerID
         contact!.title = self.title
+        contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.displayName = "\(self.name) - \(self.company)".trimmingCharacters(in: CharacterSet(arrayLiteral: " ", "-"))
         return contact!
     }

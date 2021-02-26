@@ -48,7 +48,8 @@
         return [[NSMutableArray alloc] initWithObjects:_contact.ownerId, nil];
     else if(section == ContactSections_Title && _contact.title.length > 0)
         return [[NSMutableArray alloc] initWithObjects:_contact.title, nil];
-    
+    else if(section == ContactSections_WorkLocation && _contact.workLocation.length > 0)
+        return [[NSMutableArray alloc] initWithObjects:_contact.workLocation, nil];
     
     // To hide section return this value.
     return nil;
@@ -185,7 +186,8 @@
               (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
               (section == ContactSections_Notes &&_contact.notes.length > 0) ||
               (section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
-              (section == ContactSections_Title && _contact.title.length > 0)) {
+              (section == ContactSections_Title && _contact.title.length > 0) ||
+              (section == ContactSections_WorkLocation && _contact.workLocation.length > 0)) {
         return 1;
     }
     
@@ -248,6 +250,9 @@
         return cell;
     } else if(section == ContactSections_Title) {
         [cell setNonAddress:_contact.title];
+        return cell;
+    } else if(section == ContactSections_WorkLocation) {
+        [cell setNonAddress:_contact.workLocation];
         return cell;
     }
     
@@ -343,6 +348,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             canAddEntry = NO;
         } else if(section == ContactSections_Title) {
             text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkLocation) {
+            text = NSLocalizedStringFromTable(@"Work location", @"NethLocalizable", @"");
             canAddEntry = NO;
         }
     }
@@ -463,6 +471,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             case ContactSections_Notes:
             case ContactSections_OwnerId:
             case ContactSections_Title:
+            case ContactSections_WorkLocation:
             case ContactSections_MAX:
             case ContactSections_None:
                 break;
