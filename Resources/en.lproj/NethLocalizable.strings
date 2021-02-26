@@ -24,12 +24,26 @@
 
 "Home location" = "Home";
 
+"Home pob" = "Home pob";
+
+"Home Postal Code" = "Home Postal Code";
+
 "Notes" = "Notes";
 
 "Created by" = "Created by";
 
 "Source" = "Source";
 
+"SpeeddialNum" = "Speeddial Number";
+
 "Title" = "Job";
 
+"Type" = "Type";
+
+"Url" = "Url";
+
 "Work location" = "Work";
+
+"Work pob" = "Work pob";
+
+"Work Postal Code" = "Work Postal Code";

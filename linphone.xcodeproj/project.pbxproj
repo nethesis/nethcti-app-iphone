@@ -683,7 +683,6 @@
 		C33BF99623717474003461CC /* NethCTIAPI.ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */; };
 		C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD420244F008100767A47 /* NethPhoneBookResult.swift */; };
 		C33FD423244F013B00767A47 /* NethContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD422244F013B00767A47 /* NethContact.swift */; };
-		C33FD425244F039F00767A47 /* NethContactType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33FD424244F039F00767A47 /* NethContactType.swift */; };
 		C342BA1924B5D49200003F8D /* UIInterfaceStyleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135761B240E81BA005304D4 /* UIInterfaceStyleButton.m */; };
 		C34CFBA7249BAB7800D22DB8 /* neth_dialer_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */; };
 		C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E33B723758C0400CC5C24 /* NethUser.swift */; };
@@ -1648,7 +1647,6 @@
 		C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
 		C33FD420244F008100767A47 /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
 		C33FD422244F013B00767A47 /* NethContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
-		C33FD424244F039F00767A47 /* NethContactType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactType.swift; sourceTree = "<group>"; };
 		C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_dialer_background.png; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
@@ -2982,7 +2980,6 @@
 			children = (
 				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
 				C33FD422244F013B00767A47 /* NethContact.swift */,
-				C33FD424244F039F00767A47 /* NethContactType.swift */,
 				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
 				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
 				BB4BF16824C887F300667B10 /* CallIdTest.swift */,
@@ -4146,7 +4143,6 @@
 				2214EB7A12F846B1002A5394 /* UICallButton.m in Sources */,
 				6352A5751BE0D4B800594C1C /* CallSideMenuView.m in Sources */,
 				2214EB8912F84EBB002A5394 /* UIHangUpButton.m in Sources */,
-				C33FD425244F039F00767A47 /* NethContactType.swift in Sources */,
 				630CF5571AF7CE1500539F7A /* UITextField+DoneButton.m in Sources */,
 				2214EBF312F86360002A5394 /* UIMutedMicroButton.m in Sources */,
 				8C9C5E111F83BD97006987FA /* UIChatCreateCollectionViewCell.m in Sources */,

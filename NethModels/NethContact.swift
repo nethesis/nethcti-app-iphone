@@ -11,7 +11,7 @@ import Foundation
 @objcMembers class NethContact: NSObject {
     let id: Int
     let ownerID: String
-    let type: NethContactType
+    let type: String
     let homeemail, workemail, homephone, workphone: String
     let cellphone, fax, title, company: String
     let notes, name, homestreet, homepob: String
@@ -21,7 +21,7 @@ import Foundation
     let speeddialNum: String
     let source: String
     
-    init(id: Int, ownerID: String, type: NethContactType, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: String) {
+    init(id: Int, ownerID: String, type: String, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: String) {
         self.id = id
         self.ownerID = ownerID
         self.type = type
@@ -56,10 +56,7 @@ import Foundation
     init(raw: [String:Any]) {
         self.id = raw["id"] as! Int
         self.ownerID = raw["owner_id"] as? String ?? ""
-        if let type = raw["type"] as? String,
-           let nethType = NethContactType(rawValue: type) {
-            self.type = nethType
-        } else { self.type = .typeExtension }
+        self.type = raw["type"] as? String ?? ""
         self.homeemail = raw["homeemail"] as? String ?? ""
         self.workemail = raw["workemail"] as? String ?? ""
         self.homephone = raw["homephone"] as? String ?? ""
@@ -110,11 +107,18 @@ import Foundation
         contact!.addSipAddress(self.rowExtension)
         contact!.company = self.company
         contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homecountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.homePob = self.homepob
+        contact!.homePostalCode = self.homepostalcode
         contact!.notes = self.notes
         contact!.ownerId = self.ownerID
         contact!.source = self.source
+        contact!.speeddialNum = self.speeddialNum
         contact!.title = self.title
+        contact!.type = self.type
+        contact!.url = self.url
         contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.workPob = self.workpob
+        contact!.workPostalCode = self.workpostalcode
         contact!.displayName = "\(self.name) - \(self.company)".trimmingCharacters(in: CharacterSet(arrayLiteral: " ", "-"))
         return contact!
     }

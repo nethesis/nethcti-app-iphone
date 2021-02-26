@@ -42,12 +42,26 @@
 
 "Home location" = "Casa";
 
+"Home pob" = "Home pob";
+
+"Home Postal Code" = "Codice Postale Casa";
+
 "Notes" = "Note";
 
 "Created by" = "Creato da";
 
 "Source" = "Sorgente";
 
+"SpeeddialNum" = "Numero Speeddial";
+
 "Title" = "Mansione";
 
+"Type" = "Tipo";
+
+"Url" = "Url";
+
 "Work location" = "Lavoro";
+
+"Work pob" = "Work pob";
+
+"Work Postal Code" = "Codice Postale Lavoro";

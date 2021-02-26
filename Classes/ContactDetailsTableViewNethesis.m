@@ -23,6 +23,13 @@
 #import "Utils.h"
 #import "OrderedDictionary.h"
 
+#define allocWith(field) [[NSMutableArray alloc] initWithObjects:_contact.field, nil]
+
+#define addressCell(field)
+
+#define nonAddressCell(field) [cell setNonAddress:_contact.field]; \
+                              return cell;
+
 @implementation ContactDetailsTableViewNethesis
 
 #pragma mark - Property Functions
@@ -41,19 +48,33 @@
     }
     // Can you refactor this Linphone code?
     else if(section == ContactSections_Company && _contact.company.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.company, nil];
+        return allocWith(company);
     else if(section == ContactSections_HomeLocation && _contact.homeLocation.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.homeLocation, nil];
+        return allocWith(homeLocation);
+    else if(section == ContactSections_Homepob && _contact.homePob.length > 0)
+        return allocWith(homePob);
+    else if(section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0)
+        return allocWith(homePostalCode);
     else if(section == ContactSections_Notes && _contact.notes.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.notes, nil];
+        return allocWith(notes);
     else if(section == ContactSections_OwnerId && _contact.ownerId.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.ownerId, nil];
+        return allocWith(ownerId);
     else if(section == ContactSections_Source && _contact.source.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.source, nil];
+        return allocWith(source);
+    else if(section == ContactSections_SpeeddialNum && _contact.speeddialNum.length > 0)
+        return allocWith(speeddialNum);
     else if(section == ContactSections_Title && _contact.title.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.title, nil];
+        return allocWith(title);
+    else if(section == ContactSections_Type && _contact.type.length > 0)
+        return allocWith(type);
+    else if(section == ContactSections_Url && _contact.url.length > 0)
+        return allocWith(url);
     else if(section == ContactSections_WorkLocation && _contact.workLocation.length > 0)
-        return [[NSMutableArray alloc] initWithObjects:_contact.workLocation, nil];
+        return allocWith(workLocation);
+    else if(section == ContactSections_Workpob && _contact.workPob.length > 0)
+        return allocWith(workPob);
+    else if(section == ContactSections_WorkPostalCode && _contact.workPostalCode.length > 0)
+        return allocWith(workPostalCode);
     
     // To hide section return this value.
     return nil;
@@ -188,9 +209,16 @@
         return showEmails ? _contact.emails.count : 0;
     } else if((section == ContactSections_Company && _contact.company.length > 0) ||
               (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
+              (section == ContactSections_Homepob && _contact.homePob.length > 0) ||
+              (section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0) ||
               (section == ContactSections_Notes &&_contact.notes.length > 0) ||
+              (section == ContactSections_SpeeddialNum &&_contact.speeddialNum.length > 0) ||
               (section == ContactSections_Title && _contact.title.length > 0) ||
-              (section == ContactSections_WorkLocation && _contact.workLocation.length > 0)) {
+              (section == ContactSections_Type && _contact.type.length > 0) ||
+              (section == ContactSections_Url && _contact.url.length > 0) ||
+              (section == ContactSections_WorkLocation && _contact.workLocation.length > 0) ||
+              (section == ContactSections_Workpob && _contact.workPob.length > 0) ||
+              (section == ContactSections_WorkPostalCode && _contact.workPostalCode.length > 0)) {
         return 1;
     } else if((section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
               (section == ContactSections_Source && _contact.source.length > 0)) {
@@ -244,26 +272,33 @@
         value = _contact.emails[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
     } else if(section == ContactSections_Company) {
-        [cell setNonAddress:_contact.company];
-        return cell;
+        nonAddressCell(company);
     } else if(section == ContactSections_HomeLocation) {
-        [cell setNonAddress:_contact.homeLocation];
-        return cell;
+        nonAddressCell(homeLocation);
+    } else if(section == ContactSections_Homepob) {
+        nonAddressCell(homePob);
+    } else if(section == ContactSections_HomePostalCode) {
+        nonAddressCell(homePostalCode);
     } else if(section == ContactSections_Notes) {
-        [cell setNonAddress:_contact.notes];
-        return cell;
+        nonAddressCell(notes);
     } else if(section == ContactSections_OwnerId) {
-        [cell setNonAddress:_contact.ownerId];
-        return cell;
+        nonAddressCell(ownerId);
     } else if(section == ContactSections_Source) {
-        [cell setNonAddress:_contact.source];
-        return cell;
+        nonAddressCell(source);
+    } else if(section == ContactSections_SpeeddialNum) {
+        nonAddressCell(speeddialNum);
     } else if(section == ContactSections_Title) {
-        [cell setNonAddress:_contact.title];
-        return cell;
+        nonAddressCell(title);
+    } else if(section == ContactSections_Type) {
+        nonAddressCell(type);
+    } else if(section == ContactSections_Url) {
+        nonAddressCell(url);
     } else if(section == ContactSections_WorkLocation) {
-        [cell setNonAddress:_contact.workLocation];
-        return cell;
+        nonAddressCell(workLocation);
+    } else if(section == ContactSections_Workpob) {
+        nonAddressCell(workPob);
+    } else if(section == ContactSections_WorkPostalCode) {
+        nonAddressCell(workPostalCode);
     }
     
     if ([value hasPrefix:@" "])
@@ -352,6 +387,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         } else if(section == ContactSections_HomeLocation) {
             text = NSLocalizedStringFromTable(@"Home location", @"NethLocalizable", @"");
             canAddEntry = NO;
+        } else if(section == ContactSections_Homepob) {
+            text = NSLocalizedStringFromTable(@"Home pob", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_HomePostalCode) {
+            text = NSLocalizedStringFromTable(@"Home Postal Code", @"NethLocalizable", @"");
+            canAddEntry = NO;
         } else if(section == ContactSections_Notes) {
             text = NSLocalizedStringFromTable(@"Notes", @"NethLocalizable", @"");
             canAddEntry = NO;
@@ -361,11 +402,26 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         } else if(section == ContactSections_Source && !self.tableView.isEditing) { // Source isn't editable.
             text = NSLocalizedStringFromTable(@"Source", @"NethLocalizable", @"");
             canAddEntry = NO;
+        } else if(section == ContactSections_SpeeddialNum) {
+            text = NSLocalizedStringFromTable(@"SpeeddialNum", @"NethLocalizable", @"");
+            canAddEntry = NO;
         } else if(section == ContactSections_Title) {
             text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
             canAddEntry = NO;
+        } else if(section == ContactSections_Type) {
+            text = NSLocalizedStringFromTable(@"Type", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Url) {
+            text = NSLocalizedStringFromTable(@"Url", @"NethLocalizable", @"");
+            canAddEntry = NO;
         } else if(section == ContactSections_WorkLocation) {
             text = NSLocalizedStringFromTable(@"Work location", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Workpob) {
+            text = NSLocalizedStringFromTable(@"Work pob", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkPostalCode) {
+            text = NSLocalizedStringFromTable(@"Work Postal Code", @"NethLocalizable", @"");
             canAddEntry = NO;
         }
     }
@@ -487,6 +543,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             case ContactSections_HomeLocation:
                 _contact.homeLocation = value;
                 break;
+            case ContactSections_Homepob:
+                _contact.homePob = value;
+                break;
+            case ContactSections_HomePostalCode:
+                _contact.homePostalCode = value;
+                break;
             case ContactSections_Notes:
                 _contact.notes = value;
                 break;
@@ -496,11 +558,26 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             case ContactSections_Source:
                 _contact.source = value;
                 break;
+            case ContactSections_SpeeddialNum:
+                _contact.speeddialNum = value;
+                break;
             case ContactSections_Title:
                 _contact.title = value;
                 break;
+            case ContactSections_Type:
+                _contact.type = value;
+                break;
+            case ContactSections_Url:
+                _contact.url = value;
+                break;
             case ContactSections_WorkLocation:
                 _contact.workLocation = value;
+                break;
+            case ContactSections_Workpob:
+                _contact.workPob = value;
+                break;
+            case ContactSections_WorkPostalCode:
+                _contact.workPostalCode = value;
                 break;
             case ContactSections_MAX:
             case ContactSections_None:
