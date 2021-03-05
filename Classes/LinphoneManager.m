@@ -77,8 +77,6 @@ NSString *const kLinphoneFileTransferRecvUpdate = @"LinphoneFileTransferRecvUpda
 NSString *const kLinphoneQRCodeFound = @"LinphoneQRCodeFound";
 NSString *const kLinphoneChatCreateViewChange = @"LinphoneChatCreateViewChange";
 
-NSString *const kLinphoneMsgNotificationAppGroupId = @"group.it.nethesis.nethcti3.msgNotification";
-
 const int kLinphoneAudioVbrCodecDefaultBitrate = 36; /*you can override this from linphonerc or linphonerc-factory*/
 
 extern void libmsamr_init(MSFactory *factory);
@@ -1312,7 +1310,8 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	linphone_core_cbs_set_call_log_updated(cbs, linphone_iphone_call_log_updated);
 	linphone_core_cbs_set_user_data(cbs, (__bridge void *)(self));
 
-	theLinphoneCore = linphone_factory_create_shared_core_with_config(factory, _configDb, NULL, [kLinphoneMsgNotificationAppGroupId UTF8String], true);
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	theLinphoneCore = linphone_factory_create_shared_core_with_config(factory, _configDb, NULL, notificationAppGroupId.UTF8String, true);
 	linphone_core_add_callbacks(theLinphoneCore, cbs);
 
 	[CallManager.instance setCoreWithCore:theLinphoneCore];
@@ -1687,7 +1686,9 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	if (IPAD && [[NSFileManager defaultManager] fileExistsAtPath:factoryIpad]) {
 		factory = factoryIpad;
 	}
-	_configDb = linphone_config_new_for_shared_core(kLinphoneMsgNotificationAppGroupId.UTF8String, @"linphonerc".UTF8String, factory.UTF8String);
+    
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	_configDb = linphone_config_new_for_shared_core(notificationAppGroupId.UTF8String, @"linphonerc".UTF8String, factory.UTF8String);
 	lp_config_clean_entry(_configDb, "misc", "max_calls");
 }
 #pragma mark - Audio route Functions
@@ -1939,6 +1940,10 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	return [[NSBundle mainBundle] pathForResource:[file stringByDeletingPathExtension] ofType:[file pathExtension]];
 }
 
++ (NSString *)bundleConfig:(NSString *)config {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:config];
+}
+
 + (NSString *)documentFile:(NSString *)file {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsPath = [paths objectAtIndex:0];
@@ -1947,19 +1952,22 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 
 + (NSString *)preferenceFile:(NSString *)file {
 	LinphoneFactory *factory = linphone_factory_get();
-	NSString *fullPath = [NSString stringWithUTF8String:linphone_factory_get_config_dir(factory, kLinphoneMsgNotificationAppGroupId.UTF8String)];
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	NSString *fullPath = [NSString stringWithUTF8String:linphone_factory_get_config_dir(factory, notificationAppGroupId.UTF8String)];
 	return [fullPath stringByAppendingPathComponent:file];
 }
 
 + (NSString *)dataFile:(NSString *)file {
 	LinphoneFactory *factory = linphone_factory_get();
-	NSString *fullPath = [NSString stringWithUTF8String:linphone_factory_get_data_dir(factory, kLinphoneMsgNotificationAppGroupId.UTF8String)];
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	NSString *fullPath = [NSString stringWithUTF8String:linphone_factory_get_data_dir(factory, notificationAppGroupId.UTF8String)];
 	return [fullPath stringByAppendingPathComponent:file];
 }
 
 + (NSString *)cacheDirectory {
 	LinphoneFactory *factory = linphone_factory_get();
-	NSString *cachePath = [NSString stringWithUTF8String:linphone_factory_get_download_dir(factory, kLinphoneMsgNotificationAppGroupId.UTF8String)];
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	NSString *cachePath = [NSString stringWithUTF8String:linphone_factory_get_download_dir(factory, notificationAppGroupId.UTF8String)];
 	BOOL isDir = NO;
 	NSError *error;
 	// cache directory must be created if not existing

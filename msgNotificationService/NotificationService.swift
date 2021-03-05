@@ -23,7 +23,7 @@ import linphonesw
 import Firebase
 #endif
 
-var APP_GROUP_ID = "group.it.nethesis.nethcti3.msgNotification"
+var APP_GROUP_ID = Bundle.main.object(forInfoDictionaryKey: "NotificationAppGroupId") as! String // "group.it.nethesis.nethcti3.msgNotification"
 var LINPHONE_DUMMY_SUBJECT = "dummy subject"
 
 struct MsgData: Codable {

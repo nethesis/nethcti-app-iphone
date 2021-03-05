@@ -60,8 +60,6 @@ extern NSString *const kLinphoneFileTransferRecvUpdate;
 extern NSString *const kLinphoneQRCodeFound;
 extern NSString *const kLinphoneChatCreateViewChange;
 
-extern NSString *const kLinphoneMsgNotificationAppGroupId;
-
 typedef enum _NetworkType {
     network_none = 0,
     network_2g,
@@ -136,6 +134,7 @@ typedef struct _LinphoneManagerSounds {
 
 + (BOOL)copyFile:(NSString*)src destination:(NSString*)dst override:(BOOL)override ignore:(BOOL)ignore;
 + (PHFetchResult *)getPHAssets:(NSString *)key;
++ (NSString *)bundleConfig:(NSString *)config;
 + (NSString*)bundleFile:(NSString*)file;
 + (NSString *)preferenceFile:(NSString *)file;
 + (NSString *)documentFile:(NSString *)file;

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AppApnsAuthKey</key>
-	<string>e795fca4-a99e-410b-b7a5-ad32f2141448</string>
+	<string>$(PUSH_WEDO_AUTH_KEY)</string>
 	<key>AppApnsAuthKeyDev</key>
 	<string>9b7008dc-20c2-4157-8b3e-5b97a9ff5061</string>
 	<key>AppApnsBaseUrl</key>
@@ -15,13 +15,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>$(DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>$(BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -131,7 +131,7 @@
 	<key>NSContactsUsageDescription</key>
 	<string>Make calls with your friends, we don't send your contacts to any server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>NethCTI will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes</string>
+	<string>$(PRODUCT_NAME) will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Use microphone to make audio calls</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -152,6 +152,8 @@
 	</dict>
 	<key>NSVoIPUsageDescription</key>
 	<string>Make audio/video calls with sip protocol.</string>
+	<key>NotificationAppGroupId</key>
+	<string>$(MSG_NOTIFICATION_APP_GROUP_ID)</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
