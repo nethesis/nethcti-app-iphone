@@ -8,9 +8,6 @@
 
 "NSCameraUsageDescription" = "Share photos with your friends and customize avatars";
 
-"NSLocationWhenInUseUsageDescription" = "
-NethCTI will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes";
-
 "NSContactsUsageDescription" = "Make calls with your friends, we don't send your contacts to any server.";
 
 "NSBluetoothPeripheralUsageDescription" = "Use your BT headset";
@@ -18,8 +15,6 @@ NethCTI will not use, store or communicate your location. The authorization allo
 "NSPhotoLibraryAddUsageDescription" = "Add tranfered files to your library";
 
 "NSMicrophoneUsageDescription" = "Use microphone to make audio calls";
-
-"NethCTI will not send your contacts to any server" = "NethCTI will not send your contacts to any server";
 
 "NSPhotoLibraryUsageDescription" = "Share photos with your friends and customize avatars";
 

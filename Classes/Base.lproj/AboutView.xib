@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina5_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutView">
             <connections>
+                <outlet property="addressLabel" destination="d6e-DR-2cj" id="2zg-7j-fh4"/>
                 <outlet property="appVersionLabel" destination="gLk-Bc-zvx" id="81L-RE-1ad"/>
+                <outlet property="cityLabel" destination="Frr-sA-gTw" id="oCD-g5-YZr"/>
+                <outlet property="descriptionLabel" destination="siH-xH-Z5X" id="aLc-ww-KBQ"/>
+                <outlet property="faxLabel" destination="lsh-db-Mfv" id="8iZ-8Q-5Aa"/>
                 <outlet property="landscapeView" destination="sVO-4a-t1s" id="9ye-NV-onQ"/>
                 <outlet property="libVersionLabel" destination="ZYk-v1-CYZ" id="E4g-U8-zyp"/>
                 <outlet property="licenceLabel" destination="gVK-Xc-S59" id="XPV-ct-oGP"/>
                 <outlet property="policyLabel" destination="5Nl-Fs-ggi" id="xXc-PS-Eda"/>
                 <outlet property="portraitView" destination="HJH-1o-RXN" id="Hoa-uk-q9s"/>
+                <outlet property="telLabel" destination="lPy-UA-Sm9" id="nCD-XA-gxv"/>
                 <outlet property="titleLabel" destination="iNt-9d-7si" id="mzd-bx-SoO"/>
+                <outlet property="urlLabel" destination="1pe-zf-cQh" id="HSG-4g-iEl"/>
                 <outlet property="view" destination="HJH-1o-RXN" id="t5Y-ob-1WC"/>
             </connections>
         </placeholder>
@@ -311,6 +317,6 @@
         <image name="color_C.png" width="2" height="2"/>
         <image name="color_E.png" width="2" height="2"/>
         <image name="color_F.png" width="2" height="2"/>
-        <image name="neth_dialer_background.png" width="1200" height="1200"/>
+        <image name="neth_dialer_background.png" width="1203" height="1201"/>
     </resources>
 </document>

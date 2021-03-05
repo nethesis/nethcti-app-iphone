@@ -18,8 +18,6 @@
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.it.nethesis.nethcti3.extension</string>
-		<string>group.nethesis</string>
 		<string>group.it.nethesis.nethcti3.msgNotification</string>
 	</array>
 </dict>

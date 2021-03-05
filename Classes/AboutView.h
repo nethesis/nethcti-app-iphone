@@ -23,13 +23,18 @@
 
 @interface AboutView : TPMultiLayoutViewController <UICompositeViewDelegate>
 
-@property(weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property(weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property(weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property(weak, nonatomic) IBOutlet UILabel *faxLabel;
 @property(weak, nonatomic) IBOutlet UILabel *appVersionLabel;
 @property(weak, nonatomic) IBOutlet UILabel *libVersionLabel;
 @property(weak, nonatomic) IBOutlet UILabel *licenceLabel;
 @property(weak, nonatomic) IBOutlet UILabel *policyLabel;
+@property(weak, nonatomic) IBOutlet UILabel *telLabel;
+@property(weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property(weak, nonatomic) IBOutlet UILabel *urlLabel;
 - (IBAction)onLinkTap:(id)sender;
 - (IBAction)onLicenceTap;
 - (IBAction)onPolicyTap;
