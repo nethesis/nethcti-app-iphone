@@ -675,8 +675,6 @@
 		C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */; };
 		C339F39B241A538A00447319 /* neth-splash-landscape_2208x1242.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F399241A538A00447319 /* neth-splash-landscape_2208x1242.png */; };
 		C339F39D241A722300447319 /* color_neth_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F39C241A722300447319 /* color_neth_launch.png */; };
-		C339F3A0241A764E00447319 /* neth-splash-part2.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F39E241A764D00447319 /* neth-splash-part2.png */; };
-		C339F3A1241A764E00447319 /* neth-splash-part1.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F39F241A764E00447319 /* neth-splash-part1.png */; };
 		C339F3AB241A98FF00447319 /* logo_nethCTI_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */; };
 		C339F3AC241A98FF00447319 /* iOs_background_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F3A9241A98FE00447319 /* iOs_background_portrait.png */; };
 		C339F3AD241A98FF00447319 /* logo_nethesis.png in Resources */ = {isa = PBXBuildFile; fileRef = C339F3AA241A98FF00447319 /* logo_nethesis.png */; };
@@ -699,8 +697,8 @@
 		C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3990D1324B5B67100EE834B /* TransferCallManager.swift */; };
 		C39F991824D0345800B3039C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6C88323FABF690076A018 /* Utils.swift */; };
 		C39F991924D0345800B3039C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */; };
-		C3A1263C25E8FF9200DFFCA8 /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A1263E25E8FF9200DFFCA8 /* BrandLocalizable.strings */; };
-		C3ACAF2C24B48A2900269A95 /* linphoneExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61AE364B20C00B370089D9D3 /* linphoneExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */; };
+		C3ACAF2C24B48A2900269A95 /* NethCTI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61AE364B20C00B370089D9D3 /* NethCTI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF2F24B48A2900269A95 /* msgNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA8CB827239F96CA00C330CC /* msgNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
@@ -840,7 +838,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C3ACAF2C24B48A2900269A95 /* linphoneExtension.appex in Embed App Extensions */,
+				C3ACAF2C24B48A2900269A95 /* NethCTI.appex in Embed App Extensions */,
 				C3ACAF2F24B48A2900269A95 /* msgNotificationContent.appex in Embed App Extensions */,
 				C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */,
 			);
@@ -980,12 +978,12 @@
 		615A28412180C0820060F920 /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
 		615A28432180C08F0060F920 /* recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recording@2x.png"; sourceTree = "<group>"; };
 		6180D6FD21EE41A800AD9CB6 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
-		61AE364B20C00B370089D9D3 /* linphoneExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = linphoneExtension.appex; path = NethCTI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		61AE364B20C00B370089D9D3 /* NethCTI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NethCTI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		61AE364D20C00B370089D9D3 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		61AE364E20C00B370089D9D3 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		61AE365120C00B370089D9D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		61AE365320C00B370089D9D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61AE366320C00C810089D9D3 /* linphoneExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = linphoneExtension.entitlements; sourceTree = "<group>"; };
+		61AE366320C00C810089D9D3 /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
 		61AEBEB5219198EF00F35E7F /* DevicesListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevicesListView.h; sourceTree = "<group>"; };
 		61AEBEBC2191990A00F35E7F /* DevicesListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevicesListView.m; sourceTree = "<group>"; };
 		61AEBEBE2191991F00F35E7F /* DevicesListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesListView.xib; sourceTree = "<group>"; };
@@ -1639,14 +1637,18 @@
 		C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-portrait_1242x2208.png"; sourceTree = "<group>"; };
 		C339F399241A538A00447319 /* neth-splash-landscape_2208x1242.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-landscape_2208x1242.png"; sourceTree = "<group>"; };
 		C339F39C241A722300447319 /* color_neth_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_launch.png; sourceTree = "<group>"; };
-		C339F39E241A764D00447319 /* neth-splash-part2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-part2.png"; sourceTree = "<group>"; };
-		C339F39F241A764E00447319 /* neth-splash-part1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-part1.png"; sourceTree = "<group>"; };
 		C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_nethCTI_portrait.png; sourceTree = "<group>"; };
 		C339F3A9241A98FE00447319 /* iOs_background_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOs_background_portrait.png; sourceTree = "<group>"; };
 		C339F3AA241A98FF00447319 /* logo_nethesis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_nethesis.png; sourceTree = "<group>"; };
 		C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
 		C33FD420244F008100767A47 /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
 		C33FD422244F013B00767A47 /* NethContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
+		C33FD424244F039F00767A47 /* NethContactType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactType.swift; sourceTree = "<group>"; };
+		C33FD426244F03C300767A47 /* NethContactSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactSource.swift; sourceTree = "<group>"; };
+		C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-extension.xcconfig"; sourceTree = "<group>"; };
+		C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-msgNotificationContent.xcconfig"; sourceTree = "<group>"; };
+		C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-msgNotificationService.xcconfig"; sourceTree = "<group>"; };
+		C34B5B2425ED20C100BC6788 /* linphone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "linphone-Info.plist"; sourceTree = "<group>"; };
 		C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_dialer_background.png; sourceTree = "<group>"; };
 		C35E33B723758C0400CC5C24 /* NethUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
 		C35E33B923758CB500CC5C24 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
@@ -1663,10 +1665,11 @@
 		C38D9EDD238FFDF60065C731 /* color_neth_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_A.png; sourceTree = "<group>"; };
 		C38D9EE1239009010065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C3990D1124B5B25600EE834B /* NethContactOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactOwner.swift; sourceTree = "<group>"; };
 		C3990D1324B5B67100EE834B /* TransferCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
-		C3A1263D25E8FF9200DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
-		C3A1263F25E8FF9C00DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
-		C3ACAF2B24B469DA00269A95 /* NethCTIDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NethCTIDebug.entitlements; sourceTree = "<group>"; };
+		C3A1264625E9512900DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
+		C3A1264825E9513100DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3AE8A6E238808A2000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AboutView.strings; sourceTree = "<group>"; };
 		C3AE8A7023881C74000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1821,8 +1824,6 @@
 		EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		EA8CB82E239F96CA00C330CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EA8CB830239F96CA00C330CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA8CB83F239FD41400C330CC /* msgNotificationContent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = msgNotificationContent.entitlements; sourceTree = "<group>"; };
-		EAB783CF232F8E4D0076B1A0 /* msgNotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = msgNotificationService.entitlements; sourceTree = "<group>"; };
 		EAE6C88323FABF690076A018 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = msgNotification/Utils.swift; sourceTree = SOURCE_ROOT; };
 		EE807919DDB0B4B46AD1D439 /* Pods-messagesNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messagesNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-messagesNotification/Pods-messagesNotification.release.xcconfig"; sourceTree = "<group>"; };
 		F0181B6B18BF7B1200A9A357 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -2089,7 +2090,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* NethCTI.app */,
-				61AE364B20C00B370089D9D3 /* linphoneExtension.appex */,
+				61AE364B20C00B370089D9D3 /* NethCTI.appex */,
 				EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */,
 				EA8CB827239F96CA00C330CC /* msgNotificationContent.appex */,
 			);
@@ -2222,8 +2223,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				C3ACAF2B24B469DA00269A95 /* NethCTIDebug.entitlements */,
+				C34B5B2425ED20C100BC6788 /* linphone-Info.plist */,
+				C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */,
+				C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */,
+				C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */,
+				C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */,
 				8C23BCB71D82AAC3005F19BB /* linphone.entitlements */,
+				61AE366320C00C810089D9D3 /* extension.entitlements */,
 				614D09CD21E74D5400C43EDF /* GoogleService-Info.plist */,
 				C33FD41F244EFCF100767A47 /* NethModels */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -2361,7 +2367,6 @@
 		61AE364C20C00B370089D9D3 /* linphoneExtension */ = {
 			isa = PBXGroup;
 			children = (
-				61AE366320C00C810089D9D3 /* linphoneExtension.entitlements */,
 				61AE364D20C00B370089D9D3 /* ShareViewController.h */,
 				61AE364E20C00B370089D9D3 /* ShareViewController.m */,
 				61AE365020C00B370089D9D3 /* MainInterface.storyboard */,
@@ -2389,8 +2394,6 @@
 				C339F3A9241A98FE00447319 /* iOs_background_portrait.png */,
 				C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */,
 				C339F3AA241A98FF00447319 /* logo_nethesis.png */,
-				C339F39F241A764E00447319 /* neth-splash-part1.png */,
-				C339F39E241A764D00447319 /* neth-splash-part2.png */,
 				C339F39C241A722300447319 /* color_neth_launch.png */,
 				C339F399241A538A00447319 /* neth-splash-landscape_2208x1242.png */,
 				C339F398241A538900447319 /* neth-splash-portrait_1242x2208.png */,
@@ -2921,7 +2924,7 @@
 				63AADBC41B6A0FF200AA16FD /* Localizable.strings */,
 				63CDC4511C3BDE370085F529 /* sounds */,
 				C3006725251E260700F5E478 /* InfoPlist.strings */,
-				C3A1263E25E8FF9200DFFCA8 /* BrandLocalizable.strings */,
+				C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3158,7 +3161,6 @@
 		EA5F25DA232BD3E200475F2E /* msgNotificationService */ = {
 			isa = PBXGroup;
 			children = (
-				EAB783CF232F8E4D0076B1A0 /* msgNotificationService.entitlements */,
 				EAE6C88323FABF690076A018 /* Utils.swift */,
 				EA5F25DB232BD3E200475F2E /* NotificationService.swift */,
 				6112A01D243B5FD500DBD5F5 /* GoogleService-Info.plist */,
@@ -3171,7 +3173,6 @@
 			isa = PBXGroup;
 			children = (
 				6112A01B243B31A600DBD5F5 /* GoogleService-Info.plist */,
-				EA8CB83F239FD41400C330CC /* msgNotificationContent.entitlements */,
 				EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */,
 				EA8CB82D239F96CA00C330CC /* MainInterface.storyboard */,
 				EA8CB830239F96CA00C330CC /* Info.plist */,
@@ -3220,7 +3221,7 @@
 			);
 			name = linphoneExtension;
 			productName = linphoneExtension;
-			productReference = 61AE364B20C00B370089D9D3 /* linphoneExtension.appex */;
+			productReference = 61AE364B20C00B370089D9D3 /* NethCTI.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		EA5F25D8232BD3E200475F2E /* msgNotificationService */ = {
@@ -3619,6 +3620,7 @@
 				633FEDDE1D3CD5590014B822 /* call_start_body_over.png in Resources */,
 				24BFAAA0209B0630004F47A7 /* contacts_sip_default@2x.png in Resources */,
 				8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */,
+				C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */,
 				633FEDFB1D3CD5590014B822 /* camera_selected@2x.png in Resources */,
 				633FEF051D3CD55A0014B822 /* options_selected@2x.png in Resources */,
 				633FEDD61D3CD5590014B822 /* call_start_body_default.png in Resources */,
@@ -3661,7 +3663,6 @@
 				633FEE1D1D3CD5590014B822 /* chat_start_body_default~ipad@2x.png in Resources */,
 				633FEEEB1D3CD55A0014B822 /* numpad_hash_default.png in Resources */,
 				633FEF221D3CD55A0014B822 /* route_bluetooth_default.png in Resources */,
-				C339F3A1241A764E00447319 /* neth-splash-part1.png in Resources */,
 				633FEE701D3CD5590014B822 /* footer_history_disabled.png in Resources */,
 				633FEDC91D3CD5590014B822 /* call_missed@2x.png in Resources */,
 				633FEEAE1D3CD55A0014B822 /* numpad_2_over@2x.png in Resources */,
@@ -3776,7 +3777,6 @@
 				633FEDB01D3CD5590014B822 /* call_add_disabled.png in Resources */,
 				63EC8D391D7438660066547B /* AssistantLinkView.xib in Resources */,
 				C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */,
-				C339F3A0241A764E00447319 /* neth-splash-part2.png in Resources */,
 				633FEE971D3CD55A0014B822 /* micro_disabled@2x.png in Resources */,
 				D38187CD15FE346700C3EDCA /* HistoryDetailsView.xib in Resources */,
 				633FEEA21D3CD55A0014B822 /* numpad_0~ipad@2x.png in Resources */,
@@ -4612,21 +4612,13 @@
 			name = AssistantViewScreens.strings;
 			sourceTree = "<group>";
 		};
-		C3A1263E25E8FF9200DFFCA8 /* BrandLocalizable.strings */ = {
+		C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C3A1263D25E8FF9200DFFCA8 /* it */,
-				C3A1263F25E8FF9C00DFFCA8 /* en */,
+				C3A1264625E9512900DFFCA8 /* en */,
+				C3A1264825E9513100DFFCA8 /* it */,
 			);
 			name = BrandLocalizable.strings;
-			sourceTree = "<group>";
-		};
-		C3F4DAE725E0069400713A0B /* ContactDetailsViewNethesis.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3F4DAE825E0069400713A0B /* Base */,
-			);
-			name = ContactDetailsViewNethesis.xib;
 			sourceTree = "<group>";
 		};
 		D37EE11016035793003608A6 /* ImageView.xib */ = {
@@ -4755,7 +4747,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74D27C85BE713CF87FC434A6 /* Pods-NethCTI.debug.xcconfig */;
+			baseConfigurationReference = C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4765,8 +4757,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
-				CODE_SIGN_ENTITLEMENTS = NethCTIDebug.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4810,8 +4802,6 @@
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
-				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
 				SDKROOT = iphoneos;
@@ -4890,7 +4880,7 @@
 		};
 		228B19A71302902F00F154D3 /* DistributionAdhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 928B424D5EBE16EAE8708522 /* Pods-NethCTI.distributionadhoc.xcconfig */;
+			baseConfigurationReference = C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4941,10 +4931,8 @@
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
-				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 adHoc Distr";
+				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Distr";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -4981,6 +4969,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5006,6 +4995,7 @@
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_MODULE_NAME = NethCTI;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
@@ -5013,6 +5003,7 @@
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
@@ -5021,7 +5012,7 @@
 		};
 		22F3D55613CC3C9100A0DA02 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3547813A27354321266B3F8D /* Pods-NethCTI.release.xcconfig */;
+			baseConfigurationReference = C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -5032,7 +5023,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
@@ -5072,8 +5063,7 @@
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
-				PRODUCT_NAME = NethCTI;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
 				SKIP_INSTALL = NO;
@@ -5112,6 +5102,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: jehan monnier";
 				DEFINES_MODULE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5137,12 +5128,14 @@
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_MODULE_NAME = NethCTI;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "C7F794BC-6D48-41F2-B37D-E1B1B1A40901";
 				SDKROOT = iphoneos;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
@@ -5151,7 +5144,7 @@
 		};
 		22F51EE8107FA53D00F98953 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6144EE9D913360C75F86034E /* Pods-NethCTI.distribution.xcconfig */;
+			baseConfigurationReference = C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -5202,8 +5195,6 @@
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
-				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Distr";
 				SKIP_INSTALL = NO;
@@ -5221,6 +5212,7 @@
 		};
 		61AE365720C00B370089D9D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5233,8 +5225,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = linphoneExtension/linphoneExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -5252,7 +5244,6 @@
 				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
@@ -5266,6 +5257,7 @@
 		};
 		61AE365820C00B370089D9D3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5278,8 +5270,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = linphoneExtension/linphoneExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -5295,7 +5287,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
 				SKIP_INSTALL = YES;
@@ -5308,6 +5299,7 @@
 		};
 		61AE365920C00B370089D9D3 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5320,7 +5312,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = linphoneExtension/linphoneExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5337,7 +5329,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Distr";
@@ -5351,6 +5342,7 @@
 		};
 		61AE365A20C00B370089D9D3 /* DistributionAdhoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5363,7 +5355,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = linphoneExtension/linphoneExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5380,7 +5372,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Distr";
@@ -5414,6 +5405,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: jehan monnier (E8MYPN2NXL)";
 				DEFINES_MODULE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5440,12 +5432,14 @@
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_MODULE_NAME = NethCTI;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "2AC0DC11-4546-47B6-8B8A-453CCA80903C";
 				SDKROOT = iphoneos;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/SwiftRestApi/linphone-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5454,7 +5448,7 @@
 		};
 		EA5F25E2232BD3E300475F2E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ADCA571A7CF61077747BFE53 /* Pods-msgNotificationService.debug.xcconfig */;
+			baseConfigurationReference = C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -5471,8 +5465,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationService/msgNotificationService.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -5496,7 +5490,6 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
 				SDKROOT = iphoneos;
@@ -5511,7 +5504,7 @@
 		};
 		EA5F25E3232BD3E300475F2E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 904C1EC75CB9E03374AAA802 /* Pods-msgNotificationService.release.xcconfig */;
+			baseConfigurationReference = C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -5528,8 +5521,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationService/msgNotificationService.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -5548,7 +5541,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
 				SKIP_INSTALL = YES;
@@ -5562,7 +5554,7 @@
 		};
 		EA5F25E4232BD3E300475F2E /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4BE1A2318FC69D799C34F0A /* Pods-msgNotificationService.distribution.xcconfig */;
+			baseConfigurationReference = C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -5579,7 +5571,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationService/msgNotificationService.entitlements;
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5599,7 +5591,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 msgNotificationService Distr";
 				SKIP_INSTALL = YES;
@@ -5613,7 +5604,7 @@
 		};
 		EA5F25E5232BD3E300475F2E /* DistributionAdhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FD0D10102F0A8922703B8A4 /* Pods-msgNotificationService.distributionadhoc.xcconfig */;
+			baseConfigurationReference = C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -5630,7 +5621,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationService/msgNotificationService.entitlements;
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5650,7 +5641,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 msgNotificationService Distr";
 				SKIP_INSTALL = YES;
@@ -5664,7 +5654,7 @@
 		};
 		EA8CB835239F96CA00C330CC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B4C43A28E90775F6FCA2CEE /* Pods-msgNotificationContent.debug.xcconfig */;
+			baseConfigurationReference = C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5680,8 +5670,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationContent/msgNotificationContent.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -5705,7 +5695,6 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
 				SDKROOT = iphoneos;
@@ -5720,7 +5709,7 @@
 		};
 		EA8CB836239F96CA00C330CC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34027665305514025971F85C /* Pods-msgNotificationContent.release.xcconfig */;
+			baseConfigurationReference = C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5736,8 +5725,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationContent/msgNotificationContent.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Daniele Tentoni (8TPM3NR57Z)";
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -5756,7 +5745,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
 				SKIP_INSTALL = YES;
@@ -5770,7 +5758,7 @@
 		};
 		EA8CB837239F96CA00C330CC /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E40C9A7D22675584396C0A3D /* Pods-msgNotificationContent.distribution.xcconfig */;
+			baseConfigurationReference = C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5786,7 +5774,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationContent/msgNotificationContent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5806,7 +5794,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 msgNotificationContent Distr";
 				SKIP_INSTALL = YES;
@@ -5820,7 +5807,7 @@
 		};
 		EA8CB838239F96CA00C330CC /* DistributionAdhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BAD0A9494E833034EB559687 /* Pods-msgNotificationContent.distributionadhoc.xcconfig */;
+			baseConfigurationReference = C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5836,7 +5823,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = msgNotificationContent/msgNotificationContent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: nethesis srl (8D66VDADVH)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -5856,7 +5843,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 msgNotificationContent Distr";
 				SKIP_INSTALL = YES;

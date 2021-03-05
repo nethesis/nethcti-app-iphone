@@ -564,7 +564,8 @@
 
 - (void)dumpContactsDisplayNamesToUserDefaults {
 	LOGD(@"dumpContactsDisplayNamesToUserDefaults");
-	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kLinphoneMsgNotificationAppGroupId];
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
 	__block NSDictionary *oldDisplayNames = [defaults dictionaryForKey:@"addressBook"];
 	LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
 
@@ -597,7 +598,8 @@
 
 - (void)removeContactFromUserDefaults:(Contact *)contact {
 	LOGD(@"removeContactFromUserDefaults contact: [%p]", contact);
-	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kLinphoneMsgNotificationAppGroupId];
+    NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
 	NSMutableDictionary *displayNames = [[NSMutableDictionary alloc] initWithDictionary:[defaults dictionaryForKey:@"addressBook"]];
 	if (displayNames == nil) return;
 
@@ -644,7 +646,8 @@
 	if (telAddr) {
 		LOGD(@"presence changed for tel [%s]", telAddr.UTF8String);
 
-		NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kLinphoneMsgNotificationAppGroupId];
+        NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
+		NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
 		NSMutableDictionary *displayNames = [[NSMutableDictionary alloc] initWithDictionary:[defaults dictionaryForKey:@"addressBook"]];
 		if (displayNames == nil) return;
 

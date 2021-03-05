@@ -25,7 +25,7 @@ import linphonesw
 import Firebase
 #endif
 
-var APP_GROUP_ID = "group.it.nethesis.nethcti3.msgNotification"
+var APP_GROUP_ID = Bundle.main.object(forInfoDictionaryKey: "NotificationAppGroupId") as! String // "group.it.nethesis.nethcti3.msgNotification"
 var isReplySent: Bool = false
 var needToStop: Bool = false
 var coreStopped: Bool = false
@@ -135,7 +135,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     }
 
     func startCore() throws {
-		config = Config.newForSharedCore(appGroupId: APP_GROUP_ID, configFilename: "linphonerc", factoryPath: "")
+        config = Config.newForSharedCore(appGroupId: APP_GROUP_ID, configFilename: "linphonerc", factoryPath: "")
 		log = LoggingService.Instance /*enable liblinphone logs.*/
 		logDelegate = try! LinphoneLoggingServiceManager(config: config, log: log, domain: "msgNotificationContent")
         lc = try! Factory.Instance.createSharedCoreWithConfig(config: config, systemContext: nil, appGroupId: APP_GROUP_ID, mainCore: false)
