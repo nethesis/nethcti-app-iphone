@@ -7,14 +7,6 @@
 */
 
 /*
- * info.plist
- */
-
-"NSLocationWhenInUseUsageDescription" = "NethCTI will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes";
-
-"NethCTI will not send your contacts to any server" = "NethCTI will not send your contacts to any server";
-
-/*
  * About strings.
  */
 
@@ -31,7 +23,6 @@
 "terms-and-privacy-url" = "https://blog.nethesis.it/terms-and-privacy-nethcti-app/";
 
 "urlLabel.text" = "https://www.nethesis.org";
-
 
 /*
  * Others.
