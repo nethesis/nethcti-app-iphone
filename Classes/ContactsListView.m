@@ -258,6 +258,7 @@ static UICompositeViewDescription *compositeDescription = nil;
          * Those contacts have contact.nethesis at YES instead of NO.
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
+        [LinphoneManager.instance.fastAddressBook resetNeth];
         [LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText];
         // REQUIRED TO RELOAD WITH FILTER.
         [LinphoneManager.instance setContactsUpdated:TRUE];

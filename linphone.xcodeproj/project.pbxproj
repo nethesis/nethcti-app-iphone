@@ -690,6 +690,7 @@
 		C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F91EE23745E35001A4D7F /* NethCTIAPI.swift */; };
 		C36482CB23967B02006BE61D /* neth_splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C36482CA23967B01006BE61D /* neth_splashscreen.png */; };
 		C37672F025C17D6100AB1F82 /* NethPhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */; };
+		C37B2E8F25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */; };
 		C387A653243F4E9F007FF4DE /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C387A650243F4E9E007FF4DE /* NethLocalizable.strings */; };
 		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
@@ -703,7 +704,7 @@
 		C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
 		C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */; };
-		C3F4DAE925E0069400713A0B /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3F4DAE725E0069400713A0B /* ContactDetailsViewNethesis.xib */; };
+		C3F4DAE925E0069400713A0B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		C3F4DAED25E006A200713A0B /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */; };
 		C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */; };
 		CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF15F21C20E4F9A3008B1DE6 /* UIImageViewDeletable.m */; };
@@ -1643,8 +1644,6 @@
 		C33BF99523717474003461CC /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
 		C33FD420244F008100767A47 /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
 		C33FD422244F013B00767A47 /* NethContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
-		C33FD424244F039F00767A47 /* NethContactType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactType.swift; sourceTree = "<group>"; };
-		C33FD426244F03C300767A47 /* NethContactSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactSource.swift; sourceTree = "<group>"; };
 		C34B57FE25ED009300BC6788 /* Config-extension.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-extension.xcconfig"; sourceTree = "<group>"; };
 		C34B57FF25ED00AD00BC6788 /* Config-msgNotificationContent.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-msgNotificationContent.xcconfig"; sourceTree = "<group>"; };
 		C34B580025ED00C600BC6788 /* Config-msgNotificationService.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-msgNotificationService.xcconfig"; sourceTree = "<group>"; };
@@ -1659,6 +1658,7 @@
 		C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethPhoneBook.swift; sourceTree = "<group>"; };
 		C3775A3324B607F100AF95F3 /* Pods_msgNotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_msgNotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3775A3524B6080500AF95F3 /* linphonesw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = linphonesw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C37B2E8E25F240CA0094DCB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContactDetailsViewNethesis.xib; sourceTree = "<group>"; };
 		C387A651243F4E9E007FF4DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
 		C387A652243F4E9E007FF4DE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
 		C38D455324B7131A006B0B6E /* NotReturnMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
@@ -1666,7 +1666,6 @@
 		C38D9EE1239009010065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		C3990D1124B5B25600EE834B /* NethContactOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethContactOwner.swift; sourceTree = "<group>"; };
 		C3990D1324B5B67100EE834B /* TransferCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
 		C3A1264625E9512900DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3A1264825E9513100DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
@@ -1675,7 +1674,6 @@
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
 		C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewNethesis.m; sourceTree = "<group>"; };
-		C3F4DAE825E0069400713A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContactDetailsViewNethesis.xib; sourceTree = "<group>"; };
 		C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewNethesis.h; sourceTree = "<group>"; };
 		C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewNethesis.m; sourceTree = "<group>"; };
 		C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewNethesis.h; sourceTree = "<group>"; };
@@ -1982,11 +1980,6 @@
 				D32B6E2715A5BC430033019F /* ChatConversationTableView.h */,
 				D32B6E2815A5BC430033019F /* ChatConversationTableView.m */,
 				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
-				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
-				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
-				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
-				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
-				C3F4DAE725E0069400713A0B /* ContactDetailsViewNethesis.xib */,
 				D3F795D315A582800077328B /* ChatConversationView.h */,
 				D3F795D415A582800077328B /* ChatConversationView.m */,
 				D38187B015FE340100C3EDCA /* ChatConversationView.xib */,
@@ -1995,6 +1988,11 @@
 				D35E7594159460560066B1C1 /* ChatsListView.h */,
 				D35E7595159460560066B1C1 /* ChatsListView.m */,
 				D38187B415FE340500C3EDCA /* ChatsListView.xib */,
+				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
+				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
+				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
+				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
+				C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */,
 				D37C639915AADEF4009D0BAC /* ContactDetailsTableView.h */,
 				D37C639A15AADEF5009D0BAC /* ContactDetailsTableView.m */,
 				D3128FDE15AABC7E00A2147A /* ContactDetailsView.h */,
@@ -3355,7 +3353,8 @@
 				633FEDC41D3CD5590014B822 /* call_hangup_disabled.png in Resources */,
 				633FEDA81D3CD5590014B822 /* backspace_default.png in Resources */,
 				636316D11A1DEBCB0009B839 /* AboutView.xib in Resources */,
-				C3F4DAE925E0069400713A0B /* ContactDetailsViewNethesis.xib in Resources */,
+				C37B2E8F25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib in Resources */,
+				C3F4DAE925E0069400713A0B /* (null) in Resources */,
 				8CBD7BA620B6B82400E5DCC0 /* UIChatConversationInfoTableViewCell.xib in Resources */,
 				244523AF1E8266CC0037A187 /* chat_delivered.png in Resources */,
 				CF7602F8210898CC00749F76 /* rec_on_default.png in Resources */,
@@ -3439,7 +3438,6 @@
 				633FEDFA1D3CD5590014B822 /* camera_selected.png in Resources */,
 				633FEF451D3CD55A0014B822 /* speaker_default@2x.png in Resources */,
 				633FEDD41D3CD5590014B822 /* call_quality_indicator_4.png in Resources */,
-				C3A1263C25E8FF9200DFFCA8 /* BrandLocalizable.strings in Resources */,
 				633FEF241D3CD55A0014B822 /* route_bluetooth_disabled.png in Resources */,
 				633FEECD1D3CD55A0014B822 /* numpad_6_over.png in Resources */,
 				D38187D115FE346B00C3EDCA /* HistoryListView.xib in Resources */,
@@ -4593,6 +4591,14 @@
 				C3006728251E276A00F5E478 /* it */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C37B2E8E25F240CA0094DCB8 /* Base */,
+			);
+			name = ContactDetailsViewNethesis.xib;
 			sourceTree = "<group>";
 		};
 		C387A650243F4E9E007FF4DE /* NethLocalizable.strings */ = {
