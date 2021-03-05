@@ -404,7 +404,7 @@ import Foundation
     
     let cLimit = 100
     
-    @objc public func fetchContacts(_ v: String, success:@escaping([Contact]) -> Void, errorHandler:@escaping(Int, String?) -> Void) {
+    @objc public func fetchContacts(_ v: String, t: String?, success:@escaping([Contact]) -> Void, errorHandler:@escaping(Int, String?) -> Void) {
         // Build the request.
         if !ApiCredentials.checkCredentials() {
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
@@ -412,10 +412,17 @@ import Foundation
             return
         }
         
-        guard let index = NethPhoneBook.instance().rows as Int?,
-              let domain = self.transformDomain(ApiCredentials.Domain) as String?,
-              let endpoint = "\(domain)/phonebook/getall/?limit=\(cLimit)&offset=\(index)" as String?, // \(term)?view=\(view)&
-              let url = URL(string:endpoint) else {
+        var endpoint: String? = ""
+        let index = NethPhoneBook.instance().rows
+        if let term = t,
+           term != "" {
+            endpoint = "/phonebook/search/\(term)?limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
+        } else {
+            endpoint = "/phonebook/getall/?limit=\(cLimit)&offset=\(index)"
+        }
+        
+        guard let domain = self.transformDomain(ApiCredentials.Domain) as String?,
+              let url = URL(string:"\(domain)\(endpoint!)") else {
             errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
         }

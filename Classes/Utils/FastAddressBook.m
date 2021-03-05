@@ -276,7 +276,7 @@
         _isLoading = YES;
     }
     // TODO: Fetch contacts based on view and search term selected by user.
-    [NethCTIAPI.sharedInstance fetchContacts:view success:^(NSArray<Contact *> * _Nonnull contacts) {
+    [NethCTIAPI.sharedInstance fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
         for (Contact* nethContact in contacts) {
             @synchronized(LinphoneManager.instance.fastAddressBook) {
                 @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {

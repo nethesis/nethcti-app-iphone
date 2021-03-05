@@ -357,6 +357,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 #pragma mark - UITableViewDataSource Functions
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if([ContactSelection getSipFilter]) return nil;
 	return [addressBookMap allKeys];
 }
 
@@ -400,7 +401,6 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return cell;
 }
 
-
 /// Utility method: count a table view row absolute index.
 /// @param tableView where count rows.
 /// @param indexPath pointer to current row.
@@ -410,6 +410,11 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         rowCount += [tableView numberOfRowsInSection:i];
     }
     return rowCount + indexPath.row; // Add current section row.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    // Hide header when in sip filter mode.
+    return [ContactSelection getSipFilter] ? 0 : tableView.sectionHeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

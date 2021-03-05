@@ -215,10 +215,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
+
 // The number of rows of data
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return _pickerData.count;
 }
+
 // The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSString* localizedString = NSLocalizedStringFromTable(_pickerData[row], @"NethLocalizable", @"");
@@ -227,10 +229,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     [ContactSelection setPickerFilter:_pickerData[row]];
-    NSString *text = pickerFilter;
-    NSString *text2 = _searchBar.text;
+    NSString *picker = pickerFilter;
+    NSString *search = _searchBar.text;
     [LinphoneManager.instance.fastAddressBook resetNeth];
-    [LinphoneManager.instance.fastAddressBook loadNeth: text withTerm: text2];
+    [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
 }
 
 -(NSString*) getSelectedPickerItem {
@@ -243,9 +245,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)changeView:(ContactsCategory)view {
     CGRect frame = _selectedButtonImage.frame;
+    // REQUIRED TO RELOAD WITH FILTER.
+    [LinphoneManager.instance setContactsUpdated:TRUE];
     if (view == ContactsAll && !allButton.selected) {
         // REQUIRED TO RELOAD WITH FILTER.
-        [LinphoneManager.instance setContactsUpdated:TRUE];
+        // [LinphoneManager.instance setContactsUpdated:TRUE];
         frame.origin.x = allButton.frame.origin.x;
         [ContactSelection setSipFilter:nil];
         [ContactSelection enableEmailFilter:FALSE];
@@ -260,14 +264,12 @@ static UICompositeViewDescription *compositeDescription = nil;
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
         [LinphoneManager.instance.fastAddressBook resetNeth];
         [LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText];
-        // REQUIRED TO RELOAD WITH FILTER.
-        [LinphoneManager.instance setContactsUpdated:TRUE];
         frame.origin.x = linphoneButton.frame.origin.x;
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
         [ContactSelection enableEmailFilter:FALSE];
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
-        [tableController loadData];
+        // [tableController loadData];
     }
     _selectedButtonImage.frame = frame;
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
@@ -354,6 +356,12 @@ static UICompositeViewDescription *compositeDescription = nil;
     // display searchtext in UPPERCASE
     // searchBar.text = [searchText uppercaseString];
     [ContactSelection setNameOrEmailFilter:searchText];
+    [LinphoneManager.instance.fastAddressBook resetNeth];
+    [LinphoneManager.instance setContactsUpdated:TRUE];
+    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+    return;
+    
+    // [LinphoneManager.instance.fastAddressBook resetNeth];
     if (searchText.length == 0) { // No filter, no search data.
         [LinphoneManager.instance setContactsUpdated:TRUE];
         [tableController loadData];
