@@ -71,6 +71,13 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     // Change title label color.
     _titleLabel.textColor = LINPHONE_MAIN_COLOR;
+    _addressLabel.text = NSLocalizedStringFromTable(@"addressLabel.text", @"BrandLocalizable", @"");
+    _cityLabel.text = NSLocalizedStringFromTable(@"cityLabel.text", @"BrandLocalizable", @"");
+    _descriptionLabel.text = NSLocalizedStringFromTable(@"descriptionLabel.text", @"BrandLocalizable", @"");
+    _descriptionLabel.textColor = LINPHONE_MAIN_COLOR;
+    _faxLabel.text = NSLocalizedStringFromTable(@"faxLabel.text", @"BrandLocalizable", @"");
+    _telLabel.text = NSLocalizedStringFromTable(@"telLabel.text", @"BrandLocalizable", @"");
+    _urlLabel.text = NSLocalizedStringFromTable(@"urlLabel.text", @"BrandLocalizable", @"");
 }
 
 #pragma mark - Action Functions
@@ -85,7 +92,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)onPolicyTap {
     // TODO: This link must change.
-    NSString *url = @"https://blog.nethesis.it/terms-and-privacy-nethcti-app/";
+    NSString *url = NSLocalizedStringFromTable(@"terms-and-privacy", @"BrandLocalizable", @"");;
     if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
         LOGE(@"Failed to open %@, invalid URL", url);
     }
