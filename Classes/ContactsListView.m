@@ -123,7 +123,15 @@ static UICompositeViewDescription *compositeDescription = nil;
     [[NethPhoneBook instance] reset];
     
     tableController.tableView.accessibilityIdentifier = @"Contacts table";
-    [self changeView:ContactsAll];
+    
+    if([ContactSelection getSipFilter])
+        [self changeView:ContactsLinphone];
+    else
+        [self changeView:ContactsAll];
+    
+    if([ContactSelection getNameOrEmailFilter])
+        _searchBar.text = [ContactSelection getNameOrEmailFilter];
+    
     /*if ([tableController totalNumberOfItems] == 0) {
      [self changeView:ContactsAll];
      }*/
@@ -134,6 +142,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [tap setDelegate:self];
     [self.view addGestureRecognizer:tap];
     
+    // Picker to change. Select data view to show.
     _pickerData = @[@"company", @"all", @"person"];
     self.filterPicker.dataSource = self;
     self.filterPicker.delegate = self;
@@ -198,10 +207,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     // Get original height and change accordly to check value.
     if(check) {
         tableRect.origin.y = emptyRect.origin.y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
-        tableRect.size.height = emptyRect.size.height = tableViewHeight - _filterPicker.frame.size.height;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight;
     } else {
         tableRect.origin.y = emptyRect.origin.y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
-        tableRect.size.height = emptyRect.size.height = tableViewHeight;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight - _filterPicker.frame.size.height;
     }
     
     // Why application crash at this point? Why is in a background thread?

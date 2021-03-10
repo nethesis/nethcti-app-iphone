@@ -105,20 +105,18 @@ import Foundation
      Make a request with the new request handler above this function.
      This may be the only call that don't need authentication.
      */
-    @objc public func postLogin(_ password: String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
-        if !ApiCredentials.checkCredentials() {
-            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            return
-        }
-        
-        guard let domain = ApiCredentials.Domain as String?,
+    @objc public func postLogin(_ username: String, password: String, domain: String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
+        guard let username = username as String?,
+              let domain = domain as String?,
               let transformedDomain = self.transformDomain(domain) as String?,
               let loginEndpoint = "\(transformedDomain)/authentication/login" as String?,
               let url = URL(string: loginEndpoint) else {
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
+        
+        ApiCredentials.Username = username
+        ApiCredentials.Domain = domain
         
         guard let postStr = ApiCredentials.getAuthenticationCredentials(password: password) else {
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
