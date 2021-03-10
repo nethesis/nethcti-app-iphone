@@ -18,7 +18,6 @@ extension NethCTIAPI {
         case SuiteNameKey = "it.nethesis.nethcti3"          // Name of the UserDefaults suite.
         case UserDefaultKey = "UserDefaultKey"              // Logged username.
         case DomainDefaultKey = "DomainDefaultKey"          // Domain to call for neth apis.
-        case PasswordDefaultKey = "PasswordDefaultKey"      // Logged password.
         case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
         case DeviceIdDefaultKey = "DeviceIdDefaultKey"      // Logged deviceId for Notificatore.
         case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
@@ -46,18 +45,6 @@ extension NethCTIAPI {
             }
             set {
                 UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
-            }
-        }
-        
-        /**
-         Get or set a user pasword.
-         */
-        @objc public class var Password: String {
-            get {
-                return UserDefaults.standard.string(forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue) ?? ""
-            }
-            set {
-                UserDefaults.standard.setValue(newValue, forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue)
             }
         }
         
@@ -131,7 +118,6 @@ extension NethCTIAPI {
         public class func clear() -> Void {
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
-            UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.PasswordDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
         }
     }

@@ -69,8 +69,8 @@
 	[_tableController setContact:_contact];
 	_emptyLabel.hidden = YES;
 	_avatarImage.hidden = !_emptyLabel.hidden;
-	_deleteButton.hidden = !_emptyLabel.hidden;
-	_editButton.hidden = !_emptyLabel.hidden;
+    _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
+    _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
 }
 
 - (void)removeContact {
@@ -95,7 +95,6 @@
     }
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
-    _companyLabel.text = _contact.displayCompany;
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -122,15 +121,11 @@
 	_contact = acontact;
 	_emptyLabel.hidden = (_contact != NULL);
 	_avatarImage.hidden = !_emptyLabel.hidden;
-	_deleteButton.hidden = !_emptyLabel.hidden;
-	_editButton.hidden = !_emptyLabel.hidden;
+    _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+    _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
 
 	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-    _companyLabel.text = _contact.displayCompany;
-    CGRect frame = _companyLabel.frame;
-    frame.size.height = _contact.company.length > 0 ? _nameLabel.frame.size.height : 0;
-    _companyLabel.frame = frame;
     [_tableController setContact:_contact];
 
 	if (reload) {
@@ -274,8 +269,8 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	_waitView.hidden = YES;
-	_editButton.hidden = ([ContactSelection getSelectionMode] != ContactSelectionModeEdit &&
-						  [ContactSelection getSelectionMode] != ContactSelectionModeNone);
+    _editButton.hidden = YES; // ([ContactSelection getSelectionMode] != ContactSelectionModeEdit &&
+						  // [ContactSelection getSelectionMode] != ContactSelectionModeNone); Now is not editable.
 	[_tableController.tableView addObserver:self forKeyPath:@"contentSize" options:0 context:NULL];
 	_tableController.waitView = _waitView;
 	if (!IPAD)
@@ -383,8 +378,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
 	[super setEditing:editing animated:animated];
 	if (editing) {
-		_editButton.hidden = FALSE;
-		_deleteButton.hidden = FALSE;
+        _editButton.hidden = YES; // FALSE; Now is not editable.
+        _deleteButton.hidden = YES; // FALSE; Now is not editable.
 		_avatarImage.hidden = FALSE;
 	} else {
 		_editButton.hidden = TRUE;
@@ -405,7 +400,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
-    _companyLabel.hidden = editing;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
     [self recomputeTableViewSize:editing];
@@ -419,15 +413,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     CGRect frame = _tableController.tableView.frame;
     const int avatarFrame = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
     if ([self viewIsCurrentlyPortrait] && !editing) {
-        const int labelFrame = _nameLabel.frame.size.height + _companyLabel.frame.size.height; // Add here more label heights.
+        const int labelFrame = _nameLabel.frame.size.height; // Add here more label heights.
         frame.origin.y = avatarFrame + labelFrame;
     } else if(![self viewIsCurrentlyPortrait]) {
-        CGRect frame = _nameLabel.frame;
-        frame.origin.y = 8;
-        frame.origin.x = _companyLabel.frame.origin.x;
-        frame.size.width = _companyLabel.frame.size.width;
-        _nameLabel.frame = frame;
-        const int labelFrame = _nameLabel.frame.origin.y + _nameLabel.frame.size.height + _companyLabel.frame.size.height; // Add here more label heights.
+        const int labelFrame = _nameLabel.frame.origin.y + _nameLabel.frame.size.height; // Add here more label heights.
         frame.origin.y = avatarFrame > labelFrame ? avatarFrame : labelFrame;
     } // Missing one case?
     
@@ -484,8 +473,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                     nbPhone++;
                   }
                 }
-                while (_contact.emails.count > 0) {
-                  [_contact removeEmailAtIndex:0];
+        BOOL hasToContinue = YES;
+                while (hasToContinue && _contact.emails.count > 0) {
+                  hasToContinue = [_contact removeEmailAtIndex:0];
                 }
                 NSInteger nbEmail = 0;
                 if (_tmpContact.emails != NULL) {
@@ -503,15 +493,15 @@ static UICompositeViewDescription *compositeDescription = nil;
         if (IPAD) {
           _emptyLabel.hidden = !_isAdding;
           _avatarImage.hidden = !_emptyLabel.hidden;
-          _deleteButton.hidden = !_emptyLabel.hidden;
-          _editButton.hidden = !_emptyLabel.hidden;
+            _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+            _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
         } else {
           if (_isAdding) {
             [PhoneMainView.instance popCurrentView];
           } else {
             _avatarImage.hidden = FALSE;
-            _deleteButton.hidden = FALSE;
-            _editButton.hidden = FALSE;
+              _deleteButton.hidden = YES; // FALSE; Now is not editable.
+              _editButton.hidden = YES; // FALSE; Now is not editable.
           }
         }
 
@@ -541,8 +531,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 			_isAdding = FALSE;
 			self.tmpContact = NULL;
 			_avatarImage.hidden = FALSE;
-			_deleteButton.hidden = FALSE;
-			_editButton.hidden = FALSE;
+            _deleteButton.hidden = YES; // FALSE; Now is not editable.
+            _editButton.hidden = YES; // FALSE; Now is not editable.
 		}else{
 			LOGE(@"====>>>> Duplicated Contacts detected !!!");
 			[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Contact error", nil) message:NSLocalizedString(@"Contact duplicate", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Continue", nil] show];

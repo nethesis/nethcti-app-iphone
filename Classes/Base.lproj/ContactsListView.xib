@@ -72,7 +72,7 @@
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="disabled" image="contacts_sip_disabled.png"/>
+                                            <state key="disabled" image="contacts_sip_default.png"/>
                                             <state key="selected" image="contacts_sip_selected.png">
                                                 <color key="titleColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>

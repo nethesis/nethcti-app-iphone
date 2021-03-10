@@ -146,14 +146,14 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
             sortedAddresses = [[LinphoneManager.instance.fastAddressBook.addressBookMap allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
                 Contact* first =  [allContacts objectForKey:a];
                 Contact* second =  [allContacts objectForKey:b];
-                if([[ContactSelection getPickerFilter] isEqual:@"all"]) {
-                    return [[first.company lowercaseString] compare:[second.company lowercaseString]];
-                } else {
+                // if([[ContactSelection getPickerFilter] isEqual:@"all"]) {
+                    // return [[first.company lowercaseString] compare:[second.company lowercaseString]];
+                // } else {
                     if([[first.firstName lowercaseString] compare:[second.firstName lowercaseString]] == NSOrderedSame)
                         return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
                     else
                         return [[first.firstName lowercaseString] compare:[second.firstName lowercaseString]];
-                }
+                // }
             }];
 			
 			
@@ -199,14 +199,14 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                 add = [self testNethesis:contact];
 
                 NSMutableString *name = [[NSMutableString alloc] initWithString:@""];
-                if(![ContactSelection getSipFilter] && !contact.nethesis) {
+                // if(![ContactSelection getSipFilter] && !contact.nethesis) {
                     name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
-                } else  if(contact.company && contact.company.length > 0) {
-                    name = [[NSMutableString alloc] initWithString: contact.company];
-                } else {
+                // } else if(contact.company && contact.company.length > 0) {
+                    // name = [[NSMutableString alloc] initWithString: contact.company];
+                // } else {
                     // Same as first.
-                    name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
-                }
+                    // name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
+                // }
                 
                 if (add && name != nil) {
                     NSString *firstChar = [[name substringToIndex:1] uppercaseString];
@@ -220,10 +220,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                         [myMap insertObject:subAr forKey:firstChar selector:@selector(caseInsensitiveCompare:)];
                     }
                     NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
-                        if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
+                        // if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
                             return [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]];
-                        else
-                            return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
+                        // else
+                            // return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
                     }];
                     if (![subAr containsObject:contact]) {
                         [subAr insertObject:contact atIndex:idx];
@@ -357,6 +357,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 #pragma mark - UITableViewDataSource Functions
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if([ContactSelection getSipFilter]) return nil;
 	return [addressBookMap allKeys];
 }
 
@@ -400,7 +401,6 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return cell;
 }
 
-
 /// Utility method: count a table view row absolute index.
 /// @param tableView where count rows.
 /// @param indexPath pointer to current row.
@@ -410,6 +410,11 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         rowCount += [tableView numberOfRowsInSection:i];
     }
     return rowCount + indexPath.row; // Add current section row.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    // Hide header when in sip filter mode.
+    return [ContactSelection getSipFilter] ? 0 : tableView.sectionHeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

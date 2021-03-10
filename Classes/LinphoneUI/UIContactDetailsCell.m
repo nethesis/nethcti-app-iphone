@@ -90,6 +90,7 @@
 /// Prepare cell view to be shown if the value is not an address which can be called.
 /// @param value a simple string which doesn't contains an address.
 - (void)setNonAddress:(NSString *)value {
+    [self hideDeleteButton:YES];
     _addressLabel.text = value;
     _inviteButton.hidden = _linphoneImage.hidden = _callButton.hidden = YES;
     _isAddress = NO;

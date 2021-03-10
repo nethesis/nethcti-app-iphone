@@ -15,10 +15,21 @@ typedef enum _ContactSections {
     ContactSections_Sip,
     ContactSections_Number,
     ContactSections_Email,
+    // Nethesis fields.
     ContactSections_Company,
-    ContactSections_Title,
-    ContactSections_OwnerId,
+    ContactSections_HomeLocation,
+    ContactSections_Homepob,
+    ContactSections_HomePostalCode,
     ContactSections_Notes,
+    ContactSections_OwnerId, // Not editable.
+    ContactSections_Source, // Not editable.
+    ContactSections_SpeeddialNum,
+    ContactSections_Title,
+    ContactSections_Type, // Not editable.
+    ContactSections_Url,
+    ContactSections_WorkLocation,
+    ContactSections_Workpob,
+    ContactSections_WorkPostalCode,
     ContactSections_MAX
 } ContactSections;
 

@@ -18,9 +18,13 @@ class NethPhoneBook: NSObject {
     /// Current contacts number loaded from user phonebook.
     var rows: Int
     
+    /// True if can fetch more contacts, false otherwise. Reset it before a new call.
+    var canFetch: Bool
+    
     fileprivate override init() {
-        count = 0;
-        rows = 0;
+        count = 0
+        rows = 0
+        canFetch = true
     }
     
     private static var _singleton: NethPhoneBook?
@@ -38,7 +42,7 @@ class NethPhoneBook: NSObject {
      If rows is equal or more the count of phonebook contact, no more contacts need to be downloaded.
      */
     @objc public func hasMore(_ index: Int) -> Bool {
-        return rows < count && index + 50 > rows
+        return canFetch && index + 50 > rows // rows < count &&
     }
     
     /// Increment the number of contacts loaded.
@@ -46,14 +50,20 @@ class NethPhoneBook: NSObject {
     ///   - number: number of contacts loaded in the last api call.
     ///   - max: max contacts number in the user phonebook.
     @objc public func load(_ number: Int, max: Int) {
-        rows += number;
-        count = max;
+        rows += number
+        count = max
+    }
+    
+    @objc public func load(_ number: Int, more: Bool) {
+        rows += number
+        canFetch = more
     }
     
     /**
      Reset current max number of phonebook contacts.
      */
     @objc public func reset() -> Void {
-        rows = 0;
+        rows = 0
+        canFetch = true;
     }
 }

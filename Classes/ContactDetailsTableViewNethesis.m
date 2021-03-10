@@ -23,6 +23,13 @@
 #import "Utils.h"
 #import "OrderedDictionary.h"
 
+#define allocWith(field) [[NSMutableArray alloc] initWithObjects:_contact.field, nil]
+
+#define addressCell(field)
+
+#define nonAddressCell(field) [cell setNonAddress:_contact.field]; \
+                              return cell;
+
 @implementation ContactDetailsTableViewNethesis
 
 #pragma mark - Property Functions
@@ -38,11 +45,36 @@
         if (showEmails == true) {
             return _contact.emails;
         }
-    } else if(section == ContactSections_OwnerId && _contact.ownerId.length > 0) {
-        return [[NSMutableArray alloc] initWithObjects:_contact.ownerId, nil];
-    } else if(section == ContactSections_Notes && _contact.notes.length > 0) {
-        return [[NSMutableArray alloc] initWithObjects:_contact.notes, nil];
     }
+    // Can you refactor this Linphone code?
+    else if(section == ContactSections_Company && _contact.company.length > 0)
+        return allocWith(company);
+    else if(section == ContactSections_HomeLocation && _contact.homeLocation.length > 0)
+        return allocWith(homeLocation);
+    else if(section == ContactSections_Homepob && _contact.homePob.length > 0)
+        return allocWith(homePob);
+    else if(section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0)
+        return allocWith(homePostalCode);
+    else if(section == ContactSections_Notes && _contact.notes.length > 0)
+        return allocWith(notes);
+    else if(section == ContactSections_OwnerId && _contact.ownerId.length > 0)
+        return allocWith(ownerId);
+    else if(section == ContactSections_Source && _contact.source.length > 0)
+        return allocWith(source);
+    else if(section == ContactSections_SpeeddialNum && _contact.speeddialNum.length > 0)
+        return allocWith(speeddialNum);
+    else if(section == ContactSections_Title && _contact.title.length > 0)
+        return allocWith(title);
+    else if(section == ContactSections_Type && _contact.type.length > 0)
+        return allocWith(type);
+    else if(section == ContactSections_Url && _contact.url.length > 0)
+        return allocWith(url);
+    else if(section == ContactSections_WorkLocation && _contact.workLocation.length > 0)
+        return allocWith(workLocation);
+    else if(section == ContactSections_Workpob && _contact.workPob.length > 0)
+        return allocWith(workPob);
+    else if(section == ContactSections_WorkPostalCode && _contact.workPostalCode.length > 0)
+        return allocWith(workPostalCode);
     
     // To hide section return this value.
     return nil;
@@ -164,10 +196,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName ||
-        section == ContactSections_LastName ||
-        section == ContactSections_Company ||
-        section == ContactSections_Title) {
-        /*first and last name only when editting */
+        section == ContactSections_LastName) {
+        // Those fields are only editable.
         return (self.tableView.isEditing) ? 1 : 0;
     } else if (section == ContactSections_Sip) {
         return _contact.sipAddresses.count;
@@ -177,11 +207,26 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if((section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
-              (section == ContactSections_Notes &&_contact.notes.length > 0)) {
+    } else if((section == ContactSections_Company && _contact.company.length > 0) ||
+              (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
+              (section == ContactSections_Homepob && _contact.homePob.length > 0) ||
+              (section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0) ||
+              (section == ContactSections_Notes &&_contact.notes.length > 0) ||
+              (section == ContactSections_SpeeddialNum &&_contact.speeddialNum.length > 0) ||
+              (section == ContactSections_Title && _contact.title.length > 0) ||
+              (section == ContactSections_Type && _contact.type.length > 0) ||
+              (section == ContactSections_Url && _contact.url.length > 0) ||
+              (section == ContactSections_WorkLocation && _contact.workLocation.length > 0) ||
+              (section == ContactSections_Workpob && _contact.workPob.length > 0) ||
+              (section == ContactSections_WorkPostalCode && _contact.workPostalCode.length > 0)) {
         return 1;
-    } else
-        return 0;
+    } else if((section == ContactSections_OwnerId && _contact.ownerId.length > 0) ||
+              (section == ContactSections_Source && _contact.source.length > 0)) {
+        // Those fields are not editable.
+        return self.tableView.isEditing ? 0 : 1;
+    }
+    
+    return 0; // The section doesn't show any row.
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -200,17 +245,18 @@
     [cell hideDeleteButton:NO];
     [cell.editTextfield setKeyboardType:UIKeyboardTypeDefault];
     NSString *value = @"";
+    NSInteger section = indexPath.section;
     // NewContactSections: Add here a row for new ContactSection.
-    if (indexPath.section == ContactSections_FirstName) {
+    if (section == ContactSections_FirstName) {
         value = _contact.firstName;
         [cell hideDeleteButton:YES];
-    } else if (indexPath.section == ContactSections_LastName) {
+    } else if (section == ContactSections_LastName) {
         value = _contact.lastName;
         [cell hideDeleteButton:YES];
-    } else if ([indexPath section] == ContactSections_Number) {
+    } else if (section == ContactSections_Number) {
         value = _contact.phones[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypePhonePad];
-    } else if ([indexPath section] == ContactSections_Sip) {
+    } else if (section == ContactSections_Sip) {
         value = _contact.sipAddresses[indexPath.row];
         LinphoneAddress *addr = NULL;
         if ([LinphoneManager.instance
@@ -222,26 +268,37 @@
             linphone_address_destroy(addr);
         }
         [cell.editTextfield setKeyboardType:UIKeyboardTypeASCIICapable];
-    } else if ([indexPath section] == ContactSections_Email) {
+    } else if (section == ContactSections_Email) {
         value = _contact.emails[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
-    } else if([indexPath section] == ContactSections_Company) {
-        value = _contact.company;
-        [cell hideDeleteButton:YES];
-    } else if([indexPath section] == ContactSections_Title) {
-        value = _contact.title;
-        [cell hideDeleteButton:YES];
-    } else if([indexPath section] == ContactSections_OwnerId) {
-        [cell hideDeleteButton:YES];
-        [cell setNonAddress:_contact.ownerId];
-        // CGRect rect = cell.frame;
-        // rect.size.height = rect.size.height - cell.optionsView.frame.size.height;
-        // cell.frame = rect;
-        return cell;
-    } else if([indexPath section] == ContactSections_Notes) {
-        [cell hideDeleteButton:YES];
-        [cell setNonAddress:_contact.notes];
-        return cell;
+    } else if(section == ContactSections_Company) {
+        nonAddressCell(company);
+    } else if(section == ContactSections_HomeLocation) {
+        nonAddressCell(homeLocation);
+    } else if(section == ContactSections_Homepob) {
+        nonAddressCell(homePob);
+    } else if(section == ContactSections_HomePostalCode) {
+        nonAddressCell(homePostalCode);
+    } else if(section == ContactSections_Notes) {
+        nonAddressCell(notes);
+    } else if(section == ContactSections_OwnerId) {
+        nonAddressCell(ownerId);
+    } else if(section == ContactSections_Source) {
+        nonAddressCell(source);
+    } else if(section == ContactSections_SpeeddialNum) {
+        nonAddressCell(speeddialNum);
+    } else if(section == ContactSections_Title) {
+        nonAddressCell(title);
+    } else if(section == ContactSections_Type) {
+        nonAddressCell(type);
+    } else if(section == ContactSections_Url) {
+        nonAddressCell(url);
+    } else if(section == ContactSections_WorkLocation) {
+        nonAddressCell(workLocation);
+    } else if(section == ContactSections_Workpob) {
+        nonAddressCell(workPob);
+    } else if(section == ContactSections_WorkPostalCode) {
+        nonAddressCell(workPostalCode);
     }
     
     if ([value hasPrefix:@" "])
@@ -304,6 +361,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *text = nil;
     BOOL canAddEntry = self.tableView.isEditing;
     NSString *addEntryName = nil;
+    BOOL sectionHasRows = [self getSectionData:section].count > 0;
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName && self.tableView.isEditing) {
         text = NSLocalizedString(@"First name", nil);
@@ -311,13 +369,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     } else if (section == ContactSections_LastName && self.tableView.isEditing) {
         text = NSLocalizedString(@"Last name", nil);
         canAddEntry = NO;
-    } else if(section == ContactSections_Company && self.tableView.isEditing) {
-        text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
-        canAddEntry = NO;
-    } else if(section == ContactSections_Title && self.tableView.isEditing) {
-        text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
-        canAddEntry = NO;
-    } else if ([self getSectionData:section].count > 0 || self.tableView.isEditing) {
+    } else if (sectionHasRows || self.tableView.isEditing) {
+        // Show those editable fields section titles.
         if (section == ContactSections_Number) {
             text = NSLocalizedString(@"Phone numbers", nil);
             addEntryName = NSLocalizedString(@"Add new phone number", nil);
@@ -328,11 +381,47 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_OwnerId) { // Owner id isn't editable.
-            text = NSLocalizedStringFromTable(@"Created by", @"NethLocalizable", @"");
+        } else if(section == ContactSections_Company) {
+            text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_HomeLocation) {
+            text = NSLocalizedStringFromTable(@"Home location", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Homepob) {
+            text = NSLocalizedStringFromTable(@"Home pob", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_HomePostalCode) {
+            text = NSLocalizedStringFromTable(@"Home Postal Code", @"NethLocalizable", @"");
             canAddEntry = NO;
         } else if(section == ContactSections_Notes) {
             text = NSLocalizedStringFromTable(@"Notes", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_OwnerId && !self.tableView.isEditing) { // Owner id isn't editable.
+            text = NSLocalizedStringFromTable(@"Created by", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Source && !self.tableView.isEditing) { // Source isn't editable.
+            text = NSLocalizedStringFromTable(@"Source", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_SpeeddialNum) {
+            text = NSLocalizedStringFromTable(@"SpeeddialNum", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Title) {
+            text = NSLocalizedStringFromTable(@"Title", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Type) {
+            text = NSLocalizedStringFromTable(@"Type", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Url) {
+            text = NSLocalizedStringFromTable(@"Url", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkLocation) {
+            text = NSLocalizedStringFromTable(@"Work location", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_Workpob) {
+            text = NSLocalizedStringFromTable(@"Work pob", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkPostalCode) {
+            text = NSLocalizedStringFromTable(@"Work Postal Code", @"NethLocalizable", @"");
             canAddEntry = NO;
         }
     }
@@ -392,13 +481,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView.isEditing) {
         return 44;
-    } else if (indexPath.section == ContactSections_OwnerId) {
-        return 44;
-    } else if (indexPath.section == ContactSections_Notes) { // Multiline?
-        return 44;
     }
-    return 88;
-    // return tableView.isEditing || indexPath.section == ContactSections_OwnerId || indexPath.section == ContactSections_Notes ? 44 : 88;
+    UIContactDetailsCell *cell = (UIContactDetailsCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.isAddress ? 88 : 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -453,9 +538,47 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 value = _contact.phones[path.row]; // in case of reformatting
                 break;
             case ContactSections_Company:
+                _contact.company = value;
+                break;
+            case ContactSections_HomeLocation:
+                _contact.homeLocation = value;
+                break;
+            case ContactSections_Homepob:
+                _contact.homePob = value;
+                break;
+            case ContactSections_HomePostalCode:
+                _contact.homePostalCode = value;
+                break;
             case ContactSections_Notes:
+                _contact.notes = value;
+                break;
             case ContactSections_OwnerId:
+                _contact.ownerId = value;
+                break;
+            case ContactSections_Source:
+                _contact.source = value;
+                break;
+            case ContactSections_SpeeddialNum:
+                _contact.speeddialNum = value;
+                break;
             case ContactSections_Title:
+                _contact.title = value;
+                break;
+            case ContactSections_Type:
+                _contact.type = value;
+                break;
+            case ContactSections_Url:
+                _contact.url = value;
+                break;
+            case ContactSections_WorkLocation:
+                _contact.workLocation = value;
+                break;
+            case ContactSections_Workpob:
+                _contact.workPob = value;
+                break;
+            case ContactSections_WorkPostalCode:
+                _contact.workPostalCode = value;
+                break;
             case ContactSections_MAX:
             case ContactSections_None:
                 break;

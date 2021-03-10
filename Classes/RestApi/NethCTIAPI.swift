@@ -101,17 +101,11 @@ import Foundation
         task.resume()
     }
     
-    @objc public func saveCredentials(username:String, password:String, domain:String) -> Void {
-        ApiCredentials.Username = username
-        ApiCredentials.Domain = domain
-        ApiCredentials.Password = password
-    }
-    
     /**
      Make a request with the new request handler above this function.
      This may be the only call that don't need authentication.
      */
-    @objc public func postLogin(_ successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
+    @objc public func postLogin(_ password: String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
         if !ApiCredentials.checkCredentials() {
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
@@ -126,8 +120,7 @@ import Foundation
             return
         }
         
-        guard let password = ApiCredentials.Password as String?,
-              let postStr = ApiCredentials.getAuthenticationCredentials(password: password) else {
+        guard let postStr = ApiCredentials.getAuthenticationCredentials(password: password) else {
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             return
         }
@@ -372,7 +365,7 @@ import Foundation
             return
         }
         
-        let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/search/\(term)?view=\(view)&limit=\(limit)&offset=\(offset)"
+        let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/getall/?limit=\(limit)&offset=\(offset)" // \(term)?view=\(view)&
         guard let url = URL(string:endpoint) else {
             errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
@@ -396,7 +389,6 @@ import Foundation
                 successHandler(contacts)
             } catch {
                 errorHandler(1, "json error: \(error.localizedDescription)")
-                return
             }
         }, errorHandler: {
             error, response in
@@ -412,14 +404,60 @@ import Foundation
     
     let cLimit = 100
     
-    @objc public func fetchContacts(_ v: String, t: String, success:@escaping([Contact]) -> Void, error:@escaping(Int, String?) -> Void) {
+    @objc public func fetchContacts(_ v: String, t: String?, success:@escaping([Contact]) -> Void, errorHandler:@escaping(Int, String?) -> Void) {
+        // Build the request.
+        if !ApiCredentials.checkCredentials() {
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            return
+        }
+        
+        var endpoint: String? = ""
         let index = NethPhoneBook.instance().rows
-        getContacts(view: v, limit: cLimit, offset: index, term: t, successHandler:  {
-            phoneBookReturn in
-            NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
-            success(phoneBookReturn.rows.map({ (NethContact) -> Contact in
-                NethContact.toLinphoneContact()
-            }))
-        }, errorHandler: error)
+        if let term = t,
+           term != "" {
+            endpoint = "/phonebook/search/\(term)?limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
+        } else {
+            endpoint = "/phonebook/getall/?limit=\(cLimit)&offset=\(index)"
+        }
+        
+        guard let domain = self.transformDomain(ApiCredentials.Domain) as String?,
+              let url = URL(string:"\(domain)\(endpoint!)") else {
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        // Make the request.
+        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
+            data, response in
+            guard let responseData = data else { // Response handling.
+                errorHandler(1, "No data provided.")
+                return
+            }
+            
+            do{ // Receive the results.
+                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                let contacts = try NethPhoneBookReturn(raw: rawContacts) // Convert to phonebook.
+                // NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
+                NethPhoneBook.instance().load(contacts.rows.count, more: contacts.rows.count >= self.cLimit)
+                success(contacts.rows.map({ (NethContact) -> Contact in
+                    NethContact.toLinphoneContact()
+                }))
+            } catch SerializationError.missing(let obj) {
+                errorHandler(1, "Missing json fields: \(obj)")
+            } catch {
+                errorHandler(1, "Unknown error: \(error.localizedDescription)") // error refer to catched error.
+            }
+        }, errorHandler: {
+            error, response in // Error handling.
+            guard let httpResponse = response as? HTTPURLResponse else {
+                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
+                return
+            }
+            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
+            return
+        })
     }
 }

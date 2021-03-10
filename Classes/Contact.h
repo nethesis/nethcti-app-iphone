@@ -39,9 +39,19 @@
 
 // Nethesis fields.
 @property(nonatomic, retain) NSString *company;
+@property(nonatomic, retain) NSString *homeLocation;
+@property(nonatomic, retain) NSString *homePob;
+@property(nonatomic, retain) NSString *homePostalCode;
 @property(nonatomic, retain) NSString *notes;
 @property(nonatomic, retain) NSString *ownerId;
+@property(nonatomic, retain) NSString *source;
+@property(nonatomic, retain) NSString *speeddialNum;
 @property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *type;
+@property(nonatomic, retain) NSString *url;
+@property(nonatomic, retain) NSString *workLocation;
+@property(nonatomic, retain) NSString *workPob;
+@property(nonatomic, retain) NSString *workPostalCode;
 @property BOOL nethesis;
 
 - (void)setAvatar:(UIImage *)avatar;

@@ -10,8 +10,6 @@
  * Info.plist transitions.
  */
 
-"Hello! Join me on NethCTI 3! You can download it for free at: link" = "Ciao! Raggiungimi su NethCTI 3! Puoi scaricarlo gratuitamente all'indirizzo: https://apps.apple.com/it/app/nethcti-3/id1490557831?ign-mpt=uo%3D2";
-
 "Share photos with your friends and customize avatars" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
 
 "Make calls with your friends, we don't send your contacts to any server." = "Chiama i tuoi amici. Non invieremo i tuoi contatti a nessun server esterno.";
@@ -21,8 +19,6 @@
 "Add tranfered files to your library" = "Aggiungi i file trasferiti alla tua libreria";
 
 "Use microphone to make audio calls" = "Usa il microfono per poter effettuare chiamate audio";
-
-"NethCTI will not send your contacts to any server" = "NethCTI non invierà i tuoi contatti a nessun server";
 
 /*
  * Phonebook filters.
@@ -40,8 +36,28 @@
 
 "Company" = "Azienda";
 
+"Home location" = "Casa";
+
+"Home pob" = "Home pob";
+
+"Home Postal Code" = "Codice Postale Casa";
+
 "Notes" = "Note";
 
 "Created by" = "Creato da";
 
-"Title" = "Titolo";
+"Source" = "Sorgente";
+
+"SpeeddialNum" = "Numero Speeddial";
+
+"Title" = "Mansione";
+
+"Type" = "Tipo";
+
+"Url" = "Url";
+
+"Work location" = "Lavoro";
+
+"Work pob" = "Work pob";
+
+"Work Postal Code" = "Codice Postale Lavoro";

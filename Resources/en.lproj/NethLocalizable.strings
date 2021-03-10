@@ -6,8 +6,6 @@
   
 */
 
-"Hello! Join me on NethCTI 3! You can download it for free at: link" = "Hello! Join me on NethCTI 3! You can download it for free at: https://apps.apple.com/us/app/nethcti-3/id1490557831?ign-mpt=uo%3D2";
-
 /*
  * Phonebook filters.
  */
@@ -24,8 +22,28 @@
 
 "Company" = "Company";
 
+"Home location" = "Home";
+
+"Home pob" = "Home pob";
+
+"Home Postal Code" = "Home Postal Code";
+
 "Notes" = "Notes";
 
 "Created by" = "Created by";
 
-"Title" = "Title";
+"Source" = "Source";
+
+"SpeeddialNum" = "Speeddial Number";
+
+"Title" = "Job";
+
+"Type" = "Type";
+
+"Url" = "Url";
+
+"Work location" = "Work";
+
+"Work pob" = "Work pob";
+
+"Work Postal Code" = "Work Postal Code";

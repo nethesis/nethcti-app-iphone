@@ -271,13 +271,12 @@
 /// @param term Term to search inside contact name.
 /// @param retry TO BE REMOVED: after a 401, login and retry one time.
 -(void)loadNeth:(NSString *)view withTerm:(NSString *)term {
-    @synchronized (_addressBookMap) {
+    @synchronized (_addressBookMap) { // Synchronize on this object to check if there's already an api call.
         if(_isLoading) return;
         _isLoading = YES;
     }
     // TODO: Fetch contacts based on view and search term selected by user.
-    NethCTIAPI* api = [NethCTIAPI sharedInstance];
-    [api fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
+    [NethCTIAPI.sharedInstance fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
         for (Contact* nethContact in contacts) {
             @synchronized(LinphoneManager.instance.fastAddressBook) {
                 @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
@@ -292,9 +291,14 @@
             _isLoading = NO;
         }
         [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
-    } error:^(NSInteger code, NSString * _Nullable string) {
-        if(code == 401) {
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        if(code == 401)
             [LinphoneManager.instance clearProxies];
+        else
+            LOGE(@"Error occurred while fetching contacts: %@", string);
+        
+        @synchronized (_addressBookMap) {
+            _isLoading = NO;
         }
     }];
 }
