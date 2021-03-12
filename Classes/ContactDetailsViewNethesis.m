@@ -119,10 +119,11 @@
 	}
 
 	_contact = acontact;
-	_emptyLabel.hidden = (_contact != NULL);
-	_avatarImage.hidden = !_emptyLabel.hidden;
-    _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
-    _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+    bool emptyContact = (_contact != NULL);
+    _emptyLabel.hidden = emptyContact;
+	_avatarImage.hidden = !emptyContact;
+    _deleteButton.hidden = YES; // !emptyContact; Now is not editable.
+    _editButton.hidden = YES; // !emptyContact; Now is not editable.
 
 	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
@@ -317,6 +318,10 @@
 		_cancelButton.hidden = TRUE;
 	}
     
+    // TO BE REMOVED: Hide delete button.
+    _deleteButton.hidden = TRUE;
+    _editButton.hidden = TRUE;
+    
     [self recomputeTableViewSize:_editButton.hidden];
 }
 
@@ -412,7 +417,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)recomputeTableViewSize:(BOOL)editing {
     CGRect frame = _tableController.tableView.frame;
     const int avatarFrame = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
-    if ([self viewIsCurrentlyPortrait] && !editing) {
+    if ([self viewIsCurrentlyPortrait]) { //} && !editing) { Atm the contact is not editable.
         const int labelFrame = _nameLabel.frame.size.height; // Add here more label heights.
         frame.origin.y = avatarFrame + labelFrame;
     } else if(![self viewIsCurrentlyPortrait]) {

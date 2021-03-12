@@ -147,12 +147,11 @@
 	return count;
 }
 
-
 - (void)setContact:(Contact *)acontact {
-  // if (acontact == _contact)
-  //	return;
-  _contact = acontact;
-  [self loadData];
+    // if (acontact == _contact)
+    //	return;
+    _contact = acontact;
+    [self loadData];
 }
 
 - (void)addPhoneField:(NSString *)number {

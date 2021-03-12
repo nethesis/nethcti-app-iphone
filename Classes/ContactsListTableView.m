@@ -439,38 +439,41 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
-	if (![self isEditing]) {
-		NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
-		Contact *contact = subAr[indexPath.row];
-
-		// Go to Contact details view
-        if([ContactSelection getSipFilter]) {
-            ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
-            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
-                [view setContact:contact];
-            } else {
-                if (IPAD) {
-                    [view resetContact];
-                    view.isAdding = FALSE;
-                }
-                [view editContact:contact address:[ContactSelection getAddAddress]];
-            }
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    // If is editing, select the checkbox instead open contact detail.
+    if ([self isEditing])
+        return;
+    
+    NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
+    Contact *contact = subAr[indexPath.row];
+    
+    // Go to right ContactDetailsView(Nethesis)
+    if([ContactSelection getSipFilter] && contact.nethesis) {
+        ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+            [view setContact:contact];
         } else {
-            ContactDetailsView *view = VIEW(ContactDetailsView);
-            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
-                [view setContact:contact];
-            } else {
-                if (IPAD) {
-                    [view resetContact];
-                    view.isAdding = FALSE;
-                }
-                [view editContact:contact address:[ContactSelection getAddAddress]];
+            if (IPAD) {
+                [view resetContact];
+                view.isAdding = FALSE;
             }
+            [view editContact:contact address:[ContactSelection getAddAddress]];
         }
-	}
+    } else {
+        ContactDetailsView *view = VIEW(ContactDetailsView);
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+            [view setContact:contact];
+        } else {
+            if (IPAD) {
+                [view resetContact];
+                view.isAdding = FALSE;
+            }
+            [view editContact:contact address:[ContactSelection getAddAddress]];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView
