@@ -92,7 +92,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)onPolicyTap {
     // TODO: This link must change.
-    NSString *url = NSLocalizedStringFromTable(@"terms-and-privacy", @"BrandLocalizable", @"");;
+    NSString *url = NSLocalizedStringFromTable(@"terms-and-privacy-url", @"BrandLocalizable", @"");;
     if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
         LOGE(@"Failed to open %@, invalid URL", url);
     }
