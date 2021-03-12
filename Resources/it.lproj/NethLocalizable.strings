@@ -7,6 +7,12 @@
 */
 
 /*
+ * Phonebook strings.
+ */
+
+"Session expired. To see contacts you need to logout and login again." = "Sessione scaduta. Per poter vedere la lista contatti è necessario fare logout e login di nuovo.";
+
+/*
  * Info.plist transitions.
  */
 

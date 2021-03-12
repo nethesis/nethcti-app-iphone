@@ -7,6 +7,12 @@
 */
 
 /*
+ * Phonebook strings.
+ */
+
+"Session expired. To see contacts you need to logout and login again." = "Session expired. To see contacts you need to logout and login again.";
+
+/*
  * Phonebook filters.
  */
 

@@ -252,6 +252,10 @@ import Foundation
         })
     }
     
+    @objc public func isUserAuthenticated() -> Bool {
+        return ApiCredentials.checkCredentials()
+    }
+    
     @objc public func registerPushToken(_ deviceId: String, unregister: Bool, success:@escaping (Bool) -> Void) -> Void {
         // Check input values.
         guard
@@ -348,60 +352,14 @@ import Foundation
         })
     }
     
-    /**
-     Make a request to proxy to get contacts by some parameters.
-     View: Name or Company;
-     Limit: Number of contacts to take;
-     Offset: Starting point from taking contacts;
-     Term: Search term to filter by;
-     */
-    @objc public func getContacts(view:String, limit:Int, offset:Int, term:String, successHandler: @escaping(NethPhoneBookReturn) -> Void, errorHandler: @escaping(Int, String?) -> Void) -> Void {
-        // Build the request.
-        if !ApiCredentials.checkCredentials() {
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            return
-        }
-        
-        let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/getall/?limit=\(limit)&offset=\(offset)" // \(term)?view=\(view)&
-        guard let url = URL(string:endpoint) else {
-            errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
-            return
-        }
-        
-        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
-        
-        // Make the request.
-        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
-            data, response in
-            guard let responseData = data else { // Response handling.
-                errorHandler(1, "No data provided.")
-                return
-            }
-            
-            // Receive the results.
-            do{
-                // Convert to phonebook.
-                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                let contacts = try NethPhoneBookReturn(raw: rawContacts)
-                successHandler(contacts)
-            } catch {
-                errorHandler(1, "json error: \(error.localizedDescription)")
-            }
-        }, errorHandler: {
-            error, response in
-            // Error handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
-                return
-            }
-            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
-            return
-        })
-    }
-    
     let cLimit = 100
     
+    /// Make a request to proxy to get contacts by some parameters.
+    /// - Parameters:
+    ///   - v: Person, Company or All (fetch both)
+    ///   - t: Search term to filter by;
+    ///   - success: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func fetchContacts(_ v: String, t: String?, success:@escaping([Contact]) -> Void, errorHandler:@escaping(Int, String?) -> Void) {
         // Build the request.
         if !ApiCredentials.checkCredentials() {
@@ -414,7 +372,7 @@ import Foundation
         let index = NethPhoneBook.instance().rows
         if let term = t,
            term != "" {
-            endpoint = "/phonebook/search/\(term)?limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
+            endpoint = "/phonebook/search/\(term)?view=all&limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
         } else {
             endpoint = "/phonebook/getall/?limit=\(cLimit)&offset=\(index)"
         }

@@ -272,7 +272,20 @@ static UICompositeViewDescription *compositeDescription = nil;
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
         [LinphoneManager.instance.fastAddressBook resetNeth];
-        [LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText];
+        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem]
+                                                      withTerm:searchText]) {
+            UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil) preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [errView addAction:defaultAction];
+            [self presentViewController:errView animated:YES completion:^(void) {
+                [PhoneMainView.instance popCurrentView];
+            }];
+            return;
+        }
         frame.origin.x = linphoneButton.frame.origin.x;
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
         [ContactSelection enableEmailFilter:FALSE];

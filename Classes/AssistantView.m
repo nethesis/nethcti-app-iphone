@@ -1463,15 +1463,6 @@ _waitView.hidden = YES; \
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
         [api postLogin:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-                
-                // Wedo: here we fetch the Nethcti Phonebook. No authentication provided at app start and at login.
-                [api getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
-                    printf("%d", 'R');
-                    LOGD(@"WEDO:Received contacts");
-                } errorHandler:^(NSInteger code, NSString * _Nullable string) {
-                    LOGE(@"WEDO:Error received when fetching contacts: %@", string);
-                }];
-                
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 // Get me error handling.

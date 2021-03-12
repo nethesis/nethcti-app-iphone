@@ -111,7 +111,7 @@ extension NethCTIAPI {
             return ["Authorization": "\(Username):\(NethApiToken)"] as [String: String]
         }
         
-        public class func checkCredentials() -> Bool {
+        @objc public class func checkCredentials() -> Bool {
             return Username != "" && Domain != "" && NethApiToken != ""
         }
         
