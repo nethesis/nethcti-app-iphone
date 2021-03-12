@@ -282,7 +282,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             
             [errView addAction:defaultAction];
             [self presentViewController:errView animated:YES completion:^(void) {
-                [PhoneMainView.instance popCurrentView];
+                [self changeView:ContactsAll];
             }];
             return;
         }
