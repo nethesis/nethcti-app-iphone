@@ -1516,7 +1516,6 @@ _waitView.hidden = YES; \
     //[UIViewController attemptRotationToDeviceOrientation];
     AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
     if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
-        
         bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
         NSMutableArray *devices = [NSMutableArray array];
         
@@ -1696,6 +1695,12 @@ _waitView.hidden = YES; \
     if ([notif.userInfo count] == 0){
         return;
     }
+    
+    // Allow other screen orientations.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
+        delegate.onlyPortrait = FALSE;
+    });
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
     NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
