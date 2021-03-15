@@ -241,7 +241,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSString *picker = pickerFilter;
     NSString *search = _searchBar.text;
     [LinphoneManager.instance.fastAddressBook resetNeth];
-    [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
+    [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search handler:^(NSInteger code) {
+        [self handleAuthError:code];
+    }];
 }
 
 -(NSString*) getSelectedPickerItem {
@@ -272,20 +274,11 @@ static UICompositeViewDescription *compositeDescription = nil;
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
         [LinphoneManager.instance.fastAddressBook resetNeth];
-        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem]
-                                                      withTerm:searchText]) {
-            UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil) preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
-                                                                    style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            
-            [errView addAction:defaultAction];
-            [self presentViewController:errView animated:YES completion:^(void) {
-                [self changeView:ContactsAll];
-            }];
+        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText handler:^(NSInteger code) {
+            [self handleAuthError:code];
+        }]) {
             return;
-        }
+        };
         frame.origin.x = linphoneButton.frame.origin.x;
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
         [ContactSelection enableEmailFilter:FALSE];
@@ -296,6 +289,23 @@ static UICompositeViewDescription *compositeDescription = nil;
     _selectedButtonImage.frame = frame;
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         allButton.selected = FALSE;
+    }
+}
+
+- (void)handleAuthError:(NSInteger)code {
+    if(code == 401) {
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil) preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [errView addAction:defaultAction];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:errView animated:YES completion:^(void) {
+                [self changeView:ContactsAll];
+            }];
+        });
     }
 }
 
@@ -355,7 +365,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {
-    allButton.hidden = linphoneButton.hidden = _selectedButtonImage.hidden = addButton.hidden =	self.tableController.isEditing;
+    allButton.hidden = linphoneButton.hidden = _selectedButtonImage.hidden = addButton.hidden = self.tableController.isEditing;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -380,7 +390,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     [ContactSelection setNameOrEmailFilter:searchText];
     [LinphoneManager.instance.fastAddressBook resetNeth];
     [LinphoneManager.instance setContactsUpdated:TRUE];
-    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText handler:^(NSInteger code) {
+        [self handleAuthError:code];
+    }];
     return;
     
     // [LinphoneManager.instance.fastAddressBook resetNeth];
@@ -389,7 +401,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         [tableController loadData];
     } else {
         // Before loading searched data, we have to search them!
-        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText handler:^(NSInteger code) {
+            [self handleAuthError:code];
+        }];
         [tableController loadSearchedData];
     }
 }

@@ -370,6 +370,21 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
     }
 }
 
+- (void)handleAuthError:(NSInteger)code {
+    if(code == 401) {
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil) preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [errView addAction:defaultAction];
+        [self presentViewController:errView animated:YES completion:^(void) {
+            return;
+        }];
+    }
+}
+
 #pragma mark - UITableViewDataSource Functions
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -390,7 +405,9 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
         if([[NethPhoneBook instance] hasMore:rowIndex]) {
             NSString *searchText = [ContactSelection getNameOrEmailFilter];
-            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText handler:^(NSInteger code) {
+                [self handleAuthError:code];
+            }];
             // Wedo: here we notify un update for the AddressBook.
             // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
         }

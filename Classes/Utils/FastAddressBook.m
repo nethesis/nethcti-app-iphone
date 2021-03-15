@@ -270,12 +270,14 @@
 /// - all: to fetch all contacts
 /// @param term Term to search inside contact name.
 /// @param retry TO BE REMOVED: after a 401, login and retry one time.
--(bool)loadNeth:(NSString *)view withTerm:(NSString *)term {
-    if(![NethCTIAPI.sharedInstance isUserAuthenticated])
+-(BOOL)loadNeth:(NSString *)view withTerm:(NSString *)term handler:(void (^)(NSInteger))error {
+    if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
+        error(401);
         return false;
+    }
     
     @synchronized (_addressBookMap) { // Synchronize on this object to check if there's already an api call.
-        if(_isLoading) return;
+        if(_isLoading) return true;
         _isLoading = YES;
     }
     
@@ -298,6 +300,7 @@
         if(code == 401) {
             // [LinphoneManager.instance clearProxies];
             // Show error message.
+            error(401);
             LOGE(@"Unauthenticated access: %@", string);
         } else {
             LOGE(@"Error occurred while fetching contacts: %@", string);
