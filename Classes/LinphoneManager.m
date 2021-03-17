@@ -77,6 +77,9 @@ NSString *const kLinphoneFileTransferRecvUpdate = @"LinphoneFileTransferRecvUpda
 NSString *const kLinphoneQRCodeFound = @"LinphoneQRCodeFound";
 NSString *const kLinphoneChatCreateViewChange = @"LinphoneChatCreateViewChange";
 
+// Nethesis Notification Identifiers.
+NSString *const kNethesisPhonebookPermissionRejection = @"NethesisPhonebookPermissionRejection";
+
 const int kLinphoneAudioVbrCodecDefaultBitrate = 36; /*you can override this from linphonerc or linphonerc-factory*/
 
 extern void libmsamr_init(MSFactory *factory);

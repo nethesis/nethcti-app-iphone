@@ -170,6 +170,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // Subscribe to Phonebook Permission Rejection Notification.
+    // TODO: We can send arguments to selector?
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onPhonebookPermissionRejection:)
+                                               name:kNethesisPhonebookPermissionRejection
+                                             object:nil];
+    
     if (![FastAddressBook isAuthorized]) {
         UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil) preferredStyle:UIAlertControllerStyleAlert];
         
@@ -198,6 +206,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void) viewWillDisappear:(BOOL)animated {
     self.view = NULL;
     [self.tableController removeAllContacts];
+    
+    // Subscribe to Phonebook Permission Rejection Notification.
+    // TODO: We can send arguments to selector?
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void) resizeTableView:(BOOL) check {
@@ -241,9 +253,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSString *picker = pickerFilter;
     NSString *search = _searchBar.text;
     [LinphoneManager.instance.fastAddressBook resetNeth];
-    [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search handler:^(NSInteger code) {
-        [self handleAuthError:code];
-    }];
+    [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
 }
 
 -(NSString*) getSelectedPickerItem {
@@ -274,9 +284,7 @@ static UICompositeViewDescription *compositeDescription = nil;
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
         [LinphoneManager.instance.fastAddressBook resetNeth];
-        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText handler:^(NSInteger code) {
-            [self handleAuthError:code];
-        }]) {
+        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText]) {
             return;
         };
         frame.origin.x = linphoneButton.frame.origin.x;
@@ -292,21 +300,44 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
 }
 
-- (void)handleAuthError:(NSInteger)code {
-    if(code == 401) {
-        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil) preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
-                                                                style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [errView addAction:defaultAction];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentViewController:errView animated:YES completion:^(void) {
-                [self changeView:ContactsAll];
-            }];
-        });
+- (void)onPhonebookPermissionRejection:(NSNotification *)notif {
+    if ([notif.userInfo count] == 0){
+        return;
     }
+    
+    long code = [[notif.userInfo valueForKey:@"code"] integerValue];
+    NSString *message = @"";
+    // Add more error codes with future remote permissions.
+    switch (code) {
+        case 401:
+            message = NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil);
+            break;
+            
+        default:
+            message = [NSString stringWithFormat:NSLocalizedString(@"Unknown authentication error. Contact your system administrator with a %ld error code.", nil), code];
+            break;
+    }
+    
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [errView addAction:defaultAction];
+    
+    // Always run this UI action on main thread.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:errView animated:YES completion:^(void) {
+            // Is this action always right?
+            switch (code) {
+                case 401:
+                    [self changeView:ContactsAll];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }];
+    });
 }
 
 - (void)refreshButtons {
@@ -390,9 +421,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [ContactSelection setNameOrEmailFilter:searchText];
     [LinphoneManager.instance.fastAddressBook resetNeth];
     [LinphoneManager.instance setContactsUpdated:TRUE];
-    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText handler:^(NSInteger code) {
-        [self handleAuthError:code];
-    }];
+    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
     return;
     
     // [LinphoneManager.instance.fastAddressBook resetNeth];
@@ -401,9 +430,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         [tableController loadData];
     } else {
         // Before loading searched data, we have to search them!
-        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText handler:^(NSInteger code) {
-            [self handleAuthError:code];
-        }];
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
         [tableController loadSearchedData];
     }
 }

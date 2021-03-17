@@ -29,18 +29,16 @@ NSArray *sortedAddresses;
 #pragma mark - Lifecycle Functions
 
 - (void)initContactsTableViewController {
-	addressBookMap = [[OrderedDictionary alloc] init];
-	sortedAddresses = [[NSArray alloc] init];
-        [NSNotificationCenter.defaultCenter
-            addObserver:self
-               selector:@selector(onAddressBookUpdate:)
-                   name:kLinphoneAddressBookUpdate
-                 object:nil];
-        [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(onAddressBookUpdate:)
-                   name:CNContactStoreDidChangeNotification
-                 object:nil];
+    addressBookMap = [[OrderedDictionary alloc] init];
+    sortedAddresses = [[NSArray alloc] init];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onAddressBookUpdate:)
+                                               name:kLinphoneAddressBookUpdate
+                                             object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onAddressBookUpdate:)
+                                                 name:CNContactStoreDidChangeNotification
+                                               object:nil];
 }
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
@@ -174,6 +172,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 				@synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
 					contact = [LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:addr];
 				}
+                
+                if ([contact.firstName isEqual:@"Andrea"]) {
+                    LOGI(@"Andrea");
+                }
                 
                 BOOL add = true;
                 // Do not add the contact directly if we set some filter
@@ -370,21 +372,6 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
     }
 }
 
-- (void)handleAuthError:(NSInteger)code {
-    if(code == 401) {
-        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil) preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
-                                                                style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [errView addAction:defaultAction];
-        [self presentViewController:errView animated:YES completion:^(void) {
-            return;
-        }];
-    }
-}
-
 #pragma mark - UITableViewDataSource Functions
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -401,15 +388,12 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([ContactSelection getSipFilter]) { // If no need to download contacts, don't do it!
+    // If no need to download contacts, don't do it!
+    if([ContactSelection getSipFilter]) {
         NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
         if([[NethPhoneBook instance] hasMore:rowIndex]) {
             NSString *searchText = [ContactSelection getNameOrEmailFilter];
-            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText handler:^(NSInteger code) {
-                [self handleAuthError:code];
-            }];
-            // Wedo: here we notify un update for the AddressBook.
-            // [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
         }
     }
     

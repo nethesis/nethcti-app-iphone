@@ -12,6 +12,8 @@
 
 "Session expired. To see contacts you need to logout and login again." = "Session expired. To see contacts you need to logout and login again.";
 
+"Unknown authentication error. Contact your system administrator, providing %ld error code." = "Unknown authentication error. Contact your system administrator, providing %ld error code.";
+
 /*
  * Phonebook filters.
  */

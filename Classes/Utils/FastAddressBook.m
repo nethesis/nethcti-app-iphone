@@ -270,17 +270,23 @@
 /// - all: to fetch all contacts
 /// @param term Term to search inside contact name.
 /// @param retry TO BE REMOVED: after a 401, login and retry one time.
--(BOOL)loadNeth:(NSString *)view withTerm:(NSString *)term handler:(void (^)(NSInteger))error {
+-(BOOL)loadNeth:(NSString *)view withTerm:(NSString *)term {
     if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
-        error(401);
+        // This method should send more error codes than one.
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:401], @"code", nil];
+        [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
+                                                          object:self
+                                                        userInfo:dict];
         return false;
     }
     
-    @synchronized (_addressBookMap) { // Synchronize on this object to check if there's already an api call.
+    // Synchronize on this object to check if there's already an api call.
+    @synchronized (_addressBookMap) {
         if(_isLoading) return true;
         _isLoading = YES;
     }
     
+    // Fetch contacts in a background thread. No more actions in this method are executed on main thread.
     [NethCTIAPI.sharedInstance fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
         for (Contact* nethContact in contacts) {
             @synchronized(LinphoneManager.instance.fastAddressBook) {
@@ -292,20 +298,23 @@
         
         // Mark contact as updated if loaded are more than 0.
         [LinphoneManager.instance setContactsUpdated:(contacts.count > 0)];
+        
+        // Release the block on loading action before exit callback.
         @synchronized (_addressBookMap) {
             _isLoading = NO;
         }
+        
         [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
     } errorHandler:^(NSInteger code, NSString * _Nullable string) {
-        if(code == 401) {
-            // [LinphoneManager.instance clearProxies];
-            // Show error message.
-            error(401);
-            LOGE(@"Unauthenticated access: %@", string);
-        } else {
-            LOGE(@"Error occurred while fetching contacts: %@", string);
-        }
+        // [LinphoneManager.instance clearProxies];
         
+        // Show error message.
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithLong:code], @"code", nil];
+        [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
+                                                          object:self
+                                                        userInfo:dict];
+        
+        // Release the block on loading action before exit callback.
         @synchronized (_addressBookMap) {
             _isLoading = NO;
         }
