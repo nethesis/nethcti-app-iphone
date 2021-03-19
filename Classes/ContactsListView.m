@@ -178,6 +178,11 @@ static UICompositeViewDescription *compositeDescription = nil;
                                                name:kNethesisPhonebookPermissionRejection
                                              object:nil];
     
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onAddressBookUpdate:)
+                                               name:kLinphoneAddressBookUpdate
+                                             object:nil];
+    
     if (![FastAddressBook isAuthorized]) {
         UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil) preferredStyle:UIAlertControllerStyleAlert];
         
@@ -415,16 +420,36 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 #pragma mark - searchBar delegate
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    // display searchtext in UPPERCASE
-    // searchBar.text = [searchText uppercaseString];
-    [ContactSelection setNameOrEmailFilter:searchText];
+- (void)onAddressBookUpdate:(NSNotification *)k {
+    // Allow again user interactions on search bar.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _searchBar.userInteractionEnabled = YES;
+    });
+}
+
+- (void)performSearch {
+    NSString * text = [ContactSelection getNameOrEmailFilter];
     [LinphoneManager.instance.fastAddressBook resetNeth];
     [LinphoneManager.instance setContactsUpdated:TRUE];
-    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+    if([LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:text]) {
+        // Deny any other input until search is finished.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _searchBar.userInteractionEnabled = NO;
+        });
+    }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [ContactSelection setNameOrEmailFilter:searchText];
+    
+    // WEDO: Perform the search api call after 0.5 seconds after finished input text.
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
     return;
     
-    // [LinphoneManager.instance.fastAddressBook resetNeth];
+    // display searchtext in UPPERCASE
+    // searchBar.text = [searchText uppercaseString];
+    
     if (searchText.length == 0) { // No filter, no search data.
         [LinphoneManager.instance setContactsUpdated:TRUE];
         [tableController loadData];

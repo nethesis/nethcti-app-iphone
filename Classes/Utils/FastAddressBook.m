@@ -282,7 +282,7 @@
     
     // Synchronize on this object to check if there's already an api call.
     @synchronized (_addressBookMap) {
-        if(_isLoading) return true;
+        if(_isLoading) return false;
         _isLoading = YES;
     }
     
