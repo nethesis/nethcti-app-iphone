@@ -173,10 +173,6 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 					contact = [LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:addr];
 				}
                 
-                if ([contact.firstName isEqual:@"Andrea"]) {
-                    LOGI(@"Andrea");
-                }
-                
                 BOOL add = true;
                 // Do not add the contact directly if we set some filter
                 if ([ContactSelection getSipFilter] || [ContactSelection emailFilterEnabled]) {

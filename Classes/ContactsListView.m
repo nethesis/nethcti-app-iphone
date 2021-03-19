@@ -281,6 +281,8 @@ static UICompositeViewDescription *compositeDescription = nil;
         [ContactSelection enableEmailFilter:FALSE];
         allButton.selected = TRUE;
         linphoneButton.selected = FALSE;
+        addButton.hidden = FALSE;
+        tableController.deleteButton.hidden = tableController.editButton.hidden = FALSE;
         [tableController loadData];
     } else if (view == ContactsLinphone && !linphoneButton.selected) {
         /*
@@ -297,6 +299,8 @@ static UICompositeViewDescription *compositeDescription = nil;
         [ContactSelection enableEmailFilter:FALSE];
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
+        addButton.hidden = TRUE;
+        tableController.deleteButton.hidden = tableController.editButton.hidden = TRUE;
         // [tableController loadData];
     }
     _selectedButtonImage.frame = frame;
