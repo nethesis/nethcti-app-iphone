@@ -315,11 +315,11 @@ static UICompositeViewDescription *compositeDescription = nil;
     // Add more error codes with future remote permissions.
     switch (code) {
         case 401:
-            message = NSLocalizedString(@"Session expired. To see contacts you need to logout and login again.", nil);
+            message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
             break;
             
         default:
-            message = [NSString stringWithFormat:NSLocalizedString(@"Unknown authentication error. Contact your system administrator with a %ld error code.", nil), code];
+            message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unknown authentication error. Contact your system administrator with a %ld error code.", @"NethLocalizable", nil), code];
             break;
     }
     
