@@ -240,27 +240,35 @@
 }
 
 - (void)registerAddrsFor:(Contact *)contact {
-	if (!contact)
-		return;
-
-	Contact* mContact = contact;
-	if (!_addressBookMap)
-		return;
-	
-	LinphoneProxyConfig *cfg = linphone_core_create_proxy_config(LC);
-
-	for (NSString *phone in mContact.phones) {
-		char *normalizedPhone = cfg? linphone_proxy_config_normalize_phone_number(linphone_core_get_default_proxy_config(LC), phone.UTF8String) : nil;
-		NSString *name = [FastAddressBook normalizeSipURI:normalizedPhone ? [NSString stringWithUTF8String:normalizedPhone] : phone];
-		if (phone != NULL)
-			[_addressBookMap setObject:mContact forKey:(name ?: [FastAddressBook localizedLabel:phone])];
-
-		if (normalizedPhone)
-			ms_free(normalizedPhone);
-	}
-
-	for (NSString *sip in mContact.sipAddresses)
-		[_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
+    if (!contact || !_addressBookMap)
+        return;
+    
+    Contact* mContact = contact;
+    
+    if(mContact.nethesis) {
+        NSString* identifier = mContact.identifier;
+        while([_addressBookMap objectForKey:identifier]) {
+            [NSString stringWithFormat:@"%@%@", identifier, @"#"];
+        }
+        [_addressBookMap setObject:mContact forKey:(identifier)];
+        return;
+    }
+    
+    LinphoneProxyConfig *cfg = linphone_core_create_proxy_config(LC);
+    for (NSString *phone in mContact.phones) {
+        char *normalizedPhone = cfg? linphone_proxy_config_normalize_phone_number(linphone_core_get_default_proxy_config(LC), phone.UTF8String) : nil;
+        NSString *name = [FastAddressBook normalizeSipURI:normalizedPhone ? [NSString stringWithUTF8String:normalizedPhone] : phone];
+        if (phone != NULL) {
+            [_addressBookMap setObject:mContact forKey:(name ?: [FastAddressBook localizedLabel:phone])];
+        }
+        
+        if (normalizedPhone)
+            ms_free(normalizedPhone);
+    }
+    
+    for (NSString *sip in mContact.sipAddresses) {
+        [_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
+    }
 }
 
 /// Load Nethesis Contacts from remote phonebook.
@@ -282,7 +290,8 @@
     
     // Synchronize on this object to check if there's already an api call.
     @synchronized (_addressBookMap) {
-        if(_isLoading) return false;
+        if(_isLoading)
+            return false;
         _isLoading = YES;
     }
     
@@ -333,9 +342,9 @@
 
 - (void) resetNeth {
     [_addressBookMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * _Nonnull stop) {
-            if (((Contact*) obj).nethesis == YES) {
-                [_addressBookMap removeObjectForKey:key];
-            }
+        if (((Contact*) obj).nethesis == YES) {
+            [_addressBookMap removeObjectForKey:key];
+        }
     }];
     [NethPhoneBook.instance reset];
 }

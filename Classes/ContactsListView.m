@@ -211,9 +211,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void) viewWillDisappear:(BOOL)animated {
     self.view = NULL;
     [self.tableController removeAllContacts];
-    
-    // Subscribe to Phonebook Permission Rejection Notification.
-    // TODO: We can send arguments to selector?
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
@@ -318,6 +315,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSString *message = @"";
     // Add more error codes with future remote permissions.
     switch (code) {
+        case 2:
+            message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
+            break;
+            
         case 401:
             message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
             break;
@@ -327,7 +328,9 @@ static UICompositeViewDescription *compositeDescription = nil;
             break;
     }
     
-    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {}];

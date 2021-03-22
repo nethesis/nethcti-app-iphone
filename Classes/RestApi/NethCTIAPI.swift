@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class NethCTIAPI : NSObject {
+@objc class NethCTIAPI : NSObject, URLSessionTaskDelegate {
     private override init(){}
     private static let _singletonInstance = NethCTIAPI()
     @objc public class func sharedInstance() -> NethCTIAPI {
@@ -80,7 +80,7 @@ import Foundation
         let myDefault = URLSessionConfiguration.default
         myDefault.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         if #available(iOS 11.0, *) { myDefault.waitsForConnectivity = true }
-        let session = URLSession(configuration: myDefault)
+        let session = URLSession(configuration: myDefault, delegate: self, delegateQueue: nil)
         let task = session.dataTask(with: urlRequest) {
             data, response, error in
             if let e = error {
@@ -94,11 +94,15 @@ import Foundation
                 errorHandler(error, response)
                 return;
             }
-            else {
-                successHandler(data, response)
-            }
+            
+            successHandler(data, response)
         }
         task.resume()
+    }
+    
+    func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+        // waiting for connectivity, update UI, etc.
+        NotificationCenter.default.post(name: Notification.Name("NethesisPhonebookPermissionRejection"), object: self, userInfo:["code": 2])
     }
     
     /**

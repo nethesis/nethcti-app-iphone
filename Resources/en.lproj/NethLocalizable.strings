@@ -14,6 +14,8 @@
 
 "Unknown authentication error. Contact your system administrator, providing %ld error code." = "Unknown authentication error. Contact your system administrator, providing %ld error code.";
 
+"Network connection unavailable" = "Network connection unavailable";
+
 /*
  * Phonebook filters.
  */
