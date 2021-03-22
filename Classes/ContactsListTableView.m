@@ -147,9 +147,9 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                 // if([[ContactSelection getPickerFilter] isEqual:@"all"]) {
                 // return [[first.company lowercaseString] compare:[second.company lowercaseString]];
                 // } else {
-                if([[first.firstName lowercaseString] compare:[second.firstName lowercaseString]] == NSOrderedSame)
+                if([[[self displayNameForContact:first] lowercaseString] compare:[[self displayNameForContact:second] lowercaseString]] == NSOrderedSame)
                     return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
-                return [[first.firstName lowercaseString] compare:[second.firstName lowercaseString]];
+                return [[[self displayNameForContact:first] lowercaseString] compare:[[self displayNameForContact:second] lowercaseString]];
                 // }
             }];
 			
@@ -205,7 +205,8 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                 // name = [self displayNameForContact:contact] ? [[NSMutableString alloc] initWithString: [self displayNameForContact:contact]] : nil;
                 // }
                 
-                if([ContactSelection getSipFilter] && ![[ContactSelection getNameOrEmailFilter] isEqual: @""] && add) {
+                NSString * nameFilter = [ContactSelection getNameOrEmailFilter];
+                if([ContactSelection getSipFilter] && nameFilter && ![nameFilter isEqual: @""] && add) {
                     NSMutableArray *subAr = [myMap objectForKey:@"A"];
                     if (subAr == nil) {
                         subAr = [[NSMutableArray alloc] init];
@@ -215,8 +216,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
                         if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
                             return [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]];
-                        else
-                            return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
+                        return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
                     }];
                     
                     if (![subAr containsObject:contact]) {
@@ -235,7 +235,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     }
                     NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
                         // if([[obj1.company lowercaseString] compare:[obj2.company lowercaseString]] == NSOrderedSame)
-                        return NSOrderedAscending; // [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]];
+                        return [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]]; // [[[self displayNameForContact:obj1] lowercaseString] compare:[[self displayNameForContact:obj2] lowercaseString]];
                         // else
                             // return [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
                     }];
@@ -244,20 +244,19 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     }
                 }
 			}
-            LOGI(@"====>>>> Load contact list - Start 4 !!");
-			// since we refresh the tableview, we must perform this on main thread
-			dispatch_async(dispatch_get_main_queue(), ^(void) {
-				if (IPAD && !([self totalNumberOfItems] > 0))
-                    [self setNilContact];
-			});
 		}
-        LOGI(@"====>>>> Load contact list - Start 5 !!");
+        LOGI(@"====>>>> Load contact list - Start 4 !!");
 		[LinphoneManager.instance setLinphoneManagerAddressBookMap:myMap];
         addressBookMap = [[OrderedDictionary alloc] initWithDictionary:myMap copyItems:YES];;
 	}
 	LOGI(@"====>>>> Load contact list - End");
 	[super loadData];
 	_ongoing = FALSE;
+    // since we refresh the tableview, we must perform this on main thread
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if (IPAD && !(self.itemsNumber > 0))
+            [self setNilContact];
+    });
 }
 
 - (void)loadSearchedData {
@@ -348,7 +347,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         // since we refresh the tableview, we must perform this on main
         // thread
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            if (IPAD && !([self totalNumberOfItems] > 0))
+            if (IPAD && !(self.itemsNumber > 0))
                 [self setNilContact];
         });
     }
@@ -387,7 +386,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
     // If no need to download contacts, don't do it!
     if([ContactSelection getSipFilter]) {
         NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
-        if([[NethPhoneBook instance] hasMore:rowIndex]) {
+        if([NethPhoneBook.instance hasMore:rowIndex] && rowIndex + 50 > self.itemsNumber) {
             NSString *searchText = [ContactSelection getNameOrEmailFilter];
             [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
         }
