@@ -12,7 +12,7 @@
 
 "Session expired. To see contacts you need to logout and login again." = "Session expired. To see contacts you need to logout and login again.";
 
-"Unknown authentication error. Contact your system administrator, providing %ld error code." = "Unknown authentication error. Contact your system administrator, providing %ld error code.";
+"Unknown authentication error. Contact your system administrator with a %ld error code." = "Unknown authentication error. Contact your system administrator with a %ld error code.";
 
 "Network connection unavailable" = "Network connection unavailable";
 

@@ -324,7 +324,10 @@
         // [LinphoneManager.instance clearProxies];
         @try {
             // Show error message.
-            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithLong:code], @"code", nil];
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithLong:code], @"code",
+                                  string, @"message",
+                                  nil];
             [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
                                                               object:self
                                                             userInfo:dict];
