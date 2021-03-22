@@ -323,9 +323,11 @@ static UICompositeViewDescription *compositeDescription = nil;
             message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
             break;
             
-        default:
-            message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unknown authentication error. Contact your system administrator with a %ld error code.", @"NethLocalizable", nil), code];
+        default:{
+            NSString *errorMessage = [notif.userInfo valueForKey:@"message"];
+            message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unknown authentication error. Contact your system administrator with a %ld error code and %@ message.", @"NethLocalizable", nil), code, errorMessage];
             break;
+    }
     }
     
     UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
