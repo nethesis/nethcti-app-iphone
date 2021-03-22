@@ -382,7 +382,9 @@ import Foundation
         }
         
         guard let domain = self.transformDomain(ApiCredentials.Domain) as String?,
-              let url = URL(string:"\(domain)\(endpoint!)") else {
+              let complete = "\(domain)\(endpoint!)" as String?,
+              let sanitized = complete.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string:sanitized) else {
             errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
         }
