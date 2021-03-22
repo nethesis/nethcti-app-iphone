@@ -309,7 +309,7 @@
             }
             
             // Mark contact as updated if loaded are more than 0.
-            [LinphoneManager.instance setContactsUpdated:(contacts.count > 0)];
+            [LinphoneManager.instance setContactsUpdated:TRUE];
         } @catch (NSException *exception) {
             LOGE(@"[FastAddressBook] Exception thrown while loading Neth results: %s", exception.description);
         } @finally {
