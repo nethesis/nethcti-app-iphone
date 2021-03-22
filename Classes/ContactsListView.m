@@ -151,7 +151,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [ContactSelection setNameOrEmailFilter:@""];
+    // [ContactSelection setNameOrEmailFilter:@""];
     _searchBar.showsCancelButton = (_searchBar.text.length > 0);
     
     tableViewHeight = tableController.tableView.frame.size.height;
@@ -281,8 +281,6 @@ static UICompositeViewDescription *compositeDescription = nil;
         [ContactSelection enableEmailFilter:FALSE];
         allButton.selected = TRUE;
         linphoneButton.selected = FALSE;
-        addButton.hidden = FALSE;
-        tableController.deleteButton.hidden = tableController.editButton.hidden = FALSE;
         [tableController loadData];
     } else if (view == ContactsLinphone && !linphoneButton.selected) {
         /*
@@ -299,10 +297,12 @@ static UICompositeViewDescription *compositeDescription = nil;
         [ContactSelection enableEmailFilter:FALSE];
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
-        addButton.hidden = TRUE;
-        tableController.deleteButton.hidden = tableController.editButton.hidden = TRUE;
         // [tableController loadData];
     }
+    bool sipFilter = [ContactSelection getSipFilter];
+    [addButton setHidden:sipFilter];
+    [tableController.deleteButton setHidden:sipFilter];
+    [tableController.editButton setHidden:sipFilter];
     _selectedButtonImage.frame = frame;
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         allButton.selected = FALSE;
@@ -349,9 +349,13 @@ static UICompositeViewDescription *compositeDescription = nil;
     });
 }
 
+/// Set view buttons consistently to the sip filter mode selected.
 - (void)refreshButtons {
-    [addButton setHidden:FALSE];
-    [self changeView:[ContactSelection getSipFilter] ? ContactsLinphone : ContactsAll];
+    bool sipFilter = [ContactSelection getSipFilter];
+    [addButton setHidden:sipFilter];
+    [tableController.deleteButton setHidden:sipFilter];
+    [tableController.editButton setHidden:sipFilter];
+    [self changeView:sipFilter ? ContactsLinphone : ContactsAll];
 }
 
 #pragma mark - Action Functions
