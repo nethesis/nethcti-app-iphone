@@ -244,22 +244,14 @@
         return;
     
     Contact* mContact = contact;
-    
-    if(mContact.nethesis) {
-        NSString* identifier = mContact.identifier;
-        while([_addressBookMap objectForKey:identifier]) {
-            [NSString stringWithFormat:@"%@%@", identifier, @"#"];
-        }
-        [_addressBookMap setObject:mContact forKey:(identifier)];
-        return;
-    }
-    
+    bool added = NO;
     LinphoneProxyConfig *cfg = linphone_core_create_proxy_config(LC);
     for (NSString *phone in mContact.phones) {
         char *normalizedPhone = cfg? linphone_proxy_config_normalize_phone_number(linphone_core_get_default_proxy_config(LC), phone.UTF8String) : nil;
         NSString *name = [FastAddressBook normalizeSipURI:normalizedPhone ? [NSString stringWithUTF8String:normalizedPhone] : phone];
         if (phone != NULL) {
             [_addressBookMap setObject:mContact forKey:(name ?: [FastAddressBook localizedLabel:phone])];
+            added = YES;
         }
         
         if (normalizedPhone)
@@ -268,6 +260,16 @@
     
     for (NSString *sip in mContact.sipAddresses) {
         [_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
+        added = NO;
+    }
+    
+    if(!added && mContact.nethesis) {
+        NSString* identifier = mContact.identifier;
+        while([_addressBookMap objectForKey:identifier]) {
+            [NSString stringWithFormat:@"%@%@", identifier, @"#"];
+        }
+        [_addressBookMap setObject:mContact forKey:(identifier)];
+        return;
     }
 }
 
