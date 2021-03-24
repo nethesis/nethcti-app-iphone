@@ -105,6 +105,7 @@ import Foundation
         contact!.addPhoneNumber(self.homephone)
         contact!.addPhoneNumber(self.workphone)
         contact!.addPhoneNumber(self.cellphone)
+        contact!.fax = self.fax
         contact!.addSipAddress(self.rowExtension)
         contact!.company = self.company
         contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homecountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))

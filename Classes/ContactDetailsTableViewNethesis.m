@@ -47,6 +47,8 @@
         }
     }
     // Can you refactor this Linphone code?
+    else if(section == ContactSections_Fax && _contact.fax.length > 0)
+        return allocWith(fax);
     else if(section == ContactSections_Company && _contact.company.length > 0)
         return allocWith(company);
     else if(section == ContactSections_HomeLocation && _contact.homeLocation.length > 0)
@@ -206,7 +208,8 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if((section == ContactSections_Company && _contact.company.length > 0) ||
+    } else if((section == ContactSections_Fax && _contact.fax.length > 0) ||
+              (section == ContactSections_Company && _contact.company.length > 0) ||
               (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
               (section == ContactSections_Homepob && _contact.homePob.length > 0) ||
               (section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0) ||
@@ -272,6 +275,8 @@
         [cell setNonAddress:value];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
         return cell;
+    } else if(section == ContactSections_Fax) {
+        nonAddressCell(fax);
     } else if(section == ContactSections_Company) {
         nonAddressCell(company);
     } else if(section == ContactSections_HomeLocation) {
@@ -382,6 +387,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
+        } else if(section == ContactSections_Fax) {
+            text = NSLocalizedStringFromTable(@"Fax", @"NethLocalizable", @"");
+            canAddEntry = NO;
         } else if(section == ContactSections_Company) {
             text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
             canAddEntry = NO;
@@ -537,6 +545,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             case ContactSections_Number:
                 [_contact setPhoneNumber:value atIndex:path.row];
                 value = _contact.phones[path.row]; // in case of reformatting
+                break;
+            case ContactSections_Fax:
+                _contact.fax= value;
                 break;
             case ContactSections_Company:
                 _contact.company = value;
