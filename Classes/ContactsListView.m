@@ -123,7 +123,15 @@ static UICompositeViewDescription *compositeDescription = nil;
     [[NethPhoneBook instance] reset];
     
     tableController.tableView.accessibilityIdentifier = @"Contacts table";
-    [self changeView:ContactsAll];
+    
+    if([ContactSelection getSipFilter])
+        [self changeView:ContactsLinphone];
+    else
+        [self changeView:ContactsAll];
+    
+    if([ContactSelection getNameOrEmailFilter])
+        _searchBar.text = [ContactSelection getNameOrEmailFilter];
+    
     /*if ([tableController totalNumberOfItems] == 0) {
      [self changeView:ContactsAll];
      }*/
@@ -134,6 +142,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [tap setDelegate:self];
     [self.view addGestureRecognizer:tap];
     
+    // Picker to change. Select data view to show.
     _pickerData = @[@"company", @"all", @"person"];
     self.filterPicker.dataSource = self;
     self.filterPicker.delegate = self;
@@ -142,7 +151,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [ContactSelection setNameOrEmailFilter:@""];
+    // [ContactSelection setNameOrEmailFilter:@""];
     _searchBar.showsCancelButton = (_searchBar.text.length > 0);
     
     tableViewHeight = tableController.tableView.frame.size.height;
@@ -161,6 +170,19 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // Subscribe to Phonebook Permission Rejection Notification.
+    // TODO: We can send arguments to selector?
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onPhonebookPermissionRejection:)
+                                               name:kNethesisPhonebookPermissionRejection
+                                             object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onAddressBookUpdate:)
+                                               name:kLinphoneAddressBookUpdate
+                                             object:nil];
+    
     if (![FastAddressBook isAuthorized]) {
         UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil) preferredStyle:UIAlertControllerStyleAlert];
         
@@ -189,6 +211,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void) viewWillDisappear:(BOOL)animated {
     self.view = NULL;
     [self.tableController removeAllContacts];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void) resizeTableView:(BOOL) check {
@@ -198,10 +221,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     // Get original height and change accordly to check value.
     if(check) {
         tableRect.origin.y = emptyRect.origin.y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
-        tableRect.size.height = emptyRect.size.height = tableViewHeight - _filterPicker.frame.size.height;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight;
     } else {
         tableRect.origin.y = emptyRect.origin.y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
-        tableRect.size.height = emptyRect.size.height = tableViewHeight;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight - _filterPicker.frame.size.height;
     }
     
     // Why application crash at this point? Why is in a background thread?
@@ -263,7 +286,9 @@ static UICompositeViewDescription *compositeDescription = nil;
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
         [LinphoneManager.instance.fastAddressBook resetNeth];
-        [LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText];
+        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText]) {
+            return;
+        };
         frame.origin.x = linphoneButton.frame.origin.x;
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
         [ContactSelection enableEmailFilter:FALSE];
@@ -271,15 +296,71 @@ static UICompositeViewDescription *compositeDescription = nil;
         allButton.selected = FALSE;
         // [tableController loadData];
     }
+    bool sipFilter = [ContactSelection getSipFilter];
+    [addButton setHidden:sipFilter];
+    [tableController.deleteButton setHidden:sipFilter];
+    [tableController.editButton setHidden:sipFilter];
     _selectedButtonImage.frame = frame;
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         allButton.selected = FALSE;
     }
 }
 
+- (void)onPhonebookPermissionRejection:(NSNotification *)notif {
+    if ([notif.userInfo count] == 0){
+        return;
+    }
+    
+    long code = [[notif.userInfo valueForKey:@"code"] integerValue];
+    NSString *message = @"";
+    // Add more error codes with future remote permissions.
+    switch (code) {
+        case 2:
+            message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
+            break;
+            
+        case 401:
+            message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
+            break;
+            
+        default:{
+            NSString *errorMessage = [notif.userInfo valueForKey:@"message"];
+            message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unknown authentication error. Contact your system administrator with a %ld error code and %@ message.", @"NethLocalizable", nil), code, errorMessage];
+            break;
+    }
+    }
+    
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [errView addAction:defaultAction];
+    
+    // Always run this UI action on main thread.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:errView animated:YES completion:^(void) {
+            // Is this action always right?
+            switch (code) {
+                case 401:
+                    [self changeView:ContactsAll];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }];
+    });
+}
+
+/// Set view buttons consistently to the sip filter mode selected.
 - (void)refreshButtons {
-    [addButton setHidden:FALSE];
-    [self changeView:[ContactSelection getSipFilter] ? ContactsLinphone : ContactsAll];
+    bool sipFilter = [ContactSelection getSipFilter];
+    [addButton setHidden:sipFilter];
+    [tableController.deleteButton setHidden:sipFilter];
+    [tableController.editButton setHidden:sipFilter];
+    [self changeView:sipFilter ? ContactsLinphone : ContactsAll];
 }
 
 #pragma mark - Action Functions
@@ -333,7 +414,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {
-    allButton.hidden = linphoneButton.hidden = _selectedButtonImage.hidden = addButton.hidden =	self.tableController.isEditing;
+    allButton.hidden = linphoneButton.hidden = _selectedButtonImage.hidden = addButton.hidden = self.tableController.isEditing;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -352,16 +433,36 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 #pragma mark - searchBar delegate
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    // display searchtext in UPPERCASE
-    // searchBar.text = [searchText uppercaseString];
-    [ContactSelection setNameOrEmailFilter:searchText];
+- (void)onAddressBookUpdate:(NSNotification *)k {
+    // Allow again user interactions on search bar.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _searchBar.userInteractionEnabled = YES;
+    });
+}
+
+- (void)performSearch {
+    NSString * text = [ContactSelection getNameOrEmailFilter];
     [LinphoneManager.instance.fastAddressBook resetNeth];
     [LinphoneManager.instance setContactsUpdated:TRUE];
-    [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+    if([LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:text]) {
+        // Deny any other input until search is finished.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _searchBar.userInteractionEnabled = NO;
+        });
+    }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [ContactSelection setNameOrEmailFilter:searchText];
+    
+    // WEDO: Perform the search api call after 0.5 seconds after finished input text.
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
     return;
     
-    // [LinphoneManager.instance.fastAddressBook resetNeth];
+    // display searchtext in UPPERCASE
+    // searchBar.text = [searchText uppercaseString];
+    
     if (searchText.length == 0) { // No filter, no search data.
         [LinphoneManager.instance setContactsUpdated:TRUE];
         [tableController loadData];

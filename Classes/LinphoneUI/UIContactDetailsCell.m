@@ -73,11 +73,13 @@
             ContactDetailsViewNethesis *contactDetailsView = VIEW(ContactDetailsViewNethesis);
             selectedContact = contactDetailsView.contact;
         } else {
-            // Easy Linphone.
+            // Soft Linphone.
             ContactDetailsView *contactDetailsView = VIEW(ContactDetailsView);
             selectedContact = contactDetailsView.contact;
         }
-        self.inviteButton.hidden = !ENABLE_SMS_INVITE || [[selectedContact sipAddresses] count] > 0 || !self.linphoneImage.hidden;
+        
+        // Hide invite button if you are selected the sip contacts view.
+        self.inviteButton.hidden = !ENABLE_SMS_INVITE || [[selectedContact sipAddresses] count] > 0 || !self.linphoneImage.hidden || [ContactSelection getSipFilter] || contact.nethesis;
         [self shouldHideEncryptedChatView:cfg && linphone_proxy_config_get_conference_factory_uri(cfg) && model && linphone_presence_model_has_capability(model, LinphoneFriendCapabilityLimeX3dh)];
     }
     

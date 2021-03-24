@@ -428,17 +428,15 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)displayAssistantConfigurationError {
-    UIAlertController *errView = [UIAlertController
-                                  alertControllerWithTitle:NSLocalizedString(@"Assistant error", nil)
-                                  message:NSLocalizedString(
-                                                            @"Could not configure your account, please check parameters or try again later",
-                                                            nil)
-                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *errView =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Assistant error", nil)
+                                        message:NSLocalizedString(@"Could not configure your account, please check parameters or try again later", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction *action){
-    }];
+    UIAlertAction *defaultAction =
+    [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction *action){ }];
     
     [errView addAction:defaultAction];
     [self presentViewController:errView animated:YES completion:nil];
@@ -1374,7 +1372,7 @@ _waitView.hidden = YES; \
     // NethCTI Proxy Settings
     linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
     if(meUser.proxyPort != -1) {
-        [address appendString:[NSString stringWithFormat:@":%ld", meUser.proxyPort]];
+        [address appendString:[NSString stringWithFormat:@":%ld", (long)meUser.proxyPort]];
         linphone_proxy_config_set_push_notification_allowed(config, YES); // Enable pushNotification flag.
         linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], YES); // Enable Media Encryption Mandatory flag.
         linphone_core_set_http_proxy_port([LinphoneManager getLc], (int) meUser.proxyPort); // Set core proxy port.
@@ -1461,17 +1459,8 @@ _waitView.hidden = YES; \
         NSString* pwd = [NSString stringWithUTF8String:[self findTextField:ViewElement_Password].text.UTF8String];
         
         NethCTIAPI* api = [NethCTIAPI sharedInstance];
-        [api postLogin:pwd successHandler:^(NSString * _Nullable digest) {
+        [api postLogin:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
             [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-                
-                // Wedo: here we fetch the Nethcti Phonebook. No authentication provided at app start and at login.
-                [api getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
-                    printf("%d", 'R');
-                    LOGD(@"WEDO:Received contacts");
-                } errorHandler:^(NSInteger code, NSString * _Nullable string) {
-                    LOGE(@"WEDO:Error received when fetching contacts: %@", string);
-                }];
-                
                 [self performLogin:meUser domain:domain];
             } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 // Get me error handling.
@@ -1527,7 +1516,6 @@ _waitView.hidden = YES; \
     //[UIViewController attemptRotationToDeviceOrientation];
     AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
     if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
-        
         bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
         NSMutableArray *devices = [NSMutableArray array];
         
@@ -1593,7 +1581,6 @@ _waitView.hidden = YES; \
         self.subtileLabel_useLinphoneAccount.text = NSLocalizedString(@"Please confirm your country code and enter your phone number", nil);
     }
     
-    
     UIAssistantTextField* countryCodeField = [self findTextField:ViewElement_PhoneCC];
     UIRoundBorderedButton *phoneButton = [self findButton:ViewElement_PhoneButton];
     usernameSwitch.enabled = phoneButton.enabled = countryCodeField.enabled = countryCodeField.userInteractionEnabled =
@@ -1648,16 +1635,18 @@ _waitView.hidden = YES; \
 }
 
 - (IBAction)onPhoneNumberDisclosureClick:(id)sender {
-    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"What will my phone number be used for?", nil)
-                                                                     message:NSLocalizedString(@"Your friends will find your more easily if you link your account to your "
-                                                                                               @"phone number. \n\nYou will see in your address book who is using "
-                                                                                               @"Linphone and your friends will know that they can reach you on Linphone "
-                                                                                               @"as well.",
-                                                                                               nil)
-                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *errView =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"What will my phone number be used for?", nil)
+                                        message:NSLocalizedString(@"Your friends will find your more easily if you link your account to your "
+                                                                  @"phone number. \n\nYou will see in your address book who is using "
+                                                                  @"Linphone and your friends will know that they can reach you on Linphone "
+                                                                  @"as well.",
+                                                                  nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {}];
+    UIAlertAction* defaultAction =
+    [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {}];
     
     [errView addAction:defaultAction];
     [self presentViewController:errView animated:YES completion:nil];
@@ -1707,36 +1696,38 @@ _waitView.hidden = YES; \
         return;
     }
     
+    // Allow other screen orientations.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
+        delegate.onlyPortrait = FALSE;
+    });
+    
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
     NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
     NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
     NethCTIAPI* api = [NethCTIAPI sharedInstance];
     [api setAuthTokenWithUsername:components[0] token:components[1] domain:components[2]];
     [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
-        // TODO: We can use this to perform Login easly.
-        // dispatch_async(dispatch_get_main_queue(), ^{
-        // });
-        // [self performLogin:meUser domain:components[2]];
         [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
     } errorHandler:^(NSInteger code, NSString * _Nullable string) {
         NSLog(@"API_ERROR: %@", string);
     }];
     /*
-    if ([historyViews count] > 0) {
-        // TODO: Test this behavior.
-        // This mage must return correct fields to login page.
-        if (currentView == _qrCodeView) {
-            UIView *view = [historyViews lastObject];
-            [historyViews removeLastObject];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self changeView:view back:TRUE animation:TRUE];
-            });
-        } else {
-            // TODO: This code can be safely removed?
-            [self changeView:_welcomeView back:TRUE animation:TRUE];
-        }
-    }
+     if ([historyViews count] > 0) {
+     // TODO: Test this behavior.
+     // This mage must return correct fields to login page.
+     if (currentView == _qrCodeView) {
+     UIView *view = [historyViews lastObject];
+     [historyViews removeLastObject];
+     dispatch_async(dispatch_get_main_queue(), ^{
+     [self changeView:view back:TRUE animation:TRUE];
+     });
+     } else {
+     // TODO: This code can be safely removed?
+     [self changeView:_welcomeView back:TRUE animation:TRUE];
+     }
+     }
      */
 }
-     
-     @end
+
+@end

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class NethCTIAPI : NSObject {
+@objc class NethCTIAPI : NSObject, URLSessionTaskDelegate {
     private override init(){}
     private static let _singletonInstance = NethCTIAPI()
     @objc public class func sharedInstance() -> NethCTIAPI {
@@ -80,7 +80,7 @@ import Foundation
         let myDefault = URLSessionConfiguration.default
         myDefault.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         if #available(iOS 11.0, *) { myDefault.waitsForConnectivity = true }
-        let session = URLSession(configuration: myDefault)
+        let session = URLSession(configuration: myDefault, delegate: self, delegateQueue: nil)
         let task = session.dataTask(with: urlRequest) {
             data, response, error in
             if let e = error {
@@ -94,31 +94,33 @@ import Foundation
                 errorHandler(error, response)
                 return;
             }
-            else {
-                successHandler(data, response)
-            }
+            
+            successHandler(data, response)
         }
         task.resume()
+    }
+    
+    func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+        // waiting for connectivity, update UI, etc.
+        NotificationCenter.default.post(name: Notification.Name("NethesisPhonebookPermissionRejection"), object: self, userInfo:["code": 2])
     }
     
     /**
      Make a request with the new request handler above this function.
      This may be the only call that don't need authentication.
      */
-    @objc public func postLogin(_ password: String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
-        if !ApiCredentials.checkCredentials() {
-            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            return
-        }
-        
-        guard let domain = ApiCredentials.Domain as String?,
+    @objc public func postLogin(_ username: String, password: String, domain: String, successHandler: @escaping (String?) -> Void, errorHandler: @escaping (Int, String?) -> Void) -> Void {
+        guard let username = username as String?,
+              let domain = domain as String?,
               let transformedDomain = self.transformDomain(domain) as String?,
               let loginEndpoint = "\(transformedDomain)/authentication/login" as String?,
               let url = URL(string: loginEndpoint) else {
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             return
         }
+        
+        ApiCredentials.Username = username
+        ApiCredentials.Domain = domain
         
         guard let postStr = ApiCredentials.getAuthenticationCredentials(password: password) else {
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
@@ -254,6 +256,10 @@ import Foundation
         })
     }
     
+    @objc public func isUserAuthenticated() -> Bool {
+        return ApiCredentials.checkCredentials()
+    }
+    
     @objc public func registerPushToken(_ deviceId: String, unregister: Bool, success:@escaping (Bool) -> Void) -> Void {
         // Check input values.
         guard
@@ -350,60 +356,14 @@ import Foundation
         })
     }
     
-    /**
-     Make a request to proxy to get contacts by some parameters.
-     View: Name or Company;
-     Limit: Number of contacts to take;
-     Offset: Starting point from taking contacts;
-     Term: Search term to filter by;
-     */
-    @objc public func getContacts(view:String, limit:Int, offset:Int, term:String, successHandler: @escaping(NethPhoneBookReturn) -> Void, errorHandler: @escaping(Int, String?) -> Void) -> Void {
-        // Build the request.
-        if !ApiCredentials.checkCredentials() {
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            return
-        }
-        
-        let endpoint = "\(self.transformDomain(ApiCredentials.Domain))/phonebook/getall/?limit=\(limit)&offset=\(offset)" // \(term)?view=\(view)&
-        guard let url = URL(string:endpoint) else {
-            errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
-            return
-        }
-        
-        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
-        
-        // Make the request.
-        self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
-            data, response in
-            guard let responseData = data else { // Response handling.
-                errorHandler(1, "No data provided.")
-                return
-            }
-            
-            // Receive the results.
-            do{
-                // Convert to phonebook.
-                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                let contacts = try NethPhoneBookReturn(raw: rawContacts)
-                successHandler(contacts)
-            } catch {
-                errorHandler(1, "json error: \(error.localizedDescription)")
-            }
-        }, errorHandler: {
-            error, response in
-            // Error handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
-                return
-            }
-            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
-            return
-        })
-    }
-    
     let cLimit = 100
     
+    /// Make a request to proxy to get contacts by some parameters.
+    /// - Parameters:
+    ///   - v: Person, Company or All (fetch both)
+    ///   - t: Search term to filter by;
+    ///   - success: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func fetchContacts(_ v: String, t: String?, success:@escaping([Contact]) -> Void, errorHandler:@escaping(Int, String?) -> Void) {
         // Build the request.
         if !ApiCredentials.checkCredentials() {
@@ -416,13 +376,15 @@ import Foundation
         let index = NethPhoneBook.instance().rows
         if let term = t,
            term != "" {
-            endpoint = "/phonebook/search/\(term)?limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
+            endpoint = "/phonebook/search/\(term)?view=all&limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
         } else {
             endpoint = "/phonebook/getall/?limit=\(cLimit)&offset=\(index)"
         }
         
         guard let domain = self.transformDomain(ApiCredentials.Domain) as String?,
-              let url = URL(string:"\(domain)\(endpoint!)") else {
+              let complete = "\(domain)\(endpoint!)" as String?,
+              let sanitized = complete.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string:sanitized) else {
             errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             return
         }

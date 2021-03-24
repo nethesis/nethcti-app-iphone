@@ -52,7 +52,7 @@
 	[super viewDidAppear:animated];
 	// we cannot do that in viewWillAppear because we will change view while previous transition
 	// was not finished, leading to "[CALayer retain]: message sent to deallocated instance" error msg
-	if (IPAD && [self totalNumberOfItems] > 0) {
+	if (IPAD && self.itemsNumber > 0) {
 		[PhoneMainView.instance changeCurrentView:ChatConversationView.compositeViewDescription];
 	}
 }

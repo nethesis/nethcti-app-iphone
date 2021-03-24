@@ -97,6 +97,7 @@ import Foundation
     @objc public func toLinphoneContact() -> Contact {
         // Init a blank contact. CNContact is the iOS Contact.
         let contact = Contact.init(cnContact: CNContact.init())
+        contact!.identifier = String(self.id)
         contact!.nethesis = true
         contact!.firstName = self.name
         contact!.addEmail(self.homeemail)
@@ -119,7 +120,7 @@ import Foundation
         contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.workPob = self.workpob
         contact!.workPostalCode = self.workpostalcode
-        contact!.displayName = "\(self.name) - \(self.company)".trimmingCharacters(in: CharacterSet(arrayLiteral: " ", "-"))
+        contact!.displayName = self.company.isEmpty ? self.name : self.name.trimmingCharacters(in: CharacterSet(arrayLiteral: " ")).isEmpty ? self.company : "\(self.name) - \(self.company)"
         return contact!
     }
 }

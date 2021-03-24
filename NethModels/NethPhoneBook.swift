@@ -12,8 +12,7 @@ import linphonesw
  Singleton store of number of phonebook rows already downloaded from remote phonebook and max contacts to download.
  */
 class NethPhoneBook: NSObject {
-    /// Total number of contacts in neth user phonebook.
-    var count: Int
+    let barrier = 50
     
     /// Current contacts number loaded from user phonebook.
     var rows: Int
@@ -22,7 +21,6 @@ class NethPhoneBook: NSObject {
     var canFetch: Bool
     
     fileprivate override init() {
-        count = 0
         rows = 0
         canFetch = true
     }
@@ -42,19 +40,24 @@ class NethPhoneBook: NSObject {
      If rows is equal or more the count of phonebook contact, no more contacts need to be downloaded.
      */
     @objc public func hasMore(_ index: Int) -> Bool {
-        return canFetch && index + 50 > rows // rows < count &&
+        guard index > 0 else {
+            print("Useless call for index below 0")
+            return false;
+        }
+        
+        return canFetch // && index + barrier > rows // rows < count &&
     }
     
     /// Increment the number of contacts loaded.
     /// - Parameters:
     ///   - number: number of contacts loaded in the last api call.
-    ///   - max: max contacts number in the user phonebook.
-    @objc public func load(_ number: Int, max: Int) {
-        rows += number
-        count = max
-    }
-    
+    ///   - more: true if there are more contacts to load in next call, false otherwise.
     @objc public func load(_ number: Int, more: Bool) {
+        guard let n = number as Int?, n > 0 else {
+            print("[PHONEBOOK] Loaded a phonebook with less than 0 contacts")
+            return;
+        }
+        
         rows += number
         canFetch = more
     }

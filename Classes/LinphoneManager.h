@@ -60,6 +60,9 @@ extern NSString *const kLinphoneFileTransferRecvUpdate;
 extern NSString *const kLinphoneQRCodeFound;
 extern NSString *const kLinphoneChatCreateViewChange;
 
+// Nethesis Notification Identifiers.
+extern NSString *const kNethesisPhonebookPermissionRejection;
+
 typedef enum _NetworkType {
     network_none = 0,
     network_2g,
