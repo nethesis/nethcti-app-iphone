@@ -277,6 +277,12 @@ struct codec_name_pref_table codec_pref_table[] = {{"speex", 8000, "speex_8k_pre
 
 		[self migrateFromUserPrefs];
 		[self loadAvatar];
+        
+        /*
+         * Nethesis default settings.
+         */
+        // This row make email visibile in contact details table view.
+        [self lpConfigSetBool:YES forKey:@"show_contacts_emails_preference"];
 	}
 	return self;
 }

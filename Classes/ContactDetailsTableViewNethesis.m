@@ -269,7 +269,9 @@
         [cell.editTextfield setKeyboardType:UIKeyboardTypeASCIICapable];
     } else if (section == ContactSections_Email) {
         value = _contact.emails[indexPath.row];
+        [cell setNonAddress:value];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
+        return cell;
     } else if(section == ContactSections_Company) {
         nonAddressCell(company);
     } else if(section == ContactSections_HomeLocation) {
