@@ -146,7 +146,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                 Contact* second =  [allContacts objectForKey:b];
                 NSString * firstName = [[self displayNameForContact:first] lowercaseString];
                 NSString * secondName = [[self displayNameForContact:second] lowercaseString];
-                NSComparisonResult * result = [firstName compare:secondName];
+                NSComparisonResult result = [firstName compare:secondName];
                 if(result != NSOrderedSame)
                     return result;
                 return [[first.lastName lowercaseString] compare:[second.lastName lowercaseString]];
@@ -213,7 +213,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
                     }
                     
                     NSUInteger idx = [subAr indexOfObject:contact inSortedRange:(NSRange){0, subAr.count} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult( Contact *_Nonnull obj1, Contact *_Nonnull obj2) {
-                        NSComparisonResult * result = [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
+                        NSComparisonResult result = [[obj1.company lowercaseString] compare:[obj2.company lowercaseString]];
                         if(result != NSOrderedSame)
                             return result;
                         NSString * first = [[self displayNameForContact:obj1] lowercaseString];

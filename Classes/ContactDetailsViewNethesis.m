@@ -26,25 +26,25 @@
 #pragma mark - Lifecycle Functions
 
 - (id)init {
-	self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle mainBundle]];
-	if (self != nil) {
-		inhibUpdate = FALSE;
-                [NSNotificationCenter.defaultCenter
-                    addObserver:self
-                       selector:@selector(onAddressBookUpdate:)
-                           name:kLinphoneAddressBookUpdate
-                         object:nil];
-                [[NSNotificationCenter defaultCenter]
-                    addObserver:self
-                       selector:@selector(onAddressBookUpdate:)
-                           name:CNContactStoreDidChangeNotification
-                         object:nil];
-        }
-        return self;
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle mainBundle]];
+    if (self != nil) {
+        inhibUpdate = FALSE;
+        [NSNotificationCenter.defaultCenter
+         addObserver:self
+         selector:@selector(onAddressBookUpdate:)
+         name:kLinphoneAddressBookUpdate
+         object:nil];
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(onAddressBookUpdate:)
+         name:CNContactStoreDidChangeNotification
+         object:nil];
+    }
+    return self;
 }
 
 - (void)dealloc {
-	[NSNotificationCenter.defaultCenter removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark -
@@ -60,32 +60,32 @@
 }
 
 - (void)resetData {
-	if (self.isEditing) {
-		[self setEditing:FALSE];
-	}
-
-	LOGI(@"Reset data to contact %p", _contact);
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
-	[_tableController setContact:_contact];
-	_emptyLabel.hidden = YES;
-	_avatarImage.hidden = !_emptyLabel.hidden;
+    if (self.isEditing) {
+        [self setEditing:FALSE];
+    }
+    
+    LOGI(@"Reset data to contact %p", _contact);
+    [_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+    [_tableController setContact:_contact];
+    _emptyLabel.hidden = YES;
+    _avatarImage.hidden = !_emptyLabel.hidden;
     _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
     _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
 }
 
 - (void)removeContact {
-	inhibUpdate = TRUE;
-	[[LinphoneManager.instance fastAddressBook] deleteContact:_contact];
-	inhibUpdate = FALSE;
-
-	if (IPAD) {
-		ContactsListView *view = VIEW(ContactsListView);
-		if (![view .tableController selectFirstRow]) {
-			[self setContact:nil];
-		}
-	}
-
-	[PhoneMainView.instance popCurrentView];
+    inhibUpdate = TRUE;
+    [[LinphoneManager.instance fastAddressBook] deleteContact:_contact];
+    inhibUpdate = FALSE;
+    
+    if (IPAD) {
+        ContactsListView *view = VIEW(ContactsListView);
+        if (![view .tableController selectFirstRow]) {
+            [self setContact:nil];
+        }
+    }
+    
+    [PhoneMainView.instance popCurrentView];
 }
 
 - (void)saveData {

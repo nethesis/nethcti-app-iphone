@@ -327,7 +327,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             NSString *errorMessage = [notif.userInfo valueForKey:@"message"];
             message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unknown authentication error. Contact your system administrator with a %ld error code and %@ message.", @"NethLocalizable", nil), code, errorMessage];
             break;
-    }
+        }
     }
     
     UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
@@ -426,7 +426,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)dismissKeyboards {
-    if ([self.searchBar isFirstResponder]){
+    if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
     }
 }
