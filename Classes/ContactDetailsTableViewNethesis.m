@@ -20,15 +20,27 @@
 #import "ContactDetailsTableViewNethesis.h"
 #import "PhoneMainView.h"
 #import "UIContactDetailsCell.h"
+#import "UIContactDetailsNonAddressCell.h"
 #import "Utils.h"
 #import "OrderedDictionary.h"
 
 #define allocWith(field) [[NSMutableArray alloc] initWithObjects:_contact.field, nil]
 
-#define addressCell(field)
+#define UIAddressCell(field)  [tableView dequeueReusableCellWithIdentifier:@"UIContactDetailsCell"]; \
+                                if (cell == nil) { \
+                                    cell = [[UIContactDetailsCell alloc] initWithIdentifier:@"UIContactDetailsCell"]; \
+                                    cell.waitView = _waitView; \
+                                    [cell.editTextfield setDelegate:self]; \
+                                } \
+                                value = _contact.field
 
-#define nonAddressCell(field) [cell setNonAddress:_contact.field]; \
-                              return cell;
+#define UINonAddressCell(field)   [tableView dequeueReusableCellWithIdentifier:@"UIContactDetailsNonAddressCell"]; \
+                                    if (cell == nil) { \
+                                        cell = [[UIContactDetailsNonAddressCell alloc] initWithIdentifier:@"UIContactDetailsNonAddressCell"]; \
+                                        cell.waitView = _waitView; \
+                                        [cell.editTextfield setDelegate:self]; \
+                                    } \
+                                    value = _contact.field
 
 @implementation ContactDetailsTableViewNethesis
 
@@ -232,34 +244,31 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *kCellId = @"UIContactDetailsCell";
-    UIContactDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
-    if (cell == nil) {
-        cell = [[UIContactDetailsCell alloc] initWithIdentifier:kCellId];
-        cell.waitView = _waitView;
-        [cell.editTextfield setDelegate:self];
-    }
+    /*
+     static NSString *kCellId = @"UIContactDetailsCell";
+     UIContactDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+     if (cell == nil) {
+     cell = [[UIContactDetailsCell alloc] initWithIdentifier:kCellId];
+     cell.waitView = _waitView;
+     [cell.editTextfield setDelegate:self];
+     }
+     */
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.contentView.userInteractionEnabled = false;
-    
-    cell.indexPath = indexPath;
-    [cell hideDeleteButton:NO];
-    [cell.editTextfield setKeyboardType:UIKeyboardTypeDefault];
     NSString *value = @"";
     NSInteger section = indexPath.section;
+    UIContactDetailsCell *cell;
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName) {
-        value = _contact.firstName;
+        cell = UIAddressCell(firstName);
         [cell hideDeleteButton:YES];
     } else if (section == ContactSections_LastName) {
-        value = _contact.lastName;
+        cell = UIAddressCell(lastName);
         [cell hideDeleteButton:YES];
     } else if (section == ContactSections_Number) {
-        value = _contact.phones[indexPath.row];
+        cell = UIAddressCell(phones[indexPath.row]);
         [cell.editTextfield setKeyboardType:UIKeyboardTypePhonePad];
     } else if (section == ContactSections_Sip) {
-        value = _contact.sipAddresses[indexPath.row];
+        cell = UIAddressCell(sipAddresses[indexPath.row]);
         LinphoneAddress *addr = NULL;
         if ([LinphoneManager.instance
              lpConfigBoolForKey:@"contact_display_username_only"] &&
@@ -271,44 +280,46 @@
         }
         [cell.editTextfield setKeyboardType:UIKeyboardTypeASCIICapable];
     } else if (section == ContactSections_Email) {
-        value = _contact.emails[indexPath.row];
-        [cell setNonAddress:value];
+        cell = UINonAddressCell(emails[indexPath.row]);
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
-        return cell;
     } else if(section == ContactSections_Fax) {
-        nonAddressCell(fax);
+        cell = UINonAddressCell(fax);
     } else if(section == ContactSections_Company) {
-        nonAddressCell(company);
+        cell = UINonAddressCell(company);
     } else if(section == ContactSections_HomeLocation) {
-        nonAddressCell(homeLocation);
+        cell = UINonAddressCell(homeLocation);
     } else if(section == ContactSections_Homepob) {
-        nonAddressCell(homePob);
+        cell = UINonAddressCell(homePob);
     } else if(section == ContactSections_HomePostalCode) {
-        nonAddressCell(homePostalCode);
+        cell = UINonAddressCell(homePostalCode);
     } else if(section == ContactSections_Notes) {
-        nonAddressCell(notes);
+        cell = UINonAddressCell(notes);
     } else if(section == ContactSections_OwnerId) {
-        nonAddressCell(ownerId);
+        cell = UINonAddressCell(ownerId);
     } else if(section == ContactSections_Source) {
-        nonAddressCell(source);
+        cell = UINonAddressCell(source);
     } else if(section == ContactSections_SpeeddialNum) {
-        nonAddressCell(speeddialNum);
+        cell = UINonAddressCell(speeddialNum);
     } else if(section == ContactSections_Title) {
-        nonAddressCell(title);
+        cell = UINonAddressCell(title);
     } else if(section == ContactSections_Type) {
-        nonAddressCell(type);
+        cell = UINonAddressCell(type);
     } else if(section == ContactSections_Url) {
-        nonAddressCell(url);
+        cell = UINonAddressCell(url);
     } else if(section == ContactSections_WorkLocation) {
-        nonAddressCell(workLocation);
+        cell = UINonAddressCell(workLocation);
     } else if(section == ContactSections_Workpob) {
-        nonAddressCell(workPob);
+        cell = UINonAddressCell(workPob);
     } else if(section == ContactSections_WorkPostalCode) {
-        nonAddressCell(workPostalCode);
+        cell = UINonAddressCell(workPostalCode);
     }
     
-    if ([value hasPrefix:@" "])
-        value = [value substringFromIndex:1];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.contentView.userInteractionEnabled = false;
+    cell.indexPath = indexPath;
+    
+    // if ([value hasPrefix:@" "])
+        // value = [value substringFromIndex:1];
     [cell setAddress:value];
     return cell;
 }
@@ -487,12 +498,23 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	return UITableViewCellEditingStyleNone;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(tableView.isEditing) {
+        return 44;
+    }
+    
+    return UITableViewAutomaticDimension;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView.isEditing) {
         return 44;
     }
+    
+    return UITableViewAutomaticDimension;
+    /*
     UIContactDetailsCell *cell = (UIContactDetailsCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.isAddress ? 88 : 44;
+    return cell.isAddress ? 88 : 44;*/
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

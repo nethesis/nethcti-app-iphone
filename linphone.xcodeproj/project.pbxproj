@@ -691,6 +691,8 @@
 		C36482CB23967B02006BE61D /* neth_splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C36482CA23967B01006BE61D /* neth_splashscreen.png */; };
 		C37672F025C17D6100AB1F82 /* NethPhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */; };
 		C37B2E8F25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */; };
+		C37D351D260DDE5200BDE544 /* UIContactDetailsNonAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37D351A260DDE5200BDE544 /* UIContactDetailsNonAddressCell.m */; };
+		C37D351E260DDE5200BDE544 /* UIContactDetailsNonAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37D351B260DDE5200BDE544 /* UIContactDetailsNonAddressCell.xib */; };
 		C387A653243F4E9F007FF4DE /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C387A650243F4E9E007FF4DE /* NethLocalizable.strings */; };
 		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
@@ -1659,6 +1661,11 @@
 		C3775A3324B607F100AF95F3 /* Pods_msgNotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_msgNotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3775A3524B6080500AF95F3 /* linphonesw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = linphonesw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37B2E8E25F240CA0094DCB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContactDetailsViewNethesis.xib; sourceTree = "<group>"; };
+		C37D3519260DDE5100BDE544 /* UIContactDetailsNonAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIContactDetailsNonAddressCell.h; sourceTree = "<group>"; };
+		C37D351A260DDE5200BDE544 /* UIContactDetailsNonAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIContactDetailsNonAddressCell.m; sourceTree = "<group>"; };
+		C37D351C260DDE5200BDE544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UIContactDetailsNonAddressCell.xib; sourceTree = "<group>"; };
+		C37D3520260DDF7200BDE544 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UIContactDetailsNonAddressCell.strings; sourceTree = "<group>"; };
+		C37D3522260DDF7600BDE544 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UIContactDetailsNonAddressCell.strings; sourceTree = "<group>"; };
 		C387A651243F4E9E007FF4DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
 		C387A652243F4E9E007FF4DE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
 		C38D455324B7131A006B0B6E /* NotReturnMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
@@ -2161,6 +2168,9 @@
 				D3C6526515AC1A8F0092A874 /* UIContactDetailsCell.h */,
 				D3C6526615AC1A8F0092A874 /* UIContactDetailsCell.m */,
 				639E9CAE1C0DB80300019A75 /* UIContactDetailsCell.xib */,
+				C37D3519260DDE5100BDE544 /* UIContactDetailsNonAddressCell.h */,
+				C37D351A260DDE5200BDE544 /* UIContactDetailsNonAddressCell.m */,
+				C37D351B260DDE5200BDE544 /* UIContactDetailsNonAddressCell.xib */,
 				2248E90C12F7E4CF00220D9C /* UIDigitButton.h */,
 				2248E90D12F7E4CF00220D9C /* UIDigitButton.m */,
 				61CCC3D721933B380060EDEA /* UIDeviceCell.h */,
@@ -3374,6 +3384,7 @@
 				633FEF1F1D3CD55A0014B822 /* presence_online@2x.png in Resources */,
 				633FEE641D3CD5590014B822 /* footer_chat_disabled.png in Resources */,
 				633FEE9C1D3CD55A0014B822 /* numpad_0_default@2x.png in Resources */,
+				C37D351E260DDE5200BDE544 /* UIContactDetailsNonAddressCell.xib in Resources */,
 				633FEE3C1D3CD5590014B822 /* contacts_all_default.png in Resources */,
 				633FEE171D3CD5590014B822 /* chat_send_disabled@2x.png in Resources */,
 				633FEE6E1D3CD5590014B822 /* footer_history_default.png in Resources */,
@@ -4217,6 +4228,7 @@
 				63D11C531C3D501200E8FCEE /* Log.m in Sources */,
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
+				C37D351D260DDE5200BDE544 /* UIContactDetailsNonAddressCell.m in Sources */,
 				D37C639B15AADEF6009D0BAC /* ContactDetailsTableView.m in Sources */,
 				C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */,
 				63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */,
@@ -4601,6 +4613,16 @@
 				C37B2E8E25F240CA0094DCB8 /* Base */,
 			);
 			name = ContactDetailsViewNethesis.xib;
+			sourceTree = "<group>";
+		};
+		C37D351B260DDE5200BDE544 /* UIContactDetailsNonAddressCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C37D351C260DDE5200BDE544 /* Base */,
+				C37D3520260DDF7200BDE544 /* en */,
+				C37D3522260DDF7600BDE544 /* it */,
+			);
+			name = UIContactDetailsNonAddressCell.xib;
 			sourceTree = "<group>";
 		};
 		C387A650243F4E9E007FF4DE /* NethLocalizable.strings */ = {

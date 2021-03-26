@@ -27,17 +27,20 @@
 #pragma mark - Lifecycle Functions
 
 - (id)initWithIdentifier:(NSString *)identifier {
-	if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier]) != nil) {
-		NSArray *arrayOfViews =
-			[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self.class) owner:self options:nil];
-
-		// resize cell to match .nib size. It is needed when resized the cell to
-		// correctly adapt its height too
-		UIView *sub = ((UIView *)[arrayOfViews objectAtIndex:0]);
-		[self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
-		[self addSubview:sub];
-	}
-	return self;
+    if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier]) != nil) {
+        NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self.class) owner:self options:nil];
+        
+        // resize cell to match .nib size. It is needed when resized the cell to
+        // correctly adapt its height too
+        UIView *sub = ((UIView *)[arrayOfViews objectAtIndex:0]);
+        [self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
+        [self addSubview:sub];
+        
+        // Moved those init operations from cell dequeue.
+        [_editTextfield setKeyboardType:UIKeyboardTypeDefault];
+        [self hideDeleteButton:NO];
+    }
+    return self;
 }
 
 #pragma mark - UITableViewCell Functions
@@ -51,10 +54,9 @@
         normAddr = linphone_proxy_config_normalize_phone_number(cfg, _addressLabel.text.UTF8String);
     
     LinphoneAddress *addr = linphone_core_interpret_url(LC, normAddr);
-    _chatButton.enabled = _callButton.enabled = (addr != NULL);
+    _callButton.enabled = (addr != NULL);
     _callButton.hidden = (addr == NULL);
     
-    _chatButton.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"Chat with %@", nil), _addressLabel.text];
     _callButton.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"Call %@", nil), _addressLabel.text];
     // Test presence
     Contact *contact = addr ? [FastAddressBook getContactWithAddress:(addr)] : NULL;
@@ -80,7 +82,6 @@
         
         // Hide invite button if you are selected the sip contacts view.
         self.inviteButton.hidden = !ENABLE_SMS_INVITE || [[selectedContact sipAddresses] count] > 0 || !self.linphoneImage.hidden || [ContactSelection getSipFilter] || contact.nethesis;
-        [self shouldHideEncryptedChatView:cfg && linphone_proxy_config_get_conference_factory_uri(cfg) && model && linphone_presence_model_has_capability(model, LinphoneFriendCapabilityLimeX3dh)];
     }
     
     if (addr) {
@@ -89,34 +90,10 @@
     _isAddress = YES;
 }
 
-/// Prepare cell view to be shown if the value is not an address which can be called.
-/// @param value a simple string which doesn't contains an address.
-- (void)setNonAddress:(NSString *)value {
-    [self hideDeleteButton:YES];
-    _addressLabel.text = value;
-    _inviteButton.hidden = _linphoneImage.hidden = _callButton.hidden = YES;
-    _isAddress = NO;
-}
-
 - (void)resizeCell {
     CGRect frame = self.frame;
     frame.size.height = _isAddress ? 88 : 44;
     self.frame = _defaultView.frame = frame;
-}
-
-- (void)shouldHideEncryptedChatView:(BOOL)hasLime {
-    _encryptedChatView.hidden = true;
-    /*
-    _encryptedChatView.hidden = !hasLime;
-    CGRect newFrame = _optionsView.frame;
-    if (!hasLime) {
-        newFrame.origin.x = _addressLabel.frame.origin.x + _callButton.frame.size.width * 2/3;
-        
-    } else {
-        newFrame.origin.x = _addressLabel.frame.origin.x;
-    }
-    _optionsView.frame = newFrame;
-     */
 }
 
 - (void)shouldHideLinphoneImageOfAddress {
@@ -176,20 +153,6 @@
 	[LinphoneManager.instance call:addr];
 	if (addr)
 		linphone_address_unref(addr);
-}
-
-- (IBAction)onChatClick:(id)event {
-	LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
-	[LinphoneManager.instance lpConfigSetBool:TRUE forKey:@"create_chat"];
-	[PhoneMainView.instance getOrCreateOneToOneChatRoom:addr waitView:_waitView isEncrypted:FALSE];
-	linphone_address_unref(addr);
-}
-
-- (IBAction)onEncrptedChatClick:(id)sender {
-    LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
-	[LinphoneManager.instance lpConfigSetBool:TRUE forKey:@"create_chat"];
-    [PhoneMainView.instance getOrCreateOneToOneChatRoom:addr waitView:_waitView isEncrypted:TRUE];
-    linphone_address_unref(addr);
 }
 
 - (IBAction)onDeleteClick:(id)sender {

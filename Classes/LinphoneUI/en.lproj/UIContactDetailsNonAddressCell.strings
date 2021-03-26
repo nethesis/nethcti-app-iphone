@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; accessibilityLabel = "Call"; ObjectID = "ZbV-2Z-b4y"; */
+"ZbV-2Z-b4y.accessibilityLabel" = "Call";
+
+/* Class = "UILabel"; text = "john.doe@sip.linphone.org"; ObjectID = "frB-ep-LWi"; */
+"frB-ep-LWi.text" = "john.doe@sip.linphone.org";
+
+/* Class = "UIButton"; accessibilityLabel = "Invite"; ObjectID = "lgb-5W-T0c"; */
+"lgb-5W-T0c.accessibilityLabel" = "Invite";
+
+/* Class = "UIButton"; normalTitle = "Invite"; ObjectID = "lgb-5W-T0c"; */
+"lgb-5W-T0c.normalTitle" = "Invite";

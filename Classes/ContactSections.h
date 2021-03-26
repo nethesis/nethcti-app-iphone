@@ -15,7 +15,6 @@ typedef enum _ContactSections {
     ContactSections_Company,
     ContactSections_Sip,
     ContactSections_Number,
-    ContactSections_Fax,
     ContactSections_WorkLocation,
     ContactSections_Workpob,
     ContactSections_WorkPostalCode,
@@ -23,6 +22,7 @@ typedef enum _ContactSections {
     ContactSections_Homepob,
     ContactSections_HomePostalCode,
     ContactSections_Email,
+    ContactSections_Fax,
     // Nethesis fields.
     ContactSections_Title,
     ContactSections_Notes,

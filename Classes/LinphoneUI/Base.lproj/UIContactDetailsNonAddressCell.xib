@@ -8,22 +8,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIContactDetailsCell">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIContactDetailsNonAddressCell">
             <connections>
                 <outlet property="addressLabel" destination="frB-ep-LWi" id="g8q-qs-S9y"/>
-                <outlet property="callButton" destination="ZbV-2Z-b4y" id="n5w-ij-mcc"/>
                 <outlet property="defaultView" destination="SR2-3m-6t5" id="ZvK-H1-inh"/>
                 <outlet property="deleteButton" destination="C2f-aP-xjR" id="sxr-th-6rq"/>
                 <outlet property="editTextfield" destination="dTn-Hc-bGM" id="bkN-xg-S9D"/>
                 <outlet property="editView" destination="rAa-qu-PDc" id="cGz-D2-GiI"/>
-                <outlet property="inviteButton" destination="lgb-5W-T0c" id="iOl-Fl-AXH"/>
-                <outlet property="linphoneImage" destination="ZaI-29-AOK" id="dY1-vO-spk"/>
-                <outlet property="optionsView" destination="Ffn-KZ-0pX" id="spM-xw-9ri"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="R4P-di-kSp">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAa-qu-PDc" userLabel="editView">
@@ -55,70 +51,21 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SR2-3m-6t5" userLabel="defaultView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="john.doe@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frB-ep-LWi" userLabel="addressLabel">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="siJ-ez-fJd"/>
-                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-29-AOK" userLabel="linphoneImage">
-                            <rect key="frame" x="328" y="18" width="17" height="17"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgb-5W-T0c">
-                            <rect key="frame" x="313" y="14" width="47" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="Invite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="Invite">
-                                <color key="titleColor" red="1" green="0.36738281249999999" blue="0.0" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="onSMSInviteClick:" destination="-1" eventType="touchUpInside" id="E8o-h2-mml"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-KZ-0pX" userLabel="optionsView">
-                            <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbV-2Z-b4y" userLabel="callButton" customClass="UIIconButton">
-                                    <rect key="frame" x="168" y="2" width="40" height="40"/>
-                                    <accessibility key="accessibilityConfiguration" label="Call"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="GBR-wd-Iek"/>
-                                    </constraints>
-                                    <state key="normal" image="call_start_body_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="call_start_body_disabled.png"/>
-                                    <state key="highlighted" image="call_start_body_over.png"/>
-                                    <connections>
-                                        <action selector="onCallClick:" destination="-1" eventType="touchUpInside" id="nVk-zG-i8I"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="6IM-75-yU1"/>
-                                <constraint firstItem="ZbV-2Z-b4y" firstAttribute="top" secondItem="Ffn-KZ-0pX" secondAttribute="top" constant="2" id="9nC-XW-kyt"/>
-                                <constraint firstAttribute="bottom" secondItem="ZbV-2Z-b4y" secondAttribute="bottom" constant="2" id="VPi-1F-GxR"/>
-                                <constraint firstItem="ZbV-2Z-b4y" firstAttribute="centerY" secondItem="Ffn-KZ-0pX" secondAttribute="centerY" id="iJW-nu-RUY"/>
-                                <constraint firstItem="ZbV-2Z-b4y" firstAttribute="centerX" secondItem="Ffn-KZ-0pX" secondAttribute="centerX" id="spc-ZS-vQc"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="frB-ep-LWi" firstAttribute="top" secondItem="SR2-3m-6t5" secondAttribute="top" id="Cim-cg-nZr"/>
-                        <constraint firstItem="Ffn-KZ-0pX" firstAttribute="top" secondItem="frB-ep-LWi" secondAttribute="bottom" id="H2M-Sq-X7H"/>
                         <constraint firstItem="frB-ep-LWi" firstAttribute="centerX" secondItem="SR2-3m-6t5" secondAttribute="centerX" id="WZf-Cr-i5M"/>
-                        <constraint firstAttribute="bottom" secondItem="Ffn-KZ-0pX" secondAttribute="bottom" id="gwc-B3-WZ2"/>
-                        <constraint firstItem="Ffn-KZ-0pX" firstAttribute="leading" secondItem="frB-ep-LWi" secondAttribute="leading" id="hre-Z0-AnL"/>
                         <constraint firstItem="frB-ep-LWi" firstAttribute="leading" secondItem="SR2-3m-6t5" secondAttribute="leading" id="pTO-of-eKU"/>
-                        <constraint firstItem="Ffn-KZ-0pX" firstAttribute="centerX" secondItem="frB-ep-LWi" secondAttribute="centerX" id="x6r-FG-Ovg"/>
+                        <constraint firstAttribute="height" secondItem="frB-ep-LWi" secondAttribute="height" id="vQX-wZ-Jtg"/>
                     </constraints>
                 </view>
             </subviews>
@@ -127,20 +74,17 @@
                 <constraint firstItem="SR2-3m-6t5" firstAttribute="trailing" secondItem="R4P-di-kSp" secondAttribute="trailing" id="39N-BX-c6n"/>
                 <constraint firstItem="SR2-3m-6t5" firstAttribute="leading" secondItem="R4P-di-kSp" secondAttribute="leading" id="H1T-Nb-q4Z"/>
                 <constraint firstItem="SR2-3m-6t5" firstAttribute="top" secondItem="R4P-di-kSp" secondAttribute="top" id="h7V-gW-dO9"/>
+                <constraint firstAttribute="height" secondItem="SR2-3m-6t5" secondAttribute="height" id="vbP-gl-eNk"/>
                 <constraint firstAttribute="bottom" secondItem="SR2-3m-6t5" secondAttribute="bottom" id="z4h-vc-R87"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="541.60000000000002" y="38.680659670164921"/>
+            <point key="canvasLocation" x="541.60000000000002" y="18.890554722638683"/>
         </view>
     </objects>
     <resources>
-        <image name="call_start_body_default.png" width="82.400001525878906" height="82.400001525878906"/>
-        <image name="call_start_body_disabled.png" width="82.400001525878906" height="82.400001525878906"/>
-        <image name="call_start_body_over.png" width="82.400001525878906" height="82.400001525878906"/>
         <image name="delete_field_default.png" width="44" height="44"/>
         <image name="delete_field_over.png" width="44" height="44"/>
-        <image name="linphone_user.png" width="41.599998474121094" height="42.400001525878906"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
