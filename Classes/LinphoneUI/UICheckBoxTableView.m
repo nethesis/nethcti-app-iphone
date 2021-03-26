@@ -129,9 +129,12 @@
 
 - (void)loadData {
 	[_selectedItems removeAllObjects];
-	[self.tableView reloadData];
-	
-	_emptyView.hidden = _editButton.enabled = ([self totalNumberOfItems] > 0);
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        // Here we calc the new total, this is a long time running operation.
+        _itemsNumber = [self totalNumberOfItems];
+        [self.tableView reloadData];
+        _emptyView.hidden = _editButton.enabled = (_itemsNumber > 0);
+    });
 }
 
 - (void)removeSelectionUsing:(void (^)(NSIndexPath *indexPath))remover {

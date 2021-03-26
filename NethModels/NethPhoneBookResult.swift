@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - PhonebookReturn
 @objcMembers class NethPhoneBookReturn: NSObject {
-    let count: Int
+    let count: Int?
     var rows: [NethContact]
 
     init(count: Int, rows: [NethContact]) {
@@ -18,15 +18,11 @@ import Foundation
     }
     
     init(raw: [String:Any]) throws {
-        guard let count = raw["count"] as? Int else {
-            throw SerializationError.missing("count")
-        }
         guard let rawRows = raw["rows"] as? [Any] else {
             throw SerializationError.missing("rows")
         }
         
-        
-        self.count = count
+        self.count = raw["count"] as? Int
         self.rows = []
         for some in rawRows {
             guard let rawContact = some as? [String:Any] else {

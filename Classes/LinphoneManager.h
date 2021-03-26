@@ -60,6 +60,9 @@ extern NSString *const kLinphoneFileTransferRecvUpdate;
 extern NSString *const kLinphoneQRCodeFound;
 extern NSString *const kLinphoneChatCreateViewChange;
 
+// Nethesis Notification Identifiers.
+extern NSString *const kNethesisPhonebookPermissionRejection;
+
 typedef enum _NetworkType {
     network_none = 0,
     network_2g,
@@ -193,6 +196,8 @@ typedef struct _LinphoneManagerSounds {
 - (void)setupGSMInteraction;
 - (void)setBluetoothEnabled:(BOOL)enable;
 - (BOOL)isCTCallCenterExist;
+
+- (void)clearProxies;
 
 @property (readonly) BOOL isTesting;
 @property(readonly, strong) FastAddressBook *fastAddressBook;

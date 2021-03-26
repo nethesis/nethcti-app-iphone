@@ -48,14 +48,6 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 		currentViewController = portrait;
 		self.viewDescriptionStack = [NSMutableArray array];
-        
-        /* Crash
-        [[NethCTIAPI sharedInstance] getContactsWithView:@"name" limit:5 offset:0 term:@"" successHandler:^(NethPhoneBookReturn* __strong contacts) {
-            LOGI([NSString stringWithFormat:@"%li", [contacts count]]);
-        } errorHandler:^(NSString * _Nullable error) {
-            LOGE(@"Chiamata terminata in errore.");
-        }];
-         */
 	}
 	return self;
 }

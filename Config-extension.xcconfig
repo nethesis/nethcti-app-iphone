@@ -1,6 +1,6 @@
 //
 //  Config-extension.xcconfig
-//  linphone
+//  NethCTI
 //
 //  Created by Administrator on 01/03/2021.
 //
@@ -14,6 +14,11 @@ BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension
 DISPLAY_NAME = NethCTI 3
 PRODUCT_NAME = NethCTI
 
-PROVISIONING_PROFILE_SPECIFIER_APP_STORE = NethCTI 3 Extension Distr
+// Restore provisioning profiles once a year.
+PROVISIONING_PROFILE_SPECIFIER_APP_STORE = CHANGE_ME!!!
+// Change this value once a year.
+CODE_SIGN_IDENTITY = CHANGE_ME!!!
+DEVELOPMENT_TEAM = CHANGE_ME!!!
+PROVISIONING_PROFILE_SPECIFIER = CHANGE_ME!!!
 
 SWIFT_MODULE_NAME = NethCTI

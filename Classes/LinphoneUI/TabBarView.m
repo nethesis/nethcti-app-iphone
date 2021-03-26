@@ -101,7 +101,8 @@
 	_historyButton.selected = [view equal:HistoryListView.compositeViewDescription] ||
 							  [view equal:HistoryDetailsView.compositeViewDescription];
 	_contactsButton.selected = [view equal:ContactsListView.compositeViewDescription] ||
-							   [view equal:ContactDetailsView.compositeViewDescription];
+							   [view equal:ContactDetailsView.compositeViewDescription] ||
+                                [view equal:ContactDetailsViewNethesis.compositeViewDescription];
 	_dialerButton.selected = [view equal:DialerView.compositeViewDescription];
 	_chatButton.selected = [view equal:ChatsListView.compositeViewDescription] ||
 						   [view equal:ChatConversationCreateView.compositeViewDescription] ||

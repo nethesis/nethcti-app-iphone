@@ -20,16 +20,19 @@
 #import <UIKit/UIKit.h>
 #import <AddressBook/AddressBook.h>
 
-#import "UICheckBoxTableView.h"
+#import "Contact.h"
+#import "LinphoneUI/UIToggleButton.h"
+#import "ContactSections.h"
 
-#import "OrderedDictionary.h"
+@interface ContactDetailsTableViewNethesis : UITableViewController <UITextFieldDelegate>
 
-@interface ContactsListTableView : UICheckBoxTableView {
-  @private OrderedDictionary *addressBookMap;
-}
-@property(nonatomic) BOOL ongoing;
-- (void)loadData;
-- (void)loadSearchedData;
-- (void)removeAllContacts;
+@property(strong, nonatomic) Contact *contact;
+@property(weak, nonatomic) IBOutlet UIToggleButton *editButton;
+
+- (void)addPhoneField:(NSString *)number;
+- (void)addSipField:(NSString *)address;
+- (void)addEmailField:(NSString *)address;
+- (void)setContact:(Contact *)contact;
+@property (weak, nonatomic) UIView *waitView;
 
 @end

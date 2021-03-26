@@ -17,34 +17,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ContactDetailsView.h"
+#import "ContactDetailsViewNethesis.h"
 #import "PhoneMainView.h"
 #import "UIContactDetailsCell.h"
 
-@implementation ContactDetailsView
+@implementation ContactDetailsViewNethesis
 
 #pragma mark - Lifecycle Functions
 
 - (id)init {
-	self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle mainBundle]];
-	if (self != nil) {
-		inhibUpdate = FALSE;
-                [NSNotificationCenter.defaultCenter
-                    addObserver:self
-                       selector:@selector(onAddressBookUpdate:)
-                           name:kLinphoneAddressBookUpdate
-                         object:nil];
-                [[NSNotificationCenter defaultCenter]
-                    addObserver:self
-                       selector:@selector(onAddressBookUpdate:)
-                           name:CNContactStoreDidChangeNotification
-                         object:nil];
-        }
-        return self;
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle mainBundle]];
+    if (self != nil) {
+        inhibUpdate = FALSE;
+        [NSNotificationCenter.defaultCenter
+         addObserver:self
+         selector:@selector(onAddressBookUpdate:)
+         name:kLinphoneAddressBookUpdate
+         object:nil];
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(onAddressBookUpdate:)
+         name:CNContactStoreDidChangeNotification
+         object:nil];
+    }
+    return self;
 }
 
 - (void)dealloc {
-	[NSNotificationCenter.defaultCenter removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark -
@@ -60,32 +60,32 @@
 }
 
 - (void)resetData {
-	if (self.isEditing) {
-		[self setEditing:FALSE];
-	}
-
-	LOGI(@"Reset data to contact %p", _contact);
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
-	[_tableController setContact:_contact];
-	_emptyLabel.hidden = YES;
-	_avatarImage.hidden = !_emptyLabel.hidden;
-	_deleteButton.hidden = !_emptyLabel.hidden;
-	_editButton.hidden = !_emptyLabel.hidden;
+    if (self.isEditing) {
+        [self setEditing:FALSE];
+    }
+    
+    LOGI(@"Reset data to contact %p", _contact);
+    [_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+    [_tableController setContact:_contact];
+    _emptyLabel.hidden = YES;
+    _avatarImage.hidden = !_emptyLabel.hidden;
+    _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
+    _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
 }
 
 - (void)removeContact {
-	inhibUpdate = TRUE;
-	[[LinphoneManager.instance fastAddressBook] deleteContact:_contact];
-	inhibUpdate = FALSE;
-
-	if (IPAD) {
-		ContactsListView *view = VIEW(ContactsListView);
-		if (![view .tableController selectFirstRow]) {
-			[self setContact:nil];
-		}
-	}
-
-	[PhoneMainView.instance popCurrentView];
+    inhibUpdate = TRUE;
+    [[LinphoneManager.instance fastAddressBook] deleteContact:_contact];
+    inhibUpdate = FALSE;
+    
+    if (IPAD) {
+        ContactsListView *view = VIEW(ContactsListView);
+        if (![view .tableController selectFirstRow]) {
+            [self setContact:nil];
+        }
+    }
+    
+    [PhoneMainView.instance popCurrentView];
 }
 
 - (void)saveData {
@@ -119,14 +119,15 @@
 	}
 
 	_contact = acontact;
-	_emptyLabel.hidden = (_contact != NULL);
-	_avatarImage.hidden = !_emptyLabel.hidden;
-	_deleteButton.hidden = !_emptyLabel.hidden;
-	_editButton.hidden = !_emptyLabel.hidden;
+    bool emptyContact = (_contact != NULL);
+    _emptyLabel.hidden = emptyContact;
+	_avatarImage.hidden = !emptyContact;
+    _deleteButton.hidden = YES; // !emptyContact; Now is not editable.
+    _editButton.hidden = YES; // !emptyContact; Now is not editable.
 
 	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-	[_tableController setContact:_contact];
+    [_tableController setContact:_contact];
 
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
@@ -236,7 +237,16 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
+    
+    // Since Linphone use hidden properties, this bypass his code.
+    CGRect deleteRect = _deleteButton.frame;
+    deleteRect.size.height = 0;
+    _deleteButton.frame = deleteRect;
+    
+    CGRect editRect = _editButton.frame;
+    editRect.size.height = 0;
+    _editButton.frame = editRect;
+    
 	// if we use fragments, remove back button
 	if (IPAD) {
 		_backButton.hidden = YES;
@@ -260,8 +270,8 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	_waitView.hidden = YES;
-	_editButton.hidden = ([ContactSelection getSelectionMode] != ContactSelectionModeEdit &&
-						  [ContactSelection getSelectionMode] != ContactSelectionModeNone);
+    _editButton.hidden = YES; // ([ContactSelection getSelectionMode] != ContactSelectionModeEdit &&
+						  // [ContactSelection getSelectionMode] != ContactSelectionModeNone); Now is not editable.
 	[_tableController.tableView addObserver:self forKeyPath:@"contentSize" options:0 context:NULL];
 	_tableController.waitView = _waitView;
 	if (!IPAD)
@@ -307,6 +317,10 @@
 		}
 		_cancelButton.hidden = TRUE;
 	}
+    
+    // TO BE REMOVED: Hide delete button.
+    _deleteButton.hidden = TRUE;
+    _editButton.hidden = TRUE;
     
     [self recomputeTableViewSize:_editButton.hidden];
 }
@@ -369,8 +383,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
 	[super setEditing:editing animated:animated];
 	if (editing) {
-		_editButton.hidden = FALSE;
-		_deleteButton.hidden = FALSE;
+        _editButton.hidden = YES; // FALSE; Now is not editable.
+        _deleteButton.hidden = YES; // FALSE; Now is not editable.
 		_avatarImage.hidden = FALSE;
 	} else {
 		_editButton.hidden = TRUE;
@@ -402,10 +416,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)recomputeTableViewSize:(BOOL)editing {
     CGRect frame = _tableController.tableView.frame;
-    frame.origin.y = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
-    if ([self viewIsCurrentlyPortrait] && !editing) {
-        frame.origin.y += _nameLabel.frame.size.height;
-    }
+    const int avatarFrame = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
+    if ([self viewIsCurrentlyPortrait]) { //} && !editing) { Atm the contact is not editable.
+        const int labelFrame = _nameLabel.frame.size.height; // Add here more label heights.
+        frame.origin.y = avatarFrame + labelFrame;
+    } else if(![self viewIsCurrentlyPortrait]) {
+        const int labelFrame = _nameLabel.frame.origin.y + _nameLabel.frame.size.height; // Add here more label heights.
+        frame.origin.y = avatarFrame > labelFrame ? avatarFrame : labelFrame;
+    } // Missing one case?
     
     frame.size.height = _tableController.tableView.contentSize.height;
     _tableController.tableView.frame = frame;
@@ -460,8 +478,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                     nbPhone++;
                   }
                 }
-                while (_contact.emails.count > 0) {
-                  [_contact removeEmailAtIndex:0];
+        BOOL hasToContinue = YES;
+                while (hasToContinue && _contact.emails.count > 0) {
+                  hasToContinue = [_contact removeEmailAtIndex:0];
                 }
                 NSInteger nbEmail = 0;
                 if (_tmpContact.emails != NULL) {
@@ -479,15 +498,15 @@ static UICompositeViewDescription *compositeDescription = nil;
         if (IPAD) {
           _emptyLabel.hidden = !_isAdding;
           _avatarImage.hidden = !_emptyLabel.hidden;
-          _deleteButton.hidden = !_emptyLabel.hidden;
-          _editButton.hidden = !_emptyLabel.hidden;
+            _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+            _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
         } else {
           if (_isAdding) {
             [PhoneMainView.instance popCurrentView];
           } else {
             _avatarImage.hidden = FALSE;
-            _deleteButton.hidden = FALSE;
-            _editButton.hidden = FALSE;
+              _deleteButton.hidden = YES; // FALSE; Now is not editable.
+              _editButton.hidden = YES; // FALSE; Now is not editable.
           }
         }
 
@@ -517,8 +536,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 			_isAdding = FALSE;
 			self.tmpContact = NULL;
 			_avatarImage.hidden = FALSE;
-			_deleteButton.hidden = FALSE;
-			_editButton.hidden = FALSE;
+            _deleteButton.hidden = YES; // FALSE; Now is not editable.
+            _editButton.hidden = YES; // FALSE; Now is not editable.
 		}else{
 			LOGE(@"====>>>> Duplicated Contacts detected !!!");
 			[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Contact error", nil) message:NSLocalizedString(@"Contact duplicate", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Continue", nil] show];

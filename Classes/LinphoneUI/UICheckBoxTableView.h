@@ -30,6 +30,8 @@
 @property(weak, nonatomic) IBOutlet UIButton *toggleSelectionButton;
 @property(weak, nonatomic) IBOutlet UIView *emptyView;
 
+@property(atomic) NSInteger itemsNumber;
+
 - (void)loadData;
 - (void)accessoryForCell:(UITableViewCell *)cell atPath:(NSIndexPath *)indexPath;
 - (void)removeSelectionUsing:(void (^)(NSIndexPath *indexPath))remover;
@@ -39,7 +41,5 @@
 - (IBAction)onSelectionToggle:(id)sender;
 - (IBAction)onEditClick:(id)sender;
 - (IBAction)onCancelClick:(id)sender;
-
-- (NSInteger)totalNumberOfItems;
 
 @end

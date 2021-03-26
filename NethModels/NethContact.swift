@@ -10,8 +10,8 @@ import Foundation
 // MARK: - NethContact
 @objcMembers class NethContact: NSObject {
     let id: Int
-    let ownerID: NethContactOwner
-    let type: NethContactType
+    let ownerID: String
+    let type: String
     let homeemail, workemail, homephone, workphone: String
     let cellphone, fax, title, company: String
     let notes, name, homestreet, homepob: String
@@ -19,9 +19,9 @@ import Foundation
     let workstreet, workpob, workcity, workprovince: String
     let workpostalcode, workcountry, url, rowExtension: String
     let speeddialNum: String
-    let source: NethContactSource
+    let source: String
     
-    init(id: Int, ownerID: NethContactOwner, type: NethContactType, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: NethContactSource) {
+    init(id: Int, ownerID: String, type: String, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: String) {
         self.id = id
         self.ownerID = ownerID
         self.type = type
@@ -55,14 +55,8 @@ import Foundation
     
     init(raw: [String:Any]) {
         self.id = raw["id"] as! Int
-        if let ownerID = raw["ownerID"] as? String,
-           let nethOwner = NethContactOwner(rawValue: ownerID) {
-            self.ownerID = nethOwner
-        } else { self.ownerID = .admin }
-        if let type = raw["type"] as? String,
-           let nethType = NethContactType(rawValue: type) {
-            self.type = nethType
-        } else { self.type = .typeExtension }
+        self.ownerID = raw["owner_id"] as? String ?? ""
+        self.type = raw["type"] as? String ?? ""
         self.homeemail = raw["homeemail"] as? String ?? ""
         self.workemail = raw["workemail"] as? String ?? ""
         self.homephone = raw["homephone"] as? String ?? ""
@@ -70,7 +64,12 @@ import Foundation
         self.cellphone = raw["cellphone"] as? String ?? ""
         self.fax = raw["fax"] as? String ?? ""
         self.title = raw["title"] as? String ?? ""
-        self.company = raw["company"] as? String ?? ""
+        if let company = raw["company"] as? String,
+           company != "" {
+            self.company = company
+        } else {
+            self.company = ""
+        }
         self.notes = raw["notes"] as? String ?? ""
         self.name = raw["name"] as? String ?? ""
         self.homestreet = raw["homestreet"] as? String ?? ""
@@ -88,10 +87,7 @@ import Foundation
         self.url = raw["url"] as? String ?? ""
         self.rowExtension = raw["extension"] as? String ?? ""
         self.speeddialNum = raw["speeddial_num"] as? String ?? ""
-        if let source = raw["source"] as? String,
-           let nethSource = NethContactSource(rawValue: source) {
-            self.source = nethSource
-        } else { self.source = .centralized }
+        self.source = raw["source"] as? String ?? ""
     }
     
     /**
@@ -101,14 +97,30 @@ import Foundation
     @objc public func toLinphoneContact() -> Contact {
         // Init a blank contact. CNContact is the iOS Contact.
         let contact = Contact.init(cnContact: CNContact.init())
+        contact!.identifier = String(self.id)
+        contact!.nethesis = true
         contact!.firstName = self.name
-        contact!.lastName = self.name
-        contact!.displayName = self.name
         contact!.addEmail(self.homeemail)
         contact!.addEmail(self.workemail)
         contact!.addPhoneNumber(self.homephone)
         contact!.addPhoneNumber(self.workphone)
         contact!.addPhoneNumber(self.cellphone)
+        contact!.addSipAddress(self.rowExtension)
+        contact!.company = self.company
+        contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homecountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.homePob = self.homepob
+        contact!.homePostalCode = self.homepostalcode
+        contact!.notes = self.notes
+        contact!.ownerId = self.ownerID
+        contact!.source = self.source
+        contact!.speeddialNum = self.speeddialNum
+        contact!.title = self.title
+        contact!.type = self.type
+        contact!.url = self.url
+        contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.workPob = self.workpob
+        contact!.workPostalCode = self.workpostalcode
+        contact!.displayName = self.company.isEmpty ? self.name : self.name.trimmingCharacters(in: CharacterSet(arrayLiteral: " ")).isEmpty ? self.company : "\(self.name) - \(self.company)"
         return contact!
     }
 }

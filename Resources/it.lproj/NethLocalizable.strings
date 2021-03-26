@@ -6,6 +6,20 @@
   
 */
 
+/*
+ * Phonebook strings.
+ */
+
+"Session expired. To see contacts you need to logout and login again." = "Sessione scaduta. Per poter vedere la lista contatti è necessario fare logout e login di nuovo.";
+
+"Unknown authentication error. Contact your system administrator with a %ld error code." = "Errore di autenticazione sconosciuto. Contatta il tuo amministratore di sistema, comunicando il codice %ld.";
+
+"Network connection unavailable" = "Connessione internet non disponibile";
+
+/*
+ * Info.plist transitions.
+ */
+
 "Share photos with your friends and customize avatars" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
 
 "Make calls with your friends, we don't send your contacts to any server." = "Chiama i tuoi amici. Non invieremo i tuoi contatti a nessun server esterno.";
@@ -15,3 +29,45 @@
 "Add tranfered files to your library" = "Aggiungi i file trasferiti alla tua libreria";
 
 "Use microphone to make audio calls" = "Usa il microfono per poter effettuare chiamate audio";
+
+/*
+ * Phonebook filters.
+ */
+
+"company" = "Azienda";
+
+"all" = "Tutto";
+
+"person" = "Persona";
+
+/*
+ * Contact details.
+ */
+
+"Company" = "Azienda";
+
+"Home location" = "Casa";
+
+"Home pob" = "Home pob";
+
+"Home Postal Code" = "Codice Postale Casa";
+
+"Notes" = "Note";
+
+"Created by" = "Creato da";
+
+"Source" = "Sorgente";
+
+"SpeeddialNum" = "Numero Speeddial";
+
+"Title" = "Mansione";
+
+"Type" = "Tipo";
+
+"Url" = "Url";
+
+"Work location" = "Lavoro";
+
+"Work pob" = "Work pob";
+
+"Work Postal Code" = "Codice Postale Lavoro";
