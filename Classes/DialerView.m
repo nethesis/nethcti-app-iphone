@@ -21,6 +21,7 @@
 
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
+#import "Dashboard/DashboardViewController.h"
 
 @implementation DialerView
 
@@ -412,6 +413,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onBackspaceClick:(id)sender {
+#if DEBUG
+    [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+    return;
+#endif
+    
 	if ([_addressField.text length] > 0) {
 		[_addressField setText:[_addressField.text substringToIndex:[_addressField.text length] - 1]];
     }
