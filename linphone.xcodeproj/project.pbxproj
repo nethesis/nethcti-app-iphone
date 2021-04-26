@@ -701,6 +701,12 @@
 		C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */; };
 		C3A406EE261DE9F400526F9B /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A406EC261DE9F400526F9B /* DashboardViewController.m */; };
 		C3A406F0261DED8300526F9B /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A406F2261DED8300526F9B /* DashboardView.xib */; };
+		C3A406F9261DF63900526F9B /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406F8261DF63900526F9B /* HistoryTableViewController.swift */; };
+		C3A406FE261DF6AE00526F9B /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406FC261DF6AE00526F9B /* HistoryTableViewCell.swift */; };
+		C3A406FF261DF6AE00526F9B /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A406FD261DF6AE00526F9B /* HistoryTableViewCell.xib */; };
+		C3A40701261DF6F200526F9B /* LostCallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A40700261DF6F200526F9B /* LostCallTableViewCell.swift */; };
+		C3A40703261E01EF00526F9B /* IncomingCallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A40702261E01EF00526F9B /* IncomingCallTableViewCell.swift */; };
+		C3A40705261E020600526F9B /* OutgoingCallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A40704261E020600526F9B /* OutgoingCallTableViewCell.swift */; };
 		C3ACAF2C24B48A2900269A95 /* NethCTI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 61AE364B20C00B370089D9D3 /* NethCTI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF2F24B48A2900269A95 /* msgNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA8CB827239F96CA00C330CC /* msgNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -1678,6 +1684,12 @@
 		C3A406F1261DED8300526F9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DashboardView.xib; sourceTree = "<group>"; };
 		C3A406F4261DED9500526F9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DashboardView.strings; sourceTree = "<group>"; };
 		C3A406F6261DED9900526F9B /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DashboardView.strings; sourceTree = "<group>"; };
+		C3A406F8261DF63900526F9B /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		C3A406FC261DF6AE00526F9B /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		C3A406FD261DF6AE00526F9B /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		C3A40700261DF6F200526F9B /* LostCallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostCallTableViewCell.swift; sourceTree = "<group>"; };
+		C3A40702261E01EF00526F9B /* IncomingCallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallTableViewCell.swift; sourceTree = "<group>"; };
+		C3A40704261E020600526F9B /* OutgoingCallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingCallTableViewCell.swift; sourceTree = "<group>"; };
 		C3AE8A6E238808A2000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AboutView.strings; sourceTree = "<group>"; };
 		C3AE8A7023881C74000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1945,6 +1957,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3A406F7261DF5FF00526F9B /* History */,
 				C3A406E4261DE6D000526F9B /* Dashboard */,
 				22E0A81D111C44E100B04932 /* AboutView.h */,
 				22E0A81C111C44E100B04932 /* AboutView.m */,
@@ -3009,6 +3022,19 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		C3A406F7261DF5FF00526F9B /* History */ = {
+			isa = PBXGroup;
+			children = (
+				C3A406F8261DF63900526F9B /* HistoryTableViewController.swift */,
+				C3A406FC261DF6AE00526F9B /* HistoryTableViewCell.swift */,
+				C3A406FD261DF6AE00526F9B /* HistoryTableViewCell.xib */,
+				C3A40700261DF6F200526F9B /* LostCallTableViewCell.swift */,
+				C3A40702261E01EF00526F9B /* IncomingCallTableViewCell.swift */,
+				C3A40704261E020600526F9B /* OutgoingCallTableViewCell.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		C3ACAF2A24B4565700269A95 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -3942,6 +3968,7 @@
 				633FEF4E1D3CD55A0014B822 /* valid_default.png in Resources */,
 				570742581D5A0691004B9C84 /* ShopView.xib in Resources */,
 				633FEE361D3CD5590014B822 /* conference_exit_over.png in Resources */,
+				C3A406FF261DF6AE00526F9B /* HistoryTableViewCell.xib in Resources */,
 				633FEDAA1D3CD5590014B822 /* backspace_disabled.png in Resources */,
 				F0938159188E629800A55DFA /* iTunesArtwork in Resources */,
 				633FEE791D3CD5590014B822 /* history_chat_indicator@2x.png in Resources */,
@@ -4141,6 +4168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3A406F9261DF63900526F9B /* HistoryTableViewController.swift in Sources */,
+				C3A40701261DF6F200526F9B /* LostCallTableViewCell.swift in Sources */,
 				C342BA1924B5D49200003F8D /* UIInterfaceStyleButton.m in Sources */,
 				63B81A0F1B57DA33009604A6 /* TPKeyboardAvoidingTableView.m in Sources */,
 				CF1DE92D210A0F5D00A0A97E /* UILinphoneAudioPlayer.m in Sources */,
@@ -4149,6 +4178,7 @@
 				1D3623260D0F684500981E51 /* LinphoneAppDelegate.m in Sources */,
 				614C087A23D1A37400217F80 /* CallManager.swift in Sources */,
 				CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */,
+				C3A406FE261DF6AE00526F9B /* HistoryTableViewCell.swift in Sources */,
 				22F2508E107141E100AC9B3F /* DialerView.m in Sources */,
 				633756451B67D2B200E21BAD /* SideMenuView.m in Sources */,
 				8CD99A422090CE6F008A7CDA /* UIChatConversationImdnTableViewCell.m in Sources */,
@@ -4188,6 +4218,7 @@
 				D3ED3EA71587334E006C0DE4 /* HistoryListTableView.m in Sources */,
 				61AEBEBD2191990A00F35E7F /* DevicesListView.m in Sources */,
 				C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */,
+				C3A40703261E01EF00526F9B /* IncomingCallTableViewCell.swift in Sources */,
 				D3ED3EB81587392C006C0DE4 /* HistoryListView.m in Sources */,
 				24A345A61D95798A00881A5C /* UIShopTableCell.m in Sources */,
 				8C1B67061E671826001EA2FE /* AudioHelper.m in Sources */,
@@ -4278,6 +4309,7 @@
 				D3807FFC15C2894A005BE9BC /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
 				C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */,
 				D3807FFE15C2894A005BE9BC /* IASKSlider.m in Sources */,
+				C3A40705261E020600526F9B /* OutgoingCallTableViewCell.swift in Sources */,
 				D380800015C2894A005BE9BC /* IASKSwitch.m in Sources */,
 				D380800215C2894A005BE9BC /* IASKTextField.m in Sources */,
 				D380801315C299D0005BE9BC /* ColorSpaceUtilites.m in Sources */,
