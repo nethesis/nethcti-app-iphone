@@ -22,7 +22,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     if (compositeDescription == nil) {
         compositeDescription = [[UICompositeViewDescription alloc] init:self.class
                                                               statusBar:StatusBarView.class
-                                                                 tabBar:TabBarView.class
+                                                                 tabBar:nil
                                                                sideMenu:SideMenuView.class
                                                              fullscreen:false
                                                          isLeftFragment:YES
@@ -46,6 +46,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    /*
     // Set notification observers.
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(callUpdateEvent:)
@@ -56,7 +57,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                            selector:@selector(coreUpdateEvent:)
                                                name:kLinphoneCoreUpdate
                                              object:nil];
-    
+    */
     // Change image colors.
     _dialerButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_dialerButton.imageView setTintColor:[UIColor redColor]];
