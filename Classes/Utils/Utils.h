@@ -93,6 +93,16 @@ typedef enum {
 #import <UIKit/UIKit.h>
 
 #define LINPHONE_MAIN_COLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_A.png"]]
+
+#define NETHCTI_GREEN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_green.png"]]
+#define NETHCTI_LIGHT_GREEN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_green.png"]]
+#define NETHCTI_GREY [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_grey.png"]]
+#define NETHCTI_LIGHT_GREY [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_grey.png"]]
+#define NETHCTI_MAGENTA [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_magenta.png"]]
+#define NETHCTI_LIGHT_MAGENTA [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_magenta.png"]]
+#define NETHCTI_CYAN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_cyan.png"]]
+#define NETHCTI_LIGHT_CYAN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_cyan.png"]]
+
 #define LINPHONE_SETTINGS_BG_IOS7 [UIColor colorWithRed:164 / 255. green:175 / 255. blue:183 / 255. alpha:1.0]
 
 @interface UIColor (LightAndDark)
