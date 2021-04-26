@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - Extension
 struct Extension: Codable {
-    let id, type, secret, username: String
-    let extensionDescription: String
-    let actions: Actions
+    let type: String
+    let id, extensionDescription, secret, username: String?
+    let actions: Actions?
     let proxyPort : Int?
     
     enum CodingKeys: String, CodingKey {
@@ -24,22 +24,18 @@ struct Extension: Codable {
 
 extension Extension {
     init?(from:[String:Any]){
-        guard let id = from["id"] as? String,
-            let type = from["type"] as? String,
-            let extensionDescription = from["description"] as? String,
-            let actions = from["actions"] as? [String: Any] else { return nil }
+        guard let type = from["type"] as? String else {
+            return nil
+        }
         
-        // Secret, username and proxy_port can be nil.
-        let secret = from["secret"] as? String
-        let username = from["username"] as? String
-        let proxyPort = from["proxy_port"] as? Int
+        let actions = from["actions"] as? [String: Any]
         
-        self.id = id
-        self.type = type
-        self.secret = secret ?? ""
-        self.username = username ?? ""
-        self.extensionDescription = extensionDescription
-        self.actions = Actions(from:actions)!
-        self.proxyPort = proxyPort
+        self.id = from["id"] as? String
+        self.type = type // This is the only field that can't be null.
+        self.secret = from["secret"] as? String
+        self.username = from["username"] as? String
+        self.extensionDescription = from["description"] as? String
+        self.actions = Actions(from:actions ?? ["":""])
+        self.proxyPort = from["proxy_port"] as? Int
     }
 }
