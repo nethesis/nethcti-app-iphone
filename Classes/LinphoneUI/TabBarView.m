@@ -40,6 +40,7 @@
 											   name:kLinphoneMessageReceived
 											 object:nil];
 	[self update:FALSE];
+    [self setupUI];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -48,6 +49,7 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // TODO: This can be removed?
 	[self update:FALSE];
 }
 
@@ -71,6 +73,14 @@
 }
 
 #pragma mark - UI Update
+
+-(void)setupUI {
+    [self.backgroundImage setBackgroundColor:NETHCTI_WHITE];
+    // This solution doesn't work https://stackoverflow.com/a/24979595/10220116.
+    UIImage *historyImage = [[UIImage imageNamed:@"history.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.historyButton setImage:historyImage forState:UIControlStateNormal];
+    [self.historyButton setTintColor:NETHCTI_CYAN];
+}
 
 - (void)update:(BOOL)appear {
 	[self updateSelectedButton:[PhoneMainView.instance currentView]];
@@ -98,17 +108,21 @@
 }
 
 - (void)updateSelectedButton:(UICompositeViewDescription *)view {
-	_historyButton.selected = [view equal:HistoryListView.compositeViewDescription] ||
-							  [view equal:HistoryDetailsView.compositeViewDescription];
-	_contactsButton.selected = [view equal:ContactsListView.compositeViewDescription] ||
-							   [view equal:ContactDetailsView.compositeViewDescription] ||
-                                [view equal:ContactDetailsViewNethesis.compositeViewDescription];
-	_dialerButton.selected = [view equal:DialerView.compositeViewDescription];
-	_chatButton.selected = [view equal:ChatsListView.compositeViewDescription] ||
-						   [view equal:ChatConversationCreateView.compositeViewDescription] ||
-						   [view equal:ChatConversationInfoView.compositeViewDescription] ||
-						   [view equal:ChatConversationImdnView.compositeViewDescription] ||
-						   [view equal:ChatConversationView.compositeViewDescription];
+    // Actually this control is white to hide him. Can we remove it?
+    _historyButton.selected =
+        [view equal:HistoryListView.compositeViewDescription] ||
+        [view equal:HistoryDetailsView.compositeViewDescription];
+    [self.historyButton setTintColor:NETHCTI_CYAN];
+    _contactsButton.selected =
+        [view equal:ContactsListView.compositeViewDescription] ||
+        [view equal:ContactDetailsView.compositeViewDescription] ||
+        [view equal:ContactDetailsViewNethesis.compositeViewDescription];
+    _dialerButton.selected = [view equal:DialerView.compositeViewDescription];
+    _chatButton.selected = [view equal:ChatsListView.compositeViewDescription] ||
+        [view equal:ChatConversationCreateView.compositeViewDescription] ||
+        [view equal:ChatConversationInfoView.compositeViewDescription] ||
+        [view equal:ChatConversationImdnView.compositeViewDescription] ||
+        [view equal:ChatConversationView.compositeViewDescription];
 	CGRect selectedNewFrame = _selectedButtonImage.frame;
 	if ([self viewIsCurrentlyPortrait]) {
 		selectedNewFrame.origin.x =
@@ -133,13 +147,12 @@
 									  ? _chatButton.frame.origin.y
 									  : -selectedNewFrame.size.height /*hide it if none is selected*/))));
 	}
-
-	CGFloat delay = ANIMATED ? 0.3 : 0;
-	[UIView animateWithDuration:delay
-					 animations:^{
-					   _selectedButtonImage.frame = selectedNewFrame;
-
-					 }];
+    
+    CGFloat delay = ANIMATED ? 0.3 : 0;
+    [UIView animateWithDuration:delay
+                     animations:^{
+        _selectedButtonImage.frame = selectedNewFrame;
+    }];
 }
 
 #pragma mark - Action Functions

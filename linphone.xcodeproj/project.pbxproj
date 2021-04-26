@@ -706,6 +706,9 @@
 		C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3990D1324B5B67100EE834B /* TransferCallManager.swift */; };
 		C39CE3F52636EF1000F63727 /* color_nethcti_white.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F42636EF0F00F63727 /* color_nethcti_white.png */; };
 		C39CE3F72636F05100F63727 /* menu_nethcti.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F62636F05000F63727 /* menu_nethcti.png */; };
+		C39CE3F926370DDC00F63727 /* dialpad.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F826370DDC00F63727 /* dialpad.png */; };
+		C39CE3FB26370DF600F63727 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3FA26370DF600F63727 /* users.png */; };
+		C39CE3FD26370E0C00F63727 /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3FC26370E0C00F63727 /* history.png */; };
 		C39F991824D0345800B3039C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6C88323FABF690076A018 /* Utils.swift */; };
 		C39F991924D0345800B3039C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */; };
 		C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */; };
@@ -1689,6 +1692,9 @@
 		C3990D1324B5B67100EE834B /* TransferCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
 		C39CE3F42636EF0F00F63727 /* color_nethcti_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_white.png; sourceTree = "<group>"; };
 		C39CE3F62636F05000F63727 /* menu_nethcti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_nethcti.png; sourceTree = "<group>"; };
+		C39CE3F826370DDC00F63727 /* dialpad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialpad.png; sourceTree = "<group>"; };
+		C39CE3FA26370DF600F63727 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
+		C39CE3FC26370E0C00F63727 /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		C3A1264625E9512900DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3A1264825E9513100DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3AE8A6E238808A2000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AboutView.strings; sourceTree = "<group>"; };
@@ -2637,6 +2643,7 @@
 				CFBD7A2320E504AD007C5286 /* delete_img.png */,
 				633FEC961D3CD5570014B822 /* deselect_all.png */,
 				633FEC971D3CD5570014B822 /* deselect_all@2x.png */,
+				C39CE3F826370DDC00F63727 /* dialpad.png */,
 				633FEC981D3CD5570014B822 /* dialer_alt_back.png */,
 				633FEC991D3CD5570014B822 /* dialer_alt_back@2x.png */,
 				633FEC9A1D3CD5570014B822 /* dialer_back_default.png */,
@@ -2668,6 +2675,7 @@
 				633FECB51D3CD5570014B822 /* footer_history_default@2x.png */,
 				633FECB61D3CD5570014B822 /* footer_history_disabled.png */,
 				633FECB71D3CD5570014B822 /* footer_history_disabled@2x.png */,
+				C39CE3FC26370E0C00F63727 /* history.png */,
 				633FECB81D3CD5570014B822 /* history_all_default.png */,
 				633FECB91D3CD5570014B822 /* history_all_default@2x.png */,
 				633FECBA1D3CD5570014B822 /* history_all_disabled.png */,
@@ -2926,6 +2934,7 @@
 				633FED8F1D3CD5590014B822 /* speaker_selected@2x.png */,
 				8CD99A362090A824008A7CDA /* splashscreen.png */,
 				8CD99A352090A823008A7CDA /* splashscreen@2x.png */,
+				C39CE3FA26370DF600F63727 /* users.png */,
 				633FED941D3CD5590014B822 /* valid_default.png */,
 				633FED951D3CD5590014B822 /* valid_default@2x.png */,
 				633FED961D3CD5590014B822 /* valid_disabled.png */,
@@ -3443,6 +3452,7 @@
 				633FEE9E1D3CD55A0014B822 /* numpad_0_over@2x.png in Resources */,
 				634610121B6140A500548952 /* CallOutgoingView.xib in Resources */,
 				8CE24F581F8268850077AC0A /* conference_delete@2x.png in Resources */,
+				C39CE3FB26370DF600F63727 /* users.png in Resources */,
 				633FEDC21D3CD5590014B822 /* call_hangup_default.png in Resources */,
 				633FEEB41D3CD55A0014B822 /* numpad_3_default@2x.png in Resources */,
 				633FEEE51D3CD55A0014B822 /* numpad_9_over.png in Resources */,
@@ -3587,6 +3597,7 @@
 				633FEDD21D3CD5590014B822 /* call_quality_indicator_3.png in Resources */,
 				633FEDAF1D3CD5590014B822 /* call_add_default@2x.png in Resources */,
 				633FEE931D3CD55A0014B822 /* menu@2x.png in Resources */,
+				C39CE3FD26370E0C00F63727 /* history.png in Resources */,
 				633FEF3D1D3CD55A0014B822 /* security_ok@2x.png in Resources */,
 				3966FC212636DC7000C52FF1 /* color_nethcti_cyan.png in Resources */,
 				C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */,
@@ -3635,6 +3646,7 @@
 				24BFAA9E209B0630004F47A7 /* dialer_background.png in Resources */,
 				633FEE481D3CD5590014B822 /* delete_default.png in Resources */,
 				633FEEB01D3CD55A0014B822 /* numpad_2_over~ipad@2x.png in Resources */,
+				C39CE3F926370DDC00F63727 /* dialpad.png in Resources */,
 				633FEE2A1D3CD5590014B822 /* color_A.png in Resources */,
 				633FEEA41D3CD55A0014B822 /* numpad_1_default@2x.png in Resources */,
 				63E27A321C4FECD000D332AE /* LaunchScreen.xib in Resources */,

@@ -24,9 +24,13 @@
 @interface TabBarView : TPMultiLayoutViewController {
 }
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property(nonatomic, strong) IBOutlet UIButton *historyButton;
+@property (weak, nonatomic) IBOutlet UIView *historyView;
 @property(nonatomic, strong) IBOutlet UIButton *contactsButton;
+@property (weak, nonatomic) IBOutlet UIView *contactsView;
 @property(nonatomic, strong) IBOutlet UIButton *dialerButton;
+@property (weak, nonatomic) IBOutlet UIView *dialerView;
 @property(nonatomic, strong) IBOutlet UIButton *chatButton;
 @property(nonatomic, strong) IBOutlet UIBouncingView *historyNotificationView;
 @property(nonatomic, strong) IBOutlet UIBouncingView *chatNotificationView;
