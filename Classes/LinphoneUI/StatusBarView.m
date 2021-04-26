@@ -54,11 +54,24 @@
 	LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
 	messagesUnreadCount = lp_config_get_int(linphone_core_get_config(LC), "app", "voice_mail_messages_count", 0);
     
-    _backgroundImage.backgroundColor = LINPHONE_MAIN_COLOR;
+    [self setUIColors];
+    [self setUIIcons];
 
 	[self proxyConfigUpdate:config];
 	[self updateUI:linphone_core_get_calls_nb(LC)];
 	[self updateVoicemail];
+}
+
+/// Set UI Colors by default.
+-(void)setUIColors {
+    [self.backgroundImage setBackgroundColor:NETHCTI_WHITE];
+    [self.registrationState setTitleColor:NETHCTI_GREY forState:UIControlStateNormal];
+    [self.sideMenuButton setTitleColor:NETHCTI_GREY forState:UIControlStateNormal];
+}
+
+/// Set UI Icons by default.
+-(void)setUIIcons {
+    [self.sideMenuButton setImage:[UIImage imageNamed:@"menu_nethcti.png"] forState:(UIControlStateHighlighted | UIControlStateNormal | UIControlStateSelected)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -216,11 +229,12 @@
 #pragma mark -
 
 - (void)updateUI:(BOOL)inCall {
-	BOOL hasChanged = (_outcallView.hidden != inCall);
-
-	_outcallView.hidden = inCall;
-	_incallView.hidden = !inCall;
-
+    // Retreive changes before change button visibility.
+    // Anyone among the buttons can be the candidate for the check. This button is the most important.
+    bool hasChanged = [self.sideMenuButton isHidden] != inCall;
+    
+    [self setButtonVisibility:inCall];
+    
 	if (!hasChanged)
 		return;
 
@@ -249,6 +263,20 @@
 														   userInfo:nil
 															repeats:YES];
 	}
+}
+
+/// Set button visibility properly if there is an active call or not.
+/// @param inCall presence of an active call.
+-(void)setButtonVisibility:(BOOL)inCall {
+    /*
+     * Changed container views.
+     * _outcallView.hidden = inCall;
+     * _incallView.hidden = !inCall;
+     */
+    [_voicemailButton setHidden:inCall];
+    [_sideMenuButton setHidden:inCall];
+    [_callSecurityButton setHidden:!inCall];
+    [_callQualityButton setHidden:!inCall];
 }
 
 - (void)callSecurityUpdate {

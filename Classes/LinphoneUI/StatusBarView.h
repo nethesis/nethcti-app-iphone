@@ -23,7 +23,7 @@
 #import "LinphoneManager.h"
 
 @interface StatusBarView : UIViewController {
-	UIConfirmationDialog *securityDialog;
+    UIConfirmationDialog *securityDialog;
 }
 
 @property(weak, nonatomic) IBOutlet UIImageView *backgroundImage;
@@ -31,9 +31,12 @@
 @property(nonatomic, strong) IBOutlet UIButton *callSecurityButton;
 @property(weak, nonatomic) IBOutlet UIButton *voicemailButton;
 @property(weak, nonatomic) IBOutlet UIButton *callQualityButton;
+@property(weak, nonatomic) IBOutlet UIButton *sideMenuButton;
 
-@property(weak, nonatomic) IBOutlet UIView *incallView;
-@property(weak, nonatomic) IBOutlet UIView *outcallView;
+/*
+ * @property(weak, nonatomic) IBOutlet UIView *incallView;
+ * @property(weak, nonatomic) IBOutlet UIView *outcallView;
+ */
 
 - (IBAction)onSecurityClick:(id)sender;
 - (IBAction)onSideMenuClick:(id)sender;
