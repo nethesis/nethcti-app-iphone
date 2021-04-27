@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,9 +13,8 @@
                 <outlet property="backgroundImage" destination="mcm-kl-NzJ" id="4h8-tb-Cdt"/>
                 <outlet property="callQualityButton" destination="SKk-s0-5HE" id="22M-FN-kRs"/>
                 <outlet property="callSecurityButton" destination="27" id="29"/>
-                <outlet property="incallView" destination="0Vp-VF-wmX" id="mLI-RY-bfW"/>
-                <outlet property="outcallView" destination="lfO-I4-PXi" id="04e-SG-ViY"/>
                 <outlet property="registrationState" destination="Mhg-P6-RfU" id="xTR-Af-XBY"/>
+                <outlet property="sideMenuButton" destination="yg7-rx-XVv" id="vZN-HM-gAP"/>
                 <outlet property="view" destination="4" id="11"/>
                 <outlet property="voicemailButton" destination="3Jg-EU-ajT" id="Yr3-N5-aTl"/>
             </connections>
@@ -24,18 +24,55 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mcm-kl-NzJ" userLabel="backgroundView">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mcm-kl-NzJ" userLabel="backgroundView">
                     <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemRedColor"/>
                 </imageView>
-                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-VF-wmX" userLabel="incallView">
-                    <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYu-in-FEH" userLabel="leftView">
+                    <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                     <subviews>
-                        <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27" userLabel="callSecurityButton">
-                            <rect key="frame" x="332" y="0.0" width="24" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKk-s0-5HE" userLabel="callQualityButton">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" image="call_quality_indicator_4.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onSideMenuClick:" destination="-1" eventType="touchUpInside" id="iOC-wy-MPP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg7-rx-XVv" userLabel="sideMenuButton">
+                            <rect key="frame" x="12" y="12" width="24" height="18"/>
+                            <accessibility key="accessibilityConfiguration" label="Side menu button"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="lo6-r5-jYi"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" image="menu_nethcti.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onSideMenuClick:" destination="-1" eventType="touchUpInside" id="EeV-2U-i44"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="SKk-s0-5HE" firstAttribute="centerX" secondItem="rYu-in-FEH" secondAttribute="centerX" id="BKf-Bi-yZy"/>
+                        <constraint firstItem="yg7-rx-XVv" firstAttribute="top" secondItem="rYu-in-FEH" secondAttribute="top" constant="12" id="Ea9-JA-fmi"/>
+                        <constraint firstItem="SKk-s0-5HE" firstAttribute="height" secondItem="rYu-in-FEH" secondAttribute="height" id="LR2-Uh-xgl"/>
+                        <constraint firstItem="SKk-s0-5HE" firstAttribute="centerY" secondItem="rYu-in-FEH" secondAttribute="centerY" id="bAW-Sd-7gs"/>
+                        <constraint firstAttribute="bottom" secondItem="yg7-rx-XVv" secondAttribute="bottom" constant="12" id="eue-mF-o8C"/>
+                        <constraint firstItem="SKk-s0-5HE" firstAttribute="width" secondItem="rYu-in-FEH" secondAttribute="width" id="fsL-in-yg0"/>
+                        <constraint firstItem="yg7-rx-XVv" firstAttribute="leading" secondItem="rYu-in-FEH" secondAttribute="leading" constant="12" id="mZ1-tj-71B"/>
+                        <constraint firstAttribute="width" constant="42" id="zUl-Vz-RaZ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fV1-7B-KHu" userLabel="rightView">
+                    <rect key="frame" x="318" y="0.0" width="42" height="42"/>
+                    <subviews>
+                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27" userLabel="callSecurityButton">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                             <accessibility key="accessibilityConfiguration">
                                 <bool key="isElement" value="NO"/>
                             </accessibility>
@@ -51,38 +88,8 @@
                                 <action selector="onSecurityClick:" destination="-1" eventType="touchUpInside" id="bdh-tU-zPP"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKk-s0-5HE" userLabel="callQualityButton">
-                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" image="call_quality_indicator_4.png">
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="onSideMenuClick:" destination="-1" eventType="touchUpInside" id="iOC-wy-MPP"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfO-I4-PXi" userLabel="outcallView">
-                    <rect key="frame" x="0.0" y="0.0" width="360" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg7-rx-XVv" userLabel="sideMenuButton">
-                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="Side menu button"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" image="menu.png">
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="onSideMenuClick:" destination="-1" eventType="touchUpInside" id="EeV-2U-i44"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-EU-ajT" userLabel="voicemailButton">
-                            <rect key="frame" x="48" y="0.0" width="312" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-EU-ajT" userLabel="voicemailButton">
+                            <rect key="frame" x="-277" y="0.0" width="319" height="42"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                             <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -91,10 +98,21 @@
                             </state>
                         </button>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="3Jg-EU-ajT" firstAttribute="leading" secondItem="fV1-7B-KHu" secondAttribute="leading" constant="-277" id="1Jw-Kf-6mJ"/>
+                        <constraint firstItem="3Jg-EU-ajT" firstAttribute="top" secondItem="fV1-7B-KHu" secondAttribute="top" id="BXZ-H4-Wuf"/>
+                        <constraint firstAttribute="bottom" secondItem="3Jg-EU-ajT" secondAttribute="bottom" id="F8h-Od-Acg"/>
+                        <constraint firstItem="27" firstAttribute="centerY" secondItem="fV1-7B-KHu" secondAttribute="centerY" id="GtC-mL-aoX"/>
+                        <constraint firstAttribute="trailing" secondItem="3Jg-EU-ajT" secondAttribute="trailing" id="Hue-rM-lJz"/>
+                        <constraint firstItem="27" firstAttribute="height" secondItem="fV1-7B-KHu" secondAttribute="height" id="Lf5-oq-OCe"/>
+                        <constraint firstItem="27" firstAttribute="centerX" secondItem="fV1-7B-KHu" secondAttribute="centerX" id="MdB-zQ-EZL"/>
+                        <constraint firstAttribute="width" constant="42" id="Td9-E5-y5N"/>
+                        <constraint firstItem="27" firstAttribute="width" secondItem="fV1-7B-KHu" secondAttribute="width" id="ccz-Gf-GFo"/>
+                    </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhg-P6-RfU" userLabel="registrationState" customClass="UIIconButton">
-                    <rect key="frame" x="46" y="0.0" width="194" height="42"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhg-P6-RfU" userLabel="registrationState" customClass="UIIconButton">
+                    <rect key="frame" x="50" y="0.0" width="260" height="42"/>
                     <accessibility key="accessibilityConfiguration" label="Registration state"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -106,6 +124,24 @@
                     </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="Mhg-P6-RfU" firstAttribute="top" secondItem="rYu-in-FEH" secondAttribute="top" id="2Lu-6H-7Au"/>
+                <constraint firstItem="rYu-in-FEH" firstAttribute="top" secondItem="4" secondAttribute="top" id="6DT-BM-qoC"/>
+                <constraint firstItem="fV1-7B-KHu" firstAttribute="leading" secondItem="Mhg-P6-RfU" secondAttribute="trailing" constant="8" symbolic="YES" id="95L-fo-tAm"/>
+                <constraint firstItem="rYu-in-FEH" firstAttribute="height" secondItem="4" secondAttribute="height" id="9yo-jD-UfT"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rYu-in-FEH" secondAttribute="trailing" id="AlR-vh-fVH"/>
+                <constraint firstItem="rYu-in-FEH" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="GAj-Ge-vPQ"/>
+                <constraint firstItem="fV1-7B-KHu" firstAttribute="top" secondItem="4" secondAttribute="top" id="Lee-GH-n4Q"/>
+                <constraint firstItem="Mhg-P6-RfU" firstAttribute="leading" secondItem="rYu-in-FEH" secondAttribute="trailing" constant="8" symbolic="YES" id="PYd-id-5r7"/>
+                <constraint firstItem="fV1-7B-KHu" firstAttribute="height" secondItem="4" secondAttribute="height" id="S6t-5v-HGs"/>
+                <constraint firstItem="fV1-7B-KHu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4" secondAttribute="leading" id="UvS-Gq-nuz"/>
+                <constraint firstItem="mcm-kl-NzJ" firstAttribute="top" secondItem="4" secondAttribute="top" id="X53-PO-nJI"/>
+                <constraint firstItem="mcm-kl-NzJ" firstAttribute="height" secondItem="4" secondAttribute="height" id="anJ-Yf-EWr"/>
+                <constraint firstAttribute="trailing" secondItem="mcm-kl-NzJ" secondAttribute="trailing" id="gmD-Az-e5H"/>
+                <constraint firstAttribute="trailing" secondItem="fV1-7B-KHu" secondAttribute="trailing" id="kQL-Qb-Wts"/>
+                <constraint firstItem="mcm-kl-NzJ" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="xag-7F-rZH"/>
+                <constraint firstItem="Mhg-P6-RfU" firstAttribute="bottom" secondItem="rYu-in-FEH" secondAttribute="bottom" id="ypK-5H-tHd"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="214.49275362318843" y="81.696428571428569"/>
@@ -114,8 +150,11 @@
     <resources>
         <image name="call_quality_indicator_4.png" width="31.200000762939453" height="32"/>
         <image name="led_disconnected.png" width="19.200000762939453" height="19.200000762939453"/>
-        <image name="menu.png" width="30.399999618530273" height="29.600000381469727"/>
+        <image name="menu_nethcti.png" width="250" height="176"/>
         <image name="security_ok.png" width="22.399999618530273" height="28.799999237060547"/>
         <image name="voicemail.png" width="41.599998474121094" height="19.200000762939453"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

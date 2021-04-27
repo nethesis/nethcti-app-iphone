@@ -93,8 +93,23 @@ typedef enum {
 #import <UIKit/UIKit.h>
 
 #define LINPHONE_MAIN_COLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_A.png"]]
+
+//#define NETHCTI_CYAN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_cyan.png"]]
+#define NETHCTI_LIGHT_CYAN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_cyan.png"]]
+#define NETHCTI_GREEN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_green.png"]]
+#define NETHCTI_LIGHT_GREEN [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_green.png"]]
+//#define NETHCTI_GREY [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_grey.png"]]
+#define NETHCTI_LIGHT_GREY [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_grey.png"]]
+#define NETHCTI_MAGENTA [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_magenta.png"]]
+#define NETHCTI_LIGHT_MAGENTA [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_light_magenta.png"]]
+#define NETHCTI_WHITE [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_nethcti_white.png"]]
 #define LINPHONE_STATUS_BAR_COLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_status_bar.png"]]
+
 #define LINPHONE_SETTINGS_BG_IOS7 [UIColor colorWithRed:164 / 255. green:175 / 255. blue:183 / 255. alpha:1.0]
+
+# pragma mark: Should be replaced somehow
+#define NETHCTI_CYAN [UIColor colorWithRed:0 / 255. green:162 / 255. blue:222 / 255. alpha:1.0]
+#define NETHCTI_GREY [UIColor colorWithRed:112 / 255. green:112 / 255. blue:112 / 255. alpha:1.0]
 
 @interface UIColor (LightAndDark)
 

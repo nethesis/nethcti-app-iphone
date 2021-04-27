@@ -21,3 +21,5 @@ TutorialHellowWorld/hello-world.xcodeproj/project.xcworkspace/
 diff-format.patch
 *.xcscmblueprint
 liblinphone-iphone-sdk-*
+
+Classes/KIF
