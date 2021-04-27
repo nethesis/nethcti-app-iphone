@@ -42,11 +42,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg7-rx-XVv" userLabel="sideMenuButton">
-                            <rect key="frame" x="1" y="7" width="40" height="28"/>
+                            <rect key="frame" x="12" y="12" width="24" height="18"/>
                             <accessibility key="accessibilityConfiguration" label="Side menu button"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="6zU-17-lDA"/>
-                                <constraint firstAttribute="height" constant="28" id="lqD-YS-uRG"/>
+                                <constraint firstAttribute="width" constant="24" id="lo6-r5-jYi"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" image="menu_nethcti.png">
@@ -60,11 +59,12 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="centerX" secondItem="rYu-in-FEH" secondAttribute="centerX" id="BKf-Bi-yZy"/>
+                        <constraint firstItem="yg7-rx-XVv" firstAttribute="top" secondItem="rYu-in-FEH" secondAttribute="top" constant="12" id="Ea9-JA-fmi"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="height" secondItem="rYu-in-FEH" secondAttribute="height" id="LR2-Uh-xgl"/>
-                        <constraint firstItem="yg7-rx-XVv" firstAttribute="centerY" secondItem="rYu-in-FEH" secondAttribute="centerY" id="aut-tq-d4H"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="centerY" secondItem="rYu-in-FEH" secondAttribute="centerY" id="bAW-Sd-7gs"/>
-                        <constraint firstItem="yg7-rx-XVv" firstAttribute="centerX" secondItem="rYu-in-FEH" secondAttribute="centerX" id="cJo-ap-lrM"/>
+                        <constraint firstAttribute="bottom" secondItem="yg7-rx-XVv" secondAttribute="bottom" constant="12" id="eue-mF-o8C"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="width" secondItem="rYu-in-FEH" secondAttribute="width" id="fsL-in-yg0"/>
+                        <constraint firstItem="yg7-rx-XVv" firstAttribute="leading" secondItem="rYu-in-FEH" secondAttribute="leading" constant="12" id="mZ1-tj-71B"/>
                         <constraint firstAttribute="width" constant="42" id="zUl-Vz-RaZ"/>
                     </constraints>
                 </view>
