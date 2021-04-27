@@ -75,11 +75,18 @@
 #pragma mark - UI Update
 
 -(void)setupUI {
-    [self.backgroundImage setBackgroundColor:NETHCTI_WHITE];
-    // This solution doesn't work https://stackoverflow.com/a/24979595/10220116.
+    [self.backgroundImage setBackgroundColor:UIColor.whiteColor];
     UIImage *historyImage = [[UIImage imageNamed:@"history.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *dialerImage = [[UIImage imageNamed:@"dialpad.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *contactsImage = [[UIImage imageNamed:@"users.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
     [self.historyButton setImage:historyImage forState:UIControlStateNormal];
-    [self.historyButton setTintColor:NETHCTI_CYAN];
+    [self.dialerButton setImage:dialerImage forState:UIControlStateNormal];
+    [self.contactsButton setImage:contactsImage forState:UIControlStateNormal];
+
+    [self.historyButton.imageView setTintColor:NETHCTI_CYAN];
+    [self.dialerButton.imageView setTintColor:NETHCTI_GREY];
+    [self.contactsButton.imageView setTintColor:NETHCTI_GREY];
 }
 
 - (void)update:(BOOL)appear {
@@ -109,20 +116,44 @@
 
 - (void)updateSelectedButton:(UICompositeViewDescription *)view {
     // Actually this control is white to hide him. Can we remove it?
-    _historyButton.selected =
-        [view equal:HistoryListView.compositeViewDescription] ||
-        [view equal:HistoryDetailsView.compositeViewDescription];
-    [self.historyButton setTintColor:NETHCTI_CYAN];
-    _contactsButton.selected =
-        [view equal:ContactsListView.compositeViewDescription] ||
+    /*
+    if ([view equal:HistoryListView.compositeViewDescription] ||
+        [view equal:HistoryDetailsView.compositeViewDescription]) {
+        _historyButton.selected = true;
+       // [self.historyButton.imageView setTintColor:NETHCTI_CYAN];
+    } else {
+        _historyButton.selected = false;
+     //   [self.historyButton.imageView setTintColor:NETHCTI_GREY];
+    }
+    
+    if ([view equal:ContactsListView.compositeViewDescription] ||
         [view equal:ContactDetailsView.compositeViewDescription] ||
-        [view equal:ContactDetailsViewNethesis.compositeViewDescription];
-    _dialerButton.selected = [view equal:DialerView.compositeViewDescription];
+        [view equal:ContactDetailsViewNethesis.compositeViewDescription]) {
+        _contactsButton.selected = true;
+     //   [self.contactsButton.imageView setTintColor:NETHCTI_CYAN];
+    } else {
+        _contactsButton.selected = false;
+     //   [self.contactsButton.imageView setTintColor:NETHCTI_GREY];
+
+    }
+
+    if ([view equal:DialerView.compositeViewDescription]) {
+        _dialerButton.selected = true;
+     //   [self.dialerButton.imageView setTintColor:NETHCTI_CYAN];
+    } else {
+        _dialerButton.selected = false;
+        [self.dialerButton.imageView setTintColor:NETHCTI_GREY];
+    }
+    
     _chatButton.selected = [view equal:ChatsListView.compositeViewDescription] ||
         [view equal:ChatConversationCreateView.compositeViewDescription] ||
         [view equal:ChatConversationInfoView.compositeViewDescription] ||
         [view equal:ChatConversationImdnView.compositeViewDescription] ||
         [view equal:ChatConversationView.compositeViewDescription];
+    
+    
+     
+    
 	CGRect selectedNewFrame = _selectedButtonImage.frame;
 	if ([self viewIsCurrentlyPortrait]) {
 		selectedNewFrame.origin.x =
@@ -134,7 +165,7 @@
 							   ? _dialerButton.frame.origin.x
 							   : (_chatButton.selected
 									  ? _chatButton.frame.origin.x
-									  : -selectedNewFrame.size.width /*hide it if none is selected*/))));
+									  : -selectedNewFrame.size.width /*hide it if none is selected))));
 	} else {
 		selectedNewFrame.origin.y =
 			(_historyButton.selected
@@ -145,7 +176,7 @@
 							   ? _dialerButton.frame.origin.y
 							   : (_chatButton.selected
 									  ? _chatButton.frame.origin.y
-									  : -selectedNewFrame.size.height /*hide it if none is selected*/))));
+									  : -selectedNewFrame.size.height /*hide it if none is selected))));
 	}
     
     CGFloat delay = ANIMATED ? 0.3 : 0;
@@ -153,6 +184,7 @@
                      animations:^{
         _selectedButtonImage.frame = selectedNewFrame;
     }];
+     */
 }
 
 #pragma mark - Action Functions
@@ -162,6 +194,9 @@
 	[self update:FALSE];
 	[PhoneMainView.instance updateApplicationBadgeNumber];
 	[PhoneMainView.instance changeCurrentView:HistoryListView.compositeViewDescription];
+    [self.historyButton.imageView setTintColor:NETHCTI_CYAN];
+    [self.dialerButton.imageView setTintColor:NETHCTI_GREY];
+    [self.contactsButton.imageView setTintColor:NETHCTI_GREY];
 }
 
 - (IBAction)onContactsClick:(id)event {
@@ -169,10 +204,16 @@
 	[ContactSelection enableEmailFilter:FALSE];
 	[ContactSelection setNameOrEmailFilter:nil];
 	[PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
+    [self.historyButton.imageView setTintColor:NETHCTI_GREY];
+    [self.dialerButton.imageView setTintColor:NETHCTI_GREY];
+    [self.contactsButton.imageView setTintColor:NETHCTI_CYAN];
 }
 
 - (IBAction)onDialerClick:(id)event {
 	[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
+    [self.historyButton.imageView setTintColor:NETHCTI_GREY];
+    [self.dialerButton.imageView setTintColor:NETHCTI_CYAN];
+    [self.contactsButton.imageView setTintColor:NETHCTI_GREY];
 }
 
 - (IBAction)onSettingsClick:(id)event {

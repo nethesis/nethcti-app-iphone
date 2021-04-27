@@ -24,6 +24,7 @@
 @interface TabBarView : TPMultiLayoutViewController {
 }
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property(nonatomic, strong) IBOutlet UIButton *historyButton;
 @property(nonatomic, strong) IBOutlet UIButton *contactsButton;
 @property(nonatomic, strong) IBOutlet UIButton *dialerButton;
@@ -32,7 +33,6 @@
 @property(nonatomic, strong) IBOutlet UIBouncingView *chatNotificationView;
 @property(nonatomic, strong) IBOutlet UILabel *chatNotificationLabel;
 @property(nonatomic, strong) IBOutlet UILabel *historyNotificationLabel;
-@property(weak, nonatomic) IBOutlet UIImageView *selectedButtonImage;
 
 - (void)update:(BOOL)appear;
 
