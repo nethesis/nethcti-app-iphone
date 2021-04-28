@@ -22,7 +22,7 @@
 #import "SideMenuTableView.h"
 #import "PhoneMainView.h"
 
-@interface SideMenuView : UIViewController <ImagePickerDelegate>
+@interface SideMenuView : UIViewController
 
 @property(strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGestureRecognizer;
 
