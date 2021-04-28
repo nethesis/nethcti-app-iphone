@@ -26,6 +26,7 @@
 
 @property(strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGestureRecognizer;
 
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property(weak, nonatomic) IBOutlet UIImageView *presenceImage;
