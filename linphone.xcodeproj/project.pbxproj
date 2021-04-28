@@ -948,6 +948,10 @@
 		3951056D26398B9000F5AEC5 /* dialpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialpad@2x.png"; sourceTree = "<group>"; };
 		3951057026398BA700F5AEC5 /* users@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "users@2x.png"; sourceTree = "<group>"; };
 		3951057126398BA800F5AEC5 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
+		3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		395105872639B2B200F5AEC5 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		3951058B2639B31D00F5AEC5 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3966FC172636DC6100C52FF1 /* color_nethcti_light_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_light_grey.png; sourceTree = "<group>"; };
 		3966FC182636DC6300C52FF1 /* color_nethcti_light_cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_light_cyan.png; sourceTree = "<group>"; };
 		3966FC192636DC6400C52FF1 /* color_nethcti_cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_cyan.png; sourceTree = "<group>"; };
@@ -2361,6 +2365,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		395105862639B29B00F5AEC5 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */,
+				395105872639B2B200F5AEC5 /* Roboto-Light.ttf */,
+				395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */,
+				3951058B2639B31D00F5AEC5 /* Roboto-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		561D0FD932DE3595BE512375 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2959,6 +2974,7 @@
 		63AADBC31B6A0FF200AA16FD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				395105862639B29B00F5AEC5 /* fonts */,
 				C387A650243F4E9E007FF4DE /* NethLocalizable.strings */,
 				63AADBE31B6A0FF200AA16FD /* assistant_external_sip.rc */,
 				63AADBE41B6A0FF200AA16FD /* assistant_linphone_create.rc */,
