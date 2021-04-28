@@ -118,6 +118,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     _outgoingView = DialerView.compositeViewDescription;
     _qrCodeButton.hidden = !ENABLE_QRCODE; // TODO: Enable QR Code scansioning.
     [self resetLiblinphone:FALSE];
+    
+    [self setStyleForField:ViewElement_Domain];
+    [self setStyleForField:ViewElement_Username];
+    [self setStyleForField:ViewElement_Password];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -507,6 +511,12 @@ static UICompositeViewDescription *compositeDescription = nil;
         [_contentView.layer addAnimation:trans forKey:@"Transition"];
     }
     
+    if(currentView == _loginView) {
+        [self setStyleForField:ViewElement_Domain];
+        [self setStyleForField:ViewElement_Username];
+        [self setStyleForField:ViewElement_Password];
+    }
+    
     // Stack current view
     if (currentView != nil) {
         if (!back)
@@ -566,6 +576,24 @@ static UICompositeViewDescription *compositeDescription = nil;
     // every UITextField subviews with phone keyboard must be tweaked to have a done button
     [self addDoneButtonRecursivelyInView:self.view];
     [self prepareErrorLabels];
+}
+
+-(void)setStyleForField:(ViewElement *)field {
+    UITextField *assistantTextField = [self findTextField:field];
+    if (assistantTextField != nil) {
+        assistantTextField.borderStyle = UITextBorderStyleLine;
+        assistantTextField.layer.cornerRadius = 8.0f;
+        assistantTextField.layer.masksToBounds = YES;
+        assistantTextField.backgroundColor = [UIColor clearColor];
+        assistantTextField.layer.borderColor = [[UIColor cyanColor] CGColor];
+        assistantTextField.layer.borderWidth = 5.0f;
+        // assistantTextField.borderStyle = UITextBorderStyleBezel;
+        // assistantTextField.layer.masksToBounds = YES;
+        // assistantTextField.clipsToBounds = YES;
+        // [[assistantTextField layer] setBorderColor:[[UIColor cyanColor] CGColor]];
+        // [[assistantTextField layer] setBorderWidth:23];
+        // [[assistantTextField layer] setCornerRadius:15];
+    }
 }
 
 - (void)addDoneButtonRecursivelyInView:(UIView *)subview {
