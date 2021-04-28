@@ -210,5 +210,16 @@
 		<string>Roboto-Medium.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 	</array>
+    <key>MainColor</key><string>$(MAIN_COLOR)</string>
+    <key>AccentColor</key><string>$(ACCENT_COLOR)</string>
+    <key>Cyan</key><string>$(CYAN)</string>
+    <key>LightCyan</key><string>$(LIGHT_CYAN)</string>
+    <key>Magenta</key><string>$(MAGENTA)</string>
+    <key>LightMagenta</key><string>$(LIGHT_MAGENTA)</string>
+    <key>Green</key><string>$(GREEN)</string>
+    <key>LightGreen</key><string>$(LIGHT_GREEN)</string>
+    <key>Grey</key><string>$(GREY)</string>
+    <key>LightGrey</key><string>$(LIGHT_GREY)</string>
+    <key>White</key><string>$(WHITE)</string>
 </dict>
 </plist>

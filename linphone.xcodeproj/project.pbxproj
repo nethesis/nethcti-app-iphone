@@ -948,9 +948,9 @@
 		3951056D26398B9000F5AEC5 /* dialpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialpad@2x.png"; sourceTree = "<group>"; };
 		3951057026398BA700F5AEC5 /* users@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "users@2x.png"; sourceTree = "<group>"; };
 		3951057126398BA800F5AEC5 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
-		3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		395105872639B2B200F5AEC5 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		3951058B2639B31D00F5AEC5 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3966FC172636DC6100C52FF1 /* color_nethcti_light_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_light_grey.png; sourceTree = "<group>"; };
 		3966FC182636DC6300C52FF1 /* color_nethcti_light_cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_light_cyan.png; sourceTree = "<group>"; };
