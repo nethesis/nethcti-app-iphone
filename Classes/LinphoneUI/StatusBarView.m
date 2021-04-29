@@ -65,9 +65,9 @@
 
 /// Set UI Colors by default.
 -(void)setUIColors {
-    [self.backgroundImage setBackgroundColor:NETHCTI_WHITE];
-    [self.registrationState setTitleColor:NETHCTI_GREY forState:UIControlStateNormal];
-    [self.sideMenuButton setTitleColor:NETHCTI_GREY forState:UIControlStateNormal];
+    [self.backgroundImage setBackgroundColor:[UIColor getColorByName: @"White"]];
+    [self.registrationState setTitleColor:[UIColor getColorByName: @"Grey"] forState:UIControlStateNormal];
+    [self.sideMenuButton setTitleColor:[UIColor getColorByName: @"Grey"] forState:UIControlStateNormal];
 }
 
 /// Set UI Icons by default.
