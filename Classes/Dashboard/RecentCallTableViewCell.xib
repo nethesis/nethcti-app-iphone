@@ -97,8 +97,9 @@
                     <constraint firstAttribute="trailing" secondItem="v73-wT-3Eg" secondAttribute="trailing" constant="32" id="uRx-ic-uhO"/>
                 </constraints>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="RecentCallTableViewCell"/>
             <connections>
-                <outlet property="callStatusImage" destination="Hdj-8Q-ByO" id="lFy-b0-ZSV"/>
+                <outlet property="callStatusImage" destination="Hdj-8Q-ByO" id="IdQ-8U-9Tm"/>
                 <outlet property="nameInitialLabel" destination="FxO-eD-PgJ" id="wYr-gK-xJ2"/>
                 <outlet property="nameLabel" destination="Cqh-ZY-Xxb" id="PW2-7X-2XC"/>
                 <outlet property="numberLabel" destination="PVj-SG-wHP" id="YMk-BA-vIA"/>

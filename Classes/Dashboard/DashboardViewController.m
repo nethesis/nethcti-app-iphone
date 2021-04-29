@@ -6,11 +6,7 @@
 //
 
 #import "DashboardViewController.h"
-
-@interface DashboardViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *historyTableView;
-
-@end
+#import "RecentCallTableViewCell.h"
 
 @implementation DashboardViewController
 
@@ -41,6 +37,15 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Set history table view.
+    self.historyTableView.delegate = self;
+    self.historyTableView.dataSource = self;
+    self.historyTableView.allowsSelection = false;
+    
+    [_historyTableView registerClass:[RecentCallTableViewCell class] forCellReuseIdentifier:NSStringFromClass([RecentCallTableViewCell class])];
+
+    //[self.historyTableView registerNib:([UINib nibWithNibName:@"RecentCallTableViewCell" bundle:nil]) forCellReuseIdentifier:@"RecentCallTableViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,9 +72,6 @@ static UICompositeViewDescription *compositeDescription = nil;
     [_phonebookButton.imageView setTintColor:[UIColor redColor]];
     _settingsButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_settingsButton.imageView setTintColor:[UIColor redColor]];
-    
-    // Set history table view.
-    self.historyTableView.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -113,5 +115,19 @@ static UICompositeViewDescription *compositeDescription = nil;
  // Pass the selected object to the new view controller.
  }
  */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    RecentCallTableViewCell *cell = (RecentCallTableViewCell *)[_historyTableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecentCallTableViewCell class]) forIndexPath:indexPath];
+    
+    [cell.nameLabel setText:@"U"];
+    [cell.nameInitialLabel setText:@"Utente prova"];
+    [cell.numberLabel setText:@"sip: 213@123.123.12.12"];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
 
 @end

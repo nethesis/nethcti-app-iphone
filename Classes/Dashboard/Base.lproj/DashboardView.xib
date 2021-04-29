@@ -13,7 +13,7 @@
             <connections>
                 <outlet property="dialerButton" destination="EY6-Z8-ENO" id="TAh-4d-dF1"/>
                 <outlet property="historyButton" destination="P0X-Ol-AUn" id="fU7-MJ-N4i"/>
-                <outlet property="historyTableView" destination="s6h-2T-G5f" id="sPP-Ru-WjL"/>
+                <outlet property="historyTableView" destination="s6h-2T-G5f" id="FcZ-LJ-cxD"/>
                 <outlet property="phonebookButton" destination="Gre-GW-OQj" id="sy7-XN-TcO"/>
                 <outlet property="settingsButton" destination="dsR-yB-5d5" id="Mky-JJ-sm8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

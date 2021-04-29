@@ -8,6 +8,7 @@
 #import "RecentCallTableViewCell.h"
 
 @implementation RecentCallTableViewCell
+@synthesize nameInitialLabel, callStatusImage, nameLabel, numberLabel;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
