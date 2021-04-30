@@ -129,7 +129,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Share photos with your friends and customize avatars</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Make calls with your friends, we don't send your contacts to any server.</string>
+	<string>Make calls with your friends, we don&apos;t send your contacts to any server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -203,5 +203,23 @@
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>Roboto-Medium.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+	</array>
+    <key>MainColor</key><string>$(MAIN_COLOR)</string>
+    <key>AccentColor</key><string>$(ACCENT_COLOR)</string>
+    <key>Cyan</key><string>$(CYAN)</string>
+    <key>LightCyan</key><string>$(LIGHT_CYAN)</string>
+    <key>Magenta</key><string>$(MAGENTA)</string>
+    <key>LightMagenta</key><string>$(LIGHT_MAGENTA)</string>
+    <key>Green</key><string>$(GREEN)</string>
+    <key>LightGreen</key><string>$(LIGHT_GREEN)</string>
+    <key>Grey</key><string>$(GREY)</string>
+    <key>LightGrey</key><string>$(LIGHT_GREY)</string>
+    <key>White</key><string>$(WHITE)</string>
 </dict>
 </plist>
