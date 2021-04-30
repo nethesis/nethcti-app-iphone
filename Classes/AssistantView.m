@@ -42,7 +42,9 @@ typedef enum _ViewElement {
     ViewElement_PhoneCC = 109,
     ViewElement_TextFieldCount = ViewElement_PhoneCC - 100 + 1,
     ViewElement_Username_Label = 120,
+    
     ViewElement_NextButton = 130,
+    ViewElement_QrCodeButton = 131,
     
     ViewElement_PhoneButton = 150,
     
@@ -118,15 +120,32 @@ static UICompositeViewDescription *compositeDescription = nil;
     _outgoingView = DialerView.compositeViewDescription;
     _qrCodeButton.hidden = !ENABLE_QRCODE; // TODO: Enable QR Code scansioning.
     [self resetLiblinphone:FALSE];
-    
-    [self setStyleForField:ViewElement_Domain];
-    [self setStyleForField:ViewElement_Username];
-    [self setStyleForField:ViewElement_Password];
+    [self styleContent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void) styleContent {
+    [self setStyleForField:ViewElement_Domain];
+    [self setStyleForField:ViewElement_Username];
+    [self setStyleForField:ViewElement_Password];
+    [self setStyleForButton:ViewElement_NextButton];
+    // TODO: Change to NETHCTI_DARK_GRAY.
+    [[self findButton:ViewElement_NextButton] setTintColor:[UIColor darkGrayColor]];
+    [self setStyleForButton:ViewElement_QrCodeButton];
+    // TODO: Change to NETHCTI_DARK_GRAY.
+    [[self findButton:ViewElement_QrCodeButton] setTintColor:[UIColor darkGrayColor]];
+    UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *qrImage = [[UIImage imageNamed:@"qr.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    [[self findButton:ViewElement_NextButton] setImage:loginImage forState:UIControlStateNormal];
+    [[self findButton:ViewElement_QrCodeButton] setImage:qrImage forState:UIControlStateNormal];
+
+    [[self findButton:ViewElement_NextButton].imageView setTintColor:[UIColor getColorByName: @"Grey"] ];
+    [[self findButton:ViewElement_QrCodeButton].imageView setTintColor:[UIColor getColorByName: @"Grey"]];
 }
 
 - (void)fitContent {
@@ -190,6 +209,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     [LinphoneManager.instance removeAllAccounts];
     [self resetTextFields];
     [self changeView:_loginView back:FALSE animation:FALSE]; // Target changed to _loginView from _welcomeView.
+    
+    [self styleContent];
+    
     _waitView.hidden = TRUE;
 }
 
@@ -512,9 +534,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     
     if(currentView == _loginView) {
-        [self setStyleForField:ViewElement_Domain];
-        [self setStyleForField:ViewElement_Username];
-        [self setStyleForField:ViewElement_Password];
+        [self styleContent];
     }
     
     // Stack current view
@@ -578,21 +598,18 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self prepareErrorLabels];
 }
 
--(void)setStyleForField:(ViewElement *)field {
-    UITextField *assistantTextField = [self findTextField:field];
+- (void)setStyleForField:(ViewElement *)field {
+    UIAssistantTextField *assistantTextField = [self findTextField:field];
     if (assistantTextField != nil) {
-        assistantTextField.borderStyle = UITextBorderStyleLine;
-        assistantTextField.layer.cornerRadius = 8.0f;
-        assistantTextField.layer.masksToBounds = YES;
-        assistantTextField.backgroundColor = [UIColor clearColor];
-        assistantTextField.layer.borderColor = [[UIColor cyanColor] CGColor];
-        assistantTextField.layer.borderWidth = 5.0f;
-        // assistantTextField.borderStyle = UITextBorderStyleBezel;
-        // assistantTextField.layer.masksToBounds = YES;
-        // assistantTextField.clipsToBounds = YES;
-        // [[assistantTextField layer] setBorderColor:[[UIColor cyanColor] CGColor]];
-        // [[assistantTextField layer] setBorderWidth:23];
-        // [[assistantTextField layer] setCornerRadius:15];
+        [assistantTextField style];
+    }
+}
+
+- (void)setStyleForButton:(ViewElement *)field {
+    UIRoundBorderedButton *button = [self findButton:field];
+    if(button != nil) {
+        [button setBackgroundColor:[UIColor lightGrayColor]];
+        [button.layer setCornerRadius:36.f];
     }
 }
 

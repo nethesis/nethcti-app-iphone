@@ -4,8 +4,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssistantView">
             <connections>
@@ -1010,31 +1016,31 @@ Once it is done, come back here and click on the button.</string>
             <point key="canvasLocation" x="849" y="1630"/>
         </view>
         <view contentMode="scaleToFill" id="56" userLabel="loginView">
-            <rect key="frame" x="0.0" y="0.0" width="374" height="589"/>
+            <rect key="frame" x="0.0" y="0.0" width="374" height="602"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="LOGIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="wen-Vj-Wgv" userLabel="titleLabel">
-                    <rect key="frame" x="54" y="164" width="266" height="32"/>
+                    <rect key="frame" x="54" y="156" width="266" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" label="Account setup assistant"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
                     <color key="textColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="-1" height="-1"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Please enter the following informations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LsE-IY-ocU" userLabel="subtitleLabel">
-                    <rect key="frame" x="13" y="204" width="348" height="32"/>
+                    <rect key="frame" x="13" y="196" width="348" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" label="Account setup assistant"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="-1" height="-1"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DOMAIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgC-eB-ar3" userLabel="domainLabel">
-                    <rect key="frame" x="27" y="244" width="52.5" height="16"/>
+                    <rect key="frame" x="27" y="242" width="320" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -1044,7 +1050,7 @@ Once it is done, come back here and click on the button.</string>
                     <color key="backgroundColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Domain"/>
                     <color key="textColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="next" textContentType="url"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="AEK-wy-Dko"/>
@@ -1053,47 +1059,47 @@ Once it is done, come back here and click on the button.</string>
                     </connections>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" tag="410" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Invalid domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ths-8b-FoU" userLabel="domainErrorLabel">
-                    <rect key="frame" x="27" y="306" width="293" height="11"/>
+                    <rect key="frame" x="27" y="308" width="293" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                     <color key="textColor" red="0.98594832420349121" green="0.0" blue="0.026950567960739136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" fixedFrame="YES" text="PASSWORD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPq-fy-KZS" userLabel="passwordLabel">
-                    <rect key="frame" x="27" y="408" width="72.5" height="16"/>
+                    <rect key="frame" x="27" y="410" width="320" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="410" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" fixedFrame="YES" text="Invalid password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oyr-f0-auK" userLabel="passwordErrorLabel">
-                    <rect key="frame" x="27" y="472" width="287" height="11"/>
+                    <rect key="frame" x="27" y="474" width="287" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                     <color key="textColor" red="0.98594832420349121" green="0.0" blue="0.026950567960739136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="120" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAv-f7-kDI" userLabel="usernameLabel">
-                    <rect key="frame" x="27" y="325" width="320" height="16"/>
+                    <rect key="frame" x="27" y="327" width="320" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="410" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" fixedFrame="YES" text="Invalid username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-kb-e8g" userLabel="usernameErrorLabel">
-                    <rect key="frame" x="27" y="389" width="301" height="11"/>
+                    <rect key="frame" x="27" y="391" width="301" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                     <color key="textColor" red="0.98594832420349121" green="0.0" blue="0.026950567960739136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" adjustsFontSizeToFit="NO" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-Dj-QiH" userLabel="passwordField" customClass="UIAssistantTextField">
-                    <rect key="frame" x="27" y="432" width="320" height="32"/>
+                    <rect key="frame" x="27" y="434" width="320" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Password"/>
                     <color key="textColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="bYU-bJ-3Ts"/>
@@ -1107,12 +1113,12 @@ Once it is done, come back here and click on the button.</string>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" verticalHuggingPriority="252" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" adjustsFontSizeToFit="NO" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FJ1-Xt-g7g" userLabel="usernameField" customClass="UIAssistantTextField">
-                    <rect key="frame" x="27" y="349" width="320" height="32"/>
+                    <rect key="frame" x="27" y="351" width="320" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Username"/>
                     <color key="textColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="2Cf-FZ-uJk"/>
@@ -1121,36 +1127,20 @@ Once it is done, come back here and click on the button.</string>
                     </connections>
                 </textField>
                 <view contentMode="scaleToFill" id="QNv-4H-zOq" userLabel="BtnView">
-                    <rect key="frame" x="27" y="491" width="320" height="78"/>
+                    <rect key="frame" x="27" y="493" width="320" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" tag="131" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uh-3A-d0c" userLabel="qrCodeButton" customClass="UIRoundBorderedButton">
-                            <rect key="frame" x="202" y="8" width="110" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="QrCodeScan">
-                                <bool key="isElement" value="YES"/>
-                            </accessibility>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="QR CODE" image="menu_recordings.png">
-                                <color key="titleColor" red="0.20521381499999999" green="0.20520767570000001" blue="0.2052111626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <state key="disabled">
-                                <color key="titleColor" red="0.71885228160000003" green="0.71883076430000004" blue="0.71884298319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <state key="highlighted" backgroundImage="color_F.png"/>
-                            <connections>
-                                <action selector="onLaunchQRCodeView:" destination="-1" eventType="touchUpInside" id="uIJ-uV-Gpn"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" tag="130" contentMode="scaleToFill" verticalHuggingPriority="251" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ch-Ji-vjA" userLabel="loginButton" customClass="UIRoundBorderedButton">
-                            <rect key="frame" x="8" y="13" width="88" height="40"/>
+                            <rect key="frame" x="12" y="8" width="72" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <accessibility key="accessibilityConfiguration" label="Login">
                                 <bool key="isElement" value="YES"/>
                             </accessibility>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title=" LOGIN" image="menu_about.png">
-                                <color key="titleColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                            <color key="tintColor" systemColor="systemGreenColor"/>
+                            <state key="normal" image="login.png">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <state key="disabled">
                                 <color key="titleColor" red="0.71885228157043457" green="0.71883076429367065" blue="0.71884298324584961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1158,6 +1148,26 @@ Once it is done, come back here and click on the button.</string>
                             <state key="highlighted" backgroundImage="color_F.png"/>
                             <connections>
                                 <action selector="onLoginClick:" destination="-1" eventType="touchUpInside" id="LKg-hT-sDN"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="131" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uh-3A-d0c" userLabel="qrCodeButton" customClass="UIRoundBorderedButton">
+                            <rect key="frame" x="235" y="8" width="72" height="72"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <accessibility key="accessibilityConfiguration" label="QrCodeScan">
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                            <color key="tintColor" systemColor="systemGreenColor"/>
+                            <state key="normal" image="qr.png">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.71885228160000003" green="0.71883076430000004" blue="0.71884298319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="color_F.png"/>
+                            <connections>
+                                <action selector="onLaunchQRCodeView:" destination="-1" eventType="touchUpInside" id="uIJ-uV-Gpn"/>
                             </connections>
                         </button>
                     </subviews>
@@ -1168,7 +1178,7 @@ Once it is done, come back here and click on the button.</string>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="860.79999999999995" y="261.31934032983509"/>
+            <point key="canvasLocation" x="860.79999999999995" y="267.16641679160421"/>
         </view>
         <view contentMode="scaleToFill" id="Zuh-Sd-pcd" userLabel="remoteProvisioningView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="347"/>
@@ -1460,8 +1470,11 @@ Once it is done, come back here and click on the button.</string>
     </objects>
     <resources>
         <image name="color_F.png" width="2" height="2"/>
+        <image name="login.png" width="128" height="128"/>
         <image name="logo.png" width="125" height="39"/>
-        <image name="menu_about.png" width="40" height="40"/>
-        <image name="menu_recordings.png" width="38.400001525878906" height="49.599998474121094"/>
+        <image name="qr.png" width="128" height="128"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
