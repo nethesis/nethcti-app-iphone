@@ -53,7 +53,8 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	_grayBackground.hidden = NO;
-    _headerView.backgroundColor = NETHCTI_WHITE;
+    // TODO: Add NETHCTI_WHITE
+    _headerView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
