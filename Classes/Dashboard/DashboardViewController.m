@@ -42,27 +42,11 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.historyTableView.delegate = self;
     self.historyTableView.dataSource = self;
     self.historyTableView.allowsSelection = false;
-    
-    //[_historyTableView registerClass:[RecentCallTableViewCell class] forCellReuseIdentifier:NSStringFromClass([RecentCallTableViewCell class])];
-
-    [self.historyTableView registerNib:([UINib nibWithNibName:NSStringFromClass([RecentCallTableViewCell class]) bundle:[NSBundle mainBundle]]) forCellReuseIdentifier:NSStringFromClass([RecentCallTableViewCell class])];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    /*
-    // Set notification observers.
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(callUpdateEvent:)
-                                               name:kLinphoneCallUpdate
-                                             object:nil];
-
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(coreUpdateEvent:)
-                                               name:kLinphoneCoreUpdate
-                                             object:nil];
-    */
     // Change image colors.
     _dialerButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_dialerButton.imageView setTintColor:[UIColor redColor]];
@@ -117,11 +101,15 @@ static UICompositeViewDescription *compositeDescription = nil;
  */
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    RecentCallTableViewCell *cell = (RecentCallTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecentCallTableViewCell class]) forIndexPath:indexPath];
-        
-    //[cell.contactInitialLabel setText:@"U"];
-    //[cell.nameInitialLabel setText:@"Utente prova"];
-    //[cell.numberLabel setText:@"sip: 213@123.123.12.12"];
+    NSString* ar[] = { @"14", @"985", @"13" };
+    NSString *kCellId = NSStringFromClass(RecentCallTableViewCell.class);
+    RecentCallTableViewCell *cell = (RecentCallTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellId];
+    if(!cell) {
+        cell = [[RecentCallTableViewCell alloc] initWithIdentifier:kCellId];
+    }
+    
+    NSString* elem = ar[indexPath.row];
+    [cell setRecentCall:elem];
     
     /*
     NSString *kCellId = NSStringFromClass([RecentCallTableViewCell class]);

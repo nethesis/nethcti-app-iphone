@@ -40,9 +40,6 @@
 }
 
 - (void)setRecentCall:(NSString *)pippo {
-    //_contactInitialLabel.text = @"U";
-    
-    
     self.layer.masksToBounds = false;
     self.layer.shadowColor = (__bridge CGColorRef _Nullable)(UIColor.blackColor);
     self.layer.shadowOffset = CGSizeMake(1.0, 3.0);
@@ -52,6 +49,7 @@
     CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
     self.layer.shadowPath = shadowPath;
     
+    [_pug2hbe0h8gq430h setText:pippo];
     /*
     [cell.contactInitialLabel setText:@"U"];
     [cell.nameInitialLabel setText:@"Utente prova"];
@@ -62,6 +60,10 @@
 
     _durationLabel.text = [LinphoneUtils durationToString:linphone_call_get_duration(call)];
     */
+}
+
+- (IBAction)callTouchUpInside:(id)sender {
+    LOGE(@"Call");
 }
 
 -(void)setSize:(CGRect *)frame {
