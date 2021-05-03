@@ -1487,7 +1487,7 @@ _waitView.hidden = YES; \
 
 -(void)showErrorController:(NSString*)error {
     UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
-                                                                     message:NSLocalizedString(error, nil)
+                                                                     message:NSLocalizedStringFromTable(error, @"NethLocalizable", nil)
                                                               preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
                                                             style:UIAlertActionStyleDefault
@@ -1510,14 +1510,15 @@ _waitView.hidden = YES; \
             } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 // Get me error handling.
                 LOGE(@"API_ERROR: %@", string);
+                [self performSelectorOnMainThread:@selector(showErrorController:)
+                                       withObject:string
+                                    waitUntilDone:YES];
             }];
         } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             // Post login error handling.
-            if([string isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
-                [self performSelectorOnMainThread:@selector(showErrorController:)
-                                       withObject:@"Bad credentials, check them and retry later."
-                                    waitUntilDone:YES];
-            }
+            [self performSelectorOnMainThread:@selector(showErrorController:)
+                                   withObject:string
+                                waitUntilDone:YES];
         }];
     });
 }
