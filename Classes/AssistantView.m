@@ -133,19 +133,13 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self setStyleForField:ViewElement_Username];
     [self setStyleForField:ViewElement_Password];
     [self setStyleForButton:ViewElement_NextButton];
-    // TODO: Change to NETHCTI_DARK_GRAY.
-    [[self findButton:ViewElement_NextButton] setTintColor:[UIColor darkGrayColor]];
     [self setStyleForButton:ViewElement_QrCodeButton];
-    // TODO: Change to NETHCTI_DARK_GRAY.
-    [[self findButton:ViewElement_QrCodeButton] setTintColor:[UIColor darkGrayColor]];
-    UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    UIImage *qrImage = [[UIImage imageNamed:@"qr.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
+    UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[self findButton:ViewElement_NextButton] setImage:loginImage forState:UIControlStateNormal];
+    
+    UIImage *qrImage = [[UIImage imageNamed:@"qr.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[self findButton:ViewElement_QrCodeButton] setImage:qrImage forState:UIControlStateNormal];
-
-    [[self findButton:ViewElement_NextButton].imageView setTintColor:[UIColor getColorByName: @"Grey"] ];
-    [[self findButton:ViewElement_QrCodeButton].imageView setTintColor:[UIColor getColorByName: @"Grey"]];
 }
 
 - (void)fitContent {
@@ -608,6 +602,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)setStyleForButton:(ViewElement *)field {
     UIRoundBorderedButton *button = [self findButton:field];
     if(button != nil) {
+        // TODO: Change to NETHCTI_DARK_GRAY.
+        [button setTintColor:[UIColor darkGrayColor]];
         [button setBackgroundColor:[UIColor lightGrayColor]];
         [button.layer setCornerRadius:36.f];
     }
