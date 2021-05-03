@@ -63,7 +63,7 @@
     if(account_configured) {
         [_sideMenuEntries addObject:
          [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Assistant", nil)
-                                        image:[UIImage imageNamed:@"login.png"]
+                                        image:[UIImage imageNamed:@"login_menu.png"]
                                      tapBlock:^() {
             [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
         }]];
