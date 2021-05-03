@@ -10,13 +10,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecentCallTableViewCell : UITableViewCell
+//@property (weak, nonatomic) IBOutlet UILabel *contactInitialLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameInitialLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *callStatusImage;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
-
-- (IBAction)onCallPressed:(id)sender;
+- (id)initWithIdentifier:(NSString *)identifier;
+- (void)setRecentCall:(NSString *)pippo;
+- (void)setSize:(CGRect *)frame;
 @end
 
 NS_ASSUME_NONNULL_END

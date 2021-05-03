@@ -43,9 +43,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.historyTableView.dataSource = self;
     self.historyTableView.allowsSelection = false;
     
-    [_historyTableView registerClass:[RecentCallTableViewCell class] forCellReuseIdentifier:NSStringFromClass([RecentCallTableViewCell class])];
+    //[_historyTableView registerClass:[RecentCallTableViewCell class] forCellReuseIdentifier:NSStringFromClass([RecentCallTableViewCell class])];
 
-    //[self.historyTableView registerNib:([UINib nibWithNibName:@"RecentCallTableViewCell" bundle:nil]) forCellReuseIdentifier:@"RecentCallTableViewCell"];
+    [self.historyTableView registerNib:([UINib nibWithNibName:NSStringFromClass([RecentCallTableViewCell class]) bundle:[NSBundle mainBundle]]) forCellReuseIdentifier:NSStringFromClass([RecentCallTableViewCell class])];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,17 +117,40 @@ static UICompositeViewDescription *compositeDescription = nil;
  */
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    RecentCallTableViewCell *cell = (RecentCallTableViewCell *)[_historyTableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecentCallTableViewCell class]) forIndexPath:indexPath];
+    RecentCallTableViewCell *cell = (RecentCallTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecentCallTableViewCell class]) forIndexPath:indexPath];
+        
+    //[cell.contactInitialLabel setText:@"U"];
+    //[cell.nameInitialLabel setText:@"Utente prova"];
+    //[cell.numberLabel setText:@"sip: 213@123.123.12.12"];
     
-    [cell.nameLabel setText:@"U"];
-    [cell.nameInitialLabel setText:@"Utente prova"];
-    [cell.numberLabel setText:@"sip: 213@123.123.12.12"];
+    /*
+    NSString *kCellId = NSStringFromClass([RecentCallTableViewCell class]);
+    RecentCallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    if (cell == nil) {
+        cell = [[RecentCallTableViewCell alloc] initWithIdentifier:kCellId];
+    }
     
+    [cell setRecentCall:@"ciao"];
+    CGRect frame = cell.frame;
+    frame.size.width = tableView.frame.size.width;
+    frame.size.height = 45;
+    [cell setSize:&frame];
+    [cell layoutIfNeeded];
+    */
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
 
 @end
