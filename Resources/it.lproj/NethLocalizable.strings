@@ -7,6 +7,12 @@
 */
 
 /*
+ * Assistant Strings.
+ */
+
+"AUTHENTICATE-HEADER-MISSING" = "Credenziali errate, vi preghiamo di controllarle e di riprovare.";
+
+/*
  * Phonebook strings.
  */
 

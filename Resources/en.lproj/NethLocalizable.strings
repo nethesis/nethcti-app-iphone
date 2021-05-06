@@ -7,6 +7,12 @@
 */
 
 /*
+ * Assistant Strings.
+ */
+
+"AUTHENTICATE-HEADER-MISSING" = "Bad credentials, please check them and retry.";
+
+/*
  * Phonebook strings.
  */
 
