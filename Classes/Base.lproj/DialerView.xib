@@ -281,7 +281,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_star_over.png" backgroundImage="numpad_over_background.png"/>
@@ -446,7 +446,6 @@
         <image name="dialer_background.png" width="1200" height="1030"/>
         <image name="nethcti_back_to_call.png" width="256" height="256"/>
         <image name="nethcti_backspace.png" width="256" height="256"/>
-        <image name="nethcti_circle_background.png" width="256" height="256"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_grey_phone.png" width="250" height="250"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>
