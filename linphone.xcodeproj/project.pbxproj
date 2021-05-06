@@ -65,6 +65,7 @@
 		3951056F26398B9000F5AEC5 /* dialpad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3951056D26398B9000F5AEC5 /* dialpad@2x.png */; };
 		3951057226398BA800F5AEC5 /* users@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3951057026398BA700F5AEC5 /* users@2x.png */; };
 		3951057326398BA800F5AEC5 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 3951057126398BA800F5AEC5 /* users.png */; };
+		39549588264447A200412686 /* nethcti_grey_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 39549587264447A200412686 /* nethcti_grey_circle.png */; };
 		3966FC1F2636DC7000C52FF1 /* color_nethcti_light_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 3966FC172636DC6100C52FF1 /* color_nethcti_light_grey.png */; };
 		3966FC202636DC7000C52FF1 /* color_nethcti_light_cyan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3966FC182636DC6300C52FF1 /* color_nethcti_light_cyan.png */; };
 		3966FC212636DC7000C52FF1 /* color_nethcti_cyan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3966FC192636DC6400C52FF1 /* color_nethcti_cyan.png */; };
@@ -970,6 +971,7 @@
 		395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		3951058B2639B31D00F5AEC5 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		39549587264447A200412686 /* nethcti_grey_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_grey_circle.png; sourceTree = "<group>"; };
 		3966FC172636DC6100C52FF1 /* color_nethcti_light_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_light_grey.png; sourceTree = "<group>"; };
 		3966FC182636DC6300C52FF1 /* color_nethcti_light_cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_light_cyan.png; sourceTree = "<group>"; };
 		3966FC192636DC6400C52FF1 /* color_nethcti_cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_cyan.png; sourceTree = "<group>"; };
@@ -2475,6 +2477,7 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				39549587264447A200412686 /* nethcti_grey_circle.png */,
 				C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */,
 				C339F3A9241A98FE00447319 /* iOs_background_portrait.png */,
 				C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */,
@@ -3887,6 +3890,7 @@
 				8CA70AD51F9E285C00A3D2EB /* chat_group_add.png in Resources */,
 				633FEE9B1D3CD55A0014B822 /* numpad_0_default.png in Resources */,
 				633FEF411D3CD55A0014B822 /* select_all_default@2x.png in Resources */,
+				39549588264447A200412686 /* nethcti_grey_circle.png in Resources */,
 				633FEEFD1D3CD55A0014B822 /* options_add_call_default@2x.png in Resources */,
 				633FEEA81D3CD55A0014B822 /* numpad_1_over~ipad@2x.png in Resources */,
 				D38187AD15FE340100C3EDCA /* ChatConversationView.xib in Resources */,

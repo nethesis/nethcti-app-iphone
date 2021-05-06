@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -460,7 +459,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" tag="130" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K99-0e-fHC" userLabel="createAccountButton" customClass="UIRoundBorderedButton">
-                    <rect key="frame" x="17" y="669" width="157" height="40"/>
+                    <rect key="frame" x="17.333333333333329" y="669" width="157" height="40"/>
                     <accessibility key="accessibilityConfiguration" label="Create account">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
@@ -1131,7 +1130,6 @@ Once it is done, come back here and click on the button.</string>
                             <subviews>
                                 <button opaque="NO" tag="130" contentMode="scaleToFill" verticalHuggingPriority="251" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ch-Ji-vjA" userLabel="loginButton" customClass="UIRoundBorderedButton">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <accessibility key="accessibilityConfiguration" label="Login">
                                         <bool key="isElement" value="YES"/>
                                     </accessibility>
@@ -1140,8 +1138,7 @@ Once it is done, come back here and click on the button.</string>
                                         <constraint firstAttribute="width" secondItem="2Ch-Ji-vjA" secondAttribute="height" multiplier="1:1" id="luw-X7-vIh"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                    <color key="tintColor" systemColor="systemGreenColor"/>
-                                    <state key="normal" image="login.png" backgroundImage="color_nethcti_light_grey.png">
+                                    <state key="normal" image="login.png" backgroundImage="nethcti_grey_circle.png">
                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <state key="disabled">
@@ -1165,7 +1162,6 @@ Once it is done, come back here and click on the button.</string>
                             <subviews>
                                 <button opaque="NO" tag="131" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uh-3A-d0c" userLabel="qrCodeButton" customClass="UIRoundBorderedButton">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <accessibility key="accessibilityConfiguration" label="QrCodeScan">
                                         <bool key="isElement" value="YES"/>
                                     </accessibility>
@@ -1174,8 +1170,7 @@ Once it is done, come back here and click on the button.</string>
                                         <constraint firstAttribute="width" constant="75" id="neD-6b-HgZ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                    <color key="tintColor" systemColor="systemGreenColor"/>
-                                    <state key="normal" image="qr.png" backgroundImage="color_nethcti_light_grey.png">
+                                    <state key="normal" image="qr.png" backgroundImage="nethcti_grey_circle.png">
                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <state key="disabled">
@@ -1530,12 +1525,9 @@ Once it is done, come back here and click on the button.</string>
     </objects>
     <resources>
         <image name="color_F.png" width="2" height="2"/>
-        <image name="color_nethcti_light_grey.png" width="2" height="2"/>
         <image name="login.png" width="32" height="32"/>
         <image name="logo.png" width="125" height="39"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="qr.png" width="32" height="32"/>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>
