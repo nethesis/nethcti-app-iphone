@@ -32,7 +32,7 @@ INIT_WITH_COMMON_CF {
     self.borderStyle = UITextBorderStyleLine;
     self.layer.masksToBounds = YES;
     // assistantTextField.backgroundColor = [UIColor clearColor];
-    self.layer.borderColor = [[UIColor cyanColor] CGColor];
+    self.layer.borderColor = [[UIColor getColorByName:@"MainColor"] CGColor];
     self.layer.borderWidth = .8f;
 }
 
