@@ -42,7 +42,9 @@ typedef enum _ViewElement {
     ViewElement_PhoneCC = 109,
     ViewElement_TextFieldCount = ViewElement_PhoneCC - 100 + 1,
     ViewElement_Username_Label = 120,
+    
     ViewElement_NextButton = 130,
+    ViewElement_QrCodeButton = 131,
     
     ViewElement_PhoneButton = 150,
     
@@ -118,11 +120,26 @@ static UICompositeViewDescription *compositeDescription = nil;
     _outgoingView = DialerView.compositeViewDescription;
     _qrCodeButton.hidden = !ENABLE_QRCODE; // TODO: Enable QR Code scansioning.
     [self resetLiblinphone:FALSE];
+    [self styleContent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void) styleContent {
+    [self setStyleForField:ViewElement_Domain];
+    [self setStyleForField:ViewElement_Username];
+    [self setStyleForField:ViewElement_Password];
+    [self setStyleForButton:ViewElement_NextButton];
+    [self setStyleForButton:ViewElement_QrCodeButton];
+    
+    UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [[self findButton:ViewElement_NextButton] setImage:loginImage forState:UIControlStateNormal];
+    
+    UIImage *qrImage = [[UIImage imageNamed:@"qr.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [[self findButton:ViewElement_QrCodeButton] setImage:qrImage forState:UIControlStateNormal];
 }
 
 - (void)fitContent {
@@ -186,6 +203,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     [LinphoneManager.instance removeAllAccounts];
     [self resetTextFields];
     [self changeView:_loginView back:FALSE animation:FALSE]; // Target changed to _loginView from _welcomeView.
+    
+    [self styleContent];
+    
     _waitView.hidden = TRUE;
 }
 
@@ -507,6 +527,10 @@ static UICompositeViewDescription *compositeDescription = nil;
         [_contentView.layer addAnimation:trans forKey:@"Transition"];
     }
     
+    if(currentView == _loginView) {
+        [self styleContent];
+    }
+    
     // Stack current view
     if (currentView != nil) {
         if (!back)
@@ -566,6 +590,23 @@ static UICompositeViewDescription *compositeDescription = nil;
     // every UITextField subviews with phone keyboard must be tweaked to have a done button
     [self addDoneButtonRecursivelyInView:self.view];
     [self prepareErrorLabels];
+}
+
+- (void)setStyleForField:(ViewElement *)field {
+    UIAssistantTextField *assistantTextField = [self findTextField:field];
+    if (assistantTextField != nil) {
+        [assistantTextField style];
+    }
+}
+
+- (void)setStyleForButton:(ViewElement *)field {
+    UIRoundBorderedButton *button = [self findButton:field];
+    if(button != nil) {
+        // TODO: Change to NETHCTI_DARK_GRAY.
+        [button setTintColor:[UIColor darkGrayColor]];
+        [button setBackgroundColor:[UIColor lightGrayColor]];
+        [button.layer setCornerRadius:36.f];
+    }
 }
 
 - (void)addDoneButtonRecursivelyInView:(UIView *)subview {
@@ -1442,7 +1483,7 @@ _waitView.hidden = YES; \
 
 -(void)showErrorController:(NSString*)error {
     UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
-                                                                     message:NSLocalizedString(error, nil)
+                                                                     message:NSLocalizedStringFromTable(error, @"NethLocalizable", nil)
                                                               preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
                                                             style:UIAlertActionStyleDefault
@@ -1465,14 +1506,15 @@ _waitView.hidden = YES; \
             } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 // Get me error handling.
                 LOGE(@"API_ERROR: %@", string);
+                [self performSelectorOnMainThread:@selector(showErrorController:)
+                                       withObject:string
+                                    waitUntilDone:YES];
             }];
         } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             // Post login error handling.
-            if([string isEqualToString:@"AUTHENTICATE-HEADER-MISSING."]) {
-                [self performSelectorOnMainThread:@selector(showErrorController:)
-                                       withObject:@"Bad credentials, check them and retry later."
-                                    waitUntilDone:YES];
-            }
+            [self performSelectorOnMainThread:@selector(showErrorController:)
+                                   withObject:string
+                                waitUntilDone:YES];
         }];
     });
 }

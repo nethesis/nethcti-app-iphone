@@ -29,6 +29,7 @@ MSG_NOTIFICATION_APP_GROUP_ID = group.it.nethesis.nethcti3.msgNotification
 // Auth requests to wedo notificator.
 PUSH_WEDO_AUTH_KEY = CHANGE_ME!!!
 
+// Application colors.
 MAIN_COLOR = #00A2DE
 ACCENT_COLOR = #EB006E
 CYAN = #00A2DE
