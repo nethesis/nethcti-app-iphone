@@ -51,70 +51,79 @@
                     <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
+                        <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
                             <rect key="frame" x="64" y="64" width="300" height="64"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
-                                    <rect key="frame" x="0.0" y="31" width="418.33333333333331" height="169.33333333333334"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="64"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lts-VS-IiD">
-                                            <rect key="frame" x="0.0" y="0.0" width="418.33333333333331" height="128"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKx-ZY-gKx">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
+                                            <subviews>
+                                                <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
+                                                    <rect key="frame" x="0.0" y="11.333333333333329" width="250" height="39.333333333333336"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Enter an address"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
+                                                    <connections>
+                                                        <action selector="onAddressChange:" destination="-1" eventType="editingChanged" id="FdS-Kl-3dS"/>
+                                                        <outlet property="delegate" destination="-1" id="190"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
+                                                    <rect key="frame" x="250" y="6" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="IVL-Ws-Mzh"/>
+                                                        <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="Rlx-mY-Gd2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                    <state key="normal" image="nethcti_backspace.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="disabled" image="backspace_disabled.png"/>
+                                                    <state key="highlighted" image="backspace_over.png"/>
+                                                    <connections>
+                                                        <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="4" firstAttribute="centerY" secondItem="OKx-ZY-gKx" secondAttribute="centerY" id="1o9-Bs-evT"/>
+                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="centerY" secondItem="OKx-ZY-gKx" secondAttribute="centerY" id="JYQ-wR-DkP"/>
+                                                <constraint firstAttribute="trailing" secondItem="8dc-hj-rvt" secondAttribute="trailing" id="POw-sX-DMm"/>
+                                                <constraint firstItem="4" firstAttribute="leading" secondItem="OKx-ZY-gKx" secondAttribute="leading" id="bPF-sa-CAJ"/>
+                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="ej0-XZ-r8h"/>
+                                            </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc" userLabel="baseline">
-                                            <rect key="frame" x="0.0" y="128" width="418.33333333333331" height="2"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc" userLabel="baseline">
+                                            <rect key="frame" x="0.0" y="62" width="300" height="2"/>
                                             <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="2" id="n9u-AT-Zta"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
-                                            <rect key="frame" x="0.0" y="130" width="418.33333333333331" height="39.333333333333343"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration" label="Enter an address"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
-                                            <connections>
-                                                <action selector="onAddressChange:" destination="-1" eventType="editingChanged" id="FdS-Kl-3dS"/>
-                                                <outlet property="delegate" destination="-1" id="190"/>
-                                            </connections>
-                                        </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="hEt-yD-2Oc" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="leading" id="6Kv-RN-LPb"/>
-                                        <constraint firstAttribute="trailing" secondItem="hEt-yD-2Oc" secondAttribute="trailing" id="fzQ-D4-w0a"/>
+                                        <constraint firstItem="OKx-ZY-gKx" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="leading" id="EG4-xc-8Ud"/>
+                                        <constraint firstAttribute="trailing" secondItem="OKx-ZY-gKx" secondAttribute="trailing" id="KJw-xK-7oQ"/>
                                     </constraints>
                                 </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="418.33333333333331" y="7" width="50" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="IVL-Ws-Mzh"/>
-                                        <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="Rlx-mY-Gd2"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                    <state key="normal" image="nethcti_backspace.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="backspace_disabled.png"/>
-                                    <state key="highlighted" image="backspace_over.png"/>
-                                    <connections>
-                                        <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="VZH-aS-ipm" firstAttribute="top" secondItem="178" secondAttribute="top" id="F5t-JG-Jzr"/>
-                                <constraint firstAttribute="bottom" secondItem="VZH-aS-ipm" secondAttribute="bottom" id="RDs-1o-L1F"/>
-                                <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="SR8-zp-Pq4"/>
-                                <constraint firstAttribute="trailing" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="SmR-wN-PnT"/>
-                                <constraint firstItem="8dc-hj-rvt" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="u7X-Sa-flO"/>
+                                <constraint firstAttribute="height" constant="64" id="1xQ-JM-zZ4"/>
+                                <constraint firstAttribute="bottom" secondItem="VZH-aS-ipm" secondAttribute="bottom" id="nCW-lQ-8LN"/>
+                                <constraint firstItem="VZH-aS-ipm" firstAttribute="top" secondItem="178" secondAttribute="top" id="oT7-Kr-Sqe"/>
+                                <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="tXB-gW-ifH"/>
+                                <constraint firstAttribute="trailing" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="vpu-oZ-yhc"/>
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="AH0-S5-0Ku" userLabel="logoImage">
                             <rect key="frame" x="80" y="303" width="268" height="320"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
                             <rect key="frame" x="0.0" y="128" width="428" height="708.66666666666663"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Qwq-es-rgg">
@@ -131,7 +140,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_1_over.png" backgroundImage="numpad_over_background.png"/>
@@ -144,7 +153,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="2"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_2_over.png" backgroundImage="numpad_over_background.png"/>
@@ -157,7 +166,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="3"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_3_over.png" backgroundImage="numpad_over_background.png"/>
@@ -168,7 +177,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="JLM-Co-Ku0">
-                                            <rect key="frame" x="0.0" y="88.333333333333371" width="300" height="73.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="88.333333333333314" width="300" height="73.333333333333314"/>
                                             <subviews>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -178,7 +187,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_4_over.png" backgroundImage="numpad_over_background.png"/>
@@ -191,7 +200,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="5"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_5_over.png" backgroundImage="numpad_over_background.png"/>
@@ -204,7 +213,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="6"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_6_over.png" backgroundImage="numpad_over_background.png"/>
@@ -215,7 +224,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-KG-iqF">
-                                            <rect key="frame" x="0.0" y="176.66666666666663" width="300" height="73.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="176.66666666666669" width="300" height="73.333333333333314"/>
                                             <subviews>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -225,7 +234,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_7_over.png" backgroundImage="numpad_over_background.png"/>
@@ -238,7 +247,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="8"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_8_over.png" backgroundImage="numpad_over_background.png"/>
@@ -251,7 +260,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="9"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_9_over.png" backgroundImage="numpad_over_background.png"/>
@@ -262,7 +271,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-4K-HJQ">
-                                            <rect key="frame" x="0.0" y="265.00000000000011" width="300" height="73.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="265" width="300" height="73.333333333333314"/>
                                             <subviews>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -285,7 +294,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="0"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_0_over.png" backgroundImage="numpad_over_background.png"/>
@@ -298,7 +307,7 @@
                                                     <accessibility key="accessibilityConfiguration" label="Hash"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_circle_background.png">
+                                                    <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" image="numpad_hash_over.png" backgroundImage="numpad_over_background.png"/>
@@ -333,7 +342,7 @@
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="nethcti_back_to_call.png" backgroundImage="nethcti_circle_background.png">
+                                            <state key="normal" image="nethcti_back_to_call.png" backgroundImage="nethcti_grey_circle.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="call_alt_back_disabled.png"/>
@@ -347,7 +356,7 @@
                                             <accessibility key="accessibilityConfiguration" label="Add to contact"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_circle_background.png">
+                                            <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="contact_add_disabled.png"/>
@@ -378,7 +387,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                    <state key="normal" image="nethcti_grey_phone.png" backgroundImage="nethcti_circle_background.png">
+                                    <state key="normal" image="nethcti_grey_phone.png" backgroundImage="nethcti_grey_circle.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="call_audio_start_disabled.png"/>
@@ -402,9 +411,13 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="180" firstAttribute="top" secondItem="178" secondAttribute="bottom" id="08q-ks-Rwm"/>
                         <constraint firstItem="0eJ-4B-GHX" firstAttribute="top" secondItem="180" secondAttribute="bottom" id="69z-ry-wVG"/>
+                        <constraint firstItem="178" firstAttribute="top" secondItem="171" secondAttribute="top" constant="64" id="FQj-iG-WHE"/>
                         <constraint firstAttribute="trailing" secondItem="180" secondAttribute="trailing" id="NNS-ll-T4B"/>
+                        <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" constant="64" id="Qip-1c-aKe"/>
                         <constraint firstItem="0eJ-4B-GHX" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="64" id="d9O-3m-nEg"/>
+                        <constraint firstItem="178" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="64" id="eRp-kq-vrS"/>
                         <constraint firstItem="180" firstAttribute="leading" secondItem="171" secondAttribute="leading" id="jOH-f3-bhI"/>
                         <constraint firstItem="0eJ-4B-GHX" firstAttribute="height" secondItem="39" secondAttribute="height" id="phk-qn-D38"/>
                         <constraint firstAttribute="bottom" secondItem="0eJ-4B-GHX" secondAttribute="bottom" constant="16" id="rYb-Gk-dGe"/>
@@ -419,7 +432,7 @@
                 <constraint firstItem="171" firstAttribute="leading" secondItem="qaB-qV-B0p" secondAttribute="leading" id="Bqg-5f-a0A"/>
                 <constraint firstAttribute="bottom" secondItem="171" secondAttribute="bottom" id="ehp-bN-E5g"/>
             </constraints>
-            <point key="canvasLocation" x="-98.550724637681171" y="149.33035714285714"/>
+            <point key="canvasLocation" x="-99.53271028037382" y="149.02807775377971"/>
         </view>
     </objects>
     <resources>
@@ -434,6 +447,7 @@
         <image name="nethcti_back_to_call.png" width="256" height="256"/>
         <image name="nethcti_backspace.png" width="256" height="256"/>
         <image name="nethcti_circle_background.png" width="256" height="256"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_grey_phone.png" width="250" height="250"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>
         <image name="nethcti_numpad_1.png" width="256" height="256"/>

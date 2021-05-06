@@ -31,6 +31,8 @@ typedef BOOL (^DisplayErrorPred)(NSString *inputEntry);
 // we should show error only when user finished editted the field at least once
 @property(atomic) BOOL canShowError;
 
+- (void)style;
+
 - (void)showError:(NSString *)msg when:(DisplayErrorPred)pred;
 - (void)showError:(NSString *)msg;
 - (BOOL)isInvalid;
