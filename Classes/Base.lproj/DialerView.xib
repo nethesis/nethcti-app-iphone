@@ -51,14 +51,25 @@
                     <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
+                        <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
                             <rect key="frame" x="64" y="64" width="300" height="64"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
-                                    <rect key="frame" x="0.0" y="11.333333333333329" width="240" height="41.333333333333336"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
+                                    <rect key="frame" x="0.0" y="31" width="418.33333333333331" height="169.33333333333334"/>
                                     <subviews>
-                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="39.333333333333336"/>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lts-VS-IiD">
+                                            <rect key="frame" x="0.0" y="0.0" width="418.33333333333331" height="128"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc" userLabel="baseline">
+                                            <rect key="frame" x="0.0" y="128" width="418.33333333333331" height="2"/>
+                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="2" id="n9u-AT-Zta"/>
+                                            </constraints>
+                                        </view>
+                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
+                                            <rect key="frame" x="0.0" y="130" width="418.33333333333331" height="39.333333333333343"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration" label="Enter an address"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
@@ -68,26 +79,20 @@
                                                 <outlet property="delegate" destination="-1" id="190"/>
                                             </connections>
                                         </textField>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc">
-                                            <rect key="frame" x="0.0" y="39.333333333333343" width="240" height="2"/>
-                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="2" id="n9u-AT-Zta"/>
-                                            </constraints>
-                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="hEt-yD-2Oc" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="leading" id="6Kv-RN-LPb"/>
                                         <constraint firstAttribute="trailing" secondItem="hEt-yD-2Oc" secondAttribute="trailing" id="fzQ-D4-w0a"/>
                                     </constraints>
                                 </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="240" y="2" width="60" height="60"/>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="418.33333333333331" y="7" width="50" height="50"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="IVL-Ws-Mzh"/>
                                         <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="Rlx-mY-Gd2"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                    <state key="normal" image="backspace_default.png">
+                                    <state key="normal" image="nethcti_backspace.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="backspace_disabled.png"/>
@@ -98,11 +103,10 @@
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="8dc-hj-rvt" firstAttribute="centerY" secondItem="178" secondAttribute="centerY" id="0NI-dI-SfT"/>
-                                <constraint firstAttribute="height" constant="64" id="AKO-xn-aoF"/>
-                                <constraint firstItem="VZH-aS-ipm" firstAttribute="centerY" secondItem="178" secondAttribute="centerY" id="QYl-99-qct"/>
-                                <constraint firstAttribute="trailing" secondItem="8dc-hj-rvt" secondAttribute="trailing" id="cV4-c2-LQZ"/>
-                                <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="g0y-o5-hXg"/>
+                                <constraint firstItem="VZH-aS-ipm" firstAttribute="top" secondItem="178" secondAttribute="top" id="F5t-JG-Jzr"/>
+                                <constraint firstAttribute="bottom" secondItem="VZH-aS-ipm" secondAttribute="bottom" id="RDs-1o-L1F"/>
+                                <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="SR8-zp-Pq4"/>
+                                <constraint firstAttribute="trailing" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="SmR-wN-PnT"/>
                                 <constraint firstItem="8dc-hj-rvt" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="u7X-Sa-flO"/>
                             </constraints>
                         </view>
@@ -110,8 +114,8 @@
                             <rect key="frame" x="80" y="303" width="268" height="320"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
-                            <rect key="frame" x="0.0" y="128" width="428" height="660.66666666666663"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
+                            <rect key="frame" x="0.0" y="128" width="428" height="708.66666666666663"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Qwq-es-rgg">
                                     <rect key="frame" x="64" y="48" width="300" height="338.33333333333331"/>
@@ -164,7 +168,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="JLM-Co-Ku0">
-                                            <rect key="frame" x="0.0" y="88.333333333333314" width="300" height="73.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="88.333333333333371" width="300" height="73.333333333333314"/>
                                             <subviews>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -211,7 +215,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-KG-iqF">
-                                            <rect key="frame" x="0.0" y="176.66666666666669" width="300" height="73.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="176.66666666666663" width="300" height="73.333333333333314"/>
                                             <subviews>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -258,7 +262,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-4K-HJQ">
-                                            <rect key="frame" x="0.0" y="265" width="300" height="73.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="265.00000000000011" width="300" height="73.333333333333314"/>
                                             <subviews>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -319,7 +323,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eJ-4B-GHX" userLabel="bottomView">
-                            <rect key="frame" x="64" y="788.66666666666663" width="300" height="73.333333333333371"/>
+                            <rect key="frame" x="64" y="836.66666666666663" width="300" height="73.333333333333371"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqB-AH-uDL" userLabel="buttonView">
                                     <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
@@ -328,7 +332,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="call_alt_back_default.png" backgroundImage="nethcti_circle_background.png">
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_back_to_call.png" backgroundImage="nethcti_circle_background.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="call_alt_back_disabled.png"/>
@@ -341,7 +346,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
                                             <accessibility key="accessibilityConfiguration" label="Add to contact"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                             <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_circle_background.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
@@ -398,15 +403,11 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="0eJ-4B-GHX" firstAttribute="top" secondItem="180" secondAttribute="bottom" id="69z-ry-wVG"/>
-                        <constraint firstItem="178" firstAttribute="top" secondItem="171" secondAttribute="top" constant="64" id="A97-sp-55d"/>
-                        <constraint firstItem="178" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="64" id="FN0-ht-eQs"/>
                         <constraint firstAttribute="trailing" secondItem="180" secondAttribute="trailing" id="NNS-ll-T4B"/>
-                        <constraint firstItem="180" firstAttribute="top" secondItem="178" secondAttribute="bottom" id="UMh-7m-DkR"/>
-                        <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" constant="64" id="UaU-t8-0hT"/>
                         <constraint firstItem="0eJ-4B-GHX" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="64" id="d9O-3m-nEg"/>
                         <constraint firstItem="180" firstAttribute="leading" secondItem="171" secondAttribute="leading" id="jOH-f3-bhI"/>
                         <constraint firstItem="0eJ-4B-GHX" firstAttribute="height" secondItem="39" secondAttribute="height" id="phk-qn-D38"/>
-                        <constraint firstAttribute="bottom" secondItem="0eJ-4B-GHX" secondAttribute="bottom" constant="64" id="rYb-Gk-dGe"/>
+                        <constraint firstAttribute="bottom" secondItem="0eJ-4B-GHX" secondAttribute="bottom" constant="16" id="rYb-Gk-dGe"/>
                         <constraint firstAttribute="trailing" secondItem="0eJ-4B-GHX" secondAttribute="trailing" constant="64" id="wR7-bT-JEw"/>
                     </constraints>
                 </view>
@@ -422,16 +423,16 @@
         </view>
     </objects>
     <resources>
-        <image name="backspace_default.png" width="58.400001525878906" height="30.399999618530273"/>
         <image name="backspace_disabled.png" width="58.400001525878906" height="30.399999618530273"/>
         <image name="backspace_over.png" width="58.400001525878906" height="30.399999618530273"/>
-        <image name="call_alt_back_default.png" width="81.599998474121094" height="58.400001525878906"/>
         <image name="call_alt_back_disabled.png" width="81.599998474121094" height="58.400001525878906"/>
         <image name="call_audio_start_disabled.png" width="58.400001525878906" height="58.400001525878906"/>
         <image name="color_E.png" width="2" height="2"/>
         <image name="color_L.png" width="2" height="2"/>
         <image name="contact_add_disabled.png" width="55.200000762939453" height="47.200000762939453"/>
         <image name="dialer_background.png" width="1200" height="1030"/>
+        <image name="nethcti_back_to_call.png" width="256" height="256"/>
+        <image name="nethcti_backspace.png" width="256" height="256"/>
         <image name="nethcti_circle_background.png" width="256" height="256"/>
         <image name="nethcti_grey_phone.png" width="250" height="250"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>

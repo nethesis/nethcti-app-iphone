@@ -90,6 +90,8 @@
 		39A7C2CA264402EC0056735F /* nethcti_green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2C8264402EC0056735F /* nethcti_green_circle.png */; };
 		39A7C2CC2644044C0056735F /* nethcti_grey_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */; };
 		39A7C2D0264405BD0056735F /* nethcti_user_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2CF264405BD0056735F /* nethcti_user_add.png */; };
+		39A7C2D2264418BC0056735F /* nethcti_back_to_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */; };
+		39A7C2D426441A040056735F /* nethcti_backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2D326441A040056735F /* nethcti_backspace.png */; };
 		570742581D5A0691004B9C84 /* ShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570742561D5A0691004B9C84 /* ShopView.xib */; };
 		570742611D5A09B8004B9C84 /* ShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707425F1D5A09B8004B9C84 /* ShopView.m */; };
 		570742671D5A63DB004B9C84 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570742661D5A63DB004B9C84 /* StoreKit.framework */; };
@@ -994,6 +996,8 @@
 		39A7C2C8264402EC0056735F /* nethcti_green_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_circle.png; sourceTree = "<group>"; };
 		39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_grey_phone.png; sourceTree = "<group>"; };
 		39A7C2CF264405BD0056735F /* nethcti_user_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_user_add.png; sourceTree = "<group>"; };
+		39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_back_to_call.png; sourceTree = "<group>"; };
+		39A7C2D326441A040056735F /* nethcti_backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_backspace.png; sourceTree = "<group>"; };
 		570742571D5A0691004B9C84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShopView.xib; sourceTree = "<group>"; };
 		5707425F1D5A09B8004B9C84 /* ShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView.m; sourceTree = "<group>"; };
 		570742601D5A09B8004B9C84 /* ShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView.h; sourceTree = "<group>"; };
@@ -2472,6 +2476,8 @@
 			isa = PBXGroup;
 			children = (
 				39A7C2CF264405BD0056735F /* nethcti_user_add.png */,
+				39A7C2D326441A040056735F /* nethcti_backspace.png */,
+				39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */,
 				39A7C2AD2643FF060056735F /* nethcti_circle_background.png */,
 				39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */,
 				39A7C2C7264402EA0056735F /* nethcti_green_call.png */,
@@ -3538,6 +3544,7 @@
 				633FEE6C1D3CD5590014B822 /* footer_dialer_disabled.png in Resources */,
 				633FEF231D3CD55A0014B822 /* route_bluetooth_default@2x.png in Resources */,
 				633FED9C1D3CD5590014B822 /* add_field_default.png in Resources */,
+				39A7C2D426441A040056735F /* nethcti_backspace.png in Resources */,
 				633FEE411D3CD5590014B822 /* contacts_all_selected@2x.png in Resources */,
 				D38187F815FE355D00C3EDCA /* TabBarView.xib in Resources */,
 				633FEE2F1D3CD5590014B822 /* color_G.png in Resources */,
@@ -3622,6 +3629,7 @@
 				3949CDB52638251500379BFC /* history.png in Resources */,
 				633FEE511D3CD5590014B822 /* deselect_all@2x.png in Resources */,
 				8CF25D951F9F336100BEA0C1 /* check_unselected@2x.png in Resources */,
+				39A7C2D2264418BC0056735F /* nethcti_back_to_call.png in Resources */,
 				F088488A19FF8C41007FFCF3 /* UIContactCell.xib in Resources */,
 				39A7C2BB264401370056735F /* nethcti_numpad_6.png in Resources */,
 				633FEE381D3CD5590014B822 /* contact_add_default.png in Resources */,
