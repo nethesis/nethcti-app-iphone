@@ -94,6 +94,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 		linphone_core_enable_video_preview(LC, FALSE);
 	}
 	[_addressField setText:@""];
+    
+    [_lineUnderText setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
