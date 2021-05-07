@@ -58,16 +58,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     _libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", @"Linphone", LINPHONE_SDK_VERSION];
     
     // Set the license tap gesture.
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLicenceTap)];
-    tapGestureRecognizer.numberOfTapsRequired = 1;
-    [_licenceLabel addGestureRecognizer:tapGestureRecognizer];
-    _licenceLabel.userInteractionEnabled = YES;
+    [self addTapGesture:_licenceLabel action:@selector(onLicenceTap)];
     
     // Set the policy tap gesture.
-    UITapGestureRecognizer *tapGestureRecognizerPolicy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPolicyTap)];
-    tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
-    [_policyLabel addGestureRecognizer:tapGestureRecognizerPolicy];
-    _policyLabel.userInteractionEnabled = YES;
+    [self addTapGesture:_policyLabel action:@selector(onPolicyTap)];
     
     // Change title label color.
     _titleLabel.textColor = LINPHONE_MAIN_COLOR;
@@ -78,6 +72,25 @@ static UICompositeViewDescription *compositeDescription = nil;
     _faxLabel.text = NSLocalizedStringFromTable(@"faxLabel.text", @"BrandLocalizable", @"");
     _telLabel.text = NSLocalizedStringFromTable(@"telLabel.text", @"BrandLocalizable", @"");
     _urlLabel.text = NSLocalizedStringFromTable(@"urlLabel.text", @"BrandLocalizable", @"");
+    
+    // CGRect fullScreenRect = [[UIScreen mainScreen] applicationFrame];
+    // UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:_outerView.frame];
+    // _midView.frame = CGRectMake(_outerView.frame.origin.x, _outerView.frame.origin.y, _outerView.frame.size.width, _outerView.frame.size.height);
+    [_midView setContentSize:CGSizeMake(_innerView.frame.size.width - 100, _innerView.frame.size.height + 100)];
+    
+    // do any further configuration to the scroll view
+    // add a view, or views, as a subview of the scroll view.
+    
+    // release scrollView as self.view retains it
+    // [scrollView addSubview:_innerView];
+    // [_outerView addSubview:scrollView];
+}
+
+- (void)addTapGesture:(UILabel*)label action:(SEL)action {
+    UITapGestureRecognizer *tapGestureRecognizerPolicy = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
+    [label addGestureRecognizer:tapGestureRecognizerPolicy];
+    label.userInteractionEnabled = YES;
 }
 
 #pragma mark - Action Functions
