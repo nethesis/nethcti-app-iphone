@@ -728,6 +728,8 @@
 		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
 		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
+		C3907C3E264570D3003E14E0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3907C3C264570D3003E14E0 /* back.png */; };
+		C3907C3F264570D3003E14E0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3907C3D264570D3003E14E0 /* back@2x.png */; };
 		C392D2682639ADE700BED530 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C392D2662639ADE700BED530 /* logo@2x.png */; };
 		C392D2692639ADE700BED530 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C392D2672639ADE700BED530 /* logo.png */; };
 		C3936F4F263C367B0058FE3D /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = C3936F4D263C367A0058FE3D /* login.png */; };
@@ -1758,6 +1760,8 @@
 		C38ED0F326090505003B7E6E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ContactsListView.strings; sourceTree = "<group>"; };
 		C38ED0F526090508003B7E6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ContactsListView.strings; sourceTree = "<group>"; };
 		C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C3907C3C264570D3003E14E0 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		C3907C3D264570D3003E14E0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		C392D2662639ADE700BED530 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		C392D2672639ADE700BED530 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C392D26B2639AE5200BED530 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
@@ -2549,6 +2553,8 @@
 				633FEBE71D3CD5570014B822 /* avatar@2x.png */,
 				633FEBE81D3CD5570014B822 /* avatar~ipad.png */,
 				633FEBE91D3CD5570014B822 /* avatar~ipad@2x.png */,
+				C3907C3C264570D3003E14E0 /* back.png */,
+				C3907C3D264570D3003E14E0 /* back@2x.png */,
 				633FEBEA1D3CD5570014B822 /* back_default.png */,
 				633FEBEB1D3CD5570014B822 /* back_default@2x.png */,
 				633FEBEC1D3CD5570014B822 /* back_disabled.png */,
@@ -3600,6 +3606,7 @@
 				633FEE6C1D3CD5590014B822 /* footer_dialer_disabled.png in Resources */,
 				633FEF231D3CD55A0014B822 /* route_bluetooth_default@2x.png in Resources */,
 				633FED9C1D3CD5590014B822 /* add_field_default.png in Resources */,
+				C3907C3E264570D3003E14E0 /* back.png in Resources */,
 				39A7C2D426441A040056735F /* nethcti_backspace.png in Resources */,
 				633FEE411D3CD5590014B822 /* contacts_all_selected@2x.png in Resources */,
 				D38187F815FE355D00C3EDCA /* TabBarView.xib in Resources */,
@@ -3833,6 +3840,7 @@
 				C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */,
 				39A7C2C0264401370056735F /* nethcti_numpad_hashtag.png in Resources */,
 				24BFAAA7209B0630004F47A7 /* callkit_logo.png in Resources */,
+				C3907C3F264570D3003E14E0 /* back@2x.png in Resources */,
 				C39AA9D2263956AC00464F06 /* microphone.png in Resources */,
 				615A2811217F1FDE0060F920 /* chat_add_group@2x.png in Resources */,
 				D34F6F9E1594D3FB0095705B /* InAppSettings.bundle in Resources */,
