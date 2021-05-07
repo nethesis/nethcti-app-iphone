@@ -407,8 +407,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 	if ([self displayDebugPopup:_addressField.text]) {
 		_addressField.text = @"";
 	}
-	_addContactButton.enabled = _backspaceButton.enabled = ([[_addressField text] length] > 0);
-    if ([_addressField.text length] == 0) {
+    
+    bool wasPresent = _backspaceButton.enabled;
+    bool addressPresence = [[_addressField text] length] > 0;
+	_addContactButton.enabled = _backspaceButton.enabled = addressPresence;
+    
+    if(!wasPresent && addressPresence) {
+        // Set pink color only if we have to change button state.
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"Magenta"]];
+    }
+    
+    if(!addressPresence) {
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"Grey"]];
         [self.view endEditing:YES];
     }
 }
