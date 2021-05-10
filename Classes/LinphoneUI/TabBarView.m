@@ -84,7 +84,7 @@
     [self.dialerButton setImage:dialerImage forState:UIControlStateNormal];
     [self.contactsButton setImage:contactsImage forState:UIControlStateNormal];
 
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"] ];
+    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
     [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
     [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
 }

@@ -57,6 +57,7 @@
 - (IBAction)onBackClick:(id)event;
 - (IBAction)onAddressChange:(id)sender;
 - (IBAction)onBackspaceClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *lineUnderText;
 
 - (void)setAddress:(NSString *)address;
 

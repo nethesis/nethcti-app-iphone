@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuView">
             <connections>
                 <outlet property="addressLabel" destination="ypg-P8-Els" id="gRv-Fz-Dbk"/>
-                <outlet property="avatarImage" destination="BNQ-7N-NGT" id="LXr-Yr-zSK"/>
                 <outlet property="grayBackground" destination="ccB-VK-LF9" id="Rbz-Ix-k62"/>
                 <outlet property="nameLabel" destination="XbU-2B-u1b" id="rKF-4e-1HA"/>
                 <outlet property="presenceImage" destination="tNM-uE-Eum" id="dfy-Sb-hgE"/>
@@ -50,30 +57,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="206" height="100"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="XbU-2B-u1b" userLabel="nameLabel">
-                                    <rect key="frame" x="76" y="15" width="130" height="31"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adalia La Balia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="XbU-2B-u1b" userLabel="nameLabel">
+                                    <rect key="frame" x="8" y="15" width="190" height="31"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="25"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="john.doe@sip.linphone.org" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ypg-P8-Els" userLabel="addressLabel">
-                                    <rect key="frame" x="74" y="54" width="110" height="22"/>
+                                    <rect key="frame" x="8" y="54" width="176" height="22"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="led_connected.png" translatesAutoresizingMaskIntoConstraints="NO" id="tNM-uE-Eum" userLabel="presenceImage">
                                     <rect key="frame" x="188" y="54" width="16" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="BNQ-7N-NGT" userLabel="avatarImage" customClass="UIRoundedImageView">
-                                    <rect key="frame" x="8" y="20" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="Kej-uL-ntg" appends="YES" id="eog-XV-xok"/>
-                                    </connections>
                                 </imageView>
                             </subviews>
                             <gestureRecognizers/>
@@ -99,7 +99,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="467.39130434782612" y="140.29017857142856"/>
+            <point key="canvasLocation" x="466.66666666666669" y="139.95535714285714"/>
         </view>
         <tableViewController id="Yyh-z6-IGO" customClass="SideMenuTableView">
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -108,11 +108,6 @@
             </connections>
             <point key="canvasLocation" x="1181.1594202898552" y="129.91071428571428"/>
         </tableViewController>
-        <tapGestureRecognizer id="Kej-uL-ntg" userLabel="OnAvatarClicked">
-            <connections>
-                <action selector="onAvatarClick:" destination="-1" id="KyX-RA-m6A"/>
-            </connections>
-        </tapGestureRecognizer>
         <tapGestureRecognizer id="1kD-az-BAx" userLabel="OnHeaderClicked">
             <connections>
                 <action selector="onHeaderClick:" destination="-1" id="yqn-58-lbb"/>
@@ -125,7 +120,6 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="avatar.png" width="414.39999389648438" height="414.39999389648438"/>
         <image name="color_F.png" width="2" height="2"/>
         <image name="led_connected.png" width="19.200000762939453" height="19.200000762939453"/>
     </resources>

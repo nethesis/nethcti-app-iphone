@@ -21,6 +21,7 @@
 #import "UICompositeView.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "PhoneMainView.h"
+#import <QuartzCore/QuartzCore.h>
 #import "Dashboard/DashboardViewController.h"
 
 @interface AssistantView : UIViewController <UITextFieldDelegate, UICompositeViewDelegate> {

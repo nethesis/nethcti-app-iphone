@@ -135,7 +135,7 @@ import Foundation
             // Error and Digest handling.
             guard let httpResponse = response as? HTTPURLResponse,
                   let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
-                errorHandler(-2, "AUTHENTICATE-HEADER-MISSING.")
+                errorHandler(-2, "AUTHENTICATE-HEADER-MISSING")
                 return
             }
             
