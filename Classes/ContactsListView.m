@@ -147,6 +147,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.filterPicker.dataSource = self;
     self.filterPicker.delegate = self;
     [self.filterPicker selectRow:[_pickerData indexOfObject:pickerFilter] inComponent:0 animated:NO];
+    
+    UIImage *allContactsImg = [[UIImage imageNamed:@"users.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *sipContactsImg = [[UIImage imageNamed:@"nethcti_user_sip.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    [self.allButton setImage:allContactsImg forState:UIControlStateNormal];
+    [self.sipButton setImage:sipContactsImg forState:UIControlStateNormal];
+
+    [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -368,11 +376,16 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (IBAction)onAllClick:(id)event {
     [self changeView:ContactsAll];
     [self resizeTableView:YES];
+    [self.allButton.imageView setTintColor: [UIColor getColorByName:@"MainColor"]];
+    [self.sipButton.imageView setTintColor: [UIColor getColorByName:@"Grey"]];
+
 }
 
 - (IBAction)onLinphoneClick:(id)event {
     [self changeView:ContactsLinphone];
     [self resizeTableView:YES];
+    [self.sipButton.imageView setTintColor: [UIColor getColorByName:@"MainColor"]];
+    [self.allButton.imageView setTintColor: [UIColor getColorByName:@"Grey"]];
 }
 
 - (IBAction)onAddContactClick:(id)event {

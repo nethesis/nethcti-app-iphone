@@ -93,6 +93,7 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 @property(weak, nonatomic) IBOutlet UIImageView *selectedButtonImage;
 @property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
 @property (weak, nonatomic) IBOutlet UIPickerView *filterPicker;
+@property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *sipButton;
 
 - (IBAction)onAllClick:(id)event;
 - (IBAction)onLinphoneClick:(id)event;
