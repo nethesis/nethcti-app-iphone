@@ -334,7 +334,6 @@
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="call_alt_back_disabled.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
                                             <connections>
                                                 <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="233"/>
                                             </connections>
@@ -344,11 +343,10 @@
                                             <accessibility key="accessibilityConfiguration" label="Add to contact"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_green_circle.png">
+                                            <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
                                             <connections>
                                                 <action selector="onAddContactClick:" destination="-1" eventType="touchUpInside" id="230"/>
                                             </connections>
@@ -424,7 +422,6 @@
     </objects>
     <resources>
         <image name="call_alt_back_disabled.png" width="81.599998474121094" height="58.400001525878906"/>
-        <image name="color_E.png" width="2" height="2"/>
         <image name="dialer_background.png" width="1200" height="1030"/>
         <image name="nethcti_back_to_call.png" width="256" height="256"/>
         <image name="nethcti_backspace.png" width="256" height="256"/>
