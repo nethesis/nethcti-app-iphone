@@ -433,12 +433,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onBackspaceClick:(id)sender {
-    // TODO: Restyle - Rimuovere quando messo nel posto giusto
-#if DEBUG
-    [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
-    return;
-#endif
-    
 	if ([_addressField.text length] > 0) {
 		[_addressField setText:[_addressField.text substringToIndex:[_addressField.text length] - 1]];
     }

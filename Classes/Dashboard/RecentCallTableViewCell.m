@@ -48,9 +48,9 @@
     CGRect shadowFrame = self.layer.bounds;
     CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
     self.layer.shadowPath = shadowPath;
-    
-    [_pug2hbe0h8gq430h setText:pippo];
     /*
+    [_pug2hbe0h8gq430h setText:pippo];
+    
     [cell.contactInitialLabel setText:@"U"];
     [cell.nameInitialLabel setText:@"Utente prova"];
     //[cell.numberLabel setText:@"sip: 213@123.123.12.12"];
