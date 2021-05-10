@@ -96,6 +96,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_addressField setText:@""];
     
     [_lineUnderText setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
+    
+    UIImage *addUserContact = [[UIImage imageNamed:@"nethcti_user_add.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.addContactButton setImage:addUserContact forState:UIControlStateNormal];
+    [self.addContactButton setImage:addUserContact forState:UIControlStateDisabled];
+    [self.addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -420,6 +425,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     if(!addressPresence) {
         [_backspaceButton setTintColor:[UIColor getColorByName:@"Grey"]];
         [self.view endEditing:YES];
+        [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
+    } else {
+        [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
     }
 }
 
