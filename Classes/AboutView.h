@@ -35,6 +35,10 @@
 @property(weak, nonatomic) IBOutlet UILabel *telLabel;
 @property(weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property(weak, nonatomic) IBOutlet UILabel *urlLabel;
+
+@property (strong, nonatomic) IBOutlet UIView *innerView;
+@property (weak, nonatomic) IBOutlet UIScrollView *midView;
+
 - (IBAction)onLinkTap:(id)sender;
 - (IBAction)onLicenceTap;
 - (IBAction)onPolicyTap;
