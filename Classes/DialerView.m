@@ -423,7 +423,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     
     if(!addressPresence) {
-        [_backspaceButton setTintColor:[UIColor getColorByName:@"Grey"]];
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
         [self.view endEditing:YES];
         [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
     } else {
