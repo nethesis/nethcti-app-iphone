@@ -1141,11 +1141,6 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	[controller dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)onDialerBackClick:(id)sender {
-	[_settingsController.navigationController popViewControllerAnimated:NO];
-	[PhoneMainView.instance popToView:DialerView.compositeViewDescription];
-}
-
 - (IBAction)onBackClick:(id)sender {
 	if  (isRoot) {
 		[_settingsController.navigationController popViewControllerAnimated:NO];

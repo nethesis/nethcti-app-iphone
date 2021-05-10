@@ -1468,7 +1468,8 @@ _waitView.hidden = YES; \
             [delegate registerForNotifications];
             
             [[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
-            [PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
+            
+            [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
         } else {
             [self displayAssistantConfigurationError];
         }

@@ -21,6 +21,7 @@
 
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
+#import "Dashboard/DashboardViewController.h"
 
 @implementation DialerView
 
@@ -192,9 +193,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Event Functions
 
 - (void)callUpdateEvent:(NSNotification *)notif {
-	LinphoneCall *call = [[notif.userInfo objectForKey:@"call"] pointerValue];
-	LinphoneCallState state = [[notif.userInfo objectForKey:@"state"] intValue];
-	[self callUpdate:call state:state];
+    LinphoneCall *call = [[notif.userInfo objectForKey:@"call"] pointerValue];
+    LinphoneCallState state = [[notif.userInfo objectForKey:@"state"] intValue];
+    [self callUpdate:call state:state];
 }
 
 - (void)coreUpdateEvent:(NSNotification *)notif {

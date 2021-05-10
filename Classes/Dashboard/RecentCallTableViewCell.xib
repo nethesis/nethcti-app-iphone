@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecentCallTableViewCell" customModule="NethCTI" customModuleProvider="target">
+            <connections>
+                <outlet property="nameLabel" destination="Cqh-ZY-Xxb" id="utY-tz-u9Z"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="87" id="wve-Cg-czW" customClass="RecentCallTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="87"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wve-Cg-czW" id="gko-5X-bi0">
+                <rect key="frame" x="0.0" y="0.0" width="384" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8k-e9-kFo">
+                        <rect key="frame" x="16" y="16" width="55" height="55"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nethcti_avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="HEG-Nk-WzO">
+                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HEG-Nk-WzO" secondAttribute="height" multiplier="1:1" id="em4-Fo-xvZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxO-eD-PgJ">
+                                <rect key="frame" x="17" y="13.5" width="21.5" height="28.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="24"/>
+                                <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HEG-Nk-WzO" secondAttribute="trailing" id="3A7-aH-bGv"/>
+                            <constraint firstItem="FxO-eD-PgJ" firstAttribute="centerX" secondItem="q8k-e9-kFo" secondAttribute="centerX" id="KZJ-7V-xrO"/>
+                            <constraint firstItem="FxO-eD-PgJ" firstAttribute="centerY" secondItem="q8k-e9-kFo" secondAttribute="centerY" id="cVL-t9-RXv"/>
+                            <constraint firstItem="HEG-Nk-WzO" firstAttribute="leading" secondItem="q8k-e9-kFo" secondAttribute="leading" id="dEf-Tp-xFL"/>
+                            <constraint firstAttribute="width" secondItem="q8k-e9-kFo" secondAttribute="height" multiplier="1:1" id="l05-Lt-ANt"/>
+                            <constraint firstAttribute="bottom" secondItem="HEG-Nk-WzO" secondAttribute="bottom" id="zHL-wZ-3Nd"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nethcti_missed_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hdj-8Q-ByO">
+                        <rect key="frame" x="270" y="26" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Hdj-8Q-ByO" secondAttribute="height" multiplier="1:1" id="aiv-nv-XIx"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v73-wT-3Eg">
+                        <rect key="frame" x="321" y="20" width="47" height="47"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="v73-wT-3Eg" secondAttribute="height" multiplier="1:1" id="C4O-r3-nsJ"/>
+                        </constraints>
+                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                        <state key="normal" image="nethcti_green_call.png" backgroundImage="nethcti_green_circle.png"/>
+                        <connections>
+                            <action selector="callTouchUpInside:" destination="-1" eventType="touchUpInside" id="5sW-vS-HFE"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GzG-TG-OI1">
+                        <rect key="frame" x="87" y="27" width="167" height="33.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mario Rossi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cqh-ZY-Xxb" userLabel="nameLabel">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sip: 218@123,34,54,6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVj-SG-wHP">
+                                <rect key="frame" x="0.0" y="18" width="167" height="15.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Hdj-8Q-ByO" firstAttribute="leading" secondItem="GzG-TG-OI1" secondAttribute="trailing" constant="16" id="0df-9i-vKP"/>
+                    <constraint firstItem="v73-wT-3Eg" firstAttribute="leading" secondItem="Hdj-8Q-ByO" secondAttribute="trailing" constant="16" id="0lp-Ik-4cV"/>
+                    <constraint firstItem="q8k-e9-kFo" firstAttribute="top" secondItem="gko-5X-bi0" secondAttribute="top" constant="16" id="3Ho-TH-79p"/>
+                    <constraint firstItem="GzG-TG-OI1" firstAttribute="leading" secondItem="q8k-e9-kFo" secondAttribute="trailing" constant="16" id="6Pz-HI-Guu"/>
+                    <constraint firstItem="q8k-e9-kFo" firstAttribute="leading" secondItem="gko-5X-bi0" secondAttribute="leading" constant="16" id="E8r-5P-oj4"/>
+                    <constraint firstItem="v73-wT-3Eg" firstAttribute="top" secondItem="gko-5X-bi0" secondAttribute="top" constant="20" id="Jlt-VF-Ycw"/>
+                    <constraint firstAttribute="bottom" secondItem="q8k-e9-kFo" secondAttribute="bottom" constant="16" id="PEV-e6-cxS"/>
+                    <constraint firstAttribute="bottom" secondItem="v73-wT-3Eg" secondAttribute="bottom" constant="20" id="agx-QA-7o5"/>
+                    <constraint firstAttribute="bottom" secondItem="Hdj-8Q-ByO" secondAttribute="bottom" constant="26" id="d0s-qw-dEJ"/>
+                    <constraint firstItem="Hdj-8Q-ByO" firstAttribute="top" secondItem="gko-5X-bi0" secondAttribute="top" constant="26" id="kSH-Yw-tz2"/>
+                    <constraint firstItem="GzG-TG-OI1" firstAttribute="centerY" secondItem="gko-5X-bi0" secondAttribute="centerY" id="pdK-oV-fBx"/>
+                    <constraint firstAttribute="trailing" secondItem="v73-wT-3Eg" secondAttribute="trailing" constant="16" id="uRx-ic-uhO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="RecentCallTableViewCell"/>
+            <point key="canvasLocation" x="-255.07246376811597" y="-231.36160714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="nethcti_avatar.png" width="167" height="167"/>
+        <image name="nethcti_green_call.png" width="60" height="60"/>
+        <image name="nethcti_green_circle.png" width="256" height="256"/>
+        <image name="nethcti_missed_call.png" width="60" height="60"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
