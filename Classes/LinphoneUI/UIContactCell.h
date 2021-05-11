@@ -24,7 +24,7 @@
 @interface UIContactCell : UITableViewCell
 
 @property(nonatomic, strong) IBOutlet UILabel *nameLabel;
-@property(nonatomic, strong) IBOutlet UIRoundedImageView *avatarImage;
+@property(nonatomic, strong) IBOutlet UIImageView *avatarImage;
 @property(weak, nonatomic) IBOutlet UIImageView *linphoneImage;
 @property(nonatomic, assign) Contact *contact;
 @property (weak, nonatomic) IBOutlet UILabel *nameInitialLabel;

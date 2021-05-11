@@ -38,6 +38,7 @@
 		UIView *sub = ((UIView *)[arrayOfViews objectAtIndex:0]);
 		[self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
 		[self addSubview:sub];
+        
 		_contact = NULL;
 		// Sections are wider on iPad and overlap linphone image - let's move it a bit
 		if (IPAD) {

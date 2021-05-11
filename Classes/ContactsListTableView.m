@@ -25,6 +25,7 @@
 
 @implementation ContactsListTableView
 NSArray *sortedAddresses;
+int rowHeight = 70;
 
 #pragma mark - Lifecycle Functions
 
@@ -397,6 +398,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	UIContactCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
 	if (cell == nil) {
 		cell = [[UIContactCell alloc] initWithIdentifier:kCellId];
+        [cell setFrame: CGRectMake(0, 0, tableView.frame.size.width, rowHeight)];
 	}
     // if(addressBookMap.count > [indexPath section]) { // HackerMAN!
         NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
@@ -412,6 +414,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
         // }
     // }
 	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return rowHeight;
 }
 
 /// Utility method: count a table view row absolute index.
@@ -447,6 +453,12 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	tempLabel.font = [UIFont boldSystemFontOfSize:17];
 	tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[tempView addSubview:tempLabel];
+    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(20.0f, tempView.frame.size.height, tempView.frame.size.width  - 40.0f, 1.0f);
+    bottomBorder.backgroundColor = [UIColor getColorByName:@"Grey"].CGColor;
+    
+    [tempView.layer addSublayer:bottomBorder];
 
 	return tempView;
 }

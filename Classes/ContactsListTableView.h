@@ -23,6 +23,7 @@
 #import "UICheckBoxTableView.h"
 
 #import "OrderedDictionary.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ContactsListTableView : UICheckBoxTableView {
   @private OrderedDictionary *addressBookMap;
