@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactDetailsView">
             <connections>
@@ -18,6 +23,7 @@
                 <outlet property="editButton" destination="8" id="31"/>
                 <outlet property="emptyLabel" destination="Mdj-Pz-nu4" id="ijc-2c-waE"/>
                 <outlet property="landscapeView" destination="lgD-Mw-h57" id="DTS-80-rMM"/>
+                <outlet property="nameInitialLabel" destination="tAr-gF-Fet" id="TmL-XO-b7r"/>
                 <outlet property="nameLabel" destination="moZ-Bg-zcv" id="Lt9-h0-2o1"/>
                 <outlet property="portraitView" destination="1" id="k69-5P-ieM"/>
                 <outlet property="tableController" destination="20" id="27"/>
@@ -30,35 +36,37 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1">
+                <view contentMode="scaleToFill" id="1">
                     <rect key="frame" x="0.0" y="42" width="414" height="788"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view alpha="0.90000000000000002" tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="topBar">
+                        <view alpha="0.90000000000000002" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="topBar">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-aJ-Lk6" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="82" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-aJ-Lk6" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete all"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="bPQ-aJ-Lk6" secondAttribute="height" multiplier="1:1" id="ihd-eL-gOg"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" image="cancel_edit_default.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="cancel_edit_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onCancelClick:" destination="-1" eventType="touchUpInside" id="yyu-9r-MIh"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9" userLabel="backButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="82" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9" userLabel="backButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Back"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="9" secondAttribute="height" multiplier="1:1" id="brr-Yo-F1P"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="back_default.png">
+                                    <state key="normal" image="back.png">
                                         <color key="titleColor" red="0.28619974851608276" green="0.32144349813461304" blue="0.35980013012886047" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
@@ -68,13 +76,15 @@
                                         <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="10"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuB-yy-R9o" userLabel="deleteButton" customClass="UIInterfaceStyleToggleButton">
-                                    <rect key="frame" x="248" y="0.0" width="83" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuB-yy-R9o" userLabel="deleteButton" customClass="UIInterfaceStyleToggleButton">
+                                    <rect key="frame" x="282" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="MuB-yy-R9o" secondAttribute="height" multiplier="1:1" id="3zA-d2-5p6"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="delete_default.png">
+                                    <state key="normal" image="nethcti_trash.png">
                                         <color key="titleColor" red="0.28619974851608276" green="0.32144349813461304" blue="0.35980013012886047" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
@@ -84,10 +94,12 @@
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="vxj-6p-8lE"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8" userLabel="editButton" customClass="UIInterfaceStyleToggleButton">
-                                    <rect key="frame" x="331" y="0.0" width="83" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8" userLabel="editButton" customClass="UIInterfaceStyleToggleButton">
+                                    <rect key="frame" x="348" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="8" secondAttribute="height" multiplier="1:1" id="uZJ-h2-X0P"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" image="edit_default.png">
@@ -102,28 +114,65 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="bPQ-aJ-Lk6" firstAttribute="height" secondItem="4" secondAttribute="height" id="31S-7q-hup"/>
+                                <constraint firstAttribute="bottom" secondItem="bPQ-aJ-Lk6" secondAttribute="bottom" id="65b-xC-8Bs"/>
+                                <constraint firstAttribute="bottom" secondItem="MuB-yy-R9o" secondAttribute="bottom" id="Ml9-nR-zX0"/>
+                                <constraint firstItem="9" firstAttribute="top" secondItem="4" secondAttribute="top" id="Ur8-tg-f7l"/>
+                                <constraint firstAttribute="bottom" secondItem="8" secondAttribute="bottom" id="YLL-B7-umr"/>
+                                <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" id="ZJa-4N-aeo"/>
+                                <constraint firstItem="9" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="bYB-ZJ-0EO"/>
+                                <constraint firstItem="8" firstAttribute="leading" secondItem="MuB-yy-R9o" secondAttribute="trailing" id="g2P-HI-kY2"/>
+                                <constraint firstAttribute="height" constant="66" id="kHC-Jm-Vgf"/>
+                                <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" id="sRv-mD-rZa"/>
+                                <constraint firstItem="bPQ-aJ-Lk6" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="tFd-MC-Dk9"/>
+                                <constraint firstItem="MuB-yy-R9o" firstAttribute="top" secondItem="4" secondAttribute="top" id="ut9-G5-m1r"/>
+                                <constraint firstItem="8" firstAttribute="top" secondItem="4" secondAttribute="top" id="wMc-jb-a7W"/>
+                                <constraint firstItem="bPQ-aJ-Lk6" firstAttribute="top" secondItem="4" secondAttribute="top" id="zT6-3K-CYj"/>
+                            </constraints>
                         </view>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="7" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D6-vy-obt" userLabel="contentView">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="7" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D6-vy-obt" userLabel="contentView">
                             <rect key="frame" x="0.0" y="66" width="414" height="722"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="B6X-C9-2vm" userLabel="avatarImage" customClass="UIRoundedImageView">
-                                    <rect key="frame" x="161" y="10" width="90" height="90"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="8bV-f4-pLL" appends="YES" id="4V5-Px-aHT"/>
-                                    </connections>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                    <rect key="frame" x="0.0" y="108" width="414" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpZ-cF-1yl">
+                                    <rect key="frame" x="157" y="0.0" width="100" height="100"/>
+                                    <subviews>
+                                        <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nethcti_grey_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="B6X-C9-2vm" userLabel="avatarImage">
+                                            <rect key="frame" x="5" y="5" width="90" height="90"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="8bV-f4-pLL" appends="YES" id="4V5-Px-aHT"/>
+                                            </connections>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAr-gF-Fet" userLabel="nameInitialLabel">
+                                            <rect key="frame" x="41" y="31" width="18" height="38"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="h3T-NH-t4x"/>
+                                        <constraint firstItem="tAr-gF-Fet" firstAttribute="centerX" secondItem="kpZ-cF-1yl" secondAttribute="centerX" id="k9w-Fs-VI0"/>
+                                        <constraint firstAttribute="width" secondItem="kpZ-cF-1yl" secondAttribute="height" multiplier="1:1" id="lE7-Vu-Hpv"/>
+                                        <constraint firstItem="tAr-gF-Fet" firstAttribute="centerY" secondItem="kpZ-cF-1yl" secondAttribute="centerY" id="wbf-7u-pg3"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
+                                    <rect key="frame" x="157" y="108" width="101" height="33"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="19" userLabel="tableView">
-                                    <rect key="frame" x="0.0" y="156" width="414" height="566"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taf-2c-Vbl" userLabel="workLabel">
+                                    <rect key="frame" x="188.5" y="149" width="37" height="21"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="19" userLabel="tableView">
+                                    <rect key="frame" x="0.0" y="178" width="414" height="544"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
@@ -134,10 +183,21 @@
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="moZ-Bg-zcv" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="3wX-TD-EDh"/>
+                                <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="Kcj-ia-CWm"/>
+                                <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="kpZ-cF-1yl" secondAttribute="bottom" constant="8" id="LJB-0e-E3K"/>
+                                <constraint firstItem="kpZ-cF-1yl" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="LP9-es-rBP"/>
+                                <constraint firstItem="19" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="RrH-Eo-HIx"/>
+                                <constraint firstItem="kpZ-cF-1yl" firstAttribute="top" secondItem="8D6-vy-obt" secondAttribute="top" id="XW9-M2-7Uk"/>
+                                <constraint firstItem="19" firstAttribute="top" secondItem="taf-2c-Vbl" secondAttribute="bottom" id="jvb-Dv-uGg"/>
+                                <constraint firstItem="taf-2c-Vbl" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="8" id="sC4-5O-eqc"/>
+                                <constraint firstItem="taf-2c-Vbl" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="vut-2j-R9e"/>
+                                <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" id="wI4-7r-KBt"/>
+                            </constraints>
                         </scrollView>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="40" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No contact selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdj-Pz-nu4" userLabel="emptyLabel">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="40" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No contact selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdj-Pz-nu4" userLabel="emptyLabel">
                             <rect key="frame" x="0.0" y="66" width="414" height="722"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -157,6 +217,19 @@
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="EWn-Hy-TEm"/>
+                        <constraint firstItem="Mdj-Pz-nu4" firstAttribute="top" secondItem="4" secondAttribute="bottom" id="MUG-3c-AKj"/>
+                        <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="Ske-7r-j1f"/>
+                        <constraint firstAttribute="bottom" secondItem="Mdj-Pz-nu4" secondAttribute="bottom" id="UGb-y9-aiH"/>
+                        <constraint firstItem="8D6-vy-obt" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="UwL-od-VfE"/>
+                        <constraint firstAttribute="bottom" secondItem="8D6-vy-obt" secondAttribute="bottom" id="b5s-5k-tNc"/>
+                        <constraint firstItem="Mdj-Pz-nu4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="bMX-dd-ifU"/>
+                        <constraint firstAttribute="trailing" secondItem="Mdj-Pz-nu4" secondAttribute="trailing" id="eaL-l1-sZF"/>
+                        <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" id="j1n-77-j00"/>
+                        <constraint firstAttribute="trailing" secondItem="8D6-vy-obt" secondAttribute="trailing" id="pbP-8c-CbT"/>
+                        <constraint firstItem="8D6-vy-obt" firstAttribute="top" secondItem="4" secondAttribute="bottom" id="xJQ-vf-guF"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -296,7 +369,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="36.956521739130437" y="184.48660714285714"/>
+            <point key="canvasLocation" x="453" y="178"/>
         </view>
         <tableViewController id="20" userLabel="tableController" customClass="ContactDetailsTableView">
             <extendedEdge key="edgesForExtendedLayout"/>
@@ -314,6 +387,7 @@
     </objects>
     <resources>
         <image name="avatar.png" width="414.39999389648438" height="414.39999389648438"/>
+        <image name="back.png" width="32" height="32"/>
         <image name="back_default.png" width="38.400001525878906" height="35.200000762939453"/>
         <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
         <image name="cancel_edit_default.png" width="47.200000762939453" height="47.200000762939453"/>
@@ -324,10 +398,9 @@
         <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
         <image name="edit_default.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="edit_disabled.png" width="46.400001525878906" height="46.400001525878906"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

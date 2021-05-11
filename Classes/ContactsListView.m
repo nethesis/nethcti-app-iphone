@@ -169,7 +169,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         tableController.editing = NO;
     }
     [self refreshButtons];
-    [_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
+    [_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         self.linphoneButton.hidden = TRUE;
     }

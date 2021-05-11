@@ -118,6 +118,12 @@
 		39F2B9A8264938BD00ADBFCE /* nethcti_user_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A6264938BD00ADBFCE /* nethcti_user_sip@2x.png */; };
 		39F2B9AB26493AD800ADBFCE /* nethcti_trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A926493AD500ADBFCE /* nethcti_trash.png */; };
 		39F2B9AC26493AD800ADBFCE /* nethcti_trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9AA26493AD800ADBFCE /* nethcti_trash@2x.png */; };
+		39F2B9AF264AA4BA00ADBFCE /* nethcti_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9AD264AA4B900ADBFCE /* nethcti_cancel.png */; };
+		39F2B9B0264AA4BA00ADBFCE /* nethcti_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9AE264AA4BA00ADBFCE /* nethcti_cancel@2x.png */; };
+		39F2B9B3264AA59000ADBFCE /* nethcti_multiselect_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B1264AA58E00ADBFCE /* nethcti_multiselect_default.png */; };
+		39F2B9B4264AA59000ADBFCE /* nethcti_multiselect_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B2264AA59000ADBFCE /* nethcti_multiselect_default@2x.png */; };
+		39F2B9B7264AA5DE00ADBFCE /* nethcti_multiselect_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B5264AA5DC00ADBFCE /* nethcti_multiselect_selected@2x.png */; };
+		39F2B9B8264AA5DE00ADBFCE /* nethcti_multiselect_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */; };
 		570742581D5A0691004B9C84 /* ShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570742561D5A0691004B9C84 /* ShopView.xib */; };
 		570742611D5A09B8004B9C84 /* ShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707425F1D5A09B8004B9C84 /* ShopView.m */; };
 		570742671D5A63DB004B9C84 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570742661D5A63DB004B9C84 /* StoreKit.framework */; };
@@ -1079,6 +1085,12 @@
 		39F2B9A6264938BD00ADBFCE /* nethcti_user_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_user_sip@2x.png"; sourceTree = "<group>"; };
 		39F2B9A926493AD500ADBFCE /* nethcti_trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_trash.png; sourceTree = "<group>"; };
 		39F2B9AA26493AD800ADBFCE /* nethcti_trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_trash@2x.png"; sourceTree = "<group>"; };
+		39F2B9AD264AA4B900ADBFCE /* nethcti_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_cancel.png; sourceTree = "<group>"; };
+		39F2B9AE264AA4BA00ADBFCE /* nethcti_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_cancel@2x.png"; sourceTree = "<group>"; };
+		39F2B9B1264AA58E00ADBFCE /* nethcti_multiselect_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_multiselect_default.png; sourceTree = "<group>"; };
+		39F2B9B2264AA59000ADBFCE /* nethcti_multiselect_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_multiselect_default@2x.png"; sourceTree = "<group>"; };
+		39F2B9B5264AA5DC00ADBFCE /* nethcti_multiselect_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_multiselect_selected@2x.png"; sourceTree = "<group>"; };
+		39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_multiselect_selected.png; sourceTree = "<group>"; };
 		570742571D5A0691004B9C84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShopView.xib; sourceTree = "<group>"; };
 		5707425F1D5A09B8004B9C84 /* ShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView.m; sourceTree = "<group>"; };
 		570742601D5A09B8004B9C84 /* ShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView.h; sourceTree = "<group>"; };
@@ -2597,6 +2609,8 @@
 				39F2B9A6264938BD00ADBFCE /* nethcti_user_sip@2x.png */,
 				39A7C2D326441A040056735F /* nethcti_backspace.png */,
 				39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */,
+				39F2B9AD264AA4B900ADBFCE /* nethcti_cancel.png */,
+				39F2B9AE264AA4BA00ADBFCE /* nethcti_cancel@2x.png */,
 				39549587264447A200412686 /* nethcti_grey_circle.png */,
 				39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */,
 				39A7C2C7264402EA0056735F /* nethcti_green_phone.png */,
@@ -2617,6 +2631,10 @@
 				39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */,
 				39F2B9A926493AD500ADBFCE /* nethcti_trash.png */,
 				39F2B9AA26493AD800ADBFCE /* nethcti_trash@2x.png */,
+				39F2B9B1264AA58E00ADBFCE /* nethcti_multiselect_default.png */,
+				39F2B9B2264AA59000ADBFCE /* nethcti_multiselect_default@2x.png */,
+				39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */,
+				39F2B9B5264AA5DC00ADBFCE /* nethcti_multiselect_selected@2x.png */,
 				C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */,
 				C339F3A9241A98FE00447319 /* iOs_background_portrait.png */,
 				C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */,
@@ -3692,6 +3710,7 @@
 				C339F39B241A538A00447319 /* neth-splash-landscape_2208x1242.png in Resources */,
 				615A2817217F280C0060F920 /* chat_list_indicator.png in Resources */,
 				633FEEFF1D3CD55A0014B822 /* options_add_call_disabled@2x.png in Resources */,
+				39F2B9B0264AA4BA00ADBFCE /* nethcti_cancel@2x.png in Resources */,
 				633FEF091D3CD55A0014B822 /* options_start_conference_disabled@2x.png in Resources */,
 				633FEE051D3CD5590014B822 /* cancel_edit_disabled@2x.png in Resources */,
 				633FEE5F1D3CD5590014B822 /* edit_list_default@2x.png in Resources */,
@@ -3735,11 +3754,13 @@
 				C3907C3E264570D3003E14E0 /* back.png in Resources */,
 				39A7C2D426441A040056735F /* nethcti_backspace.png in Resources */,
 				633FEE411D3CD5590014B822 /* contacts_all_selected@2x.png in Resources */,
+				39F2B9B3264AA59000ADBFCE /* nethcti_multiselect_default.png in Resources */,
 				D38187F815FE355D00C3EDCA /* TabBarView.xib in Resources */,
 				633FEE2F1D3CD5590014B822 /* color_G.png in Resources */,
 				633FEECE1D3CD55A0014B822 /* numpad_6_over@2x.png in Resources */,
 				8C92ABE81FA773190006FB5D /* UIChatNotifiedEventCell.xib in Resources */,
 				633FEDAB1D3CD5590014B822 /* backspace_disabled@2x.png in Resources */,
+				39F2B9AF264AA4BA00ADBFCE /* nethcti_cancel.png in Resources */,
 				633FEDD91D3CD5590014B822 /* call_start_body_default~ipad@2x.png in Resources */,
 				633FEE401D3CD5590014B822 /* contacts_all_selected.png in Resources */,
 				633FEE0C1D3CD5590014B822 /* chat_attachment_disabled.png in Resources */,
@@ -3795,6 +3816,7 @@
 				633FEEE81D3CD55A0014B822 /* numpad_9_over~ipad@2x.png in Resources */,
 				633FEEDE1D3CD55A0014B822 /* numpad_8_over@2x.png in Resources */,
 				633FEEB11D3CD55A0014B822 /* numpad_2~ipad.png in Resources */,
+				39F2B9B4264AA59000ADBFCE /* nethcti_multiselect_default@2x.png in Resources */,
 				633FEE521D3CD5590014B822 /* dialer_alt_back.png in Resources */,
 				633FEE341D3CD5590014B822 /* conference_exit_default.png in Resources */,
 				633FEF281D3CD55A0014B822 /* route_earpiece_default.png in Resources */,
@@ -4270,6 +4292,7 @@
 				633FEDC71D3CD5590014B822 /* call_incoming@2x.png in Resources */,
 				633FEDB81D3CD5590014B822 /* call_alt_start_disabled.png in Resources */,
 				615A281D217F6FA80060F920 /* security_2_indicator@2x.png in Resources */,
+				39F2B9B7264AA5DE00ADBFCE /* nethcti_multiselect_selected@2x.png in Resources */,
 				633FEF3C1D3CD55A0014B822 /* security_ok.png in Resources */,
 				633FEEAF1D3CD55A0014B822 /* numpad_2_over~ipad.png in Resources */,
 				633FEEB81D3CD55A0014B822 /* numpad_3_over~ipad@2x.png in Resources */,
@@ -4290,6 +4313,7 @@
 				633FEDC11D3CD5590014B822 /* call_back_disabled@2x.png in Resources */,
 				633FEEEE1D3CD55A0014B822 /* numpad_hash_over@2x.png in Resources */,
 				633FEDD01D3CD5590014B822 /* call_quality_indicator_2.png in Resources */,
+				39F2B9B8264AA5DE00ADBFCE /* nethcti_multiselect_selected.png in Resources */,
 				633FEE551D3CD5590014B822 /* dialer_back_default@2x.png in Resources */,
 				633FEF361D3CD55A0014B822 /* routes_disabled.png in Resources */,
 				633FEF261D3CD55A0014B822 /* route_bluetooth_selected.png in Resources */,

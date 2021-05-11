@@ -98,8 +98,8 @@
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="MZP-cb-ntf" secondAttribute="height" multiplier="1:1" id="b1W-q9-RV4"/>
                                     </constraints>
-                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                    <state key="normal" image="cancel_edit_default.png">
+                                    <inset key="imageEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                    <state key="normal" image="nethcti_cancel.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -147,11 +147,11 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                    <state key="normal" image="deselect_all.png">
+                                    <state key="normal" image="nethcti_multiselect_default.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="select_all_disabled.png"/>
-                                    <state key="selected" image="select_all_default.png"/>
+                                    <state key="selected" image="nethcti_multiselect_selected.png"/>
                                     <connections>
                                         <action selector="onSelectionToggle:" destination="TJG-JZ-YRR" eventType="touchUpInside" id="YcH-HT-zyi"/>
                                     </connections>
@@ -199,28 +199,28 @@
                             </constraints>
                         </view>
                         <view clipsSubviews="YES" alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad9-PV-eYg" userLabel="searchBar">
-                            <rect key="frame" x="0.0" y="66" width="375" height="60"/>
+                            <rect key="frame" x="0.0" y="66" width="375" height="48"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="StM-za-nD1">
-                                    <rect key="frame" x="16" y="16" width="343" height="44"/>
+                                    <rect key="frame" x="16" y="16" width="343" height="32"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tH-6O-aDu">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                             <subviews>
                                                 <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-iI-V4a" userLabel="searchField">
-                                                    <rect key="frame" x="0.0" y="1.3333333333333286" width="293" height="39.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="1.3333333333333286" width="311" height="27.666666666666668"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <accessibility key="accessibilityConfiguration" label="Search"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
                                                     <connections>
                                                         <action selector="searchEditingChanged:" destination="-1" eventType="editingChanged" id="373-Oj-JIJ"/>
                                                     </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWc-jx-y4x" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
-                                                    <rect key="frame" x="293" y="-4" width="50" height="50"/>
+                                                    <rect key="frame" x="311" y="-1" width="32" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="E5T-kK-Xq5"/>
+                                                        <constraint firstAttribute="width" constant="32" id="E5T-kK-Xq5"/>
                                                         <constraint firstAttribute="width" secondItem="GWc-jx-y4x" secondAttribute="height" multiplier="1:1" id="eb9-6S-xnI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
@@ -243,7 +243,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMg-QK-QhZ" userLabel="baseline">
-                                            <rect key="frame" x="0.0" y="42" width="343" height="2"/>
+                                            <rect key="frame" x="0.0" y="30" width="343" height="2"/>
                                             <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="2" id="LCJ-ce-4Lb"/>
@@ -251,7 +251,7 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="SOk-RE-jlb"/>
+                                        <constraint firstAttribute="height" constant="32" id="SOk-RE-jlb"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
@@ -263,13 +263,13 @@
                             </constraints>
                         </view>
                         <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2W-PV-1J5">
-                            <rect key="frame" x="0.0" y="126" width="375" height="0.0"/>
+                            <rect key="frame" x="0.0" y="114" width="375" height="0.0"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="7GP-T2-SCc"/>
                             </constraints>
                         </pickerView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zOo-FS-W6l" userLabel="tableView">
-                            <rect key="frame" x="0.0" y="142" width="375" height="533"/>
+                            <rect key="frame" x="0.0" y="130" width="375" height="545"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <color key="separatorColor" red="0.67030966281890869" green="0.71867996454238892" blue="0.75078284740447998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -320,13 +320,13 @@
         </tableViewController>
     </objects>
     <resources>
-        <image name="cancel_edit_default.png" width="47.200000762939453" height="47.200000762939453"/>
-        <image name="deselect_all.png" width="43.200000762939453" height="43.200000762939453"/>
         <image name="nethcti_backspace.png" width="256" height="256"/>
+        <image name="nethcti_cancel.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_default.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="nethcti_user_add.png" width="40" height="40"/>
         <image name="nethcti_user_sip.png" width="40" height="40"/>
-        <image name="select_all_default.png" width="43.200000762939453" height="43.200000762939453"/>
         <image name="select_all_disabled.png" width="43.200000762939453" height="43.200000762939453"/>
         <image name="users.png" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">

@@ -35,13 +35,14 @@
 @property(nonatomic, strong) IBOutlet UIToggleButton *editButton;
 @property(nonatomic, strong) IBOutlet UIButton *backButton;
 @property(nonatomic, strong) IBOutlet UIButton *cancelButton;
-@property(weak, nonatomic) IBOutlet UIRoundedImageView *avatarImage;
+@property(weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UIToggleButton *deleteButton;
 @property(weak, nonatomic) IBOutlet UIScrollView *contentView;
 @property(weak, nonatomic) IBOutlet UILabel *emptyLabel;
 @property BOOL isAdding;
 @property (weak, nonatomic) IBOutlet UIView *waitView;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialLabel;
 
 - (IBAction)onBackClick:(id)event;
 - (IBAction)onCancelClick:(id)event;
