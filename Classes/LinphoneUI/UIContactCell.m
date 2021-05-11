@@ -85,6 +85,12 @@
            linphone_presence_model_get_basic_status(linphone_friend_get_presence_model(_contact.friend)) == LinphonePresenceBasicStatusOpen) ||
           [FastAddressBook contactHasValidSipDomain:_contact]);
 	}
+    
+    _nameLabel.textColor = [UIColor getColorByName:@"Grey"];
+    
+    NSString* initial = [acontact.displayName substringToIndex:1];
+    _nameInitialLabel.text = initial.uppercaseString;
+    _nameInitialLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
 #pragma mark -

@@ -404,8 +404,8 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
             Contact *contact = subAr[indexPath.row];
             
             // Cached avatar
-            UIImage *image = [FastAddressBook imageForContact:contact];
-            [cell.avatarImage setImage:image bordered:NO withRoundedRadius:YES];
+            // UIImage *image = [FastAddressBook imageForContact:contact];
+            // [cell.avatarImage setImage:image bordered:NO withRoundedRadius:YES];
             [cell setContact:contact];
             [super accessoryForCell:cell atPath:indexPath];
             cell.contentView.userInteractionEnabled = false;
