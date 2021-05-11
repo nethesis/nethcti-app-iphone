@@ -199,10 +199,10 @@
                             </constraints>
                         </view>
                         <view clipsSubviews="YES" alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad9-PV-eYg" userLabel="searchBar">
-                            <rect key="frame" x="0.0" y="66" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="66" width="375" height="60"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="StM-za-nD1">
-                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                    <rect key="frame" x="16" y="16" width="343" height="44"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tH-6O-aDu">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
@@ -256,20 +256,20 @@
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="StM-za-nD1" firstAttribute="top" secondItem="Ad9-PV-eYg" secondAttribute="top" id="3gS-oF-ugk"/>
+                                <constraint firstItem="StM-za-nD1" firstAttribute="top" secondItem="Ad9-PV-eYg" secondAttribute="top" constant="16" id="3gS-oF-ugk"/>
                                 <constraint firstAttribute="bottom" secondItem="StM-za-nD1" secondAttribute="bottom" id="BPx-xr-Hfl"/>
                                 <constraint firstAttribute="trailing" secondItem="StM-za-nD1" secondAttribute="trailing" constant="16" id="TRJ-dS-Bs7"/>
                                 <constraint firstItem="StM-za-nD1" firstAttribute="leading" secondItem="Ad9-PV-eYg" secondAttribute="leading" constant="16" id="jrs-em-iAt"/>
                             </constraints>
                         </view>
-                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2W-PV-1J5">
-                            <rect key="frame" x="0.0" y="110" width="375" height="90"/>
+                        <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2W-PV-1J5">
+                            <rect key="frame" x="0.0" y="126" width="375" height="0.0"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="90" id="7GP-T2-SCc"/>
+                                <constraint firstAttribute="height" id="7GP-T2-SCc"/>
                             </constraints>
                         </pickerView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zOo-FS-W6l" userLabel="tableView">
-                            <rect key="frame" x="0.0" y="200" width="375" height="475"/>
+                            <rect key="frame" x="0.0" y="142" width="375" height="533"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <color key="separatorColor" red="0.67030966281890869" green="0.71867996454238892" blue="0.75078284740447998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -292,7 +292,7 @@
                         <constraint firstAttribute="trailing" secondItem="W2W-PV-1J5" secondAttribute="trailing" id="BL0-N2-Jeb"/>
                         <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" id="EBj-a8-6kC"/>
                         <constraint firstItem="Ad9-PV-eYg" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="IA2-jY-cw2"/>
-                        <constraint firstItem="zOo-FS-W6l" firstAttribute="top" secondItem="W2W-PV-1J5" secondAttribute="bottom" id="JPg-mB-Vof"/>
+                        <constraint firstItem="zOo-FS-W6l" firstAttribute="top" secondItem="W2W-PV-1J5" secondAttribute="bottom" constant="16" id="JPg-mB-Vof"/>
                         <constraint firstAttribute="trailing" secondItem="zOo-FS-W6l" secondAttribute="trailing" id="KvY-bF-gWJ"/>
                         <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="MOX-nf-AQD"/>
                         <constraint firstItem="zOo-FS-W6l" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="TBb-4V-DOa"/>

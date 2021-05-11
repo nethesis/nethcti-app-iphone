@@ -105,4 +105,5 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 - (IBAction)searchEditingChanged:(id)sender;
 - (IBAction)onBackPressed:(id)sender;
 
+
 @end

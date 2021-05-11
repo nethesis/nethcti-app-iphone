@@ -427,10 +427,41 @@ static UICompositeViewDescription *compositeDescription = nil;
     if ([_searchField.text length] > 0) {
         [_searchField setText:[_searchField.text substringToIndex:[_searchField.text length] - 1]];
     }
+    
+    [self searchEditingChanged:(id)nil];
 }
 
 - (IBAction)searchEditingChanged:(id)sender {
+    
     // MARK: Search -> to be implemented, than remove old methods
+    NSString* searchText = _searchField.text;
+    
+    if (searchText.length > 0){
+        [self.backSpaceButton setTintColor:[UIColor getColorByName:@"Magenta"]];
+        [self.backSpaceButton setEnabled:TRUE];
+    } else {
+        [self.backSpaceButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        [self.backSpaceButton setEnabled:FALSE];
+    }
+    
+    [ContactSelection setNameOrEmailFilter:searchText];
+    
+    // WEDO: Perform the search api call after 0.5 seconds after finished input text.
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
+    return;
+    
+    // display searchtext in UPPERCASE
+    // searchBar.text = [searchText uppercaseString];
+    
+    if (searchText.length == 0) { // No filter, no search data.
+        [LinphoneManager.instance setContactsUpdated:TRUE];
+        [tableController loadData];
+    } else {
+        // Before loading searched data, we have to search them!
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+        [tableController loadSearchedData];
+    }
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {
