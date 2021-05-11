@@ -439,8 +439,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
     tempLabel.backgroundColor = [UIColor clearColor];
-    tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
-    tempLabel.text = text.uppercaseString;
+    tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
+    tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
     tempLabel.font = [UIFont systemFontOfSize:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -482,7 +482,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         return 44;
     }
     UIContactDetailsCell *cell = (UIContactDetailsCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.isAddress ? 88 : 44;
+    return cell.isAddress ? 44 : 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

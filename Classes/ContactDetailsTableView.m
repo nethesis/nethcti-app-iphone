@@ -336,8 +336,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
     tempLabel.backgroundColor = [UIColor clearColor];
-    tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
-    tempLabel.text = text.uppercaseString;
+    tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
+    tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
     tempLabel.font = [UIFont systemFontOfSize:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
