@@ -433,7 +433,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)searchEditingChanged:(id)sender {
     
-    // MARK: Search -> to be implemented, than remove old methods
     NSString* searchText = _searchField.text;
     
     if (searchText.length > 0){
@@ -468,6 +467,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     allButton.hidden = linphoneButton.hidden = addButton.hidden = self.tableController.isEditing;
 }
 
+/*
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = @"";
     [self searchBar:searchBar textDidChange:@""];
@@ -475,6 +475,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [tableController loadData];
     [searchBar resignFirstResponder];
 }
+*/
 
 - (void)dismissKeyboards {
     if ([self.searchField isFirstResponder]) {
@@ -503,6 +504,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
 }
 
+/*
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [ContactSelection setNameOrEmailFilter:searchText];
     
@@ -535,6 +537,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
 }
+*/
 
 #pragma mark - GestureRecognizerDelegate
 
