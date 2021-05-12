@@ -177,7 +177,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     // Subscribe to Phonebook Permission Rejection Notification.
     // TODO: We can send arguments to selector?
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -286,6 +285,8 @@ static UICompositeViewDescription *compositeDescription = nil;
         allButton.selected = TRUE;
         linphoneButton.selected = FALSE;
         [tableController loadData];
+        [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
     } else if (view == ContactsLinphone && !linphoneButton.selected) {
         /*
          * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
@@ -300,6 +301,8 @@ static UICompositeViewDescription *compositeDescription = nil;
         [ContactSelection enableEmailFilter:FALSE];
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
+        [self.allButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
         // [tableController loadData];
     }
     bool sipFilter = [ContactSelection getSipFilter];
