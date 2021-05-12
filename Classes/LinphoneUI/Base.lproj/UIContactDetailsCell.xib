@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,7 +33,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTn-Hc-bGM" userLabel="editTextField">
                             <rect key="frame" x="8" y="7" width="327" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                             <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -51,56 +52,90 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SR2-3m-6t5" userLabel="defaultView">
+                <view contentMode="scaleToFill" id="SR2-3m-6t5" userLabel="defaultView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="john.doe@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frB-ep-LWi" userLabel="addressLabel">
-                            <rect key="frame" x="26" y="0.0" width="323" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-29-AOK" userLabel="linphoneImage">
-                            <rect key="frame" x="329" y="18" width="17" height="17"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgb-5W-T0c">
-                            <rect key="frame" x="314" y="14" width="47" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="Invite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="Invite">
-                                <color key="titleColor" red="1" green="0.36738281249999999" blue="0.0" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="onSMSInviteClick:" destination="-1" eventType="touchUpInside" id="E8o-h2-mml"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-KZ-0pX" userLabel="optionsView">
-                            <rect key="frame" x="26" y="40" width="323" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcE-PQ-PCb">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbV-2Z-b4y" userLabel="callButton" customClass="UIIconButton">
-                                    <rect key="frame" x="139" y="0.0" width="44" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Call"/>
-                                    <state key="normal" image="call_start_body_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="john.doe@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frB-ep-LWi" userLabel="addressLabel">
+                                    <rect key="frame" x="48" y="0.0" width="279" height="88"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-KZ-0pX" userLabel="optionsView">
+                                    <rect key="frame" x="327" y="28" width="32" height="32"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbV-2Z-b4y" userLabel="callButton" customClass="UIIconButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                            <accessibility key="accessibilityConfiguration" label="Call"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ZbV-2Z-b4y" secondAttribute="height" multiplier="1:1" id="FBx-90-UgB"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <state key="normal" image="nethcti_green_phone.png" backgroundImage="nethcti_green_circle.png">
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="call_start_body_disabled.png"/>
+                                            <state key="highlighted" image="call_start_body_over.png"/>
+                                            <connections>
+                                                <action selector="onCallClick:" destination="-1" eventType="touchUpInside" id="nVk-zG-i8I"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ZbV-2Z-b4y" firstAttribute="top" secondItem="Ffn-KZ-0pX" secondAttribute="top" id="93w-mI-yIR"/>
+                                        <constraint firstAttribute="width" constant="32" id="9dd-zF-nKF"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZbV-2Z-b4y" secondAttribute="bottom" id="HhB-9o-1IO"/>
+                                        <constraint firstItem="ZbV-2Z-b4y" firstAttribute="leading" secondItem="Ffn-KZ-0pX" secondAttribute="leading" id="lv5-a5-T9b"/>
+                                        <constraint firstAttribute="width" secondItem="Ffn-KZ-0pX" secondAttribute="height" multiplier="1:1" id="ufs-Ux-YjP"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgb-5W-T0c">
+                                    <rect key="frame" x="322" y="4" width="37" height="30"/>
+                                    <accessibility key="accessibilityConfiguration" label="Invite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="Invite">
+                                        <color key="titleColor" red="1" green="0.36738281249999999" blue="0.0" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                     </state>
-                                    <state key="disabled" image="call_start_body_disabled.png"/>
-                                    <state key="highlighted" image="call_start_body_over.png"/>
                                     <connections>
-                                        <action selector="onCallClick:" destination="-1" eventType="touchUpInside" id="nVk-zG-i8I"/>
+                                        <action selector="onSMSInviteClick:" destination="-1" eventType="touchUpInside" id="E8o-h2-mml"/>
                                     </connections>
                                 </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-29-AOK" userLabel="linphoneImage">
+                                    <rect key="frame" x="343" y="64" width="16" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="ZaI-29-AOK" secondAttribute="height" multiplier="1:1" id="F5f-Lu-3jj"/>
+                                        <constraint firstAttribute="width" constant="16" id="ZmX-C8-hse"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="frB-ep-LWi" firstAttribute="leading" secondItem="YcE-PQ-PCb" secondAttribute="leading" constant="48" id="375-K4-jiP"/>
+                                <constraint firstItem="Ffn-KZ-0pX" firstAttribute="centerY" secondItem="YcE-PQ-PCb" secondAttribute="centerY" id="IJg-Iq-yVO"/>
+                                <constraint firstItem="Ffn-KZ-0pX" firstAttribute="leading" secondItem="frB-ep-LWi" secondAttribute="trailing" id="M7L-lR-X1E"/>
+                                <constraint firstAttribute="trailing" secondItem="Ffn-KZ-0pX" secondAttribute="trailing" constant="16" id="ODe-DG-lhD"/>
+                                <constraint firstItem="lgb-5W-T0c" firstAttribute="top" secondItem="YcE-PQ-PCb" secondAttribute="top" constant="4" id="OeU-Ct-kur"/>
+                                <constraint firstAttribute="bottom" secondItem="ZaI-29-AOK" secondAttribute="bottom" constant="8" id="Yhk-Tf-D07"/>
+                                <constraint firstItem="frB-ep-LWi" firstAttribute="top" secondItem="YcE-PQ-PCb" secondAttribute="top" id="d54-ix-3p1"/>
+                                <constraint firstAttribute="trailing" secondItem="ZaI-29-AOK" secondAttribute="trailing" constant="16" id="f1K-ry-ISW"/>
+                                <constraint firstAttribute="bottom" secondItem="frB-ep-LWi" secondAttribute="bottom" id="hX1-PD-2Ja"/>
+                                <constraint firstAttribute="trailing" secondItem="lgb-5W-T0c" secondAttribute="trailing" constant="16" id="ySW-2l-lnA"/>
+                            </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="YcE-PQ-PCb" firstAttribute="top" secondItem="SR2-3m-6t5" secondAttribute="top" id="2Lu-4K-wQc"/>
+                        <constraint firstAttribute="bottom" secondItem="YcE-PQ-PCb" secondAttribute="bottom" id="53a-SK-1TV"/>
+                        <constraint firstAttribute="trailing" secondItem="YcE-PQ-PCb" secondAttribute="trailing" id="caJ-Vu-5Hl"/>
+                        <constraint firstItem="YcE-PQ-PCb" firstAttribute="leading" secondItem="SR2-3m-6t5" secondAttribute="leading" id="qc9-Ip-0Bq"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -110,11 +145,18 @@
         </view>
     </objects>
     <resources>
-        <image name="call_start_body_default.png" width="82.400001525878906" height="82.400001525878906"/>
         <image name="call_start_body_disabled.png" width="82.400001525878906" height="82.400001525878906"/>
         <image name="call_start_body_over.png" width="82.400001525878906" height="82.400001525878906"/>
         <image name="delete_field_default.png" width="44" height="44"/>
         <image name="delete_field_over.png" width="44" height="44"/>
         <image name="linphone_user.png" width="41.599998474121094" height="42.400001525878906"/>
+        <image name="nethcti_green_circle.png" width="256" height="256"/>
+        <image name="nethcti_green_phone.png" width="256" height="256"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

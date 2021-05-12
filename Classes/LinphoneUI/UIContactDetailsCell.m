@@ -36,6 +36,7 @@
 		UIView *sub = ((UIView *)[arrayOfViews objectAtIndex:0]);
 		[self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
 		[self addSubview:sub];
+        [self.inviteButton setTitleColor:[UIColor getColorByName:@"MainColor"] forState:UIControlStateNormal];
 	}
 	return self;
 }

@@ -65,7 +65,7 @@
 	}
 
 	LOGI(@"Reset data to contact %p", _contact);
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[_tableController setContact:_contact];
 	_emptyLabel.hidden = YES;
 	_avatarImage.hidden = !_emptyLabel.hidden;
@@ -96,6 +96,9 @@
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
     
+    NSString *initials = [PhoneMainView.instance.currentName substringToIndex:1].uppercaseString;
+    _nameInitialLabel.text = initials;
+    
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
     while (sips) {
@@ -124,10 +127,13 @@
 	_deleteButton.hidden = !_emptyLabel.hidden;
 	_editButton.hidden = !_emptyLabel.hidden;
 
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 	[_tableController setContact:_contact];
 
+    NSString *initials = [_contact.displayName substringToIndex:1].uppercaseString;
+    _nameInitialLabel.text = initials;
+    
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
 	}
@@ -392,7 +398,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-
+    
+    NSString *initials = [_contact.displayName substringToIndex:1].uppercaseString;
+    _nameInitialLabel.text = initials;
+    
     [self recomputeTableViewSize:editing];
 
 	if (animated) {
@@ -604,7 +613,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 	[_contact setAvatar:image];
 
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 }
 
 - (void)imagePickerDelegateVideo:(NSURL*)url info:(NSDictionary *)info {
