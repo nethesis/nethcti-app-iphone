@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,369 +45,435 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="qaB-qV-B0p" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="171">
-                    <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
-                            <rect key="frame" x="64" y="64" width="300" height="64"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoA-Q1-aqh">
+                            <rect key="frame" x="32" y="0.0" width="256" height="568"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="64"/>
+                                <imageView hidden="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="AH0-S5-0Ku" userLabel="logoImage">
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="568"/>
+                                </imageView>
+                                <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="48"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKx-ZY-gKx">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
+                                            <rect key="frame" x="0.0" y="0.0" width="256" height="48"/>
                                             <subviews>
-                                                <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
-                                                    <rect key="frame" x="0.0" y="11.333333333333329" width="250" height="39.333333333333336"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <accessibility key="accessibilityConfiguration" label="Enter an address"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
-                                                    <connections>
-                                                        <action selector="onAddressChange:" destination="-1" eventType="editingChanged" id="FdS-Kl-3dS"/>
-                                                        <outlet property="delegate" destination="-1" id="190"/>
-                                                    </connections>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
-                                                    <rect key="frame" x="250" y="6" width="50" height="50"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKx-ZY-gKx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="46"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
+                                                            <rect key="frame" x="0.0" y="3.5" width="224" height="39"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Enter an address"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
+                                                            <connections>
+                                                                <action selector="onAddressChange:" destination="-1" eventType="editingChanged" id="FdS-Kl-3dS"/>
+                                                                <outlet property="delegate" destination="-1" id="190"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
+                                                            <rect key="frame" x="224" y="7" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="32" id="IVL-Ws-Mzh"/>
+                                                                <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="Rlx-mY-Gd2"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                            <state key="normal" image="nethcti_backspace.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="disabled" image="nethcti_backspace.png"/>
+                                                            <state key="highlighted" image="nethcti_backspace.png"/>
+                                                            <connections>
+                                                                <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="IVL-Ws-Mzh"/>
-                                                        <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="Rlx-mY-Gd2"/>
+                                                        <constraint firstItem="4" firstAttribute="centerY" secondItem="OKx-ZY-gKx" secondAttribute="centerY" id="1o9-Bs-evT"/>
+                                                        <constraint firstItem="8dc-hj-rvt" firstAttribute="centerY" secondItem="OKx-ZY-gKx" secondAttribute="centerY" id="JYQ-wR-DkP"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8dc-hj-rvt" secondAttribute="trailing" id="POw-sX-DMm"/>
+                                                        <constraint firstItem="4" firstAttribute="leading" secondItem="OKx-ZY-gKx" secondAttribute="leading" id="bPF-sa-CAJ"/>
+                                                        <constraint firstItem="8dc-hj-rvt" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="ej0-XZ-r8h"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                                    <state key="normal" image="nethcti_backspace.png">
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc" userLabel="baseline">
+                                                    <rect key="frame" x="0.0" y="46" width="256" height="2"/>
+                                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="n9u-AT-Zta"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OKx-ZY-gKx" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="leading" id="EG4-xc-8Ud"/>
+                                                <constraint firstAttribute="trailing" secondItem="OKx-ZY-gKx" secondAttribute="trailing" id="KJw-xK-7oQ"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="1xQ-JM-zZ4"/>
+                                        <constraint firstAttribute="bottom" secondItem="VZH-aS-ipm" secondAttribute="bottom" id="nCW-lQ-8LN"/>
+                                        <constraint firstItem="VZH-aS-ipm" firstAttribute="top" secondItem="178" secondAttribute="top" id="oT7-Kr-Sqe"/>
+                                        <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="tXB-gW-ifH"/>
+                                        <constraint firstAttribute="trailing" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="vpu-oZ-yhc"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
+                                    <rect key="frame" x="0.0" y="48" width="256" height="352.5"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qwq-es-rgg">
+                                            <rect key="frame" x="0.0" y="20" width="256" height="332.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JJS-sQ-bfk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="68"/>
+                                                    <subviews>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="1" customClass="UIDigitButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="1"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="38" secondAttribute="height" multiplier="1:1" id="2mH-2Y-A4G"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="240"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37" userLabel="2" customClass="UIDigitButton">
+                                                            <rect key="frame" x="94" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="2"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="37" secondAttribute="height" multiplier="1:1" id="omc-aM-gVO"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="241"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29" userLabel="3" customClass="UIDigitButton">
+                                                            <rect key="frame" x="188" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="29" secondAttribute="height" multiplier="1:1" id="rb5-I6-Ch8"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="242"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JLM-Co-Ku0">
+                                                    <rect key="frame" x="0.0" y="88" width="256" height="68.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="68.5"/>
+                                                            <accessibility key="accessibilityConfiguration" label="4"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="30" secondAttribute="height" multiplier="1:1" id="knl-1z-agB"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="243"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="5" customClass="UIDigitButton">
+                                                            <rect key="frame" x="94" y="0.0" width="68" height="68.5"/>
+                                                            <accessibility key="accessibilityConfiguration" label="5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="31" secondAttribute="height" multiplier="1:1" id="yWb-gv-INO"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="244"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33" userLabel="6" customClass="UIDigitButton">
+                                                            <rect key="frame" x="188" y="0.0" width="68" height="68.5"/>
+                                                            <accessibility key="accessibilityConfiguration" label="6"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="33" secondAttribute="height" multiplier="1:1" id="HgX-0g-F8D"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="245"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-KG-iqF">
+                                                    <rect key="frame" x="0.0" y="176.5" width="256" height="68"/>
+                                                    <subviews>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="7"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="34" secondAttribute="height" multiplier="1:1" id="bvE-Jc-Hst"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="246"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35" userLabel="8" customClass="UIDigitButton">
+                                                            <rect key="frame" x="94" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="8"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="35" secondAttribute="height" multiplier="1:1" id="G5x-l4-uEm"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="247"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36" userLabel="9" customClass="UIDigitButton">
+                                                            <rect key="frame" x="188" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="9"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="36" secondAttribute="height" multiplier="1:1" id="a6f-1W-0eI"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="248"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-4K-HJQ">
+                                                    <rect key="frame" x="0.0" y="264.5" width="256" height="68"/>
+                                                    <subviews>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Star"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="39" secondAttribute="height" multiplier="1:1" id="fIk-5M-Snm"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="249"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40" userLabel="0" customClass="UIDigitButton">
+                                                            <rect key="frame" x="94" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="0"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="40" secondAttribute="height" multiplier="1:1" id="9iq-kr-ahi"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="250"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41" userLabel="#" customClass="UIDigitButton">
+                                                            <rect key="frame" x="188" y="0.0" width="68" height="68"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Hash"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="41" secondAttribute="height" multiplier="1:1" id="dck-lF-JEy"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="251"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JJS-sQ-bfk" firstAttribute="leading" secondItem="Qwq-es-rgg" secondAttribute="leading" id="LFh-LZ-3PK"/>
+                                                <constraint firstAttribute="trailing" secondItem="JJS-sQ-bfk" secondAttribute="trailing" id="W0W-Sd-xGi"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="Qwq-es-rgg" firstAttribute="top" secondItem="180" secondAttribute="top" constant="20" symbolic="YES" id="Dse-20-eRN"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qwq-es-rgg" secondAttribute="bottom" id="gjp-fg-sdW"/>
+                                        <constraint firstItem="Qwq-es-rgg" firstAttribute="leading" secondItem="180" secondAttribute="leading" id="nTm-7h-5rp"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qwq-es-rgg" secondAttribute="trailing" id="pZj-SJ-TcC"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJj-HP-88E">
+                                    <rect key="frame" x="0.0" y="400.5" width="256" height="167.5"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eJ-4B-GHX" userLabel="bottomView">
+                                            <rect key="frame" x="0.0" y="49.5" width="256" height="68.5"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqB-AH-uDL" userLabel="buttonView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="68.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="183" userLabel="backButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="68.5"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Back"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                            <state key="normal" image="nethcti_back_to_call.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="disabled" image="call_alt_back_disabled.png"/>
+                                                            <connections>
+                                                                <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="233"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="222" userLabel="addContactButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="68.5"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Add to contact"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                            <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="disabled" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png"/>
+                                                            <connections>
+                                                                <action selector="onAddContactClick:" destination="-1" eventType="touchUpInside" id="230"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="183" secondAttribute="trailing" id="1tu-na-BJU"/>
+                                                        <constraint firstItem="222" firstAttribute="leading" secondItem="DqB-AH-uDL" secondAttribute="leading" id="8cS-mc-9T7"/>
+                                                        <constraint firstAttribute="bottom" secondItem="222" secondAttribute="bottom" id="8sj-oQ-Ond"/>
+                                                        <constraint firstItem="222" firstAttribute="top" secondItem="DqB-AH-uDL" secondAttribute="top" id="EtO-jI-A7I"/>
+                                                        <constraint firstAttribute="trailing" secondItem="222" secondAttribute="trailing" id="HJh-dR-9S0"/>
+                                                        <constraint firstAttribute="width" secondItem="DqB-AH-uDL" secondAttribute="height" multiplier="1:1" id="TLj-KU-Cll"/>
+                                                        <constraint firstAttribute="bottom" secondItem="183" secondAttribute="bottom" id="UM8-IN-t4G"/>
+                                                        <constraint firstItem="183" firstAttribute="leading" secondItem="DqB-AH-uDL" secondAttribute="leading" id="Z55-aa-IhX"/>
+                                                        <constraint firstItem="183" firstAttribute="top" secondItem="DqB-AH-uDL" secondAttribute="top" id="y5E-tY-6vu"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="224" userLabel="callButton" customClass="UICallButton">
+                                                    <rect key="frame" x="188" y="0.0" width="68" height="68.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Call"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="224" secondAttribute="height" multiplier="1:1" id="snI-uo-MJT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                    <state key="normal" image="nethcti_green_phone.png" backgroundImage="nethcti_green_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="disabled" image="nethcti_backspace.png"/>
-                                                    <state key="highlighted" image="nethcti_backspace.png"/>
+                                                    <state key="disabled" image="nethcti_grey_phone.png" backgroundImage="nethcti_grey_circle.png"/>
                                                     <connections>
-                                                        <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
+                                                        <outlet property="addressField" destination="4" id="235"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="4" firstAttribute="centerY" secondItem="OKx-ZY-gKx" secondAttribute="centerY" id="1o9-Bs-evT"/>
-                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="centerY" secondItem="OKx-ZY-gKx" secondAttribute="centerY" id="JYQ-wR-DkP"/>
-                                                <constraint firstAttribute="trailing" secondItem="8dc-hj-rvt" secondAttribute="trailing" id="POw-sX-DMm"/>
-                                                <constraint firstItem="4" firstAttribute="leading" secondItem="OKx-ZY-gKx" secondAttribute="leading" id="bPF-sa-CAJ"/>
-                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="ej0-XZ-r8h"/>
+                                                <constraint firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="Cen-VO-Kmi"/>
+                                                <constraint firstItem="DqB-AH-uDL" firstAttribute="top" secondItem="0eJ-4B-GHX" secondAttribute="top" id="FAe-4K-IJu"/>
+                                                <constraint firstAttribute="bottom" secondItem="DqB-AH-uDL" secondAttribute="bottom" id="FBy-Ke-Ypa"/>
+                                                <constraint firstItem="DqB-AH-uDL" firstAttribute="leading" secondItem="0eJ-4B-GHX" secondAttribute="leading" id="Lub-Wi-gjN"/>
+                                                <constraint firstItem="224" firstAttribute="top" secondItem="0eJ-4B-GHX" secondAttribute="top" id="fy2-87-wq5"/>
+                                                <constraint firstItem="DqB-AH-uDL" firstAttribute="leading" secondItem="0eJ-4B-GHX" secondAttribute="leading" id="iQs-5h-gKa"/>
+                                                <constraint firstAttribute="bottom" secondItem="224" secondAttribute="bottom" id="ofi-A4-4sA"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc" userLabel="baseline">
-                                            <rect key="frame" x="0.0" y="62" width="300" height="2"/>
-                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="2" id="n9u-AT-Zta"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="OKx-ZY-gKx" firstAttribute="leading" secondItem="VZH-aS-ipm" secondAttribute="leading" id="EG4-xc-8Ud"/>
-                                        <constraint firstAttribute="trailing" secondItem="OKx-ZY-gKx" secondAttribute="trailing" id="KJw-xK-7oQ"/>
-                                    </constraints>
-                                </stackView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="64" id="1xQ-JM-zZ4"/>
-                                <constraint firstAttribute="bottom" secondItem="VZH-aS-ipm" secondAttribute="bottom" id="nCW-lQ-8LN"/>
-                                <constraint firstItem="VZH-aS-ipm" firstAttribute="top" secondItem="178" secondAttribute="top" id="oT7-Kr-Sqe"/>
-                                <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="tXB-gW-ifH"/>
-                                <constraint firstAttribute="trailing" secondItem="VZH-aS-ipm" secondAttribute="trailing" id="vpu-oZ-yhc"/>
-                            </constraints>
-                        </view>
-                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="AH0-S5-0Ku" userLabel="logoImage">
-                            <rect key="frame" x="80" y="303" width="268" height="320"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
-                            <rect key="frame" x="0.0" y="128" width="428" height="708.66666666666663"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Qwq-es-rgg">
-                                    <rect key="frame" x="64" y="48" width="300" height="338.33333333333331"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="JJS-sQ-bfk">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="73.333333333333329"/>
-                                            <subviews>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="1" customClass="UIDigitButton">
-                                                    <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="1"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="38" secondAttribute="height" multiplier="1:1" id="2mH-2Y-A4G"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="240"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37" userLabel="2" customClass="UIDigitButton">
-                                                    <rect key="frame" x="113.33333333333334" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="2"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="241"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29" userLabel="3" customClass="UIDigitButton">
-                                                    <rect key="frame" x="226.66666666666671" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="3"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="242"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="JLM-Co-Ku0">
-                                            <rect key="frame" x="0.0" y="88.333333333333314" width="300" height="73.333333333333314"/>
-                                            <subviews>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
-                                                    <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="4"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="30" secondAttribute="height" multiplier="1:1" id="knl-1z-agB"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="243"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="5" customClass="UIDigitButton">
-                                                    <rect key="frame" x="113.33333333333334" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="5"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="244"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33" userLabel="6" customClass="UIDigitButton">
-                                                    <rect key="frame" x="226.66666666666671" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="6"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="245"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-KG-iqF">
-                                            <rect key="frame" x="0.0" y="176.66666666666669" width="300" height="73.333333333333314"/>
-                                            <subviews>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
-                                                    <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="7"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="34" secondAttribute="height" multiplier="1:1" id="bvE-Jc-Hst"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="246"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35" userLabel="8" customClass="UIDigitButton">
-                                                    <rect key="frame" x="113.33333333333334" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="8"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="247"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36" userLabel="9" customClass="UIDigitButton">
-                                                    <rect key="frame" x="226.66666666666671" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="9"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="248"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-4K-HJQ">
-                                            <rect key="frame" x="0.0" y="265" width="300" height="73.333333333333314"/>
-                                            <subviews>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
-                                                    <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="Star"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="39" secondAttribute="height" multiplier="1:1" id="fIk-5M-Snm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="249"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40" userLabel="0" customClass="UIDigitButton">
-                                                    <rect key="frame" x="113.33333333333334" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="0"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="250"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41" userLabel="#" customClass="UIDigitButton">
-                                                    <rect key="frame" x="226.66666666666671" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                                    <accessibility key="accessibilityConfiguration" label="Hash"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
-                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_grey_circle.png">
-                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <outlet property="addressField" destination="4" id="251"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="JJS-sQ-bfk" firstAttribute="leading" secondItem="Qwq-es-rgg" secondAttribute="leading" id="LFh-LZ-3PK"/>
-                                        <constraint firstAttribute="trailing" secondItem="JJS-sQ-bfk" secondAttribute="trailing" id="W0W-Sd-xGi"/>
-                                    </constraints>
-                                </stackView>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="Qwq-es-rgg" firstAttribute="top" secondItem="180" secondAttribute="top" constant="48" id="Dse-20-eRN"/>
-                                <constraint firstItem="Qwq-es-rgg" firstAttribute="leading" secondItem="180" secondAttribute="leading" constant="64" id="nTm-7h-5rp"/>
-                                <constraint firstAttribute="trailing" secondItem="Qwq-es-rgg" secondAttribute="trailing" constant="64" id="pZj-SJ-TcC"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eJ-4B-GHX" userLabel="bottomView">
-                            <rect key="frame" x="64" y="836.66666666666663" width="300" height="73.333333333333371"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqB-AH-uDL" userLabel="buttonView">
-                                    <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="183" userLabel="backButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                            <accessibility key="accessibilityConfiguration" label="Back"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="nethcti_back_to_call.png" backgroundImage="nethcti_grey_circle.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="call_alt_back_disabled.png"/>
-                                            <connections>
-                                                <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="233"/>
-                                            </connections>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="222" userLabel="addContactButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="73.333333333333329"/>
-                                            <accessibility key="accessibilityConfiguration" label="Add to contact"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png"/>
-                                            <connections>
-                                                <action selector="onAddContactClick:" destination="-1" eventType="touchUpInside" id="230"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="183" secondAttribute="trailing" id="1tu-na-BJU"/>
-                                        <constraint firstItem="222" firstAttribute="leading" secondItem="DqB-AH-uDL" secondAttribute="leading" id="8cS-mc-9T7"/>
-                                        <constraint firstAttribute="bottom" secondItem="222" secondAttribute="bottom" id="8sj-oQ-Ond"/>
-                                        <constraint firstItem="222" firstAttribute="top" secondItem="DqB-AH-uDL" secondAttribute="top" id="EtO-jI-A7I"/>
-                                        <constraint firstAttribute="trailing" secondItem="222" secondAttribute="trailing" id="HJh-dR-9S0"/>
-                                        <constraint firstAttribute="width" secondItem="DqB-AH-uDL" secondAttribute="height" multiplier="1:1" id="TLj-KU-Cll"/>
-                                        <constraint firstAttribute="bottom" secondItem="183" secondAttribute="bottom" id="UM8-IN-t4G"/>
-                                        <constraint firstItem="183" firstAttribute="leading" secondItem="DqB-AH-uDL" secondAttribute="leading" id="Z55-aa-IhX"/>
-                                        <constraint firstItem="183" firstAttribute="top" secondItem="DqB-AH-uDL" secondAttribute="top" id="y5E-tY-6vu"/>
+                                        <constraint firstItem="0eJ-4B-GHX" firstAttribute="centerX" secondItem="UJj-HP-88E" secondAttribute="centerX" id="FXv-vD-uUi"/>
+                                        <constraint firstItem="0eJ-4B-GHX" firstAttribute="leading" secondItem="UJj-HP-88E" secondAttribute="leading" id="b8u-iC-be6"/>
+                                        <constraint firstAttribute="trailing" secondItem="0eJ-4B-GHX" secondAttribute="trailing" id="ibi-49-tZ8"/>
+                                        <constraint firstItem="0eJ-4B-GHX" firstAttribute="centerY" secondItem="UJj-HP-88E" secondAttribute="centerY" id="nhE-0t-rUS"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="224" userLabel="callButton" customClass="UICallButton">
-                                    <rect key="frame" x="226.66666666666671" y="0.0" width="73.333333333333343" height="73.333333333333329"/>
-                                    <accessibility key="accessibilityConfiguration" label="Call"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="224" secondAttribute="height" multiplier="1:1" id="snI-uo-MJT"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                    <state key="normal" image="nethcti_green_phone.png" backgroundImage="nethcti_green_circle.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="nethcti_grey_phone.png" backgroundImage="nethcti_grey_circle.png"/>
-                                    <connections>
-                                        <outlet property="addressField" destination="4" id="235"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="Cen-VO-Kmi"/>
-                                <constraint firstItem="DqB-AH-uDL" firstAttribute="top" secondItem="0eJ-4B-GHX" secondAttribute="top" id="FAe-4K-IJu"/>
-                                <constraint firstAttribute="bottom" secondItem="DqB-AH-uDL" secondAttribute="bottom" id="FBy-Ke-Ypa"/>
-                                <constraint firstItem="DqB-AH-uDL" firstAttribute="leading" secondItem="0eJ-4B-GHX" secondAttribute="leading" id="Lub-Wi-gjN"/>
-                                <constraint firstItem="224" firstAttribute="top" secondItem="0eJ-4B-GHX" secondAttribute="top" id="fy2-87-wq5"/>
-                                <constraint firstItem="DqB-AH-uDL" firstAttribute="leading" secondItem="0eJ-4B-GHX" secondAttribute="leading" id="iQs-5h-gKa"/>
-                                <constraint firstAttribute="bottom" secondItem="224" secondAttribute="bottom" id="ofi-A4-4sA"/>
+                                <constraint firstAttribute="bottom" secondItem="AH0-S5-0Ku" secondAttribute="bottom" id="9aS-BQ-HfN"/>
+                                <constraint firstItem="AH0-S5-0Ku" firstAttribute="leading" secondItem="zoA-Q1-aqh" secondAttribute="leading" id="Dzf-6G-jdH"/>
+                                <constraint firstItem="UJj-HP-88E" firstAttribute="leading" secondItem="zoA-Q1-aqh" secondAttribute="leading" id="IHg-7D-v1Z"/>
+                                <constraint firstAttribute="trailing" secondItem="AH0-S5-0Ku" secondAttribute="trailing" id="IZK-Hu-UKd"/>
+                                <constraint firstAttribute="trailing" secondItem="UJj-HP-88E" secondAttribute="trailing" id="JcO-9p-SFf"/>
+                                <constraint firstItem="29" firstAttribute="height" secondItem="zoA-Q1-aqh" secondAttribute="height" multiplier="0.12" id="NNK-l0-6xc"/>
+                                <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" id="Pap-3G-5ov"/>
+                                <constraint firstItem="AH0-S5-0Ku" firstAttribute="top" secondItem="zoA-Q1-aqh" secondAttribute="top" id="R6Q-lU-ECB"/>
+                                <constraint firstItem="0eJ-4B-GHX" firstAttribute="height" secondItem="39" secondAttribute="height" id="TVh-WL-zO7"/>
+                                <constraint firstAttribute="bottom" secondItem="UJj-HP-88E" secondAttribute="bottom" id="Tj5-n2-rM9"/>
+                                <constraint firstItem="178" firstAttribute="leading" secondItem="zoA-Q1-aqh" secondAttribute="leading" id="Wsp-bE-Wad"/>
+                                <constraint firstItem="180" firstAttribute="top" secondItem="178" secondAttribute="bottom" id="dub-wL-mB2"/>
+                                <constraint firstItem="UJj-HP-88E" firstAttribute="top" secondItem="180" secondAttribute="bottom" id="fEC-VJ-Ido"/>
+                                <constraint firstItem="180" firstAttribute="leading" secondItem="zoA-Q1-aqh" secondAttribute="leading" id="fWo-ho-mqM"/>
+                                <constraint firstItem="34" firstAttribute="height" secondItem="zoA-Q1-aqh" secondAttribute="height" multiplier="0.12" id="hIO-B4-nXC"/>
+                                <constraint firstItem="AH0-S5-0Ku" firstAttribute="centerX" secondItem="zoA-Q1-aqh" secondAttribute="centerX" id="j8n-N6-Mzq"/>
+                                <constraint firstAttribute="trailing" secondItem="180" secondAttribute="trailing" id="mXg-s4-f9C"/>
+                                <constraint firstItem="178" firstAttribute="top" secondItem="zoA-Q1-aqh" secondAttribute="top" id="npE-as-pSt"/>
+                                <constraint firstItem="AH0-S5-0Ku" firstAttribute="centerY" secondItem="zoA-Q1-aqh" secondAttribute="centerY" id="twt-qY-bj8"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="180" firstAttribute="top" secondItem="178" secondAttribute="bottom" id="08q-ks-Rwm"/>
-                        <constraint firstItem="0eJ-4B-GHX" firstAttribute="top" secondItem="180" secondAttribute="bottom" id="69z-ry-wVG"/>
-                        <constraint firstItem="178" firstAttribute="top" secondItem="171" secondAttribute="top" constant="64" id="FQj-iG-WHE"/>
-                        <constraint firstAttribute="trailing" secondItem="180" secondAttribute="trailing" id="NNS-ll-T4B"/>
-                        <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" constant="64" id="Qip-1c-aKe"/>
-                        <constraint firstItem="0eJ-4B-GHX" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="64" id="d9O-3m-nEg"/>
-                        <constraint firstItem="178" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="64" id="eRp-kq-vrS"/>
-                        <constraint firstItem="180" firstAttribute="leading" secondItem="171" secondAttribute="leading" id="jOH-f3-bhI"/>
-                        <constraint firstItem="0eJ-4B-GHX" firstAttribute="height" secondItem="39" secondAttribute="height" id="phk-qn-D38"/>
-                        <constraint firstAttribute="bottom" secondItem="0eJ-4B-GHX" secondAttribute="bottom" constant="16" id="rYb-Gk-dGe"/>
-                        <constraint firstAttribute="trailing" secondItem="0eJ-4B-GHX" secondAttribute="trailing" constant="64" id="wR7-bT-JEw"/>
+                        <constraint firstItem="36" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="1IW-p9-Eko"/>
+                        <constraint firstItem="38" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="4Qf-Ze-N7k"/>
+                        <constraint firstItem="40" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="5EA-2M-jVh"/>
+                        <constraint firstItem="37" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="CDJ-CF-p9W"/>
+                        <constraint firstItem="zoA-Q1-aqh" firstAttribute="height" secondItem="171" secondAttribute="height" id="FZu-ae-XEU"/>
+                        <constraint firstItem="30" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="HEU-ex-cSP"/>
+                        <constraint firstItem="zoA-Q1-aqh" firstAttribute="width" secondItem="171" secondAttribute="width" multiplier="0.8" id="HtY-cs-Tw1"/>
+                        <constraint firstItem="35" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="ZKh-wc-UxO"/>
+                        <constraint firstItem="zoA-Q1-aqh" firstAttribute="centerY" secondItem="171" secondAttribute="centerY" id="biY-13-Nha"/>
+                        <constraint firstItem="41" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="gmF-yN-abK"/>
+                        <constraint firstItem="39" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="pUG-jX-EbU"/>
+                        <constraint firstItem="31" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="vKT-o3-sUW"/>
+                        <constraint firstItem="zoA-Q1-aqh" firstAttribute="centerX" secondItem="171" secondAttribute="centerX" id="wrY-Du-aDv"/>
+                        <constraint firstItem="33" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="z7a-JZ-75p"/>
                     </constraints>
                 </view>
             </subviews>
@@ -417,7 +484,7 @@
                 <constraint firstItem="171" firstAttribute="leading" secondItem="qaB-qV-B0p" secondAttribute="leading" id="Bqg-5f-a0A"/>
                 <constraint firstAttribute="bottom" secondItem="171" secondAttribute="bottom" id="ehp-bN-E5g"/>
             </constraints>
-            <point key="canvasLocation" x="-99.53271028037382" y="149.02807775377971"/>
+            <point key="canvasLocation" x="-101.59999999999999" y="148.87556221889056"/>
         </view>
     </objects>
     <resources>
@@ -441,7 +508,7 @@
         <image name="nethcti_numpad_9.png" width="256" height="256"/>
         <image name="nethcti_numpad_asterisk.png" width="256" height="256"/>
         <image name="nethcti_numpad_hashtag.png" width="256" height="256"/>
-        <image name="nethcti_user_add.png" width="256" height="256"/>
+        <image name="nethcti_user_add.png" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

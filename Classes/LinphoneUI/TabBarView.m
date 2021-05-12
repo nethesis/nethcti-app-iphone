@@ -85,8 +85,8 @@
     [self.contactsButton setImage:contactsImage forState:UIControlStateNormal];
 
     [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
 }
 
 - (void)update:(BOOL)appear {
@@ -123,7 +123,7 @@
         [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
     } else {
         _historyButton.selected = false;
-        [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+        [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
     }
     
     if ([view equal:ContactsListView.compositeViewDescription] ||
@@ -133,7 +133,7 @@
         [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
     } else {
         _contactsButton.selected = false;
-        [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+        [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
 
     }
 
@@ -142,7 +142,7 @@
         [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
     } else {
         _dialerButton.selected = false;
-        [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+        [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
     }
     
     _chatButton.selected = [view equal:ChatsListView.compositeViewDescription] ||
@@ -193,8 +193,8 @@
 	[PhoneMainView.instance updateApplicationBadgeNumber];
 	[PhoneMainView.instance changeCurrentView:HistoryListView.compositeViewDescription];
     [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
 }
 
 - (IBAction)onContactsClick:(id)event {
@@ -202,16 +202,16 @@
 	[ContactSelection enableEmailFilter:FALSE];
 	[ContactSelection setNameOrEmailFilter:nil];
 	[PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
     [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
 }
 
 - (IBAction)onDialerClick:(id)event {
 	[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
     [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"LightGrey"]];
+    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
 }
 
 - (IBAction)onSettingsClick:(id)event {
