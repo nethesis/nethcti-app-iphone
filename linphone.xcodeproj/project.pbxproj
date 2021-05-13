@@ -83,6 +83,12 @@
 		398DE717264D209B008B65A9 /* nethcti_blue_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE716264D209B008B65A9 /* nethcti_blue_circle.png */; };
 		398DE71A264D21AA008B65A9 /* nethcti_remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE718264D21A7008B65A9 /* nethcti_remove.png */; };
 		398DE71B264D21AA008B65A9 /* nethcti_remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE719264D21AA008B65A9 /* nethcti_remove@2x.png */; };
+		398DE71E264D2B51008B65A9 /* nethcti_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE71C264D2B4E008B65A9 /* nethcti_add.png */; };
+		398DE71F264D2B51008B65A9 /* nethcti_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE71D264D2B51008B65A9 /* nethcti_add@2x.png */; };
+		398DE722264D5123008B65A9 /* nethcti_add_field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE720264D5121008B65A9 /* nethcti_add_field@2x.png */; };
+		398DE723264D5123008B65A9 /* nethcti_add_field.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE721264D5123008B65A9 /* nethcti_add_field.png */; };
+		398DE726264D5647008B65A9 /* nethcti_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE724264D5644008B65A9 /* nethcti_edit.png */; };
+		398DE727264D5647008B65A9 /* nethcti_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE725264D5647008B65A9 /* nethcti_edit@2x.png */; };
 		39A12496263AB33600CF1DB9 /* dashboard_dialer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A12494263AB33500CF1DB9 /* dashboard_dialer@2x.png */; };
 		39A12497263AB33600CF1DB9 /* dashboard_dialer.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A12495263AB33600CF1DB9 /* dashboard_dialer.png */; };
 		39A1249A263AB36600CF1DB9 /* dashboard_history.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A12498263AB36500CF1DB9 /* dashboard_history.png */; };
@@ -1054,6 +1060,12 @@
 		398DE716264D209B008B65A9 /* nethcti_blue_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_blue_circle.png; sourceTree = "<group>"; };
 		398DE718264D21A7008B65A9 /* nethcti_remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_remove.png; sourceTree = "<group>"; };
 		398DE719264D21AA008B65A9 /* nethcti_remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_remove@2x.png"; sourceTree = "<group>"; };
+		398DE71C264D2B4E008B65A9 /* nethcti_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add.png; sourceTree = "<group>"; };
+		398DE71D264D2B51008B65A9 /* nethcti_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add@2x.png"; sourceTree = "<group>"; };
+		398DE720264D5121008B65A9 /* nethcti_add_field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add_field@2x.png"; sourceTree = "<group>"; };
+		398DE721264D5123008B65A9 /* nethcti_add_field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_field.png; sourceTree = "<group>"; };
+		398DE724264D5644008B65A9 /* nethcti_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_edit.png; sourceTree = "<group>"; };
+		398DE725264D5647008B65A9 /* nethcti_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_edit@2x.png"; sourceTree = "<group>"; };
 		39A12494263AB33500CF1DB9 /* dashboard_dialer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard_dialer@2x.png"; sourceTree = "<group>"; };
 		39A12495263AB33600CF1DB9 /* dashboard_dialer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_dialer.png; sourceTree = "<group>"; };
 		39A12498263AB36500CF1DB9 /* dashboard_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_history.png; sourceTree = "<group>"; };
@@ -2613,6 +2625,12 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				398DE71C264D2B4E008B65A9 /* nethcti_add.png */,
+				398DE71D264D2B51008B65A9 /* nethcti_add@2x.png */,
+				398DE721264D5123008B65A9 /* nethcti_add_field.png */,
+				398DE720264D5121008B65A9 /* nethcti_add_field@2x.png */,
+				398DE724264D5644008B65A9 /* nethcti_edit.png */,
+				398DE725264D5647008B65A9 /* nethcti_edit@2x.png */,
 				398DE718264D21A7008B65A9 /* nethcti_remove.png */,
 				398DE719264D21AA008B65A9 /* nethcti_remove@2x.png */,
 				39F2B9A2264937DC00ADBFCE /* nethcti_user_add.png */,
@@ -3760,6 +3778,7 @@
 				633FEDC21D3CD5590014B822 /* call_hangup_default.png in Resources */,
 				633FEEB41D3CD55A0014B822 /* numpad_3_default@2x.png in Resources */,
 				633FEEE51D3CD55A0014B822 /* numpad_9_over.png in Resources */,
+				398DE71F264D2B51008B65A9 /* nethcti_add@2x.png in Resources */,
 				633FEECA1D3CD55A0014B822 /* numpad_5~ipad@2x.png in Resources */,
 				633FEE101D3CD5590014B822 /* chat_list_indicator~ipad.png in Resources */,
 				633FEF331D3CD55A0014B822 /* route_speaker_selected@2x.png in Resources */,
@@ -3780,6 +3799,7 @@
 				633FEDD91D3CD5590014B822 /* call_start_body_default~ipad@2x.png in Resources */,
 				633FEE401D3CD5590014B822 /* contacts_all_selected.png in Resources */,
 				633FEE0C1D3CD5590014B822 /* chat_attachment_disabled.png in Resources */,
+				398DE722264D5123008B65A9 /* nethcti_add_field@2x.png in Resources */,
 				633FEF001D3CD55A0014B822 /* options_default.png in Resources */,
 				CF15F21F20E4F9A3008B1DE6 /* UIImageViewDeletable.xib in Resources */,
 				633FEE951D3CD55A0014B822 /* micro_default@2x.png in Resources */,
@@ -3884,6 +3904,7 @@
 				633FEE4B1D3CD5590014B822 /* delete_disabled@2x.png in Resources */,
 				633FEE181D3CD5590014B822 /* chat_send_over.png in Resources */,
 				633FEDED1D3CD5590014B822 /* call_status_outgoing~ipad@2x.png in Resources */,
+				398DE71E264D2B51008B65A9 /* nethcti_add.png in Resources */,
 				633FEE2D1D3CD5590014B822 /* color_E.png in Resources */,
 				C39AA9D7263956AC00464F06 /* settings.png in Resources */,
 				633FEED01D3CD55A0014B822 /* numpad_6_over~ipad@2x.png in Resources */,
@@ -3921,6 +3942,7 @@
 				639E9CA31C0DB7EA00019A75 /* UIChatBubbleTextCell.xib in Resources */,
 				633FEDD21D3CD5590014B822 /* call_quality_indicator_3.png in Resources */,
 				633FEDAF1D3CD5590014B822 /* call_add_default@2x.png in Resources */,
+				398DE723264D5123008B65A9 /* nethcti_add_field.png in Resources */,
 				633FEE931D3CD55A0014B822 /* menu@2x.png in Resources */,
 				633FEF3D1D3CD55A0014B822 /* security_ok@2x.png in Resources */,
 				3966FC212636DC7000C52FF1 /* color_nethcti_cyan.png in Resources */,
@@ -4026,6 +4048,7 @@
 				63AADBF61B6A0FF200AA16FD /* linphonerc-factory in Resources */,
 				633FEE671D3CD5590014B822 /* footer_contacts_default@2x.png in Resources */,
 				615A2830218071E80060F920 /* security_toogle_background_green.png in Resources */,
+				398DE726264D5647008B65A9 /* nethcti_edit.png in Resources */,
 				63B8D68C1BCBE65600C12B09 /* ChatConversationCreateView.xib in Resources */,
 				3951056E26398B9000F5AEC5 /* dialpad.png in Resources */,
 				D38187D915FE347700C3EDCA /* CallIncomingView.xib in Resources */,
@@ -4051,6 +4074,7 @@
 				633FEE701D3CD5590014B822 /* footer_history_disabled.png in Resources */,
 				633FEDC91D3CD5590014B822 /* call_missed@2x.png in Resources */,
 				633FEEAE1D3CD55A0014B822 /* numpad_2_over@2x.png in Resources */,
+				398DE727264D5647008B65A9 /* nethcti_edit@2x.png in Resources */,
 				39A12497263AB33600CF1DB9 /* dashboard_dialer.png in Resources */,
 				633FEDB51D3CD5590014B822 /* call_alt_back_disabled@2x.png in Resources */,
 				631098521D4660630041F2B3 /* CountryListView.xib in Resources */,

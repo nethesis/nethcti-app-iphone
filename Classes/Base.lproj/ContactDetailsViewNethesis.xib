@@ -56,7 +56,6 @@
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="cancel_edit_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onCancelClick:" destination="-1" eventType="touchUpInside" id="yyu-9r-MIh"/>
                                     </connections>
@@ -92,7 +91,6 @@
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="delete_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="vxj-6p-8lE"/>
                                     </connections>
@@ -106,13 +104,12 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                    <state key="normal" image="edit_default.png">
+                                    <state key="normal" image="nethcti_edit.png">
                                         <color key="titleColor" red="0.28619974851608276" green="0.32144349813461304" blue="0.35980013012886047" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="edit_disabled.png"/>
                                     <state key="selected" image="valid_default.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onEditClick:" destination="-1" eventType="touchUpInside" id="30"/>
                                     </connections>
@@ -409,6 +406,7 @@
         <image name="edit_default.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="edit_disabled.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
+        <image name="nethcti_edit.png" width="40" height="40"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>

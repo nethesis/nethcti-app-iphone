@@ -257,7 +257,7 @@
 
 	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"]
 				 forState:(UIControlStateDisabled | UIControlStateSelected)];
-    [_editButton.imageView setTintColor:[UIColor getColorByName:@"LightGrey"]];
+    [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
     
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
 								   initWithTarget:self
