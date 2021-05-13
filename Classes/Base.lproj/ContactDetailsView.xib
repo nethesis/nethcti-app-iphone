@@ -163,13 +163,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                    <rect key="frame" x="156.5" y="108" width="101" height="33"/>
+                                    <rect key="frame" x="0.0" y="108" width="414" height="33"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taf-2c-Vbl" userLabel="workLabel">
-                                    <rect key="frame" x="188.5" y="149" width="37" height="21"/>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taf-2c-Vbl" userLabel="workLabel">
+                                    <rect key="frame" x="0.0" y="149" width="414" height="21"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -191,9 +191,13 @@
                                 <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="Kcj-ia-CWm"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="kpZ-cF-1yl" secondAttribute="bottom" constant="8" id="LJB-0e-E3K"/>
                                 <constraint firstItem="kpZ-cF-1yl" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="LP9-es-rBP"/>
+                                <constraint firstItem="taf-2c-Vbl" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="MdH-2N-HN9"/>
                                 <constraint firstItem="19" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="RrH-Eo-HIx"/>
+                                <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="Taq-sw-VMN"/>
                                 <constraint firstItem="kpZ-cF-1yl" firstAttribute="top" secondItem="8D6-vy-obt" secondAttribute="top" id="XW9-M2-7Uk"/>
                                 <constraint firstItem="19" firstAttribute="top" secondItem="taf-2c-Vbl" secondAttribute="bottom" id="jvb-Dv-uGg"/>
+                                <constraint firstAttribute="trailing" secondItem="taf-2c-Vbl" secondAttribute="trailing" id="qfd-QM-BIQ"/>
+                                <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" id="rCa-gc-Gmw"/>
                                 <constraint firstItem="taf-2c-Vbl" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="8" id="sC4-5O-eqc"/>
                                 <constraint firstItem="taf-2c-Vbl" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="vut-2j-R9e"/>
                                 <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" id="wI4-7r-KBt"/>

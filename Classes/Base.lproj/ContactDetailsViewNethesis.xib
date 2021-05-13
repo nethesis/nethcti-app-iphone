@@ -166,13 +166,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                    <rect key="frame" x="123" y="108" width="169" height="33"/>
+                                    <rect key="frame" x="0.0" y="108" width="414" height="33"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
-                                    <rect key="frame" x="188.5" y="149" width="37" height="19"/>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
+                                    <rect key="frame" x="0.0" y="149" width="414" height="19"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -193,13 +193,17 @@
                                 <constraint firstItem="94e-AC-2ZP" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="8" id="0tg-Gb-xTO"/>
                                 <constraint firstItem="19" firstAttribute="top" secondItem="94e-AC-2ZP" secondAttribute="bottom" id="4wu-Tv-hgU"/>
                                 <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" id="9Z5-jv-90P"/>
+                                <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" id="Ad9-0e-3v5"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="bottom" constant="8" id="Axj-he-04u"/>
                                 <constraint firstItem="rz5-fE-NgU" firstAttribute="top" secondItem="8D6-vy-obt" secondAttribute="top" id="GTt-QN-nGR"/>
                                 <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="KGO-L3-Nh6"/>
                                 <constraint firstItem="rz5-fE-NgU" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="WFD-af-8Kt"/>
+                                <constraint firstAttribute="trailing" secondItem="94e-AC-2ZP" secondAttribute="trailing" id="eHd-gD-nRH"/>
                                 <constraint firstItem="19" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="imR-PG-URW"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="lp4-kI-OxP"/>
                                 <constraint firstItem="94e-AC-2ZP" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="m3c-kF-kvj"/>
+                                <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="nEq-3I-IY1"/>
+                                <constraint firstItem="94e-AC-2ZP" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="yiD-fQ-ZzV"/>
                             </constraints>
                         </scrollView>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="40" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No contact selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdj-Pz-nu4" userLabel="emptyLabel">
