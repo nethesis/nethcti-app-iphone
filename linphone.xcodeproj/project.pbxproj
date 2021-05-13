@@ -89,6 +89,7 @@
 		398DE723264D5123008B65A9 /* nethcti_add_field.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE721264D5123008B65A9 /* nethcti_add_field.png */; };
 		398DE726264D5647008B65A9 /* nethcti_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE724264D5644008B65A9 /* nethcti_edit.png */; };
 		398DE727264D5647008B65A9 /* nethcti_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE725264D5647008B65A9 /* nethcti_edit@2x.png */; };
+		398DE729264D6534008B65A9 /* nethcti_main_color_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 398DE728264D6534008B65A9 /* nethcti_main_color_phone.png */; };
 		39A12496263AB33600CF1DB9 /* dashboard_dialer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A12494263AB33500CF1DB9 /* dashboard_dialer@2x.png */; };
 		39A12497263AB33600CF1DB9 /* dashboard_dialer.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A12495263AB33600CF1DB9 /* dashboard_dialer.png */; };
 		39A1249A263AB36600CF1DB9 /* dashboard_history.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A12498263AB36500CF1DB9 /* dashboard_history.png */; };
@@ -1066,6 +1067,7 @@
 		398DE721264D5123008B65A9 /* nethcti_add_field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_field.png; sourceTree = "<group>"; };
 		398DE724264D5644008B65A9 /* nethcti_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_edit.png; sourceTree = "<group>"; };
 		398DE725264D5647008B65A9 /* nethcti_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_edit@2x.png"; sourceTree = "<group>"; };
+		398DE728264D6534008B65A9 /* nethcti_main_color_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_main_color_phone.png; sourceTree = "<group>"; };
 		39A12494263AB33500CF1DB9 /* dashboard_dialer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard_dialer@2x.png"; sourceTree = "<group>"; };
 		39A12495263AB33600CF1DB9 /* dashboard_dialer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_dialer.png; sourceTree = "<group>"; };
 		39A12498263AB36500CF1DB9 /* dashboard_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_history.png; sourceTree = "<group>"; };
@@ -2647,6 +2649,7 @@
 				398DE716264D209B008B65A9 /* nethcti_blue_circle.png */,
 				39A7C2C8264402EC0056735F /* nethcti_green_circle.png */,
 				39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */,
+				398DE728264D6534008B65A9 /* nethcti_main_color_phone.png */,
 				39A7C2C7264402EA0056735F /* nethcti_green_phone.png */,
 				39A7C2B2264401170056735F /* nethcti_numpad_0.png */,
 				39A7C2B72644012A0056735F /* nethcti_numpad_1.png */,
@@ -4310,6 +4313,7 @@
 				633FEF151D3CD55A0014B822 /* pause_small_default@2x.png in Resources */,
 				633FEEF91D3CD55A0014B822 /* numpad_star_over~ipad@2x.png in Resources */,
 				633FEDCB1D3CD5590014B822 /* call_outgoing@2x.png in Resources */,
+				398DE729264D6534008B65A9 /* nethcti_main_color_phone.png in Resources */,
 				633FEF501D3CD55A0014B822 /* valid_disabled.png in Resources */,
 				39A7C2C2264401370056735F /* nethcti_numpad_3.png in Resources */,
 				633FEEB31D3CD55A0014B822 /* numpad_3_default.png in Resources */,

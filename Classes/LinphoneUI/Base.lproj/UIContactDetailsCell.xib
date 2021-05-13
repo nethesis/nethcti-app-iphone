@@ -88,7 +88,7 @@
                                                 <constraint firstAttribute="width" secondItem="ZbV-2Z-b4y" secondAttribute="height" multiplier="1:1" id="FBx-90-UgB"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                            <state key="normal" image="nethcti_green_phone.png" backgroundImage="nethcti_green_circle.png">
+                                            <state key="normal" image="nethcti_main_color_phone.png" backgroundImage="nethcti_blue_circle.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="call_start_body_disabled.png"/>
@@ -164,9 +164,9 @@
         <image name="call_start_body_over.png" width="82.400001525878906" height="82.400001525878906"/>
         <image name="delete_field_over.png" width="44" height="44"/>
         <image name="linphone_user.png" width="41.599998474121094" height="42.400001525878906"/>
-        <image name="nethcti_green_circle.png" width="256" height="256"/>
-        <image name="nethcti_green_phone.png" width="256" height="256"/>
+        <image name="nethcti_blue_circle.png" width="187.5" height="187.5"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_main_color_phone.png" width="187.5" height="187.5"/>
         <image name="nethcti_remove.png" width="40" height="40"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

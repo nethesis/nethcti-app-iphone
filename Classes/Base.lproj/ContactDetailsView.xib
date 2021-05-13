@@ -146,8 +146,8 @@
                                             </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAr-gF-Fet" userLabel="nameInitialLabel">
-                                            <rect key="frame" x="41" y="31" width="18" height="38"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                            <rect key="frame" x="37" y="22" width="26.5" height="56.5"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="48"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
