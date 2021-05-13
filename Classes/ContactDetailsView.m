@@ -96,8 +96,7 @@
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
     
-    NSString *initials = [PhoneMainView.instance.currentName substringToIndex:1].uppercaseString;
-    _nameInitialLabel.text = initials;
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName];
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -131,8 +130,7 @@
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 	[_tableController setContact:_contact];
 
-    NSString *initials = [_contact.displayName substringToIndex:1].uppercaseString;
-    _nameInitialLabel.text = initials;
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
     
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
@@ -253,9 +251,10 @@
 
 	_tableController.tableView.accessibilityIdentifier = @"Contact table";
 
-	[_editButton setImage:[UIImage imageNamed:@"valid_disabled.png"]
+	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"]
 				 forState:(UIControlStateDisabled | UIControlStateSelected)];
-	
+    [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
 								   initWithTarget:self
 								   action:@selector(dismissKeyboards)];
@@ -289,7 +288,8 @@
 				cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] shouldHideLinphoneImageOfAddress];
 		}
 	}
-	[_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
+	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
+    [_nameInitialLabel setTextColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
@@ -391,18 +391,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_tableController setEditing:editing animated:animated];
 	if (editing) {
 		[_editButton setOn];
+        [_editButton.imageView setTintColor:[UIColor getColorByName:@"Green"]];
 	} else {
 		[_editButton setOff];
+        [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
 	}
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
     
-    NSString *initials = [_contact.displayName substringToIndex:1].uppercaseString;
-    _nameInitialLabel.text = initials;
-    
-    [self recomputeTableViewSize:editing];
+    //[self recomputeTableViewSize:editing];
 
 	if (animated) {
 		[UIView commitAnimations];

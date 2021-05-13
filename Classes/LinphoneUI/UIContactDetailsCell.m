@@ -195,8 +195,8 @@
 
 - (IBAction)onDeleteClick:(id)sender {
 	UITableView *tableView = [ContactSelection getSipFilter] ?
-    VIEW(ContactDetailsView).tableController.tableView :
-    VIEW(ContactDetailsViewNethesis).tableController.tableView;
+    VIEW(ContactDetailsViewNethesis).tableController.tableView :
+    VIEW(ContactDetailsView).tableController.tableView;
 	NSIndexPath *indexPath = [tableView indexPathForCell:self];
 	[tableView.dataSource tableView:tableView
 				 commitEditingStyle:UITableViewCellEditingStyleDelete

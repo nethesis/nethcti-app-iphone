@@ -96,8 +96,7 @@
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
     
-    NSString *initials = [PhoneMainView.instance.currentName substringToIndex:1].uppercaseString;
-    _nameInitialLabel.text = initials;
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName];
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -132,8 +131,7 @@
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
     [_tableController setContact:_contact];
 
-    NSString *initials = [_contact.displayName substringToIndex:1].uppercaseString;
-    _nameInitialLabel.text = initials;
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
     
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
@@ -300,6 +298,7 @@
 		}
 	}
 	[_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
+    [_nameInitialLabel setTextColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
@@ -413,9 +412,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_nameLabel.hidden = editing;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
-    
-    NSString *initials = [_contact.displayName substringToIndex:1].uppercaseString;
-    _nameInitialLabel.text = initials;
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
     
     [self recomputeTableViewSize:editing];
 

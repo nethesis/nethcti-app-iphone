@@ -89,8 +89,8 @@
     
     _nameLabel.textColor = [UIColor getColorByName:@"Grey"];
     
-    NSString* initial = [acontact.displayName substringToIndex:1];
-    _nameInitialLabel.text = initial.uppercaseString;
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
+
     _nameInitialLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 

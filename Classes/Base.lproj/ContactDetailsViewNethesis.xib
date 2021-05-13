@@ -56,7 +56,6 @@
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="cancel_edit_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onCancelClick:" destination="-1" eventType="touchUpInside" id="yyu-9r-MIh"/>
                                     </connections>
@@ -92,7 +91,6 @@
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="delete_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="vxj-6p-8lE"/>
                                     </connections>
@@ -106,13 +104,12 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                    <state key="normal" image="edit_default.png">
+                                    <state key="normal" image="nethcti_edit.png">
                                         <color key="titleColor" red="0.28619974851608276" green="0.32144349813461304" blue="0.35980013012886047" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="edit_disabled.png"/>
                                     <state key="selected" image="valid_default.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onEditClick:" destination="-1" eventType="touchUpInside" id="30"/>
                                     </connections>
@@ -148,8 +145,8 @@
                                             </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7r-o9-4KF" userLabel="nameInitialLabel">
-                                            <rect key="frame" x="41" y="31" width="18" height="38"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                            <rect key="frame" x="37" y="22" width="26.5" height="56.5"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="48"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -166,13 +163,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                    <rect key="frame" x="123" y="108" width="169" height="33"/>
+                                    <rect key="frame" x="0.0" y="108" width="414" height="33"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
-                                    <rect key="frame" x="188.5" y="149" width="37" height="19"/>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
+                                    <rect key="frame" x="0.0" y="149" width="414" height="19"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -193,13 +190,17 @@
                                 <constraint firstItem="94e-AC-2ZP" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="8" id="0tg-Gb-xTO"/>
                                 <constraint firstItem="19" firstAttribute="top" secondItem="94e-AC-2ZP" secondAttribute="bottom" id="4wu-Tv-hgU"/>
                                 <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" id="9Z5-jv-90P"/>
+                                <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" id="Ad9-0e-3v5"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="bottom" constant="8" id="Axj-he-04u"/>
                                 <constraint firstItem="rz5-fE-NgU" firstAttribute="top" secondItem="8D6-vy-obt" secondAttribute="top" id="GTt-QN-nGR"/>
                                 <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="KGO-L3-Nh6"/>
                                 <constraint firstItem="rz5-fE-NgU" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="WFD-af-8Kt"/>
+                                <constraint firstAttribute="trailing" secondItem="94e-AC-2ZP" secondAttribute="trailing" id="eHd-gD-nRH"/>
                                 <constraint firstItem="19" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="imR-PG-URW"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="lp4-kI-OxP"/>
                                 <constraint firstItem="94e-AC-2ZP" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="m3c-kF-kvj"/>
+                                <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="nEq-3I-IY1"/>
+                                <constraint firstItem="94e-AC-2ZP" firstAttribute="leading" secondItem="8D6-vy-obt" secondAttribute="leading" id="yiD-fQ-ZzV"/>
                             </constraints>
                         </scrollView>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="40" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No contact selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdj-Pz-nu4" userLabel="emptyLabel">
@@ -405,6 +406,7 @@
         <image name="edit_default.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="edit_disabled.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
+        <image name="nethcti_edit.png" width="40" height="40"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>

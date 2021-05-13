@@ -344,11 +344,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     [tempView addSubview:tempLabel];
     
     if (canAddEntry) {
-        frame.origin.x = (tableView.frame.size.width - 30 /*image size*/) / 2 - 5 /*right offset*/;
+        frame.origin.x = (tableView.frame.size.width - 30 /*image size*/) / 2 - 16 /*right offset*/;
         UIIconButton *tempAddButton = [[UIIconButton alloc] initWithFrame:frame];
-        [tempAddButton setImage:[UIImage imageNamed:@"add_field_default.png"] forState:UIControlStateNormal];
-        [tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateHighlighted];
-        [tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateSelected];
+        [tempAddButton setImage:[UIImage imageNamed:@"nethcti_add_field.png.png"] forState:UIControlStateNormal];
+        
+        //tempAddButton.frame = CGRectMake(tableView.frame.size.width - 30 - 16, 0, 30, 30);
+        //[tempAddButton setBackgroundImage:[UIImage imageNamed:@"@nethcti_blue_circle.png"] forState:UIControlStateNormal];
+        //[tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateHighlighted];
+        //[tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateSelected];
         [tempAddButton addTarget:self action:@selector(onAddClick:) forControlEvents:UIControlEventTouchUpInside];
         tempAddButton.tag = section;
         tempAddButton.accessibilityLabel = addEntryName;

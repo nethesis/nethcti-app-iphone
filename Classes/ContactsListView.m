@@ -153,8 +153,11 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     [self.allButton setImage:allContactsImg forState:UIControlStateNormal];
     [self.linphoneButton setImage:sipContactsImg forState:UIControlStateNormal];
+    
+    bool isSip = [ContactSelection getSipFilter] != nil;
+    [self.allButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"Grey" : @"MainColor"]];
+    [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"MainColor" : @"Grey"]];
 
-    [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
     [self.searchBaseline setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
 }
 
