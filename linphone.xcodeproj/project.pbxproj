@@ -774,6 +774,10 @@
 		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
 		C3907C3E264570D3003E14E0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3907C3C264570D3003E14E0 /* back.png */; };
 		C3907C3F264570D3003E14E0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3907C3D264570D3003E14E0 /* back@2x.png */; };
+		C391A99C264EB05600F9FD76 /* nethcti_play.png in Resources */ = {isa = PBXBuildFile; fileRef = C391A99A264EB05500F9FD76 /* nethcti_play.png */; };
+		C391A99D264EB05600F9FD76 /* nethcti_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C391A99B264EB05500F9FD76 /* nethcti_play@2x.png */; };
+		C391A9A0264EB10E00F9FD76 /* nethcti_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C391A99E264EB10D00F9FD76 /* nethcti_pause.png */; };
+		C391A9A1264EB10E00F9FD76 /* nethcti_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C391A99F264EB10E00F9FD76 /* nethcti_pause@2x.png */; };
 		C392D2682639ADE700BED530 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C392D2662639ADE700BED530 /* logo@2x.png */; };
 		C392D2692639ADE700BED530 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C392D2672639ADE700BED530 /* logo.png */; };
 		C3936F4F263C367B0058FE3D /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = C3936F4D263C367A0058FE3D /* login.png */; };
@@ -1859,6 +1863,10 @@
 		C38F3FDA25ECE15700F7BCA6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C3907C3C264570D3003E14E0 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		C3907C3D264570D3003E14E0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		C391A99A264EB05500F9FD76 /* nethcti_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_play.png; sourceTree = "<group>"; };
+		C391A99B264EB05500F9FD76 /* nethcti_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_play@2x.png"; sourceTree = "<group>"; };
+		C391A99E264EB10D00F9FD76 /* nethcti_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_pause.png; sourceTree = "<group>"; };
+		C391A99F264EB10E00F9FD76 /* nethcti_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_pause@2x.png"; sourceTree = "<group>"; };
 		C392D2662639ADE700BED530 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		C392D2672639ADE700BED530 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C392D26B2639AE5200BED530 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
@@ -3019,6 +3027,10 @@
 				39A124B3263AC2F600CF1DB9 /* nethcti_green_circle.png */,
 				39A124AF263ABF4B00CF1DB9 /* nethcti_missed_call.png */,
 				39A124B0263ABF4D00CF1DB9 /* nethcti_missed_call@2x.png */,
+				C391A99E264EB10D00F9FD76 /* nethcti_pause.png */,
+				C391A99F264EB10E00F9FD76 /* nethcti_pause@2x.png */,
+				C391A99A264EB05500F9FD76 /* nethcti_play.png */,
+				C391A99B264EB05500F9FD76 /* nethcti_play@2x.png */,
 				C36482CA23967B01006BE61D /* neth_splashscreen.png */,
 				8CE24F491F8234A20077AC0A /* next_default.png */,
 				8CE24F4A1F8234A30077AC0A /* next_default@2x.png */,
@@ -3880,6 +3892,7 @@
 				61AEBEC62191E47500F35E7F /* chevron_list_close.png in Resources */,
 				CF7602D8210867E800749F76 /* RecordingsListView.xib in Resources */,
 				639E9CAC1C0DB80300019A75 /* UIContactDetailsCell.xib in Resources */,
+				C391A99D264EB05600F9FD76 /* nethcti_play@2x.png in Resources */,
 				3949CDB52638251500379BFC /* history.png in Resources */,
 				633FEE511D3CD5590014B822 /* deselect_all@2x.png in Resources */,
 				8CF25D951F9F336100BEA0C1 /* check_unselected@2x.png in Resources */,
@@ -3902,6 +3915,7 @@
 				633FEE861D3CD5590014B822 /* led_inprogress.png in Resources */,
 				39A7C2BE264401370056735F /* nethcti_numpad_0.png in Resources */,
 				633FEDFC1D3CD5590014B822 /* camera_switch_default.png in Resources */,
+				C391A99C264EB05600F9FD76 /* nethcti_play.png in Resources */,
 				39F2B9A026492D7600ADBFCE /* nethcti_menu_home@2x.png in Resources */,
 				24BFAA9F209B0630004F47A7 /* linphone_user.png in Resources */,
 				633FEE4B1D3CD5590014B822 /* delete_disabled@2x.png in Resources */,
@@ -4356,6 +4370,7 @@
 				398DE715264D173B008B65A9 /* nethcti_done@2x.png in Resources */,
 				633FEE631D3CD5590014B822 /* footer_chat_default@2x.png in Resources */,
 				615A281B217F6F9C0060F920 /* security_2_indicator.png in Resources */,
+				C391A9A1264EB10E00F9FD76 /* nethcti_pause@2x.png in Resources */,
 				633FEE661D3CD5590014B822 /* footer_contacts_default.png in Resources */,
 				633FEDC11D3CD5590014B822 /* call_back_disabled@2x.png in Resources */,
 				633FEEEE1D3CD55A0014B822 /* numpad_hash_over@2x.png in Resources */,
@@ -4383,6 +4398,7 @@
 				633FEE361D3CD5590014B822 /* conference_exit_over.png in Resources */,
 				C3A406FF261DF6AE00526F9B /* HistoryTableViewCell.xib in Resources */,
 				633FEDAA1D3CD5590014B822 /* backspace_disabled.png in Resources */,
+				C391A9A0264EB10E00F9FD76 /* nethcti_pause.png in Resources */,
 				F0938159188E629800A55DFA /* iTunesArtwork in Resources */,
 				633FEE791D3CD5590014B822 /* history_chat_indicator@2x.png in Resources */,
 				633FEEBA1D3CD55A0014B822 /* numpad_3~ipad@2x.png in Resources */,
@@ -5252,7 +5268,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
@@ -5384,7 +5400,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5514,7 +5530,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5647,7 +5663,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5715,7 +5731,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
@@ -5760,7 +5776,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
@@ -5801,7 +5817,7 @@
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5841,7 +5857,7 @@
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5951,7 +5967,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6007,7 +6023,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6056,7 +6072,7 @@
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6103,7 +6119,7 @@
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6150,7 +6166,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6205,7 +6221,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6253,7 +6269,7 @@
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6299,7 +6315,7 @@
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

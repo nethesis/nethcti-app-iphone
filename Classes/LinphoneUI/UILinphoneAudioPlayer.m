@@ -26,6 +26,9 @@
     LinphonePlayerCbs *cbs;
     int duration;
     BOOL eofReached;
+    
+    UIImage *pause;
+    UIImage *play;
 }
 
 @synthesize file;
@@ -47,6 +50,11 @@
         file = filePath;
         eofReached = NO;
 		_refreshTimer = nil;
+        
+        pause = [[UIImage imageNamed:@"nethcti_pause.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        play = [[UIImage imageNamed:@"nethcti_play.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [_playButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        [_stopButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
     }
     return self;
 }
@@ -67,13 +75,16 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [_playButton setTitle:@"" forState:UIControlStateNormal];
-    if (player && linphone_player_get_state(player) == LinphonePlayerPlaying)
-        [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPause:[UIColor blackColor]] forState:UIControlStateNormal];
-    else
-        [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]] forState:UIControlStateNormal];
-    [_stopButton setTitle:@"" forState:UIControlStateNormal];
+    UIImage *img = [self isPlaying] ? pause : play;
+    // Old images.
+    // imageFromSystemBarButton:UIBarButtonSystemItemPause:[UIColor blackColor]
+    // imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]
+    [_playButton setImage:img forState:UIControlStateNormal];
     [_stopButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemRefresh:[UIColor blackColor]] forState:UIControlStateNormal];
+}
+
+- (BOOL)isPlaying {
+    return player && linphone_player_get_state(player) == LinphonePlayerPlaying;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -87,10 +98,8 @@
     _timeProgress.progress = 0;
 	
     eofReached = NO;
-    [_playButton setTitle:@"" forState:UIControlStateNormal];
-    [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]] forState:UIControlStateNormal];
-    [_stopButton setTitle:@"" forState:UIControlStateNormal];
-    [_stopButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemRefresh:[UIColor blackColor]] forState:UIControlStateNormal];
+    [_playButton setImage:play forState:UIControlStateNormal];
+    [_stopButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemRefresh:[UIColor getColorByName:@"MidGrey"]] forState:UIControlStateNormal];
 }
 
 - (BOOL)isOpened {
@@ -112,8 +121,7 @@ void on_eof_reached(LinphonePlayer *pl) {
     NSLog(@"EOF reached");
     UILinphoneAudioPlayer *player = (__bridge UILinphoneAudioPlayer *)linphone_player_get_user_data(pl);
     dispatch_async(dispatch_get_main_queue(), ^{
-        [player.playButton setTitle:@"" forState:UIControlStateNormal];
-        [player.playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]] forState:UIControlStateNormal];
+        [player.playButton setImage:[[UIImage imageNamed:@"nethcti_play.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     });
     player->eofReached = YES;
 }
@@ -166,8 +174,7 @@ void on_eof_reached(LinphonePlayer *pl) {
 - (void)pause {
     if ([self isOpened]) {
         linphone_player_pause(player);
-        [_playButton setTitle:@"" forState:UIControlStateNormal];
-        [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]] forState:UIControlStateNormal];
+        [_playButton setImage:play forState:UIControlStateNormal];
     }
 }
 
@@ -178,23 +185,23 @@ void on_eof_reached(LinphonePlayer *pl) {
         linphone_player_seek(player, 0);
         eofReached = NO;
     }
+    
     LinphonePlayerState state = linphone_player_get_state(player);
     switch (state) {
         case LinphonePlayerClosed:
             break;
         case LinphonePlayerPaused:
             NSLog(@"Play");
-            [_playButton setTitle:@"" forState:UIControlStateNormal];
-            [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPause:[UIColor blackColor]] forState:UIControlStateNormal];
+            [_playButton setImage:pause forState:UIControlStateNormal];
             linphone_player_start(player);
             break;
         case LinphonePlayerPlaying:
             NSLog(@"Pause");
-            [_playButton setTitle:@"" forState:UIControlStateNormal];
-            [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]] forState:UIControlStateNormal];
+            [_playButton setImage:play forState:UIControlStateNormal];
             linphone_player_pause(player);
             break;
     }
+    
     [self update];
 }
 
@@ -203,8 +210,7 @@ void on_eof_reached(LinphonePlayer *pl) {
     linphone_player_pause(player);
     linphone_player_seek(player, 0);
     eofReached = NO;
-    [_playButton setTitle:@"" forState:UIControlStateNormal];
-    [_playButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]] forState:UIControlStateNormal];
+    [_playButton setImage:play forState:UIControlStateNormal];
     _timeProgress.progress = 0;
     [self updateTimeLabel:0];
 }

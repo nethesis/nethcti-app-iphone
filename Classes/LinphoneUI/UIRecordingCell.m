@@ -33,11 +33,12 @@ static UILinphoneAudioPlayer *player;
  * - When we scroll past a selected row, the player loads incorrectly (no buttons). Probably a problem in the player code.
  * - mkv recording is probably buggy, wrong eof. wav playing works but does not display the length/timestamp.
  * - The share button is greyed out when not clicking it. idk why, it's really weird.
-*/
+ */
 - (id)initWithIdentifier:(NSString *)identifier {
     if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier])) {
-        NSArray *arrayOfViews =
-        [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self.class) owner:self options:nil];
+        NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self.class)
+                                                              owner:self
+                                                            options:nil];
         
         // resize cell to match .nib size. It is needed when resized the cell to
         // correctly adapt its height too
@@ -48,6 +49,7 @@ static UILinphoneAudioPlayer *player;
         _shareButton.target = self;
         _shareButton.action = @selector(onShareButtonPressed);
     }
+    
     return self;
 }
 
@@ -60,12 +62,15 @@ static UILinphoneAudioPlayer *player;
 
 - (void)setRecording:(NSString *)arecording {
     _recording = arecording;
-    if(_recording) {
-        NSArray *parsedRecording = [LinphoneUtils parseRecordingName:_recording];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"HH:mm:ss"];
-        _nameLabel.text = [[[parsedRecording objectAtIndex:0] stringByAppendingString:@" @ "] stringByAppendingString:[dateFormat stringFromDate:[parsedRecording objectAtIndex:1]]];
+    
+    if(!_recording) {
+        return;
     }
+    
+    NSArray *parsedRecording = [LinphoneUtils parseRecordingName:_recording];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"HH:mm:ss"];
+    _nameLabel.text = [[[parsedRecording objectAtIndex:0] stringByAppendingString:@" @ "] stringByAppendingString:[dateFormat stringFromDate:[parsedRecording objectAtIndex:1]]];
 }
 
 #pragma mark -
@@ -94,11 +99,7 @@ static UILinphoneAudioPlayer *player;
 
 - (void)updateFrame {
     CGRect frame = self.frame;
-    if (!self.selected) {
-        frame.size.height = 40;
-    } else {
-        frame.size.height = 150;
-    }
+    frame.size.height = self.selected ? 140 : 40;
     [self setFrame:frame];
 }
 
@@ -108,12 +109,13 @@ static UILinphoneAudioPlayer *player;
     if (!selected) {
         return;
     }
-	if (player && [player isCreated]) {
-		[player close];
-	}
-
-	player = [UILinphoneAudioPlayer audioPlayerWithFilePath:[self recording]];
-
+    
+    if (player && [player isCreated]) {
+        [player close];
+    }
+    
+    player = [UILinphoneAudioPlayer audioPlayerWithFilePath:[self recording]];
+    
     [player.view removeFromSuperview];
     [self addSubview:player.view];
     [self bringSubviewToFront:player.view];
@@ -125,7 +127,7 @@ static UILinphoneAudioPlayer *player;
 - (void)onShareButtonPressed {
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:_recording]] applicationActivities:nil];
     [activityVC setCompletionWithItemsHandler:^(UIActivityType __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
-        //This is used to select the same row when we get back to the recordings view.
+        // This is used to select the same row when we get back to the recordings view.
         NSString *file = player.file;
         [[(RecordingsListView *)VIEW(RecordingsListView) tableController] setSelected:file];
     }];
