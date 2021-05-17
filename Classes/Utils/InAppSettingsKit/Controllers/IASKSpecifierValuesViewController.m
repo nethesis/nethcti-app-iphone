@@ -119,7 +119,7 @@
 
 - (void)selectCell:(UITableViewCell *)cell {
 	[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-	[[cell textLabel] setTextColor:kIASKgrayBlueColor];
+	[[cell textLabel] setTextColor:[UIColor getColorByName:@"MainColor"]];
 }
 
 - (void)deselectCell:(UITableViewCell *)cell {
