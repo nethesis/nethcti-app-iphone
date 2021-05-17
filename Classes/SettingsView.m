@@ -49,7 +49,7 @@
 
 #pragma mark - IASKSwitchEx Class
 
-@interface IASKSwitchEx : DCRoundSwitch {
+@interface IASKSwitchEx : UISwitch {
 	NSString *_key;
 }
 
@@ -133,7 +133,7 @@
 		[((IASKSwitchEx *)cell.accessoryView) addTarget:self
 												 action:@selector(toggledValue:)
 									   forControlEvents:UIControlEventValueChanged];
-		[((IASKSwitchEx *)cell.accessoryView) setOnTintColor:LINPHONE_MAIN_COLOR];
+		[((IASKSwitchEx *)cell.accessoryView) setOnTintColor:[UIColor getColorByName:@"MainColor"]];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.textLabel.minimumScaleFactor = kIASKMinimumFontSize / [UIFont systemFontSize];
 		cell.detailTextLabel.minimumScaleFactor = kIASKMinimumFontSize / [UIFont systemFontSize];
@@ -239,15 +239,22 @@
 
 	if ([cell isKindOfClass:[IASKPSTextFieldSpecifierViewCell class]]) {
 		UITextField *field = ((IASKPSTextFieldSpecifierViewCell *)cell).textField;
-		[field setTextColor:LINPHONE_MAIN_COLOR];
+		[field setTextColor:[UIColor getColorByName:@"MainColor"]];
 	}
 
 	if ([cell isKindOfClass:[IASKPSTitleValueSpecifierViewCell class]]) {
 		cell.detailTextLabel.textColor = [UIColor grayColor];
 	} else {
-		cell.detailTextLabel.textColor = LINPHONE_MAIN_COLOR;
+		cell.detailTextLabel.textColor = [UIColor getColorByName:@"MainColor"];
 	}
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *asd = view;
+    asd.textLabel.textColor = [UIColor getColorByName:@"MainColor"];
+    asd.textLabel.text = asd.textLabel.text.lowercaseString.capitalizedString;
+    asd.textLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
 }
 @end
 
@@ -259,7 +266,7 @@
 @implementation UINavigationBarEx
 
 INIT_WITH_COMMON_CF {
-	[self setTintColor:[LINPHONE_MAIN_COLOR adjustHue:5.0f / 180.0f saturation:0.0f brightness:0.0f alpha:0.0f]];
+	[self setTintColor:[[UIColor getColorByName:@"MainColor"] adjustHue:5.0f / 180.0f saturation:0.0f brightness:0.0f alpha:0.0f]];
 	return self;
 }
 
@@ -281,10 +288,12 @@ INIT_WITH_COMMON_CF {
 + (void)removeBackground:(UIView *)view {
 	// iOS7 transparent background is *really* transparent: with an alpha != 0
 	// it messes up the transitions. Use non-transparent BG for iOS7
-	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+	/*if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 		[view setBackgroundColor:LINPHONE_SETTINGS_BG_IOS7];
 	else
 		[view setBackgroundColor:[UIColor clearColor]];
+    */
+    [view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
