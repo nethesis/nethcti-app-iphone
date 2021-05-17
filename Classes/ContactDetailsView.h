@@ -43,6 +43,8 @@
 @property BOOL isAdding;
 @property (weak, nonatomic) IBOutlet UIView *waitView;
 @property (weak, nonatomic) IBOutlet UILabel *nameInitialLabel;
+@property (weak, nonatomic) IBOutlet UILabel *workLabel;
+@property (weak, nonatomic) IBOutlet UIView *avatarContainer;
 
 - (IBAction)onBackClick:(id)event;
 - (IBAction)onCancelClick:(id)event;

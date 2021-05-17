@@ -399,10 +399,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
+    _workLabel.hidden = editing;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
     
-    //[self recomputeTableViewSize:editing];
+    [self recomputeTableViewSize:editing];
 
 	if (animated) {
 		[UIView commitAnimations];
@@ -411,9 +412,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)recomputeTableViewSize:(BOOL)editing {
     CGRect frame = _tableController.tableView.frame;
-    frame.origin.y = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
+    frame.origin.y = _avatarContainer.frame.size.height + _avatarContainer.frame.origin.y;
+
     if ([self viewIsCurrentlyPortrait] && !editing) {
-        frame.origin.y += _nameLabel.frame.size.height;
+        //frame.origin.y += _nameLabel.frame.size.height;
+        frame.origin.y += _workLabel.frame.size.height + _workLabel.frame.origin.y;
+    } else {
+        frame.origin.y += 16; // avatar bottom padding to table view;
     }
     
     frame.size.height = _tableController.tableView.contentSize.height;

@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactDetailsView">
             <connections>
+                <outlet property="avatarContainer" destination="kpZ-cF-1yl" id="xXH-oE-Zoi"/>
                 <outlet property="avatarImage" destination="B6X-C9-2vm" id="tQc-xv-nJg"/>
                 <outlet property="backButton" destination="9" id="50"/>
                 <outlet property="cancelButton" destination="bPQ-aJ-Lk6" id="QHN-qi-QNv"/>
@@ -29,6 +30,7 @@
                 <outlet property="tableController" destination="20" id="27"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="waitView" destination="JK8-Td-I1i" id="nFS-hz-vYl"/>
+                <outlet property="workLabel" destination="taf-2c-Vbl" id="EfT-lj-TMh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -135,7 +137,7 @@
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="7" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D6-vy-obt" userLabel="contentView">
                             <rect key="frame" x="0.0" y="66" width="414" height="722"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpZ-cF-1yl">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpZ-cF-1yl" userLabel="avatarContainer">
                                     <rect key="frame" x="157" y="0.0" width="100" height="100"/>
                                     <subviews>
                                         <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nethcti_grey_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="B6X-C9-2vm" userLabel="avatarImage">
@@ -184,6 +186,7 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="19" firstAttribute="top" secondItem="kpZ-cF-1yl" secondAttribute="bottom" priority="500" id="3IR-P4-i4m"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="centerX" secondItem="8D6-vy-obt" secondAttribute="centerX" id="3wX-TD-EDh"/>
                                 <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="Kcj-ia-CWm"/>
                                 <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="kpZ-cF-1yl" secondAttribute="bottom" constant="8" id="LJB-0e-E3K"/>

@@ -409,7 +409,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 	}
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
-	_nameLabel.hidden = editing;
+    _nameLabel.hidden = editing;
+    _workLabel.hidden = editing;
+
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
