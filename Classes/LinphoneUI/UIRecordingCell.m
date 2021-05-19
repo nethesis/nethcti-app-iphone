@@ -48,6 +48,7 @@ static UILinphoneAudioPlayer *player;
         self.recording = NULL;
         _shareButton.target = self;
         _shareButton.action = @selector(onShareButtonPressed);
+        [_shareButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
     }
     
     return self;

@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "UICheckBoxTableView.h"
+#import "UIInterfaceStyleButton.h"
 
 @interface RecordingsListTableView : UICheckBoxTableView {
 @private
@@ -28,6 +29,7 @@
     NSString *writablePath;
     //This is the path to the folder where we write the recordings to. We should probably define it in LinphoneManager though.
 }
+
 - (void)loadData;
 - (void)removeAllRecordings;
 - (void)setSelected:(NSString *)filepath;

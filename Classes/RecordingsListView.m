@@ -74,10 +74,12 @@ static UICompositeViewDescription *compositeDescription = nil;
         tableController.editing = NO;
     }
     
-    UIImage *multiUnselect = [UIImage imageNamed:@"nethcti_multiselect_default.png"];
+    // UIImage *multiUnselect = [UIImage imageNamed:@"nethcti_multiselect_default.png"];
     UIImage *multiSelect = [UIImage imageNamed:@"nethcti_multiselect_selected.png"];
-    [_toggleSelectionButton setImage:multiUnselect forState:UIControlStateSelected]; // select_all_default
+    // [_toggleSelectionButton setImage:multiUnselect forState:UIControlStateSelected]; // select_all_default
     [_toggleSelectionButton setImage:multiSelect forState:UIControlStateSelected]; // select_all_default
+    
+    [_deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

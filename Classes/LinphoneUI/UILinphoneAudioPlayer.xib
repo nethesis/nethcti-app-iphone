@@ -32,7 +32,7 @@
                         <action selector="onPlay:" destination="-1" eventType="touchUpInside" id="mdn-z8-Vx0"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-QI-38P">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-QI-38P" userLabel="stopButton">
                     <rect key="frame" x="40" y="112" width="20" height="20"/>
                     <gestureRecognizers/>
                     <constraints>

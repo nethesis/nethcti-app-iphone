@@ -29,6 +29,7 @@
     
     UIImage *pause;
     UIImage *play;
+    UIImage *stop;
 }
 
 @synthesize file;
@@ -53,6 +54,7 @@
         
         pause = [[UIImage imageNamed:@"nethcti_pause.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         play = [[UIImage imageNamed:@"nethcti_play.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        stop = [[UIImage imageNamed:@"nethcti_refresh.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [_playButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
         [_stopButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
     }
@@ -80,7 +82,7 @@
     // imageFromSystemBarButton:UIBarButtonSystemItemPause:[UIColor blackColor]
     // imageFromSystemBarButton:UIBarButtonSystemItemPlay:[UIColor blackColor]
     [_playButton setImage:img forState:UIControlStateNormal];
-    [_stopButton setImage:[UIImage imageFromSystemBarButton:UIBarButtonSystemItemRefresh:[UIColor blackColor]] forState:UIControlStateNormal];
+    [_stopButton setImage:stop forState:UIControlStateNormal];
 }
 
 - (BOOL)isPlaying {

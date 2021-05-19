@@ -81,7 +81,7 @@
                             <state key="normal" image="nethcti_trash.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="disabled" image="delete_disabled.png"/>
+                            <state key="disabled" image="nethcti_trash.png"/>
                             <state key="highlighted" backgroundImage="color_E.png"/>
                             <connections>
                                 <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="8LI-ry-dTU"/>
@@ -198,7 +198,7 @@
         <tableViewController id="1pR-qo-CIP" customClass="RecordingsListTableView">
             <connections>
                 <outlet property="cancelButton" destination="CqG-tB-maQ" id="C90-0S-5WL"/>
-                <outlet property="deleteButton" destination="zDs-pW-vyA" id="mgV-PB-law"/>
+                <outlet property="deleteButton" destination="zDs-pW-vyA" id="tdw-88-xbf"/>
                 <outlet property="editButton" destination="CWx-9g-0JG" id="hAA-6f-kX8"/>
                 <outlet property="emptyView" destination="zXd-Ic-rwm" id="D4k-nO-LKW"/>
                 <outlet property="toggleSelectionButton" destination="16S-9G-2cb" id="6pj-Yn-hy1"/>
@@ -212,7 +212,6 @@
         <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
         <image name="cancel_edit_disabled.png" width="47.200000762939453" height="47.200000762939453"/>
         <image name="color_E.png" width="2" height="2"/>
-        <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
         <image name="nethcti_edit.png" width="40" height="40"/>
         <image name="nethcti_multiselect_default.png" width="40" height="40"/>
