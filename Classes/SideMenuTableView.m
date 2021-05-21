@@ -95,7 +95,7 @@
     
     [_sideMenuEntries addObject:
      [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
-                                    image:[UIImage imageNamed:@"microphone.png"]
+                                    image:[UIImage imageNamed:@"nethcti_microphone.png"]
                                  tapBlock:^() {
         [PhoneMainView.instance changeCurrentView:RecordingsListView.compositeViewDescription];
     }]];

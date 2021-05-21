@@ -27,6 +27,8 @@
 
 @interface CallOutgoingView : TPMultiLayoutViewController <UICompositeViewDelegate> {
 }
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property(weak, nonatomic) IBOutlet UIRoundedImageView *avatarImage;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UISpeakerButton *speakerButton;

@@ -56,6 +56,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 										   selector:@selector(bluetoothAvailabilityUpdateEvent:)
 											   name:kLinphoneBluetoothAvailabilityUpdate
 											 object:nil];
+    
+    [self setUIColors];
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (!call) {
@@ -73,6 +75,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_speakerButton update];
 	[_microButton update];
 	[_routesButton update];
+}
+
+- (void)setUIColors {
+    UIColor *midgrey = [UIColor getColorByName:@"MidGrey"];
+    _titleLabel.textColor = midgrey;
+    _nameLabel.textColor = midgrey;
+    _addressLabel.textColor = LINPHONE_MAIN_COLOR;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
