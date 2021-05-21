@@ -28,18 +28,28 @@
 #pragma mark - ViewController Functions
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+    [super viewWillAppear:animated];
+    
+    // Subscribe to call update event.
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(callUpdateEvent:)
+                                               name:kLinphoneCallUpdate
+                                             object:nil];
+    
+    [self setUIColors];
+}
 
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(callUpdateEvent:)
-											   name:kLinphoneCallUpdate
-											 object:nil];
+- (void)setUIColors {
+    UIColor *midgrey = [UIColor getColorByName:@"MidGrey"];
+    _titleLabel.textColor = midgrey;
+    _nameLabel.textColor = midgrey;
+    _addressLabel.textColor = LINPHONE_MAIN_COLOR;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	[NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneCallUpdate object:nil];
-	_call = NULL;
+    [super viewWillDisappear:animated];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneCallUpdate object:nil];
+    _call = NULL;
 }
 
 #pragma mark - UICompositeViewDelegate Functions

@@ -37,6 +37,7 @@
 
 @property(nonatomic) Boolean earlyMedia;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(nonatomic, strong) IBOutlet UILabel *addressLabel;
 @property(nonatomic, strong) IBOutlet UIRoundedImageView *avatarImage;
@@ -45,7 +46,6 @@
 @property(weak, nonatomic) IBOutlet UIView *tabVideoBar;
 @property(weak, nonatomic) IBOutlet UIView *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *earlyMediaView;
-
 
 - (IBAction)onAcceptClick:(id)event;
 - (IBAction)onDeclineClick:(id)event;
