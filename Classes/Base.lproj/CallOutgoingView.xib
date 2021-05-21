@@ -40,14 +40,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Call" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83h-qP-Ddk" userLabel="titleLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Call" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83h-qP-Ddk" userLabel="titleLabel" propertyAccessControl="localizable">
                             <rect key="frame" x="20" y="32" width="280" height="23.5"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="bNo-O5-DWh" userLabel="avatarImage" customClass="UIRoundedImageView">
-                            <rect key="frame" x="80" y="88" width="160" height="160"/>
+                            <rect key="frame" x="80" y="87.5" width="160" height="160"/>
                             <accessibility key="accessibilityConfiguration" label="Contact avatar">
                                 <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 <bool key="isElement" value="YES"/>
@@ -56,14 +56,14 @@
                                 <constraint firstAttribute="width" secondItem="bNo-O5-DWh" secondAttribute="height" multiplier="1:1" id="PY3-7c-wcq"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5s-yP-8VE" userLabel="nameLabel">
-                            <rect key="frame" x="20" y="279" width="280" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5s-yP-8VE" userLabel="nameLabel">
+                            <rect key="frame" x="20" y="279.5" width="280" height="24"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="john.doe@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fa-Ag-3GW" userLabel="addressLabel">
-                            <rect key="frame" x="20" y="336" width="280" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adalia.labalia@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fa-Ag-3GW" userLabel="addressLabel">
+                            <rect key="frame" x="20" y="335.5" width="280" height="17"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -224,12 +224,12 @@
                         <constraint firstItem="bNo-O5-DWh" firstAttribute="centerX" secondItem="25" secondAttribute="centerX" id="cyb-qs-2OX"/>
                         <constraint firstItem="83h-qP-Ddk" firstAttribute="top" secondItem="25" secondAttribute="top" constant="32" id="e4N-5p-VXD"/>
                         <constraint firstAttribute="bottom" secondItem="G7m-Av-QlR" secondAttribute="bottom" constant="32" id="gCe-cD-VQX"/>
-                        <constraint firstItem="G7m-Av-QlR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="26e-Pj-2Oh" secondAttribute="trailing" constant="4" id="haw-r9-sOE"/>
+                        <constraint firstItem="G7m-Av-QlR" firstAttribute="leading" secondItem="26e-Pj-2Oh" secondAttribute="trailing" constant="32" id="haw-r9-sOE"/>
                         <constraint firstItem="AaM-cH-pvW" firstAttribute="leading" secondItem="25" secondAttribute="leading" constant="32" id="mbd-gm-7kg"/>
                         <constraint firstItem="d5s-yP-8VE" firstAttribute="top" secondItem="bNo-O5-DWh" secondAttribute="bottom" constant="32" id="oSL-fh-Io7"/>
                         <constraint firstAttribute="trailing" secondItem="G7m-Av-QlR" secondAttribute="trailing" constant="32" id="pP6-3I-2FP"/>
                         <constraint firstItem="d5s-yP-8VE" firstAttribute="leading" secondItem="25" secondAttribute="leading" constant="20" symbolic="YES" id="uyn-FF-7CE"/>
-                        <constraint firstItem="26e-Pj-2Oh" firstAttribute="leading" secondItem="AaM-cH-pvW" secondAttribute="trailing" constant="32" id="wxS-u6-xh9"/>
+                        <constraint firstItem="26e-Pj-2Oh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AaM-cH-pvW" secondAttribute="trailing" constant="4" id="wxS-u6-xh9"/>
                         <constraint firstItem="bNo-O5-DWh" firstAttribute="top" secondItem="83h-qP-Ddk" secondAttribute="bottom" constant="32" id="xAx-AN-KUV"/>
                         <constraint firstAttribute="bottom" secondItem="AaM-cH-pvW" secondAttribute="bottom" constant="32" id="yUF-y3-opc"/>
                     </constraints>

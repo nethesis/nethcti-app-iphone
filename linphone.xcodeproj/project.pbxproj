@@ -1885,6 +1885,7 @@
 		C3936F52263C37BC0058FE3D /* nethcti_qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_qr@2x.png"; sourceTree = "<group>"; };
 		C39408D4264011CD009DB15E /* login_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_menu.png; sourceTree = "<group>"; };
 		C39408D5264011CD009DB15E /* login_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_menu@2x.png"; sourceTree = "<group>"; };
+		C39727002657D61B0072D986 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CallOutgoingView.strings; sourceTree = "<group>"; };
 		C397F3982657B27A00AB3178 /* nethcti_close_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_close_button@2x.png"; sourceTree = "<group>"; };
 		C397F3992657B27A00AB3178 /* nethcti_close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_close_button.png; sourceTree = "<group>"; };
 		C397F39C2657B83A00AB3178 /* nethcti_microphone_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_microphone_disabled@2x.png"; sourceTree = "<group>"; };
@@ -4875,6 +4876,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				634610111B6140A500548952 /* Base */,
+				C39727002657D61B0072D986 /* it */,
 			);
 			name = CallOutgoingView.xib;
 			sourceTree = "<group>";
