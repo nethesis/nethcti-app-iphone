@@ -263,9 +263,13 @@
         added = NO;
     }
     
-    if(!added && mContact.nethesis) {
+    if(/*added &&*/ mContact.nethesis) {
         NSString* identifier = mContact.identifier;
-        while([_addressBookMap objectForKey:identifier]) {
+        if([mContact.firstName containsSubstring:@"Stefano"] || [mContact.company containsSubstring:@"Stefano"] || [mContact.displayName containsSubstring:@"Stefano"]) {
+            LOGD(@"Hi");
+        }
+        Contact *prev = [_addressBookMap objectForKey:identifier];
+        while(prev) {
             [NSString stringWithFormat:@"%@%@", identifier, @"#"];
         }
         [_addressBookMap setObject:mContact forKey:(identifier)];
