@@ -27,7 +27,9 @@
 
 @interface CallOutgoingView : TPMultiLayoutViewController <UICompositeViewDelegate> {
 }
-@property(weak, nonatomic) IBOutlet UIRoundedImageView *avatarImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property(weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UISpeakerButton *speakerButton;
 @property(weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -37,6 +39,7 @@
 @property(weak, nonatomic) IBOutlet UIButton *routesEarpieceButton;
 @property(weak, nonatomic) IBOutlet UISpeakerButton *routesSpeakerButton;
 @property(weak, nonatomic) IBOutlet UIMutedMicroButton *microButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 
 - (IBAction)onDeclineClick:(id)sender;
 

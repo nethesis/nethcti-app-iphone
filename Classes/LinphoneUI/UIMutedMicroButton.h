@@ -19,6 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LinphoneManager.h"
 #import "UIToggleButton.h"
 
 @interface UIMutedMicroButton : UIToggleButton <UIToggleButtonDelegate> {
