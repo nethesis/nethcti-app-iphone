@@ -251,10 +251,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    UITableViewHeaderFooterView *asd = view;
-    asd.textLabel.textColor = [UIColor getColorByName:@"MainColor"];
-    asd.textLabel.text = asd.textLabel.text.lowercaseString.capitalizedString;
-    asd.textLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
+    UITableViewHeaderFooterView *headerFooterView = view;
+    headerFooterView.textLabel.textColor = [UIColor getColorByName:@"MainColor"];
+    headerFooterView.textLabel.text = headerFooterView.textLabel.text.lowercaseString.capitalizedString;
+    headerFooterView.textLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
 }
 @end
 

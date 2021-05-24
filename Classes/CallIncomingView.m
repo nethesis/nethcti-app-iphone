@@ -121,8 +121,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
 	char *uri = linphone_address_as_string_uri_only(addr);
 	ms_free(uri);
-	[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:YES withRoundedRadius:YES];
-
+	
+    //[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:YES withRoundedRadius:YES];
+    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+    
 	_tabBar.hidden = linphone_call_params_video_enabled(linphone_call_get_remote_params(_call));
 	_tabVideoBar.hidden = !_tabBar.hidden;
 }

@@ -56,6 +56,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 										   selector:@selector(bluetoothAvailabilityUpdateEvent:)
 											   name:kLinphoneBluetoothAvailabilityUpdate
 											 object:nil];
+    
+    [self setUIColors];
 
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	if (!call) {
@@ -66,13 +68,23 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
 	char *uri = linphone_address_as_string_uri_only(addr);
 	ms_free(uri);
-	[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
-
+	
+    //[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+    
 	[self hideSpeaker:LinphoneManager.instance.bluetoothAvailable];
 
 	[_speakerButton update];
 	[_microButton update];
 	[_routesButton update];
+}
+
+- (void)setUIColors {
+    UIColor *midgrey = [UIColor getColorByName:@"MidGrey"];
+    _titleLabel.textColor = midgrey;
+    _nameLabel.textColor = midgrey;
+    _addressLabel.textColor = LINPHONE_MAIN_COLOR;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

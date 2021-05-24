@@ -20,9 +20,10 @@
             <connections>
                 <outlet property="acceptVideoButton" destination="tX0-eE-di5" id="pc5-qZ-dgD"/>
                 <outlet property="addressLabel" destination="78f-eb-xdx" id="Qjw-7G-oqG"/>
-                <outlet property="avatarImage" destination="19" id="20"/>
+                <outlet property="avatarImage" destination="6B4-d3-12S" id="LRq-Af-atw"/>
                 <outlet property="earlyMediaView" destination="lUj-2n-Afx" id="cHv-3Y-lIQ"/>
                 <outlet property="landscapeView" destination="r7T-Et-xrQ" id="rA1-2K-fUf"/>
+                <outlet property="nameInitialsLabel" destination="nhd-fx-EFb" id="6dO-Cy-x3Z"/>
                 <outlet property="nameLabel" destination="hjQ-4P-bKP" id="Elh-o8-zM9"/>
                 <outlet property="portraitView" destination="25" id="6Gy-ZX-kTl"/>
                 <outlet property="tabBar" destination="4" id="9gd-FT-jaI"/>
@@ -46,24 +47,42 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="19" userLabel="avatarImage" customClass="UIRoundedImageView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sz8-2F-pdc" userLabel="avatarContainer">
                             <rect key="frame" x="94" y="87.5" width="187.5" height="187.5"/>
-                            <accessibility key="accessibilityConfiguration" label="Contact avatar">
-                                <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                <bool key="isElement" value="YES"/>
-                            </accessibility>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="6B4-d3-12S" userLabel="avatarImage">
+                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="187.5"/>
+                                    <accessibility key="accessibilityConfiguration" label="Contact avatar">
+                                        <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                        <bool key="isElement" value="YES"/>
+                                    </accessibility>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhd-fx-EFb" userLabel="nameInitialsLabel">
+                                    <rect key="frame" x="55.5" y="56.5" width="76" height="75"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="64"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="19" secondAttribute="height" multiplier="1:1" id="ZgY-f1-fNk"/>
+                                <constraint firstItem="nhd-fx-EFb" firstAttribute="centerY" secondItem="Sz8-2F-pdc" secondAttribute="centerY" id="P5V-ZO-ZpB"/>
+                                <constraint firstAttribute="width" secondItem="Sz8-2F-pdc" secondAttribute="height" multiplier="1:1" id="U1l-6B-rOd"/>
+                                <constraint firstAttribute="trailing" secondItem="6B4-d3-12S" secondAttribute="trailing" id="hm4-gZ-bHd"/>
+                                <constraint firstAttribute="bottom" secondItem="6B4-d3-12S" secondAttribute="bottom" id="lOY-wz-4UI"/>
+                                <constraint firstItem="nhd-fx-EFb" firstAttribute="centerX" secondItem="Sz8-2F-pdc" secondAttribute="centerX" id="mfK-i1-fYs"/>
+                                <constraint firstItem="6B4-d3-12S" firstAttribute="top" secondItem="Sz8-2F-pdc" secondAttribute="top" id="tug-1Z-bZf"/>
+                                <constraint firstItem="6B4-d3-12S" firstAttribute="leading" secondItem="Sz8-2F-pdc" secondAttribute="leading" id="uEs-fl-0jK"/>
                             </constraints>
-                        </imageView>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="hjQ-4P-bKP" userLabel="nameLabel">
-                            <rect key="frame" x="121" y="307" width="133" height="23"/>
+                            <rect key="frame" x="16" y="307" width="343" height="23"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="john.doe@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="78f-eb-xdx" userLabel="addressLabel">
-                            <rect key="frame" x="104.5" y="362" width="166" height="17"/>
+                            <rect key="frame" x="16" y="362" width="343" height="17"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -143,7 +162,7 @@
                                         <action selector="onAcceptAudioOnlyClick:" destination="-1" eventType="touchUpInside" id="N9h-i1-ejZ"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX0-eE-di5" userLabel="acceptButton">
+                                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX0-eE-di5" userLabel="acceptButton">
                                     <rect key="frame" x="279" y="32" width="64" height="64"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <constraints>
@@ -151,7 +170,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" image="nethcti_cam.png" backgroundImage="color_nethcti_green.png">
+                                    <state key="normal" image="nethcti_answer_video.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -183,16 +202,18 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="78f-eb-xdx" firstAttribute="top" secondItem="hjQ-4P-bKP" secondAttribute="bottom" constant="32" id="68J-XQ-BJK"/>
-                        <constraint firstItem="78f-eb-xdx" firstAttribute="centerX" secondItem="hjQ-4P-bKP" secondAttribute="centerX" id="Lbd-jD-Exz"/>
-                        <constraint firstItem="19" firstAttribute="centerX" secondItem="3jO-ZM-rXV" secondAttribute="centerX" id="N7t-zB-dk3"/>
+                        <constraint firstItem="Sz8-2F-pdc" firstAttribute="centerX" secondItem="25" secondAttribute="centerX" id="7n4-aW-hqA"/>
+                        <constraint firstItem="78f-eb-xdx" firstAttribute="leading" secondItem="25" secondAttribute="leading" constant="16" id="AIO-ef-9CM"/>
+                        <constraint firstItem="hjQ-4P-bKP" firstAttribute="top" secondItem="Sz8-2F-pdc" secondAttribute="bottom" constant="32" id="Iey-F8-sD8"/>
+                        <constraint firstItem="hjQ-4P-bKP" firstAttribute="leading" secondItem="25" secondAttribute="leading" constant="16" id="MZF-pM-eO4"/>
                         <constraint firstAttribute="trailing" secondItem="vIQ-QP-ooa" secondAttribute="trailing" id="OGp-k7-dC0"/>
                         <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="Qf7-7C-biJ"/>
+                        <constraint firstItem="Sz8-2F-pdc" firstAttribute="width" secondItem="25" secondAttribute="width" multiplier="0.5" id="REk-wF-VSH"/>
                         <constraint firstAttribute="bottom" secondItem="vIQ-QP-ooa" secondAttribute="bottom" id="SiG-yt-Fhg"/>
-                        <constraint firstItem="19" firstAttribute="top" secondItem="3jO-ZM-rXV" secondAttribute="bottom" constant="32" id="TyV-eE-bUV"/>
+                        <constraint firstItem="Sz8-2F-pdc" firstAttribute="top" secondItem="3jO-ZM-rXV" secondAttribute="bottom" constant="32" id="Ubo-6c-rUF"/>
                         <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="YGN-x6-BRo"/>
-                        <constraint firstItem="hjQ-4P-bKP" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="32" id="Z17-xV-LY4"/>
-                        <constraint firstItem="19" firstAttribute="width" secondItem="25" secondAttribute="width" multiplier="0.5" id="bQS-Jo-8IT"/>
-                        <constraint firstItem="hjQ-4P-bKP" firstAttribute="centerX" secondItem="19" secondAttribute="centerX" id="dk6-dV-Es7"/>
+                        <constraint firstAttribute="trailing" secondItem="78f-eb-xdx" secondAttribute="trailing" constant="16" id="ela-Qg-q4n"/>
+                        <constraint firstAttribute="trailing" secondItem="hjQ-4P-bKP" secondAttribute="trailing" constant="16" id="hz0-Ti-U4M"/>
                         <constraint firstItem="3jO-ZM-rXV" firstAttribute="top" secondItem="25" secondAttribute="top" constant="32" id="r3Z-S0-nAY"/>
                         <constraint firstItem="4" firstAttribute="leading" secondItem="25" secondAttribute="leading" id="x87-yD-7YO"/>
                         <constraint firstItem="vIQ-QP-ooa" firstAttribute="leading" secondItem="25" secondAttribute="leading" id="xBR-pZ-ODf"/>
@@ -356,9 +377,9 @@
         <image name="color_F.png" width="2" height="2"/>
         <image name="color_I.png" width="2" height="2"/>
         <image name="color_L.png" width="2" height="2"/>
-        <image name="color_nethcti_green.png" width="2" height="2"/>
+        <image name="nethcti_answer_video.png" width="40" height="40"/>
+        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_call_accept.png" width="128" height="128"/>
-        <image name="nethcti_cam.png" width="40" height="40"/>
         <image name="nethcti_close_button.png" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

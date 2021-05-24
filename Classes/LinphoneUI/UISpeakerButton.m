@@ -19,8 +19,6 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 #import "UISpeakerButton.h"
-#import "Utils.h"
-#import "LinphoneManager.h"
 
 #include "linphone/linphonecore.h"
 
@@ -31,6 +29,9 @@ INIT_WITH_COMMON_CF {
 										   selector:@selector(audioRouteChangeListenerCallback:)
 											   name:AVAudioSessionRouteChangeNotification
 											 object:nil];
+    
+    UIImage *dImage = [[UIImage imageNamed:@"nethcti_volume.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setImage:dImage forState:(UIControlStateNormal | UIControlStateSelected)];
 	return self;
 }
 
@@ -41,16 +42,23 @@ INIT_WITH_COMMON_CF {
 #pragma mark - UIToggleButtonDelegate Functions
 
 - (void)audioRouteChangeListenerCallback:(NSNotification *)notif {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self update];});
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self update];
+    });
 }
 
 - (void)onOn {
 	[CallManager.instance enableSpeakerWithEnable:TRUE];
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (void)onOff {
 	[CallManager.instance enableSpeakerWithEnable:FALSE];
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:[UIColor getColorByName:@"LightGrey"]];
 }
 
 - (bool)onUpdate {

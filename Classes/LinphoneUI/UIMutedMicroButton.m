@@ -19,16 +19,32 @@
 
 #import "UIMutedMicroButton.h"
 
-#import "LinphoneManager.h"
-
 @implementation UIMutedMicroButton
+
+INIT_WITH_COMMON_CF {
+    UIImage *dImage = [[UIImage imageNamed:@"nethcti_microphone.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setImage:dImage forState:UIControlStateNormal];
+    UIImage *sImage = [[UIImage imageNamed:@"nethcti_microphone_disabled.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setImage:sImage forState:UIControlStateSelected];
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:[UIColor getColorByName:@"Grey"]];
+    
+    return self;
+}
 
 - (void)onOn {
 	linphone_core_enable_mic(LC, false);
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (void)onOff {
 	linphone_core_enable_mic(LC, true);
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (bool)onUpdate {

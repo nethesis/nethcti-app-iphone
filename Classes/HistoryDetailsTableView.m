@@ -62,10 +62,11 @@
 
 	UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
 	tempLabel.backgroundColor = [UIColor clearColor];
-	tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
+	tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
 	tempLabel.text = NSLocalizedString(@"Calls", nil);
 	tempLabel.textAlignment = NSTextAlignmentCenter;
-	tempLabel.font = [UIFont boldSystemFontOfSize:17];
+    tempLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
+
 	tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[tempView addSubview:tempLabel];
 
@@ -83,6 +84,8 @@
 	int duration = linphone_call_log_get_duration(log);
 	time_t callTime = linphone_call_log_get_start_date(log);
 	cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.textColor = [UIColor getColorByName:@"Grey"];
+
 	[cell.textLabel
 		setText:[NSString stringWithFormat:@"%@ - %@",
 										   [LinphoneUtils timeToString:callTime withFormat:LinphoneDateHistoryDetails],
@@ -90,16 +93,20 @@
 	BOOL outgoing = (linphone_call_log_get_dir(log) == LinphoneCallOutgoing);
 
 	if (linphone_call_log_get_status(log) == LinphoneCallMissed) {
-		cell.imageView.image = [UIImage imageNamed:@"call_missed.png"];
+		cell.imageView.image = [UIImage imageNamed:@"nethcti_call_status_missed.png"];
 	} else if (outgoing) {
-		cell.imageView.image = [UIImage imageNamed:@"call_outgoing.png"];
+		cell.imageView.image = [UIImage imageNamed:@"nethcti_call_status_outgoing.png"];
 	} else {
-		cell.imageView.image = [UIImage imageNamed:@"call_incoming.png"];
+		cell.imageView.image = [UIImage imageNamed:@"nethcti_call_status_incoming.png"];
 	}
     
     cell.contentView.userInteractionEnabled = false;
 
 	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
 }
 
 @end
