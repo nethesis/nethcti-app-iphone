@@ -39,6 +39,7 @@
 @property(weak, nonatomic) IBOutlet UIButton *routesEarpieceButton;
 @property(weak, nonatomic) IBOutlet UISpeakerButton *routesSpeakerButton;
 @property(weak, nonatomic) IBOutlet UIMutedMicroButton *microButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 
 - (IBAction)onDeclineClick:(id)sender;
 

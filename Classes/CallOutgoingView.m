@@ -68,8 +68,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
 	char *uri = linphone_address_as_string_uri_only(addr);
 	ms_free(uri);
-	[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+	
+    //[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
 
+    [ContactDisplay setDisplayInitialsLabel:<#(UILabel *)#> forName:<#(NSString *)#>]
 	[self hideSpeaker:LinphoneManager.instance.bluetoothAvailable];
 
 	[_speakerButton update];
