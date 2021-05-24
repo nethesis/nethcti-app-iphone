@@ -833,6 +833,8 @@
 	return [self lumColor:0.75];
 }
 
+/// Get the color defined in config files from the name given fetched in info.plist file.
+/// @param name Color name defined in info.plist
 + (UIColor *)getColorByName:(NSString *)name {
     
     NSString *hexString = [NSBundle.mainBundle objectForInfoDictionaryKey:name];
