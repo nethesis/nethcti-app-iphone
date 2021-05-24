@@ -44,6 +44,15 @@
     _titleLabel.textColor = midgrey;
     _nameLabel.textColor = midgrey;
     _addressLabel.textColor = LINPHONE_MAIN_COLOR;
+    
+    UIImage *acceptVideo = [[UIImage imageNamed:@"nethcti_cam"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _acceptVideoButton.imageView.image = acceptVideo;
+    _acceptVideoButton.tintColor = [UIColor getColorByName:@"White"];
+    
+    _acceptVideoButton.layer.borderWidth = .8;
+    _acceptVideoButton.layer.borderColor = [UIColor getColorByName:@"White"].CGColor;
+    _acceptVideoButton.layer.cornerRadius = 30.f;
+    _acceptVideoButton.layer.masksToBounds = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

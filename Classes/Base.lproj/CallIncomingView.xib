@@ -18,6 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallIncomingView">
             <connections>
+                <outlet property="acceptVideoButton" destination="tX0-eE-di5" id="pc5-qZ-dgD"/>
                 <outlet property="addressLabel" destination="78f-eb-xdx" id="Qjw-7G-oqG"/>
                 <outlet property="avatarImage" destination="19" id="20"/>
                 <outlet property="earlyMediaView" destination="lUj-2n-Afx" id="cHv-3Y-lIQ"/>
@@ -67,7 +68,7 @@
                             <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="tabBar">
+                        <view alpha="0.0" tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="tabBar">
                             <rect key="frame" x="0.0" y="539" width="375" height="128"/>
                             <subviews>
                                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="declineButton">
@@ -149,7 +150,8 @@
                                         <constraint firstAttribute="width" secondItem="tX0-eE-di5" secondAttribute="height" multiplier="1:1" id="mjD-8v-6zn"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="nethcti_call_accept.png">
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="nethcti_cam.png" backgroundImage="color_nethcti_green.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -354,7 +356,9 @@
         <image name="color_F.png" width="2" height="2"/>
         <image name="color_I.png" width="2" height="2"/>
         <image name="color_L.png" width="2" height="2"/>
+        <image name="color_nethcti_green.png" width="2" height="2"/>
         <image name="nethcti_call_accept.png" width="128" height="128"/>
+        <image name="nethcti_cam.png" width="40" height="40"/>
         <image name="nethcti_close_button.png" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

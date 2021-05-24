@@ -44,6 +44,7 @@
 @property(nonatomic, assign) LinphoneCall *call;
 @property(nonatomic, strong) id<IncomingCallViewDelegate> delegate;
 @property(weak, nonatomic) IBOutlet UIView *tabVideoBar;
+@property (weak, nonatomic) IBOutlet UIButton *acceptVideoButton;
 @property(weak, nonatomic) IBOutlet UIView *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *earlyMediaView;
 
