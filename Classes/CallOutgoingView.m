@@ -70,8 +70,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 	ms_free(uri);
 	
     //[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
-
-    [ContactDisplay setDisplayInitialsLabel:<#(UILabel *)#> forName:<#(NSString *)#>]
+    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+    
 	[self hideSpeaker:LinphoneManager.instance.bluetoothAvailable];
 
 	[_speakerButton update];

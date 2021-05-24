@@ -50,7 +50,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flc-PI-fT4" userLabel="avatarContainer">
                             <rect key="frame" x="107" y="87.666666666666686" width="214" height="214"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="bNo-O5-DWh" userLabel="avatarImage" customClass="UIRoundedImageView">
+                                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="bNo-O5-DWh" userLabel="avatarImage">
                                     <rect key="frame" x="0.0" y="0.0" width="214" height="214"/>
                                     <accessibility key="accessibilityConfiguration" label="Contact avatar">
                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
