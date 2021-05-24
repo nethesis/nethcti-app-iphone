@@ -28,18 +28,37 @@
 #pragma mark - ViewController Functions
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+    [super viewWillAppear:animated];
+    
+    // Subscribe to call update event.
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(callUpdateEvent:)
+                                               name:kLinphoneCallUpdate
+                                             object:nil];
+    
+    [self setUIColors];
+}
 
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(callUpdateEvent:)
-											   name:kLinphoneCallUpdate
-											 object:nil];
+- (void)setUIColors {
+    UIColor *midgrey = [UIColor getColorByName:@"MidGrey"];
+    _titleLabel.textColor = midgrey;
+    _nameLabel.textColor = midgrey;
+    _addressLabel.textColor = LINPHONE_MAIN_COLOR;
+    
+    UIImage *acceptVideo = [[UIImage imageNamed:@"nethcti_cam"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _acceptVideoButton.imageView.image = acceptVideo;
+    _acceptVideoButton.tintColor = [UIColor getColorByName:@"White"];
+    
+    _acceptVideoButton.layer.borderWidth = .8;
+    _acceptVideoButton.layer.borderColor = [UIColor getColorByName:@"White"].CGColor;
+    _acceptVideoButton.layer.cornerRadius = 30.f;
+    _acceptVideoButton.layer.masksToBounds = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	[NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneCallUpdate object:nil];
-	_call = NULL;
+    [super viewWillDisappear:animated];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneCallUpdate object:nil];
+    _call = NULL;
 }
 
 #pragma mark - UICompositeViewDelegate Functions
@@ -102,8 +121,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
 	char *uri = linphone_address_as_string_uri_only(addr);
 	ms_free(uri);
-	[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:YES withRoundedRadius:YES];
-
+	
+    //[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:YES withRoundedRadius:YES];
+    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+    
 	_tabBar.hidden = linphone_call_params_video_enabled(linphone_call_get_remote_params(_call));
 	_tabVideoBar.hidden = !_tabBar.hidden;
 }

@@ -185,7 +185,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 44);
+	CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 36);
 	UIView *tempView = [[UIView alloc] initWithFrame:frame];
 	if (@available(iOS 13, *)) {
 		tempView.backgroundColor = [UIColor systemBackgroundColor];
@@ -195,7 +195,7 @@
 
 	UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
 	tempLabel.backgroundColor = [UIColor clearColor];
-	tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_A.png"]];
+	tempLabel.textColor = [UIColor getColorByName: @"MainColor"];
 	NSDate *eventDate = _sortedDays[section];
 	NSDate *currentDate = [self dateAtBeginningOfDayForDate:[NSDate date]];
 	if ([eventDate isEqualToDate:currentDate]) {
@@ -210,6 +210,19 @@
 	tempLabel.font = [UIFont boldSystemFontOfSize:17];
 	tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[tempView addSubview:tempLabel];
+    
+    
+    CALayer *bottomBorder = [CALayer layer];
+    //CALayer *topBorder = [CALayer layer];
+
+    //topBorder.frame = CGRectMake(20.0f, 0, tempView.frame.size.width  - 40.0f, 1.0f);
+    //topBorder.backgroundColor = [UIColor getColorByName:@"Grey"].CGColor;
+    
+    bottomBorder.frame = CGRectMake(20.0f, tempView.frame.size.height, tempView.frame.size.width  - 40.0f, 1.0f);
+    bottomBorder.backgroundColor = [UIColor getColorByName:@"Grey"].CGColor;
+    
+    //[tempView.layer addSublayer:topBorder];
+    [tempView.layer addSublayer:bottomBorder];
 
 	return tempView;
 }
@@ -274,6 +287,10 @@
 						 withRowAnimation:UITableViewRowAnimationFade];
 		[tableView endUpdates];
 	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
 }
 
 - (void)removeSelectionUsing:(void (^)(NSIndexPath *))remover {

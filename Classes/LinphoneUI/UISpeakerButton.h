@@ -20,6 +20,8 @@
 #import <UIKit/UIKit.h>
 
 #import "UIToggleButton.h"
+#import "Utils.h"
+#import "LinphoneManager.h"
 
 @interface UISpeakerButton : UIToggleButton<UIToggleButtonDelegate> {
 

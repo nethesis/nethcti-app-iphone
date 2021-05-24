@@ -664,6 +664,16 @@
     }
 }
 
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(LinphoneAddress *)addr {
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forContact:contact];
+    } else {
+        [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr]];
+    }
+    
+}
 
 @end
 
@@ -823,6 +833,8 @@
 	return [self lumColor:0.75];
 }
 
+/// Get the color defined in config files from the name given fetched in info.plist file.
+/// @param name Color name defined in info.plist
 + (UIColor *)getColorByName:(NSString *)name {
     
     NSString *hexString = [NSBundle.mainBundle objectForInfoDictionaryKey:name];
