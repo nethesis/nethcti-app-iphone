@@ -213,15 +213,15 @@
     
     
     CALayer *bottomBorder = [CALayer layer];
-    CALayer *topBorder = [CALayer layer];
+    //CALayer *topBorder = [CALayer layer];
 
-    topBorder.frame = CGRectMake(20.0f, 0, tempView.frame.size.width  - 40.0f, 1.0f);
-    topBorder.backgroundColor = [UIColor getColorByName:@"Grey"].CGColor;
+    //topBorder.frame = CGRectMake(20.0f, 0, tempView.frame.size.width  - 40.0f, 1.0f);
+    //topBorder.backgroundColor = [UIColor getColorByName:@"Grey"].CGColor;
     
     bottomBorder.frame = CGRectMake(20.0f, tempView.frame.size.height, tempView.frame.size.width  - 40.0f, 1.0f);
     bottomBorder.backgroundColor = [UIColor getColorByName:@"Grey"].CGColor;
     
-    [tempView.layer addSublayer:topBorder];
+    //[tempView.layer addSublayer:topBorder];
     [tempView.layer addSublayer:bottomBorder];
 
 	return tempView;

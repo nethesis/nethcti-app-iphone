@@ -41,6 +41,8 @@
 		[self addSubview:sub];
 		_detailsButton.hidden = IPAD;
 		callLog = NULL;
+        displayNameLabel.textColor = [UIColor getColorByName:@"Grey"];
+
 	}
 	return self;
 }
