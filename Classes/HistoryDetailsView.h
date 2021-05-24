@@ -31,7 +31,7 @@
 }
 @property(weak, nonatomic) IBOutlet UIButton *backButton;
 @property(weak, nonatomic) IBOutlet UILabel *contactLabel;
-@property(nonatomic, strong) IBOutlet UIRoundedImageView *avatarImage;
+@property(nonatomic, strong) IBOutlet UIImageView *avatarImage;
 @property(nonatomic, strong) IBOutlet UILabel *addressLabel;
 @property(nonatomic, strong) IBOutlet UIButton *addContactButton;
 @property(nonatomic, copy, setter=setCallLogId:) NSString *callLogId;
@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIRoundedImageView *linphoneImage;
 @property (weak, nonatomic) IBOutlet UIView *optionsView;
 @property (weak, nonatomic) IBOutlet UIView *encryptedChatView;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialLabel;
 
 - (IBAction)onBackClick:(id)event;
 - (IBAction)onAddContactClick:(id)event;
