@@ -61,7 +61,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	linphone_core_reset_missed_calls_count(LC);
 	// Fake event
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
-	[_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
+	[_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -77,13 +77,21 @@ static UICompositeViewDescription *compositeDescription = nil;
 		_allButton.selected = TRUE;
 		[_tableController setMissedFilter:FALSE];
 		_missedButton.selected = FALSE;
+        [_allButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+        [_missedButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+
+        // Colorare all
 	} else {
 		frame.origin.x = _missedButton.frame.origin.x;
 		_missedButton.selected = TRUE;
 		[_tableController setMissedFilter:TRUE];
 		_allButton.selected = FALSE;
+        [_allButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+        [_missedButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+
+        // Colorare missed
 	}
-	_selectedButtonImage.frame = frame;
+	//_selectedButtonImage.frame = frame;
 }
 
 #pragma m ~ark - Action Functions
@@ -112,7 +120,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {
-	_allButton.hidden = _missedButton.hidden = _selectedButtonImage.hidden = self.tableController.isEditing;
+	_allButton.hidden = _missedButton.hidden = self.tableController.isEditing;
+    _selectedButtonImage.hidden = true;
 }
 
 @end

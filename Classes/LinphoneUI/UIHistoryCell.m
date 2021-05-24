@@ -41,6 +41,8 @@
 		[self addSubview:sub];
 		_detailsButton.hidden = IPAD;
 		callLog = NULL;
+        displayNameLabel.textColor = [UIColor getColorByName:@"Grey"];
+
 	}
 	return self;
 }
@@ -86,13 +88,13 @@
 	UIImage *image;
 	if (linphone_call_log_get_dir(callLog) == LinphoneCallIncoming) {
 		if (linphone_call_log_get_status(callLog) != LinphoneCallMissed) {
-			image = [UIImage imageNamed:@"call_status_incoming.png"];
+			image = [UIImage imageNamed:@"nethcti_call_status_incoming.png"];
 		} else {
-			image = [UIImage imageNamed:@"call_status_missed.png"];
+			image = [UIImage imageNamed:@"nethcti_call_status_missed.png"];
 		}
 		addr = linphone_call_log_get_from_address(callLog);
 	} else {
-		image = [UIImage imageNamed:@"call_status_outgoing.png"];
+		image = [UIImage imageNamed:@"nethcti_call_status_outgoing.png"];
 		addr = linphone_call_log_get_to_address(callLog);
 	}
 	_stateImage.image = image;
@@ -105,7 +107,11 @@
 			[displayNameLabel.text stringByAppendingString:[NSString stringWithFormat:@" (%lu)", count]];
 	}
 
-	[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+    
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+
 }
 
 - (void)setEditing:(BOOL)editing {

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,119 +23,151 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2">
+                <view contentMode="scaleToFill" id="2">
                     <rect key="frame" x="0.0" y="42" width="375" height="559"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3" userLabel="topBar">
+                        <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3" userLabel="topBar">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="switchView">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="switchView">
+                                    <rect key="frame" x="0.0" y="0.0" width="132" height="66"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="allButton" customClass="UIInterfaceStyleButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="66"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="allButton" customClass="UIInterfaceStyleButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                             <accessibility key="accessibilityConfiguration" label="All contacts filter"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="4" secondAttribute="height" multiplier="1:1" id="D8i-Yx-Pkg"/>
+                                            </constraints>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="history_all_default.png">
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_grey_phone.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="history_all_disabled.png"/>
-                                            <state key="selected" image="history_all_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
                                             <connections>
                                                 <action selector="onAllClick:" destination="-1" eventType="touchUpInside" id="29"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="bottom" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="missedButton" customClass="UIInterfaceStyleButton">
-                                            <rect key="frame" x="75" y="0.0" width="75" height="66"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="bottom" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="missedButton" customClass="UIInterfaceStyleButton">
+                                            <rect key="frame" x="66" y="0.0" width="66" height="66"/>
                                             <accessibility key="accessibilityConfiguration" label="Missed contacts filter"/>
-                                            <state key="normal" image="history_missed_default.png">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="5" secondAttribute="height" multiplier="1:1" id="2L0-uY-eFM"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_missed_calls.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="history_missed_disabled.png"/>
-                                            <state key="selected" image="history_missed_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
                                             <connections>
                                                 <action selector="onMissedClick:" destination="-1" eventType="touchUpInside" id="30"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="o8E-gw-vhI" userLabel="selectedButtonImage">
-                                            <rect key="frame" x="0.0" y="63" width="75" height="3"/>
+                                            <rect key="frame" x="0.0" y="62" width="65" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4" firstAttribute="top" secondItem="38" secondAttribute="top" id="5f8-JW-jFS"/>
+                                        <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="GqV-w2-NEK"/>
+                                        <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="cSH-rx-tCj"/>
+                                        <constraint firstItem="4" firstAttribute="leading" secondItem="38" secondAttribute="leading" id="lYz-tv-X2l"/>
+                                        <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="mlB-t5-lpn"/>
+                                        <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="qbh-rN-5z8"/>
+                                        <constraint firstItem="5" firstAttribute="top" secondItem="38" secondAttribute="top" id="uJ1-VE-3QL"/>
+                                    </constraints>
                                 </view>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00K-MU-NUc" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00K-MU-NUc" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete all"/>
-                                    <state key="normal" image="cancel_edit_default.png">
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="00K-MU-NUc" secondAttribute="height" multiplier="1:1" id="IWU-LQ-slg"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                    <state key="normal" image="nethcti_cancel.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="cancel_edit_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onCancelClick:" destination="18" eventType="touchUpInside" id="DAX-W6-l0H"/>
                                         <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="WQf-rB-DUt"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhN-oH-LQ9" userLabel="toggleSelectionButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="225" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhN-oH-LQ9" userLabel="toggleSelectionButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="243" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Select all"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="nhN-oH-LQ9" secondAttribute="height" multiplier="1:1" id="5Vw-gg-Ldr"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="deselect_all.png">
+                                    <state key="normal" image="nethcti_multiselect_default.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="select_all_disabled.png"/>
-                                    <state key="selected" image="select_all_default.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                    <state key="selected" image="nethcti_multiselect_selected.png"/>
                                     <connections>
                                         <action selector="onSelectionToggle:" destination="18" eventType="touchUpInside" id="ADr-KR-SmA"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35" userLabel="deleteButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="300" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35" userLabel="deleteButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="309" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete all"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="35" secondAttribute="height" multiplier="1:1" id="1fn-Zl-I6n"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="delete_default.png">
+                                    <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="delete_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="37"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="editButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="300" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="editButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="309" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="6" secondAttribute="height" multiplier="1:1" id="URq-oh-pkv"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="delete_default.png">
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                    <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="delete_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onEditClick:" destination="18" eventType="touchUpInside" id="5Ft-HW-cVh"/>
                                         <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="9gC-6R-w0j"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="38" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="08j-J5-xW7"/>
+                                <constraint firstItem="38" firstAttribute="top" secondItem="3" secondAttribute="top" id="0y5-1L-HU1"/>
+                                <constraint firstAttribute="bottom" secondItem="35" secondAttribute="bottom" id="BE9-7s-R8c"/>
+                                <constraint firstAttribute="bottom" secondItem="00K-MU-NUc" secondAttribute="bottom" id="D5F-Qc-51s"/>
+                                <constraint firstAttribute="trailing" secondItem="6" secondAttribute="trailing" id="F7G-M9-6h7"/>
+                                <constraint firstItem="35" firstAttribute="top" secondItem="3" secondAttribute="top" id="HQL-Xs-2Na"/>
+                                <constraint firstItem="nhN-oH-LQ9" firstAttribute="top" secondItem="3" secondAttribute="top" id="Iey-sP-ftl"/>
+                                <constraint firstItem="00K-MU-NUc" firstAttribute="top" secondItem="3" secondAttribute="top" id="JpX-sW-b6x"/>
+                                <constraint firstAttribute="height" constant="66" id="NDI-R4-8Kj"/>
+                                <constraint firstItem="00K-MU-NUc" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="gyB-Qo-P7I"/>
+                                <constraint firstAttribute="bottom" secondItem="38" secondAttribute="bottom" id="ngj-QL-Dss"/>
+                                <constraint firstAttribute="bottom" secondItem="nhN-oH-LQ9" secondAttribute="bottom" id="pwh-Yq-MkQ"/>
+                                <constraint firstItem="35" firstAttribute="leading" secondItem="nhN-oH-LQ9" secondAttribute="trailing" id="wBa-Vq-dYa"/>
+                                <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="wPh-kV-9xK"/>
+                                <constraint firstItem="6" firstAttribute="top" secondItem="3" secondAttribute="top" id="wQu-Xx-JjX"/>
+                                <constraint firstAttribute="trailing" secondItem="35" secondAttribute="trailing" id="zma-MP-mlD"/>
+                            </constraints>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="35" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="17" userLabel="tableView">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="35" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="17" userLabel="tableView">
                             <rect key="frame" x="0.0" y="66" width="375" height="493"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <color key="separatorColor" red="0.67030966281890869" green="0.71867996454238892" blue="0.75078284740447998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -143,13 +178,22 @@
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No call in your history" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtr-Fp-60Z" userLabel="emptyTableLabel">
                             <rect key="frame" x="0.0" y="66" width="375" height="493"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="17" secondAttribute="trailing" id="IAh-b7-ZkB"/>
+                        <constraint firstItem="17" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="IqW-3b-bB5"/>
+                        <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" id="KFv-c6-fhy"/>
+                        <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="QuR-Nf-W3K"/>
+                        <constraint firstItem="17" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="b4c-GH-cZz"/>
+                        <constraint firstAttribute="bottom" secondItem="17" secondAttribute="bottom" id="sdC-au-7RG"/>
+                        <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="yH1-6W-81O"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,20 +213,20 @@
         </tableViewController>
     </objects>
     <resources>
-        <image name="cancel_edit_default.png" width="47.200000762939453" height="47.200000762939453"/>
         <image name="cancel_edit_disabled.png" width="47.200000762939453" height="47.200000762939453"/>
-        <image name="color_E.png" width="2" height="2"/>
-        <image name="color_neth_A.png" width="2" height="2"/>
-        <image name="delete_default.png" width="34.400001525878906" height="44.799999237060547"/>
+        <image name="color_A.png" width="2" height="2"/>
         <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
-        <image name="deselect_all.png" width="43.200000762939453" height="43.200000762939453"/>
-        <image name="history_all_default.png" width="52.799999237060547" height="51.200000762939453"/>
         <image name="history_all_disabled.png" width="52.799999237060547" height="51.200000762939453"/>
-        <image name="history_all_selected.png" width="52.799999237060547" height="51.200000762939453"/>
-        <image name="history_missed_default.png" width="52.799999237060547" height="52.799999237060547"/>
         <image name="history_missed_disabled.png" width="52.799999237060547" height="52.799999237060547"/>
-        <image name="history_missed_selected.png" width="52.799999237060547" height="52.799999237060547"/>
-        <image name="select_all_default.png" width="43.200000762939453" height="43.200000762939453"/>
+        <image name="nethcti_cancel.png" width="40" height="40"/>
+        <image name="nethcti_grey_phone.png" width="250" height="250"/>
+        <image name="nethcti_missed_calls.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_default.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
+        <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="select_all_disabled.png" width="43.200000762939453" height="43.200000762939453"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

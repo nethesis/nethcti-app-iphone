@@ -143,7 +143,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
 	_addContactButton.hidden = ([FastAddressBook getContactWithAddress:addr] != nil);
 	[ContactDisplay setDisplayNameLabel:_contactLabel forAddress:addr withAddressLabel:_addressLabel];
-	[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forAddress:addr];
+    _nameInitialLabel.textColor = [UIColor getColorByName:@"Grey"];
+    
     Contact *contact = [FastAddressBook getContactWithAddress:addr];
     const LinphonePresenceModel *model = contact.friend ? linphone_friend_get_presence_model(contact.friend) : NULL;
     _linphoneImage.hidden = [LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"] ||
