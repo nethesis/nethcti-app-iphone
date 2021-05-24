@@ -38,6 +38,7 @@
 @property BOOL added;
 
 // Nethesis fields.
+@property(nonatomic, retain) NSString *fax;
 @property(nonatomic, retain) NSString *company;
 @property(nonatomic, retain) NSString *homeLocation;
 @property(nonatomic, retain) NSString *homePob;

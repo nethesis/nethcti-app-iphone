@@ -35,22 +35,17 @@
 @property(weak, nonatomic) IBOutlet UIView *editView;
 @property(weak, nonatomic) IBOutlet UIIconButton *deleteButton;
 @property(weak, nonatomic) IBOutlet UIIconButton *callButton;
-@property(weak, nonatomic) IBOutlet UIIconButton *chatButton;
 @property (weak, nonatomic) IBOutlet UIImageView *linphoneImage;
 @property (weak, nonatomic) UIView *waitView;
 @property (strong, nonatomic) IBOutlet UIButton *inviteButton;
-@property (weak, nonatomic) IBOutlet UIView *encryptedChatView;
 @property (weak, nonatomic) IBOutlet UIView *optionsView;
 
 - (id)initWithIdentifier:(NSString *)identifier;
 - (void)setAddress:(NSString *)address;
-- (void)setNonAddress:(NSString *)value;
 - (void)hideDeleteButton:(BOOL)hidden;
 - (void)shouldHideLinphoneImageOfAddress;
 
 - (IBAction)onCallClick:(id)sender;
-- (IBAction)onChatClick:(id)sender;
-- (IBAction)onEncrptedChatClick:(id)sender;
 - (IBAction)onDeleteClick:(id)sender;
 - (IBAction)onSMSInviteClick:(id)sender;
 @end
