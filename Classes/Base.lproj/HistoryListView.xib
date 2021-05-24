@@ -85,6 +85,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="00K-MU-NUc" secondAttribute="height" multiplier="1:1" id="IWU-LQ-slg"/>
                                     </constraints>
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                     <state key="normal" image="nethcti_cancel.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
@@ -133,6 +134,7 @@
                                         <constraint firstAttribute="width" secondItem="6" secondAttribute="height" multiplier="1:1" id="URq-oh-pkv"/>
                                     </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                     <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
