@@ -122,6 +122,8 @@
 		39A7C2CC2644044C0056735F /* nethcti_grey_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */; };
 		39A7C2D2264418BC0056735F /* nethcti_back_to_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */; };
 		39A7C2D426441A040056735F /* nethcti_backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2D326441A040056735F /* nethcti_backspace.png */; };
+		39D09CCC265BBA9600AFD3BA /* nethcti_missed_calls@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CCA265BBA9400AFD3BA /* nethcti_missed_calls@2x.png */; };
+		39D09CCD265BBA9600AFD3BA /* nethcti_missed_calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CCB265BBA9600AFD3BA /* nethcti_missed_calls.png */; };
 		39F2B99F26492D7600ADBFCE /* nethcti_menu_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B99D26492D7400ADBFCE /* nethcti_menu_home.png */; };
 		39F2B9A026492D7600ADBFCE /* nethcti_menu_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */; };
 		39F2B9A3264937DC00ADBFCE /* nethcti_user_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */; };
@@ -1107,6 +1109,8 @@
 		39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_grey_phone.png; sourceTree = "<group>"; };
 		39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_back_to_call.png; sourceTree = "<group>"; };
 		39A7C2D326441A040056735F /* nethcti_backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_backspace.png; sourceTree = "<group>"; };
+		39D09CCA265BBA9400AFD3BA /* nethcti_missed_calls@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_missed_calls@2x.png"; sourceTree = "<group>"; };
+		39D09CCB265BBA9600AFD3BA /* nethcti_missed_calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_missed_calls.png; sourceTree = "<group>"; };
 		39F2B99D26492D7400ADBFCE /* nethcti_menu_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_menu_home.png; sourceTree = "<group>"; };
 		39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu_home@2x.png"; sourceTree = "<group>"; };
 		39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_user_add@2x.png"; sourceTree = "<group>"; };
@@ -2645,6 +2649,8 @@
 				398DE720264D5121008B65A9 /* nethcti_add_field@2x.png */,
 				398DE724264D5644008B65A9 /* nethcti_edit.png */,
 				398DE725264D5647008B65A9 /* nethcti_edit@2x.png */,
+				39D09CCB265BBA9600AFD3BA /* nethcti_missed_calls.png */,
+				39D09CCA265BBA9400AFD3BA /* nethcti_missed_calls@2x.png */,
 				398DE718264D21A7008B65A9 /* nethcti_remove.png */,
 				398DE719264D21AA008B65A9 /* nethcti_remove@2x.png */,
 				39F2B9A2264937DC00ADBFCE /* nethcti_user_add.png */,
@@ -3975,6 +3981,7 @@
 				633FEE711D3CD5590014B822 /* footer_history_disabled@2x.png in Resources */,
 				633FEF141D3CD55A0014B822 /* pause_small_default.png in Resources */,
 				D38187B115FE340500C3EDCA /* ChatsListView.xib in Resources */,
+				39D09CCD265BBA9600AFD3BA /* nethcti_missed_calls.png in Resources */,
 				633FEDA41D3CD5590014B822 /* back_default.png in Resources */,
 				633FEE2C1D3CD5590014B822 /* color_D.png in Resources */,
 				615A280F217F1FD50060F920 /* chat_add_group.png in Resources */,
@@ -4368,6 +4375,7 @@
 				633FED9F1D3CD5590014B822 /* add_field_over@2x.png in Resources */,
 				633FEEB71D3CD55A0014B822 /* numpad_3_over~ipad.png in Resources */,
 				633FEEF51D3CD55A0014B822 /* numpad_star_default@2x.png in Resources */,
+				39D09CCC265BBA9600AFD3BA /* nethcti_missed_calls@2x.png in Resources */,
 				639E9CA91C0DB7FB00019A75 /* UIConfirmationDialog.xib in Resources */,
 				633FEF111D3CD55A0014B822 /* pause_big_disabled@2x.png in Resources */,
 				633FEE321D3CD5590014B822 /* color_L.png in Resources */,
