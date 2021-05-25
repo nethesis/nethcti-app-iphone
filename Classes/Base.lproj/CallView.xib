@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallView">
             <connections>
@@ -122,18 +127,62 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <view clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9" userLabel="callView">
+                        <view clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" id="9" userLabel="callView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="625"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" fixedFrame="YES" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-K5-yQp" userLabel="avatarImage" customClass="UIRoundedImageView">
-                                    <rect key="frame" x="62" y="135" width="249" height="320"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Contact avatar">
-                                        <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                        <bool key="isElement" value="YES"/>
-                                    </accessibility>
-                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wj9-Fl-7Oq" userLabel="infoView">
+                                    <rect key="frame" x="16" y="16" width="343" height="21.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-QO-Jwb" userLabel="durationLabel">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="Oy8-QO-Jwb" firstAttribute="leading" secondItem="Wj9-Fl-7Oq" secondAttribute="leading" id="2AI-LD-HXP"/>
+                                        <constraint firstAttribute="bottom" secondItem="Oy8-QO-Jwb" secondAttribute="bottom" id="Bdp-UF-D8h"/>
+                                        <constraint firstItem="Oy8-QO-Jwb" firstAttribute="top" secondItem="Wj9-Fl-7Oq" secondAttribute="top" id="Ut1-tG-fOL"/>
+                                        <constraint firstAttribute="trailing" secondItem="Oy8-QO-Jwb" secondAttribute="trailing" id="nCU-iu-maA"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fM-1x-Bgu" userLabel="avatarContainer">
+                                    <rect key="frame" x="94" y="69.5" width="187.5" height="187.5"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-K5-yQp" userLabel="avatarImage">
+                                            <rect key="frame" x="0.0" y="0.0" width="188" height="188"/>
+                                            <accessibility key="accessibilityConfiguration" label="Contact avatar">
+                                                <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIN-aD-498">
+                                            <rect key="frame" x="52" y="56.5" width="83.5" height="75"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="64"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="TIN-aD-498" firstAttribute="centerX" secondItem="8fM-1x-Bgu" secondAttribute="centerX" id="Gfc-Zt-1Nj"/>
+                                        <constraint firstAttribute="trailing" secondItem="fZy-K5-yQp" secondAttribute="trailing" id="H3g-jU-1T2"/>
+                                        <constraint firstItem="TIN-aD-498" firstAttribute="centerY" secondItem="8fM-1x-Bgu" secondAttribute="centerY" id="TMt-el-GHA"/>
+                                        <constraint firstAttribute="bottom" secondItem="fZy-K5-yQp" secondAttribute="bottom" id="aFy-nC-M0r"/>
+                                        <constraint firstItem="fZy-K5-yQp" firstAttribute="leading" secondItem="8fM-1x-Bgu" secondAttribute="leading" id="jPO-AM-dmH"/>
+                                        <constraint firstAttribute="width" secondItem="8fM-1x-Bgu" secondAttribute="height" multiplier="1:1" id="mlA-7R-8dY"/>
+                                        <constraint firstItem="fZy-K5-yQp" firstAttribute="top" secondItem="8fM-1x-Bgu" secondAttribute="top" id="pED-C0-ZO8"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-Rm-Qni" userLabel="nameLabel">
+                                    <rect key="frame" x="16" y="273" width="343" height="39.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <view alpha="0.0" tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
                                     <rect key="frame" x="0.0" y="-42" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,27 +227,6 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wj9-Fl-7Oq" userLabel="infoView">
-                                    <rect key="frame" x="0.0" y="90" width="375" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01:34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-QO-Jwb" userLabel="durationLabel">
-                                            <rect key="frame" x="0.0" y="40" width="375" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-Rm-Qni" userLabel="nameLabel">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                </view>
                                 <view hidden="YES" alpha="0.80000000000000004" tag="16" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-ml-8RY" userLabel="pausedByRemoteView">
                                     <rect key="frame" x="0.0" y="66" width="375" height="559"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,6 +266,17 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Wj9-Fl-7Oq" firstAttribute="top" secondItem="9" secondAttribute="top" constant="16" id="M8S-al-DfU"/>
+                                <constraint firstItem="8fM-1x-Bgu" firstAttribute="centerX" secondItem="9" secondAttribute="centerX" id="S91-yh-YOU"/>
+                                <constraint firstItem="KPa-Rm-Qni" firstAttribute="top" secondItem="8fM-1x-Bgu" secondAttribute="bottom" constant="16" id="X8l-kl-UDo"/>
+                                <constraint firstItem="8fM-1x-Bgu" firstAttribute="width" secondItem="9" secondAttribute="width" multiplier="0.5" id="aST-fI-Ph3"/>
+                                <constraint firstAttribute="trailing" secondItem="Wj9-Fl-7Oq" secondAttribute="trailing" constant="16" id="adk-Sr-Bxi"/>
+                                <constraint firstAttribute="trailing" secondItem="KPa-Rm-Qni" secondAttribute="trailing" constant="16" id="lFc-Yv-g07"/>
+                                <constraint firstItem="Wj9-Fl-7Oq" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="16" id="oPu-di-8v0"/>
+                                <constraint firstItem="8fM-1x-Bgu" firstAttribute="top" secondItem="Wj9-Fl-7Oq" secondAttribute="bottom" constant="32" id="ubn-9a-1f2"/>
+                                <constraint firstItem="KPa-Rm-Qni" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="16" id="yR4-T3-OfC"/>
+                            </constraints>
                         </view>
                         <view hidden="YES" tag="20" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-q2-eR2" userLabel="noActiveCallView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="499"/>
@@ -257,10 +296,12 @@
                             </subviews>
                             <color key="backgroundColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <tableView clipsSubviews="YES" tag="23" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="106" userLabel="pausedCallsTableView">
-                            <rect key="frame" x="0.0" y="449" width="375" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <tableView clipsSubviews="YES" tag="23" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="106" userLabel="pausedCallsTableView">
+                            <rect key="frame" x="0.0" y="397" width="375" height="60"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="Qdv-Sk-HhZ"/>
+                            </constraints>
                             <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <outlet property="dataSource" destination="162" id="168"/>
@@ -288,8 +329,6 @@
                                                     <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="selected" image="numpad_1_over.png"/>
-                                                    <state key="highlighted" image="numpad_1_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6v-Cg-9b8" userLabel="2" customClass="UIDigitButton">
                                                     <rect key="frame" x="112" y="0.0" width="75" height="75"/>
@@ -301,7 +340,6 @@
                                                     <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_2_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2h-PD-GN2" userLabel="3" customClass="UIDigitButton">
                                                     <rect key="frame" x="225" y="0.0" width="75" height="75"/>
@@ -313,7 +351,6 @@
                                                     <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_3_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -330,7 +367,6 @@
                                                     <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_4_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="29" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-zK-V7e" userLabel="5" customClass="UIDigitButton">
                                                     <rect key="frame" x="112" y="0.0" width="75" height="75"/>
@@ -342,7 +378,6 @@
                                                     <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_5_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fB-uk-rXS" userLabel="6" customClass="UIDigitButton">
                                                     <rect key="frame" x="225" y="0.0" width="75" height="75"/>
@@ -354,7 +389,6 @@
                                                     <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_6_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -371,7 +405,6 @@
                                                     <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_7_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="32" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRh-kc-UVM" userLabel="8" customClass="UIDigitButton">
                                                     <rect key="frame" x="112" y="0.0" width="75" height="75"/>
@@ -383,7 +416,6 @@
                                                     <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_8_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="33" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-7P-jHK" userLabel="9" customClass="UIDigitButton">
                                                     <rect key="frame" x="225" y="0.0" width="75" height="75"/>
@@ -395,7 +427,6 @@
                                                     <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_9_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -412,7 +443,6 @@
                                                     <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_star_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="35" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUt-2U-nro" userLabel="0" customClass="UIDigitButton">
                                                     <rect key="frame" x="112" y="0.0" width="75" height="75"/>
@@ -424,7 +454,6 @@
                                                     <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_0_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                                 <button opaque="NO" clearsContextBeforeDrawing="NO" tag="36" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DqJ-35-h1Y" userLabel="#" customClass="UIDigitButton">
                                                     <rect key="frame" x="225" y="0.0" width="75" height="75"/>
@@ -436,7 +465,6 @@
                                                     <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="highlighted" image="numpad_hash_over.png" backgroundImage="numpad_over_background.png"/>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -604,20 +632,18 @@
                                 </button>
                             </subviews>
                         </view>
-                        <view tag="47" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mga-O5-mUn" userLabel="bottomBar">
-                            <rect key="frame" x="0.0" y="499" width="375" height="126"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <view tag="47" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mga-O5-mUn" userLabel="bottomBar">
+                            <rect key="frame" x="0.0" y="473" width="375" height="152"/>
                             <subviews>
-                                <view tag="48" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-ek-VgL" userLabel="higherBar">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <view tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-ek-VgL" userLabel="higherBar">
+                                    <rect key="frame" x="16" y="0.0" width="343" height="60"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="49" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-AK-YsQ" userLabel="backgroundColor">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="66"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <button opaque="NO" tag="50" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDb-mD-sWV" userLabel="videoButton" customClass="UIVideoButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="94" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Video"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -636,7 +662,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
                                         <button opaque="NO" tag="52" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRH-Ao-h65" userLabel="microButton" customClass="UIMutedMicroButton">
-                                            <rect key="frame" x="94" y="0.0" width="94" height="63"/>
+                                            <rect key="frame" x="85" y="0.0" width="86" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Micro"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -648,7 +674,7 @@
                                             <state key="highlighted" backgroundImage="color_E.png"/>
                                         </button>
                                         <button opaque="NO" tag="53" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5S-kV-7Kv" userLabel="speakerButton" customClass="UISpeakerButton">
-                                            <rect key="frame" x="188" y="0.0" width="94" height="63"/>
+                                            <rect key="frame" x="171" y="0.0" width="85" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Speaker"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -660,7 +686,7 @@
                                             <state key="highlighted" backgroundImage="color_E.png"/>
                                         </button>
                                         <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-5y-kTy" userLabel="routesButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="188" y="0.0" width="94" height="63"/>
+                                            <rect key="frame" x="171" y="0.0" width="85" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Route"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -675,7 +701,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="55" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-MI-pUL" userLabel="optionsButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="282" y="0.0" width="94" height="63"/>
+                                            <rect key="frame" x="256" y="0.0" width="88" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Options"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -690,13 +716,15 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="igd-3d-Avg"/>
+                                    </constraints>
                                 </view>
-                                <view tag="56" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8q9-3P-Fz0" userLabel="lowerBar">
-                                    <rect key="frame" x="0.0" y="63" width="375" height="63"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <view tag="56" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q9-3P-Fz0" userLabel="lowerBar">
+                                    <rect key="frame" x="16" y="76" width="343" height="60"/>
                                     <subviews>
                                         <button opaque="NO" tag="57" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRu-dB-r3e" userLabel="numpadButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="94" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="59"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
                                             <state key="normal" image="footer_dialer_default.png" backgroundImage="color_C.png">
@@ -710,7 +738,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="58" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpw-A4-BZO" userLabel="hangupButton" customClass="UIHangUpButton">
-                                            <rect key="frame" x="94" y="0.0" width="281" height="63"/>
+                                            <rect key="frame" x="85" y="0.0" width="258" height="59"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Hangup"/>
                                             <state key="normal" image="call_hangup_default.png" backgroundImage="color_D.png">
@@ -720,8 +748,20 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="26R-aG-gAW"/>
+                                    </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="8q9-3P-Fz0" firstAttribute="top" secondItem="OIH-ek-VgL" secondAttribute="bottom" constant="16" id="2bE-lF-mA3"/>
+                                <constraint firstItem="OIH-ek-VgL" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" id="5XI-h5-hjR"/>
+                                <constraint firstItem="OIH-ek-VgL" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="16" id="D29-vi-OrX"/>
+                                <constraint firstAttribute="trailing" secondItem="OIH-ek-VgL" secondAttribute="trailing" constant="16" id="NPf-Ih-9T1"/>
+                                <constraint firstAttribute="trailing" secondItem="8q9-3P-Fz0" secondAttribute="trailing" constant="16" id="Tq3-qY-kv5"/>
+                                <constraint firstItem="8q9-3P-Fz0" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="16" id="l6B-1c-m3u"/>
+                                <constraint firstAttribute="bottom" secondItem="8q9-3P-Fz0" secondAttribute="bottom" constant="16" id="nX9-bG-Ogk"/>
+                            </constraints>
                         </view>
                         <view hidden="YES" tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSo-c5-Wtj" userLabel="waitView">
                             <rect key="frame" x="0.0" y="-6" width="375" height="631"/>
@@ -741,12 +781,18 @@
                         <constraint firstItem="DqJ-35-h1Y" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="6Zu-sI-E1k"/>
                         <constraint firstItem="R2h-PD-GN2" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="8Za-SL-g8r"/>
                         <constraint firstItem="U6v-Cg-9b8" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="BU5-fd-3gX"/>
+                        <constraint firstAttribute="trailing" secondItem="106" secondAttribute="trailing" id="Coa-ID-3B1"/>
                         <constraint firstItem="prH-qj-h0v" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="EVi-g9-fDD"/>
                         <constraint firstItem="CUt-2U-nro" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="Ekd-Bf-MYu"/>
                         <constraint firstItem="qZ8-m9-B0N" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="FjF-HV-Xj6"/>
                         <constraint firstItem="alZ-Kz-AVL" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="PaM-mb-2AN"/>
+                        <constraint firstItem="106" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" id="Ugv-ap-G9H"/>
                         <constraint firstItem="8Da-zK-V7e" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="Xfa-9D-gsd"/>
                         <constraint firstItem="653-Vb-YzA" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="aNK-7q-Dkp"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="106" secondAttribute="bottom" constant="16" id="by7-3H-4q0"/>
+                        <constraint firstAttribute="trailing" secondItem="mga-O5-mUn" secondAttribute="trailing" id="dxS-Wf-7AI"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" id="gqH-ji-wsZ"/>
+                        <constraint firstAttribute="bottom" secondItem="mga-O5-mUn" secondAttribute="bottom" id="hMN-QM-LZQ"/>
                         <constraint firstItem="0fB-uk-rXS" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="kY1-m4-fce"/>
                         <constraint firstItem="DRh-kc-UVM" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="zJ4-WJ-7D6"/>
                         <constraint firstItem="b8R-7P-jHK" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="zwL-gZ-KvI"/>
@@ -1576,6 +1622,7 @@ LR8tLC0vLTwtQS1JLUwtUS1ZAAAAAAAAAgEAAAAAAAAAUwAAAAAAAAAAAAAAAAAALVw
         <image name="micro_default.png" width="47.200000762939453" height="60"/>
         <image name="micro_disabled.png" width="47.200000762939453" height="60"/>
         <image name="micro_selected.png" width="47.200000762939453" height="60"/>
+        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>
         <image name="nethcti_numpad_1.png" width="256" height="256"/>
