@@ -354,7 +354,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="499"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waiting_time.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-gc-9XK" userLabel="pausedImage">
+                                <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nethcti_pause.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-gc-9XK" userLabel="pausedImage">
                                     <rect key="frame" x="0.0" y="198" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -366,13 +366,12 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <tableView clipsSubviews="YES" tag="23" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="106" userLabel="pausedCallsTableView">
-                            <rect key="frame" x="0.0" y="397" width="375" height="60"/>
+                            <rect key="frame" x="0.0" y="387" width="375" height="70"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="Qdv-Sk-HhZ"/>
+                                <constraint firstAttribute="height" constant="70" id="Qdv-Sk-HhZ"/>
                             </constraints>
                             <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -678,7 +677,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" tag="52" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRH-Ao-h65" userLabel="microButton" customClass="UIMutedMicroButton">
-                                                    <rect key="frame" x="94" y="0.0" width="60" height="60"/>
+                                                    <rect key="frame" x="94.5" y="0.0" width="60" height="60"/>
                                                     <accessibility key="accessibilityConfiguration" label="Micro"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="pRH-Ao-h65" secondAttribute="height" multiplier="1:1" id="XeW-4K-JoN"/>
