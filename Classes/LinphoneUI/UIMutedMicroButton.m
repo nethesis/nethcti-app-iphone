@@ -28,7 +28,7 @@ INIT_WITH_COMMON_CF {
     [self setImage:sImage forState:UIControlStateSelected];
     
     // Change UI Colors according to button state.
-    [self setTintColor:[UIColor getColorByName:@"Grey"]];
+    [self.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
     
     return self;
 }
@@ -37,14 +37,24 @@ INIT_WITH_COMMON_CF {
 	linphone_core_enable_mic(LC, false);
     
     // Change UI Colors according to button state.
-    [self setTintColor:[UIColor getColorByName:@"Grey"]];
+    [self.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    [self setBackgroundImage:dImage forState:UIControlStateNormal];
+    //[self setTintColor:[UIColor getColorByName:@"ButtonSelectedBackground"]];
+    
 }
 
 - (void)onOff {
 	linphone_core_enable_mic(LC, true);
+    [self setSelected:FALSE];
     
     // Change UI Colors according to button state.
-    [self setTintColor:[UIColor getColorByName:@"Grey"]];
+    [self.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:dImage forState:UIControlStateNormal];
+     
 }
 
 - (bool)onUpdate {

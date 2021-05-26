@@ -129,6 +129,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_hashButton setDigit:'#'];
 	[_hashButton setDtmf:true];
     
+    
+    _durationLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
 - (void)nethCTIViewPersonalizatio {
@@ -149,7 +151,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	CallManager.instance.nextCallIsTransfer = FALSE;
     
     callRecording = FALSE;
-    _recordButtonOnView.hidden = TRUE;
+    //_recordButtonOnView.hidden = TRUE;
 
 	// Update on show
 	[self hideRoutes:TRUE animated:FALSE];
@@ -185,7 +187,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   userInfo:nil
 									repeats:YES];
     
-    [self drawOptionButton];
+    //[self drawOptionButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -266,7 +268,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[self updateUnreadMessage:NO];
 	[self previewTouchLift];
-    [_recordButtonOnView setHidden:!callRecording];
+    //[_recordButtonOnView setHidden:!callRecording];
 	[self updateCallView];
 	LinphoneCall *call = linphone_core_get_current_call(LC) ;
 	if (call && linphone_call_get_state(call) == LinphoneCallStatePausedByRemote) {
@@ -289,6 +291,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)updateCallView {
+    /*
     CGRect pauseFrame = _callPauseButton.frame;
 	CGRect recordFrame = _recordButtonOnView.frame;
     if (videoHidden) {
@@ -300,6 +303,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     _callPauseButton.frame = pauseFrame;
 	_recordButtonOnView.frame = recordFrame;
 	[self updateInfoView:FALSE];
+     */
 }
 
 - (void)hideSpinnerIndicator:(LinphoneCall *)call {
@@ -341,7 +345,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 			[self hidePad:TRUE animated:TRUE];
 			[self hideOptions:TRUE animated:TRUE];
 			[self hideRoutes:TRUE animated:TRUE];
-            [self drawOptionButton];
+            //[self drawOptionButton];
 		default:
 			break;
 	}
@@ -488,7 +492,9 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
 		char *uri = linphone_address_as_string_uri_only(addr);
 		ms_free(uri);
-		[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:YES withRoundedRadius:YES];
+        
+        _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+        [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
 	}
 }
 
@@ -794,11 +800,25 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
         [self hideOptions:TRUE animated:ANIMATED];
     if (callRecording) {
 		[self onRecordOnViewClick:nil];
+        
+        //UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+        //[_recordButton setBackgroundImage:dImage forState:UIControlStateNormal];
+        //[_recordButton setBackgroundImage:dImage forState:UIControlStateNormal];
+        
     } else {
         LOGD(@"Recording Starts");
+        //UIImage *dImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+        //[_recordButton setImage:[UIImage imageNamed:@"rec_off_default.png"] forState:UIControlStateNormal];
+                
+        UIImage *image = [[UIImage imageNamed:@"nethcti_record.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+        [_recordButton setImage:image forState:UIControlStateNormal];
+        [_recordButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
         
-        [_recordButton setImage:[UIImage imageNamed:@"rec_off_default.png"] forState:UIControlStateNormal];
-        [_recordButtonOnView setHidden:FALSE];
+        UIImage *background = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+        [_recordButton setBackgroundImage:background forState:UIControlStateNormal];
+        
+        //[_recordButtonOnView setHidden:FALSE];
         
         LinphoneCall *call = linphone_core_get_current_call(LC);
         linphone_call_start_recording(call);
@@ -809,8 +829,15 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 
 - (IBAction)onRecordOnViewClick:(id)sender {
 	LOGD(@"Recording Stops");
-	[_recordButton setImage:[UIImage imageNamed:@"rec_on_default.png"] forState:UIControlStateNormal];
-	[_recordButtonOnView setHidden:TRUE];
+	//[_recordButton setImage:[UIImage imageNamed:@"rec_on_default.png"] forState:UIControlStateNormal];
+    
+    UIImage *image = [UIImage imageNamed:@"nethcti_record.png"];
+    [_recordButton setImage:image forState:UIControlStateNormal];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [_recordButton setBackgroundImage:dImage forState:UIControlStateNormal];
+    
+	//[_recordButtonOnView setHidden:TRUE];
 	
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	linphone_call_stop_recording(call);

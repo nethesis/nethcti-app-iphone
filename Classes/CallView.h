@@ -104,6 +104,7 @@
 @property(strong, nonatomic) IBOutlet CallPausedTableView *conferenceCallsTable;
 @property (weak, nonatomic) IBOutlet UIView *waitView;
 @property (weak, nonatomic) IBOutlet UIView *infoView;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 
 - (IBAction)onRoutesClick:(id)sender;
 - (IBAction)onRoutesBluetoothClick:(id)sender;
