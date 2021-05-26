@@ -892,14 +892,19 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onOptionsTransferClick:(id)sender {
-    // Say that we wanna trasfer a call to another.
-    TransferCallManager.instance.isCallTransfer = YES;
     
-	[self hideOptions:TRUE animated:TRUE];
-	DialerView *view = VIEW(DialerView);
-	[view setAddress:@""];
-	CallManager.instance.nextCallIsTransfer = TRUE;
-	[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+    if([TransferCallManager.instance isCallTransfer]) {
+        [CallManager.instance transferCall];
+    } else {
+        // Say that we wanna trasfer a call to another.
+        TransferCallManager.instance.isCallTransfer = YES;
+        
+        [self hideOptions:TRUE animated:TRUE];
+        DialerView *view = VIEW(DialerView);
+        [view setAddress:@""];
+        CallManager.instance.nextCallIsTransfer = TRUE;
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+    }
 }
 
 - (IBAction)onOptionsAddClick:(id)sender {
