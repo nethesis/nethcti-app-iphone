@@ -1018,8 +1018,8 @@ Once it is done, come back here and click on the button.</string>
             <point key="canvasLocation" x="849" y="1630"/>
         </view>
         <view contentMode="scaleToFill" id="56" userLabel="loginView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="735"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="iK8-5d-mZM">
                     <rect key="frame" x="0.0" y="32" width="414" height="56"/>
@@ -1044,8 +1044,8 @@ Once it is done, come back here and click on the button.</string>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="-1" height="-1"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgC-eB-ar3" userLabel="domainLabel">
-                    <rect key="frame" x="48" y="226" width="218" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgC-eB-ar3" userLabel="domainLabel">
+                    <rect key="frame" x="48" y="222.33333333333334" width="69" height="23.666666666666657"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -1170,13 +1170,12 @@ Once it is done, come back here and click on the button.</string>
                                         <constraint firstAttribute="width" constant="75" id="neD-6b-HgZ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                    <state key="normal" image="qr.png" backgroundImage="nethcti_grey_circle.png">
+                                    <state key="normal" image="nethcti_qr.png" backgroundImage="nethcti_grey_circle.png">
                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <state key="disabled">
                                         <color key="titleColor" red="0.71885228160000003" green="0.71883076430000004" blue="0.71884298319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="highlighted" backgroundImage="color_F.png"/>
                                     <connections>
                                         <action selector="onLaunchQRCodeView:" destination="-1" eventType="touchUpInside" id="uIJ-uV-Gpn"/>
                                     </connections>
@@ -1233,7 +1232,8 @@ Once it is done, come back here and click on the button.</string>
                 <constraint firstItem="MgC-eB-ar3" firstAttribute="leading" secondItem="5kh-Wo-SMY" secondAttribute="leading" id="zgV-tJ-v5D"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="904.34782608695662" y="263.83928571428572"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="898.55072463768124" y="189.84375"/>
         </view>
         <view contentMode="scaleToFill" id="Zuh-Sd-pcd" userLabel="remoteProvisioningView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="347"/>
@@ -1528,6 +1528,6 @@ Once it is done, come back here and click on the button.</string>
         <image name="login.png" width="32" height="32"/>
         <image name="logo.png" width="125" height="39"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
-        <image name="qr.png" width="32" height="32"/>
+        <image name="nethcti_qr.png" width="32" height="32"/>
     </resources>
 </document>

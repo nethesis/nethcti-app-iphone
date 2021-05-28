@@ -52,6 +52,11 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	_emptyView.hidden = _editButton.enabled = ([self totalNumberOfItems] > 0);
+    UIColor *grey = [UIColor getColorByName:@"Grey"];
+    [_cancelButton setTintColor:grey];
+    [_deleteButton setTintColor:grey];
+    [_toggleSelectionButton setTintColor:grey];
+    [_editButton setTintColor:grey];
 }
 
 - (void)toggleRowSelectionForRowAtIndexPath:(NSIndexPath *)indexPath {
