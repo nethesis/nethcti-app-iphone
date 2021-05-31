@@ -100,12 +100,12 @@ static UILinphoneAudioPlayer *player;
 
 - (void)updateFrame {
     CGRect frame = self.frame;
-    frame.size.height = self.selected ? 140 : 40;
+    frame.size.height = self.selected ? 44 : 44;
     [self setFrame:frame];
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated{
-    [super setSelected:selected animated:animated];
+    //[super setSelected:selected animated:animated];
     _toolbar.hidden = !selected;
     if (!selected) {
         return;
@@ -122,6 +122,7 @@ static UILinphoneAudioPlayer *player;
     [self bringSubviewToFront:player.view];
     player.view.frame = _playerView.frame;
     player.view.bounds = _playerView.bounds;
+
     [player open];
 }
 

@@ -17,31 +17,57 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="e3d-Tw-Cmt" customClass="UIRecordingCell">
-            <rect key="frame" x="0.0" y="0.0" width="360" height="150"/>
+            <rect key="frame" x="0.0" y="0.0" width="360" height="88"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nk9-eo-eCo">
-                    <rect key="frame" x="0.0" y="42" width="360" height="108"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvY-hV-wsS" userLabel="topBar">
+                    <rect key="frame" x="0.0" y="0.0" width="360" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzd-99-LAI">
+                            <rect key="frame" x="16" y="10.5" width="288" height="23.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-iK-dSH">
+                            <rect key="frame" x="304" y="0.0" width="56" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="56" id="Ijo-BK-4hi"/>
+                            </constraints>
+                            <items>
+                                <barButtonItem style="plain" systemItem="action" id="Drx-8h-kbM"/>
+                            </items>
+                        </toolbar>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="xjs-iK-dSH" secondAttribute="trailing" id="19p-vE-efR"/>
+                        <constraint firstItem="Bzd-99-LAI" firstAttribute="leading" secondItem="YvY-hV-wsS" secondAttribute="leading" constant="16" id="9Oh-IK-ygv"/>
+                        <constraint firstItem="xjs-iK-dSH" firstAttribute="leading" secondItem="Bzd-99-LAI" secondAttribute="trailing" id="Ans-w9-FiS"/>
+                        <constraint firstAttribute="bottom" secondItem="xjs-iK-dSH" secondAttribute="bottom" id="TXA-y6-kJ0"/>
+                        <constraint firstItem="xjs-iK-dSH" firstAttribute="top" secondItem="YvY-hV-wsS" secondAttribute="top" id="q2U-4o-pL1"/>
+                        <constraint firstItem="Bzd-99-LAI" firstAttribute="centerY" secondItem="YvY-hV-wsS" secondAttribute="centerY" id="wwD-OQ-5At"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="Nk9-eo-eCo">
+                    <rect key="frame" x="0.0" y="44" width="360" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                    </accessibility>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzd-99-LAI">
-                    <rect key="frame" x="16" y="0.0" width="300" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-iK-dSH">
-                    <rect key="frame" x="256" y="0.0" width="60" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <items>
-                        <barButtonItem style="plain" systemItem="action" id="Drx-8h-kbM"/>
-                    </items>
-                </toolbar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Ak9-b1-W1C"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="YvY-hV-wsS" firstAttribute="top" secondItem="Ak9-b1-W1C" secondAttribute="top" id="D2D-Un-CvP"/>
+                <constraint firstItem="YvY-hV-wsS" firstAttribute="leading" secondItem="Ak9-b1-W1C" secondAttribute="leading" id="KE0-AE-Kwu"/>
+                <constraint firstItem="Nk9-eo-eCo" firstAttribute="leading" secondItem="Ak9-b1-W1C" secondAttribute="leading" id="S6D-We-9S8"/>
+                <constraint firstItem="Nk9-eo-eCo" firstAttribute="trailing" secondItem="Ak9-b1-W1C" secondAttribute="trailing" id="SLJ-Hr-qMm"/>
+                <constraint firstItem="Nk9-eo-eCo" firstAttribute="top" secondItem="YvY-hV-wsS" secondAttribute="bottom" id="fCs-7E-9ps"/>
+                <constraint firstItem="YvY-hV-wsS" firstAttribute="trailing" secondItem="Ak9-b1-W1C" secondAttribute="trailing" id="ka5-bN-Vsu"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -50,7 +76,7 @@
                 <outlet property="shareButton" destination="Drx-8h-kbM" id="Vhv-4D-Ptx"/>
                 <outlet property="toolbar" destination="xjs-iK-dSH" id="NY4-Wk-dld"/>
             </connections>
-            <point key="canvasLocation" x="26" y="105"/>
+            <point key="canvasLocation" x="25.600000000000001" y="104.34782608695653"/>
         </view>
     </objects>
     <resources>

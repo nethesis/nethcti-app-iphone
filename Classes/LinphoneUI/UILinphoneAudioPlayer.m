@@ -57,6 +57,8 @@
         stop = [[UIImage imageNamed:@"nethcti_refresh.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [_playButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
         [_stopButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        [_timeProgress setProgressTintColor:[UIColor getColorByName:@"MainColor"]];
+
     }
     return self;
 }

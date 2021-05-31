@@ -20,7 +20,10 @@
 #import "TabBarView.h"
 #import "PhoneMainView.h"
 
-@implementation TabBarView
+@implementation TabBarView {
+    UIColor *grey;
+    UIColor *mainColor;
+}
 
 #pragma mark - ViewController Functions
 
@@ -76,6 +79,10 @@
 
 -(void)setupUI {
     [self.backgroundImage setBackgroundColor:UIColor.whiteColor];
+    
+    grey = [UIColor getColorByName: @"Grey"];
+    mainColor = [UIColor getColorByName: @"MainColor"];
+    
     UIImage *historyImage = [[UIImage imageNamed:@"history.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIImage *dialerImage = [[UIImage imageNamed:@"dialpad.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIImage *contactsImage = [[UIImage imageNamed:@"users.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -84,9 +91,11 @@
     [self.dialerButton setImage:dialerImage forState:UIControlStateNormal];
     [self.contactsButton setImage:contactsImage forState:UIControlStateNormal];
 
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+    [self.historyButton.imageView setTintColor:mainColor];
+    [self.dialerButton.imageView setTintColor:grey];
+    [self.contactsButton.imageView setTintColor:grey];
+    
+    _historyNotificationLabel.textColor = grey;
 }
 
 - (void)update:(BOOL)appear {
@@ -120,29 +129,29 @@
     if ([view equal:HistoryListView.compositeViewDescription] ||
         [view equal:HistoryDetailsView.compositeViewDescription]) {
         _historyButton.selected = true;
-        [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        [self.historyButton.imageView setTintColor:mainColor];
     } else {
         _historyButton.selected = false;
-        [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        [self.historyButton.imageView setTintColor:grey];
     }
     
     if ([view equal:ContactsListView.compositeViewDescription] ||
         [view equal:ContactDetailsView.compositeViewDescription] ||
         [view equal:ContactDetailsViewNethesis.compositeViewDescription]) {
         _contactsButton.selected = true;
-        [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        [self.contactsButton.imageView setTintColor:mainColor];
     } else {
         _contactsButton.selected = false;
-        [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        [self.contactsButton.imageView setTintColor:grey];
 
     }
 
     if ([view equal:DialerView.compositeViewDescription]) {
         _dialerButton.selected = true;
-        [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        [self.dialerButton.imageView setTintColor:mainColor];
     } else {
         _dialerButton.selected = false;
-        [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        [self.dialerButton.imageView setTintColor:grey];
     }
     
     _chatButton.selected = [view equal:ChatsListView.compositeViewDescription] ||
@@ -192,9 +201,9 @@
 	[self update:FALSE];
 	[PhoneMainView.instance updateApplicationBadgeNumber];
 	[PhoneMainView.instance changeCurrentView:HistoryListView.compositeViewDescription];
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+    [self.historyButton.imageView setTintColor:mainColor];
+    [self.dialerButton.imageView setTintColor:grey];
+    [self.contactsButton.imageView setTintColor:grey];
 }
 
 - (IBAction)onContactsClick:(id)event {
@@ -202,16 +211,16 @@
 	[ContactSelection enableEmailFilter:FALSE];
 	[ContactSelection setNameOrEmailFilter:nil];
 	[PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+    [self.historyButton.imageView setTintColor:grey];
+    [self.dialerButton.imageView setTintColor:grey];
+    [self.contactsButton.imageView setTintColor:mainColor];
 }
 
 - (IBAction)onDialerClick:(id)event {
 	[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
-    [self.historyButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
-    [self.dialerButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
-    [self.contactsButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+    [self.historyButton.imageView setTintColor:grey];
+    [self.dialerButton.imageView setTintColor:mainColor];
+    [self.contactsButton.imageView setTintColor:grey];
 }
 
 - (IBAction)onSettingsClick:(id)event {
