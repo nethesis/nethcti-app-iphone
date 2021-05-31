@@ -59,6 +59,8 @@
 		34216F401547EBCD00EA9777 /* VideoZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 34216F3F1547EBCD00EA9777 /* VideoZoomHandler.m */; };
 		344ABDF114850AE9007420B6 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ABDEF14850AE9007420B6 /* libc++.1.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		369CCF81C921CD7C4E49A637 /* Pods_msgNotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E9DEDA2A78C6DBBD1A54DB /* Pods_msgNotificationContent.framework */; };
+		3902359A2664C8FC000AB58E /* nethcti_answer_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */; };
+		3902359B2664C8FC000AB58E /* nethcti_answer_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 390235992664C8FC000AB58E /* nethcti_answer_video.png */; };
 		3949CDB42638251500379BFC /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB22638251200379BFC /* history@2x.png */; };
 		3949CDB52638251500379BFC /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB32638251400379BFC /* history.png */; };
 		3949CDC326384AE900379BFC /* nethcti_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDC226384AE900379BFC /* nethcti_avatar.png */; };
@@ -1069,6 +1071,8 @@
 		3547813A27354321266B3F8D /* Pods-NethCTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NethCTI.release.xcconfig"; path = "Pods/Target Support Files/Pods-NethCTI/Pods-NethCTI.release.xcconfig"; sourceTree = "<group>"; };
 		38A3AE51B9E09ABF29222E5F /* Pods-liblinphoneTester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liblinphoneTester.release.xcconfig"; path = "Pods/Target Support Files/Pods-liblinphoneTester/Pods-liblinphoneTester.release.xcconfig"; sourceTree = "<group>"; };
 		38DF35D11A7C0F45E990C83A /* Pods-linphone.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-linphone.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-linphone/Pods-linphone.distribution.xcconfig"; sourceTree = "<group>"; };
+		390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nethcti_answer_video@2x.png"; path = "../../../../../../Desktop/icone/cam/nethcti_answer_video@2x.png"; sourceTree = "<group>"; };
+		390235992664C8FC000AB58E /* nethcti_answer_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nethcti_answer_video.png; path = ../../../../../../Desktop/icone/cam/nethcti_answer_video.png; sourceTree = "<group>"; };
 		3949CDB22638251200379BFC /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
 		3949CDB32638251400379BFC /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		3949CDC226384AE900379BFC /* nethcti_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar.png; sourceTree = "<group>"; };
@@ -2700,6 +2704,8 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				390235992664C8FC000AB58E /* nethcti_answer_video.png */,
+				390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */,
 				39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */,
 				39D09CD5265BDD2B00AFD3BA /* nethcti_call_status_incoming@2x.png */,
 				39D09CD2265BDD2600AFD3BA /* nethcti_call_status_missed.png */,
@@ -4372,8 +4378,10 @@
 				633FEF061D3CD55A0014B822 /* options_start_conference_default.png in Resources */,
 				63AADC021B6A0FF200AA16FD /* assistant_remote.rc in Resources */,
 				39F2B9A7264938BD00ADBFCE /* nethcti_user_sip.png in Resources */,
+				3902359A2664C8FC000AB58E /* nethcti_answer_video@2x.png in Resources */,
 				3966FC232636DC7000C52FF1 /* color_nethcti_grey.png in Resources */,
 				633FEF1E1D3CD55A0014B822 /* presence_online.png in Resources */,
+				3902359B2664C8FC000AB58E /* nethcti_answer_video.png in Resources */,
 				39A124B1263ABF4D00CF1DB9 /* nethcti_missed_call.png in Resources */,
 				8CE24F571F8268850077AC0A /* conference_delete.png in Resources */,
 				633FEDF41D3CD5590014B822 /* call_video_start_disabled.png in Resources */,
