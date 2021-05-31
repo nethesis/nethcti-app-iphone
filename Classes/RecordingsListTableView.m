@@ -123,10 +123,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
     if (selectedRow && [selectedRow compare:indexPath] == NSOrderedSame) {
-        return 140;
+        return 88;
     }
     
-    return 40;
+    return 44;
 }
 
 #pragma mark - UITableViewDataSource Functions
