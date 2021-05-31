@@ -36,8 +36,8 @@
     writablePath = [paths objectAtIndex:0];
     writablePath = [writablePath stringByAppendingString:@"/"];
     
-    grey = [UIColor getColorByName:@"Grey"];
-    lightGrey = [UIColor getColorByName:@"LightGrey"];
+    grey = [UIColor getColorByName:@"Grey"]; // For enabled controls.
+    lightGrey = [UIColor getColorByName:@"LightGrey"]; // For disabled controls.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,11 +45,14 @@
     if (![self selectFirstRow]) {
         // TODO: Make first cell expand to show player
     }
-    [self loadData];
     
     [self.deleteButton setTintColor:lightGrey];
     [self.toggleSelectionButton setTintColor:lightGrey];
-    [self.editButton setTintColor:grey];
+    [self.cancelButton setTintColor:lightGrey];
+    UIImage *editImage = [self.editButton.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.editButton setImage:editImage forState:(UIControlStateSelected | UIControlStateNormal | UIControlStateHighlighted | UIControlStateDisabled)];
+    
+    [self loadData];
 }
 
 - (id)init {
@@ -81,10 +84,8 @@
     }
 }
 
-
 - (void)loadData {
     LOGI(@"====>>>> Load recording list - Start");
-    
     recordings = [NSMutableDictionary dictionary];
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:writablePath error:NULL];
     for (NSString *file in directoryContent) {
@@ -112,19 +113,20 @@
             [recordings setObject:recOfDay forKey:dayPretty];
         }
     }
-    
-    
     LOGI(@"====>>>> Load recording list - End");
+    bool hasData = [recordings count] > 0;
+    UIColor *tint = hasData ? grey : lightGrey;
+    [self.editButton setTintColor:tint];
     [super loadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
     if (selectedRow && [selectedRow compare:indexPath] == NSOrderedSame) {
-        return 140;
+        return 88;
     }
     
-    return 40;
+    return 44;
 }
 
 #pragma mark - UITableViewDataSource Functions

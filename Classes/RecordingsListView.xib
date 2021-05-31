@@ -45,7 +45,6 @@
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled" image="back_disabled.png"/>
-                            <state key="highlighted" backgroundImage="color_E.png"/>
                             <connections>
                                 <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="Quz-zf-q3K"/>
                             </connections>
@@ -57,7 +56,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="66" id="2lw-I7-eiI"/>
                         <constraint firstItem="qWC-5R-rmm" firstAttribute="leading" secondItem="rAc-tI-AVp" secondAttribute="trailing" id="5Qr-dY-EVb"/>
@@ -106,7 +105,7 @@
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqG-tB-maQ" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="168" y="0.0" width="66" height="66"/>
+                            <rect key="frame" x="16" y="0.0" width="66" height="66"/>
                             <accessibility key="accessibilityConfiguration" label="Delete all"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="CqG-tB-maQ" secondAttribute="height" multiplier="1:1" id="14a-U5-QJZ"/>
@@ -122,7 +121,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWx-9g-0JG" userLabel="editButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="86" y="0.0" width="66" height="66"/>
+                            <rect key="frame" x="16" y="0.0" width="66" height="66"/>
                             <accessibility key="accessibilityConfiguration" label="Edit"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="CWx-9g-0JG" secondAttribute="height" multiplier="1:1" id="xfB-0b-SdQ"/>
@@ -142,14 +141,13 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="66" id="0C6-QB-3Pp"/>
+                        <constraint firstItem="CWx-9g-0JG" firstAttribute="leading" secondItem="kfZ-QC-CRs" secondAttribute="leading" constant="16" id="6cC-RO-jar"/>
                         <constraint firstItem="zDs-pW-vyA" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="CHc-Ms-jJC"/>
                         <constraint firstItem="CqG-tB-maQ" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="Dv3-Df-y9h"/>
                         <constraint firstItem="CWx-9g-0JG" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="E7U-ZJ-cRc"/>
                         <constraint firstAttribute="trailing" secondItem="zDs-pW-vyA" secondAttribute="trailing" constant="16" id="MJE-rE-ySW"/>
-                        <constraint firstItem="16S-9G-2cb" firstAttribute="leading" secondItem="CqG-tB-maQ" secondAttribute="trailing" constant="16" id="MiK-ay-Wpl"/>
+                        <constraint firstItem="CqG-tB-maQ" firstAttribute="leading" secondItem="kfZ-QC-CRs" secondAttribute="leading" constant="16" id="ToS-Vl-7wK"/>
                         <constraint firstItem="zDs-pW-vyA" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="ZYF-zz-v1Q"/>
-                        <constraint firstItem="zDs-pW-vyA" firstAttribute="leading" secondItem="CqG-tB-maQ" secondAttribute="trailing" constant="98" id="eCY-ag-lS9"/>
-                        <constraint firstItem="CqG-tB-maQ" firstAttribute="leading" secondItem="CWx-9g-0JG" secondAttribute="trailing" constant="16" id="lpW-pa-dcp"/>
                         <constraint firstItem="16S-9G-2cb" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="qcX-ZI-wk6"/>
                         <constraint firstItem="CqG-tB-maQ" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="uSd-6n-LiT"/>
                         <constraint firstItem="16S-9G-2cb" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="wmr-Up-hC4"/>
@@ -193,7 +191,7 @@
                 <constraint firstItem="zXd-Ic-rwm" firstAttribute="height" secondItem="3b0-Nd-4r0" secondAttribute="height" id="sfS-u4-bcO"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3b0-Nd-4r0" secondAttribute="trailing" id="xp8-vY-4tx"/>
             </constraints>
-            <point key="canvasLocation" x="24.637681159420293" y="50.892857142857139"/>
+            <point key="canvasLocation" x="-204" y="52"/>
         </view>
         <tableViewController id="1pR-qo-CIP" customClass="RecordingsListTableView">
             <connections>
@@ -217,9 +215,6 @@
         <image name="nethcti_multiselect_default.png" width="40" height="40"/>
         <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
