@@ -29,6 +29,7 @@
 
 INIT_WITH_COMMON_CF {
 	last_update_state = FALSE;
+        
 	return self;
 }
 
@@ -68,6 +69,7 @@ INIT_WITH_COMMON_CF {
 		linphone_call_params_enable_video(call_params, FALSE);
 		linphone_core_update_call(LC, call, call_params);
 		linphone_call_params_destroy(call_params);
+        
 	} else {
 		LOGW(@"Cannot toggle video button, because no current call");
 	}

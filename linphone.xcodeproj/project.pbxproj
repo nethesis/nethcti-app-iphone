@@ -59,6 +59,8 @@
 		34216F401547EBCD00EA9777 /* VideoZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 34216F3F1547EBCD00EA9777 /* VideoZoomHandler.m */; };
 		344ABDF114850AE9007420B6 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ABDEF14850AE9007420B6 /* libc++.1.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		369CCF81C921CD7C4E49A637 /* Pods_msgNotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E9DEDA2A78C6DBBD1A54DB /* Pods_msgNotificationContent.framework */; };
+		3902359A2664C8FC000AB58E /* nethcti_answer_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */; };
+		3902359B2664C8FC000AB58E /* nethcti_answer_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 390235992664C8FC000AB58E /* nethcti_answer_video.png */; };
 		3949CDB42638251500379BFC /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB22638251200379BFC /* history@2x.png */; };
 		3949CDB52638251500379BFC /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB32638251400379BFC /* history.png */; };
 		3949CDC326384AE900379BFC /* nethcti_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDC226384AE900379BFC /* nethcti_avatar.png */; };
@@ -101,7 +103,6 @@
 		39A124A8263AB48800CF1DB9 /* RecentCallTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A124A7263AB48800CF1DB9 /* RecentCallTableViewCell.xib */; };
 		39A124B1263ABF4D00CF1DB9 /* nethcti_missed_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A124AF263ABF4B00CF1DB9 /* nethcti_missed_call.png */; };
 		39A124B2263ABF4D00CF1DB9 /* nethcti_missed_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A124B0263ABF4D00CF1DB9 /* nethcti_missed_call@2x.png */; };
-		39A124B4263AC2F600CF1DB9 /* nethcti_green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A124B3263AC2F600CF1DB9 /* nethcti_green_circle.png */; };
 		39A124B7263AC31800CF1DB9 /* nethcti_green_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A124B5263AC31700CF1DB9 /* nethcti_green_call@2x.png */; };
 		39A124B8263AC31800CF1DB9 /* nethcti_green_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A124B6263AC31800CF1DB9 /* nethcti_green_call.png */; };
 		39A124BD263AC74B00CF1DB9 /* RecentCallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A124BC263AC74B00CF1DB9 /* RecentCallTableViewCell.m */; };
@@ -132,6 +133,12 @@
 		39D09CDC265BDD3000AFD3BA /* nethcti_call_status_incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */; };
 		39D09CDD265BDD3000AFD3BA /* nethcti_call_status_outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CD7265BDD3000AFD3BA /* nethcti_call_status_outgoing.png */; };
 		39D09CDF265BF7D900AFD3BA /* nethcti_avatar_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CDE265BF7D900AFD3BA /* nethcti_avatar_call.png */; };
+		39EC1D23265E761C00070BF7 /* nethcti_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D21265E761800070BF7 /* nethcti_record@2x.png */; };
+		39EC1D24265E761C00070BF7 /* nethcti_record.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D22265E761C00070BF7 /* nethcti_record.png */; };
+		39EC1D27265EAD9700070BF7 /* nethcti_transfer_call_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D25265EAD9400070BF7 /* nethcti_transfer_call_green.png */; };
+		39EC1D28265EAD9700070BF7 /* nethcti_transfer_call_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D26265EAD9700070BF7 /* nethcti_transfer_call_green@2x.png */; };
+		39EC1D2B265EAF0500070BF7 /* nethcti_add_call_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D29265EAF0200070BF7 /* nethcti_add_call_green@2x.png */; };
+		39EC1D2C265EAF0500070BF7 /* nethcti_add_call_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D2A265EAF0500070BF7 /* nethcti_add_call_green.png */; };
 		39F2B99F26492D7600ADBFCE /* nethcti_menu_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B99D26492D7400ADBFCE /* nethcti_menu_home.png */; };
 		39F2B9A026492D7600ADBFCE /* nethcti_menu_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */; };
 		39F2B9A3264937DC00ADBFCE /* nethcti_user_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */; };
@@ -1065,6 +1072,8 @@
 		3547813A27354321266B3F8D /* Pods-NethCTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NethCTI.release.xcconfig"; path = "Pods/Target Support Files/Pods-NethCTI/Pods-NethCTI.release.xcconfig"; sourceTree = "<group>"; };
 		38A3AE51B9E09ABF29222E5F /* Pods-liblinphoneTester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liblinphoneTester.release.xcconfig"; path = "Pods/Target Support Files/Pods-liblinphoneTester/Pods-liblinphoneTester.release.xcconfig"; sourceTree = "<group>"; };
 		38DF35D11A7C0F45E990C83A /* Pods-linphone.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-linphone.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-linphone/Pods-linphone.distribution.xcconfig"; sourceTree = "<group>"; };
+		390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nethcti_answer_video@2x.png"; path = "../../../../../../Desktop/icone/cam/nethcti_answer_video@2x.png"; sourceTree = "<group>"; };
+		390235992664C8FC000AB58E /* nethcti_answer_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nethcti_answer_video.png; path = ../../../../../../Desktop/icone/cam/nethcti_answer_video.png; sourceTree = "<group>"; };
 		3949CDB22638251200379BFC /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
 		3949CDB32638251400379BFC /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		3949CDC226384AE900379BFC /* nethcti_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar.png; sourceTree = "<group>"; };
@@ -1111,7 +1120,6 @@
 		39A124A7263AB48800CF1DB9 /* RecentCallTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentCallTableViewCell.xib; sourceTree = "<group>"; };
 		39A124AF263ABF4B00CF1DB9 /* nethcti_missed_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_missed_call.png; sourceTree = "<group>"; };
 		39A124B0263ABF4D00CF1DB9 /* nethcti_missed_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_missed_call@2x.png"; sourceTree = "<group>"; };
-		39A124B3263AC2F600CF1DB9 /* nethcti_green_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_circle.png; sourceTree = "<group>"; };
 		39A124B5263AC31700CF1DB9 /* nethcti_green_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_green_call@2x.png"; sourceTree = "<group>"; };
 		39A124B6263AC31800CF1DB9 /* nethcti_green_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_call.png; sourceTree = "<group>"; };
 		39A124BB263AC74B00CF1DB9 /* RecentCallTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecentCallTableViewCell.h; sourceTree = "<group>"; };
@@ -1143,6 +1151,12 @@
 		39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_incoming.png; sourceTree = "<group>"; };
 		39D09CD7265BDD3000AFD3BA /* nethcti_call_status_outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_outgoing.png; sourceTree = "<group>"; };
 		39D09CDE265BF7D900AFD3BA /* nethcti_avatar_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar_call.png; sourceTree = "<group>"; };
+		39EC1D21265E761800070BF7 /* nethcti_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_record@2x.png"; sourceTree = "<group>"; };
+		39EC1D22265E761C00070BF7 /* nethcti_record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_record.png; sourceTree = "<group>"; };
+		39EC1D25265EAD9400070BF7 /* nethcti_transfer_call_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_transfer_call_green.png; sourceTree = "<group>"; };
+		39EC1D26265EAD9700070BF7 /* nethcti_transfer_call_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_transfer_call_green@2x.png"; sourceTree = "<group>"; };
+		39EC1D29265EAF0200070BF7 /* nethcti_add_call_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add_call_green@2x.png"; sourceTree = "<group>"; };
+		39EC1D2A265EAF0500070BF7 /* nethcti_add_call_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_call_green.png; sourceTree = "<group>"; };
 		39F2B99D26492D7400ADBFCE /* nethcti_menu_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_menu_home.png; sourceTree = "<group>"; };
 		39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu_home@2x.png"; sourceTree = "<group>"; };
 		39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_user_add@2x.png"; sourceTree = "<group>"; };
@@ -2692,12 +2706,18 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				390235992664C8FC000AB58E /* nethcti_answer_video.png */,
+				390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */,
 				39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */,
 				39D09CD5265BDD2B00AFD3BA /* nethcti_call_status_incoming@2x.png */,
 				39D09CD2265BDD2600AFD3BA /* nethcti_call_status_missed.png */,
 				39D09CD4265BDD2900AFD3BA /* nethcti_call_status_missed@2x.png */,
 				39D09CD7265BDD3000AFD3BA /* nethcti_call_status_outgoing.png */,
 				39D09CD3265BDD2700AFD3BA /* nethcti_call_status_outgoing@2x.png */,
+				39EC1D25265EAD9400070BF7 /* nethcti_transfer_call_green.png */,
+				39EC1D26265EAD9700070BF7 /* nethcti_transfer_call_green@2x.png */,
+				39EC1D2A265EAF0500070BF7 /* nethcti_add_call_green.png */,
+				39EC1D29265EAF0200070BF7 /* nethcti_add_call_green@2x.png */,
 				398DE71C264D2B4E008B65A9 /* nethcti_add.png */,
 				398DE71D264D2B51008B65A9 /* nethcti_add@2x.png */,
 				398DE721264D5123008B65A9 /* nethcti_add_field.png */,
@@ -2746,6 +2766,8 @@
 				39D09CDE265BF7D900AFD3BA /* nethcti_avatar_call.png */,
 				39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */,
 				39F2B9B5264AA5DC00ADBFCE /* nethcti_multiselect_selected@2x.png */,
+				39EC1D22265E761C00070BF7 /* nethcti_record.png */,
+				39EC1D21265E761800070BF7 /* nethcti_record@2x.png */,
 				C34CFBA6249BAB7800D22DB8 /* neth_dialer_background.png */,
 				C339F3A9241A98FE00447319 /* iOs_background_portrait.png */,
 				C339F3A8241A98FE00447319 /* logo_nethCTI_portrait.png */,
@@ -3097,13 +3119,10 @@
 				C39727222657EFD50072D986 /* nethcti_call_accept@2x.png */,
 				39A124B6263AC31800CF1DB9 /* nethcti_green_call.png */,
 				39A124B5263AC31700CF1DB9 /* nethcti_green_call@2x.png */,
-				39A124B3263AC2F600CF1DB9 /* nethcti_green_circle.png */,
 				C39AA9CA263956AA00464F06 /* nethcti_microphone.png */,
 				C39AA9D0263956AB00464F06 /* nethcti_microphone@2x.png */,
 				C397F39D2657B83A00AB3178 /* nethcti_microphone_disabled.png */,
 				C397F39C2657B83A00AB3178 /* nethcti_microphone_disabled@2x.png */,
-				C39727062657E6F40072D986 /* nethcti_microphone.png */,
-				C39727012657E6F30072D986 /* nethcti_microphone@2x.png */,
 				39A124AF263ABF4B00CF1DB9 /* nethcti_missed_call.png */,
 				39A124B0263ABF4D00CF1DB9 /* nethcti_missed_call@2x.png */,
 				C391A99E264EB10D00F9FD76 /* nethcti_pause.png */,
@@ -3752,7 +3771,7 @@
 					61AE364A20C00B370089D9D3 = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 8D66VDADVH;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3762,7 +3781,7 @@
 					EA5F25D8232BD3E200475F2E = {
 						CreatedOnToolsVersion = 11.0;
 						DevelopmentTeam = 8D66VDADVH;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3771,8 +3790,8 @@
 					};
 					EA8CB826239F96CA00C330CC = {
 						CreatedOnToolsVersion = 10.3;
-						DevelopmentTeam = 8D66VDADVH;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = T74VU7J62P;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3952,6 +3971,7 @@
 				633FEDEB1D3CD5590014B822 /* call_status_outgoing@2x.png in Resources */,
 				633FEDEE1D3CD5590014B822 /* call_transfer_default.png in Resources */,
 				63DFE04B1C40161700DA5E87 /* notes_of_the_optimistic.caf in Resources */,
+				39EC1D24265E761C00070BF7 /* nethcti_record.png in Resources */,
 				639E9C931C0DB7BE00019A75 /* FirstLoginView.xib in Resources */,
 				633FEEF61D3CD55A0014B822 /* numpad_star_over.png in Resources */,
 				633FEEE81D3CD55A0014B822 /* numpad_9_over~ipad@2x.png in Resources */,
@@ -4036,6 +4056,7 @@
 				633FEF011D3CD55A0014B822 /* options_default@2x.png in Resources */,
 				C339F3AB241A98FF00447319 /* logo_nethCTI_portrait.png in Resources */,
 				633FEEC01D3CD55A0014B822 /* numpad_4_over~ipad@2x.png in Resources */,
+				39EC1D28265EAD9700070BF7 /* nethcti_transfer_call_green@2x.png in Resources */,
 				61586B8B217A17320038AC45 /* menu_link_account@2x.png in Resources */,
 				63CDC4661C3BDE370085F529 /* shortring.caf in Resources */,
 				C39727172657E6F70072D986 /* nethcti_add_call.png in Resources */,
@@ -4089,7 +4110,6 @@
 				633FEEC51D3CD55A0014B822 /* numpad_5_over.png in Resources */,
 				633FEE721D3CD5590014B822 /* history_all_default.png in Resources */,
 				39A124B7263AC31800CF1DB9 /* nethcti_green_call@2x.png in Resources */,
-				C39727142657E6F70072D986 /* nethcti_microphone.png in Resources */,
 				615A283C2180789C0060F920 /* security_toogle_button@2x.png in Resources */,
 				633FEF0A1D3CD55A0014B822 /* options_transfer_call_default.png in Resources */,
 				633FEDA51D3CD5590014B822 /* back_default@2x.png in Resources */,
@@ -4138,6 +4158,7 @@
 				633FEDFB1D3CD5590014B822 /* camera_selected@2x.png in Resources */,
 				3966FC202636DC7000C52FF1 /* color_nethcti_light_cyan.png in Resources */,
 				633FEF051D3CD55A0014B822 /* options_selected@2x.png in Resources */,
+				39EC1D2C265EAF0500070BF7 /* nethcti_add_call_green.png in Resources */,
 				633FEDD61D3CD5590014B822 /* call_start_body_default.png in Resources */,
 				633FEEEC1D3CD55A0014B822 /* numpad_hash_default@2x.png in Resources */,
 				633FEE831D3CD5590014B822 /* led_disconnected@2x.png in Resources */,
@@ -4191,7 +4212,6 @@
 				398DE727264D5647008B65A9 /* nethcti_edit@2x.png in Resources */,
 				39A12497263AB33600CF1DB9 /* dashboard_dialer.png in Resources */,
 				633FEDB51D3CD5590014B822 /* call_alt_back_disabled@2x.png in Resources */,
-				C397270F2657E6F70072D986 /* nethcti_microphone@2x.png in Resources */,
 				631098521D4660630041F2B3 /* CountryListView.xib in Resources */,
 				633FEF271D3CD55A0014B822 /* route_bluetooth_selected@2x.png in Resources */,
 				633FEE111D3CD5590014B822 /* chat_list_indicator~ipad@2x.png in Resources */,
@@ -4227,6 +4247,7 @@
 				CF7602F7210898CC00749F76 /* rec_off_default.png in Resources */,
 				633FEDB21D3CD5590014B822 /* call_alt_back_default.png in Resources */,
 				633FEE3D1D3CD5590014B822 /* contacts_all_default@2x.png in Resources */,
+				39EC1D2B265EAF0500070BF7 /* nethcti_add_call_green@2x.png in Resources */,
 				633FEF251D3CD55A0014B822 /* route_bluetooth_disabled@2x.png in Resources */,
 				633FEDD81D3CD5590014B822 /* call_start_body_default~ipad.png in Resources */,
 				61586B83217A16FD0038AC45 /* menu_about@2x.png in Resources */,
@@ -4357,8 +4378,10 @@
 				633FEF061D3CD55A0014B822 /* options_start_conference_default.png in Resources */,
 				63AADC021B6A0FF200AA16FD /* assistant_remote.rc in Resources */,
 				39F2B9A7264938BD00ADBFCE /* nethcti_user_sip.png in Resources */,
+				3902359A2664C8FC000AB58E /* nethcti_answer_video@2x.png in Resources */,
 				3966FC232636DC7000C52FF1 /* color_nethcti_grey.png in Resources */,
 				633FEF1E1D3CD55A0014B822 /* presence_online.png in Resources */,
+				3902359B2664C8FC000AB58E /* nethcti_answer_video.png in Resources */,
 				39A124B1263ABF4D00CF1DB9 /* nethcti_missed_call.png in Resources */,
 				8CE24F571F8268850077AC0A /* conference_delete.png in Resources */,
 				633FEDF41D3CD5590014B822 /* call_video_start_disabled.png in Resources */,
@@ -4396,7 +4419,6 @@
 				633FEEDA1D3CD55A0014B822 /* numpad_7~ipad@2x.png in Resources */,
 				633FEE5D1D3CD5590014B822 /* edit_disabled@2x.png in Resources */,
 				615A2832218071F30060F920 /* security_toogle_background_green@2x.png in Resources */,
-				39A124B4263AC2F600CF1DB9 /* nethcti_green_circle.png in Resources */,
 				39D09CDC265BDD3000AFD3BA /* nethcti_call_status_incoming.png in Resources */,
 				633FEEC11D3CD55A0014B822 /* numpad_4~ipad.png in Resources */,
 				633FEE6B1D3CD5590014B822 /* footer_dialer_default@2x.png in Resources */,
@@ -4425,6 +4447,7 @@
 				633FEDBF1D3CD5590014B822 /* call_back_default@2x.png in Resources */,
 				24BFAAA8209B0630004F47A7 /* contacts_sip_selected@2x.png in Resources */,
 				C39CE3F72636F05100F63727 /* menu_nethcti.png in Resources */,
+				39EC1D27265EAD9700070BF7 /* nethcti_transfer_call_green.png in Resources */,
 				633FEE141D3CD5590014B822 /* chat_send_default.png in Resources */,
 				C397271A2657E6F70072D986 /* nethcti_cam.png in Resources */,
 				633FEF421D3CD55A0014B822 /* select_all_disabled.png in Resources */,
@@ -4453,6 +4476,7 @@
 				633FEE261D3CD5590014B822 /* checkbox_checked.png in Resources */,
 				633FEF531D3CD55A0014B822 /* voicemail@2x.png in Resources */,
 				633FEF2C1D3CD55A0014B822 /* route_earpiece_selected.png in Resources */,
+				39EC1D23265E761C00070BF7 /* nethcti_record@2x.png in Resources */,
 				633FEE681D3CD5590014B822 /* footer_contacts_disabled.png in Resources */,
 				633FEDB71D3CD5590014B822 /* call_alt_start_default@2x.png in Resources */,
 				D3D5126C160B3A8E00946DF8 /* AssistantViewScreens.xib in Resources */,
@@ -5511,7 +5535,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
@@ -5550,6 +5575,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5774,7 +5800,8 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
@@ -5813,6 +5840,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5842,8 +5870,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -5862,7 +5890,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
@@ -5887,8 +5915,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -5904,7 +5932,7 @@
 				MARKETING_VERSION = 1.2.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5929,10 +5957,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5945,6 +5975,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5969,10 +6000,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5985,6 +6018,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -6078,8 +6112,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -6103,7 +6137,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -6134,8 +6168,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -6154,7 +6188,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6188,6 +6222,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -6202,6 +6237,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6235,6 +6271,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -6249,6 +6286,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6277,12 +6315,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 8D66VDADVH;
+				DEVELOPMENT_TEAM = T74VU7J62P;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -6302,7 +6340,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -6332,12 +6370,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8D66VDADVH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -6352,7 +6390,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6385,6 +6423,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -6399,6 +6438,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6431,6 +6471,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
@@ -6445,6 +6486,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

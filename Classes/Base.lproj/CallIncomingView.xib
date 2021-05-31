@@ -149,7 +149,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYo-ty-Rwk" userLabel="acceptAudioOnlyButton">
-                                    <rect key="frame" x="183" y="32" width="64" height="64"/>
+                                    <rect key="frame" x="279" y="32" width="64" height="64"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="wYo-ty-Rwk" secondAttribute="height" multiplier="1:1" id="o9c-IY-5Ge"/>
@@ -163,7 +163,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX0-eE-di5" userLabel="acceptButton">
-                                    <rect key="frame" x="279" y="32" width="64" height="64"/>
+                                    <rect key="frame" x="183" y="32" width="64" height="64"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="tX0-eE-di5" secondAttribute="height" multiplier="1:1" id="mjD-8v-6zn"/>
@@ -181,16 +181,16 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="KnH-hj-g47" secondAttribute="bottom" constant="32" id="0ot-jt-qRF"/>
+                                <constraint firstItem="wYo-ty-Rwk" firstAttribute="leading" secondItem="tX0-eE-di5" secondAttribute="trailing" constant="32" id="Bnf-ii-kXo"/>
+                                <constraint firstAttribute="trailing" secondItem="wYo-ty-Rwk" secondAttribute="trailing" constant="32" id="IL6-G2-Eqm"/>
                                 <constraint firstItem="KnH-hj-g47" firstAttribute="leading" secondItem="vIQ-QP-ooa" secondAttribute="leading" constant="32" id="QWa-zc-8O6"/>
                                 <constraint firstItem="tX0-eE-di5" firstAttribute="top" secondItem="vIQ-QP-ooa" secondAttribute="top" constant="32" id="Wuv-ug-Uml"/>
                                 <constraint firstItem="KnH-hj-g47" firstAttribute="top" secondItem="vIQ-QP-ooa" secondAttribute="top" constant="32" id="dsw-7l-F4F"/>
-                                <constraint firstAttribute="trailing" secondItem="tX0-eE-di5" secondAttribute="trailing" constant="32" id="fxk-sx-Qyk"/>
-                                <constraint firstItem="wYo-ty-Rwk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KnH-hj-g47" secondAttribute="trailing" constant="4" id="rQq-pu-6od"/>
+                                <constraint firstItem="tX0-eE-di5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KnH-hj-g47" secondAttribute="trailing" constant="4" id="emD-fN-4JD"/>
                                 <constraint firstAttribute="height" constant="128" id="sz3-wY-NcY"/>
                                 <constraint firstAttribute="bottom" secondItem="tX0-eE-di5" secondAttribute="bottom" constant="32" id="tv7-H6-qcK"/>
                                 <constraint firstItem="wYo-ty-Rwk" firstAttribute="top" secondItem="vIQ-QP-ooa" secondAttribute="top" constant="32" id="uZM-lm-CRJ"/>
                                 <constraint firstAttribute="bottom" secondItem="wYo-ty-Rwk" secondAttribute="bottom" constant="32" id="veg-ff-xpq"/>
-                                <constraint firstItem="tX0-eE-di5" firstAttribute="leading" secondItem="wYo-ty-Rwk" secondAttribute="trailing" constant="32" id="xdj-kg-gqk"/>
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lUj-2n-Afx" userLabel="earlyMediaView">

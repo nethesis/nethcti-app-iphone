@@ -43,7 +43,7 @@
     UIColor *midgrey = [UIColor getColorByName:@"MidGrey"];
     _titleLabel.textColor = midgrey;
     _nameLabel.textColor = midgrey;
-    _addressLabel.textColor = LINPHONE_MAIN_COLOR;
+    _addressLabel.textColor = [UIColor getColorByName:@"MainColor"];
     
     UIImage *acceptVideo = [[UIImage imageNamed:@"nethcti_cam"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     _acceptVideoButton.imageView.image = acceptVideo;

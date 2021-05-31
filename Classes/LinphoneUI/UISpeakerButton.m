@@ -51,14 +51,20 @@ INIT_WITH_COMMON_CF {
 	[CallManager.instance enableSpeakerWithEnable:TRUE];
     
     // Change UI Colors according to button state.
-    [self setTintColor:[UIColor getColorByName:@"Grey"]];
+    [self.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    [self setBackgroundImage:dImage forState:UIControlStateNormal];
 }
 
 - (void)onOff {
 	[CallManager.instance enableSpeakerWithEnable:FALSE];
     
     // Change UI Colors according to button state.
-    [self setTintColor:[UIColor getColorByName:@"LightGrey"]];
+    [self.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:dImage forState:UIControlStateNormal];
 }
 
 - (bool)onUpdate {

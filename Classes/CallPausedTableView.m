@@ -62,7 +62,8 @@
 	}
 	[cell setCall:[self conferenceCallForRow:indexPath.row]];
     cell.contentView.userInteractionEnabled = false;
-	return cell;
+
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -88,6 +89,10 @@
 		conference_in_pause = 0;
 	}
 	return count + conference_in_pause;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
