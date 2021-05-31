@@ -61,6 +61,7 @@
 		369CCF81C921CD7C4E49A637 /* Pods_msgNotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E9DEDA2A78C6DBBD1A54DB /* Pods_msgNotificationContent.framework */; };
 		3902359A2664C8FC000AB58E /* nethcti_answer_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */; };
 		3902359B2664C8FC000AB58E /* nethcti_answer_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 390235992664C8FC000AB58E /* nethcti_answer_video.png */; };
+		390235A12664E23A000AB58E /* DashboardHistoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 390235A02664E23A000AB58E /* DashboardHistoryTableView.m */; };
 		3949CDB42638251500379BFC /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB22638251200379BFC /* history@2x.png */; };
 		3949CDB52638251500379BFC /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB32638251400379BFC /* history.png */; };
 		3949CDC326384AE900379BFC /* nethcti_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDC226384AE900379BFC /* nethcti_avatar.png */; };
@@ -1072,6 +1073,8 @@
 		38DF35D11A7C0F45E990C83A /* Pods-linphone.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-linphone.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-linphone/Pods-linphone.distribution.xcconfig"; sourceTree = "<group>"; };
 		390235982664C8FC000AB58E /* nethcti_answer_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nethcti_answer_video@2x.png"; path = "../../../../../../Desktop/icone/cam/nethcti_answer_video@2x.png"; sourceTree = "<group>"; };
 		390235992664C8FC000AB58E /* nethcti_answer_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nethcti_answer_video.png; path = ../../../../../../Desktop/icone/cam/nethcti_answer_video.png; sourceTree = "<group>"; };
+		3902359F2664E23A000AB58E /* DashboardHistoryTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashboardHistoryTableView.h; sourceTree = "<group>"; };
+		390235A02664E23A000AB58E /* DashboardHistoryTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashboardHistoryTableView.m; sourceTree = "<group>"; };
 		3949CDB22638251200379BFC /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
 		3949CDB32638251400379BFC /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		3949CDC226384AE900379BFC /* nethcti_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar.png; sourceTree = "<group>"; };
@@ -3447,6 +3450,8 @@
 				39A124A7263AB48800CF1DB9 /* RecentCallTableViewCell.xib */,
 				39A124BB263AC74B00CF1DB9 /* RecentCallTableViewCell.h */,
 				39A124BC263AC74B00CF1DB9 /* RecentCallTableViewCell.m */,
+				3902359F2664E23A000AB58E /* DashboardHistoryTableView.h */,
+				390235A02664E23A000AB58E /* DashboardHistoryTableView.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -4777,6 +4782,7 @@
 				63F1DF4B1BCE983200EDED90 /* CallConferenceTableView.m in Sources */,
 				C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */,
 				D3F83F8E15822ABE00336684 /* PhoneMainView.m in Sources */,
+				390235A12664E23A000AB58E /* DashboardHistoryTableView.m in Sources */,
 				6377AC801BDE4069007F7625 /* UIBackToCallButton.m in Sources */,
 				6308F9C51BF0DD6600D1234B /* XMLRPCHelper.m in Sources */,
 				D3ED3E871586291E006C0DE4 /* TabBarView.m in Sources */,

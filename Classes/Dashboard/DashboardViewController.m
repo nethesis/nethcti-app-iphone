@@ -36,12 +36,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    // Set history table view.
-    self.historyTableView.delegate = self;
-    self.historyTableView.dataSource = self;
-    self.historyTableView.allowsSelection = false;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -56,6 +50,12 @@ static UICompositeViewDescription *compositeDescription = nil;
     [_phonebookButton.imageView setTintColor:[UIColor redColor]];
     _settingsButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_settingsButton.imageView setTintColor:[UIColor redColor]];
+    
+    
+    [_historyTableView loadData];
+
+    // Fake event
+    //[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,56 +89,4 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (IBAction)onSettingsClick:(id)sender {
     [PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    NSString* ar[] = { @"14", @"985", @"13" };
-    NSString *kCellId = NSStringFromClass(RecentCallTableViewCell.class);
-    RecentCallTableViewCell *cell = (RecentCallTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellId];
-    if(!cell) {
-        cell = [[RecentCallTableViewCell alloc] initWithIdentifier:kCellId];
-    }
-    
-    NSString* elem = ar[indexPath.row];
-    [cell setRecentCall:elem];
-    
-    /*
-    NSString *kCellId = NSStringFromClass([RecentCallTableViewCell class]);
-    RecentCallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
-    if (cell == nil) {
-        cell = [[RecentCallTableViewCell alloc] initWithIdentifier:kCellId];
-    }
-    
-    [cell setRecentCall:@"ciao"];
-    CGRect frame = cell.frame;
-    frame.size.width = tableView.frame.size.width;
-    frame.size.height = 45;
-    [cell setSize:&frame];
-    [cell layoutIfNeeded];
-    */
-    return cell;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
-}
-
-
 @end

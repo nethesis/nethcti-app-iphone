@@ -10,16 +10,17 @@
 #import "UICompositeView.h"
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
+#import "DashboardHistoryTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DashboardViewController : TPMultiLayoutViewController <UITextFieldDelegate, UICompositeViewDelegate, MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface DashboardViewController : TPMultiLayoutViewController <UITextFieldDelegate, UICompositeViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property IBOutlet UIButton *dialerButton;
 @property IBOutlet UIButton *historyButton;
 @property IBOutlet UIButton *phonebookButton;
 @property IBOutlet UIButton *settingsButton;
-@property (weak, nonatomic) IBOutlet UITableView *historyTableView;
+@property (weak, nonatomic) IBOutlet DashboardHistoryTableView *historyTableView;
 
 @end
 

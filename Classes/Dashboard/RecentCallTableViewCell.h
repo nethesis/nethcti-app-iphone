@@ -11,10 +11,16 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (weak, nonatomic) IBOutlet UILabel *contactInitialLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-- (id)initWithIdentifier:(NSString *)identifier;
-- (void)setRecentCall:(NSString *)pippo;
-- (void)setSize:(CGRect *)frame;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
 - (IBAction)callTouchUpInside:(id)sender;
+
+- (id)initWithIdentifier:(NSString *)identifier;
+- (void)setRecentCall:(LinphoneCallLog *)recentCall;
+
+@property (nonatomic, assign) LinphoneCallLog *callLog;
+
 @end
 
 NS_ASSUME_NONNULL_END

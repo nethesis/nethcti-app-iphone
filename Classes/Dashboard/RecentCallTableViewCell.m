@@ -8,6 +8,7 @@
 #import "RecentCallTableViewCell.h"
 
 @implementation RecentCallTableViewCell
+@synthesize callLog;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -39,7 +40,10 @@
     return self;
 }
 
-- (void)setRecentCall:(NSString *)pippo {
+- (void)setRecentCall:(LinphoneCallLog *)recentCall {
+    
+    self.callLog = recentCall;
+    
     self.layer.masksToBounds = false;
     self.layer.shadowColor = (__bridge CGColorRef _Nullable)(UIColor.blackColor);
     self.layer.shadowOffset = CGSizeMake(1.0, 3.0);
@@ -48,22 +52,22 @@
     CGRect shadowFrame = self.layer.bounds;
     CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
     self.layer.shadowPath = shadowPath;
-    /*
-    [_pug2hbe0h8gq430h setText:pippo];
     
-    [cell.contactInitialLabel setText:@"U"];
-    [cell.nameInitialLabel setText:@"Utente prova"];
-    //[cell.numberLabel setText:@"sip: 213@123.123.12.12"];
-    [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
-
-    [_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
-
-    _durationLabel.text = [LinphoneUtils durationToString:linphone_call_get_duration(call)];
-    */
+    const LinphoneAddress *addr = linphone_call_log_get_from_address(recentCall);
+    
+    [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+    
 }
 
 - (IBAction)callTouchUpInside:(id)sender {
     LOGE(@"Call");
+
+    if (callLog != NULL) {
+        const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+        [LinphoneManager.instance call:addr];
+    }
+    
 }
 
 -(void)setSize:(CGRect *)frame {
