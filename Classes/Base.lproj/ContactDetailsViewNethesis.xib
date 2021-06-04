@@ -78,7 +78,7 @@
                                         <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="10"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuB-yy-R9o" userLabel="deleteButton" customClass="UIInterfaceStyleToggleButton">
+                                <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuB-yy-R9o" userLabel="deleteButton" customClass="UIInterfaceStyleToggleButton">
                                     <rect key="frame" x="282" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete"/>
                                     <constraints>
@@ -96,7 +96,7 @@
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="vxj-6p-8lE"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8" userLabel="editButton" customClass="UIInterfaceStyleToggleButton">
+                                <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8" userLabel="editButton" customClass="UIInterfaceStyleToggleButton">
                                     <rect key="frame" x="348" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit"/>
                                     <constraints>
