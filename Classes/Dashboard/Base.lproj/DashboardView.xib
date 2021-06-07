@@ -13,7 +13,7 @@
             <connections>
                 <outlet property="dialerButton" destination="EY6-Z8-ENO" id="TAh-4d-dF1"/>
                 <outlet property="historyButton" destination="P0X-Ol-AUn" id="fU7-MJ-N4i"/>
-                <outlet property="historyTableView" destination="tDB-4i-L2W" id="Hw7-lO-Bwg"/>
+                <outlet property="historyTableView" destination="tDB-4i-L2W" id="2TT-rJ-Jvz"/>
                 <outlet property="phonebookButton" destination="Gre-GW-OQj" id="sy7-XN-TcO"/>
                 <outlet property="settingsButton" destination="dsR-yB-5d5" id="Mky-JJ-sm8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -45,7 +45,7 @@
                     <rect key="frame" x="0.0" y="130.33333333333337" width="414" height="368"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fhd-MS-KBx">
-                            <rect key="frame" x="51.666666666666629" y="28.666666666666657" width="310.66666666666674" height="310.66666666666674"/>
+                            <rect key="frame" x="51.666666666666657" y="28.666666666666657" width="310.66666666666674" height="310.66666666666674"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Aoo-aO-4bO">
                                     <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="145.33333333333334"/>
@@ -123,7 +123,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDP-vC-fzh" userLabel="HistoryView">
                     <rect key="frame" x="0.0" y="518.33333333333337" width="414" height="217.66666666666663"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s6h-2T-G5f">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s6h-2T-G5f" userLabel="tableView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="217.66666666666666"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <connections>
@@ -158,7 +158,7 @@
                 <constraint firstItem="sDP-vC-fzh" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="xP6-a0-uzq"/>
                 <constraint firstItem="Y72-UC-Mf4" firstAttribute="height" secondItem="Q5M-cg-NOt" secondAttribute="height" multiplier="0.5" id="zOV-l4-IzP"/>
             </constraints>
-            <point key="canvasLocation" x="-122.40000000000001" y="73.313343328335833"/>
+            <point key="canvasLocation" x="-123.18840579710145" y="72.554347826086968"/>
         </view>
         <tableViewController id="tDB-4i-L2W" userLabel="tableController" customClass="DashboardHistoryTableView">
             <connections>

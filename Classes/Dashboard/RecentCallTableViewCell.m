@@ -33,13 +33,16 @@
             [self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
             [self addSubview:sub];
         }
+        callLog = nil;
     }
     return self;
 }
 
 - (void)setRecentCall:(LinphoneCallLog *)recentCall {
-    
-    self.callLog = recentCall;
+    if(recentCall == nil) {
+        LOGW(@"Cannot update history cell: null calllog");
+        return;
+    }
     
     self.layer.masksToBounds = false;
     self.layer.shadowColor = (__bridge CGColorRef _Nullable)(UIColor.blackColor);
@@ -50,21 +53,19 @@
     CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
     self.layer.shadowPath = shadowPath;
     
+    self.callLog = recentCall;
+    
     const LinphoneAddress *addr = linphone_call_log_get_from_address(recentCall);
     
     [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
-    
 }
 
-- (IBAction)callTouchUpInside:(id)sender {
-    LOGE(@"Call");
-
+- (IBAction)callTouchUpInside:(id)event {
     if (callLog != NULL) {
         const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
         [LinphoneManager.instance call:addr];
     }
-    
 }
 
 -(void)setSize:(CGRect *)frame {

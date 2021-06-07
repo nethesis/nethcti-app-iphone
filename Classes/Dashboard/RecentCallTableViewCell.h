@@ -5,6 +5,9 @@
 //  Created by Luca Giorgetti on 29/04/2021.
 //
 
+#import <UIKit/UIKit.h>
+#import "UIIconButton.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecentCallTableViewCell : UITableViewCell
@@ -12,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIIconButton *callButton;
 
 - (IBAction)callTouchUpInside:(id)event;
 
