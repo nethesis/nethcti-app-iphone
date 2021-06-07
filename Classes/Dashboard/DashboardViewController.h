@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property IBOutlet UIButton *historyButton;
 @property IBOutlet UIButton *phonebookButton;
 @property IBOutlet UIButton *settingsButton;
-@property (weak, nonatomic) IBOutlet DashboardHistoryTableView *historyTableView;
+@property (strong, nonatomic) IBOutlet DashboardHistoryTableView *historyTableView;
 
 @end
 

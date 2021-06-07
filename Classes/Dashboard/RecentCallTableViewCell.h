@@ -8,13 +8,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecentCallTableViewCell : UITableViewCell
-//@property (weak, nonatomic) IBOutlet UILabel *contactInitialLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 
-- (IBAction)callTouchUpInside:(id)sender;
+- (IBAction)callTouchUpInside:(id)event;
 
 - (id)initWithIdentifier:(NSString *)identifier;
 - (void)setRecentCall:(LinphoneCallLog *)recentCall;

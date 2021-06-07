@@ -42,20 +42,19 @@ static UICompositeViewDescription *compositeDescription = nil;
     [super viewWillAppear:animated];
     
     // Change image colors.
-    _dialerButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *tmpImage = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _dialerButton.imageView.image = tmpImage;
     [_dialerButton.imageView setTintColor:[UIColor redColor]];
-    _historyButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _historyButton.imageView.image = tmpImage;
     [_historyButton.imageView setTintColor:[UIColor redColor]];
-    _phonebookButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _phonebookButton.imageView.image = tmpImage;
     [_phonebookButton.imageView setTintColor:[UIColor redColor]];
-    _settingsButton.imageView.image = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _settingsButton.imageView.image = tmpImage;
     [_settingsButton.imageView setTintColor:[UIColor redColor]];
     
-    
-    [_historyTableView loadData];
-
-    // Fake event
-    //[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
+    if([_historyTableView isEditing]){
+        [_historyTableView setEditing:FALSE animated:FALSE];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,16 +73,19 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (IBAction)onDialerClick:(id)sender {
     [PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
 }
+
 /// Navigate to old History page.
 /// @param sender  must be the new HistoryButton.
 - (IBAction)onHistoryClick:(id)sender {
     [PhoneMainView.instance changeCurrentView:HistoryListView.compositeViewDescription];
 }
+
 /// Navigate to old Phonebook page.
 /// @param sender  must be the new PhonebookButton.
 - (IBAction)onPhonebookClick:(id)sender {
     [PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
 }
+
 /// Navigate to old Settings page.
 /// @param sender  must be the new SettingsButton.
 - (IBAction)onSettingsClick:(id)sender {

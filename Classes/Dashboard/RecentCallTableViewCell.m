@@ -21,9 +21,6 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)onCallPressed:(id)sender {
-}
-
 - (id)initWithIdentifier:(NSString *)identifier {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     if (self != nil) {
