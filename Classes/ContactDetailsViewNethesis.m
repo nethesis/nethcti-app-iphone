@@ -69,7 +69,7 @@
     [_tableController setContact:_contact];
     _emptyLabel.hidden = YES;
     _avatarImage.hidden = !_emptyLabel.hidden;
-    _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
+    _deleteButton.hidden = TRUE; // !_emptyLabel.hidden; Now is not editable;
     _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
 }
 
@@ -124,7 +124,7 @@
     bool emptyContact = (_contact != NULL);
     _emptyLabel.hidden = emptyContact;
 	_avatarImage.hidden = !emptyContact;
-    _deleteButton.hidden = YES; // !emptyContact; Now is not editable.
+    _deleteButton.hidden = TRUE; // !emptyContact; Now is not editable.
     _editButton.hidden = YES; // !emptyContact; Now is not editable.
 
 	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
@@ -389,7 +389,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[super setEditing:editing animated:animated];
 	if (editing) {
         _editButton.hidden = YES; // FALSE; Now is not editable.
-        _deleteButton.hidden = YES; // FALSE; Now is not editable.
+        _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
 		_avatarImage.hidden = FALSE;
 	} else {
 		_editButton.hidden = TRUE;
@@ -507,14 +507,14 @@ static UICompositeViewDescription *compositeDescription = nil;
         if (IPAD) {
           _emptyLabel.hidden = !_isAdding;
           _avatarImage.hidden = !_emptyLabel.hidden;
-            _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+            _deleteButton.hidden = TRUE; // !_emptyLabel.hidden; Now is not editable.
             _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
         } else {
           if (_isAdding) {
             [PhoneMainView.instance popCurrentView];
           } else {
             _avatarImage.hidden = FALSE;
-              _deleteButton.hidden = YES; // FALSE; Now is not editable.
+              _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
               _editButton.hidden = YES; // FALSE; Now is not editable.
           }
         }
@@ -545,7 +545,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 			_isAdding = FALSE;
 			self.tmpContact = NULL;
 			_avatarImage.hidden = FALSE;
-            _deleteButton.hidden = YES; // FALSE; Now is not editable.
+            _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
             _editButton.hidden = YES; // FALSE; Now is not editable.
 		}else{
 			LOGE(@"====>>>> Duplicated Contacts detected !!!");
