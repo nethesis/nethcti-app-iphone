@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIIconButton *callButton;
+@property (weak, nonatomic) IBOutlet UIImageView *callIcon;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 
 - (IBAction)callTouchUpInside:(id)event;

@@ -17,6 +17,7 @@
             <connections>
                 <outlet property="addressLabel" destination="PVj-SG-wHP" id="jIU-58-klH"/>
                 <outlet property="callButton" destination="v73-wT-3Eg" id="0mS-cn-BHj"/>
+                <outlet property="callIcon" destination="Hdj-8Q-ByO" id="TDC-bR-ePP"/>
                 <outlet property="nameInitialsLabel" destination="FxO-eD-PgJ" id="E0U-mY-2Sk"/>
                 <outlet property="nameLabel" destination="Cqh-ZY-Xxb" id="utY-tz-u9Z"/>
                 <outlet property="stackView" destination="GzG-TG-OI1" id="X2g-LA-C9X"/>

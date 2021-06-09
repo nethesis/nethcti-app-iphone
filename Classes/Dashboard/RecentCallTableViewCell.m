@@ -37,7 +37,7 @@
         }
         callLog = nil;
         
-        UIGestureRecognizer *tapParent = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetails:)];
+        UIGestureRecognizer *tapParent = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHistoryDetails:)];
         [_stackView addGestureRecognizer:tapParent];
         // [tapParent release];
     }
@@ -61,10 +61,29 @@
     
     self.callLog = recentCall;
     
+    [self setCallIcon:_callIcon byLog:recentCall];
+    
     const LinphoneAddress *addr = linphone_call_log_get_from_address(recentCall);
     
     [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+}
+
+/// Retreive the right icon from the call log status.
+/// This method is shared with old history table view controller.
+/// @param view UIImageView to change icon.
+/// @param log Linphone Call Log to show.
+- (void)setCallIcon:(UIImageView *)view byLog:(LinphoneCallLog *)log {
+    const BOOL outgoing = linphone_call_log_get_dir(log) == LinphoneCallOutgoing;
+    const BOOL missed = linphone_call_log_get_status(log) == LinphoneCallMissed;
+    
+    if (outgoing) {
+        [view setImage:[UIImage imageNamed:@"nethcti_call_status_outgoing.png"]];
+    } else if (missed) {
+        [view setImage:[UIImage imageNamed:@"nethcti_call_status_missed.png"]];
+    } else {
+        [view setImage:[UIImage imageNamed:@"nethcti_call_status_incoming.png"]];
+    }
 }
 
 - (IBAction)callTouchUpInside:(id)event {
@@ -76,7 +95,7 @@
     [LinphoneManager.instance call:addr];
 }
 
-- (IBAction)showDetails:(id)event {
+- (IBAction)showHistoryDetails:(id)event {
     if (callLog == nil) {
         return;
     }

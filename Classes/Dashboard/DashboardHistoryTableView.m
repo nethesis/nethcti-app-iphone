@@ -59,7 +59,7 @@
 }
 
 - (void)loadData {
-    for(id log in self.historyLogs) {
+    for (id log in self.historyLogs) {
         linphone_call_log_unref([log pointerValue]);
     }
     
@@ -67,14 +67,11 @@
     self.historyLogs = [NSMutableArray array];
     while (logs != NULL) {
         LinphoneCallLog *log = (LinphoneCallLog *)logs->data;
-        if (linphone_call_log_get_status(log) == LinphoneCallMissed){
-            
-            if (self.historyLogs.count < HISTORY_SIZE) {
-                [self.historyLogs addObject:[NSValue valueWithPointer: linphone_call_log_ref(log)]];
-            }
-            
-            linphone_call_log_set_user_data(log, NULL);
+        if (self.historyLogs.count < HISTORY_SIZE) {
+            [self.historyLogs addObject:[NSValue valueWithPointer: linphone_call_log_ref(log)]];
         }
+        
+        linphone_call_log_set_user_data(log, NULL);
         logs = bctbx_list_next(logs);
     }
     
