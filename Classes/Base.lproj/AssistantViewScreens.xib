@@ -1018,18 +1018,18 @@ Once it is done, come back here and click on the button.</string>
             <point key="canvasLocation" x="849" y="1630"/>
         </view>
         <view contentMode="scaleToFill" id="56" userLabel="loginView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="735"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="675"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="iK8-5d-mZM">
-                    <rect key="frame" x="0.0" y="32" width="414" height="56"/>
+                    <rect key="frame" x="0.0" y="24" width="414" height="56"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="Ahm-1d-dB4"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="LOGIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="wen-Vj-Wgv" userLabel="titleLabel">
-                    <rect key="frame" x="164" y="127.99999999999999" width="86" height="35.333333333333329"/>
+                    <rect key="frame" x="164" y="111.99999999999999" width="86" height="35.333333333333329"/>
                     <accessibility key="accessibilityConfiguration" label="Account setup assistant"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1037,7 +1037,7 @@ Once it is done, come back here and click on the button.</string>
                     <size key="shadowOffset" width="-1" height="-1"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Please enter the following informations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LsE-IY-ocU" userLabel="subtitleLabel">
-                    <rect key="frame" x="67.666666666666686" y="163.33333333333334" width="279" height="19"/>
+                    <rect key="frame" x="67.666666666666686" y="147.33333333333334" width="279" height="19"/>
                     <accessibility key="accessibilityConfiguration" label="Account setup assistant"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1045,13 +1045,13 @@ Once it is done, come back here and click on the button.</string>
                     <size key="shadowOffset" width="-1" height="-1"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgC-eB-ar3" userLabel="domainLabel">
-                    <rect key="frame" x="48" y="222.33333333333334" width="69" height="23.666666666666657"/>
+                    <rect key="frame" x="48" y="198.33333333333334" width="69" height="23.666666666666657"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" adjustsFontSizeToFit="NO" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5kh-Wo-SMY" userLabel="domainField" customClass="UIAssistantTextField">
-                    <rect key="frame" x="48" y="246" width="318" height="48"/>
+                    <rect key="frame" x="48" y="222" width="318" height="48"/>
                     <color key="backgroundColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Domain"/>
                     <constraints>
@@ -1067,31 +1067,31 @@ Once it is done, come back here and click on the button.</string>
                     </connections>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPq-fy-KZS" userLabel="passwordLabel">
-                    <rect key="frame" x="47.999999999999993" y="442.33333333333331" width="88.333333333333314" height="23.666666666666686"/>
+                    <rect key="frame" x="47.999999999999993" y="402.33333333333331" width="88.333333333333314" height="23.666666666666686"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="410" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Invalid password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oyr-f0-auK" userLabel="passwordErrorLabel">
-                    <rect key="frame" x="48" y="515" width="90" height="14.333333333333371"/>
+                    <rect key="frame" x="48" y="474" width="90" height="14.333333333333314"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                     <color key="textColor" red="0.98594832420349121" green="0.0" blue="0.026950567960739136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="120" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAv-f7-kDI" userLabel="usernameLabel">
-                    <rect key="frame" x="48" y="332.33333333333331" width="91" height="23.666666666666686"/>
+                    <rect key="frame" x="48" y="300.33333333333331" width="91" height="23.666666666666686"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                     <color key="textColor" red="0.42667588591575623" green="0.4266631007194519" blue="0.42667034268379211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="410" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Invalid username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-kb-e8g" userLabel="usernameErrorLabel">
-                    <rect key="frame" x="48" y="404" width="91" height="14.333333333333314"/>
+                    <rect key="frame" x="48" y="372" width="91" height="14.333333333333314"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                     <color key="textColor" red="0.98594832420349121" green="0.0" blue="0.026950567960739136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" adjustsFontSizeToFit="NO" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-Dj-QiH" userLabel="passwordField" customClass="UIAssistantTextField">
-                    <rect key="frame" x="48" y="466" width="318" height="48"/>
+                    <rect key="frame" x="48" y="426" width="318" height="48"/>
                     <color key="backgroundColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Password"/>
                     <constraints>
@@ -1107,7 +1107,7 @@ Once it is done, come back here and click on the button.</string>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" adjustsFontSizeToFit="NO" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FJ1-Xt-g7g" userLabel="usernameField" customClass="UIAssistantTextField">
-                    <rect key="frame" x="48" y="356" width="318" height="48"/>
+                    <rect key="frame" x="48" y="324" width="318" height="48"/>
                     <color key="backgroundColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Username"/>
                     <constraints>
@@ -1123,7 +1123,7 @@ Once it is done, come back here and click on the button.</string>
                     </connections>
                 </textField>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Jv7-CH-fCY" userLabel="buttonLayout">
-                    <rect key="frame" x="102" y="593.33333333333337" width="210" height="100.66666666666663"/>
+                    <rect key="frame" x="102" y="536.33333333333337" width="210" height="100.66666666666663"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aWI-wK-yFH">
                             <rect key="frame" x="0.0" y="0.0" width="75" height="100.66666666666667"/>
@@ -1160,7 +1160,7 @@ Once it is done, come back here and click on the button.</string>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aKl-76-Co3">
                             <rect key="frame" x="135" y="0.0" width="75" height="100.66666666666667"/>
                             <subviews>
-                                <button opaque="NO" tag="131" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uh-3A-d0c" userLabel="qrCodeButton" customClass="UIRoundBorderedButton">
+                                <button opaque="NO" tag="131" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uh-3A-d0c" userLabel="qrCodeButton" customClass="UIInterfaceStyleButton">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <accessibility key="accessibilityConfiguration" label="QrCodeScan">
                                         <bool key="isElement" value="YES"/>
@@ -1191,7 +1191,7 @@ Once it is done, come back here and click on the button.</string>
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" tag="410" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ths-8b-FoU" userLabel="domainErrorLabel">
-                    <rect key="frame" x="48" y="294" width="78" height="14.333333333333314"/>
+                    <rect key="frame" x="48" y="270" width="78" height="14.333333333333314"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                     <color key="textColor" red="0.98594832420349121" green="0.0" blue="0.026950567960739136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -1200,7 +1200,7 @@ Once it is done, come back here and click on the button.</string>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="FJ1-Xt-g7g" firstAttribute="top" secondItem="tAv-f7-kDI" secondAttribute="bottom" id="08N-LD-5zj"/>
-                <constraint firstItem="Jv7-CH-fCY" firstAttribute="top" secondItem="Oyr-f0-auK" secondAttribute="bottom" constant="64" id="1Qk-hh-z6s"/>
+                <constraint firstItem="Jv7-CH-fCY" firstAttribute="top" secondItem="Oyr-f0-auK" secondAttribute="bottom" constant="48" id="1Qk-hh-z6s"/>
                 <constraint firstItem="wen-Vj-Wgv" firstAttribute="centerX" secondItem="56" secondAttribute="centerX" id="2c1-e3-1Y0"/>
                 <constraint firstAttribute="trailing" secondItem="iK8-5d-mZM" secondAttribute="trailing" id="5W3-DJ-Naf"/>
                 <constraint firstItem="ths-8b-FoU" firstAttribute="top" secondItem="5kh-Wo-SMY" secondAttribute="bottom" id="9je-AI-v6w"/>
@@ -1211,24 +1211,24 @@ Once it is done, come back here and click on the button.</string>
                 <constraint firstItem="ths-8b-FoU" firstAttribute="leading" secondItem="5kh-Wo-SMY" secondAttribute="leading" id="Ix6-4c-6i9"/>
                 <constraint firstItem="LsE-IY-ocU" firstAttribute="top" secondItem="wen-Vj-Wgv" secondAttribute="bottom" id="LoD-xg-3vL"/>
                 <constraint firstItem="iK8-5d-mZM" firstAttribute="leading" secondItem="56" secondAttribute="leading" id="N6q-5Z-yXE"/>
-                <constraint firstItem="tAv-f7-kDI" firstAttribute="top" secondItem="ths-8b-FoU" secondAttribute="bottom" constant="24" id="NEd-az-TSb"/>
-                <constraint firstItem="XPq-fy-KZS" firstAttribute="top" secondItem="UJ1-kb-e8g" secondAttribute="bottom" constant="24" id="Okg-ir-vtE"/>
+                <constraint firstItem="tAv-f7-kDI" firstAttribute="top" secondItem="ths-8b-FoU" secondAttribute="bottom" constant="16" id="NEd-az-TSb"/>
+                <constraint firstItem="XPq-fy-KZS" firstAttribute="top" secondItem="UJ1-kb-e8g" secondAttribute="bottom" constant="16" id="Okg-ir-vtE"/>
                 <constraint firstItem="LsE-IY-ocU" firstAttribute="centerX" secondItem="56" secondAttribute="centerX" id="PLE-Yx-xAd"/>
                 <constraint firstItem="Jv7-CH-fCY" firstAttribute="centerX" secondItem="56" secondAttribute="centerX" id="Vuk-tK-e9A"/>
                 <constraint firstItem="FJ1-Xt-g7g" firstAttribute="leading" secondItem="56" secondAttribute="leading" constant="48" id="Vw7-JK-qWB"/>
                 <constraint firstItem="XPq-fy-KZS" firstAttribute="leading" secondItem="zEa-Dj-QiH" secondAttribute="leading" id="ZeR-8Y-aq7"/>
                 <constraint firstAttribute="trailing" secondItem="zEa-Dj-QiH" secondAttribute="trailing" constant="48" id="efa-aL-FZD"/>
-                <constraint firstItem="Oyr-f0-auK" firstAttribute="top" secondItem="zEa-Dj-QiH" secondAttribute="bottom" constant="1" id="i2V-gm-1qb"/>
+                <constraint firstItem="Oyr-f0-auK" firstAttribute="top" secondItem="zEa-Dj-QiH" secondAttribute="bottom" id="i2V-gm-1qb"/>
                 <constraint firstItem="tAv-f7-kDI" firstAttribute="leading" secondItem="FJ1-Xt-g7g" secondAttribute="leading" id="j8S-l0-Dd2"/>
                 <constraint firstItem="5kh-Wo-SMY" firstAttribute="centerX" secondItem="56" secondAttribute="centerX" id="ne7-MU-x0e"/>
                 <constraint firstAttribute="trailing" secondItem="FJ1-Xt-g7g" secondAttribute="trailing" constant="48" id="o0H-9s-OfQ"/>
                 <constraint firstItem="UJ1-kb-e8g" firstAttribute="top" secondItem="FJ1-Xt-g7g" secondAttribute="bottom" id="oet-nA-TzZ"/>
                 <constraint firstItem="Oyr-f0-auK" firstAttribute="leading" secondItem="zEa-Dj-QiH" secondAttribute="leading" id="p9l-rn-zeq"/>
-                <constraint firstItem="MgC-eB-ar3" firstAttribute="top" secondItem="LsE-IY-ocU" secondAttribute="bottom" constant="40" id="qkr-xZ-Ocj"/>
+                <constraint firstItem="MgC-eB-ar3" firstAttribute="top" secondItem="LsE-IY-ocU" secondAttribute="bottom" constant="32" id="qkr-xZ-Ocj"/>
                 <constraint firstAttribute="trailing" secondItem="5kh-Wo-SMY" secondAttribute="trailing" constant="48" id="vRy-18-Ib9"/>
-                <constraint firstItem="iK8-5d-mZM" firstAttribute="top" secondItem="56" secondAttribute="top" constant="32" id="x1n-7C-3bb"/>
+                <constraint firstItem="iK8-5d-mZM" firstAttribute="top" secondItem="56" secondAttribute="top" constant="24" id="x1n-7C-3bb"/>
                 <constraint firstItem="UJ1-kb-e8g" firstAttribute="leading" secondItem="FJ1-Xt-g7g" secondAttribute="leading" id="xSo-mg-LFF"/>
-                <constraint firstItem="wen-Vj-Wgv" firstAttribute="top" secondItem="iK8-5d-mZM" secondAttribute="bottom" constant="40" id="yhR-SC-tVq"/>
+                <constraint firstItem="wen-Vj-Wgv" firstAttribute="top" secondItem="iK8-5d-mZM" secondAttribute="bottom" constant="32" id="yhR-SC-tVq"/>
                 <constraint firstItem="MgC-eB-ar3" firstAttribute="leading" secondItem="5kh-Wo-SMY" secondAttribute="leading" id="zgV-tJ-v5D"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
