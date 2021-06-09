@@ -19,12 +19,13 @@
                 <outlet property="callButton" destination="v73-wT-3Eg" id="0mS-cn-BHj"/>
                 <outlet property="nameInitialsLabel" destination="FxO-eD-PgJ" id="E0U-mY-2Sk"/>
                 <outlet property="nameLabel" destination="Cqh-ZY-Xxb" id="utY-tz-u9Z"/>
+                <outlet property="stackView" destination="GzG-TG-OI1" id="X2g-LA-C9X"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="87" id="wve-Cg-czW" customClass="RecentCallTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="384" height="87"/>
-            <autoresizingMask key="autoresizingMask"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wve-Cg-czW" id="gko-5X-bi0">
                 <rect key="frame" x="0.0" y="0.0" width="384" height="87"/>
                 <autoresizingMask key="autoresizingMask"/>
