@@ -664,7 +664,7 @@
     }
 }
 
-+ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(LinphoneAddress *)addr {
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr {
     Contact *contact = [FastAddressBook getContactWithAddress:addr];
     
     if (contact) {

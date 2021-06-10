@@ -89,7 +89,7 @@ typedef enum {
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel;
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact;
 + (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name;
-+ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(LinphoneAddress *)addr;
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
 @end
 
 #import <UIKit/UIColor.h>
