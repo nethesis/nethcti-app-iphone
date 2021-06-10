@@ -1742,7 +1742,7 @@ _waitView.hidden = YES; \
     // Allow other screen orientations.
     dispatch_async(dispatch_get_main_queue(), ^{
         LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
-        delegate.onlyPortrait = FALSE;
+        delegate.onlyPortrait = TRUE;
     });
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];

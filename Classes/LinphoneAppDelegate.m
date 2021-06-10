@@ -52,7 +52,7 @@
 		startedInBackground = FALSE;
 	}
 	CallManager.instance.alreadyRegisteredForNotification = false;
-    _onlyPortrait = FALSE;
+    _onlyPortrait = TRUE;
 	return self;
 	[[UIApplication sharedApplication] setDelegate:self];
 }
