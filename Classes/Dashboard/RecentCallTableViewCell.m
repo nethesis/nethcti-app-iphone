@@ -65,6 +65,7 @@
     
     const LinphoneAddress *addr = linphone_call_log_get_from_address(recentCall);
     
+    [_addressLabel setTextColor:[UIColor getColorByName:@"MainColor"]];
     [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
 }
