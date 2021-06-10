@@ -91,7 +91,7 @@
                                         <color key="titleColor" red="0.28619974851608276" green="0.32144349813461304" blue="0.35980013012886047" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="delete_disabled.png"/>
+                                    <state key="disabled" image="nethcti_trash_disabled.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="vxj-6p-8lE"/>
                                     </connections>
@@ -410,6 +410,7 @@
         <image name="nethcti_edit.png" width="40" height="40"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
+        <image name="nethcti_trash_disabled.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

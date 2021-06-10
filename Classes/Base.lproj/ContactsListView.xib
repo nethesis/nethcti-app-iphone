@@ -118,6 +118,7 @@
                                     <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <state key="disabled" image="nethcti_trash_disabled.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="VJS-p2-Jsp"/>
                                     </connections>
@@ -325,6 +326,7 @@
         <image name="nethcti_multiselect_default.png" width="40" height="40"/>
         <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
+        <image name="nethcti_trash_disabled.png" width="40" height="40"/>
         <image name="nethcti_user_add.png" width="40" height="40"/>
         <image name="nethcti_user_sip.png" width="40" height="40"/>
         <image name="select_all_disabled.png" width="43.200000762939453" height="43.200000762939453"/>

@@ -119,10 +119,11 @@
                                         <constraint firstAttribute="width" secondItem="35" secondAttribute="height" multiplier="1:1" id="1fn-Zl-I6n"/>
                                     </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                     <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="delete_disabled.png"/>
+                                    <state key="disabled" image="nethcti_trash_disabled.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="37"/>
                                     </connections>
@@ -138,7 +139,7 @@
                                     <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="delete_disabled.png"/>
+                                    <state key="disabled" image="nethcti_trash_disabled.png"/>
                                     <connections>
                                         <action selector="onEditClick:" destination="18" eventType="touchUpInside" id="5Ft-HW-cVh"/>
                                         <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="9gC-6R-w0j"/>
@@ -209,13 +210,12 @@
                 <outlet property="toggleSelectionButton" destination="nhN-oH-LQ9" id="77r-l0-3Yi"/>
                 <outlet property="view" destination="17" id="25"/>
             </connections>
-            <point key="canvasLocation" x="863.768115942029" y="204.24107142857142"/>
+            <point key="canvasLocation" x="1145" y="241"/>
         </tableViewController>
     </objects>
     <resources>
         <image name="cancel_edit_disabled.png" width="47.200000762939453" height="47.200000762939453"/>
         <image name="color_A.png" width="2" height="2"/>
-        <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
         <image name="history_all_disabled.png" width="52.799999237060547" height="51.200000762939453"/>
         <image name="history_missed_disabled.png" width="52.799999237060547" height="52.799999237060547"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
@@ -224,6 +224,7 @@
         <image name="nethcti_multiselect_default.png" width="40" height="40"/>
         <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
+        <image name="nethcti_trash_disabled.png" width="40" height="40"/>
         <image name="select_all_disabled.png" width="43.200000762939453" height="43.200000762939453"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
