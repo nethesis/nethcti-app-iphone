@@ -37,7 +37,7 @@
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2f-aP-xjR" userLabel="deleteButton" customClass="UIIconButton">
-                            <rect key="frame" x="316" y="2" width="27" height="27"/>
+                            <rect key="frame" x="316" y="1.5" width="27" height="27"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="27" id="PbQ-Em-X7J"/>
                                 <constraint firstAttribute="width" secondItem="C2f-aP-xjR" secondAttribute="height" multiplier="1:1" id="efV-O6-Dcx"/>
@@ -117,7 +117,7 @@
                                         <action selector="onSMSInviteClick:" destination="-1" eventType="touchUpInside" id="E8o-h2-mml"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-29-AOK" userLabel="linphoneImage">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-29-AOK" userLabel="linphoneImage">
                                     <rect key="frame" x="343" y="64" width="16" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="ZaI-29-AOK" secondAttribute="height" multiplier="1:1" id="F5f-Lu-3jj"/>

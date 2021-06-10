@@ -26,13 +26,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="John Doe" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="nameLabel">
-                    <rect key="frame" x="65" y="25" width="72" height="20"/>
+                    <rect key="frame" x="65" y="24.5" width="72" height="20"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration" label="Firstname"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="25" userLabel="linphoneImage">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="nethcti_logo_sip.png" translatesAutoresizingMaskIntoConstraints="NO" id="25" userLabel="linphoneImage">
                     <rect key="frame" x="311" y="16" width="37" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="25" secondAttribute="height" multiplier="1:1" id="dse-Ea-yJ8"/>
@@ -48,7 +48,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="2" contentMode="left" text="J" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Idz-2Y-Bf9" userLabel="nameInitialLabel">
-                            <rect key="frame" x="14" y="9" width="9" height="20"/>
+                            <rect key="frame" x="14" y="8.5" width="9" height="20"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <accessibility key="accessibilityConfiguration" label="Firstname"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
@@ -83,7 +83,7 @@
         </view>
     </objects>
     <resources>
-        <image name="linphone_user.png" width="41.599998474121094" height="42.400001525878906"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_logo_sip.png" width="40" height="40"/>
     </resources>
 </document>

@@ -96,7 +96,7 @@
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
     
-    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName forImage:_avatarImage];
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -131,7 +131,7 @@
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
     [_tableController setContact:_contact];
 
-    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
     
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
@@ -414,7 +414,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
-    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
     
     [self recomputeTableViewSize:editing];
 

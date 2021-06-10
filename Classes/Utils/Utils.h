@@ -88,8 +88,11 @@ typedef enum {
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel;
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact;
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image;
 + (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name;
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name forImage:(const UIImageView *) image;
 + (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr forImage:(const UIImageView *) image;
 @end
 
 #import <UIKit/UIColor.h>

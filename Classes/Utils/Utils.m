@@ -656,11 +656,49 @@
     }
 }
 
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name forImage:(const UIImageView *) image{
+    if (name.length > 0){
+        
+        NSArray *names = [name componentsSeparatedByString: @" "];
+        int max = names.count > 2 ? 2 : (int)names.count;
+        
+        NSMutableString *resultString = [[NSMutableString alloc] initWithString:@""];
+
+        for (int i = 0; i < max; i++) {
+            NSString *asd = [names objectAtIndex:i];
+            if (asd.length > 0){
+                [resultString appendString:[asd substringToIndex:1].uppercaseString];
+            }
+        }
+        
+        label.text = resultString;
+        [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+
+    } else {
+        label.text = @"";
+        [image setImage:[UIImage imageNamed:@"avatar.png"]];
+    }
+}
+
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact {
     if (contact) {
         [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
     } else {
         label.text = @"";
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image{
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
+        if ([contact.displayName  isEqual: @""]){
+            [image setImage:[UIImage imageNamed:@"avatar.png"]];
+        } else {
+            [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+        }
+    } else {
+        label.text = @"";
+        [image setImage:[UIImage imageNamed:@"avatar.png"]];
     }
 }
 
@@ -671,6 +709,16 @@
         [ContactDisplay setDisplayInitialsLabel:label forContact:contact];
     } else {
         [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr]];
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr forImage:(const UIImageView *) image{
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forContact:contact forImage:image];
+    } else {
+        [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr] forImage:image];
     }
     
 }

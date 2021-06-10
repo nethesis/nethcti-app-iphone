@@ -62,6 +62,8 @@
 		390235A12664E23A000AB58E /* DashboardHistoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 390235A02664E23A000AB58E /* DashboardHistoryTableView.m */; };
 		392AC7E1267245670055DFCF /* nethcti_trash_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AC7DF267245630055DFCF /* nethcti_trash_disabled.png */; };
 		392AC7E2267245670055DFCF /* nethcti_trash_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AC7E0267245670055DFCF /* nethcti_trash_disabled@2x.png */; };
+		392AC7E9267263F70055DFCF /* nethcti_logo_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AC7E7267263F40055DFCF /* nethcti_logo_sip@2x.png */; };
+		392AC7EA267263F70055DFCF /* nethcti_logo_sip.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AC7E8267263F70055DFCF /* nethcti_logo_sip.png */; };
 		3949CDB42638251500379BFC /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB22638251200379BFC /* history@2x.png */; };
 		3949CDB52638251500379BFC /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDB32638251400379BFC /* history.png */; };
 		3949CDC326384AE900379BFC /* nethcti_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949CDC226384AE900379BFC /* nethcti_avatar.png */; };
@@ -1075,6 +1077,8 @@
 		390235A02664E23A000AB58E /* DashboardHistoryTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashboardHistoryTableView.m; sourceTree = "<group>"; };
 		392AC7DF267245630055DFCF /* nethcti_trash_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_trash_disabled.png; sourceTree = "<group>"; };
 		392AC7E0267245670055DFCF /* nethcti_trash_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_trash_disabled@2x.png"; sourceTree = "<group>"; };
+		392AC7E7267263F40055DFCF /* nethcti_logo_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_logo_sip@2x.png"; sourceTree = "<group>"; };
+		392AC7E8267263F70055DFCF /* nethcti_logo_sip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_logo_sip.png; sourceTree = "<group>"; };
 		3949CDB22638251200379BFC /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
 		3949CDB32638251400379BFC /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		3949CDC226384AE900379BFC /* nethcti_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar.png; sourceTree = "<group>"; };
@@ -3080,6 +3084,8 @@
 				39A7C2C7264402EA0056735F /* nethcti_green_phone.png */,
 				39549587264447A200412686 /* nethcti_grey_circle.png */,
 				39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */,
+				392AC7E8267263F70055DFCF /* nethcti_logo_sip.png */,
+				392AC7E7267263F40055DFCF /* nethcti_logo_sip@2x.png */,
 				398DE728264D6534008B65A9 /* nethcti_main_color_phone.png */,
 				39F2B99D26492D7400ADBFCE /* nethcti_menu_home.png */,
 				39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */,
@@ -4047,6 +4053,7 @@
 				633FEE9D1D3CD55A0014B822 /* numpad_0_over.png in Resources */,
 				633FEEC21D3CD55A0014B822 /* numpad_4~ipad@2x.png in Resources */,
 				633FEDFE1D3CD5590014B822 /* camera_switch_disabled.png in Resources */,
+				392AC7EA267263F70055DFCF /* nethcti_logo_sip.png in Resources */,
 				633FEE7F1D3CD5590014B822 /* history_missed_selected@2x.png in Resources */,
 				633FEDC01D3CD5590014B822 /* call_back_disabled.png in Resources */,
 				633FEED31D3CD55A0014B822 /* numpad_7_default.png in Resources */,
@@ -4402,6 +4409,7 @@
 				CF7602F6210898CC00749F76 /* rec_on_default@2x.png in Resources */,
 				633FEF081D3CD55A0014B822 /* options_start_conference_disabled.png in Resources */,
 				63F1DF511BCE986A00EDED90 /* UICallConferenceCell.xib in Resources */,
+				392AC7E9267263F70055DFCF /* nethcti_logo_sip@2x.png in Resources */,
 				633FEE301D3CD5590014B822 /* color_H.png in Resources */,
 				633FEE7D1D3CD5590014B822 /* history_missed_disabled@2x.png in Resources */,
 				633FEE941D3CD55A0014B822 /* micro_default.png in Resources */,
