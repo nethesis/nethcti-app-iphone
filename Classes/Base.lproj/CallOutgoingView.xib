@@ -188,7 +188,7 @@
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled" image="micro_disabled.png"/>
-                            <state key="selected" image="nethcti_microphone.png" backgroundImage="nethcti_blue_circle.png"/>
+                            <state key="selected" image="nethcti_microphone.png" backgroundImage="nethcti_button_circle.png"/>
                         </button>
                         <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7m-Av-QlR" userLabel="speakerButton" customClass="UISpeakerButton">
                             <rect key="frame" x="332" y="830" width="64" height="64"/>
