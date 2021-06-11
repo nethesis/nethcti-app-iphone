@@ -806,6 +806,7 @@
 		C3936F54263C37BD0058FE3D /* nethcti_qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3936F52263C37BC0058FE3D /* nethcti_qr@2x.png */; };
 		C39408D6264011CD009DB15E /* login_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = C39408D4264011CD009DB15E /* login_menu.png */; };
 		C39408D7264011CD009DB15E /* login_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39408D5264011CD009DB15E /* login_menu@2x.png */; };
+		C3960EE92671102C00D3A4B4 /* nethcti_green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = C3960EE82671102C00D3A4B4 /* nethcti_green_circle.png */; };
 		C39727152657E6F70072D986 /* nethcti_transfer_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39727072657E6F50072D986 /* nethcti_transfer_call@2x.png */; };
 		C39727172657E6F70072D986 /* nethcti_add_call.png in Resources */ = {isa = PBXBuildFile; fileRef = C39727092657E6F50072D986 /* nethcti_add_call.png */; };
 		C39727182657E6F70072D986 /* nethcti_add_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C397270A2657E6F50072D986 /* nethcti_add_call@2x.png */; };
@@ -1934,6 +1935,7 @@
 		C3936F52263C37BC0058FE3D /* nethcti_qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_qr@2x.png"; sourceTree = "<group>"; };
 		C39408D4264011CD009DB15E /* login_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_menu.png; sourceTree = "<group>"; };
 		C39408D5264011CD009DB15E /* login_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_menu@2x.png"; sourceTree = "<group>"; };
+		C3960EE82671102C00D3A4B4 /* nethcti_green_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_circle.png; sourceTree = "<group>"; };
 		C39727002657D61B0072D986 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CallOutgoingView.strings; sourceTree = "<group>"; };
 		C39727072657E6F50072D986 /* nethcti_transfer_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_transfer_call@2x.png"; sourceTree = "<group>"; };
 		C39727092657E6F50072D986 /* nethcti_add_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_call.png; sourceTree = "<group>"; };
@@ -3082,6 +3084,7 @@
 				39A124B6263AC31800CF1DB9 /* nethcti_green_call.png */,
 				39A124B5263AC31700CF1DB9 /* nethcti_green_call@2x.png */,
 				39A7C2C7264402EA0056735F /* nethcti_green_phone.png */,
+				C3960EE82671102C00D3A4B4 /* nethcti_green_circle.png */,
 				39549587264447A200412686 /* nethcti_grey_circle.png */,
 				39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */,
 				392AC7E8267263F70055DFCF /* nethcti_logo_sip.png */,
