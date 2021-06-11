@@ -136,7 +136,7 @@
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
     
 	if (reload) {
-		[self setEditing:TRUE animated:FALSE];
+		[self setEditing:TRUE animated:TRUE];
 	}
 }
 
@@ -148,9 +148,8 @@
 		return;
 	}
         @synchronized(LinphoneManager.instance.fastAddressBook) {
-          _tmpContact = [[Contact alloc]
-              initWithCNContact:[LinphoneManager.instance.fastAddressBook
-                                    getCNContactFromContact:acontact]];
+        CNContact *cn = [LinphoneManager.instance.fastAddressBook getCNContactFromContact:acontact];
+        _tmpContact = [[Contact alloc] initWithCNContact:cn];
         }
 }
 
