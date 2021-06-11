@@ -120,7 +120,7 @@ import Foundation
         contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
         contact!.workPob = self.workpob
         contact!.workPostalCode = self.workpostalcode
-        contact!.displayName = self.company.isEmpty ? self.name : self.name.trimmingCharacters(in: CharacterSet(arrayLiteral: " ")).isEmpty ? self.company : "\(self.name) - \(self.company)"
+        contact!.displayName = self.name.isEmpty ? self.company : self.name;//self.company.isEmpty ? self.name : self.name.trimmingCharacters(in: CharacterSet(arrayLiteral: " ")).isEmpty ? self.company : "\(self.name) - \(self.company)"
         return contact!
     }
 }

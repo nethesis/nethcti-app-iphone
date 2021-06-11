@@ -128,13 +128,15 @@
     _editButton.hidden = YES; // !emptyContact; Now is not editable.
 
 	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+    
+    [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
     [_tableController setContact:_contact];
 
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
     
 	if (reload) {
-		[self setEditing:TRUE animated:FALSE];
+		[self setEditing:TRUE animated:TRUE];
 	}
 }
 
@@ -146,9 +148,8 @@
 		return;
 	}
         @synchronized(LinphoneManager.instance.fastAddressBook) {
-          _tmpContact = [[Contact alloc]
-              initWithCNContact:[LinphoneManager.instance.fastAddressBook
-                                    getCNContactFromContact:acontact]];
+        CNContact *cn = [LinphoneManager.instance.fastAddressBook getCNContactFromContact:acontact];
+        _tmpContact = [[Contact alloc] initWithCNContact:cn];
         }
 }
 
@@ -269,6 +270,7 @@
 								   action:@selector(dismissKeyboards)];
 	
 	[self.view addGestureRecognizer:tap];
+    [self recomputeTableViewSize:_editButton.hidden];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -302,6 +304,7 @@
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
+    /*
 	if (IPAD) {
 		if (self.contact == NULL || (self.contact.firstName == NULL && self.contact.lastName == NULL)) {
 			if (! self.tableController.isEditing) {
@@ -328,6 +331,7 @@
     _editButton.hidden = TRUE;
     
     [self recomputeTableViewSize:_editButton.hidden];
+     */
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -411,7 +415,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_backButton.hidden = editing;
     _nameLabel.hidden = editing;
     _workLabel.hidden = editing;
-
+    
+    [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];

@@ -85,6 +85,7 @@ typedef enum {
 
 @interface ContactDisplay : NSObject
 + (void)setDisplayNameLabel:(UILabel *)label forContact:(Contact *)contact;
++ (void)setOrganizationLabel:(UILabel *)label forContact: (Contact *)contact;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel;
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact;

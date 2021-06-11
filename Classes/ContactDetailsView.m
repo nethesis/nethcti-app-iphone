@@ -260,6 +260,8 @@
 								   action:@selector(dismissKeyboards)];
 	
 	[self.view addGestureRecognizer:tap];
+    [self recomputeContentViewSize];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -293,7 +295,8 @@
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
-	if (IPAD) {
+	/*
+    if (IPAD) {
 		if (self.contact == NULL || (self.contact.firstName == NULL && self.contact.lastName == NULL)) {
 			if (! self.tableController.isEditing) {
 				_editButton.hidden = TRUE;
@@ -314,7 +317,8 @@
 		_cancelButton.hidden = TRUE;
 	}
     
-    [self recomputeTableViewSize:_editButton.hidden];
+    //[self recomputeTableViewSize:_editButton.hidden];
+    */
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -400,6 +404,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
     _workLabel.hidden = editing;
+    
+    [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
     

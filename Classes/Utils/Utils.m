@@ -635,6 +635,11 @@
 	addressLabel.text = tmpAddress;
 }
 
+
++ (void)setOrganizationLabel: (UILabel *)label forContact: (Contact *)contact{
+    label.text = contact.company;
+}
+
 + (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name {
     if (name.length > 0){
         
