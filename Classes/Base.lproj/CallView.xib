@@ -45,11 +45,11 @@
                 <outlet property="pausedCallsTable" destination="162" id="ffv-xP-AXk"/>
                 <outlet property="portraitView" destination="lzH-M1-NdV" id="duc-gP-Nq1"/>
                 <outlet property="recordButton" destination="MAI-av-LMz" id="2Gn-na-dF2"/>
-                <outlet property="routesBluetoothButton" destination="6uv-FV-mUL" id="c0F-7q-0m5"/>
+                <outlet property="routesBluetoothButton" destination="hwD-se-3lF" id="3Ap-n6-xKv"/>
                 <outlet property="routesButton" destination="nQp-5y-kTy" id="2u8-g5-6T1"/>
-                <outlet property="routesEarpieceButton" destination="jSA-bD-bCs" id="eeO-dk-84D"/>
-                <outlet property="routesSpeakerButton" destination="go9-SC-yzb" id="nyj-se-LKs"/>
-                <outlet property="routesView" destination="qcR-Qb-Bst" id="v5z-JE-9do"/>
+                <outlet property="routesEarpieceButton" destination="XLq-d3-CD8" id="P7t-g3-Gkc"/>
+                <outlet property="routesSpeakerButton" destination="GXv-nr-0Eg" id="C49-O1-1HB"/>
+                <outlet property="routesView" destination="wWj-c1-fp9" id="ksy-UC-NDf"/>
                 <outlet property="sevenButton" destination="alZ-Kz-AVL" id="8F0-KQ-qon"/>
                 <outlet property="sixButton" destination="0fB-uk-rXS" id="L9Y-dc-TBo"/>
                 <outlet property="speakerButton" destination="F5S-kV-7Kv" id="dqI-kU-8xY"/>
@@ -158,8 +158,8 @@
                                             </accessibility>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIN-aD-498" userLabel="nameInitialsLabel">
-                                            <rect key="frame" x="24.5" y="28" width="63" height="56.5"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="48"/>
+                                            <rect key="frame" x="30" y="33" width="52.5" height="47"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -368,10 +368,10 @@
                             </subviews>
                         </view>
                         <tableView clipsSubviews="YES" tag="23" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="106" userLabel="pausedCallsTableView">
-                            <rect key="frame" x="0.0" y="429" width="375" height="70"/>
+                            <rect key="frame" x="0.0" y="301" width="375" height="130"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="70" id="Qdv-Sk-HhZ"/>
+                                <constraint firstAttribute="height" constant="130" id="Qdv-Sk-HhZ"/>
                             </constraints>
                             <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -560,84 +560,101 @@
                                 <constraint firstItem="QYd-ca-Lpe" firstAttribute="width" secondItem="ukG-i4-YMY" secondAttribute="width" multiplier="0.8" id="vj4-uM-xbu"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" tag="37" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcR-Qb-Bst" userLabel="routesView">
-                            <rect key="frame" x="188" y="343" width="94" height="198"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" tag="38" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-n4-WSS" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="94" height="198"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <button opaque="NO" tag="39" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uv-FV-mUL" userLabel="routesBluetoothButton" customClass="UIBluetoothButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="94" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Bluetooth"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="route_bluetooth_default.png">
-                                        <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="route_bluetooth_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="route_bluetooth_selected.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png">
-                                        <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onRoutesBluetoothClick:" destination="-1" eventType="touchUpInside" id="jQt-8b-aEw"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="40" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSA-bD-bCs" userLabel="routesEarpieceButton">
-                                    <rect key="frame" x="0.0" y="66" width="94" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Receiver"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="route_earpiece_default.png">
-                                        <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="route_earpiece_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="route_earpiece_selected.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png">
-                                        <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onRoutesEarpieceClick:" destination="-1" eventType="touchUpInside" id="RqY-KM-K7M"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-SC-yzb" userLabel="routesSpeakerButton" customClass="UISpeakerButton">
-                                    <rect key="frame" x="0.0" y="132" width="94" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Speaker"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="route_speaker_default.png">
-                                        <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="route_speaker_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="route_speaker_selected.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png">
-                                        <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onRoutesSpeakerClick:" destination="-1" eventType="touchUpInside" id="BPD-uO-J2t"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </view>
                         <view tag="47" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mga-O5-mUn" userLabel="bottomBar">
-                            <rect key="frame" x="0.0" y="515" width="375" height="152"/>
+                            <rect key="frame" x="0.0" y="447" width="375" height="220"/>
                             <subviews>
-                                <view tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-ek-VgL" userLabel="higherBar">
+                                <view tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWj-c1-fp9" userLabel="routesView">
                                     <rect key="frame" x="16" y="0.0" width="343" height="60"/>
+                                    <subviews>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" tag="49" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ji0-Ax-qEE" userLabel="backgroundColor">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="66"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" tag="41" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXv-nr-0Eg" userLabel="routesSpeakerButton" customClass="UISpeakerButton">
+                                            <rect key="frame" x="94.5" y="0.0" width="60" height="60"/>
+                                            <accessibility key="accessibilityConfiguration" label="Speaker"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GXv-nr-0Eg" secondAttribute="height" multiplier="1:1" id="u4i-0w-VXc"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
+                                                <color key="titleColor" red="0.19582480190000001" green="0.2182468176" blue="0.24259182809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="route_speaker_disabled.png">
+                                                <color key="titleColor" red="0.58667385579999998" green="0.64151597019999995" blue="0.69586050509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="selected" image="route_speaker_selected.png"/>
+                                            <state key="highlighted" backgroundImage="color_E.png">
+                                                <color key="titleColor" red="0.76000285150000002" green="0.2151501924" blue="0.12376989419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onRoutesSpeakerClick:" destination="-1" eventType="touchUpInside" id="fYv-bT-puj"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="40" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLq-d3-CD8" userLabel="routesEarpieceButton">
+                                            <rect key="frame" x="188.5" y="0.0" width="60" height="60"/>
+                                            <accessibility key="accessibilityConfiguration" label="Receiver"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="XLq-d3-CD8" secondAttribute="height" multiplier="1:1" id="LX5-60-qdY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_grey_phone.png" backgroundImage="nethcti_grey_circle.png">
+                                                <color key="titleColor" red="0.19582480190000001" green="0.2182468176" blue="0.24259182809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="route_earpiece_disabled.png">
+                                                <color key="titleColor" red="0.58667385579999998" green="0.64151597019999995" blue="0.69586050509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="selected" image="route_earpiece_selected.png"/>
+                                            <state key="highlighted" backgroundImage="color_E.png">
+                                                <color key="titleColor" red="0.76000285150000002" green="0.2151501924" blue="0.12376989419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onRoutesEarpieceClick:" destination="-1" eventType="touchUpInside" id="e3R-gx-40s"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="39" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-se-3lF" userLabel="routesBluetoothButton" customClass="UIBluetoothButton">
+                                            <rect key="frame" x="283" y="0.0" width="60" height="60"/>
+                                            <accessibility key="accessibilityConfiguration" label="Bluetooth"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="hwD-se-3lF" secondAttribute="height" multiplier="1:1" id="pKh-Ul-gIm"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" image="nethcti_bluetooth.png" backgroundImage="nethcti_grey_circle.png">
+                                                <color key="titleColor" red="0.19582480190000001" green="0.2182468176" blue="0.24259182809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="route_bluetooth_disabled.png">
+                                                <color key="titleColor" red="0.58667385579999998" green="0.64151597019999995" blue="0.69586050509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="selected" image="route_bluetooth_selected.png"/>
+                                            <state key="highlighted" backgroundImage="color_E.png">
+                                                <color key="titleColor" red="0.76000285150000002" green="0.2151501924" blue="0.12376989419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onRoutesBluetoothClick:" destination="-1" eventType="touchUpInside" id="bos-45-49g"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="5M3-Z8-MDN"/>
+                                        <constraint firstAttribute="bottom" secondItem="GXv-nr-0Eg" secondAttribute="bottom" id="9fX-bl-gxk"/>
+                                        <constraint firstItem="GXv-nr-0Eg" firstAttribute="top" secondItem="wWj-c1-fp9" secondAttribute="top" id="GcW-p1-ULX"/>
+                                        <constraint firstAttribute="trailing" secondItem="hwD-se-3lF" secondAttribute="trailing" id="M0J-fT-GNv"/>
+                                        <constraint firstItem="XLq-d3-CD8" firstAttribute="top" secondItem="wWj-c1-fp9" secondAttribute="top" id="aZf-Ea-Z8g"/>
+                                        <constraint firstAttribute="bottom" secondItem="hwD-se-3lF" secondAttribute="bottom" id="dnd-sE-35i"/>
+                                        <constraint firstItem="hwD-se-3lF" firstAttribute="top" secondItem="wWj-c1-fp9" secondAttribute="top" id="qr3-5p-Nor"/>
+                                        <constraint firstAttribute="bottom" secondItem="XLq-d3-CD8" secondAttribute="bottom" id="v1p-2a-sve"/>
+                                    </constraints>
+                                </view>
+                                <view tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-ek-VgL" userLabel="higherBar">
+                                    <rect key="frame" x="16" y="68" width="343" height="60"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" tag="49" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-AK-YsQ" userLabel="backgroundColor">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="66"/>
@@ -704,7 +721,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <accessibility key="accessibilityConfiguration" label="Route"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" image="routes_default.png">
+                                                            <state key="normal" image="nethcti_bt_speaker.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <state key="disabled" image="routes_disabled.png"/>
@@ -759,7 +776,7 @@
                                     </constraints>
                                 </view>
                                 <view tag="56" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q9-3P-Fz0" userLabel="lowerBar">
-                                    <rect key="frame" x="16" y="76" width="343" height="60"/>
+                                    <rect key="frame" x="16" y="144" width="343" height="60"/>
                                     <subviews>
                                         <button opaque="NO" tag="57" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRu-dB-r3e" userLabel="numpadButton" customClass="UIToggleButton">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -811,12 +828,18 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="8q9-3P-Fz0" firstAttribute="top" secondItem="OIH-ek-VgL" secondAttribute="bottom" constant="16" id="2bE-lF-mA3"/>
-                                <constraint firstItem="OIH-ek-VgL" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" id="5XI-h5-hjR"/>
                                 <constraint firstItem="OIH-ek-VgL" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="16" id="D29-vi-OrX"/>
+                                <constraint firstItem="wWj-c1-fp9" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" id="Ddc-cw-MJG"/>
+                                <constraint firstItem="wWj-c1-fp9" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="16" id="FWO-0U-xjO"/>
                                 <constraint firstAttribute="trailing" secondItem="OIH-ek-VgL" secondAttribute="trailing" constant="16" id="NPf-Ih-9T1"/>
                                 <constraint firstAttribute="trailing" secondItem="8q9-3P-Fz0" secondAttribute="trailing" constant="16" id="Tq3-qY-kv5"/>
+                                <constraint firstAttribute="trailing" secondItem="wWj-c1-fp9" secondAttribute="trailing" constant="16" id="dgG-Ct-mgF"/>
+                                <constraint firstItem="OIH-ek-VgL" firstAttribute="top" secondItem="wWj-c1-fp9" secondAttribute="bottom" constant="8" id="ehm-zO-wHx"/>
+                                <constraint firstItem="wWj-c1-fp9" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" id="gLW-WH-eWw"/>
+                                <constraint firstItem="XLq-d3-CD8" firstAttribute="trailing" secondItem="Eay-C4-4gm" secondAttribute="trailing" id="imx-cB-I8C"/>
                                 <constraint firstItem="8q9-3P-Fz0" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="16" id="l6B-1c-m3u"/>
                                 <constraint firstAttribute="bottom" secondItem="8q9-3P-Fz0" secondAttribute="bottom" constant="16" id="nX9-bG-Ogk"/>
+                                <constraint firstItem="GXv-nr-0Eg" firstAttribute="trailing" secondItem="pRH-Ao-h65" secondAttribute="trailing" id="ttF-zs-ggn"/>
                             </constraints>
                         </view>
                         <view hidden="YES" tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSo-c5-Wtj" userLabel="waitView">
@@ -2350,9 +2373,12 @@ LR8tLC0vLTwtQS1JLUwtUS1ZAAAAAAAAAgEAAAAAAAAAUwAAAAAAAAAAAAAAAAAALVw
         <image name="nethcti_add_call.png" width="40" height="40"/>
         <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_blue_circle.png" width="187.5" height="187.5"/>
+        <image name="nethcti_bluetooth.png" width="40" height="40"/>
+        <image name="nethcti_bt_speaker.png" width="40" height="40"/>
         <image name="nethcti_cam.png" width="40" height="40"/>
         <image name="nethcti_close_button.png" width="128" height="128"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_grey_phone.png" width="250" height="250"/>
         <image name="nethcti_microphone.png" width="40" height="40"/>
         <image name="nethcti_microphone_disabled.png" width="32" height="32"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>
