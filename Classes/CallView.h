@@ -72,6 +72,8 @@
 @property(nonatomic, strong) IBOutlet UIButton *optionsAddButton;
 @property(nonatomic, strong) IBOutlet UIButton *optionsTransferButton;
 @property(nonatomic, strong) IBOutlet UIToggleButton *numpadButton;
+@property (weak, nonatomic) IBOutlet UILabel *pausedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pausedByRemoteLabel;
 @property(weak, nonatomic) IBOutlet UIPauseButton *conferencePauseButton;
 @property(weak, nonatomic) IBOutlet UIBouncingView *chatNotificationView;
 @property(weak, nonatomic) IBOutlet UILabel *chatNotificationLabel;

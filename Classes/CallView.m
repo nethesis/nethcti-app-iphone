@@ -130,6 +130,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_hashButton setDtmf:true];
     
     _durationLabel.textColor = [UIColor getColorByName:@"Grey"];
+    _pausedLabel.textColor = [UIColor getColorByName:@"Grey"];
+    _pausedByRemoteLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
 - (void)nethCTIViewPersonalizatio {
