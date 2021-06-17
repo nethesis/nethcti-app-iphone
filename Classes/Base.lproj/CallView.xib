@@ -671,10 +671,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <accessibility key="accessibilityConfiguration" label="Video"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                             <state key="normal" image="nethcti_cam.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <state key="disabled" image="camera_disabled.png"/>
                                                             <connections>
                                                                 <outlet property="waitView" destination="HIj-5b-rGP" id="wfm-ep-9QC"/>
                                                             </connections>
