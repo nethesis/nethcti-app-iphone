@@ -47,12 +47,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg7-rx-XVv" userLabel="sideMenuButton">
-                            <rect key="frame" x="12" y="12" width="24" height="18"/>
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                             <accessibility key="accessibilityConfiguration" label="Side menu button"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="lo6-r5-jYi"/>
-                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
                             <state key="normal" image="menu_nethcti.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -63,13 +61,14 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="yg7-rx-XVv" secondAttribute="trailing" id="4hq-7b-3rQ"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="centerX" secondItem="rYu-in-FEH" secondAttribute="centerX" id="BKf-Bi-yZy"/>
-                        <constraint firstItem="yg7-rx-XVv" firstAttribute="top" secondItem="rYu-in-FEH" secondAttribute="top" constant="12" id="Ea9-JA-fmi"/>
+                        <constraint firstItem="yg7-rx-XVv" firstAttribute="top" secondItem="rYu-in-FEH" secondAttribute="top" id="Ea9-JA-fmi"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="height" secondItem="rYu-in-FEH" secondAttribute="height" id="LR2-Uh-xgl"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="centerY" secondItem="rYu-in-FEH" secondAttribute="centerY" id="bAW-Sd-7gs"/>
-                        <constraint firstAttribute="bottom" secondItem="yg7-rx-XVv" secondAttribute="bottom" constant="12" id="eue-mF-o8C"/>
+                        <constraint firstAttribute="bottom" secondItem="yg7-rx-XVv" secondAttribute="bottom" id="eue-mF-o8C"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="width" secondItem="rYu-in-FEH" secondAttribute="width" id="fsL-in-yg0"/>
-                        <constraint firstItem="yg7-rx-XVv" firstAttribute="leading" secondItem="rYu-in-FEH" secondAttribute="leading" constant="12" id="mZ1-tj-71B"/>
+                        <constraint firstItem="yg7-rx-XVv" firstAttribute="leading" secondItem="rYu-in-FEH" secondAttribute="leading" id="mZ1-tj-71B"/>
                         <constraint firstAttribute="width" constant="42" id="zUl-Vz-RaZ"/>
                     </constraints>
                 </view>
