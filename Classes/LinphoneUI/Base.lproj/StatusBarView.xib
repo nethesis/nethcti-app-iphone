@@ -50,7 +50,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                             <accessibility key="accessibilityConfiguration" label="Side menu button"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="12"/>
                             <state key="normal" image="menu_nethcti.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -69,7 +69,7 @@
                         <constraint firstAttribute="bottom" secondItem="yg7-rx-XVv" secondAttribute="bottom" id="eue-mF-o8C"/>
                         <constraint firstItem="SKk-s0-5HE" firstAttribute="width" secondItem="rYu-in-FEH" secondAttribute="width" id="fsL-in-yg0"/>
                         <constraint firstItem="yg7-rx-XVv" firstAttribute="leading" secondItem="rYu-in-FEH" secondAttribute="leading" id="mZ1-tj-71B"/>
-                        <constraint firstAttribute="width" constant="42" id="zUl-Vz-RaZ"/>
+                        <constraint firstAttribute="width" secondItem="rYu-in-FEH" secondAttribute="height" multiplier="1:1" id="up1-Uz-bBc"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fV1-7B-KHu" userLabel="rightView">
