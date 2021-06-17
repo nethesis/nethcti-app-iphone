@@ -129,7 +129,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_hashButton setDigit:'#'];
 	[_hashButton setDtmf:true];
     
-    
     _durationLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
@@ -187,7 +186,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   userInfo:nil
 									repeats:YES];
     
-    //[self drawOptionButton];
+    // [self drawOptionButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -355,10 +354,11 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
  Draw option button with option or transfer call icon.
  */
 - (void)drawOptionButton {
-    if(TransferCallManager.instance.isCallTransfer)
+    if(TransferCallManager.instance.isCallTransfer) {
         [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
-    else
+    } else {
         [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)toggleControls:(id)sender {
@@ -589,6 +589,10 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	if (call == NULL) {
 		return;
 	}
+    
+    bool isTransfering = TransferCallManager.instance.isCallTransfer;
+    [_optionsAddButton setHidden:isTransfering];
+    [_optionsAddButton setEnabled:!isTransfering];
 
 	BOOL shouldDisableVideo = (!currentCall || !linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall)));
 	if (videoHidden != shouldDisableVideo) {
@@ -598,6 +602,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 			[self displayAudioCall:animated];
 		}
 	}
+    
     // camera is diabled duiring conference, it must be activated after leaving conference.
     if (!shouldDisableVideo && !linphone_core_is_in_conference(LC)) {
         linphone_call_enable_camera(call, TRUE);
@@ -892,7 +897,6 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onOptionsTransferClick:(id)sender {
-    
     if([TransferCallManager.instance isCallTransfer]) {
         [CallManager.instance transferCall];
     } else {
