@@ -50,7 +50,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                             <accessibility key="accessibilityConfiguration" label="Side menu button"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="12"/>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                             <state key="normal" image="menu_nethcti.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
