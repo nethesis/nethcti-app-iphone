@@ -55,11 +55,12 @@
         pause = [[UIImage imageNamed:@"nethcti_pause.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         play = [[UIImage imageNamed:@"nethcti_play.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         stop = [[UIImage imageNamed:@"nethcti_refresh.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [_playButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
-        [_stopButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        UIColor *midGrey = [UIColor getColorByName:@"MidGrey"];
+        [_playButton.imageView setTintColor:midGrey];
+        [_stopButton.imageView setTintColor:midGrey];
         [_timeProgress setProgressTintColor:[UIColor getColorByName:@"MainColor"]];
-
     }
+    
     return self;
 }
 
@@ -111,18 +112,20 @@
 }
 
 - (BOOL)isCreated {
-	return player!=nil;
+    return player != nil;
 }
 
 - (void)setFile:(NSString *)fileName {
-    if (player) linphone_player_close(player);
+    if (player) {
+        linphone_player_close(player);
+    }
     file = fileName;
 }
 
 #pragma mark - Callbacks
 
 void on_eof_reached(LinphonePlayer *pl) {
-    NSLog(@"EOF reached");
+    LOGI(@"[PLAYER] EOF reached");
     UILinphoneAudioPlayer *player = (__bridge UILinphoneAudioPlayer *)linphone_player_get_user_data(pl);
     dispatch_async(dispatch_get_main_queue(), ^{
         [player.playButton setImage:[[UIImage imageNamed:@"nethcti_play.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -195,12 +198,12 @@ void on_eof_reached(LinphonePlayer *pl) {
         case LinphonePlayerClosed:
             break;
         case LinphonePlayerPaused:
-            NSLog(@"Play");
+            LOGI(@"[PLAYER] Play");
             [_playButton setImage:pause forState:UIControlStateNormal];
             linphone_player_start(player);
             break;
         case LinphonePlayerPlaying:
-            NSLog(@"Pause");
+            LOGI(@"[PLAYER] Pause");
             [_playButton setImage:play forState:UIControlStateNormal];
             linphone_player_pause(player);
             break;
@@ -210,7 +213,7 @@ void on_eof_reached(LinphonePlayer *pl) {
 }
 
 - (IBAction)onStop:(id)sender {
-    NSLog(@"Stop");
+    LOGI(@"[PLAYER] Stop");
     linphone_player_pause(player);
     linphone_player_seek(player, 0);
     eofReached = NO;
@@ -232,4 +235,5 @@ void on_eof_reached(LinphonePlayer *pl) {
         linphone_player_seek(player, (int)(progress * duration));
     }
 }
+
 @end
