@@ -113,6 +113,8 @@ typedef enum {
 
 - (UIColor *)darkerColor;
 
+- (BOOL)isBright;
+
 + (UIColor *)getColorByName:(NSString *)name;
 
 @end

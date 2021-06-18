@@ -22,78 +22,107 @@
 #import "Log.h"
 
 @implementation UIVideoButton {
-	BOOL last_update_state;
+    BOOL last_update_state;
+    UIImage *backOnImage;
+    UIImage *backOffImage;
+    UIColor *onColor;
+    UIColor *offColor;
 }
 
 @synthesize waitView;
 
 INIT_WITH_COMMON_CF {
-	last_update_state = FALSE;
-        
-	return self;
+    last_update_state = FALSE;
+    
+    UIImage *img = [[UIImage imageNamed:@"nethcti_cam.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setImage:img forState:UIControlStateNormal];
+    [self setImage:img forState:UIControlStateSelected];
+    [self setImage:img forState:UIControlStateHighlighted];
+    [self setImage:img forState:UIControlStateDisabled];
+    
+    // Change UI Colors according to button state.
+    onColor = [UIColor getColorByName:@"Grey"];
+    offColor = [UIColor getColorByName:@"MainColor"];
+    [self.imageView setTintColor:onColor];
+    
+    backOffImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    backOnImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
+    
+    return self;
 }
 
 - (void)onOn {
-
-	if (!linphone_core_video_display_enabled(LC))
-		return;
-
-	[self setEnabled:FALSE];
-	[waitView startAnimating];
-
-	LinphoneCall *call = linphone_core_get_current_call(LC);
-	if (call) {
-		CallAppData *data = [CallManager getAppDataWithCall:call];
-		data.videoRequested = TRUE;/* will be used later to notify user if video was not activated because of the linphone core*/
-		[CallManager setAppDataWithCall:call appData:data];
-		LinphoneCallParams *call_params = linphone_core_create_call_params(LC,call);
-		linphone_call_params_enable_video(call_params, TRUE);
-		linphone_call_update(call, call_params);
-		linphone_call_params_unref(call_params);
-	} else {
-		LOGW(@"Cannot toggle video button, because no current call");
-	}
+    if (!linphone_core_video_display_enabled(LC))
+        return;
+    
+    [self setEnabled:FALSE];
+    [waitView startAnimating];
+    
+    LinphoneCall *call = linphone_core_get_current_call(LC);
+    if (!call) {
+        LOGW(@"Cannot toggle video button, because no current call");
+        return;
+    }
+    
+    // There's a call.
+    CallAppData *data = [CallManager getAppDataWithCall:call];
+    data.videoRequested = TRUE; /* will be used later to notify user if video was not activated because of the linphone core */
+    [CallManager setAppDataWithCall:call appData:data];
+    LinphoneCallParams *call_params = linphone_core_create_call_params(LC,call);
+    linphone_call_params_enable_video(call_params, TRUE);
+    linphone_call_update(call, call_params);
+    linphone_call_params_unref(call_params);
+    
+    // Change UI Colors according to button state.
+    [self.imageView setTintColor:offColor];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
 }
 
 - (void)onOff {
-
-	if (!linphone_core_video_display_enabled(LC))
-		return;
-	[CallManager.instance enableSpeakerWithEnable:FALSE];
-	[self setEnabled:FALSE];
-	[waitView startAnimating];
-
-	LinphoneCall *call = linphone_core_get_current_call(LC);
-	if (call) {
-		LinphoneCallParams *call_params = linphone_core_create_call_params(LC,call);
-		linphone_call_params_enable_video(call_params, FALSE);
-		linphone_core_update_call(LC, call, call_params);
-		linphone_call_params_destroy(call_params);
-        
-	} else {
-		LOGW(@"Cannot toggle video button, because no current call");
-	}
+    if (!linphone_core_video_display_enabled(LC))
+        return;
+    
+    [CallManager.instance enableSpeakerWithEnable:FALSE];
+    [self setEnabled:FALSE];
+    [waitView startAnimating];
+    
+    LinphoneCall *call = linphone_core_get_current_call(LC);
+    if (!call) {
+        LOGW(@"Cannot toggle video button, because no current call");
+        return;
+    }
+    
+    // There's a call.
+    LinphoneCallParams *call_params = linphone_core_create_call_params(LC,call);
+    linphone_call_params_enable_video(call_params, FALSE);
+    linphone_core_update_call(LC, call, call_params);
+    linphone_call_params_destroy(call_params);
+    
+    // Change UI Colors according to button state.
+    [self.imageView setTintColor:onColor];
+    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
 }
 
 - (bool)onUpdate {
-	bool video_enabled = false;
-	LinphoneCall *currentCall = linphone_core_get_current_call(LC);
-	if (linphone_core_video_supported(LC)) {
-		if (linphone_core_video_display_enabled(LC) && currentCall && !linphone_core_sound_resources_locked(LC) &&
-			linphone_call_get_state(currentCall) == LinphoneCallStreamsRunning) {
-			video_enabled = TRUE;
-		}
-	}
-
-	[self setEnabled:video_enabled];
-	if (last_update_state != video_enabled)
-		[waitView stopAnimating];
-	if (video_enabled) {
-		video_enabled = linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall));
-	}
-	last_update_state = video_enabled;
-
-	return video_enabled;
+    bool video_enabled = false;
+    LinphoneCall *currentCall = linphone_core_get_current_call(LC);
+    if (linphone_core_video_supported(LC)) {
+        if (linphone_core_video_display_enabled(LC) && currentCall && !linphone_core_sound_resources_locked(LC) &&
+            linphone_call_get_state(currentCall) == LinphoneCallStreamsRunning) {
+            video_enabled = TRUE;
+        }
+    }
+    
+    [self setEnabled:video_enabled];
+    if (last_update_state != video_enabled)
+        [waitView stopAnimating];
+    if (video_enabled) {
+        video_enabled = linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall));
+    }
+    last_update_state = video_enabled;
+    
+    return video_enabled;
 }
 
 @end

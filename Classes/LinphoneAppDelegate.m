@@ -314,6 +314,9 @@
 
     // Register the notification settings.
     [application registerUserNotificationSettings:notificationSettings];
+    
+    // Color status bar accordingly to the background color.
+    [self handleStatusBarTheme:application];
 
     // Output what state the app is in.
     // This will be used to see when the app is started in the background.
@@ -346,6 +349,35 @@
         
         [defaults setBool:YES forKey:@"has_already_launched_once"];
     }
+}
+
+/// Apply status bar theming for devices with iOS 13+.
+/// @param application application launched from didFinishWithLaunchingOptions.
+- (void)handleStatusBarTheme:(UIApplication *)application {
+    UIColor *statusBarBgColor = [UIColor getColorByName:@"StatusBarBgColor"];
+    // Set status bar style accordingly to the background color.
+    if (@available(iOS 13.0, *)) {
+        [application setStatusBarStyle:[statusBarBgColor isBright] ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
+        [self changeStatusBarBackground:application withColor:statusBarBgColor];
+    } else if([statusBarBgColor isBright]) {
+        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+        [self changeStatusBarBackground:application withColor:statusBarBgColor];
+    } else {
+        // Can't set status bar style if color is not compatible with iOS version.
+        float iosVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+        LOGI(@"Can't set status bar style. Color %@ is not compatible with iOS version %f.", statusBarBgColor, iosVersion);
+        return;
+    }
+}
+
+/// Change status bar background color. Use only inside handleStatusBarTheme:(UIApplication *) method.
+/// @param application application launched from didFinishWithLaunchingOptions.
+/// @param color status bar background color from config files.
+- (void)changeStatusBarBackground:(UIApplication *)application withColor:(UIColor *)color {
+    CGRect sbframe = application.statusBarFrame;
+    UIView *statusBar = [[UIView alloc] initWithFrame:sbframe];
+    statusBar.backgroundColor = color;
+    [application.keyWindow addSubview:statusBar];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

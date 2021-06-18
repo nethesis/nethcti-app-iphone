@@ -102,6 +102,9 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <!-- NOTE: This color can be different from main background color. -->
+    <key>StatusBarBgColor</key>
+    <string>$(WHITE)</string>
 	<key>LightCyan</key>
 	<string>$(LIGHT_CYAN)</string>
 	<key>LightGreen</key>

@@ -19,49 +19,47 @@
 
 #import "UIMutedMicroButton.h"
 
-@implementation UIMutedMicroButton
+@implementation UIMutedMicroButton {
+    UIImage *backOnImage;
+    UIImage *backOffImage;
+    UIColor *onColor;
+    UIColor *offColor;
+}
 
 INIT_WITH_COMMON_CF {
-    UIImage *dImage = [[UIImage imageNamed:@"nethcti_microphone.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *dImage = [[UIImage imageNamed:@"nethcti_microphone_disabled.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setImage:dImage forState:UIControlStateNormal];
-    UIImage *sImage = [[UIImage imageNamed:@"nethcti_microphone_disabled.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [self setImage:sImage forState:UIControlStateSelected];
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-
-    UIImage *backImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
-    [self setBackgroundImage:backImage forState:UIControlStateNormal];
+    onColor = [UIColor getColorByName:@"Grey"];
+    offColor = [UIColor getColorByName:@"MainColor"];
+    [self.imageView setTintColor:offColor];
+    
+    backOffImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    backOnImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
     
     return self;
 }
 
 - (void)onOn {
-	linphone_core_enable_mic(LC, false);
+    linphone_core_enable_mic(LC, false);
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-    
-    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
-    [self setBackgroundImage:dImage forState:UIControlStateNormal];
-    //[self setTintColor:[UIColor getColorByName:@"ButtonSelectedBackground"]];
-    
+    [self.imageView setTintColor:onColor];
+    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
 }
 
 - (void)onOff {
-	linphone_core_enable_mic(LC, true);
-    [self setSelected:FALSE];
+    linphone_core_enable_mic(LC, true);
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-    
-    UIImage *dImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
-    [self setBackgroundImage:dImage forState:UIControlStateNormal];
-     
+    [self.imageView setTintColor:offColor];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
 }
 
 - (bool)onUpdate {
-	return (linphone_core_get_current_call(LC) || linphone_core_is_in_conference(LC)) && !linphone_core_mic_enabled(LC);
+    return (linphone_core_get_current_call(LC) || linphone_core_is_in_conference(LC)) && !linphone_core_mic_enabled(LC);
 }
 
 @end
