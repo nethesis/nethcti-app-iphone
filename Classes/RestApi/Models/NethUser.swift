@@ -40,9 +40,9 @@ extension NethUser {
 
 @objc public class PortableNethUser: NSObject {
     @objc public let name: String
-    @objc public let username: String
-    @objc public let intern: String
-    @objc public let secret: String
+    @objc public let username: String?
+    @objc public let intern: String?
+    @objc public let secret: String?
     @objc public let proxyPort : Int
     
     init?(from:NethUser){
