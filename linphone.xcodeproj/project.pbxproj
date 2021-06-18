@@ -157,6 +157,10 @@
 		39F2B9B4264AA59000ADBFCE /* nethcti_multiselect_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B2264AA59000ADBFCE /* nethcti_multiselect_default@2x.png */; };
 		39F2B9B7264AA5DE00ADBFCE /* nethcti_multiselect_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B5264AA5DC00ADBFCE /* nethcti_multiselect_selected@2x.png */; };
 		39F2B9B8264AA5DE00ADBFCE /* nethcti_multiselect_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */; };
+		39F80F872678E0250046E287 /* nethcti_bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F80F852678E0210046E287 /* nethcti_bluetooth.png */; };
+		39F80F882678E0250046E287 /* nethcti_bluetooth.png@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F80F862678E0240046E287 /* nethcti_bluetooth.png@2x.png */; };
+		39F80F8B2678E05D0046E287 /* nethcti_bt_speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F80F892678E0590046E287 /* nethcti_bt_speaker.png */; };
+		39F80F8C2678E05D0046E287 /* nethcti_bt_speaker.png@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F80F8A2678E05C0046E287 /* nethcti_bt_speaker.png@2x.png */; };
 		570742581D5A0691004B9C84 /* ShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570742561D5A0691004B9C84 /* ShopView.xib */; };
 		570742611D5A09B8004B9C84 /* ShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707425F1D5A09B8004B9C84 /* ShopView.m */; };
 		570742671D5A63DB004B9C84 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570742661D5A63DB004B9C84 /* StoreKit.framework */; };
@@ -806,7 +810,6 @@
 		C3936F54263C37BD0058FE3D /* nethcti_qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3936F52263C37BC0058FE3D /* nethcti_qr@2x.png */; };
 		C39408D6264011CD009DB15E /* login_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = C39408D4264011CD009DB15E /* login_menu.png */; };
 		C39408D7264011CD009DB15E /* login_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39408D5264011CD009DB15E /* login_menu@2x.png */; };
-		C3960EE92671102C00D3A4B4 /* nethcti_green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = C3960EE82671102C00D3A4B4 /* nethcti_green_circle.png */; };
 		C39727152657E6F70072D986 /* nethcti_transfer_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39727072657E6F50072D986 /* nethcti_transfer_call@2x.png */; };
 		C39727172657E6F70072D986 /* nethcti_add_call.png in Resources */ = {isa = PBXBuildFile; fileRef = C39727092657E6F50072D986 /* nethcti_add_call.png */; };
 		C39727182657E6F70072D986 /* nethcti_add_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C397270A2657E6F50072D986 /* nethcti_add_call@2x.png */; };
@@ -1178,6 +1181,10 @@
 		39F2B9B2264AA59000ADBFCE /* nethcti_multiselect_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_multiselect_default@2x.png"; sourceTree = "<group>"; };
 		39F2B9B5264AA5DC00ADBFCE /* nethcti_multiselect_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_multiselect_selected@2x.png"; sourceTree = "<group>"; };
 		39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_multiselect_selected.png; sourceTree = "<group>"; };
+		39F80F852678E0210046E287 /* nethcti_bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_bluetooth.png; sourceTree = "<group>"; };
+		39F80F862678E0240046E287 /* nethcti_bluetooth.png@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_bluetooth.png@2x.png"; sourceTree = "<group>"; };
+		39F80F892678E0590046E287 /* nethcti_bt_speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_bt_speaker.png; sourceTree = "<group>"; };
+		39F80F8A2678E05C0046E287 /* nethcti_bt_speaker.png@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_bt_speaker.png@2x.png"; sourceTree = "<group>"; };
 		570742571D5A0691004B9C84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShopView.xib; sourceTree = "<group>"; };
 		5707425F1D5A09B8004B9C84 /* ShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView.m; sourceTree = "<group>"; };
 		570742601D5A09B8004B9C84 /* ShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView.h; sourceTree = "<group>"; };
@@ -3062,7 +3069,11 @@
 				39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */,
 				39A7C2D326441A040056735F /* nethcti_backspace.png */,
 				398DE716264D209B008B65A9 /* nethcti_blue_circle.png */,
+				39F80F852678E0210046E287 /* nethcti_bluetooth.png */,
+				39F80F862678E0240046E287 /* nethcti_bluetooth.png@2x.png */,
 				3949CDC426384B7C00379BFC /* nethcti_button_circle.png */,
+				39F80F892678E0590046E287 /* nethcti_bt_speaker.png */,
+				39F80F8A2678E05C0046E287 /* nethcti_bt_speaker.png@2x.png */,
 				C39727212657EFD50072D986 /* nethcti_call_accept.png */,
 				C39727222657EFD50072D986 /* nethcti_call_accept@2x.png */,
 				39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */,
@@ -3981,6 +3992,7 @@
 				633FEDCC1D3CD5590014B822 /* call_quality_indicator_0.png in Resources */,
 				633FEDEB1D3CD5590014B822 /* call_status_outgoing@2x.png in Resources */,
 				633FEDEE1D3CD5590014B822 /* call_transfer_default.png in Resources */,
+				39F80F882678E0250046E287 /* nethcti_bluetooth.png@2x.png in Resources */,
 				63DFE04B1C40161700DA5E87 /* notes_of_the_optimistic.caf in Resources */,
 				39EC1D24265E761C00070BF7 /* nethcti_record.png in Resources */,
 				639E9C931C0DB7BE00019A75 /* FirstLoginView.xib in Resources */,
@@ -4128,6 +4140,7 @@
 				633FEF311D3CD55A0014B822 /* route_speaker_disabled@2x.png in Resources */,
 				61586B81217A16EE0038AC45 /* menu_about.png in Resources */,
 				633FEEE41D3CD55A0014B822 /* numpad_9_default@2x.png in Resources */,
+				39F80F8B2678E05D0046E287 /* nethcti_bt_speaker.png in Resources */,
 				8C2A81961F87B8000012A66B /* chat_group_avatar.png in Resources */,
 				633FEDA31D3CD5590014B822 /* avatar~ipad@2x.png in Resources */,
 				C39A585A26526FD600ED4390 /* nethcti_refresh@2x.png in Resources */,
@@ -4144,6 +4157,7 @@
 				24BFAA9E209B0630004F47A7 /* dialer_background.png in Resources */,
 				633FEE481D3CD5590014B822 /* delete_default.png in Resources */,
 				633FEEB01D3CD55A0014B822 /* numpad_2_over~ipad@2x.png in Resources */,
+				39F80F8C2678E05D0046E287 /* nethcti_bt_speaker.png@2x.png in Resources */,
 				633FEE2A1D3CD5590014B822 /* color_A.png in Resources */,
 				633FEEA41D3CD55A0014B822 /* numpad_1_default@2x.png in Resources */,
 				63E27A321C4FECD000D332AE /* LaunchScreen.xib in Resources */,
@@ -4540,6 +4554,7 @@
 				633FEE121D3CD5590014B822 /* chat_message_not_delivered.png in Resources */,
 				633FEDCE1D3CD5590014B822 /* call_quality_indicator_1.png in Resources */,
 				39F2B9A3264937DC00ADBFCE /* nethcti_user_add@2x.png in Resources */,
+				39F80F872678E0250046E287 /* nethcti_bluetooth.png in Resources */,
 				8CB2B8F91F86229E0015CEE2 /* chat_secure.png in Resources */,
 				633FEF4E1D3CD55A0014B822 /* valid_default.png in Resources */,
 				570742581D5A0691004B9C84 /* ShopView.xib in Resources */,

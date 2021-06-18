@@ -886,6 +886,30 @@
 	return [self lumColor:0.75];
 }
 
+/// Calculate if a color is Bright or Dark.
+/// Based on stackoverlfow answer https://stackoverflow.com/a/18303674/10220116.
+/// @param color color to check.
+- (BOOL)isBright {
+    UIColor *s = (UIColor *)self;
+    size_t count = CGColorGetNumberOfComponents(s.CGColor);
+    const CGFloat *componentColors = CGColorGetComponents(s.CGColor);
+
+    CGFloat darknessScore = 0;
+    if (count == 2) { // Grey scale colors.
+        darknessScore = (
+                         ((componentColors[0] * 255) * 299) +
+                         ((componentColors[0] * 255) * 587) +
+                         ((componentColors[0] * 255) * 114)) / 1000;
+    } else if (count == 4) { // RGB scale colors.
+        darknessScore = (
+                         ((componentColors[0] * 255) * 299) +
+                         ((componentColors[1] * 255) * 587) +
+                         ((componentColors[2] * 255) * 114)) / 1000;
+    }
+
+    return darknessScore < 125;
+}
+
 /// Get the color defined in config files from the name given fetched in info.plist file.
 /// @param name Color name defined in info.plist
 + (UIColor *)getColorByName:(NSString *)name {
