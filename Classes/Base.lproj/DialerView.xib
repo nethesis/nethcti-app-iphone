@@ -59,16 +59,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="256" height="568"/>
                                 </imageView>
                                 <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
-                                    <rect key="frame" x="0.0" y="0.0" width="256" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="56"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-aS-ipm">
-                                            <rect key="frame" x="0.0" y="0.0" width="256" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="256" height="56"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKx-ZY-gKx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="46"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKx-ZY-gKx" userLabel="texts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="54"/>
                                                     <subviews>
                                                         <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
-                                                            <rect key="frame" x="0.0" y="3.5" width="224" height="39"/>
+                                                            <rect key="frame" x="0.0" y="7.5" width="224" height="39"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <accessibility key="accessibilityConfiguration" label="Enter an address"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
@@ -79,7 +79,7 @@
                                                             </connections>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
-                                                            <rect key="frame" x="224" y="7" width="32" height="32"/>
+                                                            <rect key="frame" x="224" y="11" width="32" height="32"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="32" id="IVL-Ws-Mzh"/>
                                                                 <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="Rlx-mY-Gd2"/>
@@ -105,7 +105,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-yD-2Oc" userLabel="baseline">
-                                                    <rect key="frame" x="0.0" y="46" width="256" height="2"/>
+                                                    <rect key="frame" x="0.0" y="54" width="256" height="2"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="n9u-AT-Zta"/>
@@ -119,7 +119,7 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="1xQ-JM-zZ4"/>
+                                        <constraint firstAttribute="height" constant="56" id="1xQ-JM-zZ4"/>
                                         <constraint firstAttribute="bottom" secondItem="VZH-aS-ipm" secondAttribute="bottom" id="nCW-lQ-8LN"/>
                                         <constraint firstItem="VZH-aS-ipm" firstAttribute="top" secondItem="178" secondAttribute="top" id="oT7-Kr-Sqe"/>
                                         <constraint firstItem="VZH-aS-ipm" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="tXB-gW-ifH"/>
@@ -127,12 +127,12 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
-                                    <rect key="frame" x="0.0" y="48" width="256" height="352.5"/>
+                                    <rect key="frame" x="0.0" y="56" width="256" height="352.5"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qwq-es-rgg">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qwq-es-rgg" userLabel="0-9">
                                             <rect key="frame" x="0.0" y="20" width="256" height="332.5"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JJS-sQ-bfk">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JJS-sQ-bfk" userLabel="1-3">
                                                     <rect key="frame" x="0.0" y="0.0" width="256" height="68"/>
                                                     <subviews>
                                                         <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="1" customClass="UIDigitButton">
@@ -182,7 +182,7 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JLM-Co-Ku0">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JLM-Co-Ku0" userLabel="4-6">
                                                     <rect key="frame" x="0.0" y="88" width="256" height="68.5"/>
                                                     <subviews>
                                                         <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
@@ -232,7 +232,7 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-KG-iqF">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-KG-iqF" userLabel="7-9">
                                                     <rect key="frame" x="0.0" y="176.5" width="256" height="68"/>
                                                     <subviews>
                                                         <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
@@ -282,7 +282,7 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-4K-HJQ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Gr-4K-HJQ" userLabel="-0-">
                                                     <rect key="frame" x="0.0" y="264.5" width="256" height="68"/>
                                                     <subviews>
                                                         <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
@@ -347,11 +347,11 @@
                                         <constraint firstAttribute="trailing" secondItem="Qwq-es-rgg" secondAttribute="trailing" id="pZj-SJ-TcC"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJj-HP-88E">
-                                    <rect key="frame" x="0.0" y="400.5" width="256" height="167.5"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJj-HP-88E" userLabel="bottomBar">
+                                    <rect key="frame" x="0.0" y="408.5" width="256" height="159.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eJ-4B-GHX" userLabel="bottomView">
-                                            <rect key="frame" x="0.0" y="49.5" width="256" height="68.5"/>
+                                            <rect key="frame" x="0.0" y="45.5" width="256" height="68.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqB-AH-uDL" userLabel="buttonView">
                                                     <rect key="frame" x="0.0" y="0.0" width="68" height="68.5"/>
@@ -493,7 +493,7 @@
         <image name="nethcti_back_to_call.png" width="256" height="256"/>
         <image name="nethcti_backspace.png" width="256" height="256"/>
         <image name="nethcti_green_circle.png" width="256" height="256"/>
-        <image name="nethcti_green_phone.png" width="256" height="256"/>
+        <image name="nethcti_green_phone.png" width="64" height="64"/>
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_grey_phone.png" width="250" height="250"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>

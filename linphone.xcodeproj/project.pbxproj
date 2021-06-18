@@ -121,7 +121,6 @@
 		39A7C2C4264401370056735F /* nethcti_numpad_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2B82644012E0056735F /* nethcti_numpad_2.png */; };
 		39A7C2C5264401370056735F /* nethcti_numpad_asterisk.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2B9264401320056735F /* nethcti_numpad_asterisk.png */; };
 		39A7C2C6264401370056735F /* nethcti_numpad_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2BA264401360056735F /* nethcti_numpad_5.png */; };
-		39A7C2C9264402EC0056735F /* nethcti_green_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2C7264402EA0056735F /* nethcti_green_phone.png */; };
 		39A7C2CC2644044C0056735F /* nethcti_grey_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */; };
 		39A7C2D2264418BC0056735F /* nethcti_back_to_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */; };
 		39A7C2D426441A040056735F /* nethcti_backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A7C2D326441A040056735F /* nethcti_backspace.png */; };
@@ -136,7 +135,6 @@
 		39D09CDC265BDD3000AFD3BA /* nethcti_call_status_incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */; };
 		39D09CDD265BDD3000AFD3BA /* nethcti_call_status_outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CD7265BDD3000AFD3BA /* nethcti_call_status_outgoing.png */; };
 		39D09CDF265BF7D900AFD3BA /* nethcti_avatar_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D09CDE265BF7D900AFD3BA /* nethcti_avatar_call.png */; };
-		39DE67BF267224D800240A6B /* nethcti_green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 39DE67BE267224D800240A6B /* nethcti_green_circle.png */; };
 		39EC1D23265E761C00070BF7 /* nethcti_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D21265E761800070BF7 /* nethcti_record@2x.png */; };
 		39EC1D24265E761C00070BF7 /* nethcti_record.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D22265E761C00070BF7 /* nethcti_record.png */; };
 		39EC1D27265EAD9700070BF7 /* nethcti_transfer_call_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EC1D25265EAD9400070BF7 /* nethcti_transfer_call_green.png */; };
@@ -837,6 +835,8 @@
 		C39AA9D8263956AC00464F06 /* nethcti_microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39AA9D0263956AB00464F06 /* nethcti_microphone@2x.png */; };
 		C39CE3F52636EF1000F63727 /* color_nethcti_white.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F42636EF0F00F63727 /* color_nethcti_white.png */; };
 		C39CE3F72636F05100F63727 /* menu_nethcti.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F62636F05000F63727 /* menu_nethcti.png */; };
+		C39DC13C2677AB8E0037305E /* nethcti_green_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DC13A2677AB8D0037305E /* nethcti_green_phone.png */; };
+		C39DC13D2677AB8E0037305E /* nethcti_green_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DC13B2677AB8E0037305E /* nethcti_green_phone@2x.png */; };
 		C39F991824D0345800B3039C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6C88323FABF690076A018 /* Utils.swift */; };
 		C39F991924D0345800B3039C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8CB82B239F96CA00C330CC /* NotificationViewController.swift */; };
 		C3A1264525E9512900DFFCA8 /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */; };
@@ -1145,7 +1145,6 @@
 		39A7C2B82644012E0056735F /* nethcti_numpad_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_2.png; sourceTree = "<group>"; };
 		39A7C2B9264401320056735F /* nethcti_numpad_asterisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_asterisk.png; sourceTree = "<group>"; };
 		39A7C2BA264401360056735F /* nethcti_numpad_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_5.png; sourceTree = "<group>"; };
-		39A7C2C7264402EA0056735F /* nethcti_green_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_phone.png; sourceTree = "<group>"; };
 		39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_grey_phone.png; sourceTree = "<group>"; };
 		39A7C2D1264418BC0056735F /* nethcti_back_to_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_back_to_call.png; sourceTree = "<group>"; };
 		39A7C2D326441A040056735F /* nethcti_backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_backspace.png; sourceTree = "<group>"; };
@@ -1160,7 +1159,6 @@
 		39D09CD6265BDD2D00AFD3BA /* nethcti_call_status_incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_incoming.png; sourceTree = "<group>"; };
 		39D09CD7265BDD3000AFD3BA /* nethcti_call_status_outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_outgoing.png; sourceTree = "<group>"; };
 		39D09CDE265BF7D900AFD3BA /* nethcti_avatar_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar_call.png; sourceTree = "<group>"; };
-		39DE67BE267224D800240A6B /* nethcti_green_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_circle.png; sourceTree = "<group>"; };
 		39EC1D21265E761800070BF7 /* nethcti_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_record@2x.png"; sourceTree = "<group>"; };
 		39EC1D22265E761C00070BF7 /* nethcti_record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_record.png; sourceTree = "<group>"; };
 		39EC1D25265EAD9400070BF7 /* nethcti_transfer_call_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_transfer_call_green.png; sourceTree = "<group>"; };
@@ -1971,6 +1969,8 @@
 		C39AA9D0263956AB00464F06 /* nethcti_microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_microphone@2x.png"; sourceTree = "<group>"; };
 		C39CE3F42636EF0F00F63727 /* color_nethcti_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_white.png; sourceTree = "<group>"; };
 		C39CE3F62636F05000F63727 /* menu_nethcti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_nethcti.png; sourceTree = "<group>"; };
+		C39DC13A2677AB8D0037305E /* nethcti_green_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_phone.png; sourceTree = "<group>"; };
+		C39DC13B2677AB8E0037305E /* nethcti_green_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_green_phone@2x.png"; sourceTree = "<group>"; };
 		C3A1264625E9512900DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3A1264825E9513100DFFCA8 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
 		C3A406EB261DE9F400526F9B /* DashboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -2718,7 +2718,6 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				39DE67BE267224D800240A6B /* nethcti_green_circle.png */,
 				633FEBE21D3CD5570014B822 /* add_field_default.png */,
 				633FEBE31D3CD5570014B822 /* add_field_default@2x.png */,
 				633FEBE41D3CD5570014B822 /* add_field_over.png */,
@@ -3094,8 +3093,9 @@
 				398DE725264D5647008B65A9 /* nethcti_edit@2x.png */,
 				39A124B6263AC31800CF1DB9 /* nethcti_green_call.png */,
 				39A124B5263AC31700CF1DB9 /* nethcti_green_call@2x.png */,
-				39A7C2C7264402EA0056735F /* nethcti_green_phone.png */,
 				C3960EE82671102C00D3A4B4 /* nethcti_green_circle.png */,
+				C39DC13A2677AB8D0037305E /* nethcti_green_phone.png */,
+				C39DC13B2677AB8E0037305E /* nethcti_green_phone@2x.png */,
 				39549587264447A200412686 /* nethcti_grey_circle.png */,
 				39A7C2CB2644044C0056735F /* nethcti_grey_phone.png */,
 				392AC7E8267263F70055DFCF /* nethcti_logo_sip.png */,
@@ -4203,6 +4203,7 @@
 				615A2811217F1FDE0060F920 /* chat_add_group@2x.png in Resources */,
 				D34F6F9E1594D3FB0095705B /* InAppSettings.bundle in Resources */,
 				633FEE4D1D3CD5590014B822 /* delete_field_default@2x.png in Resources */,
+				C39DC13C2677AB8E0037305E /* nethcti_green_phone.png in Resources */,
 				C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */,
 				615A28362180720D0060F920 /* security_toogle_background_grey@2x.png in Resources */,
 				639CEB091A1DF4FA004DE38F /* UIChatCell.xib in Resources */,
@@ -4333,7 +4334,6 @@
 				8CA70AD51F9E285C00A3D2EB /* chat_group_add.png in Resources */,
 				633FEE9B1D3CD55A0014B822 /* numpad_0_default.png in Resources */,
 				633FEF411D3CD55A0014B822 /* select_all_default@2x.png in Resources */,
-				39A7C2C9264402EC0056735F /* nethcti_green_phone.png in Resources */,
 				39549588264447A200412686 /* nethcti_grey_circle.png in Resources */,
 				633FEEFD1D3CD55A0014B822 /* options_add_call_default@2x.png in Resources */,
 				633FEEA81D3CD55A0014B822 /* numpad_1_over~ipad@2x.png in Resources */,
@@ -4524,6 +4524,7 @@
 				639E9CA91C0DB7FB00019A75 /* UIConfirmationDialog.xib in Resources */,
 				633FEF111D3CD55A0014B822 /* pause_big_disabled@2x.png in Resources */,
 				633FEE321D3CD5590014B822 /* color_L.png in Resources */,
+				C39DC13D2677AB8E0037305E /* nethcti_green_phone@2x.png in Resources */,
 				615A281F217F6FB40060F920 /* security_alert_indicator.png in Resources */,
 				CF7602F5210898CC00749F76 /* rec_off_default@2x.png in Resources */,
 				633FEDB41D3CD5590014B822 /* call_alt_back_disabled.png in Resources */,
@@ -4545,7 +4546,6 @@
 				633FEDBA1D3CD5590014B822 /* call_audio_start_default.png in Resources */,
 				39A7C2BD264401370056735F /* nethcti_numpad_7.png in Resources */,
 				61586B8F217A174F0038AC45 /* menu_options@2x.png in Resources */,
-				39DE67BF267224D800240A6B /* nethcti_green_circle.png in Resources */,
 				633FEE131D3CD5590014B822 /* chat_message_not_delivered@2x.png in Resources */,
 				615A282A21805B4C0060F920 /* security_toogle_icon_grey@2x.png in Resources */,
 				63AADBF51B6A0FF200AA16FD /* linphonerc in Resources */,
@@ -6347,8 +6347,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = extension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -6372,7 +6372,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
