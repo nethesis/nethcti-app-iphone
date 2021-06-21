@@ -112,8 +112,8 @@
                                                                     <state key="normal" image="nethcti_backspace.png">
                                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
-                                                                    <state key="disabled" image="backspace_disabled.png"/>
-                                                                    <state key="highlighted" image="backspace_over.png"/>
+                                                                    <state key="disabled" image="nethcti_backspace.png"/>
+                                                                    <state key="highlighted" image="nethcti_backspace.png"/>
                                                                     <connections>
                                                                         <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
                                                                     </connections>
