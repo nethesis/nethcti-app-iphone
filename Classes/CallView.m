@@ -385,7 +385,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		// show controls
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.35];
-		_pausedCallsTable.tableView.alpha = _videoCameraSwitch.alpha = _callPauseButton.alpha = _routesView.alpha =
+		_pausedCallsTable.tableView.alpha = _videoCameraSwitch.alpha = _centerBarView.alpha = _routesView.alpha =
 			_optionsView.alpha = _numpadView.alpha = _bottomBar.alpha = (hidden ? 0 : 1);
 		_infoView.alpha = (hidden ? 0 : .8f);
 

@@ -63,6 +63,7 @@
 @property(nonatomic, strong) IBOutlet UIToggleButton *routesButton;
 @property(nonatomic, strong) IBOutlet UIToggleButton *optionsButton;
 @property(nonatomic, strong) IBOutlet UIHangUpButton *hangupButton;
+@property (nonatomic, strong) IBOutlet UIView *centerBarView;
 @property(nonatomic, strong) IBOutlet UIView *numpadView;
 @property(nonatomic, strong) IBOutlet UIView *routesView;
 @property(nonatomic, strong) IBOutlet UIView *optionsView;

@@ -19,6 +19,7 @@
                 <outlet property="bottomBar" destination="mga-O5-mUn" id="ObF-wX-nBD"/>
                 <outlet property="callPauseButton" destination="7f5-7T-fV3" id="07F-H8-siF"/>
                 <outlet property="callView" destination="9" id="TKY-dp-lKv"/>
+                <outlet property="centerBarView" destination="2Nv-7N-aTj" id="lyb-65-rEc"/>
                 <outlet property="conferenceCallsTable" destination="sif-q0-7oE" id="Fjr-dB-s4q"/>
                 <outlet property="conferencePauseButton" destination="HAk-mv-6sG" id="SJg-ew-UIZ"/>
                 <outlet property="conferenceView" destination="0Ju-u5-N7A" id="H5K-Nv-IKI"/>
@@ -147,7 +148,7 @@
                                             </accessibility>
                                         </view>
                                         <view tag="11" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
-                                            <rect key="frame" x="563" y="822" width="209" height="244"/>
+                                            <rect key="frame" x="563" y="822" width="230" height="268"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
@@ -312,7 +313,7 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="rsg-ts-iiQ" firstAttribute="centerX" secondItem="2Nv-7N-aTj" secondAttribute="centerX" id="EA6-vX-GXe"/>
                                         <constraint firstAttribute="bottom" secondItem="rsg-ts-iiQ" secondAttribute="bottom" id="aVQ-Di-ZHU"/>
