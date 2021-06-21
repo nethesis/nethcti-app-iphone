@@ -184,26 +184,22 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view alpha="0.0" tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
+                                <view alpha="0.0" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
+                                        <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
-                                        <view tag="10" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
+                                        <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" notEnabled="YES"/>
                                             </accessibility>
                                         </view>
-                                        <view tag="11" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
-                                            <rect key="frame" x="243" y="308" width="99" height="154"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <view tag="11" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
+                                            <rect key="frame" x="231" y="318" width="112" height="150"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <activityIndicatorView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="144" userLabel="waitIndicator">
@@ -227,6 +223,20 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="132" secondAttribute="bottom" id="4tc-NS-gQn"/>
+                                        <constraint firstItem="173" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="Bnt-bW-9sH"/>
+                                        <constraint firstItem="127" firstAttribute="width" secondItem="126" secondAttribute="width" multiplier="0.3" id="PNf-yP-bHl"/>
+                                        <constraint firstItem="173" firstAttribute="top" secondItem="126" secondAttribute="top" id="PVe-b7-Njv"/>
+                                        <constraint firstItem="127" firstAttribute="height" secondItem="126" secondAttribute="height" multiplier="0.3" id="QGn-h2-7VU"/>
+                                        <constraint firstAttribute="trailing" secondItem="173" secondAttribute="trailing" id="WDI-Cs-2He"/>
+                                        <constraint firstAttribute="trailing" secondItem="132" secondAttribute="trailing" id="bM9-qZ-J7m"/>
+                                        <constraint firstAttribute="bottom" secondItem="127" secondAttribute="bottom" constant="32" id="gMb-XE-g7Y"/>
+                                        <constraint firstAttribute="trailing" secondItem="127" secondAttribute="trailing" constant="32" id="jTe-n9-xyO"/>
+                                        <constraint firstAttribute="bottom" secondItem="173" secondAttribute="bottom" id="ndz-tL-PmH"/>
+                                        <constraint firstItem="132" firstAttribute="top" secondItem="126" secondAttribute="top" id="sGT-eF-aon"/>
+                                        <constraint firstItem="132" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="uKG-1L-nlC"/>
+                                    </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPY-98-MFo" userLabel="centerBar">
                                     <rect key="frame" x="0.0" y="226.5" width="375" height="60"/>
@@ -320,18 +330,22 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="126" secondAttribute="bottom" id="4b6-sj-B4x"/>
                                 <constraint firstItem="dPY-98-MFo" firstAttribute="leading" secondItem="9" secondAttribute="leading" id="AeJ-Hc-d0T"/>
                                 <constraint firstItem="Wj9-Fl-7Oq" firstAttribute="top" secondItem="9" secondAttribute="top" constant="16" id="M8S-al-DfU"/>
                                 <constraint firstItem="dPY-98-MFo" firstAttribute="top" secondItem="KPa-Rm-Qni" secondAttribute="bottom" constant="16" id="Rov-rW-Byg"/>
                                 <constraint firstItem="8fM-1x-Bgu" firstAttribute="centerX" secondItem="9" secondAttribute="centerX" id="S91-yh-YOU"/>
                                 <constraint firstAttribute="trailing" secondItem="dPY-98-MFo" secondAttribute="trailing" id="UMp-mA-xer"/>
+                                <constraint firstAttribute="trailing" secondItem="126" secondAttribute="trailing" id="V2E-LR-jWv"/>
                                 <constraint firstItem="KPa-Rm-Qni" firstAttribute="top" secondItem="8fM-1x-Bgu" secondAttribute="bottom" constant="16" id="X8l-kl-UDo"/>
                                 <constraint firstItem="8fM-1x-Bgu" firstAttribute="width" secondItem="9" secondAttribute="width" multiplier="0.3" id="aST-fI-Ph3"/>
                                 <constraint firstAttribute="trailing" secondItem="Wj9-Fl-7Oq" secondAttribute="trailing" constant="16" id="adk-Sr-Bxi"/>
                                 <constraint firstAttribute="trailing" secondItem="KPa-Rm-Qni" secondAttribute="trailing" constant="16" id="lFc-Yv-g07"/>
+                                <constraint firstItem="126" firstAttribute="top" secondItem="9" secondAttribute="top" id="nLT-h0-efv"/>
                                 <constraint firstItem="Wj9-Fl-7Oq" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="16" id="oPu-di-8v0"/>
                                 <constraint firstItem="8fM-1x-Bgu" firstAttribute="top" secondItem="Wj9-Fl-7Oq" secondAttribute="bottom" constant="16" id="ubn-9a-1f2"/>
                                 <constraint firstItem="KPa-Rm-Qni" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="16" id="yR4-T3-OfC"/>
+                                <constraint firstItem="126" firstAttribute="leading" secondItem="9" secondAttribute="leading" id="ycv-9V-umi"/>
                             </constraints>
                         </view>
                         <view hidden="YES" alpha="0.80000000000000004" tag="16" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-ml-8RY" userLabel="pausedByRemoteView">
@@ -716,6 +730,7 @@
                                                         <button opaque="NO" tag="53" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5S-kV-7Kv" userLabel="speakerButton" customClass="UISpeakerButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <accessibility key="accessibilityConfiguration" label="Speaker"/>
+                                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

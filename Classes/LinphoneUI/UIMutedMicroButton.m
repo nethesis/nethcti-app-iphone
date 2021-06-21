@@ -30,13 +30,13 @@ INIT_WITH_COMMON_CF {
     UIImage *dImage = [[UIImage imageNamed:@"nethcti_microphone_disabled.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setImage:dImage forState:UIControlStateNormal];
     
-    // Change UI Colors according to button state.
-    onColor = [UIColor getColorByName:@"Grey"];
-    offColor = [UIColor getColorByName:@"MainColor"];
+    // Change UI Colors according to button state.3
+    onColor = [UIColor getColorByName:@"MainColor"];
+    offColor = [UIColor getColorByName:@"Grey"];
     [self.imageView setTintColor:offColor];
     
-    backOffImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
-    backOnImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
     [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
     
     return self;

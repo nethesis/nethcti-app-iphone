@@ -134,22 +134,19 @@
                                 <view alpha="0.0" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                                     <subviews>
-                                        <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
+                                        <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
                                             <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
-                                        <view tag="10" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
+                                        <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
                                             <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" notEnabled="YES"/>
                                             </accessibility>
                                         </view>
-                                        <view tag="11" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
-                                            <rect key="frame" x="563" y="822" width="230" height="268"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <view tag="11" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
+                                            <rect key="frame" x="528" y="773" width="240" height="345"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <activityIndicatorView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="144" userLabel="waitIndicator">
@@ -173,6 +170,20 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="127" firstAttribute="width" secondItem="126" secondAttribute="width" multiplier="0.3" id="1Eh-AS-oVS"/>
+                                        <constraint firstAttribute="bottom" secondItem="127" secondAttribute="bottom" constant="32" id="230-Q7-FYq"/>
+                                        <constraint firstItem="173" firstAttribute="top" secondItem="126" secondAttribute="top" id="Eeu-DG-sTB"/>
+                                        <constraint firstAttribute="trailing" secondItem="173" secondAttribute="trailing" id="Iob-HP-qdV"/>
+                                        <constraint firstItem="132" firstAttribute="top" secondItem="126" secondAttribute="top" id="Nq1-ut-9RJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="132" secondAttribute="bottom" id="NqH-mE-WqT"/>
+                                        <constraint firstAttribute="trailing" secondItem="127" secondAttribute="trailing" constant="32" id="UfX-cN-35L"/>
+                                        <constraint firstItem="173" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="eso-Ev-kmV"/>
+                                        <constraint firstAttribute="trailing" secondItem="132" secondAttribute="trailing" id="hhq-Mg-ePK"/>
+                                        <constraint firstItem="127" firstAttribute="height" secondItem="126" secondAttribute="height" multiplier="0.3" id="mrq-FS-Zsz"/>
+                                        <constraint firstItem="132" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="qXs-vO-DYq"/>
+                                        <constraint firstAttribute="bottom" secondItem="173" secondAttribute="bottom" id="tA2-l0-ylQ"/>
+                                    </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-9k-bmA" userLabel="infoView">
                                     <rect key="frame" x="32" y="32" width="736" height="431"/>
@@ -654,13 +665,13 @@
                                 <constraint firstAttribute="bottom" secondItem="0zo-aa-Jwl" secondAttribute="bottom" id="z85-L9-adJ"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" tag="42" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHZ-53-Hta" userLabel="optionsView">
+                        <view hidden="YES" tag="42" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHZ-53-Hta" userLabel="optionsView">
                             <rect key="frame" x="668" y="786" width="100" height="364"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="43" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-wQ-0ml" userLabel="backgroundColor">
+                                <imageView userInteractionEnabled="NO" tag="43" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-wQ-0ml" userLabel="backgroundColor">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="364"/>
                                 </imageView>
-                                <button hidden="YES" opaque="NO" tag="44" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06a-kv-hpZ" userLabel="optionConferenceButton" customClass="UIIconButton">
+                                <button hidden="YES" opaque="NO" tag="44" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06a-kv-hpZ" userLabel="optionConferenceButton" customClass="UIIconButton">
                                     <rect key="frame" x="0.0" y="-132" width="100" height="100"/>
                                     <accessibility key="accessibilityConfiguration" label="Start conference"/>
                                     <constraints>
@@ -678,6 +689,7 @@
                                 </button>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="WcD-wQ-0ml" firstAttribute="top" secondItem="06a-kv-hpZ" secondAttribute="bottom" constant="32" id="1Bg-hw-E1O"/>
                                 <constraint firstAttribute="trailing" secondItem="06a-kv-hpZ" secondAttribute="trailing" id="5lH-y6-2Fw"/>
                                 <constraint firstItem="WcD-wQ-0ml" firstAttribute="top" secondItem="sHZ-53-Hta" secondAttribute="top" id="GNr-fa-NxA"/>
                                 <constraint firstAttribute="trailing" secondItem="WcD-wQ-0ml" secondAttribute="trailing" id="K2d-Dg-R9v"/>
@@ -686,8 +698,8 @@
                                 <constraint firstItem="06a-kv-hpZ" firstAttribute="leading" secondItem="sHZ-53-Hta" secondAttribute="leading" id="tfH-zW-K5F"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npP-vy-Re7" userLabel="recordButtonOnView">
-                            <rect key="frame" x="8888" y="653" width="84" height="34"/>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npP-vy-Re7" userLabel="recordButtonOnView">
+                            <rect key="frame" x="8888" y="653" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="npP-vy-Re7" secondAttribute="height" multiplier="1:1" id="MKb-Dj-3v3"/>
                             </constraints>
@@ -752,6 +764,7 @@
                                                         <button opaque="NO" tag="53" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5S-kV-7Kv" userLabel="speakerButton" customClass="UISpeakerButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                                                             <accessibility key="accessibilityConfiguration" label="Speaker"/>
+                                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -825,7 +838,7 @@
                                         <constraint firstAttribute="bottom" secondItem="Ljk-dj-hb2" secondAttribute="bottom" id="qbf-mU-YSJ"/>
                                     </constraints>
                                 </view>
-                                <button hidden="YES" opaque="NO" tag="55" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-MI-pUL" userLabel="optionsButton" customClass="UIToggleButton">
+                                <button hidden="YES" opaque="NO" tag="55" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-MI-pUL" userLabel="optionsButton" customClass="UIToggleButton">
                                     <rect key="frame" x="888" y="8" width="84" height="84"/>
                                     <accessibility key="accessibilityConfiguration" label="Options"/>
                                     <constraints>
@@ -900,16 +913,20 @@
                                 <constraint firstAttribute="height" constant="100" id="7Zp-bO-PUB"/>
                                 <constraint firstAttribute="bottom" secondItem="8q9-3P-Fz0" secondAttribute="bottom" constant="8" id="9y7-TK-aO6"/>
                                 <constraint firstItem="8q9-3P-Fz0" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" constant="8" id="C3t-Re-qgY"/>
+                                <constraint firstItem="8Zx-MI-pUL" firstAttribute="bottom" secondItem="OIH-ek-VgL" secondAttribute="bottom" id="CGS-wM-eMr"/>
                                 <constraint firstAttribute="trailing" secondItem="OIH-ek-VgL" secondAttribute="trailing" constant="8" id="GWa-of-Q5S"/>
                                 <constraint firstItem="OIH-ek-VgL" firstAttribute="leading" secondItem="8q9-3P-Fz0" secondAttribute="trailing" constant="8" id="Jm9-5f-SHJ"/>
                                 <constraint firstItem="8q9-3P-Fz0" firstAttribute="width" secondItem="mga-O5-mUn" secondAttribute="width" multiplier="0.4" id="bp2-GA-Fu0"/>
+                                <constraint firstItem="8Zx-MI-pUL" firstAttribute="top" secondItem="OIH-ek-VgL" secondAttribute="top" id="d6u-nR-mnR"/>
                                 <constraint firstAttribute="bottom" secondItem="OIH-ek-VgL" secondAttribute="bottom" constant="8" id="geW-dQ-gIe"/>
                                 <constraint firstItem="OIH-ek-VgL" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" constant="8" id="jHS-Ka-5vE"/>
+                                <constraint firstItem="8Zx-MI-pUL" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="888" id="o7h-q4-GTi"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="sHZ-53-Hta" firstAttribute="top" secondItem="qcR-Qb-Bst" secondAttribute="top" id="23T-Va-nl4"/>
                         <constraint firstAttribute="bottom" secondItem="mga-O5-mUn" secondAttribute="bottom" constant="8" id="3Ue-Ve-BFQ"/>
                         <constraint firstItem="DqJ-35-h1Y" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="5wK-hM-ixx"/>
                         <constraint firstItem="alZ-Kz-AVL" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="6vc-Zb-blX"/>
@@ -944,6 +961,7 @@
                         <constraint firstAttribute="trailing" secondItem="aqL-q2-eR2" secondAttribute="trailing" id="pSn-dk-wfw"/>
                         <constraint firstItem="106" firstAttribute="bottom" secondItem="mga-O5-mUn" secondAttribute="top" constant="-32" id="q3T-SE-wm3"/>
                         <constraint firstItem="9" firstAttribute="top" secondItem="lzH-M1-NdV" secondAttribute="top" id="qOT-co-PwR"/>
+                        <constraint firstItem="npP-vy-Re7" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" constant="8888" id="sJs-AH-J9v"/>
                         <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="ukG-i4-YMY" secondAttribute="bottom" constant="32" id="v6N-GU-Vfc"/>
                     </constraints>
                 </view>
