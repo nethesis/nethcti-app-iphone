@@ -34,20 +34,17 @@
 INIT_WITH_COMMON_CF {
     last_update_state = FALSE;
     
-    UIImage *img = [[UIImage imageNamed:@"nethcti_cam.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *img = [[self imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setImage:img forState:UIControlStateNormal];
-    [self setImage:img forState:UIControlStateSelected];
-    [self setImage:img forState:UIControlStateHighlighted];
-    [self setImage:img forState:UIControlStateDisabled];
     
     // Change UI Colors according to button state.
-    onColor = [UIColor getColorByName:@"Grey"];
-    offColor = [UIColor getColorByName:@"MainColor"];
-    [self.imageView setTintColor:onColor];
+    onColor = [UIColor getColorByName:@"MainColor"];
+    offColor = [UIColor getColorByName:@"Grey"];
+    [self setTintColor:offColor];
     
-    backOffImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
-    backOnImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
-    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
+    backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
     
     return self;
 }
@@ -75,8 +72,8 @@ INIT_WITH_COMMON_CF {
     linphone_call_params_unref(call_params);
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:offColor];
-    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
+    [self setTintColor:onColor];
+    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
 }
 
 - (void)onOff {
@@ -100,8 +97,8 @@ INIT_WITH_COMMON_CF {
     linphone_call_params_destroy(call_params);
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:onColor];
-    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
+    [self setTintColor:offColor];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
 }
 
 - (bool)onUpdate {

@@ -22,21 +22,34 @@
 
 #include "linphone/linphonecore.h"
 
-@implementation UISpeakerButton
+@implementation UISpeakerButton {
+    UIImage *backOnImage;
+    UIImage *backOffImage;
+    UIColor *onColor;
+    UIColor *offColor;
+}
 
 INIT_WITH_COMMON_CF {
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(audioRouteChangeListenerCallback:)
-											   name:AVAudioSessionRouteChangeNotification
-											 object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(audioRouteChangeListenerCallback:)
+                                               name:AVAudioSessionRouteChangeNotification
+                                             object:nil];
     
-    UIImage *dImage = [[UIImage imageNamed:@"nethcti_volume.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [self setImage:dImage forState:(UIControlStateNormal | UIControlStateSelected)];
-	return self;
+    UIImage *dImage = [[self imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setImage:dImage forState:UIControlStateNormal];
+    
+    onColor = [UIColor getColorByName:@"MainColor"];
+    offColor = [UIColor getColorByName:@"Grey"];
+    [self setTintColor:offColor];
+    
+    backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
+    return self;
 }
 
 - (void)dealloc {
-	[NSNotificationCenter.defaultCenter removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark - UIToggleButtonDelegate Functions
@@ -48,28 +61,24 @@ INIT_WITH_COMMON_CF {
 }
 
 - (void)onOn {
-	[CallManager.instance enableSpeakerWithEnable:TRUE];
+    [CallManager.instance enableSpeakerWithEnable:TRUE];
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-    
-    UIImage *dImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
-    [self setBackgroundImage:dImage forState:UIControlStateNormal];
+    [self setTintColor:onColor];
+    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
 }
 
 - (void)onOff {
-	[CallManager.instance enableSpeakerWithEnable:FALSE];
+    [CallManager.instance enableSpeakerWithEnable:FALSE];
     
     // Change UI Colors according to button state.
-    [self.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-    
-    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
-    [self setBackgroundImage:dImage forState:UIControlStateNormal];
+    [self setTintColor:offColor];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
 }
 
 - (bool)onUpdate {
-	self.enabled = [CallManager.instance allowSpeaker];
-	return CallManager.instance.speakerEnabled;
+    self.enabled = [CallManager.instance allowSpeaker];
+    return CallManager.instance.speakerEnabled;
 }
 
 @end
