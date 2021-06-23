@@ -235,6 +235,9 @@ import Foundation
                 let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 let nethUser = try NethUser(from: userDict)
                 
+                // Set the right username if obtained (even with QrCode login too).
+                ApiCredentials.Username = nethUser?.username ?? ApiCredentials.Username
+                
                 self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
                     //ignored
                 }
