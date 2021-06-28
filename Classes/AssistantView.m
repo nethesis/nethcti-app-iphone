@@ -1734,7 +1734,7 @@ _waitView.hidden = YES; \
     [self shouldEnableNextButton];
 }
 
--(void)qrCodeFound:(NSNotification *)notif {
+- (void)qrCodeFound:(NSNotification *)notif {
     if ([notif.userInfo count] == 0){
         return;
     }
