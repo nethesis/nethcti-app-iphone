@@ -732,6 +732,12 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
     if (![[lm lpConfigStringForKey:@"auto_download_mode"] isEqualToString:@"Customize"]) {
         [hiddenKeys addObject:@"auto_download_incoming_files_max_size"];
     }
+    
+    // Nethesis customization.
+    [hiddenKeys addObject:@"use_rls_presence"];
+    [hiddenKeys addObject:@"account_mandatory_password_preference"];
+    [hiddenKeys addObject:@"account_mandatory_change_password"];
+    [hiddenKeys addObject:@"account_mandatory_remove_button"];
 
 	return hiddenKeys;
 }
@@ -824,7 +830,9 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		
 		[errView addAction:defaultAction];
 		[errView addAction:continueAction];
-		[self presentViewController:errView animated:YES completion:nil];
+        
+        // NethCTI users have to logout from new button, so unable them to remove their accounts.
+		// [self presentViewController:errView animated:YES completion:nil];
 	} else if ([key isEqual:@"account_mandatory_change_password"]) {
 		UIAlertController *alertView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Change your password", nil)
 																		 message:NSLocalizedString(@"Please enter and confirm your new password", nil)
@@ -951,7 +959,9 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		
 		[alertView addAction:defaultAction];
 		[alertView addAction:continueAction];
-		[self presentViewController:alertView animated:YES completion:nil];
+        
+        // NethCTI users cannot change their passwords. Thi unable them.
+		// [self presentViewController:alertView animated:YES completion:nil];
 	} else if ([key isEqual:@"reset_logs_button"]) {
 		linphone_core_reset_log_collection();
 	} else if ([key isEqual:@"send_logs_button"]) {
