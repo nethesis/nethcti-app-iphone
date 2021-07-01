@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -131,60 +131,6 @@
                         <view clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9" userLabel="callView">
                             <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                             <subviews>
-                                <view alpha="0.0" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
-                                    <subviews>
-                                        <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                        <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" notEnabled="YES"/>
-                                            </accessibility>
-                                        </view>
-                                        <view tag="11" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
-                                            <rect key="frame" x="528" y="773" width="240" height="345"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                        <activityIndicatorView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="144" userLabel="waitIndicator">
-                                            <rect key="frame" x="375" y="555" width="40" height="38"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </activityIndicatorView>
-                                        <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="160" userLabel="videoCameraSwitch" customClass="UICamSwitch">
-                                            <rect key="frame" x="100" y="140" width="52" height="52"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Switch camera"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="camera_switch_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="camera_switch_disabled.png"/>
-                                            <state key="selected" image="camera_switch_over.png"/>
-                                            <state key="highlighted" image="camera_switch_over.png"/>
-                                            <connections>
-                                                <outlet property="preview" destination="127" id="172"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="127" firstAttribute="width" secondItem="126" secondAttribute="width" multiplier="0.3" id="1Eh-AS-oVS"/>
-                                        <constraint firstAttribute="bottom" secondItem="127" secondAttribute="bottom" constant="32" id="230-Q7-FYq"/>
-                                        <constraint firstItem="173" firstAttribute="top" secondItem="126" secondAttribute="top" id="Eeu-DG-sTB"/>
-                                        <constraint firstAttribute="trailing" secondItem="173" secondAttribute="trailing" id="Iob-HP-qdV"/>
-                                        <constraint firstItem="132" firstAttribute="top" secondItem="126" secondAttribute="top" id="Nq1-ut-9RJ"/>
-                                        <constraint firstAttribute="bottom" secondItem="132" secondAttribute="bottom" id="NqH-mE-WqT"/>
-                                        <constraint firstAttribute="trailing" secondItem="127" secondAttribute="trailing" constant="32" id="UfX-cN-35L"/>
-                                        <constraint firstItem="173" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="eso-Ev-kmV"/>
-                                        <constraint firstAttribute="trailing" secondItem="132" secondAttribute="trailing" id="hhq-Mg-ePK"/>
-                                        <constraint firstItem="127" firstAttribute="height" secondItem="126" secondAttribute="height" multiplier="0.3" id="mrq-FS-Zsz"/>
-                                        <constraint firstItem="132" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="qXs-vO-DYq"/>
-                                        <constraint firstAttribute="bottom" secondItem="173" secondAttribute="bottom" id="tA2-l0-ylQ"/>
-                                    </constraints>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-9k-bmA" userLabel="infoView">
                                     <rect key="frame" x="32" y="32" width="736" height="431"/>
                                     <subviews>
@@ -240,6 +186,60 @@
                                         <constraint firstItem="OCt-e7-xNf" firstAttribute="width" secondItem="5c7-9k-bmA" secondAttribute="width" multiplier="0.33" id="TZK-Yc-eRo"/>
                                         <constraint firstItem="KPa-Rm-Qni" firstAttribute="top" secondItem="OCt-e7-xNf" secondAttribute="bottom" constant="32" id="exK-BY-R7C"/>
                                         <constraint firstItem="OCt-e7-xNf" firstAttribute="centerX" secondItem="5c7-9k-bmA" secondAttribute="centerX" id="yud-qy-684"/>
+                                    </constraints>
+                                </view>
+                                <view alpha="0.0" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
+                                    <subviews>
+                                        <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
+                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
+                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" notEnabled="YES"/>
+                                            </accessibility>
+                                        </view>
+                                        <view tag="11" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
+                                            <rect key="frame" x="528" y="773" width="240" height="345"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <activityIndicatorView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="144" userLabel="waitIndicator">
+                                            <rect key="frame" x="375" y="555" width="40" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
+                                        <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="160" userLabel="videoCameraSwitch" customClass="UICamSwitch">
+                                            <rect key="frame" x="100" y="140" width="52" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" label="Switch camera"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" image="camera_switch_default.png">
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="camera_switch_disabled.png"/>
+                                            <state key="selected" image="camera_switch_over.png"/>
+                                            <state key="highlighted" image="camera_switch_over.png"/>
+                                            <connections>
+                                                <outlet property="preview" destination="127" id="172"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="127" firstAttribute="width" secondItem="126" secondAttribute="width" multiplier="0.3" id="1Eh-AS-oVS"/>
+                                        <constraint firstAttribute="bottom" secondItem="127" secondAttribute="bottom" constant="32" id="230-Q7-FYq"/>
+                                        <constraint firstItem="173" firstAttribute="top" secondItem="126" secondAttribute="top" id="Eeu-DG-sTB"/>
+                                        <constraint firstAttribute="trailing" secondItem="173" secondAttribute="trailing" id="Iob-HP-qdV"/>
+                                        <constraint firstItem="132" firstAttribute="top" secondItem="126" secondAttribute="top" id="Nq1-ut-9RJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="132" secondAttribute="bottom" id="NqH-mE-WqT"/>
+                                        <constraint firstAttribute="trailing" secondItem="127" secondAttribute="trailing" constant="32" id="UfX-cN-35L"/>
+                                        <constraint firstItem="173" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="eso-Ev-kmV"/>
+                                        <constraint firstAttribute="trailing" secondItem="132" secondAttribute="trailing" id="hhq-Mg-ePK"/>
+                                        <constraint firstItem="127" firstAttribute="height" secondItem="126" secondAttribute="height" multiplier="0.3" id="mrq-FS-Zsz"/>
+                                        <constraint firstItem="132" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="qXs-vO-DYq"/>
+                                        <constraint firstAttribute="bottom" secondItem="173" secondAttribute="bottom" id="tA2-l0-ylQ"/>
                                     </constraints>
                                 </view>
                                 <view hidden="YES" alpha="0.80000000000000004" tag="16" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-ml-8RY" userLabel="pausedByRemoteView">
