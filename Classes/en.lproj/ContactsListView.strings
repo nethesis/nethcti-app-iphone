@@ -3,7 +3,7 @@
 "4.accessibilityLabel" = "All contacts filter";
 
 /* Class = "UIButton"; accessibilityLabel = "Linphone contacts filter"; ObjectID = "5"; */
-"5.accessibilityLabel" = "Linphone contacts filter";
+"5.accessibilityLabel" = "Remote contacts filter";
 
 /* Class = "UIButton"; accessibilityLabel = "Add contact"; ObjectID = "6"; */
 "6.accessibilityLabel" = "Add contact";
