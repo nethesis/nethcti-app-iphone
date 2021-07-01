@@ -1,0 +1,42 @@
+
+/* Class = "UIButton"; accessibilityLabel = "Edit"; ObjectID = "8"; */
+"8.accessibilityLabel" = "Modifica";
+
+/* Class = "UIButton"; accessibilityLabel = "Back"; ObjectID = "9"; */
+"9.accessibilityLabel" = "Indietro";
+
+/* Class = "UILabel"; text = "Nethesis "; ObjectID = "94e-AC-2ZP"; */
+"94e-AC-2ZP.text" = "Nethesis ";
+
+/* Class = "UILabel"; text = "No contact selected"; ObjectID = "Mdj-Pz-nu4"; */
+"Mdj-Pz-nu4.text" = "Nessun contatto selezionato";
+
+/* Class = "UIButton"; accessibilityLabel = "Delete"; ObjectID = "MuB-yy-R9o"; */
+"MuB-yy-R9o.accessibilityLabel" = "Elimina";
+
+/* Class = "UILabel"; text = "John Doe"; ObjectID = "Ozv-hZ-xHz"; */
+"Ozv-hZ-xHz.text" = "Adalia La Balia";
+
+/* Class = "UIButton"; accessibilityLabel = "Back"; ObjectID = "XFH-3u-WFI"; */
+"XFH-3u-WFI.accessibilityLabel" = "Indietro";
+
+/* Class = "UIButton"; accessibilityLabel = "Delete all"; ObjectID = "XGy-cw-7de"; */
+"XGy-cw-7de.accessibilityLabel" = "Elimina tutto";
+
+/* Class = "UIButton"; accessibilityLabel = "Delete"; ObjectID = "XSh-gg-HmZ"; */
+"XSh-gg-HmZ.accessibilityLabel" = "Elimina";
+
+/* Class = "UIButton"; accessibilityLabel = "Delete all"; ObjectID = "bPQ-aJ-Lk6"; */
+"bPQ-aJ-Lk6.accessibilityLabel" = "Elimina tutto";
+
+/* Class = "UILabel"; text = "J"; ObjectID = "k7r-o9-4KF"; */
+"k7r-o9-4KF.text" = "A";
+
+/* Class = "UILabel"; text = "Adalia La Balia"; ObjectID = "moZ-Bg-zcv"; */
+"moZ-Bg-zcv.text" = "Adalia La Balia";
+
+/* Class = "UILabel"; text = "No contact selected"; ObjectID = "oFA-SG-IDe"; */
+"oFA-SG-IDe.text" = "Nessun contatto selezionato";
+
+/* Class = "UIButton"; accessibilityLabel = "Edit"; ObjectID = "tQx-Wr-TFA"; */
+"tQx-Wr-TFA.accessibilityLabel" = "Modifica";
