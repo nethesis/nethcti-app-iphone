@@ -734,6 +734,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
     }
     
     // Nethesis customization.
+    [hiddenKeys addObject:@"presence_title"];
     [hiddenKeys addObject:@"use_rls_presence"];
     [hiddenKeys addObject:@"account_mandatory_password_preference"];
     [hiddenKeys addObject:@"account_mandatory_change_password"];
