@@ -35,7 +35,7 @@ INIT_WITH_COMMON_CF {
                                                name:AVAudioSessionRouteChangeNotification
                                              object:nil];
     
-    UIImage *dImage = [[self imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *dImage = [[UIImage imageNamed:@"nethcti_volume.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setImage:dImage forState:UIControlStateNormal];
     
     onColor = [UIColor getColorByName:@"MainColor"];
@@ -45,6 +45,7 @@ INIT_WITH_COMMON_CF {
     backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
     backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
     [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
+    
     return self;
 }
 
