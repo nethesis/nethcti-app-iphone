@@ -21,7 +21,7 @@
 "gVK-Xc-S59.text" = "GNU General Public License V2\n© 2010-2021 Nethesis srl";
 
 /* Class = "UILabel"; text = "About"; ObjectID = "iNt-9d-7si"; */
-"iNt-9d-7si.text" = "About";
+"iNt-9d-7si.text" = "Informazioni";
 
 /* Class = "UILabel"; text = "https://www.linphone.org"; ObjectID = "jGU-DX-XcO"; */
 "jGU-DX-XcO.text" = "https://www.nethesis.org";
