@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,13 +24,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="360" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzd-99-LAI">
-                            <rect key="frame" x="16" y="10.5" width="256" height="23.5"/>
+                            <rect key="frame" x="16" y="10.5" width="240" height="23.5"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-iK-dSH">
-                            <rect key="frame" x="288" y="0.0" width="56" height="44"/>
+                            <rect key="frame" x="272" y="0.0" width="56" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="56" id="Ijo-BK-4hi"/>
                             </constraints>
@@ -41,7 +41,7 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="xjs-iK-dSH" secondAttribute="trailing" constant="16" id="19p-vE-efR"/>
+                        <constraint firstAttribute="trailing" secondItem="xjs-iK-dSH" secondAttribute="trailing" constant="32" id="19p-vE-efR"/>
                         <constraint firstItem="Bzd-99-LAI" firstAttribute="leading" secondItem="YvY-hV-wsS" secondAttribute="leading" constant="16" id="9Oh-IK-ygv"/>
                         <constraint firstItem="xjs-iK-dSH" firstAttribute="leading" secondItem="Bzd-99-LAI" secondAttribute="trailing" constant="16" id="Ans-w9-FiS"/>
                         <constraint firstAttribute="bottom" secondItem="xjs-iK-dSH" secondAttribute="bottom" id="TXA-y6-kJ0"/>
