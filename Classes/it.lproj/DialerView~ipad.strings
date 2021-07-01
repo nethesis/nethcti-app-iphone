@@ -1,9 +1,9 @@
 
 /* Class = "UITextField"; accessibilityLabel = "Enter an address"; ObjectID = "4"; */
-"4.accessibilityLabel" = "Enter an address";
+"4.accessibilityLabel" = "Inserisci un indirizzo";
 
 /* Class = "UITextField"; placeholder = "Enter a number or an address"; ObjectID = "4"; */
-"4.placeholder" = "Enter a number or an address";
+"4.placeholder" = "Inserisci un numero o un indirizzo";
 
 /* Class = "UIButton"; accessibilityLabel = "3"; ObjectID = "29"; */
 "29.accessibilityLabel" = "3";
@@ -72,22 +72,22 @@
 "Gy0-g6-fkd.accessibilityLabel" = "Hash";
 
 /* Class = "UIButton"; accessibilityLabel = "Add to contact"; ObjectID = "J9S-Iv-omW"; */
-"J9S-Iv-omW.accessibilityLabel" = "Add to contact";
+"J9S-Iv-omW.accessibilityLabel" = "Aggiungi un contatto";
 
 /* Class = "UIButton"; accessibilityLabel = "Back"; ObjectID = "NXp-Xe-hoC"; */
-"NXp-Xe-hoC.accessibilityLabel" = "Back";
+"NXp-Xe-hoC.accessibilityLabel" = "Indietro";
 
 /* Class = "UIButton"; accessibilityLabel = "6"; ObjectID = "O8K-fk-DbU"; */
 "O8K-fk-DbU.accessibilityLabel" = "6";
 
 /* Class = "UITextField"; accessibilityLabel = "Enter an address"; ObjectID = "Omx-NU-xKz"; */
-"Omx-NU-xKz.accessibilityLabel" = "Enter an address";
+"Omx-NU-xKz.accessibilityLabel" = "Inserisci un indirizzo";
 
 /* Class = "UITextField"; placeholder = "Enter a number or an address"; ObjectID = "Omx-NU-xKz"; */
-"Omx-NU-xKz.placeholder" = "Enter a number or an address";
+"Omx-NU-xKz.placeholder" = "Inserisci un numero o un indirizzo";
 
 /* Class = "UIButton"; accessibilityLabel = "Switch camera"; ObjectID = "Ufj-N6-yzz"; */
-"Ufj-N6-yzz.accessibilityLabel" = "Switch camera";
+"Ufj-N6-yzz.accessibilityLabel" = "Cambia camera";
 
 /* Class = "UIButton"; accessibilityLabel = "0"; ObjectID = "X2v-mg-lUX"; */
 "X2v-mg-lUX.accessibilityLabel" = "0";
@@ -96,13 +96,13 @@
 "XNH-ME-cgh.accessibilityLabel" = "1";
 
 /* Class = "UIButton"; accessibilityLabel = "Call"; ObjectID = "bDX-Vc-MA9"; */
-"bDX-Vc-MA9.accessibilityLabel" = "Call";
+"bDX-Vc-MA9.accessibilityLabel" = "Chiamata";
 
 /* Class = "UIButton"; accessibilityLabel = "7"; ObjectID = "bc0-Lq-cOG"; */
 "bc0-Lq-cOG.accessibilityLabel" = "7";
 
 /* Class = "UIButton"; accessibilityLabel = "Switch camera"; ObjectID = "jLj-JN-7LZ"; */
-"jLj-JN-7LZ.accessibilityLabel" = "Switch camera";
+"jLj-JN-7LZ.accessibilityLabel" = "Cambia camera";
 
 /* Class = "UIButton"; accessibilityLabel = "5"; ObjectID = "uoL-3m-hHe"; */
 "uoL-3m-hHe.accessibilityLabel" = "5";

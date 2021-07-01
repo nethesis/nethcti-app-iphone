@@ -129,10 +129,10 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDP-vC-fzh" userLabel="HistoryView">
-                    <rect key="frame" x="0.0" y="518.33333333333337" width="414" height="217.66666666666663"/>
+                    <rect key="frame" x="0.0" y="561" width="414" height="175"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s6h-2T-G5f" userLabel="tableView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="217.66666666666666"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s6h-2T-G5f" userLabel="tableView">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <connections>
                                 <outlet property="dataSource" destination="tDB-4i-L2W" id="Mkh-6q-32r"/>
@@ -146,6 +146,7 @@
                         <constraint firstAttribute="trailing" secondItem="s6h-2T-G5f" secondAttribute="trailing" id="89r-PN-AHX"/>
                         <constraint firstItem="s6h-2T-G5f" firstAttribute="top" secondItem="sDP-vC-fzh" secondAttribute="top" id="Mlz-L0-Mnu"/>
                         <constraint firstItem="s6h-2T-G5f" firstAttribute="leading" secondItem="sDP-vC-fzh" secondAttribute="leading" id="rCA-Vy-tZa"/>
+                        <constraint firstAttribute="height" constant="175" id="wnn-Pw-eHo"/>
                     </constraints>
                 </view>
             </subviews>
@@ -154,7 +155,6 @@
             <constraints>
                 <constraint firstItem="sDP-vC-fzh" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="50m-CL-Qcf"/>
                 <constraint firstItem="sDP-vC-fzh" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="5jb-xJ-yWl"/>
-                <constraint firstItem="sDP-vC-fzh" firstAttribute="top" secondItem="Y72-UC-Mf4" secondAttribute="bottom" constant="20" id="9On-cP-5CF"/>
                 <constraint firstItem="Y72-UC-Mf4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="KT7-Id-Mdq"/>
                 <constraint firstItem="Y72-UC-Mf4" firstAttribute="top" secondItem="kuv-xC-7Nb" secondAttribute="bottom" constant="20" id="Nl2-t3-X5Q"/>
                 <constraint firstItem="kuv-xC-7Nb" firstAttribute="height" secondItem="Q5M-cg-NOt" secondAttribute="height" multiplier="0.15" id="UfP-9N-0wu"/>

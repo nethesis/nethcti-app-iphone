@@ -1887,7 +1887,9 @@
 		ADCA571A7CF61077747BFE53 /* Pods-msgNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationService/Pods-msgNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C77D3BA284DC519E80F23C /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD0A9494E833034EB559687 /* Pods-msgNotificationContent.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationContent.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationContent/Pods-msgNotificationContent.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
+		BB2F62B3268DF05C00A93865 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/DialerView~ipad.strings"; sourceTree = "<group>"; };
 		BB4BF16824C887F300667B10 /* CallIdTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
+		BB839E75268DCE78001F6AD7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DialerView.strings; sourceTree = "<group>"; };
 		BB8C8139268DC2B30042A20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordingsListView.xib; sourceTree = "<group>"; };
 		BB8C813C268DC2EE0042A20A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
 		C3006726251E260700F5E478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -5035,6 +5037,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				638F1A611C2021B2004B8E02 /* Base */,
+				BB2F62B3268DF05C00A93865 /* it */,
 			);
 			name = "DialerView~ipad.xib";
 			sourceTree = "<group>";
@@ -5345,6 +5348,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F095481D1883F15300E8A69B /* Base */,
+				BB839E75268DCE78001F6AD7 /* it */,
 			);
 			name = DialerView.xib;
 			sourceTree = "<group>";
