@@ -390,6 +390,7 @@
                                 <constraint firstAttribute="height" constant="130" id="Qdv-Sk-HhZ"/>
                             </constraints>
                             <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
                                 <outlet property="dataSource" destination="162" id="168"/>
                                 <outlet property="delegate" destination="162" id="169"/>
