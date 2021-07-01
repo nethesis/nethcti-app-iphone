@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,10 +48,10 @@
                             <rect key="frame" x="51.666666666666657" y="28.666666666666657" width="310.66666666666674" height="310.66666666666674"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Aoo-aO-4bO">
-                                    <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="145.33333333333334"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="140"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY6-Z8-ENO" userLabel="DialerButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="145.33333333333334" height="145.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139.66666666666666" height="140"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="EY6-Z8-ENO" secondAttribute="height" multiplier="1:1" id="q3N-Uv-ubX"/>
                                             </constraints>
@@ -64,7 +64,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0X-Ol-AUn" userLabel="HistoryButton">
-                                            <rect key="frame" x="165.33333333333331" y="0.0" width="145.33333333333331" height="145.33333333333334"/>
+                                            <rect key="frame" x="171" y="0.0" width="139.66666666666663" height="140"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="P0X-Ol-AUn" secondAttribute="height" multiplier="1:1" id="lU8-r5-myP"/>
                                             </constraints>
@@ -75,12 +75,16 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EY6-Z8-ENO" firstAttribute="width" secondItem="Aoo-aO-4bO" secondAttribute="width" multiplier="0.45" id="6gk-tf-vXd"/>
+                                        <constraint firstItem="P0X-Ol-AUn" firstAttribute="width" secondItem="Aoo-aO-4bO" secondAttribute="width" multiplier="0.45" id="qhv-X1-sgu"/>
+                                    </constraints>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-We-FJV">
-                                    <rect key="frame" x="0.0" y="165.33333333333331" width="310.66666666666669" height="145.33333333333331"/>
+                                    <rect key="frame" x="0.0" y="171" width="310.66666666666669" height="139.66666666666663"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gre-GW-OQj" userLabel="PhonebookButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="145.33333333333334" height="145.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139.66666666666666" height="139.66666666666666"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Gre-GW-OQj" secondAttribute="height" multiplier="1:1" id="EU9-FV-Tjw"/>
                                             </constraints>
@@ -90,7 +94,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsR-yB-5d5" userLabel="SettingsButton">
-                                            <rect key="frame" x="165.33333333333331" y="0.0" width="145.33333333333331" height="145.33333333333334"/>
+                                            <rect key="frame" x="171" y="0.0" width="139.66666666666663" height="139.66666666666666"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dsR-yB-5d5" secondAttribute="height" multiplier="1:1" id="az3-je-iAm"/>
                                             </constraints>
@@ -101,6 +105,10 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dsR-yB-5d5" firstAttribute="width" secondItem="ePJ-We-FJV" secondAttribute="width" multiplier="0.45" id="ktS-qY-c8r"/>
+                                        <constraint firstItem="Gre-GW-OQj" firstAttribute="width" secondItem="ePJ-We-FJV" secondAttribute="width" multiplier="0.45" id="lLJ-35-pSI"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <constraints>
