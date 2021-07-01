@@ -7,6 +7,14 @@
 */
 
 /*
+ * Others.
+ */
+
+"Cancel" = "Cancella";
+
+"Confirm" = "Conferma";
+
+/*
  * Assistant Strings.
  */
 
@@ -49,6 +57,9 @@
 /*
  * Contact details.
  */
+
+/* No comment provided by engineer. */
+"Extensions" = "Interni";
 
 "Company" = "Azienda";
 
