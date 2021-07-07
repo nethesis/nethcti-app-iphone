@@ -149,7 +149,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self.filterPicker selectRow:[_pickerData indexOfObject:pickerFilter] inComponent:0 animated:NO];
     
     UIImage *allContactsImg = [[UIImage imageNamed:@"users.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    UIImage *sipContactsImg = [[UIImage imageNamed:@"nethcti_user_sip.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *sipContactsImg = [[UIImage imageNamed:@"nethcti_users_sip.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     [self.allButton setImage:allContactsImg forState:UIControlStateNormal];
     [self.linphoneButton setImage:sipContactsImg forState:UIControlStateNormal];

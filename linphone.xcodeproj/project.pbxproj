@@ -145,8 +145,6 @@
 		39F2B9A026492D7600ADBFCE /* nethcti_menu_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */; };
 		39F2B9A3264937DC00ADBFCE /* nethcti_user_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */; };
 		39F2B9A4264937DC00ADBFCE /* nethcti_user_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A2264937DC00ADBFCE /* nethcti_user_add.png */; };
-		39F2B9A7264938BD00ADBFCE /* nethcti_user_sip.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A5264938BA00ADBFCE /* nethcti_user_sip.png */; };
-		39F2B9A8264938BD00ADBFCE /* nethcti_user_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A6264938BD00ADBFCE /* nethcti_user_sip@2x.png */; };
 		39F2B9AB26493AD800ADBFCE /* nethcti_trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9A926493AD500ADBFCE /* nethcti_trash.png */; };
 		39F2B9AC26493AD800ADBFCE /* nethcti_trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9AA26493AD800ADBFCE /* nethcti_trash@2x.png */; };
 		39F2B9AF264AA4BA00ADBFCE /* nethcti_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 39F2B9AD264AA4B900ADBFCE /* nethcti_cancel.png */; };
@@ -855,6 +853,8 @@
 		C3ACAF3224B48A2900269A95 /* msgNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA5F25D9232BD3E200475F2E /* msgNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3B0C7B9266E14DF005F86CD /* nethcti_answer_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0C7B7266E14DF005F86CD /* nethcti_answer_video@2x.png */; };
 		C3B0C7BA266E14DF005F86CD /* nethcti_answer_video.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B0C7B8266E14DF005F86CD /* nethcti_answer_video.png */; };
+		C3B43D7A2695D977005D01E1 /* nethcti_users_sip.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B43D782695D976005D01E1 /* nethcti_users_sip.png */; };
+		C3B43D7B2695D977005D01E1 /* nethcti_users_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */; };
 		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
 		C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */; };
 		C3F4DAE925E0069400713A0B /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -1170,8 +1170,6 @@
 		39F2B99E26492D7600ADBFCE /* nethcti_menu_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu_home@2x.png"; sourceTree = "<group>"; };
 		39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_user_add@2x.png"; sourceTree = "<group>"; };
 		39F2B9A2264937DC00ADBFCE /* nethcti_user_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_user_add.png; sourceTree = "<group>"; };
-		39F2B9A5264938BA00ADBFCE /* nethcti_user_sip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_user_sip.png; sourceTree = "<group>"; };
-		39F2B9A6264938BD00ADBFCE /* nethcti_user_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_user_sip@2x.png"; sourceTree = "<group>"; };
 		39F2B9A926493AD500ADBFCE /* nethcti_trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_trash.png; sourceTree = "<group>"; };
 		39F2B9AA26493AD800ADBFCE /* nethcti_trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_trash@2x.png"; sourceTree = "<group>"; };
 		39F2B9AD264AA4B900ADBFCE /* nethcti_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_cancel.png; sourceTree = "<group>"; };
@@ -1994,6 +1992,8 @@
 		C3AE8A7023881C74000B669A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantLinkView.strings; sourceTree = "<group>"; };
 		C3B0C7B7266E14DF005F86CD /* nethcti_answer_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_answer_video@2x.png"; sourceTree = "<group>"; };
 		C3B0C7B8266E14DF005F86CD /* nethcti_answer_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_answer_video.png; sourceTree = "<group>"; };
+		C3B43D782695D976005D01E1 /* nethcti_users_sip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_users_sip.png; sourceTree = "<group>"; };
+		C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_users_sip@2x.png"; sourceTree = "<group>"; };
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
 		C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewNethesis.m; sourceTree = "<group>"; };
@@ -3156,8 +3156,8 @@
 				392AC7E0267245670055DFCF /* nethcti_trash_disabled@2x.png */,
 				39F2B9A2264937DC00ADBFCE /* nethcti_user_add.png */,
 				39F2B9A1264937D900ADBFCE /* nethcti_user_add@2x.png */,
-				39F2B9A5264938BA00ADBFCE /* nethcti_user_sip.png */,
-				39F2B9A6264938BD00ADBFCE /* nethcti_user_sip@2x.png */,
+				C3B43D782695D976005D01E1 /* nethcti_users_sip.png */,
+				C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */,
 				C397F3A02657BB0C00AB3178 /* nethcti_volume.png */,
 				C397F3A12657BB0C00AB3178 /* nethcti_volume@2x.png */,
 				8CE24F491F8234A20077AC0A /* next_default.png */,
@@ -4288,6 +4288,7 @@
 				39D09CDB265BDD3000AFD3BA /* nethcti_call_status_incoming@2x.png in Resources */,
 				633FEDD71D3CD5590014B822 /* call_start_body_default@2x.png in Resources */,
 				633FEE571D3CD5590014B822 /* dialer_back_disabled@2x.png in Resources */,
+				C3B43D7A2695D977005D01E1 /* nethcti_users_sip.png in Resources */,
 				63CDC45E1C3BDE370085F529 /* msg.caf in Resources */,
 				633FEE6D1D3CD5590014B822 /* footer_dialer_disabled@2x.png in Resources */,
 				633FEF171D3CD55A0014B822 /* pause_small_disabled@2x.png in Resources */,
@@ -4343,7 +4344,6 @@
 				633FEEFD1D3CD55A0014B822 /* options_add_call_default@2x.png in Resources */,
 				633FEEA81D3CD55A0014B822 /* numpad_1_over~ipad@2x.png in Resources */,
 				D38187AD15FE340100C3EDCA /* ChatConversationView.xib in Resources */,
-				39F2B9A8264938BD00ADBFCE /* nethcti_user_sip@2x.png in Resources */,
 				633FEE7C1D3CD5590014B822 /* history_missed_disabled.png in Resources */,
 				CF1DE92E210A0F5D00A0A97E /* UILinphoneAudioPlayer.xib in Resources */,
 				633FEDF11D3CD5590014B822 /* call_transfer_disabled@2x.png in Resources */,
@@ -4367,6 +4367,7 @@
 				633FEF471D3CD55A0014B822 /* speaker_disabled@2x.png in Resources */,
 				633FEEFE1D3CD55A0014B822 /* options_add_call_disabled.png in Resources */,
 				633FEE291D3CD5590014B822 /* checkbox_unchecked@2x.png in Resources */,
+				C3B43D7B2695D977005D01E1 /* nethcti_users_sip@2x.png in Resources */,
 				63AADC001B6A0FF200AA16FD /* assistant_linphone_create.rc in Resources */,
 				633FEF1C1D3CD55A0014B822 /* presence_offline.png in Resources */,
 				633FEE901D3CD55A0014B822 /* list_details_over.png in Resources */,
@@ -4409,7 +4410,6 @@
 				633FEDC31D3CD5590014B822 /* call_hangup_default@2x.png in Resources */,
 				633FEF061D3CD55A0014B822 /* options_start_conference_default.png in Resources */,
 				63AADC021B6A0FF200AA16FD /* assistant_remote.rc in Resources */,
-				39F2B9A7264938BD00ADBFCE /* nethcti_user_sip.png in Resources */,
 				C375EF38269599B8003F026E /* nethcti_green_circle.png in Resources */,
 				3966FC232636DC7000C52FF1 /* color_nethcti_grey.png in Resources */,
 				633FEF1E1D3CD55A0014B822 /* presence_online.png in Resources */,
