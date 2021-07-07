@@ -162,6 +162,7 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3b0-Nd-4r0">
                     <rect key="frame" x="0.0" y="176" width="414" height="686"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="1pR-qo-CIP" id="z2V-Yd-AwQ"/>
                         <outlet property="delegate" destination="1pR-qo-CIP" id="eJQ-AV-7ts"/>
