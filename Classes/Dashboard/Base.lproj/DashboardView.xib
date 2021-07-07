@@ -134,7 +134,7 @@
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s6h-2T-G5f" userLabel="tableView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             <connections>
                                 <outlet property="dataSource" destination="tDB-4i-L2W" id="Mkh-6q-32r"/>
                                 <outlet property="delegate" destination="tDB-4i-L2W" id="UvF-7F-lnN"/>
