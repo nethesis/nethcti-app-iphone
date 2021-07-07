@@ -1996,6 +1996,8 @@
 		C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_users_sip@2x.png"; sourceTree = "<group>"; };
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
+		C3D71B8C269600B900EABCEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
+		C3D71B8D2696021A00EABCEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HistoryListView.strings; sourceTree = "<group>"; };
 		C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewNethesis.m; sourceTree = "<group>"; };
 		C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewNethesis.h; sourceTree = "<group>"; };
 		C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewNethesis.m; sourceTree = "<group>"; };
@@ -5361,6 +5363,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548201883F15400E8A69B /* Base */,
+				C3D71B8C269600B900EABCEA /* it */,
 			);
 			name = HistoryDetailsView.xib;
 			sourceTree = "<group>";
@@ -5369,6 +5372,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548211883F15400E8A69B /* Base */,
+				C3D71B8D2696021A00EABCEA /* it */,
 			);
 			name = HistoryListView.xib;
 			sourceTree = "<group>";

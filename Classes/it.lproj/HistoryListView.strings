@@ -1,21 +1,21 @@
 
 /* Class = "UIButton"; accessibilityLabel = "All contacts filter"; ObjectID = "4"; */
-"4.accessibilityLabel" = "All contacts filter";
+"4.accessibilityLabel" = "Filtra tutti i contatti";
 
 /* Class = "UIButton"; accessibilityLabel = "Missed contacts filter"; ObjectID = "5"; */
-"5.accessibilityLabel" = "Missed contacts filter";
+"5.accessibilityLabel" = "Filtra i contatti mancanti";
 
 /* Class = "UIButton"; accessibilityLabel = "Edit"; ObjectID = "6"; */
-"6.accessibilityLabel" = "Edit";
+"6.accessibilityLabel" = "Modifica";
 
 /* Class = "UIButton"; accessibilityLabel = "Delete all"; ObjectID = "35"; */
-"35.accessibilityLabel" = "Delete all";
+"35.accessibilityLabel" = "Cancella tutto";
 
 /* Class = "UIButton"; accessibilityLabel = "Delete all"; ObjectID = "00K-MU-NUc"; */
-"00K-MU-NUc.accessibilityLabel" = "Delete all";
+"00K-MU-NUc.accessibilityLabel" = "Cancella tutto";
 
 /* Class = "UIButton"; accessibilityLabel = "Select all"; ObjectID = "nhN-oH-LQ9"; */
-"nhN-oH-LQ9.accessibilityLabel" = "Select all";
+"nhN-oH-LQ9.accessibilityLabel" = "Seleziona tutto";
 
 /* Class = "UILabel"; text = "No call in your history"; ObjectID = "xtr-Fp-60Z"; */
-"xtr-Fp-60Z.text" = "No call in your history";
+"xtr-Fp-60Z.text" = "Nessun contatto nello storico chiamate";
