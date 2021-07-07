@@ -134,7 +134,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     _pausedByRemoteLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
-- (void)nethCTIViewPersonalizatio {
+- (void)nethCTIViewPersonalization {
     [_chatButton setEnabled:NO];
     [_chatButton setHidden:YES];
     [_chatNotificationView setHidden:YES];
@@ -187,8 +187,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   selector:@selector(callDurationUpdate)
 								   userInfo:nil
 									repeats:YES];
-    
-    // [self drawOptionButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -207,28 +205,28 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-[[UIDevice currentDevice] setProximityMonitoringEnabled:FALSE];
-	[self disableVideoDisplay:TRUE animated:NO];
-
-	if (hideControlsTimer != nil) {
-		[hideControlsTimer invalidate];
-		hideControlsTimer = nil;
-	}
-
-	if (hiddenVolume) {
-		[PhoneMainView.instance setVolumeHidden:FALSE];
-		hiddenVolume = FALSE;
-	}
-
-	if (videoDismissTimer) {
-		[self dismissVideoActionSheet:videoDismissTimer];
-		[videoDismissTimer invalidate];
-		videoDismissTimer = nil;
-	}
-
-	// Remove observer
-	[NSNotificationCenter.defaultCenter removeObserver:self];
+    [super viewWillDisappear:animated];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:FALSE];
+    [self disableVideoDisplay:TRUE animated:NO];
+    
+    if (hideControlsTimer != nil) {
+        [hideControlsTimer invalidate];
+        hideControlsTimer = nil;
+    }
+    
+    if (hiddenVolume) {
+        [PhoneMainView.instance setVolumeHidden:FALSE];
+        hiddenVolume = FALSE;
+    }
+    
+    if (videoDismissTimer) {
+        [self dismissVideoActionSheet:videoDismissTimer];
+        [videoDismissTimer invalidate];
+        videoDismissTimer = nil;
+    }
+    
+    // Remove observer
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -282,12 +280,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - UI modification
 
 - (void)updateInfoView:(BOOL)pausedByRemote {
+    // Update the frame.
     CGRect infoFrame = _infoView.frame;
-    if (pausedByRemote || !videoHidden) {
-		infoFrame.origin.y = 0;
-    } else {
-        infoFrame.origin.y = (_avatarImage.frame.origin.y-66)/2;
-    }
+    infoFrame.origin.y = pausedByRemote || !videoHidden ? 0 : (_avatarImage.frame.origin.y-66)/2;
     _infoView.frame = infoFrame;
 }
 
@@ -490,7 +485,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 
 	_noActiveCallView.hidden = (call || linphone_core_is_in_conference(LC));
-	_callView.hidden = !call;
+	_callView.hidden = _infoView.hidden = !call;
 	_conferenceView.hidden = !linphone_core_is_in_conference(LC);
 	_callPauseButton.hidden = !call && !linphone_core_is_in_conference(LC);
 
