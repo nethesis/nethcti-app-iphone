@@ -387,7 +387,7 @@
                                                             <subviews>
                                                                 <button hidden="YES" opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="183" userLabel="backButton">
                                                                     <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
-                                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <accessibility key="accessibilityConfiguration" label="Back"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="183" secondAttribute="height" multiplier="1:1" id="pZq-VQ-Vrd"/>
@@ -404,6 +404,7 @@
                                                                 </button>
                                                                 <button opaque="NO" tag="24" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="222" userLabel="addContactButton">
                                                                     <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <accessibility key="accessibilityConfiguration" label="Add to contact"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="222" secondAttribute="height" multiplier="1:1" id="kqk-Ll-EaF"/>
