@@ -21,3 +21,19 @@ TutorialHellowWorld/hello-world.xcodeproj/project.xcworkspace/
 diff-format.patch
 *.xcscmblueprint
 liblinphone-iphone-sdk-*
+
+# fastlane specific
+
+**/fastlane/report.xml
+
+# deliver temporary files
+
+**/fastlane/Preview.html
+
+# snapshot generated screenshots
+
+**/fastlane/screenshots
+
+# scan temporary files
+
+**/fastlane/test_output
