@@ -171,6 +171,8 @@
         </view>
         <tableViewController id="tDB-4i-L2W" userLabel="tableController" customClass="DashboardHistoryTableView">
             <connections>
+                <outlet property="historyView" destination="sDP-vC-fzh" id="V2h-Yo-TXL"/>
+                <outlet property="historyViewHeight" destination="wnn-Pw-eHo" id="TLO-dS-feH"/>
                 <outlet property="view" destination="s6h-2T-G5f" id="gcQ-1E-mz2"/>
             </connections>
             <point key="canvasLocation" x="739.13043478260875" y="137.94642857142856"/>

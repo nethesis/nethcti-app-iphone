@@ -77,16 +77,24 @@
     
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         // Here we calc the new total, this is a long time running operation.
+        bool emptyLog = _historyLogs == nil || [_historyLogs count] == 0;
+        [self.historyView setHidden:emptyLog];
+        self.historyViewHeight.constant = emptyLog ? 0 : 175;
         [self.tableView reloadData];
     });
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    // If there isn't any log, the table view has to be hidden.
+    bool emptyLog = _historyLogs == nil || [_historyLogs count] == 0;
+    NSInteger numSections = emptyLog ? 0 : 1;
+    return numSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _historyLogs.count;
+    bool emptyLog = _historyLogs == nil || [_historyLogs count] == 0;
+    NSInteger numRows = emptyLog ? 0 : [_historyLogs count];
+    return numRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,7 +113,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 87;
 }
 
 @end
