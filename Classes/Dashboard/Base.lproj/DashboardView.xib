@@ -34,7 +34,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="3Wt-jh-G3k" firstAttribute="top" secondItem="kuv-xC-7Nb" secondAttribute="top" id="4O8-42-qPX"/>
                         <constraint firstItem="3Wt-jh-G3k" firstAttribute="centerX" secondItem="kuv-xC-7Nb" secondAttribute="centerX" id="FYj-Zt-Lqi"/>
@@ -52,6 +52,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY6-Z8-ENO" userLabel="DialerButton">
                                             <rect key="frame" x="0.0" y="0.0" width="139.66666666666666" height="140"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="EY6-Z8-ENO" secondAttribute="height" multiplier="1:1" id="q3N-Uv-ubX"/>
                                             </constraints>
@@ -65,6 +66,7 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0X-Ol-AUn" userLabel="HistoryButton">
                                             <rect key="frame" x="171" y="0.0" width="139.66666666666663" height="140"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="P0X-Ol-AUn" secondAttribute="height" multiplier="1:1" id="lU8-r5-myP"/>
                                             </constraints>
@@ -75,6 +77,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="EY6-Z8-ENO" firstAttribute="width" secondItem="Aoo-aO-4bO" secondAttribute="width" multiplier="0.45" id="6gk-tf-vXd"/>
                                         <constraint firstItem="P0X-Ol-AUn" firstAttribute="width" secondItem="Aoo-aO-4bO" secondAttribute="width" multiplier="0.45" id="qhv-X1-sgu"/>
@@ -85,6 +88,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gre-GW-OQj" userLabel="PhonebookButton">
                                             <rect key="frame" x="0.0" y="0.0" width="139.66666666666666" height="139.66666666666666"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Gre-GW-OQj" secondAttribute="height" multiplier="1:1" id="EU9-FV-Tjw"/>
                                             </constraints>
@@ -95,6 +99,7 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsR-yB-5d5" userLabel="SettingsButton">
                                             <rect key="frame" x="171" y="0.0" width="139.66666666666663" height="139.66666666666666"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dsR-yB-5d5" secondAttribute="height" multiplier="1:1" id="az3-je-iAm"/>
                                             </constraints>
@@ -105,18 +110,20 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="dsR-yB-5d5" firstAttribute="width" secondItem="ePJ-We-FJV" secondAttribute="width" multiplier="0.45" id="ktS-qY-c8r"/>
                                         <constraint firstItem="Gre-GW-OQj" firstAttribute="width" secondItem="ePJ-We-FJV" secondAttribute="width" multiplier="0.45" id="lLJ-35-pSI"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="fhd-MS-KBx" secondAttribute="height" multiplier="1:1" id="pU8-FU-Jnm"/>
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="fhd-MS-KBx" firstAttribute="width" secondItem="Y72-UC-Mf4" secondAttribute="width" multiplier="0.75" id="4T7-3c-Eio"/>
                         <constraint firstItem="fhd-MS-KBx" firstAttribute="centerX" secondItem="Y72-UC-Mf4" secondAttribute="centerX" id="E7u-6W-e9h"/>
@@ -141,7 +148,7 @@
                             </connections>
                         </tableView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="s6h-2T-G5f" secondAttribute="bottom" id="6uh-VZ-IUa"/>
                         <constraint firstAttribute="trailing" secondItem="s6h-2T-G5f" secondAttribute="trailing" id="89r-PN-AHX"/>
