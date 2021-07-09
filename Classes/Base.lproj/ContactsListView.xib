@@ -31,7 +31,7 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1YR-9t-hRk" userLabel="iphone6MetricsView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" id="2">
                     <rect key="frame" x="0.0" y="42" width="375" height="675"/>
@@ -209,7 +209,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                             <subviews>
                                                 <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-iI-V4a" userLabel="searchField">
-                                                    <rect key="frame" x="0.0" y="1.3333333333333286" width="311" height="27.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="1.3333333333333286" width="311" height="27.666666666666668"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <accessibility key="accessibilityConfiguration" label="Search"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="22"/>
@@ -270,7 +270,7 @@
                             </constraints>
                         </pickerView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zOo-FS-W6l" userLabel="tableView">
-                            <rect key="frame" x="0.0" y="130" width="375" height="545"/>
+                            <rect key="frame" x="4" y="130" width="355" height="545"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <color key="separatorColor" red="0.67030966281890869" green="0.71867996454238892" blue="0.75078284740447998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -280,9 +280,8 @@
                                 <outlet property="delegate" destination="TJG-JZ-YRR" id="V1N-gI-U4J"/>
                             </connections>
                         </tableView>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No contact found in your address book" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-k7-gVP" userLabel="emptyTableLabel">
-                            <rect key="frame" x="0.0" y="174" width="375" height="546"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No contact found in your address book" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-k7-gVP" userLabel="emptyTableLabel">
+                            <rect key="frame" x="4" y="130" width="355" height="545"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -295,13 +294,17 @@
                         <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" id="EBj-a8-6kC"/>
                         <constraint firstItem="Ad9-PV-eYg" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="IA2-jY-cw2"/>
                         <constraint firstItem="zOo-FS-W6l" firstAttribute="top" secondItem="W2W-PV-1J5" secondAttribute="bottom" constant="16" id="JPg-mB-Vof"/>
-                        <constraint firstAttribute="trailing" secondItem="zOo-FS-W6l" secondAttribute="trailing" id="KvY-bF-gWJ"/>
+                        <constraint firstAttribute="trailing" secondItem="zOo-FS-W6l" secondAttribute="trailing" constant="16" id="KvY-bF-gWJ"/>
                         <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="MOX-nf-AQD"/>
-                        <constraint firstItem="zOo-FS-W6l" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="TBb-4V-DOa"/>
+                        <constraint firstItem="zOo-FS-W6l" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="4" id="TBb-4V-DOa"/>
                         <constraint firstItem="Ad9-PV-eYg" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="TFQ-Nd-sBC"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="leading" secondItem="zOo-FS-W6l" secondAttribute="leading" id="X0e-J2-RfJ"/>
                         <constraint firstItem="W2W-PV-1J5" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="jkV-50-gbv"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="top" secondItem="zOo-FS-W6l" secondAttribute="top" id="lsa-Ke-6ze"/>
                         <constraint firstAttribute="trailing" secondItem="Ad9-PV-eYg" secondAttribute="trailing" id="nnv-zQ-OYv"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="trailing" secondItem="zOo-FS-W6l" secondAttribute="trailing" id="q7N-PY-alC"/>
                         <constraint firstItem="W2W-PV-1J5" firstAttribute="top" secondItem="Ad9-PV-eYg" secondAttribute="bottom" id="riq-px-zJG"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="bottom" secondItem="zOo-FS-W6l" secondAttribute="bottom" id="xSA-cK-kZE"/>
                         <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="yCe-wL-V0M"/>
                     </constraints>
                 </view>
