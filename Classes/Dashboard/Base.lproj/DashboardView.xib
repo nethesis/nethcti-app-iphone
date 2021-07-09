@@ -42,10 +42,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Y72-UC-Mf4" userLabel="CenterView">
-                    <rect key="frame" x="0.0" y="142.33333333333334" width="414" height="386.66666666666663"/>
+                    <rect key="frame" x="0.0" y="110.33333333333334" width="414" height="418.66666666666663"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fhd-MS-KBx">
-                            <rect key="frame" x="51.666666666666657" y="38" width="310.66666666666674" height="310.66666666666669"/>
+                            <rect key="frame" x="51.666666666666657" y="54.000000000000028" width="310.66666666666674" height="310.66666666666674"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Aoo-aO-4bO">
                                     <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="140"/>
@@ -165,7 +165,7 @@
                 <constraint firstItem="sDP-vC-fzh" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="5jb-xJ-yWl"/>
                 <constraint firstItem="Y72-UC-Mf4" firstAttribute="bottom" secondItem="sDP-vC-fzh" secondAttribute="top" constant="-32" id="9gu-AY-E5G"/>
                 <constraint firstItem="Y72-UC-Mf4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="KT7-Id-Mdq"/>
-                <constraint firstItem="Y72-UC-Mf4" firstAttribute="top" secondItem="kuv-xC-7Nb" secondAttribute="bottom" constant="32" id="Nl2-t3-X5Q"/>
+                <constraint firstItem="Y72-UC-Mf4" firstAttribute="top" secondItem="kuv-xC-7Nb" secondAttribute="bottom" id="Nl2-t3-X5Q"/>
                 <constraint firstItem="kuv-xC-7Nb" firstAttribute="height" secondItem="Q5M-cg-NOt" secondAttribute="height" multiplier="0.15" id="UfP-9N-0wu"/>
                 <constraint firstItem="kuv-xC-7Nb" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="YlR-2q-qGY"/>
                 <constraint firstItem="sDP-vC-fzh" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dVv-93-0F4"/>
