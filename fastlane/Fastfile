@@ -11,11 +11,15 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+# Always mantains platforms specific lanes consistant.
 default_platform(:ios)
 
-platform :ios do
-    desc "Push a new beta build to TestFlight"
+# Bump version lanes and similar doesn't belong to a platform.
 
+desc "All ios specific lanes"
+platform :ios do
+
+    desc "Execute automatic tests and produce a code coverage report."
     lane :tests do
         run_tests(
             code_coverage: true,
@@ -25,10 +29,16 @@ platform :ios do
             )
     end
 
+    desc "Prepare the build number for the next build to deploy."
+    lane :prepare_version do
+        prepare_version_and_build verbose:false
+    end
+
+    desc "Push a new beta build to TestFlight."
     lane :beta do
-        get_certificates           # invokes cert
-        get_provisioning_profile   # invokes sigh
-        increment_build_number(xcodeproj: "linphone.xcodeproj")
+        # get_certificates           # invokes cert
+        # get_provisioning_profile   # invokes sigh
+        prepare_version
         build_app( 
             scheme: "linphone",
             silent: true,
@@ -64,6 +74,7 @@ platform :ios do
     end
 end
 
+desc "All Android specific lanes"
 platform :android do
     desc "Push a new Beta build to Play Store Console"
 
