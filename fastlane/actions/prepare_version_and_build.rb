@@ -37,6 +37,7 @@ module Fastlane
 
         commit_message = "Version bump to made #{version_string}(##{new_build_number}) by Fastlane."
         other_action.commit_version_bump(
+          force: true,
           message: commit_message,
           xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here
         )
