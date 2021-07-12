@@ -53,6 +53,8 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	_grayBackground.hidden = NO;
+    // TODO: Add NETHCTI_WHITE
+    _headerView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -67,14 +69,14 @@
 	if (default_proxy != NULL) {
 		const LinphoneAddress *addr = linphone_proxy_config_get_identity_address(default_proxy);
 		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
-		_addressLabel.text = addr? [NSString stringWithUTF8String:linphone_address_as_string(addr)] : NSLocalizedString(@"No address", nil);
+		_addressLabel.text = addr? [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)] : NSLocalizedString(@"No address", nil);
 		_presenceImage.image = [StatusBarView imageForState:linphone_proxy_config_get_state(default_proxy)];
 	} else {
 		_nameLabel.text = linphone_core_get_proxy_config_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);
 		// Display direct IP:port address so that we can be reached.
 		LinphoneAddress *addr = linphone_core_get_primary_contact_parsed(LC);
 		if (addr) {
-			char *as_string = linphone_address_as_string(addr);
+			char *as_string = linphone_address_as_string_uri_only(addr);
 			_addressLabel.text = [NSString stringWithFormat:@"%s", as_string];
 			ms_free(as_string);
 			linphone_address_unref(addr);
@@ -83,7 +85,6 @@
 		}
 		_presenceImage.image = nil;
 	}
-	_avatarImage.image = [LinphoneUtils selfAvatar];
 }
 
 #pragma deploymate push "ignored-api-availability"
@@ -97,14 +98,6 @@
 	[PhoneMainView.instance.mainViewController hideSideMenu:YES];
 }
 
-- (IBAction)onAvatarClick:(id)sender {
-	// Hide ourself because we are on top of image picker.
-	if (!IPAD) {
-		[PhoneMainView.instance.mainViewController hideSideMenu:YES];
-	}
-	[ImagePickerView SelectImageFromDevice:self atPosition:_avatarImage inView:self.view withDocumentMenuDelegate:nil];
-}
-
 - (IBAction)onBackgroundClicked:(id)sender {
 	[PhoneMainView.instance.mainViewController hideSideMenu:YES];
 }
@@ -112,34 +105,6 @@
 - (void)registrationUpdateEvent:(NSNotification *)notif {
 	[self updateHeader];
 	[_sideMenuTableViewController.tableView reloadData];
-}
-
-#pragma mark - Image picker delegate
-
-- (void)imagePickerDelegateImage:(UIImage *)image info:(NSString *)phAssetId {
-	// When getting image from the camera, it may be 90° rotated due to orientation
-	// (image.imageOrientation = UIImageOrientationRight). Just rotate it to be face up.
-	if (image.imageOrientation != UIImageOrientationUp) {
-		UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale);
-		[image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-		image = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-	}
-    
-    [LinphoneManager.instance lpConfigSetString:phAssetId forKey:@"avatar"];
-    _avatarImage.image = [LinphoneUtils selfAvatar];
-    [LinphoneManager.instance loadAvatar];
-
-	// Dismiss popover on iPad.
-	if (IPAD) {
-		[VIEW(ImagePickerView).popoverController dismissPopoverAnimated:TRUE];
-	} else {
-		[PhoneMainView.instance.mainViewController hideSideMenu:NO];
-	}
-}
-
-- (void)imagePickerDelegateVideo:(NSURL*)url info:(NSDictionary *)info {
-	return; // Avatar video not supported (yet ;) )
 }
 
 @end

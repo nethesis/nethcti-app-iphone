@@ -28,10 +28,11 @@
 
 @property (nonatomic, assign) LinphoneCallLog *callLog;
 
-@property(weak, nonatomic) IBOutlet UIRoundedImageView *avatarImage;
+@property(weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property(nonatomic, strong) IBOutlet UILabel *displayNameLabel;
 @property(weak, nonatomic) IBOutlet UIImageView *stateImage;
 @property(weak, nonatomic) IBOutlet UIIconButton *detailsButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 
 - (id)initWithIdentifier:(NSString*)identifier;
 

@@ -63,6 +63,7 @@
 @property(nonatomic, strong) IBOutlet UIToggleButton *routesButton;
 @property(nonatomic, strong) IBOutlet UIToggleButton *optionsButton;
 @property(nonatomic, strong) IBOutlet UIHangUpButton *hangupButton;
+@property (nonatomic, strong) IBOutlet UIView *centerBarView;
 @property(nonatomic, strong) IBOutlet UIView *numpadView;
 @property(nonatomic, strong) IBOutlet UIView *routesView;
 @property(nonatomic, strong) IBOutlet UIView *optionsView;
@@ -72,6 +73,8 @@
 @property(nonatomic, strong) IBOutlet UIButton *optionsAddButton;
 @property(nonatomic, strong) IBOutlet UIButton *optionsTransferButton;
 @property(nonatomic, strong) IBOutlet UIToggleButton *numpadButton;
+@property (weak, nonatomic) IBOutlet UILabel *pausedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pausedByRemoteLabel;
 @property(weak, nonatomic) IBOutlet UIPauseButton *conferencePauseButton;
 @property(weak, nonatomic) IBOutlet UIBouncingView *chatNotificationView;
 @property(weak, nonatomic) IBOutlet UILabel *chatNotificationLabel;
@@ -95,7 +98,7 @@
 @property(nonatomic, strong) IBOutlet UIDigitButton *starButton;
 @property(nonatomic, strong) IBOutlet UIDigitButton *zeroButton;
 @property(nonatomic, strong) IBOutlet UIDigitButton *hashButton;
-@property(weak, nonatomic) IBOutlet UIRoundedImageView *avatarImage;
+@property(weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property(weak, nonatomic) IBOutlet UIView *pausedByRemoteView;
@@ -104,6 +107,7 @@
 @property(strong, nonatomic) IBOutlet CallPausedTableView *conferenceCallsTable;
 @property (weak, nonatomic) IBOutlet UIView *waitView;
 @property (weak, nonatomic) IBOutlet UIView *infoView;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 
 - (IBAction)onRoutesClick:(id)sender;
 - (IBAction)onRoutesBluetoothClick:(id)sender;

@@ -85,14 +85,22 @@ typedef enum {
 
 @interface ContactDisplay : NSObject
 + (void)setDisplayNameLabel:(UILabel *)label forContact:(Contact *)contact;
++ (void)setOrganizationLabel:(UILabel *)label forContact: (Contact *)contact;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel;
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact;
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image;
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name;
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name forImage:(const UIImageView *) image;
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr forImage:(const UIImageView *) image;
 @end
 
 #import <UIKit/UIColor.h>
 #import <UIKit/UIKit.h>
 
 #define LINPHONE_MAIN_COLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_A.png"]]
+
 #define LINPHONE_SETTINGS_BG_IOS7 [UIColor colorWithRed:164 / 255. green:175 / 255. blue:183 / 255. alpha:1.0]
 
 @interface UIColor (LightAndDark)
@@ -104,6 +112,10 @@ typedef enum {
 - (UIColor *)lighterColor;
 
 - (UIColor *)darkerColor;
+
+- (BOOL)isBright;
+
++ (UIColor *)getColorByName:(NSString *)name;
 
 @end
 

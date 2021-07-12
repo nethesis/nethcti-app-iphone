@@ -5,6 +5,8 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Key</key>
+			<string>presence_title</string>
 			<key>Title</key>
 			<string>Presence</string>
 			<key>Type</key>

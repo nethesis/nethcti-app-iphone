@@ -37,7 +37,6 @@
 @property(weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property(nonatomic) NSString* tmpPwd;
 
-- (IBAction)onDialerBackClick:(id)sender;
 - (IBAction)onBackClick:(id)sender;
 
 @end

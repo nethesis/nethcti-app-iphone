@@ -48,6 +48,8 @@
 		valueFrame.size.width = self.detailTextLabel.superview.frame.size.width - valueFrame.origin.x - kIASKPaddingRight;
 		self.detailTextLabel.frame = valueFrame;
 	}
+    
+    self.detailTextLabel.textColor = [UIColor getColorByName:@"MainColor"];
 }
 
 @end

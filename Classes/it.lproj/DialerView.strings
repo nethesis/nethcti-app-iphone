@@ -1,9 +1,9 @@
 
 /* Class = "UITextField"; accessibilityLabel = "Enter an address"; ObjectID = "4"; */
-"4.accessibilityLabel" = "Enter an address";
+"4.accessibilityLabel" = "Inserisci un indirizzo";
 
 /* Class = "UITextField"; placeholder = "Enter a number or an address"; ObjectID = "4"; */
-"4.placeholder" = "Enter a number or an address";
+"4.placeholder" = "Inserisci un numero o un indirizzo";
 
 /* Class = "UIButton"; accessibilityLabel = "3"; ObjectID = "29"; */
 "29.accessibilityLabel" = "3";
@@ -42,10 +42,10 @@
 "41.accessibilityLabel" = "Hash";
 
 /* Class = "UIButton"; accessibilityLabel = "Back"; ObjectID = "183"; */
-"183.accessibilityLabel" = "Back";
+"183.accessibilityLabel" = "Indietro";
 
 /* Class = "UIButton"; accessibilityLabel = "Add to contact"; ObjectID = "222"; */
-"222.accessibilityLabel" = "Add to contact";
+"222.accessibilityLabel" = "Aggiungi ai contatti";
 
 /* Class = "UIButton"; accessibilityLabel = "Call"; ObjectID = "224"; */
-"224.accessibilityLabel" = "Call";
+"224.accessibilityLabel" = "Chiama";

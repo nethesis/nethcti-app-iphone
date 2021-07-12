@@ -27,6 +27,8 @@
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property(weak, nonatomic) IBOutlet UIPauseButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 - (id)initWithIdentifier:(NSString *)identifier;
 - (void)setCall:(LinphoneCall *)call;

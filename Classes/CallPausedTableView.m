@@ -28,12 +28,13 @@
 
 - (void)update {
 	[self.tableView reloadData];
-	CGRect newOrigin = self.tableView.frame;
+	/*CGRect newOrigin = self.tableView.frame;
 	newOrigin.size.height =
 		[self tableView:self.tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] *
 		[self tableView:self.tableView numberOfRowsInSection:0];
 	newOrigin.origin.y += self.tableView.frame.size.height - newOrigin.size.height;
 	self.tableView.frame = newOrigin;
+     */
 }
 
 #pragma mark - UITableViewDataSource Functions
@@ -62,7 +63,8 @@
 	}
 	[cell setCall:[self conferenceCallForRow:indexPath.row]];
     cell.contentView.userInteractionEnabled = false;
-	return cell;
+
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -88,6 +90,10 @@
 		conference_in_pause = 0;
 	}
 	return count + conference_in_pause;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

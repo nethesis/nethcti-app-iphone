@@ -37,15 +37,17 @@
 
 @property(nonatomic) Boolean earlyMedia;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(nonatomic, strong) IBOutlet UILabel *addressLabel;
-@property(nonatomic, strong) IBOutlet UIRoundedImageView *avatarImage;
+@property(nonatomic, strong) IBOutlet UIImageView *avatarImage;
 @property(nonatomic, assign) LinphoneCall *call;
 @property(nonatomic, strong) id<IncomingCallViewDelegate> delegate;
 @property(weak, nonatomic) IBOutlet UIView *tabVideoBar;
+@property (weak, nonatomic) IBOutlet UIButton *acceptVideoButton;
 @property(weak, nonatomic) IBOutlet UIView *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *earlyMediaView;
-
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialsLabel;
 
 - (IBAction)onAcceptClick:(id)event;
 - (IBAction)onDeclineClick:(id)event;

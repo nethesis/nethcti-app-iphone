@@ -17,11 +17,11 @@
 /* Class = "UILabel"; text = "Linphone iOS 8.0"; ObjectID = "gLk-Bc-zvx"; */
 "gLk-Bc-zvx.text" = "NethCTI iOS 1.0.0"; // This will be overwritten.
 
-/* Class = "UILabel"; text = "GNU General Public License V2\n© 2010-2019 Belledonne Communications"; ObjectID = "gVK-Xc-S59"; */
-"gVK-Xc-S59.text" = "GNU General Public License V2\n© 2010-2020 Nethesis srl";
+/* Class = "UILabel"; text = "GNU General Public License V2\n© 2010-2021 Nethesis srl"; ObjectID = "gVK-Xc-S59"; */
+"gVK-Xc-S59.text" = "GNU General Public License V2\n© 2010-2021 Nethesis srl";
 
-/* Class = "UILabel"; text = "ABOUT"; ObjectID = "iNt-9d-7si"; */
-"iNt-9d-7si.text" = "ABOUT";
+/* Class = "UILabel"; text = "About"; ObjectID = "iNt-9d-7si"; */
+"iNt-9d-7si.text" = "Informazioni";
 
 /* Class = "UILabel"; text = "https://www.linphone.org"; ObjectID = "jGU-DX-XcO"; */
 "jGU-DX-XcO.text" = "https://www.nethesis.org";
@@ -35,8 +35,8 @@
 /* Class = "UIButton"; accessibilityLabel = "Add contact"; ObjectID = "vX8-wO-ZEN"; */
 "vX8-wO-ZEN.accessibilityLabel" = "Aggiungi contatto";
 
-/* Class = "UILabel"; text = "GNU General Public License V2 © 2010-2019 Belledonne Communications"; ObjectID = "vqn-sI-DiC"; */
-"vqn-sI-DiC.text" = "GNU General Public License V2 © 2010-2019 Belledonne Communications";
+/* Class = "UILabel"; text = "GNU General Public License V2 © 2010-2021 Nethesis srl"; ObjectID = "vqn-sI-DiC"; */
+"vqn-sI-DiC.text" = "GNU General Public License V2 © 2010-2019 Nethesis srl";
 
 /* Class = "UILabel"; text = "ABOUT"; ObjectID = "wKp-iH-ojJ"; */
 "wKp-iH-ojJ.text" = "ABOUT";

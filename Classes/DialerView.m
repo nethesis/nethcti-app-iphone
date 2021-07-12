@@ -21,6 +21,7 @@
 
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
+#import "Dashboard/DashboardViewController.h"
 
 @implementation DialerView
 
@@ -94,6 +95,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 		linphone_core_enable_video_preview(LC, FALSE);
 	}
 	[_addressField setText:@""];
+    
+    [_lineUnderText setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
+    
+    UIImage *addUserContact = [[UIImage imageNamed:@"nethcti_user_add.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.addContactButton setImage:addUserContact forState:UIControlStateNormal];
+    [self.addContactButton setImage:addUserContact forState:UIControlStateDisabled];
+    [self.addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -185,9 +193,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Event Functions
 
 - (void)callUpdateEvent:(NSNotification *)notif {
-	LinphoneCall *call = [[notif.userInfo objectForKey:@"call"] pointerValue];
-	LinphoneCallState state = [[notif.userInfo objectForKey:@"state"] intValue];
-	[self callUpdate:call state:state];
+    LinphoneCall *call = [[notif.userInfo objectForKey:@"call"] pointerValue];
+    LinphoneCallState state = [[notif.userInfo objectForKey:@"state"] intValue];
+    [self callUpdate:call state:state];
 }
 
 - (void)coreUpdateEvent:(NSNotification *)notif {
@@ -405,9 +413,22 @@ static UICompositeViewDescription *compositeDescription = nil;
 	if ([self displayDebugPopup:_addressField.text]) {
 		_addressField.text = @"";
 	}
-	_addContactButton.enabled = _backspaceButton.enabled = ([[_addressField text] length] > 0);
-    if ([_addressField.text length] == 0) {
+    
+    bool wasPresent = _backspaceButton.enabled;
+    bool addressPresence = [[_addressField text] length] > 0;
+	_addContactButton.enabled = _backspaceButton.enabled = addressPresence;
+    
+    if(!wasPresent && addressPresence) {
+        // Set pink color only if we have to change button state.
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"Magenta"]];
+    }
+    
+    if(!addressPresence) {
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
         [self.view endEditing:YES];
+        [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
+    } else {
+        [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
     }
 }
 

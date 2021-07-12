@@ -39,15 +39,6 @@
         }
     }
     
-    // WEDO: Nethesis only fields.
-    if(_contact.nethesis) {
-        if (section == ContactSections_Company) {
-            return [NSMutableArray arrayWithObject:_contact.company];
-        } else if(section == ContactSections_Title) {
-            return [NSMutableArray arrayWithObject:_contact.title];
-        }
-    }
-    
     return nil;
 }
 
@@ -69,10 +60,6 @@
 		rmed = [_contact removeSipAddressAtIndex:path.row];
 	} else if (path.section == ContactSections_Email) {
 		rmed = [_contact removeEmailAtIndex:path.row];
-    } else if (path.section == ContactSections_Company) {
-        rmed = YES;
-    } else if (path.section == ContactSections_Title) {
-        rmed = YES;
     } else {
 		rmed = NO;
 	}
@@ -180,10 +167,6 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if(section == ContactSections_Company) {
-        return _contact.company.length > 0;
-    } else if(section == ContactSections_Title) {
-        return _contact.title.length > 0;
     }
     return 0;
 }
@@ -227,12 +210,6 @@
     } else if ([indexPath section] == ContactSections_Email) {
         value = _contact.emails[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
-    } else if([indexPath section] == ContactSections_Company) {
-        value = _contact.company;
-        [cell hideDeleteButton:YES];
-    } else if([indexPath section] == ContactSections_Title) {
-        value = _contact.title;
-        [cell hideDeleteButton:YES];
     }
     
     if ([value hasPrefix:@" "])
@@ -313,12 +290,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_Company) {
-            text = @"Company";
-            canAddEntry = NO;
-        } else if(section == ContactSections_Title) {
-            text = @"Title";
-            canAddEntry = NO;
         }
     }
     
@@ -336,19 +307,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
     tempLabel.backgroundColor = [UIColor clearColor];
-    tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
-    tempLabel.text = text.uppercaseString;
+    tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
+    tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
     tempLabel.font = [UIFont systemFontOfSize:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [tempView addSubview:tempLabel];
     
     if (canAddEntry) {
-        frame.origin.x = (tableView.frame.size.width - 30 /*image size*/) / 2 - 5 /*right offset*/;
+        frame.origin.x = (tableView.frame.size.width - 30 /*image size*/) / 2 - 16 /*right offset*/;
         UIIconButton *tempAddButton = [[UIIconButton alloc] initWithFrame:frame];
-        [tempAddButton setImage:[UIImage imageNamed:@"add_field_default.png"] forState:UIControlStateNormal];
-        [tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateHighlighted];
-        [tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateSelected];
+        [tempAddButton setImage:[UIImage imageNamed:@"nethcti_add_field.png.png"] forState:UIControlStateNormal];
+        
+        //tempAddButton.frame = CGRectMake(tableView.frame.size.width - 30 - 16, 0, 30, 30);
+        //[tempAddButton setBackgroundImage:[UIImage imageNamed:@"@nethcti_blue_circle.png"] forState:UIControlStateNormal];
+        //[tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateHighlighted];
+        //[tempAddButton setImage:[UIImage imageNamed:@"add_field_over.png"] forState:UIControlStateSelected];
         [tempAddButton addTarget:self action:@selector(onAddClick:) forControlEvents:UIControlEventTouchUpInside];
         tempAddButton.tag = section;
         tempAddButton.accessibilityLabel = addEntryName;
@@ -433,8 +407,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 break;
             case ContactSections_MAX:
             case ContactSections_None:
-            case ContactSections_Company:
-            case ContactSections_Title:
                 break;
         }
         cell.editTextfield.text = value;

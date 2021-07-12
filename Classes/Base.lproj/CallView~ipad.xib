@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallView">
             <connections>
@@ -13,6 +19,7 @@
                 <outlet property="bottomBar" destination="mga-O5-mUn" id="ObF-wX-nBD"/>
                 <outlet property="callPauseButton" destination="7f5-7T-fV3" id="07F-H8-siF"/>
                 <outlet property="callView" destination="9" id="TKY-dp-lKv"/>
+                <outlet property="centerBarView" destination="2Nv-7N-aTj" id="lyb-65-rEc"/>
                 <outlet property="conferenceCallsTable" destination="sif-q0-7oE" id="Fjr-dB-s4q"/>
                 <outlet property="conferencePauseButton" destination="HAk-mv-6sG" id="SJg-ew-UIZ"/>
                 <outlet property="conferenceView" destination="0Ju-u5-N7A" id="H5K-Nv-IKI"/>
@@ -25,6 +32,7 @@
                 <outlet property="infoView" destination="5c7-9k-bmA" id="suW-F2-xDv"/>
                 <outlet property="landscapeView" destination="mPH-MF-S0K" id="Qnt-pg-nbO"/>
                 <outlet property="microButton" destination="pRH-Ao-h65" id="F5a-sf-J7B"/>
+                <outlet property="nameInitialsLabel" destination="VIR-Qy-l09" id="DU0-Tw-I7l"/>
                 <outlet property="nameLabel" destination="KPa-Rm-Qni" id="KiX-oL-MUd"/>
                 <outlet property="nineButton" destination="b8R-7P-jHK" id="LNS-eb-9bc"/>
                 <outlet property="noActiveCallView" destination="aqL-q2-eR2" id="quL-ZA-BeK"/>
@@ -39,7 +47,7 @@
                 <outlet property="pausedByRemoteView" destination="0MR-ml-8RY" id="fzQ-lE-Tny"/>
                 <outlet property="pausedCallsTable" destination="162" id="ffv-xP-AXk"/>
                 <outlet property="portraitView" destination="lzH-M1-NdV" id="duc-gP-Nq1"/>
-                <outlet property="recordButton" destination="qoO-e6-zAa" id="68r-PW-udx"/>
+                <outlet property="recordButton" destination="hyQ-xR-3rj" id="csG-kn-TUo"/>
                 <outlet property="recordButtonOnView" destination="npP-vy-Re7" id="U0R-8T-fRN"/>
                 <outlet property="routesBluetoothButton" destination="6uv-FV-mUL" id="c0F-7q-0m5"/>
                 <outlet property="routesButton" destination="nQp-5y-kTy" id="2u8-g5-6T1"/>
@@ -81,12 +89,12 @@
             <rect key="frame" x="0.0" y="0.0" width="800" height="1290"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lzH-M1-NdV" userLabel="view">
-                    <rect key="frame" x="0.0" y="42" width="800" height="1248"/>
+                <view tag="1" contentMode="scaleToFill" id="lzH-M1-NdV" userLabel="view">
+                    <rect key="frame" x="0.0" y="0.0" width="800" height="1290"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view hidden="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ju-u5-N7A" userLabel="conferenceView">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="1118"/>
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="1156"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Conference" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-1F-Gkg" userLabel="nameLabel">
@@ -97,7 +105,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <tableView clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="vgc-Mn-pga" userLabel="conferenceCallsTableView">
-                                    <rect key="frame" x="0.0" y="66" width="800" height="1052"/>
+                                    <rect key="frame" x="0.0" y="66" width="800" height="1090"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,44 +126,88 @@
                                     <state key="highlighted" image="pause_big_over_selected.png"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <view clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9" userLabel="callView">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="1248"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <view clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9" userLabel="callView">
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" fixedFrame="YES" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-K5-yQp" userLabel="avatarImage" customClass="UIRoundedImageView">
-                                    <rect key="frame" x="132" y="420" width="534" height="534"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Contact avatar">
-                                        <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                        <bool key="isElement" value="YES"/>
-                                    </accessibility>
-                                </imageView>
-                                <view alpha="0.0" tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
-                                    <rect key="frame" x="0.0" y="-60" width="800" height="1308"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-9k-bmA" userLabel="infoView">
+                                    <rect key="frame" x="32" y="32" width="736" height="431"/>
                                     <subviews>
-                                        <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1308"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-QO-Jwb" userLabel="durationLabel">
+                                            <rect key="frame" x="32" y="32" width="672" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-e7-xNf" userLabel="avatarContainer">
+                                            <rect key="frame" x="246.5" y="85.5" width="243" height="242"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-K5-yQp" userLabel="avatarImage" customClass="UIRoundedImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="243" height="242"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Contact avatar">
+                                                        <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                        <bool key="isElement" value="YES"/>
+                                                    </accessibility>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIR-Qy-l09" userLabel="nameInitialsLabel">
+                                                    <rect key="frame" x="95.5" y="97.5" width="52.5" height="47"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="fZy-K5-yQp" firstAttribute="top" secondItem="OCt-e7-xNf" secondAttribute="top" id="2Zz-Ya-g8B"/>
+                                                <constraint firstAttribute="bottom" secondItem="fZy-K5-yQp" secondAttribute="bottom" id="9OK-17-uxU"/>
+                                                <constraint firstItem="VIR-Qy-l09" firstAttribute="centerY" secondItem="OCt-e7-xNf" secondAttribute="centerY" id="A7t-KW-Tfo"/>
+                                                <constraint firstItem="VIR-Qy-l09" firstAttribute="centerX" secondItem="OCt-e7-xNf" secondAttribute="centerX" id="Jdf-UD-L7z"/>
+                                                <constraint firstAttribute="width" secondItem="OCt-e7-xNf" secondAttribute="height" multiplier="1:1" constant="1" id="Sm4-Ty-sd7"/>
+                                                <constraint firstItem="fZy-K5-yQp" firstAttribute="leading" secondItem="OCt-e7-xNf" secondAttribute="leading" id="osp-S1-oG7"/>
+                                                <constraint firstAttribute="trailing" secondItem="fZy-K5-yQp" secondAttribute="trailing" id="w4A-xa-Boa"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-Rm-Qni" userLabel="nameLabel">
+                                            <rect key="frame" x="32" y="359.5" width="672" height="39.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KPa-Rm-Qni" firstAttribute="leading" secondItem="5c7-9k-bmA" secondAttribute="leading" constant="32" id="29m-mg-jFb"/>
+                                        <constraint firstItem="Oy8-QO-Jwb" firstAttribute="top" secondItem="5c7-9k-bmA" secondAttribute="top" constant="32" id="4V4-Rk-zcu"/>
+                                        <constraint firstAttribute="trailing" secondItem="KPa-Rm-Qni" secondAttribute="trailing" constant="32" id="Lzp-ld-ZUd"/>
+                                        <constraint firstAttribute="trailing" secondItem="Oy8-QO-Jwb" secondAttribute="trailing" constant="32" id="Psh-ti-pe7"/>
+                                        <constraint firstAttribute="bottom" secondItem="KPa-Rm-Qni" secondAttribute="bottom" constant="32" id="Qgy-Uy-HDa"/>
+                                        <constraint firstItem="Oy8-QO-Jwb" firstAttribute="leading" secondItem="5c7-9k-bmA" secondAttribute="leading" constant="32" id="Sne-4Z-JPc"/>
+                                        <constraint firstItem="OCt-e7-xNf" firstAttribute="top" secondItem="Oy8-QO-Jwb" secondAttribute="bottom" constant="32" id="T4B-zx-1gV"/>
+                                        <constraint firstItem="OCt-e7-xNf" firstAttribute="width" secondItem="5c7-9k-bmA" secondAttribute="width" multiplier="0.33" id="TZK-Yc-eRo"/>
+                                        <constraint firstItem="KPa-Rm-Qni" firstAttribute="top" secondItem="OCt-e7-xNf" secondAttribute="bottom" constant="32" id="exK-BY-R7C"/>
+                                        <constraint firstItem="OCt-e7-xNf" firstAttribute="centerX" secondItem="5c7-9k-bmA" secondAttribute="centerX" id="yud-qy-684"/>
+                                    </constraints>
+                                </view>
+                                <view alpha="0.0" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="126" userLabel="video">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
+                                    <subviews>
+                                        <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="173" userLabel="background">
+                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
-                                        <view tag="10" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1308"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="132" userLabel="display">
+                                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" notEnabled="YES"/>
                                             </accessibility>
                                         </view>
-                                        <view tag="11" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
-                                            <rect key="frame" x="564" y="945" width="210" height="280"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <view tag="11" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="127" userLabel="preview">
+                                            <rect key="frame" x="528" y="773" width="240" height="345"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <activityIndicatorView hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="144" userLabel="waitIndicator">
-                                            <rect key="frame" x="378" y="636" width="37" height="37"/>
+                                            <rect key="frame" x="375" y="555" width="40" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
                                         <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="160" userLabel="videoCameraSwitch" customClass="UICamSwitch">
@@ -163,7 +215,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" label="Switch camera"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="camera_switch_default.png">
+                                            <state key="normal" image="nethcti_reverse_camera.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="camera_switch_disabled.png"/>
@@ -175,37 +227,30 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="127" firstAttribute="width" secondItem="126" secondAttribute="width" multiplier="0.3" id="1Eh-AS-oVS"/>
+                                        <constraint firstAttribute="bottom" secondItem="127" secondAttribute="bottom" constant="32" id="230-Q7-FYq"/>
+                                        <constraint firstItem="173" firstAttribute="top" secondItem="126" secondAttribute="top" id="Eeu-DG-sTB"/>
+                                        <constraint firstAttribute="trailing" secondItem="173" secondAttribute="trailing" id="Iob-HP-qdV"/>
+                                        <constraint firstItem="132" firstAttribute="top" secondItem="126" secondAttribute="top" id="Nq1-ut-9RJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="132" secondAttribute="bottom" id="NqH-mE-WqT"/>
+                                        <constraint firstAttribute="trailing" secondItem="127" secondAttribute="trailing" constant="32" id="UfX-cN-35L"/>
+                                        <constraint firstItem="173" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="eso-Ev-kmV"/>
+                                        <constraint firstAttribute="trailing" secondItem="132" secondAttribute="trailing" id="hhq-Mg-ePK"/>
+                                        <constraint firstItem="127" firstAttribute="height" secondItem="126" secondAttribute="height" multiplier="0.3" id="mrq-FS-Zsz"/>
+                                        <constraint firstItem="132" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="qXs-vO-DYq"/>
+                                        <constraint firstAttribute="bottom" secondItem="173" secondAttribute="bottom" id="tA2-l0-ylQ"/>
+                                    </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-9k-bmA" userLabel="infoView">
-                                    <rect key="frame" x="0.0" y="213" width="800" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01:34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-QO-Jwb" userLabel="durationLabel">
-                                            <rect key="frame" x="0.0" y="40" width="800" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Doe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-Rm-Qni" userLabel="nameLabel">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </view>
-                                <view hidden="YES" alpha="0.80000000000000004" tag="16" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-ml-8RY" userLabel="pausedByRemoteView">
-                                    <rect key="frame" x="0.0" y="66" width="800" height="1182"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view hidden="YES" alpha="0.80000000000000004" tag="16" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-ml-8RY" userLabel="pausedByRemoteView">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="17" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waiting_time.png" translatesAutoresizingMaskIntoConstraints="NO" id="DH6-pH-W9j" userLabel="pausedImage">
-                                            <rect key="frame" x="221" y="308" width="375" height="71"/>
+                                            <rect key="frame" x="218" y="297" width="378" height="73"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="18" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are paused by remote" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OgZ-xf-k7s" userLabel="pausedLabel">
-                                            <rect key="frame" x="221" y="413" width="375" height="100"/>
+                                            <rect key="frame" x="218" y="400" width="378" height="101"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -214,38 +259,107 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
-                                <button opaque="NO" tag="19" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7f5-7T-fV3" userLabel="callPauseButton" customClass="UIPauseButton">
-                                    <rect key="frame" x="672" y="915" width="52" height="52"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Pause"/>
-                                    <state key="normal" image="pause_big_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="pause_big_disabled.png"/>
-                                    <state key="selected" image="pause_big_over_selected.png"/>
-                                    <state key="highlighted" image="pause_big_over_selected.png"/>
-                                </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npP-vy-Re7" userLabel="recordButtonOnView">
-                                    <rect key="frame" x="100" y="915" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <state key="normal" image="recording.png"/>
-                                    <connections>
-                                        <action selector="onRecordOnViewClick:" destination="-1" eventType="touchUpInside" id="mDP-eZ-CF4"/>
-                                    </connections>
-                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nv-7N-aTj" userLabel="centerBar">
+                                    <rect key="frame" x="32" y="495" width="736" height="100"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="rsg-ts-iiQ">
+                                            <rect key="frame" x="188" y="0.0" width="360" height="100"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7f5-7T-fV3" userLabel="callPauseButton" customClass="UIPauseButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Pause"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="7f5-7T-fV3" secondAttribute="height" multiplier="1:1" id="ivg-cY-Ruf"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                    <state key="normal" image="nethcti_pause.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" tag="45" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reb-7F-UDV" userLabel="optionsAddButton">
+                                                    <rect key="frame" x="130" y="0.0" width="100" height="100"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Add call"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="reb-7F-UDV" secondAttribute="height" multiplier="1:1" id="ZmE-uZ-X44"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <state key="normal" image="nethcti_add_call.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="disabled" image="options_add_call_disabled.png">
+                                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                                    <connections>
+                                                        <action selector="onOptionsAddClick:" destination="-1" eventType="touchUpInside" id="diW-wF-VRO"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="46" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0k-bn-1bs" userLabel="optionsTransferButton">
+                                                    <rect key="frame" x="260" y="0.0" width="100" height="100"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Transfer call"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="S0k-bn-1bs" secondAttribute="height" multiplier="1:1" id="H9h-aY-2co"/>
+                                                        <constraint firstAttribute="height" constant="100" id="cTy-hG-IX4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <state key="normal" image="nethcti_transfer_call.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="disabled" image="options_transfer_call_disabled.png">
+                                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                                    <connections>
+                                                        <action selector="onOptionsTransferClick:" destination="-1" eventType="touchUpInside" id="lJX-ud-MuS"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="7f5-7T-fV3" secondAttribute="bottom" id="Jci-K4-UVG"/>
+                                                <constraint firstItem="reb-7F-UDV" firstAttribute="top" secondItem="rsg-ts-iiQ" secondAttribute="top" id="RE3-t9-17b"/>
+                                                <constraint firstAttribute="bottom" secondItem="S0k-bn-1bs" secondAttribute="bottom" id="big-SU-lQJ"/>
+                                                <constraint firstItem="S0k-bn-1bs" firstAttribute="top" secondItem="rsg-ts-iiQ" secondAttribute="top" id="fHs-JK-n6b"/>
+                                                <constraint firstItem="7f5-7T-fV3" firstAttribute="top" secondItem="rsg-ts-iiQ" secondAttribute="top" id="tLm-Kr-9oL"/>
+                                                <constraint firstAttribute="bottom" secondItem="reb-7F-UDV" secondAttribute="bottom" id="w37-xo-h07"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="rsg-ts-iiQ" firstAttribute="centerX" secondItem="2Nv-7N-aTj" secondAttribute="centerX" id="EA6-vX-GXe"/>
+                                        <constraint firstAttribute="bottom" secondItem="rsg-ts-iiQ" secondAttribute="bottom" id="aVQ-Di-ZHU"/>
+                                        <constraint firstAttribute="height" constant="100" id="kc3-0J-Hr7"/>
+                                        <constraint firstItem="rsg-ts-iiQ" firstAttribute="top" secondItem="2Nv-7N-aTj" secondAttribute="top" id="pMq-tk-xrd"/>
+                                    </constraints>
+                                </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="0MR-ml-8RY" secondAttribute="bottom" id="09P-1U-6bL"/>
+                                <constraint firstItem="0MR-ml-8RY" firstAttribute="leading" secondItem="9" secondAttribute="leading" id="48r-Ne-Nkh"/>
+                                <constraint firstAttribute="bottom" secondItem="126" secondAttribute="bottom" id="7Fc-gp-JiA"/>
+                                <constraint firstAttribute="trailing" secondItem="126" secondAttribute="trailing" id="Cel-Wr-TvF"/>
+                                <constraint firstItem="126" firstAttribute="top" secondItem="9" secondAttribute="top" id="Pb2-ZT-fi7"/>
+                                <constraint firstAttribute="trailing" secondItem="0MR-ml-8RY" secondAttribute="trailing" id="RKV-OP-bva"/>
+                                <constraint firstAttribute="trailing" secondItem="2Nv-7N-aTj" secondAttribute="trailing" constant="32" id="Tzc-Mh-VnP"/>
+                                <constraint firstItem="2Nv-7N-aTj" firstAttribute="top" secondItem="5c7-9k-bmA" secondAttribute="bottom" constant="32" id="cyY-Rf-o9N"/>
+                                <constraint firstItem="0MR-ml-8RY" firstAttribute="top" secondItem="9" secondAttribute="top" id="e7p-gl-e7f"/>
+                                <constraint firstItem="5c7-9k-bmA" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="32" id="lu7-VS-8VO"/>
+                                <constraint firstItem="126" firstAttribute="leading" secondItem="9" secondAttribute="leading" id="oAF-Sh-FJ6"/>
+                                <constraint firstAttribute="trailing" secondItem="5c7-9k-bmA" secondAttribute="trailing" constant="32" id="oZX-kF-OIP"/>
+                                <constraint firstItem="2Nv-7N-aTj" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="32" id="ppJ-69-DAV"/>
+                                <constraint firstItem="5c7-9k-bmA" firstAttribute="top" secondItem="9" secondAttribute="top" constant="32" id="tCU-ug-qCa"/>
+                            </constraints>
                         </view>
-                        <view hidden="YES" tag="20" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-q2-eR2" userLabel="noActiveCallView">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="1185"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view hidden="YES" tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-q2-eR2" userLabel="noActiveCallView">
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waiting_time.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-gc-9XK" userLabel="pausedImage">
-                                    <rect key="frame" x="221" y="520" width="375" height="71"/>
+                                    <rect key="frame" x="221" y="504" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="22" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No active call" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="b5q-sb-qbU" userLabel="pausedLabel">
-                                    <rect key="frame" x="221" y="656" width="375" height="100"/>
+                                    <rect key="frame" x="221" y="635" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -254,230 +368,317 @@
                             </subviews>
                             <color key="backgroundColor" red="0.20521381497383118" green="0.20520767569541931" blue="0.20521116256713867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <tableView clipsSubviews="YES" tag="23" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="106" userLabel="pausedCallsTableView">
-                            <rect key="frame" x="0.0" y="1135" width="400" height="50"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <tableView clipsSubviews="YES" tag="23" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="106" userLabel="pausedCallsTableView">
+                            <rect key="frame" x="0.0" y="1020" width="400" height="130"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="130" id="1XU-I4-Izg"/>
+                            </constraints>
                             <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             <connections>
                                 <outlet property="dataSource" destination="162" id="168"/>
                                 <outlet property="delegate" destination="162" id="169"/>
                             </connections>
                         </tableView>
-                        <view hidden="YES" tag="24" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ukG-i4-YMY" userLabel="numpadView">
-                            <rect key="frame" x="200" y="414" width="400" height="414"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <view hidden="YES" tag="24" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukG-i4-YMY" userLabel="numpadView">
+                            <rect key="frame" x="32" y="32" width="736" height="1118"/>
                             <subviews>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="25" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZ8-m9-B0N" userLabel="1" customClass="UIDigitButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="97"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.40000001000000002" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <accessibility key="accessibilityConfiguration" label="1"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_1_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="numpad_1_over.png"/>
-                                    <state key="highlighted" image="numpad_1_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="26" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6v-Cg-9b8" userLabel="2" customClass="UIDigitButton">
-                                    <rect key="frame" x="134" y="0.0" width="132" height="97"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="2"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_2_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_2_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="27" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2h-PD-GN2" userLabel="3" customClass="UIDigitButton">
-                                    <rect key="frame" x="270" y="0.0" width="130" height="97"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="3"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_3_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_3_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="28" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="653-Vb-YzA" userLabel="4" customClass="UIDigitButton">
-                                    <rect key="frame" x="0.0" y="103" width="128" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="4"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_4_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_4_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="29" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-zK-V7e" userLabel="5" customClass="UIDigitButton">
-                                    <rect key="frame" x="134" y="103" width="132" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_5_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_5_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="30" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fB-uk-rXS" userLabel="6" customClass="UIDigitButton">
-                                    <rect key="frame" x="270" y="103" width="130" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="6"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_6_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_6_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="31" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alZ-Kz-AVL" userLabel="7" customClass="UIDigitButton">
-                                    <rect key="frame" x="0.0" y="207" width="128" height="99"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="7"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_7_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_7_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="32" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRh-kc-UVM" userLabel="8" customClass="UIDigitButton">
-                                    <rect key="frame" x="134" y="207" width="132" height="99"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="8"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_8_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_8_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="33" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-7P-jHK" userLabel="9" customClass="UIDigitButton">
-                                    <rect key="frame" x="270" y="207" width="130" height="99"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="9"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_9_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_9_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="34" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prH-qj-h0v" userLabel="*" customClass="UIDigitButton">
-                                    <rect key="frame" x="0.0" y="310" width="128" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Star"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_star_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_star_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="35" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUt-2U-nro" userLabel="0" customClass="UIDigitButton">
-                                    <rect key="frame" x="134" y="310" width="132" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="0"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_0_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_0_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
-                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="36" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DqJ-35-h1Y" userLabel="#" customClass="UIDigitButton">
-                                    <rect key="frame" x="270" y="310" width="130" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Hash"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" image="numpad_hash_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="numpad_hash_over.png" backgroundImage="numpad_over_background.png"/>
-                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ynI-yj-Ecx">
+                                    <rect key="frame" x="73.5" y="112" width="589" height="894"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="JRK-He-xek">
+                                            <rect key="frame" x="0.0" y="0.0" width="589" height="154.5"/>
+                                            <subviews>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZ8-m9-B0N" userLabel="1" customClass="UIDigitButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="154.5"/>
+                                                    <color key="backgroundColor" red="0.40000001000000002" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <accessibility key="accessibilityConfiguration" label="1"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qZ8-m9-B0N" secondAttribute="height" multiplier="1:1" id="dht-Xf-ovi"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6v-Cg-9b8" userLabel="2" customClass="UIDigitButton">
+                                                    <rect key="frame" x="217" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="U6v-Cg-9b8" secondAttribute="height" multiplier="1:1" id="nVd-yd-ld7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_2_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2h-PD-GN2" userLabel="3" customClass="UIDigitButton">
+                                                    <rect key="frame" x="434" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="R2h-PD-GN2" secondAttribute="height" multiplier="1:1" id="4W9-kn-qJX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_3_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="tfu-ud-5MP">
+                                            <rect key="frame" x="0.0" y="246.5" width="589" height="154.5"/>
+                                            <subviews>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="28" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="653-Vb-YzA" userLabel="4" customClass="UIDigitButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="4"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="653-Vb-YzA" secondAttribute="height" multiplier="1:1" id="MSa-04-BTV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="29" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-zK-V7e" userLabel="5" customClass="UIDigitButton">
+                                                    <rect key="frame" x="217" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="8Da-zK-V7e" secondAttribute="height" multiplier="1:1" id="KL1-ap-tDI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_5_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fB-uk-rXS" userLabel="6" customClass="UIDigitButton">
+                                                    <rect key="frame" x="434" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="6"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="0fB-uk-rXS" secondAttribute="height" multiplier="1:1" id="jTk-8N-Tc7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_6_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="0BD-lF-MM8">
+                                            <rect key="frame" x="0.0" y="493" width="589" height="154.5"/>
+                                            <subviews>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="31" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alZ-Kz-AVL" userLabel="7" customClass="UIDigitButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="7"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="alZ-Kz-AVL" secondAttribute="height" multiplier="1:1" id="bCP-qQ-TrS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_7_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="32" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRh-kc-UVM" userLabel="8" customClass="UIDigitButton">
+                                                    <rect key="frame" x="217" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="8"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="DRh-kc-UVM" secondAttribute="height" multiplier="1:1" id="lXV-Em-TlO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_8_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="33" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-7P-jHK" userLabel="9" customClass="UIDigitButton">
+                                                    <rect key="frame" x="434" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="9"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="b8R-7P-jHK" secondAttribute="height" multiplier="1:1" id="CSg-l9-E5T"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_9_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="UTA-oF-V4v">
+                                            <rect key="frame" x="0.0" y="739.5" width="589" height="154.5"/>
+                                            <subviews>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="34" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prH-qj-h0v" userLabel="*" customClass="UIDigitButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Star"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="prH-qj-h0v" secondAttribute="height" multiplier="1:1" id="rSL-it-JMw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_star_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="35" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUt-2U-nro" userLabel="0" customClass="UIDigitButton">
+                                                    <rect key="frame" x="217" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="0"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="CUt-2U-nro" secondAttribute="height" multiplier="1:1" id="KeJ-MC-MXD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_0_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="36" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DqJ-35-h1Y" userLabel="#" customClass="UIDigitButton">
+                                                    <rect key="frame" x="434" y="0.0" width="155" height="154.5"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Hash"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="DqJ-35-h1Y" secondAttribute="height" multiplier="1:1" id="UG5-6h-wzl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="highlighted" image="numpad_hash_over.png" backgroundImage="numpad_over_background.png"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="tfu-ud-5MP" secondAttribute="trailing" id="E0Q-xd-eiZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="0BD-lF-MM8" secondAttribute="trailing" id="GUX-Hz-4wp"/>
+                                        <constraint firstItem="JRK-He-xek" firstAttribute="leading" secondItem="ynI-yj-Ecx" secondAttribute="leading" id="HyY-G8-z0A"/>
+                                        <constraint firstAttribute="trailing" secondItem="JRK-He-xek" secondAttribute="trailing" id="Muc-o2-DGb"/>
+                                        <constraint firstItem="UTA-oF-V4v" firstAttribute="leading" secondItem="ynI-yj-Ecx" secondAttribute="leading" id="Rlz-t2-Fgg"/>
+                                        <constraint firstItem="tfu-ud-5MP" firstAttribute="leading" secondItem="ynI-yj-Ecx" secondAttribute="leading" id="a1P-Ga-czt"/>
+                                        <constraint firstItem="0BD-lF-MM8" firstAttribute="leading" secondItem="ynI-yj-Ecx" secondAttribute="leading" id="qKF-dR-Su8"/>
+                                        <constraint firstAttribute="trailing" secondItem="UTA-oF-V4v" secondAttribute="trailing" id="uDR-FM-qAF"/>
+                                    </constraints>
+                                </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="ynI-yj-Ecx" firstAttribute="centerY" secondItem="ukG-i4-YMY" secondAttribute="centerY" id="2xK-Wt-wau"/>
+                                <constraint firstItem="ynI-yj-Ecx" firstAttribute="height" secondItem="ukG-i4-YMY" secondAttribute="height" multiplier="0.8" id="4xH-Jc-9Mh"/>
+                                <constraint firstItem="ynI-yj-Ecx" firstAttribute="centerX" secondItem="ukG-i4-YMY" secondAttribute="centerX" id="r0L-eG-OAt"/>
+                                <constraint firstItem="ynI-yj-Ecx" firstAttribute="width" secondItem="ukG-i4-YMY" secondAttribute="width" multiplier="0.8" id="zMi-nX-8Qm"/>
+                            </constraints>
                         </view>
-                        <view hidden="YES" tag="37" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcR-Qb-Bst" userLabel="routesView">
-                            <rect key="frame" x="600" y="987" width="100" height="198"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view hidden="YES" tag="37" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcR-Qb-Bst" userLabel="routesView">
+                            <rect key="frame" x="536" y="786" width="100" height="364"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="38" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-n4-WSS" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="198"/>
+                                <imageView userInteractionEnabled="NO" tag="38" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-n4-WSS" userLabel="backgroundColor">
+                                    <rect key="frame" x="1" y="-2" width="101" height="364"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <button opaque="NO" tag="39" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uv-FV-mUL" userLabel="routesBluetoothButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Bluetooth"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="route_bluetooth_default.png">
-                                        <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="route_bluetooth_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="route_bluetooth_selected.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png">
-                                        <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onRoutesBluetoothClick:" destination="-1" eventType="touchUpInside" id="jQt-8b-aEw"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="40" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSA-bD-bCs" userLabel="routesEarpieceButton">
-                                    <rect key="frame" x="0.0" y="66" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Receiver"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="route_earpiece_default.png">
-                                        <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="route_earpiece_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="route_earpiece_selected.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png">
-                                        <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onRoutesEarpieceClick:" destination="-1" eventType="touchUpInside" id="RqY-KM-K7M"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-SC-yzb" userLabel="routesSpeakerButton" customClass="UISpeakerButton">
-                                    <rect key="frame" x="0.0" y="132" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Speaker"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="route_speaker_default.png">
-                                        <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="route_speaker_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="selected" image="route_speaker_selected.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png">
-                                        <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="onRoutesSpeakerClick:" destination="-1" eventType="touchUpInside" id="BPD-uO-J2t"/>
-                                    </connections>
-                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="0zo-aa-Jwl">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="364"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="39" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uv-FV-mUL" userLabel="routesBluetoothButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <accessibility key="accessibilityConfiguration" label="Bluetooth"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="ZY7-CX-zSX"/>
+                                                <constraint firstAttribute="width" secondItem="6uv-FV-mUL" secondAttribute="height" multiplier="1:1" id="w72-RM-e4G"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_bluetooth.png" backgroundImage="nethcti_grey_circle.png">
+                                                <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="route_bluetooth_disabled.png">
+                                                <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onRoutesBluetoothClick:" destination="-1" eventType="touchUpInside" id="jQt-8b-aEw"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="40" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSA-bD-bCs" userLabel="routesEarpieceButton">
+                                            <rect key="frame" x="0.0" y="132" width="100" height="100"/>
+                                            <accessibility key="accessibilityConfiguration" label="Receiver"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="4T0-EG-3CW"/>
+                                                <constraint firstAttribute="width" secondItem="jSA-bD-bCs" secondAttribute="height" multiplier="1:1" id="rhY-da-bPi"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_grey_phone.png" backgroundImage="nethcti_grey_circle.png">
+                                                <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="route_earpiece_disabled.png">
+                                                <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="selected" image="route_earpiece_selected.png"/>
+                                            <state key="highlighted" backgroundImage="color_E.png">
+                                                <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onRoutesEarpieceClick:" destination="-1" eventType="touchUpInside" id="RqY-KM-K7M"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="41" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-SC-yzb" userLabel="routesSpeakerButton" customClass="UISpeakerButton">
+                                            <rect key="frame" x="0.0" y="264" width="100" height="100"/>
+                                            <accessibility key="accessibilityConfiguration" label="Speaker"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="go9-SC-yzb" secondAttribute="height" multiplier="1:1" id="EqD-vi-f3h"/>
+                                                <constraint firstAttribute="height" constant="100" id="Lwv-8m-yAp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
+                                                <color key="titleColor" red="0.19582480192184448" green="0.21824681758880615" blue="0.24259182810783386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="disabled" image="route_speaker_disabled.png">
+                                                <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="selected" image="route_speaker_selected.png"/>
+                                            <state key="highlighted" backgroundImage="color_E.png">
+                                                <color key="titleColor" red="0.76000285148620605" green="0.21515019237995148" blue="0.12376989424228668" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onRoutesSpeakerClick:" destination="-1" eventType="touchUpInside" id="BPD-uO-J2t"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="0zo-aa-Jwl" firstAttribute="leading" secondItem="qcR-Qb-Bst" secondAttribute="leading" id="Bnc-n6-Bun"/>
+                                <constraint firstItem="0zo-aa-Jwl" firstAttribute="top" secondItem="qcR-Qb-Bst" secondAttribute="top" id="ZSO-6G-7JX"/>
+                                <constraint firstAttribute="trailing" secondItem="0zo-aa-Jwl" secondAttribute="trailing" id="fPR-g7-Wq4"/>
+                                <constraint firstAttribute="bottom" secondItem="0zo-aa-Jwl" secondAttribute="bottom" id="z85-L9-adJ"/>
+                            </constraints>
                         </view>
-                        <view hidden="YES" tag="42" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHZ-53-Hta" userLabel="optionsView">
-                            <rect key="frame" x="700" y="987" width="100" height="198"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view hidden="YES" tag="42" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHZ-53-Hta" userLabel="optionsView">
+                            <rect key="frame" x="668" y="786" width="100" height="364"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="43" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-wQ-0ml" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="-1" width="100" height="199"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <imageView userInteractionEnabled="NO" tag="43" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-wQ-0ml" userLabel="backgroundColor">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="364"/>
                                 </imageView>
-                                <button hidden="YES" opaque="NO" tag="44" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06a-kv-hpZ" userLabel="optionConferenceButton" customClass="UIIconButton">
-                                    <rect key="frame" x="0.0" y="-66" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <button hidden="YES" opaque="NO" tag="44" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06a-kv-hpZ" userLabel="optionConferenceButton" customClass="UIIconButton">
+                                    <rect key="frame" x="0.0" y="-132" width="100" height="100"/>
                                     <accessibility key="accessibilityConfiguration" label="Start conference"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="PPb-WC-MRs"/>
+                                        <constraint firstAttribute="width" secondItem="06a-kv-hpZ" secondAttribute="height" multiplier="1:1" id="meS-ia-nfK"/>
+                                    </constraints>
                                     <state key="normal" image="options_start_conference_default.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
@@ -487,66 +688,185 @@
                                         <action selector="onOptionsConferenceClick:" destination="-1" eventType="touchUpInside" id="bQP-ga-R2R"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="45" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reb-7F-UDV" userLabel="optionsAddButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Add call"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <state key="normal" image="options_add_call_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="options_add_call_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
-                                    <connections>
-                                        <action selector="onOptionsAddClick:" destination="-1" eventType="touchUpInside" id="diW-wF-VRO"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="46" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0k-bn-1bs" userLabel="optionsTransferButton">
-                                    <rect key="frame" x="0.0" y="66" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Transfer call"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <state key="normal" image="options_transfer_call_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="options_transfer_call_disabled.png">
-                                        <color key="titleColor" red="0.58667385578155518" green="0.64151597023010254" blue="0.69586050510406494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
-                                    <connections>
-                                        <action selector="onOptionsTransferClick:" destination="-1" eventType="touchUpInside" id="lJX-ud-MuS"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="44" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyQ-xR-3rj" userLabel="recordButton" customClass="UIIconButton">
-                                    <rect key="frame" x="0.0" y="132" width="100" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Start conference"/>
-                                    <state key="normal" image="rec_on_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="options_start_conference_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
-                                    <connections>
-                                        <action selector="onRecordClick:" destination="-1" eventType="touchUpInside" id="zvp-e5-Tky"/>
-                                    </connections>
-                                </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="WcD-wQ-0ml" firstAttribute="top" secondItem="06a-kv-hpZ" secondAttribute="bottom" constant="32" id="1Bg-hw-E1O"/>
+                                <constraint firstAttribute="trailing" secondItem="06a-kv-hpZ" secondAttribute="trailing" id="5lH-y6-2Fw"/>
+                                <constraint firstItem="WcD-wQ-0ml" firstAttribute="top" secondItem="sHZ-53-Hta" secondAttribute="top" id="GNr-fa-NxA"/>
+                                <constraint firstAttribute="trailing" secondItem="WcD-wQ-0ml" secondAttribute="trailing" id="K2d-Dg-R9v"/>
+                                <constraint firstItem="WcD-wQ-0ml" firstAttribute="leading" secondItem="sHZ-53-Hta" secondAttribute="leading" id="Vot-Wa-w7o"/>
+                                <constraint firstAttribute="bottom" secondItem="WcD-wQ-0ml" secondAttribute="bottom" id="d9N-Au-hmP"/>
+                                <constraint firstItem="06a-kv-hpZ" firstAttribute="leading" secondItem="sHZ-53-Hta" secondAttribute="leading" id="tfH-zW-K5F"/>
+                            </constraints>
                         </view>
-                        <view tag="47" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mga-O5-mUn" userLabel="bottomBar">
-                            <rect key="frame" x="0.0" y="1185" width="800" height="63"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npP-vy-Re7" userLabel="recordButtonOnView">
+                            <rect key="frame" x="8888" y="653" width="34" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="npP-vy-Re7" secondAttribute="height" multiplier="1:1" id="MKb-Dj-3v3"/>
+                            </constraints>
+                        </button>
+                        <view tag="47" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mga-O5-mUn" userLabel="bottomBar">
+                            <rect key="frame" x="8" y="1182" width="784" height="100"/>
                             <subviews>
-                                <view tag="56" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8q9-3P-Fz0" userLabel="lowerBar">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="63"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <view tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-ek-VgL" userLabel="higherBar">
+                                    <rect key="frame" x="329.5" y="8" width="446.5" height="84"/>
                                     <subviews>
-                                        <button opaque="NO" tag="57" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRu-dB-r3e" userLabel="numpadButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <imageView userInteractionEnabled="NO" tag="49" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-AK-YsQ" userLabel="backgroundColor">
+                                            <rect key="frame" x="0.0" y="0.0" width="446.5" height="84"/>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Ljk-dj-hb2">
+                                            <rect key="frame" x="0.0" y="0.0" width="446.5" height="84"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfe-uR-JoC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                    <subviews>
+                                                        <button opaque="NO" tag="50" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDb-mD-sWV" userLabel="videoButton" customClass="UIVideoButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Video"/>
+                                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                            <state key="normal" image="nethcti_cam.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <outlet property="waitView" destination="HIj-5b-rGP" id="wfm-ep-9QC"/>
+                                                            </connections>
+                                                        </button>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" tag="51" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HIj-5b-rGP" userLabel="videoWaitView">
+                                                            <rect key="frame" x="23.5" y="23.5" width="37" height="37"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="lfe-uR-JoC" secondAttribute="height" multiplier="1:1" id="Dym-FY-K7G"/>
+                                                        <constraint firstAttribute="trailing" secondItem="HDb-mD-sWV" secondAttribute="trailing" id="IiF-ND-eWT"/>
+                                                        <constraint firstItem="HDb-mD-sWV" firstAttribute="top" secondItem="lfe-uR-JoC" secondAttribute="top" id="Mlc-8s-DG6"/>
+                                                        <constraint firstItem="HIj-5b-rGP" firstAttribute="centerX" secondItem="lfe-uR-JoC" secondAttribute="centerX" id="N0p-gR-P8M"/>
+                                                        <constraint firstItem="HIj-5b-rGP" firstAttribute="centerY" secondItem="lfe-uR-JoC" secondAttribute="centerY" id="djs-10-rL1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="HDb-mD-sWV" secondAttribute="bottom" id="nm1-og-oZp"/>
+                                                        <constraint firstItem="HDb-mD-sWV" firstAttribute="leading" secondItem="lfe-uR-JoC" secondAttribute="leading" id="z19-jI-7WR"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" tag="52" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRH-Ao-h65" userLabel="microButton" customClass="UIMutedMicroButton">
+                                                    <rect key="frame" x="121" y="0.0" width="84" height="84"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Micro"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="pRH-Ao-h65" secondAttribute="height" multiplier="1:1" id="A1N-h0-Agb"/>
+                                                    </constraints>
+                                                    <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" image="nethcti_microphone.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="disabled" image="nethcti_microphone_disabled.png" backgroundImage="nethcti_blue_circle.png"/>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTa-Hi-0Lm">
+                                                    <rect key="frame" x="241.5" y="0.0" width="84" height="84"/>
+                                                    <subviews>
+                                                        <button opaque="NO" tag="53" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5S-kV-7Kv" userLabel="speakerButton" customClass="UISpeakerButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Speaker"/>
+                                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="disabled" image="speaker_disabled.png"/>
+                                                        </button>
+                                                        <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-5y-kTy" userLabel="routesButton" customClass="UIToggleButton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Route"/>
+                                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" image="nethcti_bt_speaker.png" backgroundImage="nethcti_grey_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="disabled" image="routes_disabled.png"/>
+                                                            <state key="selected" image="routes_selected.png"/>
+                                                            <state key="highlighted" backgroundImage="color_E.png"/>
+                                                            <connections>
+                                                                <action selector="onRoutesClick:" destination="-1" eventType="touchUpInside" id="h2V-qf-kgC"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="F5S-kV-7Kv" firstAttribute="leading" secondItem="qTa-Hi-0Lm" secondAttribute="leading" id="CD8-fc-W1Q"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nQp-5y-kTy" secondAttribute="bottom" id="GU8-jE-7gd"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nQp-5y-kTy" secondAttribute="trailing" id="Itq-Pm-ZLH"/>
+                                                        <constraint firstItem="nQp-5y-kTy" firstAttribute="top" secondItem="qTa-Hi-0Lm" secondAttribute="top" id="Qds-tz-B2w"/>
+                                                        <constraint firstAttribute="bottom" secondItem="F5S-kV-7Kv" secondAttribute="bottom" id="Um5-2O-6zX"/>
+                                                        <constraint firstAttribute="trailing" secondItem="F5S-kV-7Kv" secondAttribute="trailing" id="cAB-yA-kut"/>
+                                                        <constraint firstItem="F5S-kV-7Kv" firstAttribute="top" secondItem="qTa-Hi-0Lm" secondAttribute="top" id="gqS-JL-fGJ"/>
+                                                        <constraint firstAttribute="width" secondItem="qTa-Hi-0Lm" secondAttribute="height" multiplier="1:1" id="x4B-KF-TsY"/>
+                                                        <constraint firstItem="nQp-5y-kTy" firstAttribute="leading" secondItem="qTa-Hi-0Lm" secondAttribute="leading" id="zUp-II-puq"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" tag="44" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyQ-xR-3rj" userLabel="recordButton" customClass="UIIconButton">
+                                                    <rect key="frame" x="362.5" y="0.0" width="84" height="84"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Start conference"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="hyQ-xR-3rj" secondAttribute="height" multiplier="1:1" id="NZD-X8-Q0u"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                    <state key="normal" image="nethcti_record.png" backgroundImage="nethcti_grey_circle.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="selected" backgroundImage="nethcti_blue_circle.png"/>
+                                                    <connections>
+                                                        <action selector="onRecordClick:" destination="-1" eventType="touchUpInside" id="zvp-e5-Tky"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pRH-Ao-h65" firstAttribute="top" secondItem="Ljk-dj-hb2" secondAttribute="top" id="LQF-AB-dWR"/>
+                                                <constraint firstAttribute="bottom" secondItem="qTa-Hi-0Lm" secondAttribute="bottom" id="d1w-pQ-U79"/>
+                                                <constraint firstItem="qTa-Hi-0Lm" firstAttribute="top" secondItem="Ljk-dj-hb2" secondAttribute="top" id="eMK-oD-0WV"/>
+                                                <constraint firstItem="hyQ-xR-3rj" firstAttribute="top" secondItem="Ljk-dj-hb2" secondAttribute="top" id="i6S-Qu-09y"/>
+                                                <constraint firstAttribute="bottom" secondItem="pRH-Ao-h65" secondAttribute="bottom" id="lm6-g9-m87"/>
+                                                <constraint firstAttribute="bottom" secondItem="hyQ-xR-3rj" secondAttribute="bottom" id="m5x-xC-Zcs"/>
+                                                <constraint firstItem="lfe-uR-JoC" firstAttribute="top" secondItem="Ljk-dj-hb2" secondAttribute="top" id="xo6-lQ-jMG"/>
+                                                <constraint firstAttribute="bottom" secondItem="lfe-uR-JoC" secondAttribute="bottom" id="yKL-a4-15I"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ljk-dj-hb2" firstAttribute="top" secondItem="OIH-ek-VgL" secondAttribute="top" id="123-1Z-lxS"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zhw-AK-YsQ" secondAttribute="trailing" id="1IB-bO-P7A"/>
+                                        <constraint firstItem="Zhw-AK-YsQ" firstAttribute="leading" secondItem="OIH-ek-VgL" secondAttribute="leading" id="3NJ-7R-X5Y"/>
+                                        <constraint firstItem="Zhw-AK-YsQ" firstAttribute="top" secondItem="OIH-ek-VgL" secondAttribute="top" id="S2b-Wr-zPv"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ljk-dj-hb2" secondAttribute="trailing" id="ha2-fh-2UU"/>
+                                        <constraint firstAttribute="bottom" secondItem="Zhw-AK-YsQ" secondAttribute="bottom" id="jnl-Ma-UFM"/>
+                                        <constraint firstItem="Ljk-dj-hb2" firstAttribute="leading" secondItem="OIH-ek-VgL" secondAttribute="leading" id="mO7-uo-ZBa"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ljk-dj-hb2" secondAttribute="bottom" id="qbf-mU-YSJ"/>
+                                    </constraints>
+                                </view>
+                                <button hidden="YES" opaque="NO" tag="55" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-MI-pUL" userLabel="optionsButton" customClass="UIToggleButton">
+                                    <rect key="frame" x="888" y="8" width="84" height="84"/>
+                                    <accessibility key="accessibilityConfiguration" label="Options"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="8Zx-MI-pUL" secondAttribute="height" multiplier="1:1" id="RgR-md-y9P"/>
+                                    </constraints>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" image="options_default.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <state key="disabled" image="options_disabled.png"/>
+                                    <state key="selected" image="options_selected.png"/>
+                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                    <connections>
+                                        <action selector="onOptionsClick:" destination="-1" eventType="touchUpInside" id="KZw-2M-V7E"/>
+                                    </connections>
+                                </button>
+                                <view tag="56" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q9-3P-Fz0" userLabel="lowerBar">
+                                    <rect key="frame" x="8" y="8" width="313.5" height="84"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="57" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRu-dB-r3e" userLabel="numpadButton" customClass="UIToggleButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                                             <accessibility key="accessibilityConfiguration" label="Back"/>
-                                            <state key="normal" image="footer_dialer_default.png" backgroundImage="color_C.png">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="SRu-dB-r3e" secondAttribute="height" multiplier="1:1" id="1Px-hR-Vlv"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <state key="normal" image="dialpad.png" backgroundImage="nethcti_grey_circle.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="disabled" image="footer_dialer_disabled.png"/>
@@ -556,104 +876,95 @@
                                                 <action selector="onNumpadClick:" destination="-1" eventType="touchUpInside" id="pFD-jh-GhK"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="58" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpw-A4-BZO" userLabel="hangupButton" customClass="UIHangUpButton">
-                                            <rect key="frame" x="100" y="0.0" width="300" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Hangup"/>
-                                            <state key="normal" image="call_hangup_default.png" backgroundImage="color_D.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" backgroundImage="color_I.png"/>
-                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zev-Nb-p2C">
+                                            <rect key="frame" x="84" y="0.0" width="229.5" height="84"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="58" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpw-A4-BZO" userLabel="hangupButton" customClass="UIHangUpButton">
+                                                    <rect key="frame" x="73" y="0.0" width="84" height="84"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Hangup"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Xpw-A4-BZO" secondAttribute="height" multiplier="1:1" id="SHC-P2-dMn"/>
+                                                    </constraints>
+                                                    <state key="normal" image="nethcti_close_button.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Xpw-A4-BZO" secondAttribute="bottom" id="8hX-2t-mBE"/>
+                                                <constraint firstItem="Xpw-A4-BZO" firstAttribute="centerX" secondItem="zev-Nb-p2C" secondAttribute="centerX" id="A3X-yg-luI"/>
+                                                <constraint firstItem="Xpw-A4-BZO" firstAttribute="top" secondItem="zev-Nb-p2C" secondAttribute="top" id="nQx-0c-2yp"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
-                                </view>
-                                <view tag="48" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-ek-VgL" userLabel="higherBar">
-                                    <rect key="frame" x="400" y="0.0" width="400" height="63"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="49" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-AK-YsQ" userLabel="backgroundColor">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="66"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <button opaque="NO" tag="50" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDb-mD-sWV" userLabel="videoButton" customClass="UIVideoButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Video"/>
-                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="camera_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="camera_disabled.png"/>
-                                            <state key="selected" image="camera_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                            <connections>
-                                                <outlet property="waitView" destination="HIj-5b-rGP" id="wfm-ep-9QC"/>
-                                            </connections>
-                                        </button>
-                                        <activityIndicatorView hidden="YES" opaque="NO" tag="51" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HIj-5b-rGP" userLabel="videoWaitView">
-                                            <rect key="frame" x="31" y="15" width="37" height="37"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </activityIndicatorView>
-                                        <button opaque="NO" tag="52" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRH-Ao-h65" userLabel="microButton" customClass="UIMutedMicroButton">
-                                            <rect key="frame" x="100" y="0.0" width="100" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Micro"/>
-                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="micro_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="micro_disabled.png"/>
-                                            <state key="selected" image="micro_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                        </button>
-                                        <button opaque="NO" tag="53" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5S-kV-7Kv" userLabel="speakerButton" customClass="UISpeakerButton">
-                                            <rect key="frame" x="200" y="0.0" width="100" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Speaker"/>
-                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="speaker_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="speaker_disabled.png"/>
-                                            <state key="selected" image="speaker_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-5y-kTy" userLabel="routesButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="200" y="0.0" width="100" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Route"/>
-                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="routes_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="routes_disabled.png"/>
-                                            <state key="selected" image="routes_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                            <connections>
-                                                <action selector="onRoutesClick:" destination="-1" eventType="touchUpInside" id="h2V-qf-kgC"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" tag="55" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-MI-pUL" userLabel="optionsButton" customClass="UIToggleButton">
-                                            <rect key="frame" x="300" y="0.0" width="100" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Options"/>
-                                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="options_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="options_disabled.png"/>
-                                            <state key="selected" image="options_selected.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                            <connections>
-                                                <action selector="onOptionsClick:" destination="-1" eventType="touchUpInside" id="KZw-2M-V7E"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SRu-dB-r3e" firstAttribute="top" secondItem="8q9-3P-Fz0" secondAttribute="top" id="Iej-T5-yYc"/>
+                                        <constraint firstAttribute="trailing" secondItem="zev-Nb-p2C" secondAttribute="trailing" id="itj-uU-7Nu"/>
+                                        <constraint firstItem="SRu-dB-r3e" firstAttribute="leading" secondItem="8q9-3P-Fz0" secondAttribute="leading" id="nrr-gw-zJ6"/>
+                                        <constraint firstItem="zev-Nb-p2C" firstAttribute="top" secondItem="8q9-3P-Fz0" secondAttribute="top" id="nzf-tl-NIK"/>
+                                        <constraint firstAttribute="bottom" secondItem="SRu-dB-r3e" secondAttribute="bottom" id="ubE-sj-Wzm"/>
+                                        <constraint firstItem="zev-Nb-p2C" firstAttribute="leading" secondItem="SRu-dB-r3e" secondAttribute="trailing" id="v2t-pm-pyt"/>
+                                        <constraint firstAttribute="bottom" secondItem="zev-Nb-p2C" secondAttribute="bottom" id="yeK-ck-pgd"/>
+                                    </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="8q9-3P-Fz0" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="8" id="4Wr-ry-wA7"/>
+                                <constraint firstAttribute="height" constant="100" id="7Zp-bO-PUB"/>
+                                <constraint firstAttribute="bottom" secondItem="8q9-3P-Fz0" secondAttribute="bottom" constant="8" id="9y7-TK-aO6"/>
+                                <constraint firstItem="8q9-3P-Fz0" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" constant="8" id="C3t-Re-qgY"/>
+                                <constraint firstItem="8Zx-MI-pUL" firstAttribute="bottom" secondItem="OIH-ek-VgL" secondAttribute="bottom" id="CGS-wM-eMr"/>
+                                <constraint firstAttribute="trailing" secondItem="OIH-ek-VgL" secondAttribute="trailing" constant="8" id="GWa-of-Q5S"/>
+                                <constraint firstItem="OIH-ek-VgL" firstAttribute="leading" secondItem="8q9-3P-Fz0" secondAttribute="trailing" constant="8" id="Jm9-5f-SHJ"/>
+                                <constraint firstItem="8q9-3P-Fz0" firstAttribute="width" secondItem="mga-O5-mUn" secondAttribute="width" multiplier="0.4" id="bp2-GA-Fu0"/>
+                                <constraint firstItem="8Zx-MI-pUL" firstAttribute="top" secondItem="OIH-ek-VgL" secondAttribute="top" id="d6u-nR-mnR"/>
+                                <constraint firstAttribute="bottom" secondItem="OIH-ek-VgL" secondAttribute="bottom" constant="8" id="geW-dQ-gIe"/>
+                                <constraint firstItem="OIH-ek-VgL" firstAttribute="top" secondItem="mga-O5-mUn" secondAttribute="top" constant="8" id="jHS-Ka-5vE"/>
+                                <constraint firstItem="8Zx-MI-pUL" firstAttribute="leading" secondItem="mga-O5-mUn" secondAttribute="leading" constant="888" id="o7h-q4-GTi"/>
+                            </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="sHZ-53-Hta" firstAttribute="top" secondItem="qcR-Qb-Bst" secondAttribute="top" id="23T-Va-nl4"/>
+                        <constraint firstAttribute="bottom" secondItem="mga-O5-mUn" secondAttribute="bottom" constant="8" id="3Ue-Ve-BFQ"/>
+                        <constraint firstItem="DqJ-35-h1Y" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="5wK-hM-ixx"/>
+                        <constraint firstItem="alZ-Kz-AVL" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="6vc-Zb-blX"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="qcR-Qb-Bst" secondAttribute="bottom" constant="32" id="7hC-6X-GuY"/>
+                        <constraint firstItem="CUt-2U-nro" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="7t8-dd-7LL"/>
+                        <constraint firstItem="106" firstAttribute="top" secondItem="npP-vy-Re7" secondAttribute="bottom" constant="333" id="CMz-fF-3ib"/>
+                        <constraint firstItem="aqL-q2-eR2" firstAttribute="top" secondItem="lzH-M1-NdV" secondAttribute="top" id="DA5-3C-0FF"/>
+                        <constraint firstItem="b8R-7P-jHK" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="Di0-Ml-h4N"/>
+                        <constraint firstItem="aqL-q2-eR2" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" id="Dsb-JT-eqA"/>
+                        <constraint firstAttribute="trailing" secondItem="9" secondAttribute="trailing" id="DuT-Ze-R7q"/>
+                        <constraint firstItem="9" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" id="Flq-6r-NRs"/>
+                        <constraint firstAttribute="trailing" secondItem="mga-O5-mUn" secondAttribute="trailing" constant="8" id="Ha0-zn-hbZ"/>
+                        <constraint firstItem="ukG-i4-YMY" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" constant="32" id="ILG-cX-l5h"/>
+                        <constraint firstItem="qZ8-m9-B0N" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="K4G-Qs-Yzb"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="aqL-q2-eR2" secondAttribute="bottom" constant="32" id="Kmx-fu-ROn"/>
+                        <constraint firstItem="ukG-i4-YMY" firstAttribute="top" secondItem="lzH-M1-NdV" secondAttribute="top" constant="32" id="Lcg-7l-cEd"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" constant="8" id="LfB-mV-dOc"/>
+                        <constraint firstItem="R2h-PD-GN2" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="O8b-q7-pSR"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="32" id="Pmh-7v-oSx"/>
+                        <constraint firstItem="U6v-Cg-9b8" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="QHd-uo-e6W"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="sHZ-53-Hta" secondAttribute="bottom" constant="32" id="QdM-1l-VDg"/>
+                        <constraint firstItem="8Da-zK-V7e" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="ShG-OL-63B"/>
+                        <constraint firstAttribute="trailing" secondItem="sHZ-53-Hta" secondAttribute="trailing" constant="32" id="UIm-Ld-a5l"/>
+                        <constraint firstItem="prH-qj-h0v" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="a6i-5w-HM9"/>
+                        <constraint firstItem="106" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" id="ayz-Uw-U0X"/>
+                        <constraint firstItem="0fB-uk-rXS" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="fkk-NV-xoa"/>
+                        <constraint firstItem="653-Vb-YzA" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="hsb-J7-hr4"/>
+                        <constraint firstItem="DRh-kc-UVM" firstAttribute="height" secondItem="lzH-M1-NdV" secondAttribute="height" multiplier="0.12" id="i3z-Tf-Ufe"/>
+                        <constraint firstItem="106" firstAttribute="width" secondItem="lzH-M1-NdV" secondAttribute="width" multiplier="0.5" id="khd-MP-3Iz"/>
+                        <constraint firstItem="sHZ-53-Hta" firstAttribute="leading" secondItem="qcR-Qb-Bst" secondAttribute="trailing" constant="32" id="krc-Co-524"/>
+                        <constraint firstAttribute="trailing" secondItem="ukG-i4-YMY" secondAttribute="trailing" constant="32" id="lOk-7a-vYV"/>
+                        <constraint firstAttribute="trailing" secondItem="aqL-q2-eR2" secondAttribute="trailing" id="pSn-dk-wfw"/>
+                        <constraint firstItem="106" firstAttribute="bottom" secondItem="mga-O5-mUn" secondAttribute="top" constant="-32" id="q3T-SE-wm3"/>
+                        <constraint firstItem="9" firstAttribute="top" secondItem="lzH-M1-NdV" secondAttribute="top" id="qOT-co-PwR"/>
+                        <constraint firstItem="npP-vy-Re7" firstAttribute="leading" secondItem="lzH-M1-NdV" secondAttribute="leading" constant="8888" id="sJs-AH-J9v"/>
+                        <constraint firstItem="mga-O5-mUn" firstAttribute="top" secondItem="ukG-i4-YMY" secondAttribute="bottom" constant="32" id="v6N-GU-Vfc"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1261,11 +1572,40 @@
         <image name="color_F.png" width="2" height="2"/>
         <image name="color_I.png" width="2" height="2"/>
         <image name="dialer_alt_back.png" width="42.400001525878906" height="42.400001525878906"/>
+        <image name="dialpad.png" width="40" height="40"/>
         <image name="footer_dialer_default.png" width="44" height="44"/>
         <image name="footer_dialer_disabled.png" width="44" height="44"/>
         <image name="micro_default.png" width="47.200000762939453" height="60"/>
         <image name="micro_disabled.png" width="47.200000762939453" height="60"/>
         <image name="micro_selected.png" width="47.200000762939453" height="60"/>
+        <image name="nethcti_add_call.png" width="40" height="40"/>
+        <image name="nethcti_avatar_call.png" width="256" height="256"/>
+        <image name="nethcti_blue_circle.png" width="187.5" height="187.5"/>
+        <image name="nethcti_bluetooth.png" width="40" height="40"/>
+        <image name="nethcti_bt_speaker.png" width="40" height="40"/>
+        <image name="nethcti_cam.png" width="40" height="40"/>
+        <image name="nethcti_close_button.png" width="128" height="128"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_grey_phone.png" width="250" height="250"/>
+        <image name="nethcti_microphone.png" width="40" height="40"/>
+        <image name="nethcti_microphone_disabled.png" width="32" height="32"/>
+        <image name="nethcti_numpad_0.png" width="256" height="256"/>
+        <image name="nethcti_numpad_1.png" width="256" height="256"/>
+        <image name="nethcti_numpad_2.png" width="256" height="256"/>
+        <image name="nethcti_numpad_3.png" width="256" height="256"/>
+        <image name="nethcti_numpad_4.png" width="256" height="256"/>
+        <image name="nethcti_numpad_5.png" width="256" height="256"/>
+        <image name="nethcti_numpad_6.png" width="256" height="256"/>
+        <image name="nethcti_numpad_7.png" width="256" height="256"/>
+        <image name="nethcti_numpad_8.png" width="256" height="256"/>
+        <image name="nethcti_numpad_9.png" width="256" height="256"/>
+        <image name="nethcti_numpad_asterisk.png" width="256" height="256"/>
+        <image name="nethcti_numpad_hashtag.png" width="256" height="256"/>
+        <image name="nethcti_pause.png" width="40" height="40"/>
+        <image name="nethcti_record.png" width="40" height="40"/>
+        <image name="nethcti_reverse_camera.png" width="64" height="64"/>
+        <image name="nethcti_transfer_call.png" width="40" height="40"/>
+        <image name="nethcti_volume.png" width="32" height="32"/>
         <image name="numpad_0_default.png" width="84.800003051757812" height="79.199996948242188"/>
         <image name="numpad_0_over.png" width="84.800003051757812" height="79.199996948242188"/>
         <image name="numpad_1_default.png" width="84.800003051757812" height="77.599998474121094"/>
@@ -1321,5 +1661,8 @@
         <image name="speaker_disabled.png" width="44" height="41.599998474121094"/>
         <image name="speaker_selected.png" width="44" height="41.599998474121094"/>
         <image name="waiting_time.png" width="96.800003051757812" height="115.19999694824219"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

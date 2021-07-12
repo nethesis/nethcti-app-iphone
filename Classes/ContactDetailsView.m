@@ -65,7 +65,7 @@
 	}
 
 	LOGI(@"Reset data to contact %p", _contact);
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[_tableController setContact:_contact];
 	_emptyLabel.hidden = YES;
 	_avatarImage.hidden = !_emptyLabel.hidden;
@@ -96,6 +96,8 @@
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
     
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName forImage:_avatarImage];
+    
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
     while (sips) {
@@ -124,10 +126,12 @@
 	_deleteButton.hidden = !_emptyLabel.hidden;
 	_editButton.hidden = !_emptyLabel.hidden;
 
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 	[_tableController setContact:_contact];
 
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
+    
 	if (reload) {
 		[self setEditing:TRUE animated:FALSE];
 	}
@@ -247,14 +251,17 @@
 
 	_tableController.tableView.accessibilityIdentifier = @"Contact table";
 
-	[_editButton setImage:[UIImage imageNamed:@"valid_disabled.png"]
+	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"]
 				 forState:(UIControlStateDisabled | UIControlStateSelected)];
-	
+    [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
 								   initWithTarget:self
 								   action:@selector(dismissKeyboards)];
 	
 	[self.view addGestureRecognizer:tap];
+    [self recomputeContentViewSize];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -283,11 +290,13 @@
 				cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] shouldHideLinphoneImageOfAddress];
 		}
 	}
-	[_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
+	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
+    [_nameInitialLabel setTextColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
-	if (IPAD) {
+	/*
+    if (IPAD) {
 		if (self.contact == NULL || (self.contact.firstName == NULL && self.contact.lastName == NULL)) {
 			if (! self.tableController.isEditing) {
 				_editButton.hidden = TRUE;
@@ -308,7 +317,8 @@
 		_cancelButton.hidden = TRUE;
 	}
     
-    [self recomputeTableViewSize:_editButton.hidden];
+    //[self recomputeTableViewSize:_editButton.hidden];
+    */
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -385,14 +395,20 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_tableController setEditing:editing animated:animated];
 	if (editing) {
 		[_editButton setOn];
+        [_editButton.imageView setTintColor:[UIColor getColorByName:@"Green"]];
 	} else {
 		[_editButton setOff];
+        [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
 	}
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
 	_nameLabel.hidden = editing;
+    _workLabel.hidden = editing;
+    
+    [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
+    
     [self recomputeTableViewSize:editing];
 
 	if (animated) {
@@ -402,9 +418,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)recomputeTableViewSize:(BOOL)editing {
     CGRect frame = _tableController.tableView.frame;
-    frame.origin.y = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
+    frame.origin.y = _avatarContainer.frame.size.height + _avatarContainer.frame.origin.y;
+
     if ([self viewIsCurrentlyPortrait] && !editing) {
-        frame.origin.y += _nameLabel.frame.size.height;
+        //frame.origin.y += _nameLabel.frame.size.height;
+        frame.origin.y += _workLabel.frame.size.height + _workLabel.frame.origin.y;
+    } else {
+        frame.origin.y += 16; // avatar bottom padding to table view;
     }
     
     frame.size.height = _tableController.tableView.contentSize.height;
@@ -604,7 +624,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 	[_contact setAvatar:image];
 
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 }
 
 - (void)imagePickerDelegateVideo:(NSURL*)url info:(NSDictionary *)info {

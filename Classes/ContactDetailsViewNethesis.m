@@ -65,11 +65,11 @@
     }
     
     LOGI(@"Reset data to contact %p", _contact);
-    [_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+    //[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
     [_tableController setContact:_contact];
     _emptyLabel.hidden = YES;
     _avatarImage.hidden = !_emptyLabel.hidden;
-    _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
+    _deleteButton.hidden = TRUE; // !_emptyLabel.hidden; Now is not editable;
     _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable;
 }
 
@@ -95,6 +95,8 @@
     }
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
+    
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName forImage:_avatarImage];
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -122,15 +124,19 @@
     bool emptyContact = (_contact != NULL);
     _emptyLabel.hidden = emptyContact;
 	_avatarImage.hidden = !emptyContact;
-    _deleteButton.hidden = YES; // !emptyContact; Now is not editable.
+    _deleteButton.hidden = TRUE; // !emptyContact; Now is not editable.
     _editButton.hidden = YES; // !emptyContact; Now is not editable.
 
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+    
+    [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
     [_tableController setContact:_contact];
 
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
+    
 	if (reload) {
-		[self setEditing:TRUE animated:FALSE];
+		[self setEditing:TRUE animated:TRUE];
 	}
 }
 
@@ -142,9 +148,8 @@
 		return;
 	}
         @synchronized(LinphoneManager.instance.fastAddressBook) {
-          _tmpContact = [[Contact alloc]
-              initWithCNContact:[LinphoneManager.instance.fastAddressBook
-                                    getCNContactFromContact:acontact]];
+        CNContact *cn = [LinphoneManager.instance.fastAddressBook getCNContactFromContact:acontact];
+        _tmpContact = [[Contact alloc] initWithCNContact:cn];
         }
 }
 
@@ -265,6 +270,7 @@
 								   action:@selector(dismissKeyboards)];
 	
 	[self.view addGestureRecognizer:tap];
+    [self recomputeTableViewSize:_editButton.hidden];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -294,9 +300,11 @@
 		}
 	}
 	[_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
+    [_nameInitialLabel setTextColor:[UIColor getColorByName:@"Grey"]];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
+    /*
 	if (IPAD) {
 		if (self.contact == NULL || (self.contact.firstName == NULL && self.contact.lastName == NULL)) {
 			if (! self.tableController.isEditing) {
@@ -323,6 +331,7 @@
     _editButton.hidden = TRUE;
     
     [self recomputeTableViewSize:_editButton.hidden];
+     */
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -384,7 +393,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[super setEditing:editing animated:animated];
 	if (editing) {
         _editButton.hidden = YES; // FALSE; Now is not editable.
-        _deleteButton.hidden = YES; // FALSE; Now is not editable.
+        _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
 		_avatarImage.hidden = FALSE;
 	} else {
 		_editButton.hidden = TRUE;
@@ -404,9 +413,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 	}
 	_cancelButton.hidden = !editing;
 	_backButton.hidden = editing;
-	_nameLabel.hidden = editing;
+    _nameLabel.hidden = editing;
+    _workLabel.hidden = editing;
+    
+    [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
 
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
+    
     [self recomputeTableViewSize:editing];
 
 	if (animated) {
@@ -498,14 +512,14 @@ static UICompositeViewDescription *compositeDescription = nil;
         if (IPAD) {
           _emptyLabel.hidden = !_isAdding;
           _avatarImage.hidden = !_emptyLabel.hidden;
-            _deleteButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+            _deleteButton.hidden = TRUE; // !_emptyLabel.hidden; Now is not editable.
             _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
         } else {
           if (_isAdding) {
             [PhoneMainView.instance popCurrentView];
           } else {
             _avatarImage.hidden = FALSE;
-              _deleteButton.hidden = YES; // FALSE; Now is not editable.
+              _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
               _editButton.hidden = YES; // FALSE; Now is not editable.
           }
         }
@@ -536,7 +550,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 			_isAdding = FALSE;
 			self.tmpContact = NULL;
 			_avatarImage.hidden = FALSE;
-            _deleteButton.hidden = YES; // FALSE; Now is not editable.
+            _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
             _editButton.hidden = YES; // FALSE; Now is not editable.
 		}else{
 			LOGE(@"====>>>> Duplicated Contacts detected !!!");
@@ -623,7 +637,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 	[_contact setAvatar:image];
 
-	[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
+	//[_avatarImage setImage:[FastAddressBook imageForContact:_contact] bordered:NO withRoundedRadius:YES];
 }
 
 - (void)imagePickerDelegateVideo:(NSURL*)url info:(NSDictionary *)info {

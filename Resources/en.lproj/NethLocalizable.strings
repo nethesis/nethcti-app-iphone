@@ -7,6 +7,20 @@
 */
 
 /*
+ * Others.
+ */
+
+"Cancel" = "Cancel";
+
+"Confirm" = "Confirm";
+
+/*
+ * Assistant Strings.
+ */
+
+"AUTHENTICATE-HEADER-MISSING" = "Bad credentials, please check them and retry.";
+
+/*
  * Phonebook strings.
  */
 
@@ -29,6 +43,9 @@
 /*
  * Contact details.
  */
+
+/* No comment provided by engineer. */
+"Extensions" = "Extensions";
 
 "Company" = "Company";
 

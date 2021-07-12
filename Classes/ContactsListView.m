@@ -130,7 +130,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         [self changeView:ContactsAll];
     
     if([ContactSelection getNameOrEmailFilter])
-        _searchBar.text = [ContactSelection getNameOrEmailFilter];
+        _searchField.text = [ContactSelection getNameOrEmailFilter];
     
     /*if ([tableController totalNumberOfItems] == 0) {
      [self changeView:ContactsAll];
@@ -147,12 +147,23 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.filterPicker.dataSource = self;
     self.filterPicker.delegate = self;
     [self.filterPicker selectRow:[_pickerData indexOfObject:pickerFilter] inComponent:0 animated:NO];
+    
+    UIImage *allContactsImg = [[UIImage imageNamed:@"users.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *sipContactsImg = [[UIImage imageNamed:@"nethcti_users_sip.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    [self.allButton setImage:allContactsImg forState:UIControlStateNormal];
+    [self.linphoneButton setImage:sipContactsImg forState:UIControlStateNormal];
+    
+    bool isSip = [ContactSelection getSipFilter] != nil;
+    [self.allButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"Grey" : @"MainColor"]];
+    [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"MainColor" : @"Grey"]];
+
+    [self.searchBaseline setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // [ContactSelection setNameOrEmailFilter:@""];
-    _searchBar.showsCancelButton = (_searchBar.text.length > 0);
     
     tableViewHeight = tableController.tableView.frame.size.height;
     [self resizeTableView: YES]; // allButton.selected]; Hide picker.
@@ -161,16 +172,14 @@ static UICompositeViewDescription *compositeDescription = nil;
         tableController.editing = NO;
     }
     [self refreshButtons];
-    [_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
+    [_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         self.linphoneButton.hidden = TRUE;
-        self.selectedButtonImage.hidden = TRUE;
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     // Subscribe to Phonebook Permission Rejection Notification.
     // TODO: We can send arguments to selector?
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -220,7 +229,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     // Get original height and change accordly to check value.
     if(check) {
+        /*
         tableRect.origin.y = emptyRect.origin.y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
+         */
         tableRect.size.height = emptyRect.size.height = tableViewHeight;
     } else {
         tableRect.origin.y = emptyRect.origin.y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
@@ -253,7 +264,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     [ContactSelection setPickerFilter:_pickerData[row]];
     NSString *picker = pickerFilter;
-    NSString *search = _searchBar.text;
+    NSString *search = _searchField.text;
     [LinphoneManager.instance.fastAddressBook resetNeth];
     [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
 }
@@ -267,18 +278,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark -
 
 - (void)changeView:(ContactsCategory)view {
-    CGRect frame = _selectedButtonImage.frame;
     // REQUIRED TO RELOAD WITH FILTER.
     [LinphoneManager.instance setContactsUpdated:TRUE];
     if (view == ContactsAll && !allButton.selected) {
         // REQUIRED TO RELOAD WITH FILTER.
         // [LinphoneManager.instance setContactsUpdated:TRUE];
-        frame.origin.x = allButton.frame.origin.x;
         [ContactSelection setSipFilter:nil];
         [ContactSelection enableEmailFilter:FALSE];
         allButton.selected = TRUE;
         linphoneButton.selected = FALSE;
         [tableController loadData];
+        [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
     } else if (view == ContactsLinphone && !linphoneButton.selected) {
         /*
          * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
@@ -289,18 +300,18 @@ static UICompositeViewDescription *compositeDescription = nil;
         if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText]) {
             return;
         };
-        frame.origin.x = linphoneButton.frame.origin.x;
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
         [ContactSelection enableEmailFilter:FALSE];
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
+        [self.allButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
         // [tableController loadData];
     }
     bool sipFilter = [ContactSelection getSipFilter];
     [addButton setHidden:sipFilter];
     [tableController.deleteButton setHidden:sipFilter];
     [tableController.editButton setHidden:sipFilter];
-    _selectedButtonImage.frame = frame;
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         allButton.selected = FALSE;
     }
@@ -368,11 +379,16 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (IBAction)onAllClick:(id)event {
     [self changeView:ContactsAll];
     [self resizeTableView:YES];
+    [self.allButton.imageView setTintColor: [UIColor getColorByName:@"MainColor"]];
+    [self.linphoneButton.imageView setTintColor: [UIColor getColorByName:@"Grey"]];
+
 }
 
 - (IBAction)onLinphoneClick:(id)event {
     [self changeView:ContactsLinphone];
     [self resizeTableView:YES];
+    [self.linphoneButton.imageView setTintColor: [UIColor getColorByName:@"MainColor"]];
+    [self.allButton.imageView setTintColor: [UIColor getColorByName:@"Grey"]];
 }
 
 - (IBAction)onAddContactClick:(id)event {
@@ -413,10 +429,51 @@ static UICompositeViewDescription *compositeDescription = nil;
     }];
 }
 
-- (IBAction)onEditionChangeClick:(id)sender {
-    allButton.hidden = linphoneButton.hidden = _selectedButtonImage.hidden = addButton.hidden = self.tableController.isEditing;
+- (IBAction)onBackPressed:(id)sender {
+    if ([_searchField.text length] > 0) {
+        [_searchField setText:[_searchField.text substringToIndex:[_searchField.text length] - 1]];
+    }
+    
+    [self searchEditingChanged:(id)nil];
 }
 
+- (IBAction)searchEditingChanged:(id)sender {
+    
+    NSString* searchText = _searchField.text;
+    
+    if (searchText.length > 0){
+        [self.backSpaceButton setTintColor:[UIColor getColorByName:@"Magenta"]];
+        [self.backSpaceButton setEnabled:TRUE];
+    } else {
+        [self.backSpaceButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        [self.backSpaceButton setEnabled:FALSE];
+    }
+    
+    [ContactSelection setNameOrEmailFilter:searchText];
+    
+    // WEDO: Perform the search api call after 0.5 seconds after finished input text.
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
+    return;
+    
+    // display searchtext in UPPERCASE
+    // searchBar.text = [searchText uppercaseString];
+    
+    if (searchText.length == 0) { // No filter, no search data.
+        [LinphoneManager.instance setContactsUpdated:TRUE];
+        [tableController loadData];
+    } else {
+        // Before loading searched data, we have to search them!
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+        [tableController loadSearchedData];
+    }
+}
+
+- (IBAction)onEditionChangeClick:(id)sender {
+    allButton.hidden = linphoneButton.hidden = addButton.hidden = self.tableController.isEditing;
+}
+
+/*
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = @"";
     [self searchBar:searchBar textDidChange:@""];
@@ -424,10 +481,11 @@ static UICompositeViewDescription *compositeDescription = nil;
     [tableController loadData];
     [searchBar resignFirstResponder];
 }
+*/
 
 - (void)dismissKeyboards {
-    if ([self.searchBar isFirstResponder]) {
-        [self.searchBar resignFirstResponder];
+    if ([self.searchField isFirstResponder]) {
+        [self.searchField resignFirstResponder];
     }
 }
 
@@ -436,7 +494,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)onAddressBookUpdate:(NSNotification *)k {
     // Allow again user interactions on search bar.
     dispatch_async(dispatch_get_main_queue(), ^{
-        _searchBar.userInteractionEnabled = YES;
+        _searchField.userInteractionEnabled = YES;
     });
 }
 
@@ -447,11 +505,12 @@ static UICompositeViewDescription *compositeDescription = nil;
     if([LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:text]) {
         // Deny any other input until search is finished.
         dispatch_async(dispatch_get_main_queue(), ^{
-            _searchBar.userInteractionEnabled = NO;
+            _searchField.userInteractionEnabled = NO;
         });
     }
 }
 
+/*
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [ContactSelection setNameOrEmailFilter:searchText];
     
@@ -484,6 +543,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
 }
+*/
 
 #pragma mark - GestureRecognizerDelegate
 

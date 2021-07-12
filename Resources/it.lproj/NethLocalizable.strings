@@ -7,6 +7,20 @@
 */
 
 /*
+ * Others.
+ */
+
+"Cancel" = "Cancella";
+
+"Confirm" = "Conferma";
+
+/*
+ * Assistant Strings.
+ */
+
+"AUTHENTICATE-HEADER-MISSING" = "Credenziali errate, vi preghiamo di controllarle e di riprovare.";
+
+/*
  * Phonebook strings.
  */
 
@@ -43,6 +57,9 @@
 /*
  * Contact details.
  */
+
+/* No comment provided by engineer. */
+"Extensions" = "Interni";
 
 "Company" = "Azienda";
 

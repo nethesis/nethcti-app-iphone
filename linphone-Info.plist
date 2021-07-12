@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AccentColor</key>
+	<string>$(ACCENT_COLOR)</string>
 	<key>AppApnsAuthKey</key>
 	<string>$(PUSH_WEDO_AUTH_KEY)</string>
 	<key>AppApnsAuthKeyDev</key>
@@ -12,6 +14,8 @@
 	<string>https://push.wedo.io</string>
 	<key>AppApnsBaseUrl_Dev2</key>
 	<string>http://notificatore.apexnet.it/Notificatore.aspx</string>
+	<key>ButtonSelectedBackground</key>
+	<string>$(BUTTON_SELECTED)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
@@ -87,11 +91,34 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>8</string>
+	<key>Cyan</key>
+	<string>$(CYAN)</string>
+	<key>Green</key>
+	<string>$(GREEN)</string>
+	<key>Grey</key>
+	<string>$(GREY)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <!-- NOTE: This color can be different from main background color. -->
+    <key>StatusBarBgColor</key>
+    <string>$(WHITE)</string>
+	<key>LightCyan</key>
+	<string>$(LIGHT_CYAN)</string>
+	<key>LightGreen</key>
+	<string>$(LIGHT_GREEN)</string>
+	<key>LightGrey</key>
+	<string>$(LIGHT_GREY)</string>
+	<key>LightMagenta</key>
+	<string>$(LIGHT_MAGENTA)</string>
+	<key>Magenta</key>
+	<string>$(MAGENTA)</string>
+	<key>MainColor</key>
+	<string>$(MAIN_COLOR)</string>
+	<key>MidGrey</key>
+	<string>$(MID_GREY)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -154,6 +181,13 @@
 	<string>Make audio/video calls with sip protocol.</string>
 	<key>NotificationAppGroupId</key>
 	<string>$(MSG_NOTIFICATION_APP_GROUP_ID)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>Roboto-Medium.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -190,18 +224,16 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>White</key>
+	<string>$(WHITE)</string>
 </dict>
 </plist>

@@ -50,9 +50,17 @@
 	} else {
 		[_pauseButton setType:UIPauseButtonType_Call call:call];
 		const LinphoneAddress *addr = linphone_call_get_remote_address(call);
-		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
-		[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
+		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
+        [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+        
+        _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+        _nameLabel.textColor = [UIColor getColorByName:@"Grey"];
+        _addressLabel.textColor = [UIColor getColorByName:@"MainColor"];
+		//[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
 		_durationLabel.text = [LinphoneUtils durationToString:linphone_call_get_duration(call)];
+        
+        self.backgroundColor = [UIColor getColorByName:@"LightCyan"];
+
 	}
 	[_pauseButton update];
 }

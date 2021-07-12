@@ -35,9 +35,9 @@ typedef enum _RecordingSelectionMode { RecordingSelectionModeNone, RecordingSele
 
 @interface RecordingsListView : UIViewController <UICompositeViewDelegate>
 
-@property(strong, nonatomic) IBOutlet RecordingsListTableView *tableController;
-@property(strong, nonatomic) IBOutlet UIView *topBar;
-@property(weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (strong, nonatomic) IBOutlet RecordingsListTableView *tableController;
+@property (strong, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
 

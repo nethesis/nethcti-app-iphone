@@ -38,6 +38,7 @@
 		UIView *sub = ((UIView *)[arrayOfViews objectAtIndex:0]);
 		[self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
 		[self addSubview:sub];
+        
 		_contact = NULL;
 		// Sections are wider on iPad and overlap linphone image - let's move it a bit
 		if (IPAD) {
@@ -85,6 +86,12 @@
            linphone_presence_model_get_basic_status(linphone_friend_get_presence_model(_contact.friend)) == LinphonePresenceBasicStatusOpen) ||
           [FastAddressBook contactHasValidSipDomain:_contact]);
 	}
+    
+    _nameLabel.textColor = [UIColor getColorByName:@"Grey"];
+    
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
+
+    _nameInitialLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
 #pragma mark -

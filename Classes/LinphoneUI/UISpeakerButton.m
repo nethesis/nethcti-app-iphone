@@ -19,43 +19,67 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 #import "UISpeakerButton.h"
-#import "Utils.h"
-#import "LinphoneManager.h"
 
 #include "linphone/linphonecore.h"
 
-@implementation UISpeakerButton
+@implementation UISpeakerButton {
+    UIImage *backOnImage;
+    UIImage *backOffImage;
+    UIColor *onColor;
+    UIColor *offColor;
+}
 
 INIT_WITH_COMMON_CF {
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(audioRouteChangeListenerCallback:)
-											   name:AVAudioSessionRouteChangeNotification
-											 object:nil];
-	return self;
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(audioRouteChangeListenerCallback:)
+                                               name:AVAudioSessionRouteChangeNotification
+                                             object:nil];
+    
+    UIImage *dImage = [[UIImage imageNamed:@"nethcti_volume.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setImage:dImage forState:UIControlStateNormal];
+    
+    onColor = [UIColor getColorByName:@"MainColor"];
+    offColor = [UIColor getColorByName:@"Grey"];
+    [self setTintColor:offColor];
+    
+    backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
+    
+    return self;
 }
 
 - (void)dealloc {
-	[NSNotificationCenter.defaultCenter removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark - UIToggleButtonDelegate Functions
 
 - (void)audioRouteChangeListenerCallback:(NSNotification *)notif {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self update];});
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self update];
+    });
 }
 
 - (void)onOn {
-	[CallManager.instance enableSpeakerWithEnable:TRUE];
+    [CallManager.instance enableSpeakerWithEnable:TRUE];
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:onColor];
+    [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
 }
 
 - (void)onOff {
-	[CallManager.instance enableSpeakerWithEnable:FALSE];
+    [CallManager.instance enableSpeakerWithEnable:FALSE];
+    
+    // Change UI Colors according to button state.
+    [self setTintColor:offColor];
+    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
 }
 
 - (bool)onUpdate {
-	self.enabled = [CallManager.instance allowSpeaker];
-	return CallManager.instance.speakerEnabled;
+    self.enabled = [CallManager.instance allowSpeaker];
+    return CallManager.instance.speakerEnabled;
 }
 
 @end

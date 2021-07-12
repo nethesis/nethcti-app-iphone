@@ -62,10 +62,11 @@
 
 	UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
 	tempLabel.backgroundColor = [UIColor clearColor];
-	tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_E.png"]];
+	tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
 	tempLabel.text = NSLocalizedString(@"Calls", nil);
 	tempLabel.textAlignment = NSTextAlignmentCenter;
-	tempLabel.font = [UIFont boldSystemFontOfSize:17];
+    tempLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
+
 	tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[tempView addSubview:tempLabel];
 
@@ -73,33 +74,49 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *kCellId = @"UITableViewCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
-	if (cell == nil) {
-		cell = [[UITableViewCell alloc] init];
-	}
-
-	LinphoneCallLog *log = [[callLogs objectAtIndex:[indexPath row]] pointerValue];
-	int duration = linphone_call_log_get_duration(log);
-	time_t callTime = linphone_call_log_get_start_date(log);
-	cell.textLabel.textAlignment = NSTextAlignmentCenter;
-	[cell.textLabel
-		setText:[NSString stringWithFormat:@"%@ - %@",
-										   [LinphoneUtils timeToString:callTime withFormat:LinphoneDateHistoryDetails],
-										   [LinphoneUtils durationToString:duration]]];
-	BOOL outgoing = (linphone_call_log_get_dir(log) == LinphoneCallOutgoing);
-
-	if (linphone_call_log_get_status(log) == LinphoneCallMissed) {
-		cell.imageView.image = [UIImage imageNamed:@"call_missed.png"];
-	} else if (outgoing) {
-		cell.imageView.image = [UIImage imageNamed:@"call_outgoing.png"];
-	} else {
-		cell.imageView.image = [UIImage imageNamed:@"call_incoming.png"];
-	}
+    static NSString *kCellId = @"UITableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] init];
+    }
+    
+    LinphoneCallLog *log = [[callLogs objectAtIndex:[indexPath row]] pointerValue];
+    int duration = linphone_call_log_get_duration(log);
+    time_t callTime = linphone_call_log_get_start_date(log);
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.textColor = [UIColor getColorByName:@"Grey"];
+    
+    [cell.textLabel setText:[NSString stringWithFormat:@"%@ - %@",
+                             [LinphoneUtils timeToString:callTime
+                                              withFormat:LinphoneDateHistoryDetails],
+                             [LinphoneUtils durationToString:duration]]];
+    
+    [self setCallIcon:cell.imageView byLog:log];
     
     cell.contentView.userInteractionEnabled = false;
+    
+    return cell;
+}
 
-	return cell;
+/// Retreive the right icon from the call log status.
+/// This method is shared with old history table view controller.
+/// @param view UIImageView to change icon.
+/// @param log Linphone Call Log to show.
+- (void)setCallIcon:(UIImageView *)view byLog:(LinphoneCallLog *)log {
+    const BOOL outgoing = linphone_call_log_get_dir(log) == LinphoneCallOutgoing;
+    const BOOL missed = linphone_call_log_get_status(log) == LinphoneCallMissed;
+    
+    if (outgoing) {
+        [view setImage:[UIImage imageNamed:@"nethcti_call_status_outgoing.png"]];
+    } else if (missed) {
+        [view setImage:[UIImage imageNamed:@"nethcti_call_status_missed.png"]];
+    } else {
+        [view setImage:[UIImage imageNamed:@"nethcti_call_status_incoming.png"]];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
 }
 
 @end

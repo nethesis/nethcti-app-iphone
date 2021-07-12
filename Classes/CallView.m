@@ -129,9 +129,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_hashButton setDigit:'#'];
 	[_hashButton setDtmf:true];
     
+    _durationLabel.textColor = [UIColor getColorByName:@"Grey"];
+    _pausedLabel.textColor = [UIColor getColorByName:@"Grey"];
+    _pausedByRemoteLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
-- (void)nethCTIViewPersonalizatio {
+- (void)nethCTIViewPersonalization {
     [_chatButton setEnabled:NO];
     [_chatButton setHidden:YES];
     [_chatNotificationView setHidden:YES];
@@ -149,7 +152,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	CallManager.instance.nextCallIsTransfer = FALSE;
     
     callRecording = FALSE;
-    _recordButtonOnView.hidden = TRUE;
+    //_recordButtonOnView.hidden = TRUE;
 
 	// Update on show
 	[self hideRoutes:TRUE animated:FALSE];
@@ -184,8 +187,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   selector:@selector(callDurationUpdate)
 								   userInfo:nil
 									repeats:YES];
-    
-    [self drawOptionButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -204,28 +205,28 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-[[UIDevice currentDevice] setProximityMonitoringEnabled:FALSE];
-	[self disableVideoDisplay:TRUE animated:NO];
-
-	if (hideControlsTimer != nil) {
-		[hideControlsTimer invalidate];
-		hideControlsTimer = nil;
-	}
-
-	if (hiddenVolume) {
-		[PhoneMainView.instance setVolumeHidden:FALSE];
-		hiddenVolume = FALSE;
-	}
-
-	if (videoDismissTimer) {
-		[self dismissVideoActionSheet:videoDismissTimer];
-		[videoDismissTimer invalidate];
-		videoDismissTimer = nil;
-	}
-
-	// Remove observer
-	[NSNotificationCenter.defaultCenter removeObserver:self];
+    [super viewWillDisappear:animated];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:FALSE];
+    [self disableVideoDisplay:TRUE animated:NO];
+    
+    if (hideControlsTimer != nil) {
+        [hideControlsTimer invalidate];
+        hideControlsTimer = nil;
+    }
+    
+    if (hiddenVolume) {
+        [PhoneMainView.instance setVolumeHidden:FALSE];
+        hiddenVolume = FALSE;
+    }
+    
+    if (videoDismissTimer) {
+        [self dismissVideoActionSheet:videoDismissTimer];
+        [videoDismissTimer invalidate];
+        videoDismissTimer = nil;
+    }
+    
+    // Remove observer
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -266,7 +267,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[self updateUnreadMessage:NO];
 	[self previewTouchLift];
-    [_recordButtonOnView setHidden:!callRecording];
+    //[_recordButtonOnView setHidden:!callRecording];
 	[self updateCallView];
 	LinphoneCall *call = linphone_core_get_current_call(LC) ;
 	if (call && linphone_call_get_state(call) == LinphoneCallStatePausedByRemote) {
@@ -279,16 +280,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - UI modification
 
 - (void)updateInfoView:(BOOL)pausedByRemote {
+    // Update the frame.
     CGRect infoFrame = _infoView.frame;
-    if (pausedByRemote || !videoHidden) {
-		infoFrame.origin.y = 0;
-    } else {
-        infoFrame.origin.y = (_avatarImage.frame.origin.y-66)/2;
-    }
+    infoFrame.origin.y = pausedByRemote || !videoHidden ? 0 : (_avatarImage.frame.origin.y-66)/2;
     _infoView.frame = infoFrame;
 }
 
 - (void)updateCallView {
+    /*
     CGRect pauseFrame = _callPauseButton.frame;
 	CGRect recordFrame = _recordButtonOnView.frame;
     if (videoHidden) {
@@ -300,6 +299,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     _callPauseButton.frame = pauseFrame;
 	_recordButtonOnView.frame = recordFrame;
 	[self updateInfoView:FALSE];
+     */
 }
 
 - (void)hideSpinnerIndicator:(LinphoneCall *)call {
@@ -341,7 +341,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 			[self hidePad:TRUE animated:TRUE];
 			[self hideOptions:TRUE animated:TRUE];
 			[self hideRoutes:TRUE animated:TRUE];
-            [self drawOptionButton];
+            //[self drawOptionButton];
 		default:
 			break;
 	}
@@ -351,10 +351,11 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
  Draw option button with option or transfer call icon.
  */
 - (void)drawOptionButton {
-    if(TransferCallManager.instance.isCallTransfer)
+    if(TransferCallManager.instance.isCallTransfer) {
         [_optionsButton setImage:[UIImage imageNamed:@"options_transfer_call_default.png"] forState:UIControlStateNormal];
-    else
+    } else {
         [_optionsButton setImage:[UIImage imageNamed:@"options_default.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)toggleControls:(id)sender {
@@ -367,8 +368,9 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (void)hideControls:(BOOL)hidden sender:(id)sender {
-	if (videoHidden && hidden)
+    if (videoHidden && hidden) {
 		return;
+    }
 
 	if (hideControlsTimer) {
 		[hideControlsTimer invalidate];
@@ -379,10 +381,15 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		// show controls
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.35];
-		_pausedCallsTable.tableView.alpha = _videoCameraSwitch.alpha = _callPauseButton.alpha = _routesView.alpha =
-			_optionsView.alpha = _numpadView.alpha = _bottomBar.alpha = (hidden ? 0 : 1);
+		_pausedCallsTable.tableView.alpha =
+            _videoCameraSwitch.alpha =
+            _centerBarView.alpha =
+            _routesView.alpha =
+			_optionsView.alpha =
+            _numpadView.alpha =
+            _bottomBar.alpha = (hidden ? 0 : 1);
 		_infoView.alpha = (hidden ? 0 : .8f);
-
+        
 		[UIView commitAnimations];
 
 		[PhoneMainView.instance hideTabBar:hidden];
@@ -400,8 +407,10 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (void)disableVideoDisplay:(BOOL)disabled animated:(BOOL)animation {
-	if (disabled == videoHidden && animation)
+    if (disabled == videoHidden && animation) {
 		return;
+    }
+    
 	videoHidden = disabled;
 
 	if (!disabled) {
@@ -476,7 +485,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 
 	_noActiveCallView.hidden = (call || linphone_core_is_in_conference(LC));
-	_callView.hidden = !call;
+	_callView.hidden = _infoView.hidden = !call;
 	_conferenceView.hidden = !linphone_core_is_in_conference(LC);
 	_callPauseButton.hidden = !call && !linphone_core_is_in_conference(LC);
 
@@ -488,7 +497,9 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
 		char *uri = linphone_address_as_string_uri_only(addr);
 		ms_free(uri);
-		[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:YES withRoundedRadius:YES];
+        
+        _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
+        [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
 	}
 }
 
@@ -583,6 +594,10 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	if (call == NULL) {
 		return;
 	}
+    
+    bool isTransfering = TransferCallManager.instance.isCallTransfer;
+    [_optionsAddButton setHidden:isTransfering];
+    [_optionsAddButton setEnabled:!isTransfering];
 
 	BOOL shouldDisableVideo = (!currentCall || !linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall)));
 	if (videoHidden != shouldDisableVideo) {
@@ -592,6 +607,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 			[self displayAudioCall:animated];
 		}
 	}
+    
     // camera is diabled duiring conference, it must be activated after leaving conference.
     if (!shouldDisableVideo && !linphone_core_is_in_conference(LC)) {
         linphone_call_enable_camera(call, TRUE);
@@ -790,15 +806,21 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onRecordClick:(id)sender {
-    if (![_optionsView isHidden])
+    if (![_optionsView isHidden]) {
         [self hideOptions:TRUE animated:ANIMATED];
+    }
     if (callRecording) {
-		[self onRecordOnViewClick:nil];
+        [self onRecordOnViewClick:nil];
     } else {
         LOGD(@"Recording Starts");
         
-        [_recordButton setImage:[UIImage imageNamed:@"rec_off_default.png"] forState:UIControlStateNormal];
-        [_recordButtonOnView setHidden:FALSE];
+        UIImage *image = [[UIImage imageNamed:@"nethcti_record.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        
+        [_recordButton setImage:image forState:UIControlStateNormal];
+        [_recordButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+        
+        UIImage *background = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+        [_recordButton setBackgroundImage:background forState:UIControlStateNormal];
         
         LinphoneCall *call = linphone_core_get_current_call(LC);
         linphone_call_start_recording(call);
@@ -809,8 +831,12 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 
 - (IBAction)onRecordOnViewClick:(id)sender {
 	LOGD(@"Recording Stops");
-	[_recordButton setImage:[UIImage imageNamed:@"rec_on_default.png"] forState:UIControlStateNormal];
-	[_recordButtonOnView setHidden:TRUE];
+    
+    UIImage *image = [UIImage imageNamed:@"nethcti_record.png"];
+    [_recordButton setImage:image forState:UIControlStateNormal];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [_recordButton setBackgroundImage:dImage forState:UIControlStateNormal];
 	
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	linphone_call_stop_recording(call);
@@ -865,14 +891,18 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onOptionsTransferClick:(id)sender {
-    // Say that we wanna trasfer a call to another.
-    TransferCallManager.instance.isCallTransfer = YES;
-    
-	[self hideOptions:TRUE animated:TRUE];
-	DialerView *view = VIEW(DialerView);
-	[view setAddress:@""];
-	CallManager.instance.nextCallIsTransfer = TRUE;
-	[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+    if([TransferCallManager.instance isCallTransfer]) {
+        [CallManager.instance transferCall];
+    } else {
+        // Say that we wanna trasfer a call to another.
+        TransferCallManager.instance.isCallTransfer = YES;
+        
+        [self hideOptions:TRUE animated:TRUE];
+        DialerView *view = VIEW(DialerView);
+        [view setAddress:@""];
+        CallManager.instance.nextCallIsTransfer = TRUE;
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+    }
 }
 
 - (IBAction)onOptionsAddClick:(id)sender {

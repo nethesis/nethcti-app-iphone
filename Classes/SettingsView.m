@@ -49,7 +49,7 @@
 
 #pragma mark - IASKSwitchEx Class
 
-@interface IASKSwitchEx : DCRoundSwitch {
+@interface IASKSwitchEx : UISwitch {
 	NSString *_key;
 }
 
@@ -133,7 +133,7 @@
 		[((IASKSwitchEx *)cell.accessoryView) addTarget:self
 												 action:@selector(toggledValue:)
 									   forControlEvents:UIControlEventValueChanged];
-		[((IASKSwitchEx *)cell.accessoryView) setOnTintColor:LINPHONE_MAIN_COLOR];
+		[((IASKSwitchEx *)cell.accessoryView) setOnTintColor:[UIColor getColorByName:@"MainColor"]];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.textLabel.minimumScaleFactor = kIASKMinimumFontSize / [UIFont systemFontSize];
 		cell.detailTextLabel.minimumScaleFactor = kIASKMinimumFontSize / [UIFont systemFontSize];
@@ -239,15 +239,22 @@
 
 	if ([cell isKindOfClass:[IASKPSTextFieldSpecifierViewCell class]]) {
 		UITextField *field = ((IASKPSTextFieldSpecifierViewCell *)cell).textField;
-		[field setTextColor:LINPHONE_MAIN_COLOR];
+		[field setTextColor:[UIColor getColorByName:@"MainColor"]];
 	}
 
 	if ([cell isKindOfClass:[IASKPSTitleValueSpecifierViewCell class]]) {
 		cell.detailTextLabel.textColor = [UIColor grayColor];
 	} else {
-		cell.detailTextLabel.textColor = LINPHONE_MAIN_COLOR;
+		cell.detailTextLabel.textColor = [UIColor getColorByName:@"MainColor"];
 	}
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *headerFooterView = view;
+    headerFooterView.textLabel.textColor = [UIColor getColorByName:@"MainColor"];
+    headerFooterView.textLabel.text = headerFooterView.textLabel.text.lowercaseString.capitalizedString;
+    headerFooterView.textLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
 }
 @end
 
@@ -259,7 +266,7 @@
 @implementation UINavigationBarEx
 
 INIT_WITH_COMMON_CF {
-	[self setTintColor:[LINPHONE_MAIN_COLOR adjustHue:5.0f / 180.0f saturation:0.0f brightness:0.0f alpha:0.0f]];
+	[self setTintColor:[[UIColor getColorByName:@"MainColor"] adjustHue:5.0f / 180.0f saturation:0.0f brightness:0.0f alpha:0.0f]];
 	return self;
 }
 
@@ -281,10 +288,12 @@ INIT_WITH_COMMON_CF {
 + (void)removeBackground:(UIView *)view {
 	// iOS7 transparent background is *really* transparent: with an alpha != 0
 	// it messes up the transitions. Use non-transparent BG for iOS7
-	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+	/*if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 		[view setBackgroundColor:LINPHONE_SETTINGS_BG_IOS7];
 	else
 		[view setBackgroundColor:[UIColor clearColor]];
+    */
+    [view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -723,6 +732,13 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
     if (![[lm lpConfigStringForKey:@"auto_download_mode"] isEqualToString:@"Customize"]) {
         [hiddenKeys addObject:@"auto_download_incoming_files_max_size"];
     }
+    
+    // Nethesis customization.
+    [hiddenKeys addObject:@"presence_title"];
+    [hiddenKeys addObject:@"use_rls_presence"];
+    [hiddenKeys addObject:@"account_mandatory_password_preference"];
+    [hiddenKeys addObject:@"account_mandatory_change_password"];
+    [hiddenKeys addObject:@"account_mandatory_remove_button"];
 
 	return hiddenKeys;
 }
@@ -815,7 +831,9 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		
 		[errView addAction:defaultAction];
 		[errView addAction:continueAction];
-		[self presentViewController:errView animated:YES completion:nil];
+        
+        // NethCTI users have to logout from new button, so unable them to remove their accounts.
+		// [self presentViewController:errView animated:YES completion:nil];
 	} else if ([key isEqual:@"account_mandatory_change_password"]) {
 		UIAlertController *alertView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Change your password", nil)
 																		 message:NSLocalizedString(@"Please enter and confirm your new password", nil)
@@ -942,7 +960,9 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		
 		[alertView addAction:defaultAction];
 		[alertView addAction:continueAction];
-		[self presentViewController:alertView animated:YES completion:nil];
+        
+        // NethCTI users cannot change their passwords. Thi unable them.
+		// [self presentViewController:alertView animated:YES completion:nil];
 	} else if ([key isEqual:@"reset_logs_button"]) {
 		linphone_core_reset_log_collection();
 	} else if ([key isEqual:@"send_logs_button"]) {
@@ -1139,11 +1159,6 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		LOGI(@"Mail completed with status: %d", result);
 	}
 	[controller dismissViewControllerAnimated:true completion:nil];
-}
-
-- (IBAction)onDialerBackClick:(id)sender {
-	[_settingsController.navigationController popViewControllerAnimated:NO];
-	[PhoneMainView.instance popToView:DialerView.compositeViewDescription];
 }
 
 - (IBAction)onBackClick:(id)sender {

@@ -636,6 +636,98 @@
 }
 
 
++ (void)setOrganizationLabel: (UILabel *)label forContact: (Contact *)contact{
+    label.text = contact.company;
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name {
+    if (name.length > 0){
+        
+        NSArray *names = [name componentsSeparatedByString: @" "];
+        int max = names.count > 2 ? 2 : (int)names.count;
+        
+        NSMutableString *resultString = [[NSMutableString alloc] initWithString:@""];
+
+        for (int i = 0; i < max; i++) {
+            NSString *asd = [names objectAtIndex:i];
+            if (asd.length > 0){
+                [resultString appendString:[asd substringToIndex:1].uppercaseString];
+            }
+        }
+        
+        label.text = resultString;
+    } else {
+        label.text = @"";
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name forImage:(const UIImageView *) image{
+    if (name.length > 0){
+        
+        NSArray *names = [name componentsSeparatedByString: @" "];
+        int max = names.count > 2 ? 2 : (int)names.count;
+        
+        NSMutableString *resultString = [[NSMutableString alloc] initWithString:@""];
+
+        for (int i = 0; i < max; i++) {
+            NSString *asd = [names objectAtIndex:i];
+            if (asd.length > 0){
+                [resultString appendString:[asd substringToIndex:1].uppercaseString];
+            }
+        }
+        
+        label.text = resultString;
+        [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+
+    } else {
+        label.text = @"";
+        [image setImage:[UIImage imageNamed:@"avatar.png"]];
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact {
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
+    } else {
+        label.text = @"";
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image{
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
+        if ([contact.displayName  isEqual: @""]){
+            [image setImage:[UIImage imageNamed:@"avatar.png"]];
+        } else {
+            [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+        }
+    } else {
+        label.text = @"";
+        [image setImage:[UIImage imageNamed:@"avatar.png"]];
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr {
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forContact:contact];
+    } else {
+        [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr]];
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr forImage:(const UIImageView *) image{
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forContact:contact forImage:image];
+    } else {
+        [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr] forImage:image];
+    }
+    
+}
+
 @end
 
 @implementation UIImage (squareCrop)
@@ -792,6 +884,58 @@
 
 - (UIColor *)darkerColor {
 	return [self lumColor:0.75];
+}
+
+/// Calculate if a color is Bright or Dark.
+/// Based on stackoverlfow answer https://stackoverflow.com/a/18303674/10220116.
+/// @param color color to check.
+- (BOOL)isBright {
+    UIColor *s = (UIColor *)self;
+    size_t count = CGColorGetNumberOfComponents(s.CGColor);
+    const CGFloat *componentColors = CGColorGetComponents(s.CGColor);
+
+    CGFloat darknessScore = 0;
+    if (count == 2) { // Grey scale colors.
+        darknessScore = (
+                         ((componentColors[0] * 255) * 299) +
+                         ((componentColors[0] * 255) * 587) +
+                         ((componentColors[0] * 255) * 114)) / 1000;
+    } else if (count == 4) { // RGB scale colors.
+        darknessScore = (
+                         ((componentColors[0] * 255) * 299) +
+                         ((componentColors[1] * 255) * 587) +
+                         ((componentColors[2] * 255) * 114)) / 1000;
+    }
+
+    return darknessScore < 125;
+}
+
+/// Get the color defined in config files from the name given fetched in info.plist file.
+/// @param name Color name defined in info.plist
++ (UIColor *)getColorByName:(NSString *)name {
+    
+    NSString *hexString = [NSBundle.mainBundle objectForInfoDictionaryKey:name];
+    
+    NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        if([cleanString length] == 3) {
+            cleanString = [NSString stringWithFormat:@"%@%@%@%@%@%@",
+                            [cleanString substringWithRange:NSMakeRange(0, 1)],[cleanString substringWithRange:NSMakeRange(0, 1)],
+                            [cleanString substringWithRange:NSMakeRange(1, 1)],[cleanString substringWithRange:NSMakeRange(1, 1)],
+                            [cleanString substringWithRange:NSMakeRange(2, 1)],[cleanString substringWithRange:NSMakeRange(2, 1)]];
+        }
+        if([cleanString length] == 6) {
+            cleanString = [cleanString stringByAppendingString:@"ff"];
+        }
+        
+        unsigned int baseValue;
+        [[NSScanner scannerWithString:cleanString] scanHexInt:&baseValue];
+        
+        float red = ((baseValue >> 24) & 0xFF)/255.0f;
+        float green = ((baseValue >> 16) & 0xFF)/255.0f;
+        float blue = ((baseValue >> 8) & 0xFF)/255.0f;
+        float alpha = ((baseValue >> 0) & 0xFF)/255.0f;
+        
+        return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 @end

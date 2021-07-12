@@ -23,7 +23,10 @@
 #import "PhoneMainView.h"
 #import "Utils.h"
 
-@implementation RecordingsListTableView
+@implementation RecordingsListTableView {
+    UIColor *grey;
+    UIColor *lightGrey;
+}
 
 #pragma mark - Lifecycle Functions
 
@@ -32,13 +35,23 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     writablePath = [paths objectAtIndex:0];
     writablePath = [writablePath stringByAppendingString:@"/"];
+    
+    grey = [UIColor getColorByName:@"Grey"]; // For enabled controls.
+    lightGrey = [UIColor getColorByName:@"LightGrey"]; // For disabled controls.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (![self selectFirstRow]) {
-        //TODO: Make first cell expand to show player
+        // TODO: Make first cell expand to show player
     }
+    
+    [self.deleteButton setTintColor:lightGrey];
+    [self.toggleSelectionButton setTintColor:lightGrey];
+    [self.cancelButton setTintColor:lightGrey];
+    UIImage *editImage = [self.editButton.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.editButton setImage:editImage forState:(UIControlStateSelected | UIControlStateNormal | UIControlStateHighlighted | UIControlStateDisabled)];
+    
     [self loadData];
 }
 
@@ -71,10 +84,8 @@
     }
 }
 
-
 - (void)loadData {
     LOGI(@"====>>>> Load recording list - Start");
-    
     recordings = [NSMutableDictionary dictionary];
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:writablePath error:NULL];
     for (NSString *file in directoryContent) {
@@ -102,19 +113,20 @@
             [recordings setObject:recOfDay forKey:dayPretty];
         }
     }
-    
-    
     LOGI(@"====>>>> Load recording list - End");
+    bool hasData = [recordings count] > 0;
+    UIColor *tint = hasData ? grey : lightGrey;
+    [self.editButton setTintColor:tint];
     [super loadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
     if (selectedRow && [selectedRow compare:indexPath] == NSOrderedSame) {
-        return 150;
-    } else {
-        return 40;
+        return 88;
     }
+    
+    return 44;
 }
 
 #pragma mark - UITableViewDataSource Functions
@@ -153,11 +165,11 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.sectionHeaderHeight);
     UIView *tempView = [[UIView alloc] initWithFrame:frame];
-	if (@available(iOS 13, *)) {
-		tempView.backgroundColor = [UIColor systemBackgroundColor];
-	} else {
-		tempView.backgroundColor = [UIColor whiteColor];
-	}
+    if (@available(iOS 13, *)) {
+        tempView.backgroundColor = [UIColor systemBackgroundColor];
+    } else {
+        tempView.backgroundColor = [UIColor whiteColor];
+    }
     
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
     tempLabel.backgroundColor = [UIColor clearColor];
@@ -175,9 +187,32 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (![self isEditing]) {
         [tableView beginUpdates];
+        UIRecordingCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [(UIRecordingCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath] updateFrame];
         [tableView endUpdates];
     }
+    
+    // If there's a selected row left, don't change colors.
+    if(![tableView indexPathForSelectedRow]) {
+        return;
+    }
+    
+    [self.deleteButton setTintColor:[UIColor getColorByName:@"Grey"]];
+    UIRecordingCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell.shareButton setTintColor:[UIColor getColorByName:@"Grey"]];
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    // If there's a selected row left, don't change colors.
+    if([tableView indexPathForSelectedRow]) {
+        return;
+    }
+    
+    [self.deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
+    UIRecordingCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell.shareButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -248,6 +283,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     NSUInteger indexes[] = {section, row};
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexes length:2] animated:TRUE scrollPosition:UITableViewScrollPositionNone];
+}
+
+- (void)onSelectionToggle:(id)sender {
+    [super onSelectionToggle:sender];
+    if([self.tableView indexPathForSelectedRow]) {
+        [self.deleteButton setTintColor:[UIColor getColorByName:@"Grey"]];
+        return;
+    }
+    
+    [self.deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
 }
 
 #pragma mark - Utilities

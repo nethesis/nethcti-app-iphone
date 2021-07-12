@@ -82,22 +82,28 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 
 @end
 
-@interface ContactsListView : UIViewController <UICompositeViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ContactsListView : UIViewController <UICompositeViewDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(strong, nonatomic) IBOutlet ContactsListTableView *tableController;
 @property(strong, nonatomic) IBOutlet UIView *topBar;
 @property(nonatomic, strong) IBOutlet UIButton *allButton;
 @property(nonatomic, strong) IBOutlet UIButton *linphoneButton; // sipButton in .xib file
 @property(nonatomic, strong) IBOutlet UIButton *addButton;
-@property(strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property(weak, nonatomic) IBOutlet UIImageView *selectedButtonImage;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *backSpaceButton;
+
 @property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
 @property (weak, nonatomic) IBOutlet UIPickerView *filterPicker;
+@property (weak, nonatomic) IBOutlet UIView *searchBaseline;
 
 - (IBAction)onAllClick:(id)event;
 - (IBAction)onLinphoneClick:(id)event;
 - (IBAction)onAddContactClick:(id)event;
 - (IBAction)onDeleteClick:(id)sender;
 - (IBAction)onEditionChangeClick:(id)sender;
+
+- (IBAction)searchEditingChanged:(id)sender;
+- (IBAction)onBackPressed:(id)sender;
+
 
 @end

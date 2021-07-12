@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DialerView">
             <connections>
@@ -35,283 +44,27 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="qaB-qV-B0p" userLabel="iphone6MetricsView">
             <rect key="frame" x="0.0" y="0.0" width="800" height="1290"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="171">
-                    <rect key="frame" x="0.0" y="60" width="800" height="1130"/>
+                <view contentMode="scaleToFill" id="171">
+                    <rect key="frame" x="0.0" y="0.0" width="800" height="1290"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_D.png" translatesAutoresizingMaskIntoConstraints="NO" id="PI3-CU-FXR" userLabel="backgroundColor">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="1130"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color_D.png" translatesAutoresizingMaskIntoConstraints="NO" id="PI3-CU-FXR" userLabel="backgroundColor">
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="1290"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="neth_dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="tsy-aZ-cHg" userLabel="logoImage">
-                            <rect key="frame" x="8" y="112" width="784" height="480"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="neth_dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="tsy-aZ-cHg" userLabel="logoImage">
+                            <rect key="frame" x="32" y="128" width="736" height="471"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="tsy-aZ-cHg" secondAttribute="height" multiplier="75:48" id="dbm-xD-yXk"/>
+                            </constraints>
                         </imageView>
-                        <view tag="3" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30b-JN-Ibj" userLabel="preview">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="1210"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
-                        <view tag="4" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6f-Xa-Veg">
-                            <rect key="frame" x="245" y="600" width="310" height="450"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view clipsSubviews="YES" alpha="0.90000000000000002" tag="5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
-                                    <rect key="frame" x="0.0" y="0.0" width="310" height="80"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
-                                            <rect key="frame" x="8" y="0.0" width="239" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration" label="Enter an address"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
-                                            <connections>
-                                                <action selector="onAddressChange:" destination="-1" eventType="editingChanged" id="FdS-Kl-3dS"/>
-                                                <outlet property="delegate" destination="-1" id="190"/>
-                                            </connections>
-                                        </textField>
-                                        <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
-                                            <rect key="frame" x="245" y="0.0" width="60" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="backspace_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="backspace_disabled.png"/>
-                                            <state key="highlighted" image="backspace_over.png"/>
-                                            <connections>
-                                                <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </view>
-                                <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
-                                    <rect key="frame" x="0.0" y="80" width="310" height="290"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="1" customClass="UIDigitButton">
-                                            <rect key="frame" x="27" y="8" width="50" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.40000001000000002" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration" label="1"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_1_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_1_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="240"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37" userLabel="2" customClass="UIDigitButton">
-                                            <rect key="frame" x="130" y="8" width="49" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="2"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_2_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_2_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="241"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29" userLabel="3" customClass="UIDigitButton">
-                                            <rect key="frame" x="232" y="8" width="50" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="3"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_3_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_3_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="242"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
-                                            <rect key="frame" x="27" y="78" width="50" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="4"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_4_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_4_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="243"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="14" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="5" customClass="UIDigitButton">
-                                            <rect key="frame" x="130" y="78" width="49" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_5_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_5_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="244"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="15" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33" userLabel="6" customClass="UIDigitButton">
-                                            <rect key="frame" x="232" y="78" width="50" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="6"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_6_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_6_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="245"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="16" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
-                                            <rect key="frame" x="27" y="150" width="50" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="7"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_7_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_7_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="246"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="17" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35" userLabel="8" customClass="UIDigitButton">
-                                            <rect key="frame" x="130" y="150" width="49" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="8"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_8_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_8_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="247"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="18" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36" userLabel="9" customClass="UIDigitButton">
-                                            <rect key="frame" x="232" y="150" width="50" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="9"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_9_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_9_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="248"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="19" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
-                                            <rect key="frame" x="27" y="223" width="50" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Star"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_star_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_star_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="249"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="20" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40" userLabel="0" customClass="UIDigitButton">
-                                            <rect key="frame" x="130" y="223" width="49" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_0_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_0_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="250"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="21" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41" userLabel="#" customClass="UIDigitButton">
-                                            <rect key="frame" x="232" y="223" width="50" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Hash"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" image="numpad_hash_default.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted" image="numpad_hash_over.png" backgroundImage="numpad_over_background.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="251"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                </view>
-                                <view tag="22" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="182" userLabel="bottomBar">
-                                    <rect key="frame" x="0.0" y="370" width="310" height="80"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <subviews>
-                                        <button hidden="YES" opaque="NO" tag="23" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="183" userLabel="backButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="102" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration" label="Back"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="call_alt_back_default.png" backgroundImage="color_F.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="call_alt_back_disabled.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                            <connections>
-                                                <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="233"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" tag="24" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="222" userLabel="addContactButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="102" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Add to contact"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="contact_add_default.png" backgroundImage="color_F.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="contact_add_disabled.png"/>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
-                                            <connections>
-                                                <action selector="onAddContactClick:" destination="-1" eventType="touchUpInside" id="230"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" tag="25" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="224" userLabel="callButton" customClass="UICallButton">
-                                            <rect key="frame" x="102" y="0.0" width="208" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Call"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="call_audio_start_default.png" backgroundImage="color_A.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="call_audio_start_disabled.png"/>
-                                            <state key="highlighted" backgroundImage="color_L.png"/>
-                                            <connections>
-                                                <outlet property="addressField" destination="4" id="235"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
                         <button opaque="NO" tag="28" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufj-N6-yzz" userLabel="videoCameraSwitch" customClass="UICamSwitch">
                             <rect key="frame" x="52" y="52" width="52" height="52"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration" label="Switch camera"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" image="camera_switch_default.png">
+                            <state key="normal" image="nethcti_cam.png" backgroundImage="nethcti_grey_circle.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled" image="camera_switch_disabled.png"/>
@@ -321,11 +74,466 @@
                                 <outlet property="preview" destination="30b-JN-Ibj" id="k1G-ea-6Rx"/>
                             </connections>
                         </button>
+                        <view tag="3" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="30b-JN-Ibj" userLabel="preview">
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="1290"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juO-3g-YuN" userLabel="outside">
+                            <rect key="frame" x="240" y="581" width="320" height="645"/>
+                            <subviews>
+                                <view tag="4" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="g6f-Xa-Veg" userLabel="inside">
+                                    <rect key="frame" x="32" y="0.0" width="256" height="645"/>
+                                    <subviews>
+                                        <view clipsSubviews="YES" alpha="0.90000000000000002" tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="178" userLabel="dialer">
+                                            <rect key="frame" x="0.0" y="0.0" width="256" height="72"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eOM-su-Mhj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="74"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM9-jq-doJ" userLabel="texts">
+                                                            <rect key="frame" x="0.0" y="0.0" width="256" height="72"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" clearsContextBeforeDrawing="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="213" height="72"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Enter an address"/>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
+                                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
+                                                                    <connections>
+                                                                        <action selector="onAddressChange:" destination="-1" eventType="editingChanged" id="FdS-Kl-3dS"/>
+                                                                        <outlet property="delegate" destination="-1" id="190"/>
+                                                                    </connections>
+                                                                </textField>
+                                                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-hj-rvt" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
+                                                                    <rect key="frame" x="213" y="14.5" width="43" height="43"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="8dc-hj-rvt" secondAttribute="height" multiplier="1:1" id="cqO-Fy-fsT"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="nethcti_backspace.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <state key="disabled" image="nethcti_backspace.png"/>
+                                                                    <state key="highlighted" image="nethcti_backspace.png"/>
+                                                                    <connections>
+                                                                        <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="sWE-Ch-kAr"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="centerY" secondItem="CM9-jq-doJ" secondAttribute="centerY" id="6jm-Wu-Rhd"/>
+                                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="9KK-V2-vxv"/>
+                                                                <constraint firstItem="4" firstAttribute="centerY" secondItem="CM9-jq-doJ" secondAttribute="centerY" id="9bn-Hi-7fc"/>
+                                                                <constraint firstItem="4" firstAttribute="height" secondItem="CM9-jq-doJ" secondAttribute="height" id="GeR-Zw-wWu"/>
+                                                                <constraint firstItem="8dc-hj-rvt" firstAttribute="height" secondItem="CM9-jq-doJ" secondAttribute="height" multiplier="0.6" id="VV3-gh-MYz"/>
+                                                                <constraint firstItem="4" firstAttribute="leading" secondItem="CM9-jq-doJ" secondAttribute="leading" id="aSl-AS-oOi"/>
+                                                                <constraint firstAttribute="trailing" secondItem="8dc-hj-rvt" secondAttribute="trailing" id="n8S-cV-dY4"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8L-nl-X0F" userLabel="baseline">
+                                                            <rect key="frame" x="0.0" y="72" width="256" height="2"/>
+                                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                            <color key="tintColor" systemColor="systemYellowColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="2" id="vxT-xI-46u"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="CM9-jq-doJ" firstAttribute="leading" secondItem="eOM-su-Mhj" secondAttribute="leading" id="6bQ-0H-rmf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="CM9-jq-doJ" secondAttribute="trailing" id="Js7-oE-UDA"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="eOM-su-Mhj" firstAttribute="leading" secondItem="178" secondAttribute="leading" id="FJ0-4r-lQ8"/>
+                                                <constraint firstItem="CM9-jq-doJ" firstAttribute="height" secondItem="178" secondAttribute="height" id="YHf-2X-bIt"/>
+                                                <constraint firstItem="eOM-su-Mhj" firstAttribute="top" secondItem="178" secondAttribute="top" id="clp-i9-bPH"/>
+                                                <constraint firstAttribute="height" constant="72" id="lGk-1T-T3W"/>
+                                                <constraint firstAttribute="trailing" secondItem="eOM-su-Mhj" secondAttribute="trailing" id="x4T-tL-dEq"/>
+                                            </constraints>
+                                        </view>
+                                        <view tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="180" userLabel="pad">
+                                            <rect key="frame" x="0.0" y="72" width="256" height="369.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-8t-i6f" userLabel="0-9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="369.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="jtd-Ge-7Zt" userLabel="1-3">
+                                                            <rect key="frame" x="0.0" y="0.0" width="256" height="77.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38" userLabel="1" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                                    <color key="backgroundColor" red="0.40000001000000002" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="1"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="38" secondAttribute="height" multiplier="1:1" id="yCK-r0-B2v"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="36"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_1.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="240"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37" userLabel="2" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="89.5" y="0.0" width="77" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="2"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="37" secondAttribute="height" multiplier="1:1" id="adb-x5-nPz"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="32"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_2.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="241"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29" userLabel="3" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="178.5" y="0.0" width="77.5" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="3"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="29" secondAttribute="height" multiplier="1:1" id="r4e-ks-mKb"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_3.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="242"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="NPn-pw-EZB" userLabel="4-6">
+                                                            <rect key="frame" x="0.0" y="97.5" width="256" height="77.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="4" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="4"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="30" secondAttribute="height" multiplier="1:1" id="rUs-Pg-wOk"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="32"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_4.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="243"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="5" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="89.5" y="0.0" width="77" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="31" secondAttribute="height" multiplier="1:1" id="1ob-bw-kzu"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="32"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_5.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="244"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33" userLabel="6" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="178.5" y="0.0" width="77.5" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="6"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="33" secondAttribute="height" multiplier="1:1" id="d2T-mf-DEn"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="32"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_6.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="245"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ppT-b0-fAc" userLabel="7-9">
+                                                            <rect key="frame" x="0.0" y="195" width="256" height="77"/>
+                                                            <subviews>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34" userLabel="7" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="77"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="7"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="34" secondAttribute="height" multiplier="1:1" id="RbS-6L-tHd"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_7.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="246"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35" userLabel="8" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="89.5" y="0.0" width="77" height="77"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="8"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="35" secondAttribute="height" multiplier="1:1" id="g72-W4-XD4"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_8.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="247"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36" userLabel="9" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="178.5" y="0.0" width="77.5" height="77"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="9"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="36" secondAttribute="height" multiplier="1:1" id="dWz-M0-dft"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_9.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="248"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="YBS-r2-m6I" userLabel="-0-">
+                                                            <rect key="frame" x="0.0" y="292" width="256" height="77.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="*" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Star"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="39" secondAttribute="height" multiplier="1:1" id="POj-a6-bBL"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_asterisk.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="249"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40" userLabel="0" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="89.5" y="0.0" width="77" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="0"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="40" secondAttribute="height" multiplier="1:1" id="0SQ-rO-hrK"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_0.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="250"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" clearsContextBeforeDrawing="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41" userLabel="#" customClass="UIDigitButton">
+                                                                    <rect key="frame" x="178.5" y="0.0" width="77.5" height="77.5"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Hash"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="41" secondAttribute="height" multiplier="1:1" id="5VX-DG-Hsk"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                                    <state key="normal" image="nethcti_numpad_hashtag.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <outlet property="addressField" destination="4" id="251"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="jtd-Ge-7Zt" secondAttribute="trailing" id="Mxf-LL-r6w"/>
+                                                        <constraint firstItem="jtd-Ge-7Zt" firstAttribute="leading" secondItem="CCn-8t-i6f" secondAttribute="leading" id="v4w-oM-bp7"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="CCn-8t-i6f" firstAttribute="top" secondItem="180" secondAttribute="top" id="JUi-MY-XA2"/>
+                                                <constraint firstAttribute="bottom" secondItem="CCn-8t-i6f" secondAttribute="bottom" id="jrz-Nj-QPr"/>
+                                                <constraint firstAttribute="trailing" secondItem="CCn-8t-i6f" secondAttribute="trailing" id="kph-fd-gL2"/>
+                                                <constraint firstItem="CCn-8t-i6f" firstAttribute="leading" secondItem="180" secondAttribute="leading" id="zt4-R0-SeQ"/>
+                                            </constraints>
+                                        </view>
+                                        <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="182" userLabel="bottomBar">
+                                            <rect key="frame" x="0.0" y="441.5" width="256" height="203.5"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SO9-aP-fXi" userLabel="bottomView">
+                                                    <rect key="frame" x="0.0" y="63" width="256" height="77.5"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpa-CR-xaj" userLabel="buttonView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                            <subviews>
+                                                                <button hidden="YES" opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="183" userLabel="backButton">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Back"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="183" secondAttribute="height" multiplier="1:1" id="pZq-VQ-Vrd"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                                    <state key="normal" image="nethcti_back_to_call.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <state key="disabled" image="call_alt_back_disabled.png"/>
+                                                                    <connections>
+                                                                        <action selector="onBackClick:" destination="-1" eventType="touchUpInside" id="233"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" tag="24" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="222" userLabel="addContactButton">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="77.5"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Add to contact"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="222" secondAttribute="height" multiplier="1:1" id="kqk-Ll-EaF"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                                    <state key="normal" image="nethcti_user_add.png" backgroundImage="nethcti_grey_circle.png">
+                                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </state>
+                                                                    <state key="disabled" image="contact_add_disabled.png"/>
+                                                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                                                    <connections>
+                                                                        <action selector="onAddContactClick:" destination="-1" eventType="touchUpInside" id="230"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="222" secondAttribute="bottom" id="0PE-VU-4o0"/>
+                                                                <constraint firstAttribute="width" secondItem="Qpa-CR-xaj" secondAttribute="height" multiplier="1:1" id="BDF-uO-gJ5"/>
+                                                                <constraint firstItem="183" firstAttribute="leading" secondItem="Qpa-CR-xaj" secondAttribute="leading" id="CmZ-ld-jTm"/>
+                                                                <constraint firstItem="222" firstAttribute="leading" secondItem="Qpa-CR-xaj" secondAttribute="leading" id="PNS-pN-MAX"/>
+                                                                <constraint firstAttribute="trailing" secondItem="222" secondAttribute="trailing" id="PzL-a1-Pae"/>
+                                                                <constraint firstAttribute="trailing" secondItem="183" secondAttribute="trailing" id="Tdo-f9-lFF"/>
+                                                                <constraint firstItem="222" firstAttribute="top" secondItem="Qpa-CR-xaj" secondAttribute="top" id="XuP-yZ-LqW"/>
+                                                                <constraint firstAttribute="bottom" secondItem="183" secondAttribute="bottom" id="Zfl-IQ-CjS"/>
+                                                                <constraint firstItem="183" firstAttribute="top" secondItem="Qpa-CR-xaj" secondAttribute="top" id="qKP-1C-ZzC"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <button opaque="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="224" userLabel="callButton" customClass="UICallButton">
+                                                            <rect key="frame" x="178.5" y="0.0" width="77.5" height="77.5"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Call"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="224" secondAttribute="height" multiplier="1:1" id="XhQ-nm-9kz"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                            <state key="normal" image="nethcti_green_phone.png" backgroundImage="nethcti_green_circle.png">
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="disabled" image="call_audio_start_disabled.png"/>
+                                                            <connections>
+                                                                <outlet property="addressField" destination="4" id="235"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Qpa-CR-xaj" firstAttribute="top" secondItem="SO9-aP-fXi" secondAttribute="top" id="JTb-Kq-nF4"/>
+                                                        <constraint firstItem="Qpa-CR-xaj" firstAttribute="leading" secondItem="SO9-aP-fXi" secondAttribute="leading" id="Khj-fi-odz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="Tvm-Bu-Cgk"/>
+                                                        <constraint firstItem="224" firstAttribute="bottom" secondItem="Qpa-CR-xaj" secondAttribute="bottom" id="jXY-mx-9wy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Qpa-CR-xaj" secondAttribute="bottom" id="tOL-XM-S67"/>
+                                                        <constraint firstItem="224" firstAttribute="top" secondItem="Qpa-CR-xaj" secondAttribute="top" id="uI8-s3-EzQ"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="SO9-aP-fXi" firstAttribute="leading" secondItem="182" secondAttribute="leading" id="DzL-ub-rqh"/>
+                                                <constraint firstItem="SO9-aP-fXi" firstAttribute="centerY" secondItem="182" secondAttribute="centerY" id="bVI-sC-6gq"/>
+                                                <constraint firstAttribute="trailing" secondItem="SO9-aP-fXi" secondAttribute="trailing" id="vdA-C5-o7o"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="36" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="129-7r-wmp"/>
+                                        <constraint firstItem="182" firstAttribute="leading" secondItem="g6f-Xa-Veg" secondAttribute="leading" id="3Sg-nE-fT0"/>
+                                        <constraint firstItem="40" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="4jL-E6-gYc"/>
+                                        <constraint firstAttribute="trailing" secondItem="180" secondAttribute="trailing" id="5PX-Wi-pu1"/>
+                                        <constraint firstItem="180" firstAttribute="leading" secondItem="g6f-Xa-Veg" secondAttribute="leading" id="5Zm-7M-Sh1"/>
+                                        <constraint firstItem="178" firstAttribute="top" secondItem="g6f-Xa-Veg" secondAttribute="top" id="7MS-M9-8ik"/>
+                                        <constraint firstItem="34" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="App-PY-Uo0"/>
+                                        <constraint firstItem="182" firstAttribute="top" secondItem="180" secondAttribute="bottom" id="Daa-6b-pKY"/>
+                                        <constraint firstItem="35" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="Dus-KT-UlG"/>
+                                        <constraint firstItem="Qpa-CR-xaj" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="OT0-R4-a9U"/>
+                                        <constraint firstItem="31" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="QIL-ij-Gse"/>
+                                        <constraint firstItem="33" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="RlI-Rt-oOT"/>
+                                        <constraint firstItem="41" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="UtI-dO-Q9C"/>
+                                        <constraint firstAttribute="trailing" secondItem="178" secondAttribute="trailing" id="Xsw-hl-qFL"/>
+                                        <constraint firstItem="180" firstAttribute="top" secondItem="178" secondAttribute="bottom" id="Yeg-47-6Y2"/>
+                                        <constraint firstItem="30" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="Zcp-8c-wTJ"/>
+                                        <constraint firstItem="38" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="b7X-8s-sh3"/>
+                                        <constraint firstItem="178" firstAttribute="leading" secondItem="g6f-Xa-Veg" secondAttribute="leading" id="cbl-PY-Xgj"/>
+                                        <constraint firstItem="37" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="efQ-ya-2bv"/>
+                                        <constraint firstAttribute="bottom" secondItem="182" secondAttribute="bottom" id="gbJ-OM-9VX"/>
+                                        <constraint firstAttribute="trailing" secondItem="182" secondAttribute="trailing" id="piB-t8-fLz"/>
+                                        <constraint firstItem="39" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="saR-t7-dAQ"/>
+                                        <constraint firstItem="29" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="tfv-0c-a7x"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="g6f-Xa-Veg" secondAttribute="bottom" id="DGA-lK-qXA"/>
+                                <constraint firstItem="g6f-Xa-Veg" firstAttribute="top" secondItem="juO-3g-YuN" secondAttribute="top" id="FIB-bW-jws"/>
+                                <constraint firstItem="g6f-Xa-Veg" firstAttribute="width" secondItem="juO-3g-YuN" secondAttribute="width" multiplier="0.8" id="hiu-ak-Cxa"/>
+                                <constraint firstItem="g6f-Xa-Veg" firstAttribute="centerX" secondItem="juO-3g-YuN" secondAttribute="centerX" id="l6E-ty-rTm"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="tsy-aZ-cHg" secondAttribute="trailing" constant="32" id="0RT-mL-pL7"/>
+                        <constraint firstItem="30b-JN-Ibj" firstAttribute="top" secondItem="171" secondAttribute="top" id="4aa-W6-8wf"/>
+                        <constraint firstItem="PI3-CU-FXR" firstAttribute="top" secondItem="171" secondAttribute="top" id="638-du-Fno"/>
+                        <constraint firstAttribute="bottom" secondItem="30b-JN-Ibj" secondAttribute="bottom" id="AnZ-Gr-b7T"/>
+                        <constraint firstAttribute="trailing" secondItem="PI3-CU-FXR" secondAttribute="trailing" id="FVS-Fp-dE4"/>
+                        <constraint firstItem="30b-JN-Ibj" firstAttribute="leading" secondItem="171" secondAttribute="leading" id="Gc4-UO-3T1"/>
+                        <constraint firstItem="tsy-aZ-cHg" firstAttribute="top" secondItem="171" secondAttribute="top" constant="128" id="OJj-Zw-qJD"/>
+                        <constraint firstAttribute="bottom" secondItem="PI3-CU-FXR" secondAttribute="bottom" id="Sgo-6S-MSR"/>
+                        <constraint firstAttribute="bottom" secondItem="juO-3g-YuN" secondAttribute="bottom" constant="64" id="Te1-k8-Jhv"/>
+                        <constraint firstItem="juO-3g-YuN" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.5" id="TjH-qU-p6v"/>
+                        <constraint firstItem="juO-3g-YuN" firstAttribute="centerX" secondItem="171" secondAttribute="centerX" id="clb-TV-wS3"/>
+                        <constraint firstItem="PI3-CU-FXR" firstAttribute="leading" secondItem="171" secondAttribute="leading" id="hpa-fp-1rv"/>
+                        <constraint firstItem="juO-3g-YuN" firstAttribute="width" secondItem="171" secondAttribute="width" multiplier="0.4" id="qix-em-9Ws"/>
+                        <constraint firstAttribute="trailing" secondItem="30b-JN-Ibj" secondAttribute="trailing" id="wQp-tm-4zZ"/>
+                        <constraint firstItem="tsy-aZ-cHg" firstAttribute="leading" secondItem="171" secondAttribute="leading" constant="32" id="y0T-u9-vXq"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="171" secondAttribute="bottom" id="Yed-uS-JPD"/>
+                <constraint firstItem="171" firstAttribute="top" secondItem="qaB-qV-B0p" secondAttribute="top" id="c4s-ZH-ZLy"/>
+                <constraint firstAttribute="trailing" secondItem="171" secondAttribute="trailing" id="ikR-ud-9Ax"/>
+                <constraint firstItem="171" firstAttribute="leading" secondItem="qaB-qV-B0p" secondAttribute="leading" id="tpR-lY-dyo"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-98.550724637681171" y="148.66071428571428"/>
         </view>
@@ -625,7 +833,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-98.550724637681171" y="148.99553571428569"/>
+            <point key="canvasLocation" x="2368" y="131"/>
         </view>
     </objects>
     <resources>
@@ -639,6 +847,7 @@
         <image name="camera_switch_default.png" width="83.199996948242188" height="81.599998474121094"/>
         <image name="camera_switch_disabled.png" width="83.199996948242188" height="81.599998474121094"/>
         <image name="camera_switch_over.png" width="83.199996948242188" height="81.599998474121094"/>
+        <image name="color_A.png" width="2" height="2"/>
         <image name="color_D.png" width="2" height="2"/>
         <image name="color_E.png" width="2" height="2"/>
         <image name="color_F.png" width="2" height="2"/>
@@ -647,6 +856,25 @@
         <image name="contact_add_disabled.png" width="55.200000762939453" height="47.200000762939453"/>
         <image name="dialer_background.png" width="1200" height="1030"/>
         <image name="neth_dialer_background.png" width="1200" height="1200"/>
+        <image name="nethcti_back_to_call.png" width="256" height="256"/>
+        <image name="nethcti_backspace.png" width="256" height="256"/>
+        <image name="nethcti_cam.png" width="40" height="40"/>
+        <image name="nethcti_green_circle.png" width="256" height="256"/>
+        <image name="nethcti_green_phone.png" width="64" height="64"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_numpad_0.png" width="256" height="256"/>
+        <image name="nethcti_numpad_1.png" width="256" height="256"/>
+        <image name="nethcti_numpad_2.png" width="256" height="256"/>
+        <image name="nethcti_numpad_3.png" width="256" height="256"/>
+        <image name="nethcti_numpad_4.png" width="256" height="256"/>
+        <image name="nethcti_numpad_5.png" width="256" height="256"/>
+        <image name="nethcti_numpad_6.png" width="256" height="256"/>
+        <image name="nethcti_numpad_7.png" width="256" height="256"/>
+        <image name="nethcti_numpad_8.png" width="256" height="256"/>
+        <image name="nethcti_numpad_9.png" width="256" height="256"/>
+        <image name="nethcti_numpad_asterisk.png" width="256" height="256"/>
+        <image name="nethcti_numpad_hashtag.png" width="256" height="256"/>
+        <image name="nethcti_user_add.png" width="40" height="40"/>
         <image name="numpad_0_default.png" width="84.800003051757812" height="79.199996948242188"/>
         <image name="numpad_0_over.png" width="84.800003051757812" height="79.199996948242188"/>
         <image name="numpad_1_default.png" width="84.800003051757812" height="77.599998474121094"/>
@@ -672,5 +900,14 @@
         <image name="numpad_over_background.png" width="2" height="2"/>
         <image name="numpad_star_default.png" width="84.800003051757812" height="81.599998474121094"/>
         <image name="numpad_star_over.png" width="84.800003051757812" height="81.599998474121094"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

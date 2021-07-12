@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutView">
             <connections>
                 <outlet property="addressLabel" destination="d6e-DR-2cj" id="2zg-7j-fh4"/>
                 <outlet property="appVersionLabel" destination="gLk-Bc-zvx" id="81L-RE-1ad"/>
                 <outlet property="cityLabel" destination="Frr-sA-gTw" id="oCD-g5-YZr"/>
-                <outlet property="descriptionLabel" destination="siH-xH-Z5X" id="aLc-ww-KBQ"/>
                 <outlet property="faxLabel" destination="lsh-db-Mfv" id="8iZ-8Q-5Aa"/>
-                <outlet property="landscapeView" destination="sVO-4a-t1s" id="9ye-NV-onQ"/>
+                <outlet property="innerView" destination="er6-WR-NP1" id="xgi-62-4pj"/>
                 <outlet property="libVersionLabel" destination="ZYk-v1-CYZ" id="E4g-U8-zyp"/>
                 <outlet property="licenceLabel" destination="gVK-Xc-S59" id="XPV-ct-oGP"/>
+                <outlet property="midView" destination="ZmU-5n-bEQ" id="8Ge-mo-faT"/>
                 <outlet property="policyLabel" destination="5Nl-Fs-ggi" id="xXc-PS-Eda"/>
                 <outlet property="portraitView" destination="HJH-1o-RXN" id="Hoa-uk-q9s"/>
                 <outlet property="telLabel" destination="lPy-UA-Sm9" id="nCD-XA-gxv"/>
@@ -27,283 +35,181 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="eP3-Qs-BZl" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HJH-1o-RXN">
-                    <rect key="frame" x="0.0" y="66" width="736" height="348"/>
+                <view tag="1" contentMode="scaleToFill" id="HJH-1o-RXN">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Whz-oo-Pwx" userLabel="topBar">
-                            <rect key="frame" x="0.0" y="0.0" width="736" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Whz-oo-Pwx" userLabel="topBar">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="h54-RV-eE6" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="736" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETk-tB-ZNl" userLabel="dialerBackButton" customClass="UIIconButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="188" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETk-tB-ZNl" userLabel="dialerBackButton" customClass="UIIconButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Add contact"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="ETk-tB-ZNl" secondAttribute="height" multiplier="1:1" id="llq-dk-2Ma"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="back_default.png">
+                                    <state key="normal" image="back.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="back_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onDialerBackClick:" destination="-1" eventType="touchUpInside" id="PJX-d2-pSh"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ABOUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNt-9d-7si" userLabel="titleLabel">
-                                    <rect key="frame" x="0.0" y="0.0" width="736" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNt-9d-7si" userLabel="titleLabel">
+                                    <rect key="frame" x="66" y="12.000000000000004" width="348" height="42.333333333333343"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
                                     <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="iNt-9d-7si" firstAttribute="centerY" secondItem="Whz-oo-Pwx" secondAttribute="centerY" id="2hR-NV-Abw"/>
+                                <constraint firstItem="iNt-9d-7si" firstAttribute="centerY" secondItem="Whz-oo-Pwx" secondAttribute="centerY" id="LpZ-x6-O9U"/>
+                                <constraint firstAttribute="trailing" secondItem="iNt-9d-7si" secondAttribute="trailing" id="Mam-Ug-gax"/>
+                                <constraint firstAttribute="height" secondItem="ETk-tB-ZNl" secondAttribute="height" id="Nmb-Ga-9tg"/>
+                                <constraint firstItem="ETk-tB-ZNl" firstAttribute="top" secondItem="Whz-oo-Pwx" secondAttribute="top" id="O2T-Ti-jgv"/>
+                                <constraint firstAttribute="trailing" secondItem="iNt-9d-7si" secondAttribute="trailing" id="ONU-ts-jpd"/>
+                                <constraint firstItem="iNt-9d-7si" firstAttribute="leading" secondItem="ETk-tB-ZNl" secondAttribute="trailing" id="Oqh-Wb-iJE"/>
+                                <constraint firstItem="ETk-tB-ZNl" firstAttribute="leading" secondItem="Whz-oo-Pwx" secondAttribute="leading" id="W0A-cf-DGS"/>
+                                <constraint firstAttribute="bottom" secondItem="ETk-tB-ZNl" secondAttribute="bottom" id="das-rK-5lu"/>
+                                <constraint firstAttribute="height" constant="66" id="pN6-AS-Koa"/>
+                            </constraints>
                         </view>
-                        <view clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="er6-WR-NP1">
-                            <rect key="frame" x="0.0" y="66" width="736" height="535"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmU-5n-bEQ" userLabel="midView">
+                            <rect key="frame" x="0.0" y="75" width="414" height="661"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_C.png" translatesAutoresizingMaskIntoConstraints="NO" id="fbO-x9-0Ue" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="736" height="262"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Linphone iOS 8.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLk-Bc-zvx" userLabel="appVersionLabel">
-                                    <rect key="frame" x="-8" y="221" width="736" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Linphone Core 3.14.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-v1-CYZ" userLabel="libVersionLabel">
-                                    <rect key="frame" x="-8" y="241" width="736" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="https://www.nethesis.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-zf-cQh" userLabel="siteURLLabel">
-                                    <rect key="frame" x="0.0" y="270" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="l7c-wq-pii" appends="YES" id="olo-CD-gM3"/>
-                                    </connections>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visit our privacy policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Nl-Fs-ggi" userLabel="policyLabel">
-                                    <rect key="frame" x="0.0" y="298" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nethesis SRL, Strada degli Olmi, 12" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-DR-2cj" userLabel="addressLabel">
-                                    <rect key="frame" x="0.0" y="404" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="61122 - Pesaro (PU)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Frr-sA-gTw" userLabel="cityLabel">
-                                    <rect key="frame" x="0.0" y="428" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tel: +39 0721 1791157" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lPy-UA-Sm9" userLabel="telLabel">
-                                    <rect key="frame" x="0.0" y="465" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fax: +39 0721 268147" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-db-Mfv" userLabel="faxLabel">
-                                    <rect key="frame" x="0.0" y="489" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="neth_dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="wSQ-YD-dIQ" userLabel="logoImage">
-                                    <rect key="frame" x="0.0" y="8" width="736" height="166"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="siH-xH-Z5X" userLabel="descLabel">
-                                    <rect key="frame" x="156" y="179" width="425" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="NethCTI">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="26" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-Xc-S59" userLabel="licenseLabel">
-                                    <rect key="frame" x="-8" y="335" width="736" height="61"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <string key="text">GNU General Public License V3
-© 2010-2020 Nethesis srl</string>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="scaleToFill" id="er6-WR-NP1" userLabel="innerView">
+                                    <rect key="frame" x="0.0" y="4" width="414" height="653"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="wSQ-YD-dIQ" userLabel="logoImage">
+                                            <rect key="frame" x="110.66666666666667" y="8" width="192.66666666666663" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="70" id="hZe-G6-ZNj"/>
+                                                <constraint firstAttribute="width" secondItem="wSQ-YD-dIQ" secondAttribute="height" multiplier="11:4" id="sGG-ws-rYK"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linphone iOS 8.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLk-Bc-zvx" userLabel="appVersionLabel">
+                                            <rect key="frame" x="16" y="110" width="398" height="19"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                            <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linphone Core 3.14.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-v1-CYZ" userLabel="libVersionLabel">
+                                            <rect key="frame" x="16" y="137" width="382" height="19"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                            <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://www.nethesis.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-zf-cQh" userLabel="siteURLLabel">
+                                            <rect key="frame" x="16" y="188" width="382" height="23.666666666666657"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="l7c-wq-pii" appends="YES" id="olo-CD-gM3"/>
+                                            </connections>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit our privacy policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Nl-Fs-ggi" userLabel="policyLabel">
+                                            <rect key="frame" x="16" y="243.66666666666669" width="382" height="23.666666666666686"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nethesis SRL, Strada degli Olmi, 12" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-DR-2cj" userLabel="addressLabel">
+                                            <rect key="frame" x="16" y="299.33333333333331" width="382" height="23.666666666666686"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="61122 - Pesaro (PU)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Frr-sA-gTw" userLabel="cityLabel">
+                                            <rect key="frame" x="16" y="331" width="382" height="23.666666666666686"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tel: +39 0721 1791157" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lPy-UA-Sm9" userLabel="telLabel">
+                                            <rect key="frame" x="16" y="386.66666666666669" width="382" height="23.666666666666686"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax: +39 0721 268147" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-db-Mfv" userLabel="faxLabel">
+                                            <rect key="frame" x="16" y="418.33333333333331" width="382" height="23.666666666666686"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-Xc-S59" userLabel="licenseLabel">
+                                            <rect key="frame" x="16" y="474" width="382" height="47"/>
+                                            <string key="text">GNU General Public License V3
+© 2010-2021 Nethesis srl</string>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1pe-zf-cQh" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="0nI-Be-QJA"/>
+                                        <constraint firstAttribute="trailing" secondItem="1pe-zf-cQh" secondAttribute="trailing" constant="16" id="3XR-6T-LCJ"/>
+                                        <constraint firstItem="lPy-UA-Sm9" firstAttribute="top" secondItem="Frr-sA-gTw" secondAttribute="bottom" constant="32" id="4eZ-ws-JqZ"/>
+                                        <constraint firstItem="wSQ-YD-dIQ" firstAttribute="centerX" secondItem="er6-WR-NP1" secondAttribute="centerX" id="7Gy-1u-S6T"/>
+                                        <constraint firstAttribute="trailing" secondItem="gLk-Bc-zvx" secondAttribute="trailing" id="CFp-aq-SY9"/>
+                                        <constraint firstItem="5Nl-Fs-ggi" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="INv-oP-rOc"/>
+                                        <constraint firstItem="ZYk-v1-CYZ" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="LGK-tx-HhJ"/>
+                                        <constraint firstItem="gVK-Xc-S59" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="Nae-JY-kpk"/>
+                                        <constraint firstItem="ZYk-v1-CYZ" firstAttribute="top" secondItem="gLk-Bc-zvx" secondAttribute="bottom" constant="8" id="QaG-4u-yYK"/>
+                                        <constraint firstItem="1pe-zf-cQh" firstAttribute="top" secondItem="ZYk-v1-CYZ" secondAttribute="bottom" constant="32" id="Qt9-ac-AK8"/>
+                                        <constraint firstItem="d6e-DR-2cj" firstAttribute="top" secondItem="5Nl-Fs-ggi" secondAttribute="bottom" constant="32" id="Sjo-u4-MZL"/>
+                                        <constraint firstItem="gLk-Bc-zvx" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="TOd-a3-N0v"/>
+                                        <constraint firstItem="lPy-UA-Sm9" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="UsL-5L-D1e"/>
+                                        <constraint firstItem="Frr-sA-gTw" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="V8e-Kp-oiT"/>
+                                        <constraint firstAttribute="trailing" secondItem="lsh-db-Mfv" secondAttribute="trailing" constant="16" id="VmJ-EE-oIb"/>
+                                        <constraint firstItem="5Nl-Fs-ggi" firstAttribute="top" secondItem="1pe-zf-cQh" secondAttribute="bottom" constant="32" id="XK7-e3-Pwx"/>
+                                        <constraint firstItem="Frr-sA-gTw" firstAttribute="top" secondItem="d6e-DR-2cj" secondAttribute="bottom" constant="8" id="YHE-u3-EwD"/>
+                                        <constraint firstAttribute="trailing" secondItem="d6e-DR-2cj" secondAttribute="trailing" constant="16" id="bH8-le-ryf"/>
+                                        <constraint firstItem="lsh-db-Mfv" firstAttribute="top" secondItem="lPy-UA-Sm9" secondAttribute="bottom" constant="8" id="jtK-F4-ubc"/>
+                                        <constraint firstAttribute="trailing" secondItem="5Nl-Fs-ggi" secondAttribute="trailing" constant="16" id="kD8-Sv-cxK"/>
+                                        <constraint firstItem="gVK-Xc-S59" firstAttribute="top" secondItem="lsh-db-Mfv" secondAttribute="bottom" constant="32" id="nhO-CZ-xRk"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZYk-v1-CYZ" secondAttribute="trailing" constant="16" id="p2M-gy-I2F"/>
+                                        <constraint firstAttribute="trailing" secondItem="gVK-Xc-S59" secondAttribute="trailing" constant="16" id="pRr-1i-hK3"/>
+                                        <constraint firstItem="gLk-Bc-zvx" firstAttribute="top" secondItem="wSQ-YD-dIQ" secondAttribute="bottom" constant="32" id="pmI-07-6A2"/>
+                                        <constraint firstAttribute="trailing" secondItem="lPy-UA-Sm9" secondAttribute="trailing" constant="16" id="u2t-ji-xTt"/>
+                                        <constraint firstItem="wSQ-YD-dIQ" firstAttribute="top" secondItem="er6-WR-NP1" secondAttribute="top" constant="8" id="uYV-Ni-P5o"/>
+                                        <constraint firstAttribute="trailing" secondItem="Frr-sA-gTw" secondAttribute="trailing" constant="16" id="wa7-0c-sht"/>
+                                        <constraint firstItem="d6e-DR-2cj" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="xJH-AW-9bT"/>
+                                        <constraint firstItem="lsh-db-Mfv" firstAttribute="leading" secondItem="er6-WR-NP1" secondAttribute="leading" constant="16" id="zAS-WW-DkC"/>
+                                    </constraints>
+                                </view>
                             </subviews>
-                        </view>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </scrollView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Whz-oo-Pwx" firstAttribute="leading" secondItem="HJH-1o-RXN" secondAttribute="leading" id="3bL-q4-Eag"/>
+                        <constraint firstAttribute="bottom" secondItem="ZmU-5n-bEQ" secondAttribute="bottom" id="EL2-LI-H8F"/>
+                        <constraint firstAttribute="trailing" secondItem="ZmU-5n-bEQ" secondAttribute="trailing" id="EbY-S9-hU3"/>
+                        <constraint firstItem="Whz-oo-Pwx" firstAttribute="top" secondItem="HJH-1o-RXN" secondAttribute="top" id="OjB-AY-VhD"/>
+                        <constraint firstAttribute="trailing" secondItem="Whz-oo-Pwx" secondAttribute="trailing" id="Xej-cR-t2J"/>
+                        <constraint firstItem="ZmU-5n-bEQ" firstAttribute="leading" secondItem="HJH-1o-RXN" secondAttribute="leading" id="yE5-6e-Qt5"/>
+                        <constraint firstItem="ZmU-5n-bEQ" firstAttribute="top" secondItem="Whz-oo-Pwx" secondAttribute="bottom" id="zoj-BV-Ne2"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="376" y="286.05697151424289"/>
-        </view>
-        <view contentMode="scaleToFill" id="FcM-rg-Qrt" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVO-4a-t1s">
-                    <rect key="frame" x="0.0" y="66" width="736" height="237"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <subviews>
-                        <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGe-ZS-scH" userLabel="topBar">
-                            <rect key="frame" x="0.0" y="0.0" width="736" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vi5-Wh-iOm" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="736" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX8-wO-ZEN" userLabel="dialerBackButton" customClass="UIIconButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="188" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Add contact"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="back_default.png">
-                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <state key="disabled" image="back_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
-                                    <connections>
-                                        <action selector="onDialerBackClick:" destination="-1" eventType="touchUpInside" id="vfB-jG-YPr"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ABOUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKp-iH-ojJ" userLabel="titleLabel">
-                                    <rect key="frame" x="0.0" y="0.0" width="736" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                                    <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </view>
-                        <view clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wvv-4f-Oa6">
-                            <rect key="frame" x="0.0" y="66" width="736" height="243"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_C.png" translatesAutoresizingMaskIntoConstraints="NO" id="UBx-Gi-qTi" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="736" height="152"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000149011612" translatesAutoresizingMaskIntoConstraints="NO" id="ASG-VC-Riv" userLabel="descLabel">
-                                    <rect key="frame" x="350" y="35" width="285" height="45"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="NethCTI">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="26" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Linphone iPhone 3.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYk-ih-BBi" userLabel="appVersionLabel">
-                                    <rect key="frame" x="251" y="88" width="485" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="https://www.nethesis.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGU-DX-XcO" userLabel="siteURLLabel">
-                                    <rect key="frame" x="0.0" y="154" width="736" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visit our privacy policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nld-cR-eba" userLabel="policyLabel">
-                                    <rect key="frame" x="0.0" y="173" width="736" height="41"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Linphone Core 3.9.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2W-u5-yxg" userLabel="libVersionLabel">
-                                    <rect key="frame" x="251" y="117" width="485" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="neth_dialer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="UhZ-5i-eU5" userLabel="logoImage">
-                                    <rect key="frame" x="8" y="8" width="229" height="138"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                            </subviews>
-                        </view>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GNU General Public License V2 © 2010-2020 Nethesis srl" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vqn-sI-DiC" userLabel="licenseLabel">
-                            <rect key="frame" x="0.0" y="137" width="936" height="21"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nethesis SRL, Strada degli Olmi, 12" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xxx-6D-jHU" userLabel="addressLabel">
-                            <rect key="frame" x="0.0" y="162" width="736" height="12"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="61122 - Pesaro (PU)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6DL-tL-Lbk" userLabel="cityLabel">
-                            <rect key="frame" x="0.0" y="172" width="736" height="12"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tel: +39 0721 1791157" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mnf-Jd-jB4" userLabel="telLabel">
-                            <rect key="frame" x="0.0" y="187" width="736" height="13"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fax: +39 0721 268147" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0xS-FI-YdY" userLabel="faxLabel">
-                            <rect key="frame" x="0.0" y="198" width="736" height="12"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-            </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="1393.2065217391305" y="221.73913043478262"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HJH-1o-RXN" secondAttribute="trailing" id="8m0-g2-qgF"/>
+                <constraint firstItem="HJH-1o-RXN" firstAttribute="top" secondItem="eP3-Qs-BZl" secondAttribute="top" id="d19-h5-xDT"/>
+                <constraint firstAttribute="bottom" secondItem="HJH-1o-RXN" secondAttribute="bottom" id="khB-Rn-ZhS"/>
+                <constraint firstItem="HJH-1o-RXN" firstAttribute="leading" secondItem="eP3-Qs-BZl" secondAttribute="leading" id="uJP-nV-jVu"/>
+            </constraints>
+            <point key="canvasLocation" x="375.36231884057975" y="285.32608695652175"/>
         </view>
         <tapGestureRecognizer id="l7c-wq-pii" userLabel="onLinkTap">
             <connections>
@@ -312,11 +218,8 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="back_default.png" width="38.400001525878906" height="35.200000762939453"/>
+        <image name="back.png" width="32" height="32"/>
         <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
-        <image name="color_C.png" width="2" height="2"/>
-        <image name="color_E.png" width="2" height="2"/>
-        <image name="color_F.png" width="2" height="2"/>
-        <image name="neth_dialer_background.png" width="1203" height="1201"/>
+        <image name="logo.png" width="125" height="39"/>
     </resources>
 </document>
