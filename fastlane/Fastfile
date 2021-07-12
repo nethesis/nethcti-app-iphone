@@ -39,6 +39,12 @@ platform :ios do
         # get_certificates           # invokes cert
         # get_provisioning_profile   # invokes sigh
         prepare_version
+        beta_rebranding
+    end
+
+    desc "Push a new beta build to Testflight without incrementing the build number."
+    desc "Only use to publish apps for rebranding, after having incremented the main build number."
+    lane :beta_rebranding do
         build_app( 
             scheme: "linphone",
             silent: true,
