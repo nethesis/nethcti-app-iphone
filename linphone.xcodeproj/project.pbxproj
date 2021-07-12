@@ -768,6 +768,10 @@
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
 		BB8C8138268DC2B30042A20A /* RecordingsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8C813A268DC2B30042A20A /* RecordingsListView.xib */; };
+		BBBFFFA6269C3AF700E76E3F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */; };
+		BBBFFFA7269C3AFD00E76E3F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105872639B2B200F5AEC5 /* Roboto-Light.ttf */; };
+		BBBFFFA8269C3AFF00E76E3F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */; };
+		BBBFFFA9269C3B0300E76E3F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3951058B2639B31D00F5AEC5 /* Roboto-Regular.ttf */; };
 		C3006727251E260700F5E478 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3006725251E260700F5E478 /* InfoPlist.strings */; };
 		C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87D923A3EA5500F4B2DA /* quit_default.png */; };
 		C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87DA23A3EA5600F4B2DA /* quit_over.png */; };
@@ -3997,6 +4001,7 @@
 				633FEE271D3CD5590014B822 /* checkbox_checked@2x.png in Resources */,
 				61586B85217A17070038AC45 /* menu_assistant.png in Resources */,
 				633FEDCC1D3CD5590014B822 /* call_quality_indicator_0.png in Resources */,
+				BBBFFFA6269C3AF700E76E3F /* Roboto-Bold.ttf in Resources */,
 				633FEDEB1D3CD5590014B822 /* call_status_outgoing@2x.png in Resources */,
 				633FEDEE1D3CD5590014B822 /* call_transfer_default.png in Resources */,
 				39F80F882678E0250046E287 /* nethcti_bluetooth.png@2x.png in Resources */,
@@ -4070,6 +4075,7 @@
 				633FEED01D3CD55A0014B822 /* numpad_6_over~ipad@2x.png in Resources */,
 				633FEEC81D3CD55A0014B822 /* numpad_5_over~ipad@2x.png in Resources */,
 				61586B91217A175D0038AC45 /* menu_recordings.png in Resources */,
+				BBBFFFA9269C3B0300E76E3F /* Roboto-Regular.ttf in Resources */,
 				633FEF1B1D3CD55A0014B822 /* presence_away@2x.png in Resources */,
 				633FEE281D3CD5590014B822 /* checkbox_unchecked.png in Resources */,
 				633FEE9D1D3CD55A0014B822 /* numpad_0_over.png in Resources */,
@@ -4214,6 +4220,7 @@
 				C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */,
 				615A28362180720D0060F920 /* security_toogle_background_grey@2x.png in Resources */,
 				639CEB091A1DF4FA004DE38F /* UIChatCell.xib in Resources */,
+				BBBFFFA8269C3AFF00E76E3F /* Roboto-Medium.ttf in Resources */,
 				633FEE961D3CD55A0014B822 /* micro_disabled.png in Resources */,
 				63AADBF61B6A0FF200AA16FD /* linphonerc-factory in Resources */,
 				633FEE671D3CD5590014B822 /* footer_contacts_default@2x.png in Resources */,
@@ -4396,6 +4403,7 @@
 				633FEDA91D3CD5590014B822 /* backspace_default@2x.png in Resources */,
 				633FEDF61D3CD5590014B822 /* camera_default.png in Resources */,
 				F0642EF119DAC891009DB336 /* MainStoryboard.storyboard in Resources */,
+				BBBFFFA7269C3AFD00E76E3F /* Roboto-Light.ttf in Resources */,
 				633FEECC1D3CD55A0014B822 /* numpad_6_default@2x.png in Resources */,
 				633FEEB91D3CD55A0014B822 /* numpad_3~ipad.png in Resources */,
 				633FEE731D3CD5590014B822 /* history_all_default@2x.png in Resources */,
