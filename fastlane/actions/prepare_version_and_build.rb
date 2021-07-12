@@ -27,15 +27,15 @@ module Fastlane
         )
         UI.message("Returned #{Action.lane_context[SharedValues::LATEST_TESTFLIGHT_VERSION]} version on Testflight and #{Action.lane_context[SharedValues::LATEST_TESTFLIGHT_BUILD_NUMBER]}/#{tf_build} build number on Testflight") if params[:verbose]
         # Update the shared value.
-        Actions.lane_context[SharedValues::UPDATED_PROJECT_BUILD_NUMBER] = tf_build
+        new_build_number = tf_build + 1 # Obviously increment the latest build number. (tf_build || 0) + 1.
+        Actions.lane_context[SharedValues::UPDATED_PROJECT_BUILD_NUMBER] = new_build_number
 
-        new_build_number =  + 1 # Increment by one the last build number, obviously. (tf_build || 0) + 1
         other_action.increment_build_number(
           build_number: new_build_number, 
           xcodeproj: "linphone.xcodeproj"
         )
 
-        commit_message = "Version bump to made #{version_string}(##{tf_build}) by Fastlane."
+        commit_message = "Version bump to made #{version_string}(##{new_build_number}) by Fastlane."
         other_action.commit_version_bump(
           message: commit_message,
           xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here

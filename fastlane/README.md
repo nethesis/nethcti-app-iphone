@@ -33,12 +33,19 @@ fastlane voipiu
 ```
 fastlane ios tests
 ```
-Push a new beta build to TestFlight
+All ios specific lanes
+
+Execute automatic tests and produce a code coverage report.
+### ios prepare_version
+```
+fastlane ios prepare_version
+```
+Prepare the build number for the next build to deploy.
 ### ios beta
 ```
 fastlane ios beta
 ```
-
+Push a new beta build to TestFlight.
 ### ios release
 ```
 fastlane ios release
@@ -52,6 +59,8 @@ fastlane ios release
 ```
 fastlane android tests
 ```
+All Android specific lanes
+
 Push a new Beta build to Play Store Console
 
 ----
