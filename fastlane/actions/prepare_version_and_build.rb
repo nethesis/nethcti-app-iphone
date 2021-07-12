@@ -21,13 +21,17 @@ module Fastlane
         # Update the shared value.
         Actions.lane_context[SharedValues::CURRENT_PROJECT_VERSION_STRING] = version_string
 
-        tf_build = other_action.latest_testflight_build_number(version: version_string)
+        tf_build = other_action.latest_testflight_build_number(
+          version: version_string,
+          initial_build_number: 0
+        )
         UI.message("Returned #{Action.lane_context[SharedValues::LATEST_TESTFLIGHT_VERSION]} version on Testflight and #{Action.lane_context[SharedValues::LATEST_TESTFLIGHT_BUILD_NUMBER]}/#{tf_build} build number on Testflight") if params[:verbose]
         # Update the shared value.
         Actions.lane_context[SharedValues::UPDATED_PROJECT_BUILD_NUMBER] = tf_build
 
+        new_build_number =  + 1 # Increment by one the last build number, obviously. (tf_build || 0) + 1
         other_action.increment_build_number(
-          build_number: tf_build + 1, # Increment by one the last build number, obviously.
+          build_number: new_build_number, 
           xcodeproj: "linphone.xcodeproj"
         )
 
