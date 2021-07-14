@@ -53,6 +53,8 @@ fastlane ios beta_rebranding
 Push a new beta build to Testflight without incrementing the build number.
 
 Only use to publish apps for rebranding, after having incremented the main build number.
+
+If you push without incrementing build number, it will be rejected.
 ### ios release
 ```
 fastlane ios release

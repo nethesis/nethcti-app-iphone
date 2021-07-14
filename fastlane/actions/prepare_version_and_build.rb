@@ -35,21 +35,12 @@ module Fastlane
           xcodeproj: "linphone.xcodeproj"
         )
 
-        commit_message = "Version bump to made #{version_string}(##{new_build_number}) by Fastlane."
+        commit_message = "Version bump to #{version_string}(##{new_build_number}) made by Fastlane."
         other_action.commit_version_bump(
           force: true,
           message: commit_message,
           xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here
         )
-
-        # Send a system notification.
-        other_action.notification(
-          app_icon: "./Resources/images.xcassets/AppIcon.appiconset/1024.png",
-          content_image: "./Resources/images.xcassets/AppIcon.appiconset/1024.png",
-          title: "NethCTI Fastlane",
-          subtitle: "Incremented build number",
-          message: commit_message
-        ) if params[:verbose]
 
         return tf_build
 
