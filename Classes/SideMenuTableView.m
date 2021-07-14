@@ -178,7 +178,7 @@
         // [cell.textLabel setFont:(UIFont * _Nullable)];
     }
     
-    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:12];
+    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:16];
     
     return cell;
 }

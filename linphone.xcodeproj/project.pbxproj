@@ -768,6 +768,12 @@
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
 		BB8C8138268DC2B30042A20A /* RecordingsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8C813A268DC2B30042A20A /* RecordingsListView.xib */; };
+		BBBFFFA6269C3AF700E76E3F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */; };
+		BBBFFFA7269C3AFD00E76E3F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105872639B2B200F5AEC5 /* Roboto-Light.ttf */; };
+		BBBFFFA8269C3AFF00E76E3F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */; };
+		BBBFFFA9269C3B0300E76E3F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3951058B2639B31D00F5AEC5 /* Roboto-Regular.ttf */; };
+		BBBFFFAC269C3F3600E76E3F /* nethcti_reverse_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBBFFFAA269C3F3500E76E3F /* nethcti_reverse_camera@2x.png */; };
+		BBBFFFAD269C3F3600E76E3F /* nethcti_reverse_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = BBBFFFAB269C3F3500E76E3F /* nethcti_reverse_camera.png */; };
 		C3006727251E260700F5E478 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3006725251E260700F5E478 /* InfoPlist.strings */; };
 		C31B87DB23A3EA5600F4B2DA /* quit_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87D923A3EA5500F4B2DA /* quit_default.png */; };
 		C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B87DA23A3EA5600F4B2DA /* quit_over.png */; };
@@ -1892,6 +1898,8 @@
 		BB839E75268DCE78001F6AD7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DialerView.strings; sourceTree = "<group>"; };
 		BB8C8139268DC2B30042A20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordingsListView.xib; sourceTree = "<group>"; };
 		BB8C813C268DC2EE0042A20A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
+		BBBFFFAA269C3F3500E76E3F /* nethcti_reverse_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_reverse_camera@2x.png"; sourceTree = "<group>"; };
+		BBBFFFAB269C3F3500E76E3F /* nethcti_reverse_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_reverse_camera.png; sourceTree = "<group>"; };
 		C3006726251E260700F5E478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C3006728251E276A00F5E478 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C31B87D923A3EA5500F4B2DA /* quit_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quit_default.png; sourceTree = "<group>"; };
@@ -1996,6 +2004,8 @@
 		C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_users_sip@2x.png"; sourceTree = "<group>"; };
 		C3CAB9B323A9164800257577 /* linphone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "linphone-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
+		C3D71B8C269600B900EABCEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
+		C3D71B8D2696021A00EABCEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HistoryListView.strings; sourceTree = "<group>"; };
 		C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewNethesis.m; sourceTree = "<group>"; };
 		C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewNethesis.h; sourceTree = "<group>"; };
 		C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewNethesis.m; sourceTree = "<group>"; };
@@ -3144,6 +3154,8 @@
 				C39A585826526FD600ED4390 /* nethcti_refresh@2x.png */,
 				398DE718264D21A7008B65A9 /* nethcti_remove.png */,
 				398DE719264D21AA008B65A9 /* nethcti_remove@2x.png */,
+				BBBFFFAB269C3F3500E76E3F /* nethcti_reverse_camera.png */,
+				BBBFFFAA269C3F3500E76E3F /* nethcti_reverse_camera@2x.png */,
 				39D09CCF265BD72400AFD3BA /* nethcti_three_dots.png */,
 				39D09CCE265BD72200AFD3BA /* nethcti_three_dots@2x.png */,
 				39EC1D25265EAD9400070BF7 /* nethcti_transfer_call_green.png */,
@@ -3995,6 +4007,7 @@
 				633FEE271D3CD5590014B822 /* checkbox_checked@2x.png in Resources */,
 				61586B85217A17070038AC45 /* menu_assistant.png in Resources */,
 				633FEDCC1D3CD5590014B822 /* call_quality_indicator_0.png in Resources */,
+				BBBFFFA6269C3AF700E76E3F /* Roboto-Bold.ttf in Resources */,
 				633FEDEB1D3CD5590014B822 /* call_status_outgoing@2x.png in Resources */,
 				633FEDEE1D3CD5590014B822 /* call_transfer_default.png in Resources */,
 				39F80F882678E0250046E287 /* nethcti_bluetooth.png@2x.png in Resources */,
@@ -4068,12 +4081,14 @@
 				633FEED01D3CD55A0014B822 /* numpad_6_over~ipad@2x.png in Resources */,
 				633FEEC81D3CD55A0014B822 /* numpad_5_over~ipad@2x.png in Resources */,
 				61586B91217A175D0038AC45 /* menu_recordings.png in Resources */,
+				BBBFFFA9269C3B0300E76E3F /* Roboto-Regular.ttf in Resources */,
 				633FEF1B1D3CD55A0014B822 /* presence_away@2x.png in Resources */,
 				633FEE281D3CD5590014B822 /* checkbox_unchecked.png in Resources */,
 				633FEE9D1D3CD55A0014B822 /* numpad_0_over.png in Resources */,
 				633FEEC21D3CD55A0014B822 /* numpad_4~ipad@2x.png in Resources */,
 				633FEDFE1D3CD5590014B822 /* camera_switch_disabled.png in Resources */,
 				392AC7EA267263F70055DFCF /* nethcti_logo_sip.png in Resources */,
+				BBBFFFAD269C3F3600E76E3F /* nethcti_reverse_camera.png in Resources */,
 				633FEE7F1D3CD5590014B822 /* history_missed_selected@2x.png in Resources */,
 				633FEDC01D3CD5590014B822 /* call_back_disabled.png in Resources */,
 				633FEED31D3CD55A0014B822 /* numpad_7_default.png in Resources */,
@@ -4191,6 +4206,7 @@
 				633FEF051D3CD55A0014B822 /* options_selected@2x.png in Resources */,
 				39EC1D2C265EAF0500070BF7 /* nethcti_add_call_green.png in Resources */,
 				633FEDD61D3CD5590014B822 /* call_start_body_default.png in Resources */,
+				BBBFFFAC269C3F3600E76E3F /* nethcti_reverse_camera@2x.png in Resources */,
 				633FEEEC1D3CD55A0014B822 /* numpad_hash_default@2x.png in Resources */,
 				633FEE831D3CD5590014B822 /* led_disconnected@2x.png in Resources */,
 				39A124A2263AB3E400CF1DB9 /* dashboard_settings@2x.png in Resources */,
@@ -4212,6 +4228,7 @@
 				C31B87DC23A3EA5600F4B2DA /* quit_over.png in Resources */,
 				615A28362180720D0060F920 /* security_toogle_background_grey@2x.png in Resources */,
 				639CEB091A1DF4FA004DE38F /* UIChatCell.xib in Resources */,
+				BBBFFFA8269C3AFF00E76E3F /* Roboto-Medium.ttf in Resources */,
 				633FEE961D3CD55A0014B822 /* micro_disabled.png in Resources */,
 				63AADBF61B6A0FF200AA16FD /* linphonerc-factory in Resources */,
 				633FEE671D3CD5590014B822 /* footer_contacts_default@2x.png in Resources */,
@@ -4394,6 +4411,7 @@
 				633FEDA91D3CD5590014B822 /* backspace_default@2x.png in Resources */,
 				633FEDF61D3CD5590014B822 /* camera_default.png in Resources */,
 				F0642EF119DAC891009DB336 /* MainStoryboard.storyboard in Resources */,
+				BBBFFFA7269C3AFD00E76E3F /* Roboto-Light.ttf in Resources */,
 				633FEECC1D3CD55A0014B822 /* numpad_6_default@2x.png in Resources */,
 				633FEEB91D3CD55A0014B822 /* numpad_3~ipad.png in Resources */,
 				633FEE731D3CD5590014B822 /* history_all_default@2x.png in Resources */,
@@ -5361,6 +5379,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548201883F15400E8A69B /* Base */,
+				C3D71B8C269600B900EABCEA /* it */,
 			);
 			name = HistoryDetailsView.xib;
 			sourceTree = "<group>";
@@ -5369,6 +5388,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548211883F15400E8A69B /* Base */,
+				C3D71B8D2696021A00EABCEA /* it */,
 			);
 			name = HistoryListView.xib;
 			sourceTree = "<group>";

@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loadData;
 
+@property (nonatomic) IBOutlet NSLayoutConstraint *historyViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *historyView;
 
 @property(strong, nonatomic) NSMutableArray *historyLogs;
 

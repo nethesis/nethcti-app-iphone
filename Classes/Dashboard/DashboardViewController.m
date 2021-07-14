@@ -41,17 +41,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // Change image colors.
-    UIImage *tmpImage = [[UIImage imageNamed:@"call_missed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _dialerButton.imageView.image = tmpImage;
-    [_dialerButton.imageView setTintColor:[UIColor redColor]];
-    _historyButton.imageView.image = tmpImage;
-    [_historyButton.imageView setTintColor:[UIColor redColor]];
-    _phonebookButton.imageView.image = tmpImage;
-    [_phonebookButton.imageView setTintColor:[UIColor redColor]];
-    _settingsButton.imageView.image = tmpImage;
-    [_settingsButton.imageView setTintColor:[UIColor redColor]];
-    
     if([_historyTableView isEditing]){
         [_historyTableView setEditing:FALSE animated:FALSE];
     }

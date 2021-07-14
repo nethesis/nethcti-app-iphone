@@ -46,6 +46,13 @@ Prepare the build number for the next build to deploy.
 fastlane ios beta
 ```
 Push a new beta build to TestFlight.
+### ios beta_rebranding
+```
+fastlane ios beta_rebranding
+```
+Push a new beta build to Testflight without incrementing the build number.
+
+Only use to publish apps for rebranding, after having incremented the main build number.
 ### ios release
 ```
 fastlane ios release
