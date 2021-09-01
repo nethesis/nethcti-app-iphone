@@ -19,7 +19,7 @@ or alternatively using `brew install fastlane`
 ```
 fastlane notif
 ```
-
+Test notif
 ### voipiu
 ```
 fastlane voipiu
@@ -70,7 +70,7 @@ fastlane android tests
 ```
 All Android specific lanes
 
-Push a new Beta build to Play Store Console
+Run unit tests for gradle builds
 
 ----
 
