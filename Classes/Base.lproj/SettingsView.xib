@@ -57,7 +57,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="66" id="9P3-aB-nv0"/>
                                 <constraint firstAttribute="trailing" secondItem="SqM-h2-idp" secondAttribute="trailing" id="Bfx-iC-ciu"/>

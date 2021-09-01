@@ -78,7 +78,11 @@
 #pragma mark - UI Update
 
 -(void)setupUI {
-    [self.backgroundImage setBackgroundColor:UIColor.whiteColor];
+    if (@available(iOS 11.0, *)) {
+        [self.backgroundImage setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+    } else {
+        [self.backgroundImage setBackgroundColor:[UIColor getColorByName:@"White"]];
+    }
     
     grey = [UIColor getColorByName: @"Grey"];
     mainColor = [UIColor getColorByName: @"MainColor"];

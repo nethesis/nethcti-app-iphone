@@ -116,7 +116,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="9" firstAttribute="top" secondItem="4" secondAttribute="top" id="0FR-wU-aiN"/>
                                 <constraint firstAttribute="bottom" secondItem="bPQ-aJ-Lk6" secondAttribute="bottom" id="9p3-xN-Qjw"/>
