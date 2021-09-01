@@ -768,6 +768,7 @@
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
 		BB8C8138268DC2B30042A20A /* RecordingsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8C813A268DC2B30042A20A /* RecordingsListView.xib */; };
+		BBB62CF926DF68470035F6D2 /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB62CF826DF68470035F6D2 /* colors.xcassets */; };
 		BBBFFFA6269C3AF700E76E3F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */; };
 		BBBFFFA7269C3AFD00E76E3F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105872639B2B200F5AEC5 /* Roboto-Light.ttf */; };
 		BBBFFFA8269C3AFF00E76E3F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */; };
@@ -1898,6 +1899,7 @@
 		BB839E75268DCE78001F6AD7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DialerView.strings; sourceTree = "<group>"; };
 		BB8C8139268DC2B30042A20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordingsListView.xib; sourceTree = "<group>"; };
 		BB8C813C268DC2EE0042A20A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
+		BBB62CF826DF68470035F6D2 /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
 		BBBFFFAA269C3F3500E76E3F /* nethcti_reverse_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_reverse_camera@2x.png"; sourceTree = "<group>"; };
 		BBBFFFAB269C3F3500E76E3F /* nethcti_reverse_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_reverse_camera.png; sourceTree = "<group>"; };
 		C3006726251E260700F5E478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -3412,6 +3414,7 @@
 				63CDC4511C3BDE370085F529 /* sounds */,
 				C3006725251E260700F5E478 /* InfoPlist.strings */,
 				C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */,
+				BBB62CF826DF68470035F6D2 /* colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -4590,6 +4593,7 @@
 				633FEE791D3CD5590014B822 /* history_chat_indicator@2x.png in Resources */,
 				633FEEBA1D3CD55A0014B822 /* numpad_3~ipad@2x.png in Resources */,
 				C397F3A22657BB0D00AB3178 /* nethcti_volume.png in Resources */,
+				BBB62CF926DF68470035F6D2 /* colors.xcassets in Resources */,
 				633FEEA61D3CD55A0014B822 /* numpad_1_over@2x.png in Resources */,
 				633FEE371D3CD5590014B822 /* conference_exit_over@2x.png in Resources */,
 				639E9CA01C0DB7E500019A75 /* UIChatBubblePhotoCell.xib in Resources */,

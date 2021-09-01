@@ -64,7 +64,12 @@
 
 /// Set UI Colors by default.
 -(void)setUIColors {
-    [self.backgroundImage setBackgroundColor:[UIColor getColorByName: @"White"]];
+    if (@available(iOS 11.0, *)) {
+        [self.backgroundImage setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+    } else {
+        [self.backgroundImage setBackgroundColor:[UIColor getColorByName:@"White"]];
+    }
+    
     [self.registrationState setTitleColor:[UIColor getColorByName: @"Grey"] forState:UIControlStateNormal];
     [self.sideMenuButton setTitleColor:[UIColor getColorByName: @"Grey"] forState:UIControlStateNormal];
 }

@@ -47,20 +47,28 @@
 											 object:nil];
 
 	[self updateHeader];
+    [self setUIColors];
 	[_sideMenuTableViewController.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	_grayBackground.hidden = NO;
-    // TODO: Add NETHCTI_WHITE
-    _headerView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	_grayBackground.hidden = YES;
 	// Should be better than that with alpha animation..
+}
+
+- (void)setUIColors {
+    if (@available(iOS 11.0, *)) {
+        [self.view setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+        [self.headerView setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+    } else {
+        [self.view setBackgroundColor:[UIColor getColorByName:@"White"]];
+    }
 }
 
 - (void)updateHeader {
