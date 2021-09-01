@@ -91,7 +91,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>10</string>
 	<key>Cyan</key>
 	<string>$(CYAN)</string>
 	<key>Green</key>
@@ -102,9 +102,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <!-- NOTE: This color can be different from main background color. -->
-    <key>StatusBarBgColor</key>
-    <string>$(WHITE)</string>
 	<key>LightCyan</key>
 	<string>$(LIGHT_CYAN)</string>
 	<key>LightGreen</key>
@@ -181,6 +178,9 @@
 	<string>Make audio/video calls with sip protocol.</string>
 	<key>NotificationAppGroupId</key>
 	<string>$(MSG_NOTIFICATION_APP_GROUP_ID)</string>
+    <!-- NOTE: This color can be different from main background color. -->
+	<key>StatusBarBgColor</key>
+	<string>$(WHITE)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Bold.ttf</string>
