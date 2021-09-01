@@ -19,6 +19,27 @@ default_platform(:ios)
 desc "All ios specific lanes"
 platform :ios do
 
+    desc "Prepare local environment for development"
+    desc "Install development certificates and provisioning profiles"
+    desc "Add new devices to devices.txt list if you need them for testing"
+    lane :prepare_development do
+        bundle_identifier = ENV["BUNDLE_IDENTIFIER"]
+        git_branch = ENV["GIT_BRANCH"]
+        register_devices(devices_file: "./devices.txt")
+        # Generate development certs and profiles.
+        match(
+            type: "development", 
+            force_for_new_devices: true, 
+            git_branch: git_branch, 
+            app_identifier: [
+                "#{bundle_identifier}", 
+                "#{bundle_identifier}.extension",
+                "#{bundle_identifier}.msgNotificationService",
+                "#{bundle_identifier}.msgNotificationContent"
+            ]
+        )
+    end
+
     desc "Execute automatic tests and produce a code coverage report."
     lane :tests do
         run_tests(
@@ -31,7 +52,7 @@ platform :ios do
 
     desc "Prepare the build number for the next build to deploy."
     lane :prepare_version do
-        prepare_version_and_build
+        ENV["tf_build"] = prepare_version_and_build
     end
 
     desc "Push a new beta build to TestFlight."
@@ -46,6 +67,7 @@ platform :ios do
     desc "Only use to publish apps for rebranding, after having incremented the main build number."
     desc "If you push without incrementing build number, it will be rejected."
     lane :beta_rebranding do
+        match(type:"appstore", readonly: is_ci)
         build_app( 
             scheme: "linphone",
             silent: true,
@@ -70,7 +92,21 @@ platform :ios do
         upload_to_app_store
 
         notif(message: "In a few minutes, you'll be able to release your application.", subtitle: "Finished Uploading")
+    end
 
+    # This lane is called, only if the executed lane was successful
+    after_all do |lane|
+        File.delete("../../NethCTI.ipa")
+        File.delete("../../NethCTI.app.dSYM.zip")
+    
+        commit_message = "Version bump to #{ENV["tf_build"]} made by Fastlane."
+          other_action.commit_version_bump(
+            force: true,
+            message: commit_message,
+            xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here
+          )
+
+        notify "Fastlane finished '#{lane}' successfully" # Mac OS X Notification
     end
 end
 

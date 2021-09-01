@@ -20,6 +20,11 @@ or alternatively using `brew install fastlane`
 fastlane notif
 ```
 Test notif
+### is_ci_lane
+```
+fastlane is_ci_lane
+```
+
 ### voipiu
 ```
 fastlane voipiu
