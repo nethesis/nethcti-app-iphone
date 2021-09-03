@@ -162,9 +162,9 @@
                                             <state key="normal" image="nethcti_reverse_camera.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="disabled" image="camera_switch_disabled.png"/>
-                                            <state key="selected" image="camera_switch_over.png"/>
-                                            <state key="highlighted" image="camera_switch_over.png"/>
+                                            <state key="disabled" image="nethcti_reverse_camera.png"/>
+                                            <state key="selected" image="nethcti_reverse_camera.png"/>
+                                            <state key="highlighted" image="nethcti_reverse_camera.png"/>
                                             <connections>
                                                 <outlet property="preview" destination="127" id="172"/>
                                             </connections>

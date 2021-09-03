@@ -632,6 +632,7 @@
 	if (range.location != NSNotFound) {
 		tmpAddress = [tmpAddress substringToIndex:range.location];
 	}
+    NSRange at = [tmpAddress rangeOfString:@"@"]; // TODO: Hide ip address in sip address in call outgoing view.
 	addressLabel.text = tmpAddress;
 }
 
