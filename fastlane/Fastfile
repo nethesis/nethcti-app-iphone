@@ -19,9 +19,9 @@ default_platform(:ios)
 desc "All ios specific lanes"
 platform :ios do
 
-    desc "Prepare local environment for development"
-    desc "Install development certificates and provisioning profiles"
-    desc "Add new devices to devices.txt list if you need them for testing"
+    desc "Prepare local environment for development."
+    desc "Install development certificates and provisioning profiles."
+    desc "Add new devices to devices.txt list if you need them for testing."
     lane :prepare_development do
         bundle_identifier = ENV["BUNDLE_IDENTIFIER"]
         git_branch = ENV["GIT_BRANCH"]
@@ -41,6 +41,7 @@ platform :ios do
     end
 
     desc "Execute automatic tests and produce a code coverage report."
+    desc "Be sure to have installed on your machine all devices defined in *devices array*."
     lane :tests do
         run_tests(
             code_coverage: true,

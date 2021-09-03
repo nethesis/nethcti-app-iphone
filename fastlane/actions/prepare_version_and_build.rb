@@ -75,7 +75,7 @@ module Fastlane
             key: :verbose,
             env_name: "VERBOSE_LOGS", # The name of the environment variable
             description: "Set the verbosity level of the action: false value will prevent any output", # a short description of this parameter
-            default_value: true, # the default value if the user didn't provide one
+            default_value: false, # the default value if the user didn't provide one
             optional: true,
             is_string: false # true: verifies the input is a string, false: every kind of value
           ) 
