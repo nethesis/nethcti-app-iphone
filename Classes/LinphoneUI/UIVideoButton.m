@@ -40,11 +40,11 @@ INIT_WITH_COMMON_CF {
     // Change UI Colors according to button state.
     onColor = [UIColor getColorByName:@"MainColor"];
     offColor = [UIColor getColorByName:@"Grey"];
-    [self setTintColor:offColor];
+    // [self setTintColor:offColor];
     
     backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
     backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
-    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
+    // [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
     
     return self;
 }
@@ -70,7 +70,10 @@ INIT_WITH_COMMON_CF {
     linphone_call_params_enable_video(call_params, TRUE);
     linphone_call_update(call, call_params);
     linphone_call_params_unref(call_params);
-    
+    [self setOnColors];
+}
+
+- (void) setOnColors {
     // Change UI Colors according to button state.
     [self setTintColor:onColor];
     [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
@@ -95,7 +98,10 @@ INIT_WITH_COMMON_CF {
     linphone_call_params_enable_video(call_params, FALSE);
     linphone_core_update_call(LC, call, call_params);
     linphone_call_params_destroy(call_params);
-    
+    [self setOffColors];
+}
+
+- (void) setOffColors {
     // Change UI Colors according to button state.
     [self setTintColor:offColor];
     [self setBackgroundImage:backOffImage forState:UIControlStateNormal];

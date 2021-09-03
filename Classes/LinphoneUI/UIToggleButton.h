@@ -23,7 +23,9 @@
 
 @protocol UIToggleButtonDelegate 
 	- (void)onOn;
+    - (void)setOnColors;
 	- (void)onOff;
+    - (void)setOffColors;
 	- (bool)onUpdate;
 @end
 
