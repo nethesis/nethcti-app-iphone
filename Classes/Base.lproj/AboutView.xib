@@ -107,7 +107,7 @@
                                             <color key="textColor" red="0.85415387153625488" green="0.85412830114364624" blue="0.85414278507232666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://www.nethesis.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-zf-cQh" userLabel="siteURLLabel">
+                                        <label opaque="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://www.nethesis.it" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-zf-cQh" userLabel="siteURLLabel">
                                             <rect key="frame" x="16" y="188" width="382" height="23.666666666666657"/>
                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
