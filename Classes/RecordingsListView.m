@@ -78,7 +78,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     UIImage *multiSelect = [UIImage imageNamed:@"nethcti_multiselect_selected.png"];
     // [_toggleSelectionButton setImage:multiUnselect forState:UIControlStateSelected]; // select_all_default
     [_toggleSelectionButton setImage:multiSelect forState:UIControlStateSelected]; // select_all_default
-    
+    [self setUIColors];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
