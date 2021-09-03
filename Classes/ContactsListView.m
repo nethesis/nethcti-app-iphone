@@ -368,7 +368,15 @@ static UICompositeViewDescription *compositeDescription = nil;
 /// Set view buttons consistently to the sip filter mode selected.
 - (void)refreshButtons {
     bool sipFilter = [ContactSelection getSipFilter];
+    UIColor *grey;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    [addButton setTintColor:grey];
     [addButton setHidden:sipFilter];
+    [_backSpaceButton setTintColor:grey];
     [tableController.deleteButton setHidden:sipFilter];
     [tableController.editButton setHidden:sipFilter];
     [self changeView:sipFilter ? ContactsLinphone : ContactsAll];
