@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -187,8 +187,8 @@
                             <state key="normal" image="nethcti_microphone_disabled.png" backgroundImage="nethcti_button_circle.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="disabled" image="micro_disabled.png"/>
-                            <state key="selected" image="nethcti_microphone.png" backgroundImage="nethcti_button_circle.png"/>
+                            <state key="disabled" image="micro_disabled.png" backgroundImage="nethcti_button_circle.png"/>
+                            <state key="selected" backgroundImage="nethcti_blue_circle.png"/>
                         </button>
                         <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7m-Av-QlR" userLabel="speakerButton" customClass="UISpeakerButton">
                             <rect key="frame" x="332" y="830" width="64" height="64"/>
@@ -202,7 +202,7 @@
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled" image="speaker_disabled.png"/>
-                            <state key="selected" image="nethcti_volume.png" backgroundImage="nethcti_blue_circle.png"/>
+                            <state key="selected" backgroundImage="nethcti_blue_circle.png"/>
                         </button>
                         <view hidden="YES" alpha="0.0" tag="7" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Qi-Cq-3XH" userLabel="tabBar">
                             <rect key="frame" x="0.0" y="863" width="428" height="63"/>
@@ -444,7 +444,6 @@
         <image name="nethcti_blue_circle.png" width="187.5" height="187.5"/>
         <image name="nethcti_button_circle.png" width="167" height="167"/>
         <image name="nethcti_close_button.png" width="128" height="128"/>
-        <image name="nethcti_microphone.png" width="40" height="40"/>
         <image name="nethcti_microphone_disabled.png" width="32" height="32"/>
         <image name="nethcti_volume.png" width="32" height="32"/>
         <image name="route_bluetooth_default.png" width="26.399999618530273" height="41.599998474121094"/>

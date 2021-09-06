@@ -202,6 +202,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	LinphoneCallState state = (call != NULL) ? linphone_call_get_state(call) : 0;
 	[self callUpdate:call state:state animated:FALSE];
+    
+    UIImage *image = [[UIImage imageNamed:@"nethcti_record.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_recordButton setImage:image forState:UIControlStateNormal];
+    if(callRecording) {
+        [self setOnRecordButton];
+    } else {
+        [self setOffRecordButton];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -814,14 +822,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
     } else {
         LOGD(@"Recording Starts");
         
-        UIImage *image = [[UIImage imageNamed:@"nethcti_record.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        
-        [_recordButton setImage:image forState:UIControlStateNormal];
-        [_recordButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-        
-        UIImage *background = [UIImage imageNamed:@"nethcti_blue_circle.png"];
-        [_recordButton setBackgroundImage:background forState:UIControlStateNormal];
-        
+        [self setOnRecordButton];
         LinphoneCall *call = linphone_core_get_current_call(LC);
         linphone_call_start_recording(call);
         
@@ -829,15 +830,17 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
     }
 }
 
+- (void)setOnRecordButton {
+    [_recordButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+    
+    UIImage *background = [UIImage imageNamed:@"nethcti_blue_circle.png"];
+    [_recordButton setBackgroundImage:background forState:UIControlStateNormal];
+}
+
 - (IBAction)onRecordOnViewClick:(id)sender {
 	LOGD(@"Recording Stops");
     
-    UIImage *image = [UIImage imageNamed:@"nethcti_record.png"];
-    [_recordButton setImage:image forState:UIControlStateNormal];
-    
-    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
-    [_recordButton setBackgroundImage:dImage forState:UIControlStateNormal];
-	
+    [self setOffRecordButton];
 	LinphoneCall *call = linphone_core_get_current_call(LC);
 	linphone_call_stop_recording(call);
 	
@@ -850,6 +853,13 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	if (directoryContent) {
 		return;
 	}
+}
+
+- (void) setOffRecordButton {
+    [_recordButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    
+    UIImage *dImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
+    [_recordButton setBackgroundImage:dImage forState:UIControlStateNormal];
 }
 
 - (IBAction)onRoutesBluetoothClick:(id)sender {

@@ -470,7 +470,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="36" firstAttribute="height" secondItem="g6f-Xa-Veg" secondAttribute="height" multiplier="0.12" id="129-7r-wmp"/>
                                         <constraint firstItem="182" firstAttribute="leading" secondItem="g6f-Xa-Veg" secondAttribute="leading" id="3Sg-nE-fT0"/>

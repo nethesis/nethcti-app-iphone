@@ -290,8 +290,21 @@
 				cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] shouldHideLinphoneImageOfAddress];
 		}
 	}
-	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
-    [_nameInitialLabel setTextColor:[UIColor getColorByName:@"Grey"]];
+    [self setUIColors];
+}
+
+- (void)setUIColors{
+    [_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
+    UIColor *grey;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    [_backButton setTintColor:grey];
+    [_cancelButton setTintColor:grey];
+    [_deleteButton setTintColor:grey];
+    [_nameInitialLabel setTextColor:grey];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {

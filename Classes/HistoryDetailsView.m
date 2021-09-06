@@ -160,14 +160,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)shouldHideEncryptedChatView:(BOOL)hasLime {
     _encryptedChatView.hidden = !hasLime;
-    CGRect newFrame = _optionsView.frame;
+    /*CGRect newFrame = _optionsView.frame;
     if (!hasLime) {
         newFrame.origin.x = _encryptedChatView.frame.size.width * 2/3;
         
     } else {
         newFrame.origin.x = 0;
     }
-    _optionsView.frame = newFrame;
+    _optionsView.frame = newFrame;*/
 }
 
 #pragma mark - Action Functions

@@ -78,8 +78,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     UIImage *multiSelect = [UIImage imageNamed:@"nethcti_multiselect_selected.png"];
     // [_toggleSelectionButton setImage:multiUnselect forState:UIControlStateSelected]; // select_all_default
     [_toggleSelectionButton setImage:multiSelect forState:UIControlStateSelected]; // select_all_default
-    
-    [_deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
+    [self setUIColors];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,6 +88,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillDisappear:(BOOL)animated {
     self.view = NULL;
     [self.tableController removeAllRecordings];
+}
+
+- (void)setUIColors{
+    UIColor *grey;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    [_backButton setTintColor:grey];
+    [_deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
 }
 
 #pragma mark - Action Functions

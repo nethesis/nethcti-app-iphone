@@ -36,7 +36,13 @@
     writablePath = [paths objectAtIndex:0];
     writablePath = [writablePath stringByAppendingString:@"/"];
     
-    grey = [UIColor getColorByName:@"Grey"]; // For enabled controls.
+    // For enabled controls.
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    
     lightGrey = [UIColor getColorByName:@"LightGrey"]; // For disabled controls.
 }
 

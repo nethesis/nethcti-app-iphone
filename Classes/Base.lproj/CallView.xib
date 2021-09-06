@@ -162,9 +162,9 @@
                                             <state key="normal" image="nethcti_reverse_camera.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="disabled" image="camera_switch_disabled.png"/>
-                                            <state key="selected" image="camera_switch_over.png"/>
-                                            <state key="highlighted" image="camera_switch_over.png"/>
+                                            <state key="disabled" image="nethcti_reverse_camera.png"/>
+                                            <state key="selected" image="nethcti_reverse_camera.png"/>
+                                            <state key="highlighted" image="nethcti_reverse_camera.png"/>
                                             <connections>
                                                 <outlet property="preview" destination="127" id="172"/>
                                             </connections>
@@ -742,7 +742,7 @@
                                                     <state key="normal" image="nethcti_microphone.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="disabled" image="nethcti_microphone_disabled.png" backgroundImage="nethcti_blue_circle.png"/>
+                                                    <state key="disabled" backgroundImage="nethcti_blue_circle.png"/>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eay-C4-4gm">
                                                     <rect key="frame" x="188.5" y="0.0" width="60" height="60"/>
@@ -755,7 +755,6 @@
                                                             <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <state key="disabled" image="speaker_disabled.png"/>
                                                         </button>
                                                         <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-5y-kTy" userLabel="routesButton" customClass="UIToggleButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -793,7 +792,6 @@
                                                     <state key="normal" image="nethcti_record.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <state key="selected" backgroundImage="nethcti_blue_circle.png"/>
                                                     <connections>
                                                         <action selector="onRecordClick:" destination="-1" eventType="touchUpInside" id="8fZ-A1-ula"/>
                                                     </connections>
@@ -2434,7 +2432,6 @@ AAAAAAAAAAAAAAAALa4
         <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_grey_phone.png" width="250" height="250"/>
         <image name="nethcti_microphone.png" width="40" height="40"/>
-        <image name="nethcti_microphone_disabled.png" width="32" height="32"/>
         <image name="nethcti_numpad_0.png" width="256" height="256"/>
         <image name="nethcti_numpad_1.png" width="256" height="256"/>
         <image name="nethcti_numpad_2.png" width="256" height="256"/>

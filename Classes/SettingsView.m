@@ -293,7 +293,7 @@ INIT_WITH_COMMON_CF {
 	else
 		[view setBackgroundColor:[UIColor clearColor]];
     */
-    [view setBackgroundColor:[UIColor whiteColor]];
+    // [view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -303,11 +303,17 @@ INIT_WITH_COMMON_CF {
 
 		[viewController view]; // Force view
 		UILabel *labelTitleView = [[UILabel alloc] init];
-		labelTitleView.backgroundColor = [UIColor clearColor];
+        UIColor *backgroundColor;
+        if (@available(iOS 11.0, *)) {
+            backgroundColor = [UIColor colorNamed: @"mainBackground"];
+        } else {
+            backgroundColor = [UIColor getColorByName:@"White"];
+        }
+        labelTitleView.backgroundColor = backgroundColor;// [UIColor clearColor];
 		labelTitleView.textColor =
 			[UIColor colorWithRed:0x41 / 255.0f green:0x48 / 255.0f blue:0x4f / 255.0f alpha:1.0];
 		labelTitleView.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-		labelTitleView.font = [UIFont boldSystemFontOfSize:20];
+        labelTitleView.font = [UIFont fontWithName:@"Roboto-Bold" size:24];// [UIFont boldSystemFontOfSize:20];
 		labelTitleView.shadowOffset = CGSizeMake(0, 1);
 		labelTitleView.textAlignment = NSTextAlignmentCenter;
 		labelTitleView.text = viewController.title;
@@ -401,6 +407,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 										   selector:@selector(appSettingChanged:)
 											   name:kIASKAppSettingChanged
 											 object:nil];
+    
+    [self setUIColors];
+}
+
+- (void) setUIColors {
+    UIColor *grey;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    [_backButton setTintColor:grey];
 }
 
 #pragma mark - Account Creator callbacks
