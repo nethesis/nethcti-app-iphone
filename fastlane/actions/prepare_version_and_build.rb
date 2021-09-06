@@ -35,14 +35,16 @@ module Fastlane
           xcodeproj: "linphone.xcodeproj"
         )
 
-        commit_message = "Version bump to #{version_string}(##{new_build_number}) made by Fastlane."
-        other_action.commit_version_bump(
-          force: true,
-          message: commit_message,
-          xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here
-        )
+        if params[:commit]
+          commit_message = "Version bump to #{version_string}(##{new_build_number}) made by Fastlane."
+          other_action.commit_version_bump(
+            force: true,
+            message: commit_message,
+            xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here
+          )
+        end
 
-        return tf_build
+        return "#{version_string}(##{new_build_number})"
 
       end
 
@@ -69,13 +71,22 @@ module Fastlane
 
         # Below a few examples
         [
-          FastlaneCore::ConfigItem.new(key: :verbose,
-                                       env_name: "VERBOSE_LOGS", # The name of the environment variable
-                                       description: "Set the verbosity level of the action: false value will prevent any output", # a short description of this parameter
-                                       default_value: true, # the default value if the user didn't provide one
-                                       optional: true,
-                                       is_string: false # true: verifies the input is a string, false: every kind of value
-                                       ) 
+          FastlaneCore::ConfigItem.new(
+            key: :verbose,
+            env_name: "VERBOSE_LOGS", # The name of the environment variable
+            description: "Set the verbosity level of the action: false value will prevent any output", # a short description of this parameter
+            default_value: false, # the default value if the user didn't provide one
+            optional: true,
+            is_string: false # true: verifies the input is a string, false: every kind of value
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :commit,
+            env_name: "COMMIT",
+            description: "Define if we have to commit the version bump at the end of the lane",
+            default_value: false,
+            optional: true,
+            is_string: false
+          )
         ]
       end
 

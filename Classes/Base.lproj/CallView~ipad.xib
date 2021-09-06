@@ -354,7 +354,7 @@
                         <view hidden="YES" tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-q2-eR2" userLabel="noActiveCallView">
                             <rect key="frame" x="0.0" y="0.0" width="800" height="1150"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waiting_time.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-gc-9XK" userLabel="pausedImage">
+                                <imageView hidden="YES" userInteractionEnabled="NO" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waiting_time.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-gc-9XK" userLabel="pausedImage">
                                     <rect key="frame" x="221" y="504" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 </imageView>

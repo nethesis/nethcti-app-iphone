@@ -29,13 +29,24 @@ fastlane voipiu
 ----
 
 ## iOS
+### ios prepare_development
+```
+fastlane ios prepare_development
+```
+All ios specific lanes
+
+Prepare local environment for development.
+
+Install development certificates and provisioning profiles.
+
+Add new devices to devices.txt list if you need them for testing.
 ### ios tests
 ```
 fastlane ios tests
 ```
-All ios specific lanes
-
 Execute automatic tests and produce a code coverage report.
+
+Be sure to have installed on your machine all devices defined in *devices array*.
 ### ios prepare_version
 ```
 fastlane ios prepare_version
@@ -58,6 +69,16 @@ If you push without incrementing build number, it will be rejected.
 ### ios release
 ```
 fastlane ios release
+```
+
+### ios clean_ipa
+```
+fastlane ios clean_ipa
+```
+
+### ios commit_version
+```
+fastlane ios commit_version
 ```
 
 
