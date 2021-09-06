@@ -54,7 +54,9 @@ platform :ios do
 
         notif(message: "Ready to upload...", subtitle: "Finished Building")
 
-        upload_to_testflight
+        upload_to_testflight(
+            skip_waiting_for_build_processing: is_ci
+        )
         
         notif(message: "In a few minutes, you'll be able to test your application.", subtitle: "Finished Uploading")
 
