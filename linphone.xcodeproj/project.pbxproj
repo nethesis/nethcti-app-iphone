@@ -1899,6 +1899,8 @@
 		BB6288B9268E0A41004425F9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ContactDetailsViewNethesis.strings; sourceTree = "<group>"; };
 		BB7FB93526E651D000DCC61C /* nethcti_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu@2x.png"; sourceTree = "<group>"; };
 		BB7FB93626E651D000DCC61C /* nethcti_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_menu.png; sourceTree = "<group>"; };
+		BB7FB93926E65A0600DCC61C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CallView.strings; sourceTree = "<group>"; };
+		BB7FB93A26E65A4D00DCC61C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/CallView~ipad.strings"; sourceTree = "<group>"; };
 		BB839E75268DCE78001F6AD7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DialerView.strings; sourceTree = "<group>"; };
 		BB8C8139268DC2B30042A20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordingsListView.xib; sourceTree = "<group>"; };
 		BB8C813C268DC2EE0042A20A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
@@ -5075,6 +5077,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				638F1A871C2167C2004B8E02 /* Base */,
+				BB7FB93A26E65A4D00DCC61C /* it */,
 			);
 			name = "CallView~ipad.xib";
 			sourceTree = "<group>";
@@ -5430,6 +5433,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548231883F15400E8A69B /* Base */,
+				BB7FB93926E65A0600DCC61C /* it */,
 			);
 			name = CallView.xib;
 			sourceTree = "<group>";
