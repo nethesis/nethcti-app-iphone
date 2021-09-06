@@ -30,13 +30,8 @@ platform :ios do
         match(
             type: "development", 
             force_for_new_devices: true, 
-            git_branch: git_branch, 
-            app_identifier: [
-                "#{bundle_identifier}", 
-                "#{bundle_identifier}.extension",
-                "#{bundle_identifier}.msgNotificationService",
-                "#{bundle_identifier}.msgNotificationContent"
-            ]
+            git_branch: git_branch,
+            readonly: true,
         )
     end
 
@@ -68,8 +63,8 @@ platform :ios do
     desc "Only use to publish apps for rebranding, after having incremented the main build number."
     desc "If you push without incrementing build number, it will be rejected."
     lane :beta_rebranding do
-        match(type:"appstore", readonly: is_ci)
-        build_app( 
+        match(type:"appstore", readonly: true)
+        build_app(
             scheme: "linphone",
             silent: true,
             workspace: "linphone.xcworkspace"
@@ -99,17 +94,27 @@ platform :ios do
 
     # This lane is called, only if the executed lane was successful
     after_all do |lane|
-        File.delete("../../NethCTI.ipa")
-        File.delete("../../NethCTI.app.dSYM.zip")
+        clean_ipa
+        commit_version
+        notif "Fastlane finished '#{lane}' successfully" # Mac OS X Notification
+    end
     
+    lane :clean_ipa do
+        File.delete("../NethCTI.ipa")
+        File.delete("../NethCTI.app.dSYM.zip")
+    end
+    
+    lane :commit_version do
         commit_message = "Version bump to #{ENV["tf_build"]} made by Fastlane."
-          other_action.commit_version_bump(
+        commit_version_bump(
             force: true,
             message: commit_message,
             xcodeproj: "linphone.xcodeproj" # optional, if you have multiple Xcode project files, you must specify your main project here
-          )
+        )
+    end
 
-        notify "Fastlane finished '#{lane}' successfully" # Mac OS X Notification
+    error do |ex|
+        notif "Error in Fastlane. Check the console output."
     end
 end
 
@@ -149,13 +154,13 @@ lane :voipiu do
             scheme: "linphone",
             silent: true,
             workspace: "linphone.xcworkspace")
-        notification(
+        notif(
             app_icon: "./Resources/images.xcassets/AppIcon.appiconset/1024.png",
             content_image: "./Resources/images.xcassets/AppIcon.appiconset/1024.png",
             subtitle: "Finished Building", 
             message: "Ready to upload...")
         upload_to_testflight
-        notification(
+        notif(
             app_icon: "./Resources/images.xcassets/AppIcon.appiconset/1024.png",
             content_image: "./Resources/images.xcassets/AppIcon.appiconset/1024.png",
             subtitle: "Finished Uploading", 
