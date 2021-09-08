@@ -461,7 +461,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     // WEDO: Perform the search api call after 0.5 seconds after finished input text.
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
-    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:1];
     return;
     
     // display searchtext in UPPERCASE
