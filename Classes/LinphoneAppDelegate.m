@@ -351,7 +351,7 @@
     }
     
     // Bugfix sip address visualization.
-    [LinphoneManager.instance lpConfigSetBool:NO forKey:@"display_phone_only" inSection:@"app"];
+    [LinphoneManager.instance lpConfigSetBool:YES forKey:@"display_phone_only" inSection:@"app"];
     
     const bool cred = [ApiCredentials checkCredentials];
     const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
