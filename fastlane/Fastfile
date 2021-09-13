@@ -22,15 +22,15 @@ platform :ios do
     desc "Prepare local environment for development."
     desc "Install development certificates and provisioning profiles."
     desc "Add new devices to devices.txt list if you need them for testing."
+    desc "If you don't have development certificates yet set `readonly` options to `false`. Do this only if you know what are you doing, since this lane invalidate and create certificates again."
+    desc "After this action has finished, the obtained certificates and provisioning profile have to be manually linked to the project from linphone project windown inside xCode."
     lane :prepare_development do
         bundle_identifier = ENV["BUNDLE_IDENTIFIER"]
-        git_branch = ENV["GIT_BRANCH"]
-        register_devices(devices_file: "./devices.txt")
+        register_devices(devices_file: "./fastlane/devices.txt")
         # Generate development certs and profiles.
         match(
-            type: "development", 
-            force_for_new_devices: true, 
-            git_branch: git_branch,
+            type: "development",
+            force_for_new_devices: true,
             readonly: true,
         )
     end
@@ -62,6 +62,7 @@ platform :ios do
     desc "Push a new beta build to Testflight without incrementing the build number."
     desc "Only use to publish apps for rebranding, after having incremented the main build number."
     desc "If you push without incrementing build number, it will be rejected."
+    desc "If is the first time of match certifications before submitting a version to Testflight, you have to generate new match certificates manually with the command `bundle exec fastlane run match type:appstore --env appstore`."
     lane :beta_rebranding do
         match(type:"appstore", readonly: true)
         build_app(
@@ -78,6 +79,7 @@ platform :ios do
         
         notif(message: "In a few minutes, you'll be able to test your application.", subtitle: "Finished Uploading")
 
+        after_deployment
     end
 
     lane :release do
@@ -93,15 +95,16 @@ platform :ios do
     end
 
     # This lane is called, only if the executed lane was successful
-    after_all do |lane|
+    lane :after_deployment do # |lane|
         clean_ipa
         commit_version
-        notif "Fastlane finished '#{lane}' successfully" # Mac OS X Notification
+        # notif "Fastlane finished '#{lane}' successfully" # Mac OS X Notification
     end
     
+    desc "Clean all useless .ipa files."
     lane :clean_ipa do
-        File.delete("../NethCTI.ipa")
-        File.delete("../NethCTI.app.dSYM.zip")
+        File.delete("../#{ENV["PRODUCT_NAME"]}.ipa")
+        File.delete("../#{ENV["PRODUCT_NAME"]}.app.dSYM.zip")
     end
     
     lane :commit_version do

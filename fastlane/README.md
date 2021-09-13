@@ -40,6 +40,10 @@ Prepare local environment for development.
 Install development certificates and provisioning profiles.
 
 Add new devices to devices.txt list if you need them for testing.
+
+If you already have the development certificates and don't want match to invalidate and create them again, set `readonly` options to `true`.
+
+After this action has finished, the obtained certificates and provisioning profile have to be manually linked to the project from linphone project windown inside xCode.
 ### ios tests
 ```
 fastlane ios tests
@@ -66,16 +70,23 @@ Push a new beta build to Testflight without incrementing the build number.
 Only use to publish apps for rebranding, after having incremented the main build number.
 
 If you push without incrementing build number, it will be rejected.
+
+If is the first time of match certifications before submitting a version to Testflight, you have to generate new match certificates manually with the command `bundle exec fastlane run match type:appstore --env appstore`.
 ### ios release
 ```
 fastlane ios release
+```
+
+### ios after_deployment
+```
+fastlane ios after_deployment
 ```
 
 ### ios clean_ipa
 ```
 fastlane ios clean_ipa
 ```
-
+Clean all useless .ipa files.
 ### ios commit_version
 ```
 fastlane ios commit_version

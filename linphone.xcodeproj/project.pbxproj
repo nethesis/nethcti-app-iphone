@@ -5524,6 +5524,7 @@
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3";
 				SDKROOT = iphoneos;
@@ -5785,7 +5786,7 @@
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3";
 				SKIP_INSTALL = NO;

@@ -1,5 +1,5 @@
 git_url "https://github.com/wedoit-io/fastlane_match_repo.git"
-git_branch("nethcti")
+git_branch(ENV["GIT_BRANCH"])
 
 bundle_identifier = ENV["BUNDLE_IDENTIFIER"]
 app_identifier([
