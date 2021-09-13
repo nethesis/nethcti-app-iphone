@@ -727,6 +727,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		[hiddenKeys addObject:@"tunnel_menu"];
 	}
 
+    // All Account settings are hidden, but we leave this condition for future developments.
 	if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
 		for (NSString *key in settingsStore->dict) {
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
@@ -751,13 +752,41 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
         [hiddenKeys addObject:@"auto_download_incoming_files_max_size"];
     }
     
-    // Nethesis customization.
+    // Hide Account SIP iOS
+    for(NSString *key in settingsStore->dict) {
+        if(([key hasPrefix:@"account_"]) &&
+           (
+            ![key isEqualToString:@"account_display_name_preference"] ||
+            ![key isEqualToString:@"account_pushnotification_preference"] ||
+            ![key isEqualToString:@"account_expire_preference"])) {
+            [hiddenKeys addObject:key];
+        }
+    }
+    // Hide Audio
+    [hiddenKeys addObject:@"eq_active"];
+    [hiddenKeys addObject:@"voiceproc_preference"];
+    // Hide Video
+    [hiddenKeys addObject:@"preview_preference"];
+    [hiddenKeys addObject:@"video_preset_preference"];
+    [hiddenKeys addObject:@"video_preferred_size_preference"];
+    [hiddenKeys addObject:@"video_preferred_fps_preference"];
+    [hiddenKeys addObject:@"download_bandwidth_preference"];
+    // Hide Chiamata
+    [hiddenKeys addObject:@"call_menu"];
+    // Hide Network
+    [hiddenKeys addObject:@"network_menu"];
+    // Hide Advanced
     [hiddenKeys addObject:@"presence_title"];
     [hiddenKeys addObject:@"use_rls_presence"];
-    [hiddenKeys addObject:@"account_mandatory_password_preference"];
-    [hiddenKeys addObject:@"account_mandatory_change_password"];
-    [hiddenKeys addObject:@"account_mandatory_remove_button"];
-
+    [hiddenKeys addObject:@"show_msg_in_notif"];
+    [hiddenKeys addObject:@"advanced_other"];
+    [hiddenKeys addObject:@"animations_preference"];
+    [hiddenKeys addObject:@"start_at_boot_preference"];
+    [hiddenKeys addObject:@"enable_first_login_view_preference"];
+    [hiddenKeys addObject:@"advanced_primary_account"];
+    [hiddenKeys addObject:@"primary_displayname_preference"];
+    [hiddenKeys addObject:@"primary_username_preference"];
+    
 	return hiddenKeys;
 }
 

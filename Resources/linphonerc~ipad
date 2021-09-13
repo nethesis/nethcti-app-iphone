@@ -1,6 +1,6 @@
 [app]
 animations_preference=1
-autoanswer_notif_preference=1
+autoanswer_notif_preference=0
 backgroundmode_preference=1
 edge_opt_preference=0
 enable_log_collect=0
