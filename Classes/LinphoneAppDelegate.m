@@ -351,8 +351,11 @@
     }
     
     const bool cred = [ApiCredentials checkCredentials];
-    if(cred && !ApiCredentials.MainExtension) {
-        [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {} errorHandler:^(NSInteger code, NSString * _Nullable string) {}];
+    const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
+    // Get info only if authenticated without main extension.
+    if(cred && main_ext) {
+        [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {}
+                                              errorHandler:^(NSInteger code, NSString * _Nullable string) {}];
     }
 }
 
