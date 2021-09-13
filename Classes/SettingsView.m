@@ -467,8 +467,11 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	linphone_account_creator_set_password(creator, _tmpPwd.UTF8String);
 	[settingsStore setObject:_tmpPwd forKey:@"account_mandatory_password_preference"];
 	
-	LinphoneProxyConfig *config = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC),
-													  [settingsStore integerForKey:@"current_proxy_config_preference"]);
+	LinphoneProxyConfig *config =
+        bctbx_list_nth_data(
+                        linphone_core_get_proxy_config_list(LC),
+                        [settingsStore integerForKey:@"current_proxy_config_preference"]
+                        );
 	if (config != NULL) {
 		const LinphoneAuthInfo *auth = linphone_proxy_config_find_auth_info(config);
 		if (auth) {
@@ -482,13 +485,15 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	[settingsStore setObject:_tmpPwd forKey:@"account_mandatory_password_preference"];
 	_tmpPwd = NULL;
 	
+	UIAlertController *errView =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Changing your password", nil)
+                                        message:NSLocalizedString(@"Your password has been successfully changed", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
 	
-	UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Changing your password", nil)
-																	 message:NSLocalizedString(@"Your password has been successfully changed", nil)
-															  preferredStyle:UIAlertControllerStyleAlert];
-	
-	UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-														  handler:^(UIAlertAction * action) {}];
+	UIAlertAction* defaultAction =
+    [UIAlertAction actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {}];
 	
 	[errView addAction:defaultAction];
 	[self presentViewController:errView animated:YES completion:nil];
@@ -529,14 +534,16 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		}
 		[Log enableLogs:debugLevel];
 		[LinphoneManager.instance lpConfigSetInt:debugLevel forKey:@"debugenable_preference"];
-	} else if ([@"account_mandatory_advanced_preference" compare:notif.object] == NSOrderedSame) {
+	} /*
+       Removed by Nethesis restyling.
+       else if ([@"account_mandatory_advanced_preference" compare:notif.object] == NSOrderedSame) {
 		removeFromHiddenKeys = [[notif.userInfo objectForKey:@"account_mandatory_advanced_preference"] boolValue];
 		for (NSString *key in settingsStore->dict) {
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
 				[keys addObject:key];
 			}
 		}
-	} else if ([@"video_preset_preference" compare:notif.object] == NSOrderedSame) {
+	} */else if ([@"video_preset_preference" compare:notif.object] == NSOrderedSame) {
 		NSString *video_preset = [notif.userInfo objectForKey:@"video_preset_preference"];
 		removeFromHiddenKeys = [video_preset isEqualToString:@"custom"];
 		[keys addObject:@"video_preferred_fps_preference"];
@@ -728,13 +735,13 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	}
 
     // All Account settings are hidden, but we leave this condition for future developments.
-	if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
+	/*if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
 		for (NSString *key in settingsStore->dict) {
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
 				[hiddenKeys addObject:key];
 			}
 		}
-	}
+	}*/
 
 	if (![[LinphoneManager.instance iapManager] enabled]) {
 		[hiddenKeys addObject:@"in_app_products_button"];
@@ -754,14 +761,16 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
     
     // Hide Account SIP iOS
     for(NSString *key in settingsStore->dict) {
-        if(([key hasPrefix:@"account_"]) &&
-           (
-            ![key isEqualToString:@"account_display_name_preference"] ||
-            ![key isEqualToString:@"account_pushnotification_preference"] ||
-            ![key isEqualToString:@"account_expire_preference"])) {
+        if([key hasPrefix:@"account_"] &&
+           ![key isEqualToString:@"account_display_name_preference"] &&
+           ![key isEqualToString:@"account_pushnotification_preference"] &&
+           ![key isEqualToString:@"account_expire_preference"]) {
             [hiddenKeys addObject:key];
         }
     }
+    [hiddenKeys addObject:@"account_mandatory_change_password"];
+    [hiddenKeys addObject:@"account_mandatory_remove_button"];
+    
     // Hide Audio
     [hiddenKeys addObject:@"eq_active"];
     [hiddenKeys addObject:@"voiceproc_preference"];
