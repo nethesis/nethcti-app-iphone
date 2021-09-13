@@ -83,16 +83,8 @@
 		_presenceImage.image = [StatusBarView imageForState:linphone_proxy_config_get_state(default_proxy)];
 	} else {
 		_nameLabel.text = linphone_core_get_proxy_config_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);
-		// Display direct IP:port address so that we can be reached.
-		LinphoneAddress *addr = linphone_core_get_primary_contact_parsed(LC);
-		if (addr) {
-			char *as_string = linphone_address_as_string_uri_only(addr);
-			_addressLabel.text = [NSString stringWithFormat:@"%s", as_string];
-			ms_free(as_string);
-			linphone_address_unref(addr);
-		} else {
-			_addressLabel.text = NSLocalizedString(@"No address", nil);
-		}
+        // Nethesis: if no proxy configured, doesn't show any address info.
+        _addressLabel.text = NSLocalizedString(@"No address", nil);
 		_presenceImage.image = nil;
 	}
 }
