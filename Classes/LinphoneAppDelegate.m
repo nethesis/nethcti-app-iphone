@@ -350,6 +350,9 @@
         [defaults setBool:YES forKey:@"has_already_launched_once"];
     }
     
+    // Bugfix sip address visualization.
+    [LinphoneManager.instance lpConfigSetBool:NO forKey:@"display_phone_only" inSection:@"app"];
+    
     const bool cred = [ApiCredentials checkCredentials];
     const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
     // Get info only if authenticated without main extension.
