@@ -77,7 +77,9 @@
 	if (default_proxy != NULL) {
 		const LinphoneAddress *addr = linphone_proxy_config_get_identity_address(default_proxy);
 		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
-		_addressLabel.text = addr? [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)] : NSLocalizedString(@"No address", nil);
+		// NSString *address_text = addr ? [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)] : NSLocalizedString(@"No address", nil);
+        NSString *main = ApiCredentials.MainExtension;
+        _addressLabel.text = main; // address_text;
 		_presenceImage.image = [StatusBarView imageForState:linphone_proxy_config_get_state(default_proxy)];
 	} else {
 		_nameLabel.text = linphone_core_get_proxy_config_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);

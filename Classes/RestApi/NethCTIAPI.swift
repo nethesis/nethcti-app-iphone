@@ -237,6 +237,7 @@ import Foundation
                 
                 // Set the right username if obtained (even with QrCode login too).
                 ApiCredentials.Username = nethUser?.username ?? ApiCredentials.Username
+                ApiCredentials.MainExtension = nethUser?.endpoints.mainExtension ?? ""
                 
                 self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
                     //ignored

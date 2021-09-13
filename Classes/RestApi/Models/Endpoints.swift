@@ -10,9 +10,11 @@ import Foundation
 // MARK: - Endpoints
 struct Endpoints: Codable {
     let endpointsExtension: [Extension]
+    let mainExtension: String?
     
     enum CodingKeys: String, CodingKey {
         case endpointsExtension = "extension"
+        case mainExtension = "mainextension"
     }
 }
 
@@ -35,5 +37,10 @@ extension Endpoints {
             extensions.append(ext)
         }
         self.endpointsExtension = extensions
+        
+        // Get the main extension.
+        let ext = from["mainextension"] as? [[String:Any]]
+        let id = ext?[0]["id"] as? String
+        self.mainExtension = id
     }
 }

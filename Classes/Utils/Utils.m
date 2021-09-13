@@ -623,7 +623,8 @@
 		addressLabel.hidden = FALSE;
 	} else {
 		label.text = [FastAddressBook displayNameForAddress:addr];
-		if([LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"])
+        const bool display_phone_only = [LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"];
+		if(display_phone_only)
 			addressLabel.hidden = TRUE;
 		else
 			tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
@@ -635,7 +636,6 @@
     NSRange at = [tmpAddress rangeOfString:@"@"]; // TODO: Hide ip address in sip address in call outgoing view.
 	addressLabel.text = tmpAddress;
 }
-
 
 + (void)setOrganizationLabel: (UILabel *)label forContact: (Contact *)contact{
     label.text = contact.company;

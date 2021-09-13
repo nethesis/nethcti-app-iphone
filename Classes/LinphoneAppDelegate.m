@@ -260,64 +260,64 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #ifdef USE_CRASHLYTICS
-	[FIRApp configure];
+    [FIRApp configure];
 #endif
     
     UIApplication *app = [UIApplication sharedApplication];
-	UIApplicationState state = app.applicationState;
-
-	LinphoneManager *instance = [LinphoneManager instance];
-	//init logs asap
-	[Log enableLogs:[[LinphoneManager instance] lpConfigIntForKey:@"debugenable_preference"]];
-
-	if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
-		[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
-					[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Photo's permission", nil) message:NSLocalizedString(@"Photo not authorized", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Continue", nil] show];
-				}
-			});
-		}];
-	}
-
-	BOOL background_mode = [instance lpConfigBoolForKey:@"backgroundmode_preference"];
-	BOOL start_at_boot = [instance lpConfigBoolForKey:@"start_at_boot_preference"];
-	[self registerForNotifications]; // Register for notifications must be done ASAP to give a chance for first SIP register to be done with right token. Specially true in case of remote provisionning or re-install with new type of signing certificate, like debug to release.
-
-	if (state == UIApplicationStateBackground) {
-		// we've been woken up directly to background;
-		if (!start_at_boot || !background_mode) {
-			// autoboot disabled or no background, and no push: do nothing and wait for a real launch
-			//output a log with NSLog, because the ortp logging system isn't activated yet at this time
-			NSLog(@"Linphone launch doing nothing because start_at_boot or background_mode are not activated.", NULL);
-			return YES;
-		}
-		startedInBackground = true;
-	}
-	bgStartId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-	  LOGW(@"Background task for application launching expired.");
-	  [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
-	}];
-
-	[LinphoneManager.instance launchLinphoneCore];
-	LinphoneManager.instance.iapManager.notificationCategory = @"expiry_notification";
-	// initialize UI
-	[self.window makeKeyAndVisible];
-	[RootViewManager setupWithPortrait:(PhoneMainView *)self.window.rootViewController];
-
-	if (bgStartId != UIBackgroundTaskInvalid)
-		[[UIApplication sharedApplication] endBackgroundTask:bgStartId];
-
+    UIApplicationState state = app.applicationState;
+    
+    LinphoneManager *instance = [LinphoneManager instance];
+    //init logs asap
+    [Log enableLogs:[[LinphoneManager instance] lpConfigIntForKey:@"debugenable_preference"]];
+    
+    if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Photo's permission", nil) message:NSLocalizedString(@"Photo not authorized", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Continue", nil] show];
+                }
+            });
+        }];
+    }
+    
+    BOOL background_mode = [instance lpConfigBoolForKey:@"backgroundmode_preference"];
+    BOOL start_at_boot = [instance lpConfigBoolForKey:@"start_at_boot_preference"];
+    [self registerForNotifications]; // Register for notifications must be done ASAP to give a chance for first SIP register to be done with right token. Specially true in case of remote provisionning or re-install with new type of signing certificate, like debug to release.
+    
+    if (state == UIApplicationStateBackground) {
+        // we've been woken up directly to background;
+        if (!start_at_boot || !background_mode) {
+            // autoboot disabled or no background, and no push: do nothing and wait for a real launch
+            //output a log with NSLog, because the ortp logging system isn't activated yet at this time
+            NSLog(@"Linphone launch doing nothing because start_at_boot or background_mode are not activated.", NULL);
+            return YES;
+        }
+        startedInBackground = true;
+    }
+    bgStartId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        LOGW(@"Background task for application launching expired.");
+        [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
+    }];
+    
+    [LinphoneManager.instance launchLinphoneCore];
+    LinphoneManager.instance.iapManager.notificationCategory = @"expiry_notification";
+    // initialize UI
+    [self.window makeKeyAndVisible];
+    [RootViewManager setupWithPortrait:(PhoneMainView *)self.window.rootViewController];
+    
+    if (bgStartId != UIBackgroundTaskInvalid)
+        [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
+    
     // Enable all notification type.
     // VoIP Notifications don't present a UI but we will use this to show local nofications later.
     UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert| UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-
+    
     // Register the notification settings.
     [application registerUserNotificationSettings:notificationSettings];
     
     // Color status bar accordingly to the background color.
     [self handleStatusBarTheme:application];
-
+    
     // Output what state the app is in.
     // This will be used to see when the app is started in the background.
     LOGI(@"app launched with state : %li", (long)application.applicationState);
@@ -330,8 +330,8 @@
     }
     
     [self setDefaultNethesis];
-
-	return YES;
+    
+    return YES;
 }
 
 - (void)setDefaultNethesis {
@@ -348,6 +348,11 @@
         linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
         
         [defaults setBool:YES forKey:@"has_already_launched_once"];
+    }
+    
+    const bool cred = [ApiCredentials checkCredentials];
+    if(cred && !ApiCredentials.MainExtension) {
+        [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {} errorHandler:^(NSInteger code, NSString * _Nullable string) {}];
     }
 }
 

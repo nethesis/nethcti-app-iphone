@@ -16,11 +16,12 @@ extension NethCTIAPI {
      */
     public enum ApiClientIdentifier : String {
         case SuiteNameKey = "it.nethesis.nethcti3"          // Name of the UserDefaults suite.
-        case UserDefaultKey = "UserDefaultKey"              // Logged username.
-        case DomainDefaultKey = "DomainDefaultKey"          // Domain to call for neth apis.
-        case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
         case DeviceIdDefaultKey = "DeviceIdDefaultKey"      // Logged deviceId for Notificatore.
+        case DomainDefaultKey = "DomainDefaultKey"          // Domain to call for neth apis.
+        case MainExtensionKey = "NethesisMainExtension"
+        case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
         case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
+        case UserDefaultKey = "UserDefaultKey"              // Logged username.
     }
     
     @objc public class ApiCredentials: NSObject {
@@ -45,6 +46,18 @@ extension NethCTIAPI {
             }
             set {
                 UserDefaults.standard.set(newValue, forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
+            }
+        }
+        
+        /**
+         Get or set the main extension.
+         */
+        @objc public class var MainExtension: String {
+            get {
+                return UserDefaults.standard.string(forKey: ApiClientIdentifier.MainExtensionKey.rawValue) ?? ""
+            }
+            set{
+                UserDefaults.standard.setValue(newValue, forKey: ApiClientIdentifier.MainExtensionKey.rawValue)
             }
         }
         
