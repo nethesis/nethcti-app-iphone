@@ -10,6 +10,9 @@
         <array key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
         </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -18,6 +21,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIContactCell">
             <connections>
                 <outlet property="avatarImage" destination="23" id="24"/>
+                <outlet property="companyLabel" destination="sVl-Uy-yOz" id="15N-Lg-W8H"/>
                 <outlet property="linphoneImage" destination="25" id="27"/>
                 <outlet property="nameInitialLabel" destination="Idz-2Y-Bf9" id="rDB-1u-x6I"/>
                 <outlet property="nameLabel" destination="6" id="26"/>
@@ -28,13 +32,32 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="69"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="John Doe" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="nameLabel">
-                    <rect key="frame" x="65" y="24.5" width="72" height="20"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    <accessibility key="accessibilityConfiguration" label="Firstname"/>
-                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ycO-8p-jHk" userLabel="labelView">
+                    <rect key="frame" x="65" y="16.5" width="230" height="36.5"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Adalia La Balia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="nameLabel">
+                            <rect key="frame" x="0.0" y="0.0" width="230" height="20"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <accessibility key="accessibilityConfiguration" label="Firstname"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nethesis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVl-Uy-yOz" userLabel="companyLabel">
+                            <rect key="frame" x="0.0" y="20" width="230" height="16.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="sVl-Uy-yOz" secondAttribute="bottom" id="F5F-6P-BMR"/>
+                        <constraint firstItem="6" firstAttribute="top" secondItem="ycO-8p-jHk" secondAttribute="top" id="Im6-Xc-SyB"/>
+                        <constraint firstAttribute="trailing" secondItem="sVl-Uy-yOz" secondAttribute="trailing" id="Udb-dK-fAT"/>
+                        <constraint firstItem="sVl-Uy-yOz" firstAttribute="leading" secondItem="ycO-8p-jHk" secondAttribute="leading" id="YC3-KI-NXb"/>
+                        <constraint firstAttribute="trailing" secondItem="6" secondAttribute="trailing" id="aNf-zl-JoM"/>
+                        <constraint firstItem="6" firstAttribute="leading" secondItem="ycO-8p-jHk" secondAttribute="leading" id="c7w-2g-np8"/>
+                    </constraints>
+                </stackView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="nethcti_logo_sip.png" translatesAutoresizingMaskIntoConstraints="NO" id="25" userLabel="linphoneImage">
                     <rect key="frame" x="311" y="16" width="37" height="37"/>
                     <constraints>
@@ -51,7 +74,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="2" contentMode="left" text="J" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Idz-2Y-Bf9" userLabel="nameInitialLabel">
-                            <rect key="frame" x="14" y="8.5" width="9" height="20"/>
+                            <rect key="frame" x="14" y="8.5" width="9.5" height="20"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <accessibility key="accessibilityConfiguration" label="Firstname"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
@@ -72,13 +95,14 @@
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="XNy-9K-w12" firstAttribute="top" secondItem="16" secondAttribute="top" constant="16" id="B8O-b7-KQp"/>
-                <constraint firstItem="6" firstAttribute="leading" secondItem="XNy-9K-w12" secondAttribute="trailing" constant="16" id="BKz-L5-3Dn"/>
                 <constraint firstItem="XNy-9K-w12" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="12" id="BSL-bQ-pyk"/>
-                <constraint firstItem="6" firstAttribute="centerY" secondItem="16" secondAttribute="centerY" id="J9R-Y8-Ywo"/>
+                <constraint firstItem="ycO-8p-jHk" firstAttribute="leading" secondItem="XNy-9K-w12" secondAttribute="trailing" constant="16" id="NWh-6B-qLx"/>
+                <constraint firstItem="25" firstAttribute="leading" secondItem="ycO-8p-jHk" secondAttribute="trailing" constant="16" id="SsR-LR-yY4"/>
                 <constraint firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="12" id="VhN-T5-EpE"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="16" secondAttribute="top" constant="16" id="Xdv-fp-eCf"/>
                 <constraint firstAttribute="bottom" secondItem="25" secondAttribute="bottom" constant="16" id="fxW-9U-10k"/>
                 <constraint firstAttribute="bottom" secondItem="XNy-9K-w12" secondAttribute="bottom" constant="16" id="n9z-O2-3o4"/>
+                <constraint firstItem="ycO-8p-jHk" firstAttribute="centerY" secondItem="16" secondAttribute="centerY" id="zjw-oH-HPi"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
