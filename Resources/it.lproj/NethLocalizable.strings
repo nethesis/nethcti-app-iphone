@@ -20,6 +20,10 @@
 
 "AUTHENTICATE-HEADER-MISSING" = "Credenziali errate, vi preghiamo di controllarle e di riprovare.";
 
+"No user information provided, contact an administrator." = "Nessuna informazione sull'utente trovata, contattare un amministratore.";
+
+"Error while reading the QRCODE." = "Errore durante la lettura del QRCODE.";
+
 /*
  * Phonebook strings.
  */

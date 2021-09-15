@@ -20,6 +20,10 @@
 
 "AUTHENTICATE-HEADER-MISSING" = "Bad credentials, please check them and retry.";
 
+"No user information provided, contact an administrator." = "No user information provided, contact an administrator.";
+
+"Error while reading the QRCODE." = "Error while reading the QRCODE.";
+
 /*
  * Phonebook strings.
  */

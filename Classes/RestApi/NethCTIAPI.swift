@@ -227,7 +227,7 @@ import Foundation
         self.baseCall(url: url, method: "GET", headers: getHeaders, body: nil, successHandler: {
             data, response in
             guard let responseData = data else { // Responde handling.
-                errorHandler(-2, "No data provided.")
+                errorHandler(-2, "No user information provided, contact an administrator.")
                 return
             }
             
@@ -255,7 +255,7 @@ import Foundation
                 errorHandler(-2, "Error calling GET on /user/me: missing response data.")
                 return
             }
-            errorHandler(httpResponse.statusCode, "Error calling GET on /user/me")
+            errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
             return
         })
     }
