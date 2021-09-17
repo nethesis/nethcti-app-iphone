@@ -164,8 +164,8 @@
 /* Class = "UILabel"; text = "Enter your username and password with your SIP domain."; ObjectID = "LsE-IY-ocU"; */
 "LsE-IY-ocU.text" = "Please enter the following informations";
 
-/* Class = "UILabel"; text = "DOMAIN"; ObjectID = "MgC-eB-ar3"; */
-"MgC-eB-ar3.text" = "DOMAIN";
+/* Class = "UILabel"; text = "Domain"; ObjectID = "MgC-eB-ar3"; */
+"MgC-eB-ar3.text" = "Domain";
 
 /* Class = "UILabel"; text = "Forgot your password?"; ObjectID = "NtE-0O-Md1"; */
 "NtE-0O-Md1.text" = "Forgot your password?";
@@ -209,8 +209,8 @@
 /* Class = "UIButton"; normalTitle = "FINISH CONFIGURATION"; ObjectID = "XAC-vH-TQ2"; */
 "XAC-vH-TQ2.normalTitle" = "FINISH CONFIGURATION";
 
-/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "XPq-fy-KZS"; */
-"XPq-fy-KZS.text" = "PASSWORD";
+/* Class = "UILabel"; text = "Password"; ObjectID = "XPq-fy-KZS"; */
+"XPq-fy-KZS.text" = "Password";
 
 /* Class = "UITextField"; accessibilityLabel = "Username"; ObjectID = "YRW-ex-VZy"; */
 "YRW-ex-VZy.accessibilityLabel" = "Username";
@@ -338,8 +338,8 @@
 /* Class = "UITextField"; accessibilityLabel = "Password "; ObjectID = "t14-fe-grq"; */
 "t14-fe-grq.accessibilityLabel" = "Password ";
 
-/* Class = "UILabel"; text = "USERNAME"; ObjectID = "tAv-f7-kDI"; */
-"tAv-f7-kDI.text" = "USERNAME";
+/* Class = "UILabel"; text = "Username"; ObjectID = "tAv-f7-kDI"; */
+"tAv-f7-kDI.text" = "Username";
 
 /* Class = "UILabel"; text = "Invalid domain"; ObjectID = "ths-8b-FoU"; */
 "ths-8b-FoU.text" = "Invalid domain";

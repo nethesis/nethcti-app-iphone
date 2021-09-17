@@ -67,7 +67,7 @@
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XNy-9K-w12">
                     <rect key="frame" x="12" y="16" width="37" height="37"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="nethcti_grey_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="23" userLabel="avatarImage">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="23" userLabel="avatarImage">
                             <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="23" secondAttribute="height" multiplier="1:1" id="mVP-Gu-kzs"/>
@@ -110,7 +110,7 @@
         </view>
     </objects>
     <resources>
-        <image name="nethcti_grey_circle.png" width="250" height="250"/>
+        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_logo_sip.png" width="40" height="40"/>
     </resources>
 </document>
