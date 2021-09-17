@@ -614,27 +614,39 @@
 	}
 }
 
-+ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel{
-	Contact *contact = [FastAddressBook getContactWithAddress:addr];
-	NSString *tmpAddress = nil;
-	if (contact) {
-		[ContactDisplay setDisplayNameLabel:label forContact:contact];
-		tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
-		addressLabel.hidden = FALSE;
-	} else {
-		label.text = [FastAddressBook displayNameForAddress:addr];
-        const bool display_phone_only = [LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"];
-		if(display_phone_only)
-			addressLabel.hidden = TRUE;
-		else
-			tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
-	}
-	NSRange range = [tmpAddress rangeOfString:@";"];
-	if (range.location != NSNotFound) {
-		tmpAddress = [tmpAddress substringToIndex:range.location];
-	}
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel {
+    [self setDisplayNameLabel:label forAddress:addr withAddressLabel:addressLabel fromFriendsOnly:NO];
+}
+
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel fromFriendsOnly:(BOOL)only {
+    if(only) {
+        const char *display = linphone_address_get_display_name(addr);
+        NSString *ustring = [[NSString alloc] initWithUTF8String:linphone_address_get_username(addr)];
+        NSString *distring = [[NSString alloc] initWithUTF8String:display];
+        LOGI(@"[WEDO] display: %@, user: %@", distring, ustring);
+    }
+    
+    Contact *contact = [FastAddressBook getContactWithAddress:addr fromFriendsOnly:only];
+    if (contact) {
+        [ContactDisplay setDisplayNameLabel:label forContact:contact];
+    } else {
+        label.text = [FastAddressBook displayNameForAddress:addr fromFriendsOnly:YES];
+    }
+    
+    const bool display_phone_only = [LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"];
+    if(display_phone_only) {
+        addressLabel.hidden = YES;
+        return;
+    }
+    
+    addressLabel.hidden = NO;
+    NSString *tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
+    NSRange range = [tmpAddress rangeOfString:@";"];
+    if (range.location != NSNotFound) {
+        tmpAddress = [tmpAddress substringToIndex:range.location];
+    }
     NSRange at = [tmpAddress rangeOfString:@"@"]; // TODO: Hide ip address in sip address in call outgoing view.
-	addressLabel.text = tmpAddress;
+    addressLabel.text = tmpAddress;
 }
 
 + (void)setOrganizationLabel: (UILabel *)label forContact: (Contact *)contact{
@@ -678,7 +690,7 @@
         }
         
         label.text = resultString;
-        [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+        // [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
 
     } else {
         label.text = @"";

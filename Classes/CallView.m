@@ -296,17 +296,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)updateCallView {
     /*
-    CGRect pauseFrame = _callPauseButton.frame;
-	CGRect recordFrame = _recordButtonOnView.frame;
-    if (videoHidden) {
-		pauseFrame.origin.y = _bottomBar.frame.origin.y - pauseFrame.size.height - 60;
-    } else {
-        pauseFrame.origin.y = _videoCameraSwitch.frame.origin.y+_videoGroup.frame.origin.y;
-    }
-	recordFrame.origin.y = _bottomBar.frame.origin.y - pauseFrame.size.height - 60;
-    _callPauseButton.frame = pauseFrame;
-	_recordButtonOnView.frame = recordFrame;
-	[self updateInfoView:FALSE];
+     CGRect pauseFrame = _callPauseButton.frame;
+     CGRect recordFrame = _recordButtonOnView.frame;
+     if (videoHidden) {
+     pauseFrame.origin.y = _bottomBar.frame.origin.y - pauseFrame.size.height - 60;
+     } else {
+     pauseFrame.origin.y = _videoCameraSwitch.frame.origin.y+_videoGroup.frame.origin.y;
+     }
+     recordFrame.origin.y = _bottomBar.frame.origin.y - pauseFrame.size.height - 60;
+     _callPauseButton.frame = pauseFrame;
+     _recordButtonOnView.frame = recordFrame;
+     [self updateInfoView:FALSE];
      */
 }
 
@@ -625,6 +625,8 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	if (state != LinphoneCallPausedByRemote) {
 		_pausedByRemoteView.hidden = YES;
 	}
+    
+    LOGE(@"[WEDO] New iOS call state: %d", state);
 
 	switch (state) {
 		case LinphoneCallIncomingReceived:
@@ -656,17 +658,21 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 			break;
 		}
 		case LinphoneCallUpdatedByRemote: {
-			const LinphoneCallParams *current = linphone_call_get_current_params(call);
-			const LinphoneCallParams *remote = linphone_call_get_remote_params(call);
+            const LinphoneCallParams *current = linphone_call_get_current_params(call);
+            const LinphoneCallParams *remote = linphone_call_get_remote_params(call);
 
-			/* remote wants to add video */
-			if ((linphone_core_video_display_enabled(LC) && !linphone_call_params_video_enabled(current) &&
-				 linphone_call_params_video_enabled(remote)) &&
-				(!linphone_core_get_video_policy(LC)->automatically_accept ||
-				 (([UIApplication sharedApplication].applicationState != UIApplicationStateActive) &&
-				  floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max))) {
-				linphone_core_defer_call_update(LC, call);
-				[self displayAskToEnableVideoCall:call];
+            const bool_t video_enabled = linphone_core_video_display_enabled(LC);
+            const bool_t not_curr_video_enabled = !linphone_call_params_video_enabled(current);
+            const bool_t rem_video_enabled = linphone_call_params_video_enabled(remote);
+            const bool_t video_cond = video_enabled && not_curr_video_enabled && rem_video_enabled;
+            const bool dont_accept = !linphone_core_get_video_policy(LC)->automatically_accept;
+            const bool app_not_active = [UIApplication sharedApplication].applicationState != UIApplicationStateActive;
+            const bool ios_9 = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max;
+            /* remote wants to add video */
+            /* [WEDO] Added && false to disable this dialog. Missing or wrong sip header. */
+            if (video_cond && (dont_accept || (app_not_active && ios_9)) && false) {
+                linphone_core_defer_call_update(LC, call);
+                [self displayAskToEnableVideoCall:call];
 			} else if (linphone_call_params_video_enabled(current) && !linphone_call_params_video_enabled(remote)) {
 				[self displayAudioCall:animated];
 			}
@@ -713,42 +719,46 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		};
 
 		UNNotificationRequest *req =
-			[UNNotificationRequest requestWithIdentifier:@"video_request" content:content trigger:NULL];
-		[[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:req
-															   withCompletionHandler:^(NSError *_Nullable error) {
-																 // Enable or disable features based on authorization.
-																 if (error) {
-																	 LOGD(@"Error while adding notification request :");
-																	 LOGD(error.description);
-																 }
-															   }];
+            [UNNotificationRequest requestWithIdentifier:@"video_request"
+                                                 content:content
+                                                 trigger:NULL];
+        [[UNUserNotificationCenter currentNotificationCenter]
+         addNotificationRequest:req
+         withCompletionHandler:^(NSError *_Nullable error) {
+            // Enable or disable features based on authorization.
+            if (error) {
+                LOGD(@"Error while adding notification request :");
+                LOGD(error.description);
+            }
+        }];
 	} else {
-		UIConfirmationDialog *sheet = [UIConfirmationDialog ShowWithMessage:title
-			cancelMessage:nil
-			confirmMessage:NSLocalizedString(@"ACCEPT", nil)
-			onCancelClick:^() {
-			  LOGI(@"User declined video proposal");
-			  if (call == linphone_core_get_current_call(LC)) {
-				  LinphoneCallParams *params = linphone_core_create_call_params(LC, call);
-				  linphone_call_accept_update(call, params);
-				  linphone_call_params_destroy(params);
-				  [videoDismissTimer invalidate];
-				  videoDismissTimer = nil;
-			  }
-			}
-			onConfirmationClick:^() {
-			  LOGI(@"User accept video proposal");
-			  if (call == linphone_core_get_current_call(LC)) {
-				  LinphoneCallParams *params = linphone_core_create_call_params(LC, call);
-				  linphone_call_params_enable_video(params, TRUE);
-				  linphone_call_accept_update(call, params);
-				  linphone_call_params_destroy(params);
-				  [videoDismissTimer invalidate];
-				  videoDismissTimer = nil;
-			  }
-			}
-			inController:self];
-		videoDismissTimer = [NSTimer scheduledTimerWithTimeInterval:30
+		UIConfirmationDialog *sheet =
+            [UIConfirmationDialog ShowWithMessage:title
+                                    cancelMessage:nil
+                                   confirmMessage:NSLocalizedString(@"ACCEPT", nil)
+                                    onCancelClick:^() {
+                LOGI(@"User declined video proposal");
+                if (call == linphone_core_get_current_call(LC)) {
+                    LinphoneCallParams *params = linphone_core_create_call_params(LC, call);
+                    linphone_call_accept_update(call, params);
+                    linphone_call_params_destroy(params);
+                    [videoDismissTimer invalidate];
+                    videoDismissTimer = nil;
+                }
+            }
+                              onConfirmationClick:^() {
+                LOGI(@"User accept video proposal");
+                if (call == linphone_core_get_current_call(LC)) {
+                    LinphoneCallParams *params = linphone_core_create_call_params(LC, call);
+                    linphone_call_params_enable_video(params, TRUE);
+                    linphone_call_accept_update(call, params);
+                    linphone_call_params_destroy(params);
+                    [videoDismissTimer invalidate];
+                    videoDismissTimer = nil;
+                }
+            }
+                                     inController:self];
+        videoDismissTimer = [NSTimer scheduledTimerWithTimeInterval:30
 															 target:self
 														   selector:@selector(dismissVideoActionSheet:)
 														   userInfo:sheet

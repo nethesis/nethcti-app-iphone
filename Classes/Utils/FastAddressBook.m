@@ -73,34 +73,47 @@
 }
 
 + (Contact *)getContactWithAddress:(const LinphoneAddress *)address {
+    return [self getContactWithAddress:address fromFriendsOnly:NO];
+}
+
++ (Contact *)getContactWithAddress:(const LinphoneAddress *)address fromFriendsOnly:(BOOL)only {
 	Contact *contact = nil;
 	if (address) {
-		char *uri = linphone_address_as_string_uri_only(address);
-		NSString *normalizedSipAddress = [FastAddressBook normalizeSipURI:[NSString stringWithUTF8String:uri]];
-		contact = [FastAddressBook getContact:normalizedSipAddress];
-		ms_free(uri);
+        if(!only) {
+            char *uri = linphone_address_as_string_uri_only(address);
+            NSString *normalizedSipAddress = [FastAddressBook normalizeSipURI:[NSString stringWithUTF8String:uri]];
+            contact = [FastAddressBook getContact:normalizedSipAddress];
+            ms_free(uri);
+        }
 
 		if (!contact) {
-			LinphoneFriend *friend = linphone_core_find_friend(LC, address);
-			MSList *numbers = linphone_friend_get_phone_numbers(friend);
-			while (numbers) {
-				NSString *phone = [NSString stringWithUTF8String:numbers->data];
-				LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
-				
-				if (cfg) {
-					const char *normvalue = linphone_proxy_config_normalize_phone_number(cfg, phone.UTF8String);
-					LinphoneAddress *addr = linphone_proxy_config_normalize_sip_uri(cfg, normvalue);
-					const char *phone_addr = linphone_address_as_string_uri_only(addr);
-					contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
-				} else {
-					contact = [FastAddressBook getContact:phone];
-				}
-				
-				if (contact) {
-					break;
-				}
-				numbers = numbers->next;
-			}
+            LinphoneFriend *friend = linphone_core_find_friend(LC, address);
+            MSList *numbers = linphone_friend_get_phone_numbers(friend);
+            while (numbers) {
+                NSString *phone = [NSString stringWithUTF8String:numbers->data];
+                LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+                
+                if (cfg) {
+                    const char *normvalue = linphone_proxy_config_normalize_phone_number(cfg, phone.UTF8String);
+                    LinphoneAddress *addr = linphone_proxy_config_normalize_sip_uri(cfg, normvalue);
+                    const char *phone_addr = linphone_address_as_string_uri_only(addr);
+                    const char *old_addres = linphone_address_as_string_uri_only(address);
+                    if(only) {
+                        if(strcmp(phone_addr, old_addres)) {
+                            contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
+                        }
+                    } else {
+                        contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
+                    }
+                } else {
+                    contact = [FastAddressBook getContact:phone];
+                }
+                
+                if (contact) {
+                    break;
+                }
+                numbers = numbers->next;
+            }
         }
 	}
 	return contact;
@@ -413,8 +426,12 @@
 }
 
 + (NSString *)displayNameForAddress:(const LinphoneAddress *)addr {
+    return [self displayNameForAddress:addr fromFriendsOnly:NO];
+}
+
++ (NSString *)displayNameForAddress:(const LinphoneAddress *)addr fromFriendsOnly:(BOOL)only {
 	Contact *contact = [FastAddressBook getContactWithAddress:addr];
-	if (contact)
+	if (contact && !only)
 		return [FastAddressBook displayNameForContact:contact];
 
 	LinphoneFriend *friend = linphone_core_find_friend(LC, addr);

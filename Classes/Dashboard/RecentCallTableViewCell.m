@@ -62,11 +62,15 @@
     self.callLog = recentCall;
     
     [self setCallIcon:_callIcon byLog:recentCall];
-    
-    const LinphoneAddress *addr = linphone_call_log_get_from_address(recentCall);
+    const LinphoneAddress *addr;
+    if(linphone_call_log_get_dir(recentCall) == LinphoneCallIncoming) {
+        addr = linphone_call_log_get_from_address(recentCall);
+    } else {
+        addr = linphone_call_log_get_to_address(recentCall);
+    }
     
     [_addressLabel setTextColor:[UIColor getColorByName:@"MainColor"]];
-    [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel];
+    [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel fromFriendsOnly:YES];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
 }
 
