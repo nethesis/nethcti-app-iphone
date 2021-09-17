@@ -310,7 +310,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
     tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
-    tempLabel.font = [UIFont systemFontOfSize:15];
+    tempLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [tempView addSubview:tempLabel];
     

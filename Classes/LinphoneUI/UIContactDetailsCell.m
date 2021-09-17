@@ -37,6 +37,13 @@
 		[self setFrame:CGRectMake(0, 0, sub.frame.size.width, sub.frame.size.height)];
 		[self addSubview:sub];
         [self.inviteButton setTitleColor:[UIColor getColorByName:@"MainColor"] forState:UIControlStateNormal];
+        UIColor *txtColor;
+        if(@available(iOS 11.0, *)) {
+            txtColor = [UIColor colorNamed:@"textColor"];
+        } else {
+            txtColor = [UIColor getColorByName:@"LightGrey"];
+        }
+        _addressLabel.textColor = txtColor;
 	}
 	return self;
 }

@@ -195,7 +195,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName ||
-        section == ContactSections_LastName) {
+        section == ContactSections_LastName ||
+        section == ContactSections_Company) {
         // Those fields are only editable.
         return (self.tableView.isEditing) ? 1 : 0;
     } else if (section == ContactSections_Sip) {
@@ -206,8 +207,7 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if((section == ContactSections_Company && _contact.company.length > 0) ||
-              (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
+    } else if((section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
               (section == ContactSections_Homepob && _contact.homePob.length > 0) ||
               (section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0) ||
               (section == ContactSections_Notes &&_contact.notes.length > 0) ||
@@ -252,6 +252,9 @@
     } else if (section == ContactSections_LastName) {
         value = _contact.lastName;
         [cell hideDeleteButton:YES];
+    } else if(section == ContactSections_Company) {
+        value = _contact.company;
+        [cell hideDeleteButton:YES];
     } else if (section == ContactSections_Number) {
         value = _contact.phones[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypePhonePad];
@@ -270,8 +273,6 @@
     } else if (section == ContactSections_Email) {
         value = _contact.emails[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
-    } else if(section == ContactSections_Company) {
-        nonAddressCell(company);
     } else if(section == ContactSections_HomeLocation) {
         nonAddressCell(homeLocation);
     } else if(section == ContactSections_Homepob) {
@@ -368,6 +369,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     } else if (section == ContactSections_LastName && self.tableView.isEditing) {
         text = NSLocalizedString(@"Last name", nil);
         canAddEntry = NO;
+    } else if (section == ContactSections_Company && self.tableView.isEditing) {
+        text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+        canAddEntry = NO;
     } else if (sectionHasRows || self.tableView.isEditing) {
         // Show those editable fields section titles.
         if (section == ContactSections_Number) {
@@ -380,9 +384,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_Company) {
-            text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
-            canAddEntry = NO;
         } else if(section == ContactSections_HomeLocation) {
             text = NSLocalizedStringFromTable(@"Home location", @"NethLocalizable", @"");
             canAddEntry = NO;
@@ -436,13 +437,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     } else {
         tempView.backgroundColor = [UIColor whiteColor];
     }
+
+    UIView *border = [UIView new];
+    [border setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin];
+    border.frame = CGRectMake(15, 0, tableView.frame.size.width - 30, 1);
+    border.backgroundColor = tableView.separatorColor;
+    [tempView addSubview:border];
     
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
     tempLabel.backgroundColor = [UIColor clearColor];
     tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
     tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
-    tempLabel.font = [UIFont systemFontOfSize:15];
+    tempLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [tempView addSubview:tempLabel];
     
