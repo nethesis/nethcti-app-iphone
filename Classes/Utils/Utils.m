@@ -709,15 +709,13 @@
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image{
     if (contact) {
         [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
-        if ([contact.displayName  isEqual: @""]){
-            [image setImage:[UIImage imageNamed:@"avatar.png"]];
-        } else {
-            [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+        if (![contact.displayName isEqual: @""]){
+            [image setImage:[UIImage imageNamed:@"nethcti_avatar_call.png"]];
+            return;
         }
-    } else {
-        label.text = @"";
-        [image setImage:[UIImage imageNamed:@"avatar.png"]];
     }
+    label.text = @"";
+    [image setImage:[UIImage imageNamed:@"avatar.png"]];
 }
 
 + (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr {
