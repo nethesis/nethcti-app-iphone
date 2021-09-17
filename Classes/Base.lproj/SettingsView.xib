@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="4">
-                    <rect key="frame" x="0.0" y="44" width="414" height="789"/>
+                    <rect key="frame" x="0.0" y="42" width="414" height="791"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRV-nz-KWT" userLabel="topBar">
@@ -68,25 +68,22 @@
                                 <constraint firstItem="SqM-h2-idp" firstAttribute="centerY" secondItem="SRV-nz-KWT" secondAttribute="centerY" id="roQ-gT-aio"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qjf-HX-coQ" userLabel="subView">
-                            <rect key="frame" x="0.0" y="74" width="414" height="715"/>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qjf-HX-coQ" userLabel="subView">
+                            <rect key="frame" x="0.0" y="66" width="414" height="725"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="SRV-nz-KWT" secondAttribute="trailing" id="1i4-II-JdF"/>
-                        <constraint firstItem="Qjf-HX-coQ" firstAttribute="top" secondItem="SRV-nz-KWT" secondAttribute="bottom" constant="8" symbolic="YES" id="DUs-Lx-exM"/>
                         <constraint firstItem="SRV-nz-KWT" firstAttribute="top" secondItem="4" secondAttribute="top" id="UPC-7h-I0U"/>
-                        <constraint firstAttribute="trailing" secondItem="Qjf-HX-coQ" secondAttribute="trailing" id="aj9-2h-lbg"/>
                         <constraint firstItem="SRV-nz-KWT" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="ry7-2J-1JT"/>
-                        <constraint firstAttribute="bottom" secondItem="Qjf-HX-coQ" secondAttribute="bottom" id="tJF-2w-4Rn"/>
-                        <constraint firstItem="Qjf-HX-coQ" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="yjI-mL-ksI"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="-62.318840579710148" y="174.77678571428569"/>
+            <point key="canvasLocation" x="-61.594202898550726" y="175.11160714285714"/>
         </view>
         <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="10" userLabel="navigationController" customClass="UINavigationControllerEx">
             <extendedEdge key="edgesForExtendedLayout"/>

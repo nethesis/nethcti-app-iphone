@@ -8,9 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -161,23 +158,23 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="rz5-fE-NgU" secondAttribute="height" multiplier="1:1" id="387-rh-KZf"/>
                                                 <constraint firstItem="k7r-o9-4KF" firstAttribute="centerY" secondItem="rz5-fE-NgU" secondAttribute="centerY" id="95u-PC-7hd"/>
-                                                <constraint firstAttribute="bottom" secondItem="B6X-C9-2vm" secondAttribute="bottom" priority="999" id="InU-1o-uan"/>
+                                                <constraint firstAttribute="bottom" secondItem="B6X-C9-2vm" secondAttribute="bottom" id="InU-1o-uan"/>
                                                 <constraint firstAttribute="trailing" secondItem="B6X-C9-2vm" secondAttribute="trailing" id="cYf-PL-POc"/>
-                                                <constraint firstAttribute="width" constant="120" id="doc-rH-uV8"/>
-                                                <constraint firstItem="B6X-C9-2vm" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="top" priority="999" id="maO-8U-oQ2"/>
+                                                <constraint firstAttribute="width" constant="100" id="doc-rH-uV8"/>
+                                                <constraint firstItem="B6X-C9-2vm" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="top" id="maO-8U-oQ2"/>
                                                 <constraint firstItem="B6X-C9-2vm" firstAttribute="leading" secondItem="rz5-fE-NgU" secondAttribute="leading" id="ySz-Xp-Ooq"/>
                                                 <constraint firstItem="k7r-o9-4KF" firstAttribute="centerX" secondItem="rz5-fE-NgU" secondAttribute="centerX" id="ydI-7u-kg6"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Adalia La Balia" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                            <rect key="frame" x="16" y="136" width="396" height="40.333333333333343"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="27"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Adalia La Balia" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
+                                            <rect key="frame" x="8" y="108" width="398" height="82"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="27"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Nethesis " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
-                                            <rect key="frame" x="16" y="192.33333333333331" width="396" height="24.666666666666657"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Nethesis " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
+                                            <rect key="frame" x="8" y="168" width="398" height="57"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -195,18 +192,15 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="19" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" id="22t-W7-9Ml"/>
-                                        <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" priority="999" id="Kzy-eM-8bR"/>
-                                        <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="Tif-b3-SmO"/>
-                                        <constraint firstAttribute="trailing" secondItem="94e-AC-2ZP" secondAttribute="trailing" constant="16" id="X4O-pO-dVU"/>
-                                        <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" constant="16" id="afS-a9-sMT"/>
-                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="16" id="asa-jB-FgO"/>
-                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="16" id="ePe-8b-RHr"/>
+                                        <constraint firstAttribute="trailing" secondItem="94e-AC-2ZP" secondAttribute="trailing" constant="8" id="X4O-pO-dVU"/>
+                                        <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" constant="8" id="afS-a9-sMT"/>
+                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="8" id="asa-jB-FgO"/>
+                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="8" id="ePe-8b-RHr"/>
                                         <constraint firstItem="rz5-fE-NgU" firstAttribute="centerX" secondItem="MBo-dQ-CbJ" secondAttribute="centerX" id="gZG-on-qeZ"/>
                                         <constraint firstItem="rz5-fE-NgU" firstAttribute="top" secondItem="MBo-dQ-CbJ" secondAttribute="top" id="gwu-qu-Ms7"/>
-                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="bottom" constant="16" id="lFx-AF-X8H"/>
-                                        <constraint firstItem="19" firstAttribute="top" secondItem="94e-AC-2ZP" secondAttribute="bottom" priority="999" constant="16" id="mlz-PZ-cCr"/>
-                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" priority="999" constant="16" id="qB5-bk-E8H"/>
+                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="bottom" constant="8" id="lFx-AF-X8H"/>
+                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="8" id="qB5-bk-E8H"/>
+                                        <constraint firstItem="19" firstAttribute="top" secondItem="94e-AC-2ZP" secondAttribute="bottom" constant="16" id="teh-tc-WI6"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -426,9 +420,9 @@
         <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
         <image name="edit_default.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="edit_disabled.png" width="46.400001525878906" height="46.400001525878906"/>
-        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
         <image name="nethcti_edit.png" width="40" height="40"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="nethcti_trash_disabled.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>

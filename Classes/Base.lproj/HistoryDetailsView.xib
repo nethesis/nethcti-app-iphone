@@ -88,7 +88,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-Mq-wlg" userLabel="avatarContainer">
                                     <rect key="frame" x="157" y="0.0" width="100" height="100"/>
                                     <subviews>
-                                        <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-hB-giP" userLabel="avatarImage">
+                                        <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nethcti_grey_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-hB-giP" userLabel="avatarImage">
                                             <rect key="frame" x="5" y="5" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -249,7 +249,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7r-6t-b7w" userLabel="addButton" customClass="UIIconButton">
-                                    <rect key="frame" x="368" y="0.0" width="46" height="66"/>
+                                    <rect key="frame" x="368.5" y="0.0" width="45.5" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Add to contact"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
@@ -316,7 +316,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="12" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDG-Mn-jm2" userLabel="chatButton">
-                                            <rect key="frame" x="324" y="0.0" width="51" height="51"/>
+                                            <rect key="frame" x="324.5" y="0.0" width="51" height="51"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="chat_start_body_default.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -353,7 +353,7 @@
                                     </subviews>
                                 </view>
                                 <imageView hidden="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFit" fixedFrame="YES" image="linphone_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="G2O-Yh-fZA" userLabel="linphoneImage">
-                                    <rect key="frame" x="76" y="8" width="19" height="25"/>
+                                    <rect key="frame" x="76" y="8" width="18.5" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Contact avatar">
                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -376,7 +376,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7l5-ZU-CbW" userLabel="activityIndicatorView">
-                                    <rect key="frame" x="199" y="413" width="20" height="20"/>
+                                    <rect key="frame" x="198.5" y="413" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -513,8 +513,8 @@ AAAAAAAAAAAAFcs
 </mutableData>
         </image>
         <image name="linphone_user.png" width="41.599998474121094" height="42.400001525878906"/>
-        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_blue_circle.png" width="187.5" height="187.5"/>
+        <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_main_color_phone.png" width="187.5" height="187.5"/>
         <image name="nethcti_user_add.png" width="40" height="40"/>
         <image name="security_toogle_icon_green.png" width="33.599998474121094" height="38.400001525878906"/>

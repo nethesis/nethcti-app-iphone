@@ -304,20 +304,16 @@
 
 - (void)setUIColors{
     [_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
-    UIColor *separator;
-    UIColor *tint;
+    UIColor *grey;
     if (@available(iOS 11.0, *)) {
-        separator = [UIColor colorNamed: @"tableSeparator"];
-        tint = [UIColor colorNamed: @"iconTint"];
+        grey = [UIColor colorNamed: @"iconTint"];
     } else {
-        separator = [UIColor getColorByName: @"LightGrey"];
-        tint = [UIColor getColorByName:@"Grey"];
+        grey = [UIColor getColorByName:@"Grey"];
     }
-    [_backButton setTintColor:tint];
-    [_cancelButton setTintColor:tint];
-    [_deleteButton setTintColor:tint];
-    [_nameInitialLabel setTextColor:tint];
-    [_tableController.tableView setSeparatorColor:separator];
+    [_backButton setTintColor:grey];
+    [_cancelButton setTintColor:grey];
+    [_deleteButton setTintColor:grey];
+    [_nameInitialLabel setTextColor:grey];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
@@ -474,7 +470,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)recomputeContentViewSize {
 	_contentView.contentSize =
 		CGSizeMake(_tableController.tableView.frame.size.width + _tableController.tableView.frame.origin.x,
-				   _tableController.tableView.frame.size.height + _tableController.tableView.frame.origin.y + 15);
+				   _tableController.tableView.frame.size.height + _tableController.tableView.frame.origin.y);
 }
 
 #pragma mark - Action Functions

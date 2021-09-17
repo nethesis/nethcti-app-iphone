@@ -182,7 +182,7 @@
     tempLabel.textColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_A.png"]];
     tempLabel.text = [[self getSortedKeys] objectAtIndex:section];
     tempLabel.textAlignment = NSTextAlignmentCenter;
-    tempLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15];
+    tempLabel.font = [UIFont boldSystemFontOfSize:17];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [tempView addSubview:tempLabel];
     

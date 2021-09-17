@@ -207,7 +207,7 @@
 							 .uppercaseString;
 	}
 	tempLabel.textAlignment = NSTextAlignmentCenter;
-    tempLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15];
+	tempLabel.font = [UIFont boldSystemFontOfSize:17];
 	tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 	[tempView addSubview:tempLabel];
     
