@@ -429,7 +429,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         return nil;
     }
     
-    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 40);
     UIView *tempView = [[UIView alloc] initWithFrame:frame];
     if (@available(iOS 13, *)) {
         tempView.backgroundColor = [UIColor systemBackgroundColor];
@@ -437,12 +437,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         tempView.backgroundColor = [UIColor whiteColor];
     }
     
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
+    UIView *border = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1)];
+    border.backgroundColor = tableView.separatorColor;
+    [tempView addSubview:border];
+    
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, tableView.frame.size.width, 35)];
     tempLabel.backgroundColor = [UIColor clearColor];
     tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
     tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
-    tempLabel.font = [UIFont systemFontOfSize:15];
+    tempLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [tempView addSubview:tempLabel];
     
@@ -482,7 +486,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         return 44;
     }
     UIContactDetailsCell *cell = (UIContactDetailsCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.isAddress ? 44 : 44;
+    NSString * myString = cell.addressLabel.text;
+    NSArray *list = [myString componentsSeparatedByString:@"\n"];
+    /*
+     [WEDO] TODO: Change here the height of the note cell.
+     NSLog(@"No of lines : %lu", (unsigned long)[list count]);
+     */
+    return [list count] > 1 ? 88 : 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -494,7 +504,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 		(!self.tableView.isEditing && (section == ContactSections_FirstName || section == ContactSections_LastName))) {
 		return 1e-5;
 	}
-	return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
+    
+    UIView *header = [self tableView:tableView viewForHeaderInSection:section];
+    CGFloat height = header.frame.size.height;
+	return height;
 }
 
 #pragma mark - UITextFieldDelegate Functions

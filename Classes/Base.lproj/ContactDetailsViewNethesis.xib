@@ -140,16 +140,16 @@
                                     <rect key="frame" x="0.0" y="8" width="428" height="782"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rz5-fE-NgU" userLabel="avatarView">
-                                            <rect key="frame" x="154" y="0.0" width="120" height="120"/>
+                                            <rect key="frame" x="164" y="0.0" width="100" height="100"/>
                                             <subviews>
                                                 <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="B6X-C9-2vm" userLabel="avatarImage" customClass="UIRoundedImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <connections>
                                                         <outletCollection property="gestureRecognizers" destination="8bV-f4-pLL" appends="YES" id="4V5-Px-aHT"/>
                                                     </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k7r-o9-4KF" userLabel="nameInitialLabel">
-                                                    <rect key="frame" x="36.333333333333343" y="36.666666666666657" width="47.666666666666657" height="47"/>
+                                                    <rect key="frame" x="26.333333333333339" y="26.666666666666657" width="47.666666666666657" height="47"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -167,7 +167,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Adalia La Balia" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                            <rect key="frame" x="8" y="108" width="398" height="82"/>
+                                            <rect key="frame" x="8" y="108" width="412" height="82"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="27"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -420,9 +420,9 @@
         <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
         <image name="edit_default.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="edit_disabled.png" width="46.400001525878906" height="46.400001525878906"/>
+        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
         <image name="nethcti_edit.png" width="40" height="40"/>
-        <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="nethcti_trash_disabled.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>
