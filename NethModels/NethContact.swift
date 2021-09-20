@@ -21,38 +21,6 @@ import Foundation
     let speeddialNum: String
     let source: String
     
-    init(id: Int, ownerID: String, type: String, homeemail: String, workemail: String, homephone: String, workphone: String, cellphone: String, fax: String, title: String, company: String, notes: String, name: String, homestreet: String, homepob: String, homecity: String, homeprovince: String, homepostalcode: String, homecountry: String, workstreet: String, workpob: String, workcity: String, workprovince: String, workpostalcode: String, workcountry: String, url: String, rowExtension: String, speeddialNum: String, source: String) {
-        self.id = id
-        self.ownerID = ownerID
-        self.type = type
-        self.homeemail = homeemail
-        self.workemail = workemail
-        self.homephone = homephone
-        self.workphone = workphone
-        self.cellphone = cellphone
-        self.fax = fax
-        self.title = title
-        self.company = company
-        self.notes = notes
-        self.name = name
-        self.homestreet = homestreet
-        self.homepob = homepob
-        self.homecity = homecity
-        self.homeprovince = homeprovince
-        self.homepostalcode = homepostalcode
-        self.homecountry = homecountry
-        self.workstreet = workstreet
-        self.workpob = workpob
-        self.workcity = workcity
-        self.workprovince = workprovince
-        self.workpostalcode = workpostalcode
-        self.workcountry = workcountry
-        self.url = url
-        self.rowExtension = rowExtension
-        self.speeddialNum = speeddialNum
-        self.source = source
-    }
-    
     init(raw: [String:Any]) {
         self.id = raw["id"] as! Int
         self.ownerID = raw["owner_id"] as? String ?? ""
@@ -102,12 +70,16 @@ import Foundation
         contact!.firstName = self.name
         contact!.addEmail(self.homeemail)
         contact!.addEmail(self.workemail)
+        contact!.fax = self.fax
         contact!.addPhoneNumber(self.homephone)
         contact!.addPhoneNumber(self.workphone)
         contact!.addPhoneNumber(self.cellphone)
         contact!.addSipAddress(self.rowExtension)
         contact!.company = self.company
-        contact!.homeLocation = "\(self.homestreet) \(self.homecity) \(self.homeprovince) \(self.homecountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.homeLocationAddress = self.homestreet
+        contact!.homeLocationCity = self.homecity
+        contact!.homeLocationState = self.homeprovince
+        contact!.homeLocationCountry = self.homecountry
         contact!.homePob = self.homepob
         contact!.homePostalCode = self.homepostalcode
         contact!.notes = self.notes
@@ -117,10 +89,13 @@ import Foundation
         contact!.title = self.title
         contact!.type = self.type
         contact!.url = self.url
-        contact!.workLocation = "\(self.workstreet) \(self.workcity) \(self.workprovince) \(self.workcountry)".trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+        contact!.workLocationAddress = self.workstreet
+        contact!.workLocationCity = self.workcity
+        contact!.workLocationState = self.workprovince
+        contact!.workLocationCountry = self.workcountry
         contact!.workPob = self.workpob
         contact!.workPostalCode = self.workpostalcode
-        contact!.displayName = self.name.isEmpty ? self.company : self.name;//self.company.isEmpty ? self.name : self.name.trimmingCharacters(in: CharacterSet(arrayLiteral: " ")).isEmpty ? self.company : "\(self.name) - \(self.company)"
+        contact!.displayName = self.name.isEmpty ? self.company : self.name;
         return contact!
     }
 }
