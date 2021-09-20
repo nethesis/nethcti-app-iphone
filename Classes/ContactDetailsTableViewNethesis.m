@@ -209,7 +209,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName ||
-        section == ContactSections_LastName) {
+        section == ContactSections_LastName ||
+        (section == ContactSections_Company && _contact.company.length)) {
         // Those fields are only editable.
         return (self.tableView.isEditing) ? 1 : 0;
     } else if (section == ContactSections_Sip) {
@@ -220,8 +221,7 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if((section == ContactSections_Company && _contact.company.length > 0) ||
-              (section == ContactSections_HomeLocationAddress && _contact.homeLocationAddress.length > 0) ||
+    } else if((section == ContactSections_HomeLocationAddress && _contact.homeLocationAddress.length > 0) ||
               (section == ContactSections_HomeLocationCity && _contact.homeLocationCity.length > 0) ||
               (section == ContactSections_HomeLocationState && _contact.homeLocationState.length > 0) ||
               (section == ContactSections_HomeLocationCountry && _contact.homeLocationCountry.length > 0) ||
@@ -403,6 +403,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     } else if (section == ContactSections_LastName && self.tableView.isEditing) {
         text = NSLocalizedString(@"Last name", nil);
         canAddEntry = NO;
+    } else if(section == ContactSections_Company && self.tableView.isEditing) {
+        text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+        canAddEntry = NO;
     } else if (sectionHasRows || self.tableView.isEditing) {
         // Show those editable fields section titles.
         if (section == ContactSections_Number) {
@@ -415,9 +418,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_Company) {
-            text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
-            canAddEntry = NO;
         } else if(section == ContactSections_HomeLocationAddress) {
             text = NSLocalizedStringFromTable(@"Home address", @"NethLocalizable", @"");
             canAddEntry = NO;
@@ -557,7 +557,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section == 0 ||
-		(!self.tableView.isEditing && (section == ContactSections_FirstName || section == ContactSections_LastName))) {
+		(!self.tableView.isEditing && (section == ContactSections_FirstName || section == ContactSections_LastName || section == ContactSections_Company))) {
 		return 1e-5;
 	}
     
