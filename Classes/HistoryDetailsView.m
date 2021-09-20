@@ -87,6 +87,22 @@ static UICompositeViewDescription *compositeDescription = nil;
 											 selector: @selector(deviceOrientationDidChange:)
 												 name: UIDeviceOrientationDidChangeNotification
 											   object: nil];
+    
+    [self setUIColors];
+}
+
+- (void) setUIColors {
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    _nameInitialLabel.textColor = grey;
+    [_tableView.tableView setSeparatorColor:separator];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -145,7 +161,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[ContactDisplay setDisplayNameLabel:_contactLabel forAddress:addr withAddressLabel:_addressLabel];
 	//[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forAddress:addr forImage:_avatarImage];
-    _nameInitialLabel.textColor = [UIColor getColorByName:@"Grey"];
     
     Contact *contact = [FastAddressBook getContactWithAddress:addr];
     const LinphonePresenceModel *model = contact.friend ? linphone_friend_get_presence_model(contact.friend) : NULL;

@@ -369,16 +369,20 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)refreshButtons {
     bool sipFilter = [ContactSelection getSipFilter];
     UIColor *grey;
+    UIColor *separator;
     if (@available(iOS 11.0, *)) {
         grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
     } else {
         grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
     }
     [addButton setTintColor:grey];
     [addButton setHidden:sipFilter];
     [_backSpaceButton setTintColor:grey];
     [tableController.deleteButton setHidden:sipFilter];
     [tableController.editButton setHidden:sipFilter];
+    [tableController.tableView setSeparatorColor:separator];
     [self changeView:sipFilter ? ContactsLinphone : ContactsAll];
 }
 

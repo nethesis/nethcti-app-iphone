@@ -92,13 +92,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)setUIColors{
     UIColor *grey;
+    UIColor *separator;
     if (@available(iOS 11.0, *)) {
         grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
     } else {
         grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
     }
     [_backButton setTintColor:grey];
-    [_deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
+    [_deleteButton setTintColor:separator];
+    [self.tableController.tableView setSeparatorColor:separator];
 }
 
 #pragma mark - Action Functions

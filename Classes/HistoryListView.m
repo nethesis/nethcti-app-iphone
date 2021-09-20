@@ -62,6 +62,20 @@ static UICompositeViewDescription *compositeDescription = nil;
 	// Fake event
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
 	[_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
+    [self setUIColors];
+}
+
+- (void) setUIColors {
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [_tableController.tableView setSeparatorColor:separator];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {

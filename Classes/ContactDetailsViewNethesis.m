@@ -303,17 +303,21 @@
 }
 
 - (void)setUIColors{
-    [_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
+    [_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
     UIColor *grey;
+    UIColor *separator;
     if (@available(iOS 11.0, *)) {
         grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
     } else {
         grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
     }
     [_backButton setTintColor:grey];
     [_cancelButton setTintColor:grey];
     [_deleteButton setTintColor:grey];
     [_nameInitialLabel setTextColor:grey];
+    [_tableController.tableView setSeparatorColor:separator];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
@@ -470,7 +474,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)recomputeContentViewSize {
 	_contentView.contentSize =
 		CGSizeMake(_tableController.tableView.frame.size.width + _tableController.tableView.frame.origin.x,
-				   _tableController.tableView.frame.size.height + _tableController.tableView.frame.origin.y);
+				   _tableController.tableView.frame.size.height + _tableController.tableView.frame.origin.y + 15);
 }
 
 #pragma mark - Action Functions
