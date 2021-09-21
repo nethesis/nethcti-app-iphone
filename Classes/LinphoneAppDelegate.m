@@ -353,13 +353,25 @@
     // Bugfix sip address visualization.
     [LinphoneManager.instance lpConfigSetBool:YES forKey:@"display_phone_only" inSection:@"app"];
     
-    const bool cred = [ApiCredentials checkCredentials];
-    const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
-    // Get info only if authenticated without main extension.
-    if(cred && main_ext) {
-        [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {}
-                                              errorHandler:^(NSInteger code, NSString * _Nullable string) {}];
+    int last_version_used = [defaults valueForKey:@"last_version_used"];
+    if(last_version_used < 1) {
+        const bool cred = [ApiCredentials checkCredentials];
+        const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
+        // Get info only if authenticated without main extension.
+        if(cred && main_ext) {
+            [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+                const int expire = meUser.proxyPort != -1 ? 2678400 : 3600;
+                const size_t l = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
+                LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+                linphone_proxy_config_set_expires(cfg, expire); // Set Expiration Time from proxy values.
+                linphone_core_set_default_proxy_config(LC, cfg);
+            }
+                                                  errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                LOGE(@"[WEDO] error: %@", string);
+            }];
+        }
     }
+    [defaults setInteger:1 forKey:@"last_version_used"];
 }
 
 /// Apply status bar theming for devices with iOS 13+.

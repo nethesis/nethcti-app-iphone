@@ -8,9 +8,8 @@
 import Foundation
 
 struct NethUser: Codable {
-    let name, username, presence: String
+    let name, username, presence: String?
     let endpoints: Endpoints
-    let proxyPort : Int?
 }
 
 enum SerializationError: Error {
@@ -34,13 +33,22 @@ extension NethUser {
         self.username = username
         self.presence = presence
         self.endpoints = Endpoints(from:endpoints)!
-        self.proxyPort = nil //Verrà assegnato in PortableNethUser
+    }
+    
+    public func export() -> PortableNethUser {
+        let user = PortableNethUser.init(from: self)
+        user?.endpoints = self.endpoints.export()
+        return user!
+    }
+    
+    public func portable() -> PortableNethUser {
+        return PortableNethUser.init(from: self)!
     }
 }
 
-@objc public class PortableNethUser: NSObject {
-    @objc public let name: String
-    @objc public let username: String?
+@objc public class PortableNethUser: NSObject, Codable {
+    @objc public let name, username, presence: String?
+    var endpoints: Endpoints
     @objc public let intern: String?
     @objc public let secret: String?
     @objc public let proxyPort : Int
@@ -48,6 +56,8 @@ extension NethUser {
     init?(from:NethUser){
         self.name = from.name
         self.username = from.username
+        self.presence = from.presence
+        self.endpoints = from.endpoints
         let mobile = from.endpoints.endpointsExtension.first(where: { (Extension) -> Bool in
             Extension.type == "mobile"
         })!

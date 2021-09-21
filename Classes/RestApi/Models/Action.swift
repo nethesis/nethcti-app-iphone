@@ -24,4 +24,8 @@ extension Actions {
         self.dtmf = dtmf
         self.hold = hold
     }
+    
+    func export() -> Actions {
+        return Actions.init(answer: self.answer, dtmf: self.dtmf, hold: self.dtmf)
+    }
 }

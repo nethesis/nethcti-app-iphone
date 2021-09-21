@@ -43,4 +43,10 @@ extension Endpoints {
         let id = ext?[0]["id"] as? String
         self.mainExtension = id
     }
+    
+    public func export() -> Endpoints {
+        return Endpoints.init(
+            endpointsExtension: self.endpointsExtension.map { $0.export() },
+            mainExtension: self.mainExtension)
+    }
 }

@@ -238,12 +238,13 @@ import Foundation
                 // Set the right username if obtained (even with QrCode login too).
                 ApiCredentials.Username = nethUser?.username ?? ApiCredentials.Username
                 ApiCredentials.MainExtension = nethUser?.endpoints.mainExtension ?? ""
+                ApiCredentials.NethUserExport = nethUser?.export()
                 
                 self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
                     //ignored
                 }
                 
-                successHandler(PortableNethUser(from: nethUser!))
+                successHandler(nethUser?.portable())
             } catch (let errorThrown) {
                 errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
                 return

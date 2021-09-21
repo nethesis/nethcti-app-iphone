@@ -19,6 +19,7 @@ extension NethCTIAPI {
         case DeviceIdDefaultKey = "DeviceIdDefaultKey"      // Logged deviceId for Notificatore.
         case DomainDefaultKey = "DomainDefaultKey"          // Domain to call for neth apis.
         case MainExtensionKey = "NethesisMainExtension"
+        case NethUserExport = "NethUserExport"
         case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
         case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
         case UserDefaultKey = "UserDefaultKey"              // Logged username.
@@ -58,6 +59,24 @@ extension NethCTIAPI {
             }
             set{
                 UserDefaults.standard.setValue(newValue, forKey: ApiClientIdentifier.MainExtensionKey.rawValue)
+            }
+        }
+        
+        /**
+         Get or set the main extension.
+         */
+        @objc public class var NethUserExport: PortableNethUser? {
+            get {
+                guard let userData = UserDefaults.standard.data(forKey: ApiClientIdentifier.NethUserExport.rawValue) else {
+                    return nil;
+                }
+                let user = try? JSONDecoder().decode(PortableNethUser.self, from: userData)
+                return user
+            }
+            set {
+                if let encoded = try? JSONEncoder().encode(newValue) {
+                    UserDefaults.standard.set(encoded, forKey: ApiClientIdentifier.NethUserExport.rawValue)
+                }
             }
         }
         
