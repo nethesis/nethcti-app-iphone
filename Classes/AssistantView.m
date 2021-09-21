@@ -604,8 +604,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     UIRoundBorderedButton *button = [self findButton:field];
     if(button != nil) {
         // TODO: Change to NETHCTI_DARK_GRAY.
-        [button setTintColor:[UIColor darkGrayColor]];
-        [button setBackgroundColor:[UIColor lightGrayColor]];
+        UIColor *grey;
+        if (@available(iOS 11.0, *)) {
+            grey = [UIColor colorNamed: @"iconTint"];
+        } else {
+            grey = [UIColor getColorByName:@"Grey"];
+        }
+        [button setTintColor:grey];
+        button.titleLabel.textColor = [UIColor clearColor];
         [button.layer setCornerRadius:36.f];
     }
 }
