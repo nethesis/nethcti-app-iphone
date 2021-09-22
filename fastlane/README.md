@@ -41,7 +41,7 @@ Install development certificates and provisioning profiles.
 
 Add new devices to devices.txt list if you need them for testing.
 
-If you already have the development certificates and don't want match to invalidate and create them again, set `readonly` options to `true`.
+If you don't have development certificates yet set `readonly` options to `false`. Do this only if you know what are you doing, since this lane invalidate and create certificates again.
 
 After this action has finished, the obtained certificates and provisioning profile have to be manually linked to the project from linphone project windown inside xCode.
 ### ios tests
