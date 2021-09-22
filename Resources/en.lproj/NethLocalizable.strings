@@ -53,7 +53,13 @@
 
 "Company" = "Company";
 
-"Home location" = "Home";
+"Home address" = "Home address";
+
+"Home city" = "Home city";
+
+"Home state" = "Home state";
+
+"Home country" = "Home country";
 
 "Home pob" = "Home pob";
 
@@ -73,7 +79,13 @@
 
 "Url" = "Url";
 
-"Work location" = "Work";
+"Work address" = "Work address";
+
+"Work city" = "Work city";
+
+"Work state" = "Work state";
+
+"Work country" = "Work country";
 
 "Work pob" = "Work pob";
 

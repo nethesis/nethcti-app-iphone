@@ -67,7 +67,13 @@
 
 "Company" = "Azienda";
 
-"Home location" = "Casa";
+"Home address" = "Indirizzo casa";
+
+"Home city" = "Città casa";
+
+"Home state" = "Provincia casa";
+
+"Home country" = "Stato casa";
 
 "Home pob" = "Home pob";
 
@@ -87,7 +93,13 @@
 
 "Url" = "Url";
 
-"Work location" = "Lavoro";
+"Work address" = "Indirizzo lavoro";
+
+"Work city" = "Città lavoro";
+
+"Work state" = "Provincia lavoro";
+
+"Work country" = "Stato lavoro";
 
 "Work pob" = "Work pob";
 

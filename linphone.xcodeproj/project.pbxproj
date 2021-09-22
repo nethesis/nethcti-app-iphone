@@ -1904,6 +1904,7 @@
 		BB8C8139268DC2B30042A20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordingsListView.xib; sourceTree = "<group>"; };
 		BB8C813C268DC2EE0042A20A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
 		BBB62CF826DF68470035F6D2 /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
+		BBB6A19926FB48820023AEF5 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UIContactDetailsCell.strings; sourceTree = "<group>"; };
 		BBBFFFAA269C3F3500E76E3F /* nethcti_reverse_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_reverse_camera@2x.png"; sourceTree = "<group>"; };
 		BBBFFFAB269C3F3500E76E3F /* nethcti_reverse_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_reverse_camera.png; sourceTree = "<group>"; };
 		C3006726251E260700F5E478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -5171,6 +5172,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CAD1C0DB80300019A75 /* Base */,
+				BBB6A19926FB48820023AEF5 /* it */,
 			);
 			name = UIContactDetailsCell.xib;
 			sourceTree = "<group>";
