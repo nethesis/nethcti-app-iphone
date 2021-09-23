@@ -179,7 +179,7 @@
         [self setCString:"" forKey:@"account_userid_preference"];
         [self setCString:"" forKey:@"account_mandatory_password_preference"];
         [self setCString:"" forKey:@"ha1_preference"];
-        [self setInteger:-1 forKey:@"account_expire_preference"];
+        [self setInteger:2678400 forKey:@"account_expire_preference"]; // Nethesis default expire.
         [self setInteger:-1 forKey:@"current_proxy_config_preference"];
         [self setCString:"" forKey:@"account_prefix_preference"];
         [self setBool:NO forKey:@"account_substitute_+_by_00_preference"];
