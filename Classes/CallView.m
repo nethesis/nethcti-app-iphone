@@ -187,6 +187,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 								   selector:@selector(callDurationUpdate)
 								   userInfo:nil
 									repeats:YES];
+    
+    [self setUIColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -283,6 +285,16 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[self updateInfoView:TRUE];
 	}
 	_conferenceView.hidden = !linphone_core_is_in_conference(LC);
+}
+
+- (void) setUIColor {
+    UIColor *grey;
+    if(@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed:@"textColor"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    _nameLabel.textColor = grey;
 }
 
 #pragma mark - UI modification
