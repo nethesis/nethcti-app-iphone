@@ -1756,8 +1756,10 @@ _waitView.hidden = YES; \
     [api setAuthTokenWithUsername:components[0] token:components[1] domain:components[2]];
     [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
         [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
-        [self dismissViewWithMessage:string];
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {// Allow other screen orientations.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissViewWithMessage:string];
+        });
     }];
 }
 
