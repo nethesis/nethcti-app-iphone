@@ -170,21 +170,6 @@
                                             <rect key="frame" x="161" y="328" width="44" height="36"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
-                                        <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="160" userLabel="videoCameraSwitch" customClass="UICamSwitch">
-                                            <rect key="frame" x="23" y="140" width="52" height="52"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                            <accessibility key="accessibilityConfiguration" label="Switch camera"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="nethcti_reverse_camera.png">
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="disabled" image="nethcti_reverse_camera.png"/>
-                                            <state key="selected" image="nethcti_reverse_camera.png"/>
-                                            <state key="highlighted" image="nethcti_reverse_camera.png"/>
-                                            <connections>
-                                                <outlet property="preview" destination="127" id="172"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -212,7 +197,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wj9-Fl-7Oq" userLabel="infoView">
-                            <rect key="frame" x="16" y="16" width="343" height="319"/>
+                            <rect key="frame" x="16" y="16" width="343" height="251"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-QO-Jwb" userLabel="durationLabel">
                                     <rect key="frame" x="8" y="4" width="327" height="28"/>
@@ -223,18 +208,37 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button hidden="YES" opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="160" userLabel="videoCameraSwitch" customClass="UICamSwitch">
+                                    <rect key="frame" x="16" y="97.5" width="52" height="52"/>
+                                    <accessibility key="accessibilityConfiguration" label="Switch camera"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="52" id="yMH-yd-HOX"/>
+                                        <constraint firstAttribute="height" constant="52" id="z7f-Ai-wZw"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <state key="normal" image="nethcti_reverse_camera.png" backgroundImage="nethcti_grey_circle.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <state key="disabled" image="nethcti_reverse_camera.png"/>
+                                    <state key="selected" image="nethcti_reverse_camera.png"/>
+                                    <state key="highlighted" image="nethcti_reverse_camera.png"/>
+                                    <connections>
+                                        <outlet property="preview" destination="127" id="172"/>
+                                    </connections>
+                                </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fM-1x-Bgu" userLabel="avatarContainer">
-                                    <rect key="frame" x="50" y="36" width="243" height="243"/>
+                                    <rect key="frame" x="84" y="36" width="175" height="175"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-K5-yQp" userLabel="avatarImage">
-                                            <rect key="frame" x="4" y="4" width="235" height="235"/>
+                                            <rect key="frame" x="4" y="4" width="167" height="167"/>
                                             <accessibility key="accessibilityConfiguration" label="Contact avatar">
                                                 <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                 <bool key="isElement" value="YES"/>
                                             </accessibility>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIN-aD-498" userLabel="nameInitialsLabel">
-                                            <rect key="frame" x="74.5" y="74.5" width="94" height="94"/>
+                                            <rect key="frame" x="54" y="54" width="67" height="67"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="TIN-aD-498" secondAttribute="height" multiplier="1:1" id="baB-Dv-3dW"/>
                                             </constraints>
@@ -243,7 +247,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="TIN-aD-498" firstAttribute="height" secondItem="fZy-K5-yQp" secondAttribute="height" multiplier="0.4" id="6gH-QN-1kH"/>
                                         <constraint firstItem="TIN-aD-498" firstAttribute="centerX" secondItem="8fM-1x-Bgu" secondAttribute="centerX" id="Gfc-Zt-1Nj"/>
@@ -257,7 +261,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-Rm-Qni" userLabel="nameLabel">
-                                    <rect key="frame" x="8" y="283" width="327" height="32"/>
+                                    <rect key="frame" x="8" y="215" width="327" height="32"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="32" id="rjR-Zz-N13"/>
                                     </constraints>
@@ -266,13 +270,13 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Oy8-QO-Jwb" firstAttribute="leading" secondItem="Wj9-Fl-7Oq" secondAttribute="leading" constant="8" id="2AI-LD-HXP"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KPa-Rm-Qni" secondAttribute="trailing" constant="8" id="2YK-hA-jUK"/>
-                                <constraint firstItem="8fM-1x-Bgu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wj9-Fl-7Oq" secondAttribute="leading" constant="47.5" id="7ZI-b5-I4Z"/>
                                 <constraint firstItem="KPa-Rm-Qni" firstAttribute="leading" secondItem="Wj9-Fl-7Oq" secondAttribute="leading" constant="8" id="7n3-1j-l1W"/>
                                 <constraint firstItem="8fM-1x-Bgu" firstAttribute="top" secondItem="Oy8-QO-Jwb" secondAttribute="bottom" constant="4" id="BqR-Qr-r0i"/>
+                                <constraint firstItem="8fM-1x-Bgu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="160" secondAttribute="trailing" constant="16" id="HgW-XD-zi4"/>
                                 <constraint firstItem="8fM-1x-Bgu" firstAttribute="centerX" secondItem="Wj9-Fl-7Oq" secondAttribute="centerX" id="P94-jC-IUM"/>
                                 <constraint firstAttribute="bottom" secondItem="KPa-Rm-Qni" secondAttribute="bottom" constant="4" id="UDH-KK-TxV"/>
                                 <constraint firstItem="Oy8-QO-Jwb" firstAttribute="top" secondItem="Wj9-Fl-7Oq" secondAttribute="top" constant="4" id="Ut1-tG-fOL"/>
@@ -280,19 +284,21 @@
                                 <constraint firstItem="KPa-Rm-Qni" firstAttribute="centerX" secondItem="Wj9-Fl-7Oq" secondAttribute="centerX" id="YZ8-6l-L8s"/>
                                 <constraint firstItem="KPa-Rm-Qni" firstAttribute="top" secondItem="8fM-1x-Bgu" secondAttribute="bottom" constant="4" id="feE-Qx-z7M"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oy8-QO-Jwb" secondAttribute="trailing" constant="8" id="nCU-iu-maA"/>
+                                <constraint firstItem="160" firstAttribute="leading" secondItem="Wj9-Fl-7Oq" secondAttribute="leading" constant="16" id="pbp-dR-63o"/>
+                                <constraint firstItem="160" firstAttribute="centerY" secondItem="8fM-1x-Bgu" secondAttribute="centerY" id="rJ5-yx-KMD"/>
                             </constraints>
                         </view>
                         <view hidden="YES" alpha="0.80000000000000004" tag="16" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0MR-ml-8RY" userLabel="pausedByRemoteView">
-                            <rect key="frame" x="16" y="16" width="343" height="319"/>
+                            <rect key="frame" x="16" y="16" width="343" height="251"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" tag="17" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="waiting_time.png" translatesAutoresizingMaskIntoConstraints="NO" id="DH6-pH-W9j" userLabel="pausedImage">
-                                    <rect key="frame" x="120" y="108" width="103" height="103"/>
+                                    <rect key="frame" x="120" y="74" width="103" height="103"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="DH6-pH-W9j" secondAttribute="height" multiplier="1:1" id="nfz-Cw-L5j"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="18" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are paused by remote" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OgZ-xf-k7s" userLabel="pausedLabel">
-                                    <rect key="frame" x="72.5" y="227" width="198.5" height="20.5"/>
+                                    <rect key="frame" x="72.5" y="193" width="198.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -308,16 +314,16 @@
                             </constraints>
                         </view>
                         <view hidden="YES" tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-q2-eR2" userLabel="noActiveCallView">
-                            <rect key="frame" x="16" y="16" width="343" height="319"/>
+                            <rect key="frame" x="16" y="16" width="343" height="251"/>
                             <subviews>
                                 <imageView hidden="YES" userInteractionEnabled="NO" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nethcti_pause.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-gc-9XK" userLabel="pausedImage">
-                                    <rect key="frame" x="120" y="108" width="103" height="103"/>
+                                    <rect key="frame" x="120" y="74" width="103" height="103"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="4uU-gc-9XK" secondAttribute="height" multiplier="1:1" id="sZh-je-ZFP"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="22" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No active call" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="b5q-sb-qbU" userLabel="pausedLabel">
-                                    <rect key="frame" x="120.5" y="227" width="102" height="20.5"/>
+                                    <rect key="frame" x="120.5" y="193" width="102" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -332,7 +338,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPY-98-MFo" userLabel="centerBar">
-                            <rect key="frame" x="8" y="343" width="359" height="60"/>
+                            <rect key="frame" x="8" y="275" width="359" height="60"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qNH-ZT-DPp">
                                     <rect key="frame" x="59.5" y="0.0" width="240" height="60"/>
@@ -2472,7 +2478,7 @@ AAAAAAAAAAAAAAAALa4
         <image name="nethcti_numpad_9.png" width="256" height="256"/>
         <image name="nethcti_numpad_asterisk.png" width="256" height="256"/>
         <image name="nethcti_numpad_hashtag.png" width="256" height="256"/>
-        <image name="nethcti_pause.png" width="40" height="40"/>
+        <image name="nethcti_pause.png" width="32" height="32"/>
         <image name="nethcti_record.png" width="40" height="40"/>
         <image name="nethcti_reverse_camera.png" width="64" height="64"/>
         <image name="nethcti_transfer_call.png" width="40" height="40"/>

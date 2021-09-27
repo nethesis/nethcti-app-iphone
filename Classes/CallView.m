@@ -96,6 +96,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 	[videoZoomHandler setup:_videoGroup];
 	_videoGroup.alpha = 0;
+    _videoCameraSwitch.hidden = YES;
 
 	[_videoCameraSwitch setPreview:_videoPreview];
 
