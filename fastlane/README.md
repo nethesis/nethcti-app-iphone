@@ -72,6 +72,8 @@ Only use to publish apps for rebranding, after having incremented the main build
 If you push without incrementing build number, it will be rejected.
 
 If is the first time of match certifications before submitting a version to Testflight, you have to generate new match certificates manually with the command `bundle exec fastlane run match type:appstore --env appstore`.
+
+If reports doesn't contains bytecode and crash reports but only feedback.json file, it maybe possible that you have missed to upload symbols to crashlytics.
 ### ios release
 ```
 fastlane ios release
