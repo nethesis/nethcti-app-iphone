@@ -66,6 +66,7 @@ platform :ios do
     desc "If reports doesn't contains bytecode and crash reports but only feedback.json file, it maybe possible that you have missed to upload symbols to crashlytics."
     lane :beta_rebranding do
         match(type:"appstore", readonly: true)
+        
         build_app(
             include_bitcode: true,
             include_symbols: true,
@@ -79,7 +80,11 @@ platform :ios do
         upload_to_testflight(
             skip_waiting_for_build_processing: is_ci
         )
-        upload_symbols_to_crashlytics(dsym_path: "../#{ENV["PRODUCT_NAME"]}.app.dSYM.zip")
+
+        upload_symbols_to_crashlytics(
+            dsym_path: "./#{ENV["PRODUCT_NAME"]}.app.dSYM.zip",
+            gsp_path:"./GoogleService-Info.plist"
+        )
         
         notif(message: "In a few minutes, you'll be able to test your application.", subtitle: "Finished Uploading")
 
