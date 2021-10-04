@@ -16,10 +16,10 @@ def all_pods
 end
 
 def crashlytics
-	if not ENV['USE_CRASHLYTICS'].nil?
+	# if not ENV['USE_CRASHLYTICS'].nil?
 		pod 'Firebase/Analytics'
 		pod 'Firebase/Crashlytics'
-	end
+	# end
 end
 
 target 'NethCTI' do
@@ -64,22 +64,22 @@ post_install do |installer|
 	app_project.native_targets.each do |target|
 		target.build_configurations.each do |config|
 			if target.name == "NethCTI" || target.name == 'msgNotificationService' || target.name == 'msgNotificationContent'
-				if ENV['USE_CRASHLYTICS'].nil?
-					if config.name == "Debug" then
-						config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
-						else
-						config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited)'
-					end
-					config.build_settings['OTHER_SWIFT_FLAGS'] = '$(inherited)'
-				else
+				# if ENV['USE_CRASHLYTICS'].nil?
+					# if config.name == "Debug" then
+						# config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1'
+						# else
+						# config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited)'
+					# end
+					# config.build_settings['OTHER_SWIFT_FLAGS'] = '$(inherited)'
+				# else
 					# activate crashlytics
-					if config.name == "Debug" then
+          if config.name == "Debug" then
 						config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) DEBUG=1 USE_CRASHLYTICS=1'
 					else
 						config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) USE_CRASHLYTICS=1'
 					end
 					config.build_settings['OTHER_SWIFT_FLAGS'] = '$(inherited) -DUSE_CRASHLYTICS'
-				end
+				# end
 			end
 
 			if target.name == "NethCTI"

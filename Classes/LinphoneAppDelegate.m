@@ -33,9 +33,7 @@
 #import <Intents/Intents.h>
 #import <IntentsUI/IntentsUI.h>
 
-#ifdef USE_CRASHLYTICS
 #include "FIRApp.h"
-#endif
 
 @implementation LinphoneAppDelegate
 
@@ -259,9 +257,9 @@
 #pragma deploymate pop
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-#ifdef USE_CRASHLYTICS
+
+    // Enable crashlytics by default.
     [FIRApp configure];
-#endif
     
     UIApplication *app = [UIApplication sharedApplication];
     UIApplicationState state = app.applicationState;
