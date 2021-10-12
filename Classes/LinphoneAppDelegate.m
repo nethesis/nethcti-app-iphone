@@ -385,8 +385,10 @@
     bool isBright = [statusBarBgColor isBright];
     // Set status bar style accordingly to the background color.
     if (@available(iOS 13.0, *)) {
-        [application setStatusBarStyle:isBright ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
-        [self changeStatusBarBackground:application withColor:statusBarBgColor];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [application setStatusBarStyle:isBright ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
+            [self changeStatusBarBackground:application withColor:statusBarBgColor];
+        });
     } else if(isBright) {
         [application setStatusBarStyle:UIStatusBarStyleLightContent];
         [self changeStatusBarBackground:application withColor:statusBarBgColor];
