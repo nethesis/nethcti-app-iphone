@@ -373,7 +373,7 @@
 }
 
 /// Apply status bar theming for devices with iOS 13+.
-/// @param application application launched from didFinishWithLaunchingOptions.
+/// @param application application launched from didFinishLaunchingWithOptions.
 - (void)handleStatusBarTheme:(UIApplication *)application {
     UIColor *statusBarBgColor;
     if(@available(iOS 11.0, *)) {
@@ -401,7 +401,7 @@
 }
 
 /// Change status bar background color. Use only inside handleStatusBarTheme:(UIApplication *) method.
-/// @param application application launched from didFinishWithLaunchingOptions.
+/// @param application application launched from didFinishLaunchingWithOptions.
 /// @param color status bar background color from config files.
 - (void)changeStatusBarBackground:(UIApplication *)application withColor:(UIColor *)color {
     CGRect sbframe = application.statusBarFrame;

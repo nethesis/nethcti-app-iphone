@@ -35,6 +35,7 @@
 }
 
 - (void)registerForNotifications;
+- (void)handleStatusBarTheme:(UIApplication *)application;
 
 @property (nonatomic, retain) UIAlertController *waitingIndicator;
 @property (nonatomic, retain) NSString *configURL;
