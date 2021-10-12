@@ -375,18 +375,27 @@
 /// Apply status bar theming for devices with iOS 13+.
 /// @param application application launched from didFinishWithLaunchingOptions.
 - (void)handleStatusBarTheme:(UIApplication *)application {
-    UIColor *statusBarBgColor = [UIColor getColorByName:@"StatusBarBgColor"];
+    UIColor *statusBarBgColor;
+    if(@available(iOS 11.0, *)) {
+        statusBarBgColor = [UIColor colorNamed:@"statusBarBgColor"];
+    } else {
+        statusBarBgColor = [UIColor getColorByName:@"StatusBarBgColor"];
+    }
+    
+    bool isBright = [statusBarBgColor isBright];
     // Set status bar style accordingly to the background color.
     if (@available(iOS 13.0, *)) {
-        [application setStatusBarStyle:[statusBarBgColor isBright] ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
+        [application setStatusBarStyle:isBright ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
         [self changeStatusBarBackground:application withColor:statusBarBgColor];
-    } else if([statusBarBgColor isBright]) {
+    } else if(isBright) {
         [application setStatusBarStyle:UIStatusBarStyleLightContent];
         [self changeStatusBarBackground:application withColor:statusBarBgColor];
     } else {
+        [application setStatusBarStyle:UIStatusBarStyleDefault];
+        [self changeStatusBarBackground:application withColor:statusBarBgColor];
         // Can't set status bar style if color is not compatible with iOS version.
         float iosVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
-        LOGI(@"Can't set status bar style. Color %@ is not compatible with iOS version %f.", statusBarBgColor, iosVersion);
+        LOGI(@"[WEDO] Can't set status bar style. Color %@ is not compatible with iOS version %f.", statusBarBgColor, iosVersion);
         return;
     }
 }
