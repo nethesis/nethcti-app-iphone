@@ -75,6 +75,7 @@
     [LinphoneManager.instance startLinphoneCore];
     [LinphoneManager.instance.fastAddressBook reloadFriends];
     [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneMessageReceived object:nil];
+    [self handleStatusBarTheme:application];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -92,6 +93,7 @@
 	const LinphoneCallParams *params = linphone_call_get_current_params(call);
 	if (linphone_call_params_video_enabled(params))
 		linphone_call_enable_camera(call, false);
+    [self handleStatusBarTheme:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -152,6 +154,7 @@
         [self handleShortcut:_shortcutItem];
         _shortcutItem = nil;
     }
+    [self handleStatusBarTheme:application];
 }
 
 #pragma deploymate push "ignored-api-availability"
