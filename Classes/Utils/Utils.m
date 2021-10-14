@@ -619,13 +619,6 @@
 }
 
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel fromFriendsOnly:(BOOL)only {
-    if(only) {
-        const char *display = linphone_address_get_display_name(addr);
-        NSString *ustring = [[NSString alloc] initWithUTF8String:linphone_address_get_username(addr)];
-        NSString *distring = [[NSString alloc] initWithUTF8String:display];
-        LOGI(@"[WEDO] display: %@, user: %@", distring, ustring);
-    }
-    
     Contact *contact = [FastAddressBook getContactWithAddress:addr fromFriendsOnly:only];
     if (contact) {
         [ContactDisplay setDisplayNameLabel:label forContact:contact];

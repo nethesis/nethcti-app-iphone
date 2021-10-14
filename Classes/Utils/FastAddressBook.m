@@ -438,13 +438,13 @@
 	if (friend)
 		return [NSString stringWithUTF8String:linphone_friend_get_name(friend)];
 
-	const char *displayName = linphone_address_get_display_name(addr);
+    const char *displayName = linphone_address_get_display_name(addr);
 	if (displayName)
 		return [NSString stringWithUTF8String:displayName];
 
 	const char *userName = linphone_address_get_username(addr);
 	if (userName)
-			return [NSString stringWithUTF8String:userName];
+        return [NSString stringWithUTF8String:userName];
 
 	return NSLocalizedString(@"Unknown", nil);
 }
