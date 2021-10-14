@@ -47,14 +47,13 @@
 											 object:nil];
 
 	[self updateHeader];
+    [self setUIColors];
 	[_sideMenuTableViewController.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	_grayBackground.hidden = NO;
-    // TODO: Add NETHCTI_WHITE
-    _headerView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -63,26 +62,29 @@
 	// Should be better than that with alpha animation..
 }
 
+- (void)setUIColors {
+    if (@available(iOS 11.0, *)) {
+        [self.view setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+        [self.headerView setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+    } else {
+        [self.view setBackgroundColor:[UIColor getColorByName:@"White"]];
+    }
+}
+
 - (void)updateHeader {
 	LinphoneProxyConfig *default_proxy = linphone_core_get_default_proxy_config(LC);
 
 	if (default_proxy != NULL) {
 		const LinphoneAddress *addr = linphone_proxy_config_get_identity_address(default_proxy);
 		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
-		_addressLabel.text = addr? [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)] : NSLocalizedString(@"No address", nil);
+		// NSString *address_text = addr ? [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)] : NSLocalizedString(@"No address", nil);
+        NSString *main = ApiCredentials.MainExtension;
+        _addressLabel.text = main; // address_text;
 		_presenceImage.image = [StatusBarView imageForState:linphone_proxy_config_get_state(default_proxy)];
 	} else {
 		_nameLabel.text = linphone_core_get_proxy_config_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);
-		// Display direct IP:port address so that we can be reached.
-		LinphoneAddress *addr = linphone_core_get_primary_contact_parsed(LC);
-		if (addr) {
-			char *as_string = linphone_address_as_string_uri_only(addr);
-			_addressLabel.text = [NSString stringWithFormat:@"%s", as_string];
-			ms_free(as_string);
-			linphone_address_unref(addr);
-		} else {
-			_addressLabel.text = NSLocalizedString(@"No address", nil);
-		}
+        // Nethesis: if no proxy configured, doesn't show any address info.
+        _addressLabel.text = NSLocalizedString(@"No address", nil);
 		_presenceImage.image = nil;
 	}
 }

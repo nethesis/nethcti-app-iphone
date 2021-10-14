@@ -67,10 +67,10 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKx-ZY-gKx" userLabel="texts">
                                                     <rect key="frame" x="0.0" y="0.0" width="256" height="54"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number or an address" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
+                                                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a number" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="addressField" customClass="UIAddressTextField">
                                                             <rect key="frame" x="0.0" y="7.5" width="224" height="39"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <accessibility key="accessibilityConfiguration" label="Enter an address"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Enter a number"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="32"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
                                                             <connections>
@@ -458,7 +458,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="36" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="1IW-p9-Eko"/>
                         <constraint firstItem="38" firstAttribute="height" secondItem="171" secondAttribute="height" multiplier="0.12" id="4Qf-Ze-N7k"/>

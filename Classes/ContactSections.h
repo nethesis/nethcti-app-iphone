@@ -14,22 +14,32 @@ typedef enum _ContactSections {
     ContactSections_LastName,
     ContactSections_Sip,
     ContactSections_Number,
-    ContactSections_Email,
+    ContactSections_WorkNumber,
+    ContactSections_HomeNumber,
+    ContactSections_MobileNumber,
     // Nethesis fields.
     ContactSections_Company,
-    ContactSections_HomeLocation,
+    ContactSections_WorkLocationAddress,
+    ContactSections_WorkLocationCity,
+    ContactSections_WorkLocationState,
+    ContactSections_WorkLocationCountry,
+    ContactSections_Workpob,
+    ContactSections_WorkPostalCode,
+    ContactSections_HomeLocationAddress,
+    ContactSections_HomeLocationCity,
+    ContactSections_HomeLocationState,
+    ContactSections_HomeLocationCountry,
     ContactSections_Homepob,
     ContactSections_HomePostalCode,
+    ContactSections_Email,
+    ContactSections_Fax,
+    ContactSections_Title,
     ContactSections_Notes,
     ContactSections_OwnerId, // Not editable.
     ContactSections_Source, // Not editable.
     ContactSections_SpeeddialNum,
-    ContactSections_Title,
     ContactSections_Type, // Not editable.
     ContactSections_Url,
-    ContactSections_WorkLocation,
-    ContactSections_Workpob,
-    ContactSections_WorkPostalCode,
     ContactSections_MAX
 } ContactSections;
 

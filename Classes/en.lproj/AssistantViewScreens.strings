@@ -21,13 +21,13 @@
 "74.accessibilityLabel" = "Username";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "126"; */
-"126.accessibilityLabel" = "Account setup assistant";
+"126.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "WELCOME"; ObjectID = "126"; */
 "126.text" = "WELCOME";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "0ER-xf-LSS"; */
-"0ER-xf-LSS.accessibilityLabel" = "Account setup assistant";
+"0ER-xf-LSS.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "CREATE ACCOUNT"; ObjectID = "0ER-xf-LSS"; */
 "0ER-xf-LSS.text" = "CREATE ACCOUNT";
@@ -57,13 +57,13 @@
 "2tf-jf-LQL.text" = "USERNAME";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "4Aj-nv-TyO"; */
-"4Aj-nv-TyO.accessibilityLabel" = "Account setup assistant";
+"4Aj-nv-TyO.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "CREATE ACCOUNT"; ObjectID = "4Aj-nv-TyO"; */
 "4Aj-nv-TyO.text" = "CREATE ACCOUNT";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "4n3-ZD-KVi"; */
-"4n3-ZD-KVi.accessibilityLabel" = "Account setup assistant";
+"4n3-ZD-KVi.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "Please confirm your country code and enter your phone number"; ObjectID = "4n3-ZD-KVi"; */
 "4n3-ZD-KVi.text" = "Please confirm your country code and enter your phone number";
@@ -78,13 +78,13 @@
 "5kh-Wo-SMY.accessibilityLabel" = "Domain";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "8ko-YU-KdD"; */
-"8ko-YU-KdD.accessibilityLabel" = "Account setup assistant";
+"8ko-YU-KdD.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "CONFIGURE ACCOUNT"; ObjectID = "8ko-YU-KdD"; */
 "8ko-YU-KdD.text" = "CONFIGURE ACCOUNT";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "9AN-gT-I7D"; */
-"9AN-gT-I7D.accessibilityLabel" = "Account setup assistant";
+"9AN-gT-I7D.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "We have sent you a SMS with a validation code. To complete your phone number verification, please enter the 4 digit code below:"; ObjectID = "9AN-gT-I7D"; */
 "9AN-gT-I7D.text" = "We have sent you a SMS with a validation code. To complete your phone number verification, please enter the 4 digit code below:";
@@ -105,7 +105,7 @@
 "EXf-qZ-KVL.text" = "PASSWORD";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "F6u-fS-sJs"; */
-"F6u-fS-sJs.accessibilityLabel" = "Account setup assistant";
+"F6u-fS-sJs.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "ACTIVATE YOUR ACCOUNT"; ObjectID = "F6u-fS-sJs"; */
 "F6u-fS-sJs.text" = "ACTIVATE YOUR ACCOUNT";
@@ -120,7 +120,7 @@
 "Ffg-Of-xyh.accessibilityLabel" = "URL";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "Gyl-37-emh"; */
-"Gyl-37-emh.accessibilityLabel" = "Account setup assistant";
+"Gyl-37-emh.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "CREATE ACCOUNT"; ObjectID = "Gyl-37-emh"; */
 "Gyl-37-emh.text" = "CREATE ACCOUNT";
@@ -153,19 +153,19 @@
 "LHu-Vo-7k8.text" = "USERNAME";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "LbS-op-QAh"; */
-"LbS-op-QAh.accessibilityLabel" = "Account setup assistant";
+"LbS-op-QAh.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "USE YOUR LINPHONE ACCOUNT"; ObjectID = "LbS-op-QAh"; */
 "LbS-op-QAh.text" = "USE YOUR LINPHONE ACCOUNT";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "LsE-IY-ocU"; */
-"LsE-IY-ocU.accessibilityLabel" = "Account setup assistant";
+"LsE-IY-ocU.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "Enter your username and password with your SIP domain."; ObjectID = "LsE-IY-ocU"; */
 "LsE-IY-ocU.text" = "Please enter the following informations";
 
-/* Class = "UILabel"; text = "DOMAIN"; ObjectID = "MgC-eB-ar3"; */
-"MgC-eB-ar3.text" = "DOMAIN";
+/* Class = "UILabel"; text = "Domain"; ObjectID = "MgC-eB-ar3"; */
+"MgC-eB-ar3.text" = "Domain";
 
 /* Class = "UILabel"; text = "Forgot your password?"; ObjectID = "NtE-0O-Md1"; */
 "NtE-0O-Md1.text" = "Forgot your password?";
@@ -201,7 +201,7 @@
 "ULe-kp-qZn.placeholder" = "Activation code";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "UWU-j2-pUb"; */
-"UWU-j2-pUb.accessibilityLabel" = "Account setup assistant";
+"UWU-j2-pUb.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UIButton"; accessibilityLabel = "Finish configuration"; ObjectID = "XAC-vH-TQ2"; */
 "XAC-vH-TQ2.accessibilityLabel" = "Finish configuration";
@@ -209,14 +209,14 @@
 /* Class = "UIButton"; normalTitle = "FINISH CONFIGURATION"; ObjectID = "XAC-vH-TQ2"; */
 "XAC-vH-TQ2.normalTitle" = "FINISH CONFIGURATION";
 
-/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "XPq-fy-KZS"; */
-"XPq-fy-KZS.text" = "PASSWORD";
+/* Class = "UILabel"; text = "Password"; ObjectID = "XPq-fy-KZS"; */
+"XPq-fy-KZS.text" = "Password";
 
 /* Class = "UITextField"; accessibilityLabel = "Username"; ObjectID = "YRW-ex-VZy"; */
 "YRW-ex-VZy.accessibilityLabel" = "Username";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "Yci-5h-O4o"; */
-"Yci-5h-O4o.accessibilityLabel" = "Account setup assistant";
+"Yci-5h-O4o.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "This assistant will help you configure and use your SIP account."; ObjectID = "Yci-5h-O4o"; */
 "Yci-5h-O4o.text" = "This assistant will help you configure and use your SIP account.";
@@ -234,7 +234,7 @@
 "ap4-xh-CVK.accessibilityLabel" = "Password";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "dpv-8C-qt6"; */
-"dpv-8C-qt6.accessibilityLabel" = "Account setup assistant";
+"dpv-8C-qt6.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "FETCH REMOTE CONFIGURATION"; ObjectID = "dpv-8C-qt6"; */
 "dpv-8C-qt6.text" = "FETCH REMOTE CONFIGURATION";
@@ -267,7 +267,7 @@
 "gfr-KY-4vo.accessibilityLabel" = "Domain";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "hEy-Xe-afq"; */
-"hEy-Xe-afq.accessibilityLabel" = "Account setup assistant";
+"hEy-Xe-afq.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "Please provide your provisioning URL."; ObjectID = "hEy-Xe-afq"; */
 "hEy-Xe-afq.text" = "Please provide your provisioning URL.";
@@ -279,7 +279,7 @@
 "iEA-YK-kua.placeholder" = "+1";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "jFY-Po-QZN"; */
-"jFY-Po-QZN.accessibilityLabel" = "Account setup assistant";
+"jFY-Po-QZN.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "1/2"; ObjectID = "jFY-Po-QZN"; */
 "jFY-Po-QZN.text" = "1/2";
@@ -291,13 +291,13 @@
 "lMz-lo-z4b.text" = "Invalid password";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "mao-1f-HLz"; */
-"mao-1f-HLz.accessibilityLabel" = "Account setup assistant";
+"mao-1f-HLz.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "2/2"; ObjectID = "mao-1f-HLz"; */
 "mao-1f-HLz.text" = "2/2";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "mbT-xm-bKk"; */
-"mbT-xm-bKk.accessibilityLabel" = "Account setup assistant";
+"mbT-xm-bKk.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "Your account is created. Please check your mails to validate your account.\nOnce it is done, come back here and click on the button."; ObjectID = "mbT-xm-bKk"; */
 "mbT-xm-bKk.text" = "Your account is created. Please check your mails to validate your account.\nOnce it is done, come back here and click on the button.";
@@ -306,7 +306,7 @@
 "nOO-ch-4RW.text" = "Invalid phone number";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "njd-TT-zP8"; */
-"njd-TT-zP8.accessibilityLabel" = "Account setup assistant";
+"njd-TT-zP8.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "These parameters were retrieved from a remote provisioning profile."; ObjectID = "njd-TT-zP8"; */
 "njd-TT-zP8.text" = "These parameters were retrieved from a remote provisioning profile.";
@@ -321,7 +321,7 @@
 "p25-jF-I9X.text" = "PASSWORD";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "pJ5-CB-byl"; */
-"pJ5-CB-byl.accessibilityLabel" = "Account setup assistant";
+"pJ5-CB-byl.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "2/2"; ObjectID = "pJ5-CB-byl"; */
 "pJ5-CB-byl.text" = "2/2";
@@ -330,7 +330,7 @@
 "qgP-7X-pUs.accessibilityLabel" = "Username";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "rAy-0V-sqv"; */
-"rAy-0V-sqv.accessibilityLabel" = "Account setup assistant";
+"rAy-0V-sqv.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "Please confirm your country code and enter your phone number"; ObjectID = "rAy-0V-sqv"; */
 "rAy-0V-sqv.text" = "Please confirm your country code and enter your phone number";
@@ -338,8 +338,8 @@
 /* Class = "UITextField"; accessibilityLabel = "Password "; ObjectID = "t14-fe-grq"; */
 "t14-fe-grq.accessibilityLabel" = "Password ";
 
-/* Class = "UILabel"; text = "USERNAME"; ObjectID = "tAv-f7-kDI"; */
-"tAv-f7-kDI.text" = "USERNAME";
+/* Class = "UILabel"; text = "Username"; ObjectID = "tAv-f7-kDI"; */
+"tAv-f7-kDI.text" = "Username";
 
 /* Class = "UILabel"; text = "Invalid domain"; ObjectID = "ths-8b-FoU"; */
 "ths-8b-FoU.text" = "Invalid domain";
@@ -357,7 +357,7 @@
 "vh7-65-1js.text" = "Please enter your phone number";
 
 /* Class = "UILabel"; accessibilityLabel = "Account setup assistant"; ObjectID = "wen-Vj-Wgv"; */
-"wen-Vj-Wgv.accessibilityLabel" = "Account setup assistant";
+"wen-Vj-Wgv.accessibilityLabel" = "Login"; // "Account setup assistant";
 
 /* Class = "UILabel"; text = "LOGIN"; ObjectID = "wen-Vj-Wgv"; */
 "wen-Vj-Wgv.text" = "LOGIN";

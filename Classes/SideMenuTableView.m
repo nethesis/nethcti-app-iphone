@@ -58,18 +58,20 @@
     
     _sideMenuEntries = [[NSMutableArray alloc] init];
     
-    [_sideMenuEntries addObject:
-     [[SideMenuEntry alloc] initWithTitle:@"Dahsboard"
-                                    image:[UIImage imageNamed:@"nethcti_menu_home.png"]
-                                 tapBlock:^() {
-        [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
-    }]];
-    
     // If an account is configured, I must hide the Assistant row.
     BOOL account_configured = (linphone_core_get_default_proxy_config(LC) == NULL);
-    if(account_configured) {
+    if(!account_configured) {
         [_sideMenuEntries addObject:
-         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Assistant", nil)
+         [[SideMenuEntry alloc] initWithTitle:@"Dahsboard"
+                                        image:[UIImage imageNamed:@"nethcti_menu_home.png"]
+                                     tapBlock:^() {
+            [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+        }]];
+    }
+    
+    if (account_configured) {
+        [_sideMenuEntries addObject:
+         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Login", nil)
                                         image:[UIImage imageNamed:@"login_menu.png"]
                                      tapBlock:^() {
             [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
@@ -178,7 +180,7 @@
         // [cell.textLabel setFont:(UIFont * _Nullable)];
     }
     
-    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:16];
+    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:19];
     
     return cell;
 }

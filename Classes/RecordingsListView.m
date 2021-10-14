@@ -47,7 +47,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     if (compositeDescription == nil) {
         compositeDescription = [[UICompositeViewDescription alloc] init:self.class
                                                               statusBar:StatusBarView.class
-                                                                 tabBar:TabBarView.class
+                                                                 tabBar:nil
                                                                sideMenu:SideMenuView.class
                                                              fullscreen:false
                                                          isLeftFragment:YES
@@ -78,8 +78,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     UIImage *multiSelect = [UIImage imageNamed:@"nethcti_multiselect_selected.png"];
     // [_toggleSelectionButton setImage:multiUnselect forState:UIControlStateSelected]; // select_all_default
     [_toggleSelectionButton setImage:multiSelect forState:UIControlStateSelected]; // select_all_default
-    
-    [_deleteButton setTintColor:[UIColor getColorByName:@"LightGrey"]];
+    [self setUIColors];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,6 +88,21 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillDisappear:(BOOL)animated {
     self.view = NULL;
     [self.tableController removeAllRecordings];
+}
+
+- (void)setUIColors{
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [_backButton setTintColor:grey];
+    [_deleteButton setTintColor:separator];
+    [self.tableController.tableView setSeparatorColor:separator];
 }
 
 #pragma mark - Action Functions

@@ -130,6 +130,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 	UILongPressGestureRecognizer *backspaceLongGesture =
 		[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onBackspaceLongClick:)];
 	[_backspaceButton addGestureRecognizer:backspaceLongGesture];
+    UIImage *backspaceImage = [[UIImage imageNamed:@"nethcti_backspace.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_backspaceButton setImage:backspaceImage forState:UIControlStateNormal];
+    [_backspaceButton setImage:backspaceImage forState:UIControlStateHighlighted];
+    [_backspaceButton setImage:backspaceImage forState:UIControlStateSelected];
 
 	UILongPressGestureRecognizer *zeroLongGesture =
 		[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onZeroLongClick:)];
@@ -139,9 +143,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onOneLongClick:)];
 	[_oneButton addGestureRecognizer:oneLongGesture];
 	
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-																					initWithTarget:self
-																					action:@selector(dismissKeyboards)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboards)];
 	
 	[self.view addGestureRecognizer:tap];
 
@@ -420,7 +424,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     if(!wasPresent && addressPresence) {
         // Set pink color only if we have to change button state.
-        [_backspaceButton setTintColor:[UIColor getColorByName:@"Magenta"]];
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"AccentColor"]];
     }
     
     if(!addressPresence) {

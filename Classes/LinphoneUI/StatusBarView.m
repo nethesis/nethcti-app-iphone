@@ -54,8 +54,8 @@
 	LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
 	messagesUnreadCount = lp_config_get_int(linphone_core_get_config(LC), "app", "voice_mail_messages_count", 0);
     
-    [self setUIColors];
     [self setUIIcons];
+    [self setUIColors];
 
 	[self proxyConfigUpdate:config];
 	[self updateUI:linphone_core_get_calls_nb(LC)];
@@ -64,14 +64,24 @@
 
 /// Set UI Colors by default.
 -(void)setUIColors {
-    [self.backgroundImage setBackgroundColor:[UIColor getColorByName: @"White"]];
-    [self.registrationState setTitleColor:[UIColor getColorByName: @"Grey"] forState:UIControlStateNormal];
-    [self.sideMenuButton setTitleColor:[UIColor getColorByName: @"Grey"] forState:UIControlStateNormal];
+    UIColor *icons;
+    if (@available(iOS 11.0, *)) {
+        [self.backgroundImage setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+        icons = [UIColor colorNamed:@"iconTint"];
+    } else {
+        [self.backgroundImage setBackgroundColor:[UIColor getColorByName:@"White"]];
+        icons = [UIColor getColorByName:@"Grey"];
+    }
+    
+    [self.registrationState setTitleColor:icons forState:UIControlStateNormal];
+    [self.sideMenuButton setTitleColor:icons forState:UIControlStateNormal];
+    [_callQualityButton setTintColor:icons];
 }
 
 /// Set UI Icons by default.
 -(void)setUIIcons {
     [self.sideMenuButton setImage:[UIImage imageNamed:@"menu_nethcti.png"] forState:(UIControlStateHighlighted | UIControlStateNormal | UIControlStateSelected)];
+    [_callQualityButton setImage:[[UIImage imageNamed:@"call_quality_indicator_4.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

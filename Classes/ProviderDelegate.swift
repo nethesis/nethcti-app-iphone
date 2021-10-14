@@ -69,7 +69,7 @@ class ProviderDelegate: NSObject {
         let providerConfiguration = CXProviderConfiguration(localizedName: Bundle.main.infoDictionary!["CFBundleName"] as! String)
         providerConfiguration.ringtoneSound = "notes_of_the_optimistic.caf"
         providerConfiguration.supportsVideo = true
-        providerConfiguration.iconTemplateImageData = UIImage(named: "callkit_logo")?.pngData()
+        providerConfiguration.iconTemplateImageData = UIImage(named: "nethcti_logo_sip")?.pngData()
         providerConfiguration.supportedHandleTypes = [.generic, .phoneNumber, .emailAddress]
         
         providerConfiguration.maximumCallsPerCallGroup = 10

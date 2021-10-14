@@ -49,8 +49,14 @@
     // Can you refactor this Linphone code?
     else if(section == ContactSections_Company && _contact.company.length > 0)
         return allocWith(company);
-    else if(section == ContactSections_HomeLocation && _contact.homeLocation.length > 0)
-        return allocWith(homeLocation);
+    else if(section == ContactSections_HomeLocationAddress && _contact.homeLocationAddress.length > 0)
+        return allocWith(homeLocationAddress);
+    else if(section == ContactSections_HomeLocationCity && _contact.homeLocationCity.length > 0)
+        return allocWith(homeLocationCity);
+    else if(section == ContactSections_HomeLocationState && _contact.homeLocationState.length > 0)
+        return allocWith(homeLocationState);
+    else if(section == ContactSections_HomeLocationCountry && _contact.homeLocationCountry.length > 0)
+        return allocWith(homeLocationCountry);
     else if(section == ContactSections_Homepob && _contact.homePob.length > 0)
         return allocWith(homePob);
     else if(section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0)
@@ -69,8 +75,16 @@
         return allocWith(type);
     else if(section == ContactSections_Url && _contact.url.length > 0)
         return allocWith(url);
-    else if(section == ContactSections_WorkLocation && _contact.workLocation.length > 0)
-        return allocWith(workLocation);
+    else if(section == ContactSections_Fax && _contact.fax.length > 0)
+        return allocWith(fax);
+    else if(section == ContactSections_WorkLocationAddress && _contact.workLocationAddress.length > 0)
+        return allocWith(workLocationAddress);
+    else if(section == ContactSections_WorkLocationCity && _contact.workLocationCity.length > 0)
+        return allocWith(workLocationCity);
+    else if(section == ContactSections_WorkLocationState && _contact.workLocationState.length > 0)
+        return allocWith(workLocationState);
+    else if(section == ContactSections_WorkLocationCountry && _contact.workLocationCountry.length > 0)
+        return allocWith(workLocationCountry);
     else if(section == ContactSections_Workpob && _contact.workPob.length > 0)
         return allocWith(workPob);
     else if(section == ContactSections_WorkPostalCode && _contact.workPostalCode.length > 0)
@@ -195,7 +209,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // NewContactSections: Add here a row for new ContactSection.
     if (section == ContactSections_FirstName ||
-        section == ContactSections_LastName) {
+        section == ContactSections_LastName ||
+        (section == ContactSections_Company && _contact.company.length)) {
         // Those fields are only editable.
         return (self.tableView.isEditing) ? 1 : 0;
     } else if (section == ContactSections_Sip) {
@@ -206,8 +221,10 @@
         BOOL showEmails = [LinphoneManager.instance
                            lpConfigBoolForKey:@"show_contacts_emails_preference"];
         return showEmails ? _contact.emails.count : 0;
-    } else if((section == ContactSections_Company && _contact.company.length > 0) ||
-              (section == ContactSections_HomeLocation && _contact.homeLocation.length > 0) ||
+    } else if((section == ContactSections_HomeLocationAddress && _contact.homeLocationAddress.length > 0) ||
+              (section == ContactSections_HomeLocationCity && _contact.homeLocationCity.length > 0) ||
+              (section == ContactSections_HomeLocationState && _contact.homeLocationState.length > 0) ||
+              (section == ContactSections_HomeLocationCountry && _contact.homeLocationCountry.length > 0) ||
               (section == ContactSections_Homepob && _contact.homePob.length > 0) ||
               (section == ContactSections_HomePostalCode && _contact.homePostalCode.length > 0) ||
               (section == ContactSections_Notes &&_contact.notes.length > 0) ||
@@ -215,7 +232,11 @@
               (section == ContactSections_Title && _contact.title.length > 0) ||
               (section == ContactSections_Type && _contact.type.length > 0) ||
               (section == ContactSections_Url && _contact.url.length > 0) ||
-              (section == ContactSections_WorkLocation && _contact.workLocation.length > 0) ||
+              (section == ContactSections_Fax && _contact.fax.length > 0) ||
+              (section == ContactSections_WorkLocationAddress && _contact.workLocationAddress.length > 0) ||
+              (section == ContactSections_WorkLocationCity && _contact.workLocationCity.length > 0) ||
+              (section == ContactSections_WorkLocationState && _contact.workLocationState.length > 0) ||
+              (section == ContactSections_WorkLocationCountry && _contact.workLocationCountry.length > 0) ||
               (section == ContactSections_Workpob && _contact.workPob.length > 0) ||
               (section == ContactSections_WorkPostalCode && _contact.workPostalCode.length > 0)) {
         return 1;
@@ -272,8 +293,14 @@
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];
     } else if(section == ContactSections_Company) {
         nonAddressCell(company);
-    } else if(section == ContactSections_HomeLocation) {
-        nonAddressCell(homeLocation);
+    } else if(section == ContactSections_HomeLocationAddress) {
+        nonAddressCell(homeLocationAddress);
+    } else if(section == ContactSections_HomeLocationCity) {
+        nonAddressCell(homeLocationCity);
+    } else if(section == ContactSections_HomeLocationState) {
+        nonAddressCell(homeLocationState);
+    } else if(section == ContactSections_HomeLocationCountry) {
+        nonAddressCell(homeLocationCountry);
     } else if(section == ContactSections_Homepob) {
         nonAddressCell(homePob);
     } else if(section == ContactSections_HomePostalCode) {
@@ -290,10 +317,18 @@
         nonAddressCell(title);
     } else if(section == ContactSections_Type) {
         nonAddressCell(type);
+    } else if(section == ContactSections_Fax) {
+        nonAddressCell(fax);
     } else if(section == ContactSections_Url) {
         nonAddressCell(url);
-    } else if(section == ContactSections_WorkLocation) {
-        nonAddressCell(workLocation);
+    } else if(section == ContactSections_WorkLocationAddress) {
+        nonAddressCell(workLocationAddress);
+    } else if(section == ContactSections_WorkLocationCity) {
+        nonAddressCell(workLocationCity);
+    } else if(section == ContactSections_WorkLocationState) {
+        nonAddressCell(workLocationState);
+    } else if(section == ContactSections_WorkLocationCountry) {
+        nonAddressCell(workLocationCountry);
     } else if(section == ContactSections_Workpob) {
         nonAddressCell(workPob);
     } else if(section == ContactSections_WorkPostalCode) {
@@ -368,23 +403,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     } else if (section == ContactSections_LastName && self.tableView.isEditing) {
         text = NSLocalizedString(@"Last name", nil);
         canAddEntry = NO;
+    } else if(section == ContactSections_Company && self.tableView.isEditing) {
+        text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+        canAddEntry = NO;
     } else if (sectionHasRows || self.tableView.isEditing) {
         // Show those editable fields section titles.
         if (section == ContactSections_Number) {
             text = NSLocalizedString(@"Phone numbers", nil);
             addEntryName = NSLocalizedString(@"Add new phone number", nil);
         } else if (section == ContactSections_Sip) {
-            text = NSLocalizedStringFromTable(@"Extensions", @"NethLocalizable", @"");
+            text = NSLocalizedStringFromTable(@"Extension", @"NethLocalizable", @"");
             addEntryName = NSLocalizedString(@"Add new SIP address", nil);
         } else if (section == ContactSections_Email &&
                    [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
-        } else if(section == ContactSections_Company) {
-            text = NSLocalizedStringFromTable(@"Company", @"NethLocalizable", @"");
+        } else if(section == ContactSections_HomeLocationAddress) {
+            text = NSLocalizedStringFromTable(@"Home address", @"NethLocalizable", @"");
             canAddEntry = NO;
-        } else if(section == ContactSections_HomeLocation) {
-            text = NSLocalizedStringFromTable(@"Home location", @"NethLocalizable", @"");
+        } else if(section == ContactSections_HomeLocationCity) {
+            text = NSLocalizedStringFromTable(@"Home city", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_HomeLocationState) {
+            text = NSLocalizedStringFromTable(@"Home state", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_HomeLocationCountry) {
+            text = NSLocalizedStringFromTable(@"Home country", @"NethLocalizable", @"");
             canAddEntry = NO;
         } else if(section == ContactSections_Homepob) {
             text = NSLocalizedStringFromTable(@"Home pob", @"NethLocalizable", @"");
@@ -413,8 +457,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         } else if(section == ContactSections_Url) {
             text = NSLocalizedStringFromTable(@"Url", @"NethLocalizable", @"");
             canAddEntry = NO;
-        } else if(section == ContactSections_WorkLocation) {
-            text = NSLocalizedStringFromTable(@"Work location", @"NethLocalizable", @"");
+        } else if(section == ContactSections_Fax) {
+            text = NSLocalizedStringFromTable(@"Fax", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkLocationAddress) {
+            text = NSLocalizedStringFromTable(@"Work address", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkLocationCity) {
+            text = NSLocalizedStringFromTable(@"Work city", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkLocationState) {
+            text = NSLocalizedStringFromTable(@"Work state", @"NethLocalizable", @"");
+            canAddEntry = NO;
+        } else if(section == ContactSections_WorkLocationCountry) {
+            text = NSLocalizedStringFromTable(@"Work country", @"NethLocalizable", @"");
             canAddEntry = NO;
         } else if(section == ContactSections_Workpob) {
             text = NSLocalizedStringFromTable(@"Work pob", @"NethLocalizable", @"");
@@ -429,7 +485,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         return nil;
     }
     
-    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 40);
     UIView *tempView = [[UIView alloc] initWithFrame:frame];
     if (@available(iOS 13, *)) {
         tempView.backgroundColor = [UIColor systemBackgroundColor];
@@ -437,12 +493,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         tempView.backgroundColor = [UIColor whiteColor];
     }
     
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:frame];
+    UIView *border = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1)];
+    border.backgroundColor = tableView.separatorColor;
+    [tempView addSubview:border];
+    
+    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, tableView.frame.size.width, 35)];
     tempLabel.backgroundColor = [UIColor clearColor];
     tempLabel.textColor = [UIColor getColorByName:@"MainColor"];
     tempLabel.text = text;
     tempLabel.textAlignment = NSTextAlignmentCenter;
-    tempLabel.font = [UIFont systemFontOfSize:15];
+    tempLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15];
     tempLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [tempView addSubview:tempLabel];
     
@@ -482,7 +542,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         return 44;
     }
     UIContactDetailsCell *cell = (UIContactDetailsCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.isAddress ? 44 : 44;
+    NSString * myString = cell.addressLabel.text;
+    NSArray *list = [myString componentsSeparatedByString:@"\n"];
+    /*
+     [WEDO] TODO: Change here the height of the note cell.
+     NSLog(@"No of lines : %lu", (unsigned long)[list count]);
+     */
+    return [list count] > 1 ? 88 : 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -491,10 +557,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section == 0 ||
-		(!self.tableView.isEditing && (section == ContactSections_FirstName || section == ContactSections_LastName))) {
+		(!self.tableView.isEditing && (section == ContactSections_FirstName || section == ContactSections_LastName || section == ContactSections_Company))) {
 		return 1e-5;
 	}
-	return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
+    
+    UIView *header = [self tableView:tableView viewForHeaderInSection:section];
+    CGFloat height = header.frame.size.height;
+	return height;
 }
 
 #pragma mark - UITextFieldDelegate Functions
@@ -539,8 +608,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             case ContactSections_Company:
                 _contact.company = value;
                 break;
-            case ContactSections_HomeLocation:
-                _contact.homeLocation = value;
+            case ContactSections_HomeLocationAddress:
+                _contact.homeLocationAddress = value;
+                break;
+            case ContactSections_HomeLocationCity:
+                _contact.homeLocationCity = value;
+                break;
+            case ContactSections_HomeLocationState:
+                _contact.homeLocationState = value;
+                break;
+            case ContactSections_HomeLocationCountry:
+                _contact.homeLocationCountry = value;
                 break;
             case ContactSections_Homepob:
                 _contact.homePob = value;
@@ -566,11 +644,23 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             case ContactSections_Type:
                 _contact.type = value;
                 break;
+            case ContactSections_Fax:
+                _contact.fax = value;
+                break;
             case ContactSections_Url:
                 _contact.url = value;
                 break;
-            case ContactSections_WorkLocation:
-                _contact.workLocation = value;
+            case ContactSections_WorkLocationAddress:
+                _contact.workLocationAddress = value;
+                break;
+            case ContactSections_WorkLocationCity:
+                _contact.workLocationCity = value;
+                break;
+            case ContactSections_WorkLocationState:
+                _contact.workLocationState = value;
+                break;
+            case ContactSections_WorkLocationCountry:
+                _contact.workLocationCountry = value;
                 break;
             case ContactSections_Workpob:
                 _contact.workPob = value;

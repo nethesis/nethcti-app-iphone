@@ -156,36 +156,36 @@
 }
 
 - (void)transformAccountToKeys:(NSString *)username {
-	const MSList *proxies = linphone_core_get_proxy_config_list(LC);
-	while (username && proxies &&
-		   strcmp(username.UTF8String,
-				  linphone_address_get_username(linphone_proxy_config_get_identity_address(proxies->data))) != 0) {
-		proxies = proxies->next;
-	}
-	LinphoneProxyConfig *proxy = NULL;
-
-	// default values
-	{
-		[self setBool:NO forKey:@"account_pushnotification_preference"];
-		[self setObject:@"" forKey:@"account_mandatory_username_preference"];
-		[self setObject:@"" forKey:@"account_mandatory_domain_preference"];
-		[self setCString:"" forKey:@"account_display_name_preference"];
-		[self setObject:@"" forKey:@"account_proxy_preference"];
-		[self setObject:@"tls" forKey:@"account_transport_preference"];
-		[self setBool:NO forKey:@"account_outbound_proxy_preference"];
-		[self setBool:NO forKey:@"account_avpf_preference"];
-		[self setBool:YES forKey:@"account_is_default_preference"];
-		[self setBool:YES forKey:@"account_is_enabled_preference"];
-		[self setCString:"" forKey:@"account_userid_preference"];
-		[self setCString:"" forKey:@"account_mandatory_password_preference"];
-		[self setCString:"" forKey:@"ha1_preference"];
-		[self setInteger:-1 forKey:@"account_expire_preference"];
-		[self setInteger:-1 forKey:@"current_proxy_config_preference"];
-		[self setCString:"" forKey:@"account_prefix_preference"];
-		[self setBool:NO forKey:@"account_substitute_+_by_00_preference"];
-		[self setBool:NO forKey:@"account_ice_preference"];
-		[self setCString:"" forKey:@"account_stun_preference"];
-	}
+    const MSList *proxies = linphone_core_get_proxy_config_list(LC);
+    while (username && proxies &&
+           strcmp(username.UTF8String,
+                  linphone_address_get_username(linphone_proxy_config_get_identity_address(proxies->data))) != 0) {
+        proxies = proxies->next;
+    }
+    LinphoneProxyConfig *proxy = NULL;
+    
+    // default values
+    {
+        [self setBool:NO forKey:@"account_pushnotification_preference"];
+        [self setObject:@"" forKey:@"account_mandatory_username_preference"];
+        [self setObject:@"" forKey:@"account_mandatory_domain_preference"];
+        [self setCString:"" forKey:@"account_display_name_preference"];
+        [self setObject:@"" forKey:@"account_proxy_preference"];
+        [self setObject:@"tls" forKey:@"account_transport_preference"];
+        [self setBool:NO forKey:@"account_outbound_proxy_preference"];
+        [self setBool:NO forKey:@"account_avpf_preference"];
+        [self setBool:YES forKey:@"account_is_default_preference"];
+        [self setBool:YES forKey:@"account_is_enabled_preference"];
+        [self setCString:"" forKey:@"account_userid_preference"];
+        [self setCString:"" forKey:@"account_mandatory_password_preference"];
+        [self setCString:"" forKey:@"ha1_preference"];
+        [self setInteger:2678400 forKey:@"account_expire_preference"]; // Nethesis default expire.
+        [self setInteger:-1 forKey:@"current_proxy_config_preference"];
+        [self setCString:"" forKey:@"account_prefix_preference"];
+        [self setBool:NO forKey:@"account_substitute_+_by_00_preference"];
+        [self setBool:NO forKey:@"account_ice_preference"];
+        [self setCString:"" forKey:@"account_stun_preference"];
+    }
 
 	if (proxies) {
 		proxy = proxies->data;

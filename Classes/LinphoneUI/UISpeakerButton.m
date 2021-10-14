@@ -40,11 +40,11 @@ INIT_WITH_COMMON_CF {
     
     onColor = [UIColor getColorByName:@"MainColor"];
     offColor = [UIColor getColorByName:@"Grey"];
-    [self setTintColor:offColor];
+    // [self setTintColor:offColor];
     
     backOnImage = [UIImage imageNamed:@"nethcti_blue_circle.png"];
     backOffImage = [UIImage imageNamed:@"nethcti_grey_circle.png"];
-    [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
+    // [self setBackgroundImage:backOffImage forState:UIControlStateNormal];
     
     return self;
 }
@@ -63,7 +63,10 @@ INIT_WITH_COMMON_CF {
 
 - (void)onOn {
     [CallManager.instance enableSpeakerWithEnable:TRUE];
-    
+    [self setOnColors];
+}
+
+- (void)setOnColors {
     // Change UI Colors according to button state.
     [self setTintColor:onColor];
     [self setBackgroundImage:backOnImage forState:UIControlStateNormal];
@@ -71,7 +74,10 @@ INIT_WITH_COMMON_CF {
 
 - (void)onOff {
     [CallManager.instance enableSpeakerWithEnable:FALSE];
-    
+    [self setOffColors];
+}
+
+- (void)setOffColors {
     // Change UI Colors according to button state.
     [self setTintColor:offColor];
     [self setBackgroundImage:backOffImage forState:UIControlStateNormal];

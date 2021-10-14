@@ -49,7 +49,7 @@
 		24BFAAA4209B0630004F47A7 /* linphone_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA98209B062E004F47A7 /* linphone_logo.png */; };
 		24BFAAA5209B0630004F47A7 /* contacts_sip_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA99209B062E004F47A7 /* contacts_sip_default.png */; };
 		24BFAAA6209B0630004F47A7 /* linphone_user~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA9A209B062F004F47A7 /* linphone_user~ipad.png */; };
-		24BFAAA7209B0630004F47A7 /* callkit_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA9B209B062F004F47A7 /* callkit_logo.png */; };
+		24BFAAA7209B0630004F47A7 /* linphone_callkit_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA9B209B062F004F47A7 /* linphone_callkit_logo.png */; };
 		24BFAAA8209B0630004F47A7 /* contacts_sip_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA9C209B062F004F47A7 /* contacts_sip_selected@2x.png */; };
 		24BFAAA9209B0630004F47A7 /* linphone_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BFAA9D209B0630004F47A7 /* linphone_logo@2x.png */; };
 		24E1C7C01F9A235600D3F981 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E1C7B91F9A235500D3F981 /* Contacts.framework */; };
@@ -717,7 +717,7 @@
 		63E27A321C4FECD000D332AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E27A311C4FECD000D332AE /* LaunchScreen.xib */; };
 		63E27A521C50EDB000D332AE /* hold.mkv in Resources */ = {isa = PBXBuildFile; fileRef = 63E27A511C50EB2700D332AE /* hold.mkv */; };
 		63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E59A3E1ADE70D900646FB3 /* InAppProductsManager.m */; };
-		63E802DB1C625AEF000D5509 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		63E802DB1C625AEF000D5509 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		63EC8D391D7438660066547B /* AssistantLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63EC8D3B1D7438660066547B /* AssistantLinkView.xib */; };
 		63F1DF441BCE618E00EDED90 /* UIAddressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1DF431BCE618E00EDED90 /* UIAddressTextField.m */; };
 		63F1DF4B1BCE983200EDED90 /* CallConferenceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1DF4A1BCE983200EDED90 /* CallConferenceTableView.m */; };
@@ -750,7 +750,7 @@
 		8CBD7BA620B6B82400E5DCC0 /* UIChatConversationInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBD7BA820B6B82400E5DCC0 /* UIChatConversationInfoTableViewCell.xib */; };
 		8CBD7BA920B6B82A00E5DCC0 /* UIChatConversationImdnTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBD7BAB20B6B82A00E5DCC0 /* UIChatConversationImdnTableViewCell.xib */; };
 		8CBD7BAC20B6B82F00E5DCC0 /* UIChatCreateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBD7BAE20B6B82F00E5DCC0 /* UIChatCreateCollectionViewCell.xib */; };
-		8CD99A1C20908C27008A7CDA /* callkit_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD99A1B20908C27008A7CDA /* callkit_logo@2x.png */; };
+		8CD99A1C20908C27008A7CDA /* linphone_callkit_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD99A1B20908C27008A7CDA /* linphone_callkit_logo@2x.png */; };
 		8CD99A372090A824008A7CDA /* splashscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD99A352090A823008A7CDA /* splashscreen@2x.png */; };
 		8CD99A382090A824008A7CDA /* splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CD99A362090A824008A7CDA /* splashscreen.png */; };
 		8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD99A3B2090B9FA008A7CDA /* ChatConversationImdnView.m */; };
@@ -767,7 +767,10 @@
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
+		BB7FB93726E651D000DCC61C /* nethcti_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7FB93526E651D000DCC61C /* nethcti_menu@2x.png */; };
+		BB7FB93826E651D000DCC61C /* nethcti_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7FB93626E651D000DCC61C /* nethcti_menu.png */; };
 		BB8C8138268DC2B30042A20A /* RecordingsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8C813A268DC2B30042A20A /* RecordingsListView.xib */; };
+		BBB62CF926DF68470035F6D2 /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB62CF826DF68470035F6D2 /* colors.xcassets */; };
 		BBBFFFA6269C3AF700E76E3F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3951058A2639B2BA00F5AEC5 /* Roboto-Bold.ttf */; };
 		BBBFFFA7269C3AFD00E76E3F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105872639B2B200F5AEC5 /* Roboto-Light.ttf */; };
 		BBBFFFA8269C3AFF00E76E3F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395105892639B2B800F5AEC5 /* Roboto-Medium.ttf */; };
@@ -800,7 +803,6 @@
 		C387A653243F4E9F007FF4DE /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C387A650243F4E9E007FF4DE /* NethLocalizable.strings */; };
 		C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D455324B7131A006B0B6E /* NotReturnMessage.swift */; };
 		C38D9EDE238FFDF70065C731 /* color_neth_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EDD238FFDF60065C731 /* color_neth_A.png */; };
-		C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */ = {isa = PBXBuildFile; fileRef = C38D9EE0239009010065C731 /* AssistantViewScreens.strings */; };
 		C3907C3E264570D3003E14E0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3907C3C264570D3003E14E0 /* back.png */; };
 		C3907C3F264570D3003E14E0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3907C3D264570D3003E14E0 /* back@2x.png */; };
 		C391A99C264EB05600F9FD76 /* nethcti_play.png in Resources */ = {isa = PBXBuildFile; fileRef = C391A99A264EB05500F9FD76 /* nethcti_play.png */; };
@@ -840,7 +842,6 @@
 		C39AA9D7263956AC00464F06 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C39AA9CF263956AB00464F06 /* settings.png */; };
 		C39AA9D8263956AC00464F06 /* nethcti_microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39AA9D0263956AB00464F06 /* nethcti_microphone@2x.png */; };
 		C39CE3F52636EF1000F63727 /* color_nethcti_white.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F42636EF0F00F63727 /* color_nethcti_white.png */; };
-		C39CE3F72636F05100F63727 /* menu_nethcti.png in Resources */ = {isa = PBXBuildFile; fileRef = C39CE3F62636F05000F63727 /* menu_nethcti.png */; };
 		C39DC13C2677AB8E0037305E /* nethcti_green_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DC13A2677AB8D0037305E /* nethcti_green_phone.png */; };
 		C39DC13D2677AB8E0037305E /* nethcti_green_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DC13B2677AB8E0037305E /* nethcti_green_phone@2x.png */; };
 		C39F991824D0345800B3039C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6C88323FABF690076A018 /* Utils.swift */; };
@@ -863,7 +864,7 @@
 		C3B43D7B2695D977005D01E1 /* nethcti_users_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */; };
 		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
 		C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */; };
-		C3F4DAE925E0069400713A0B /* (null) in Resources */ = {isa = PBXBuildFile; };
+		C3F4DAE925E0069400713A0B /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		C3F4DAED25E006A200713A0B /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */; };
 		C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */; };
 		CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF15F21C20E4F9A3008B1DE6 /* UIImageViewDeletable.m */; };
@@ -1066,7 +1067,7 @@
 		24BFAA98209B062E004F47A7 /* linphone_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linphone_logo.png; sourceTree = "<group>"; };
 		24BFAA99209B062E004F47A7 /* contacts_sip_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts_sip_default.png; sourceTree = "<group>"; };
 		24BFAA9A209B062F004F47A7 /* linphone_user~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linphone_user~ipad.png"; sourceTree = "<group>"; };
-		24BFAA9B209B062F004F47A7 /* callkit_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callkit_logo.png; sourceTree = "<group>"; };
+		24BFAA9B209B062F004F47A7 /* linphone_callkit_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linphone_callkit_logo.png; sourceTree = "<group>"; };
 		24BFAA9C209B062F004F47A7 /* contacts_sip_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contacts_sip_selected@2x.png"; sourceTree = "<group>"; };
 		24BFAA9D209B0630004F47A7 /* linphone_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linphone_logo@2x.png"; sourceTree = "<group>"; };
 		24E1C7B91F9A235500D3F981 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
@@ -1866,7 +1867,7 @@
 		8CBD7BE120B6C1E500E5DCC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UIChatConversationInfoTableViewCell.strings; sourceTree = "<group>"; };
 		8CBD7BE320B6C1E900E5DCC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UIChatCreateCollectionViewCell.strings; sourceTree = "<group>"; };
 		8CD0B3BE1FA22CBA008FEB16 /* libsoci_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsoci_core.a; path = "liblinphone-sdk/apple-darwin/lib/libsoci_core.a"; sourceTree = "<group>"; };
-		8CD99A1B20908C27008A7CDA /* callkit_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "callkit_logo@2x.png"; sourceTree = "<group>"; };
+		8CD99A1B20908C27008A7CDA /* linphone_callkit_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linphone_callkit_logo@2x.png"; sourceTree = "<group>"; };
 		8CD99A352090A823008A7CDA /* splashscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashscreen@2x.png"; sourceTree = "<group>"; };
 		8CD99A362090A824008A7CDA /* splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreen.png; sourceTree = "<group>"; };
 		8CD99A3B2090B9FA008A7CDA /* ChatConversationImdnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConversationImdnView.m; sourceTree = "<group>"; };
@@ -1895,9 +1896,15 @@
 		BB2F62B3268DF05C00A93865 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/DialerView~ipad.strings"; sourceTree = "<group>"; };
 		BB4BF16824C887F300667B10 /* CallIdTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
 		BB6288B9268E0A41004425F9 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ContactDetailsViewNethesis.strings; sourceTree = "<group>"; };
+		BB7FB93526E651D000DCC61C /* nethcti_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu@2x.png"; sourceTree = "<group>"; };
+		BB7FB93626E651D000DCC61C /* nethcti_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_menu.png; sourceTree = "<group>"; };
+		BB7FB93926E65A0600DCC61C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CallView.strings; sourceTree = "<group>"; };
+		BB7FB93A26E65A4D00DCC61C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/CallView~ipad.strings"; sourceTree = "<group>"; };
 		BB839E75268DCE78001F6AD7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DialerView.strings; sourceTree = "<group>"; };
 		BB8C8139268DC2B30042A20A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RecordingsListView.xib; sourceTree = "<group>"; };
 		BB8C813C268DC2EE0042A20A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
+		BBB62CF826DF68470035F6D2 /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
+		BBB6A19926FB48820023AEF5 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UIContactDetailsCell.strings; sourceTree = "<group>"; };
 		BBBFFFAA269C3F3500E76E3F /* nethcti_reverse_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_reverse_camera@2x.png"; sourceTree = "<group>"; };
 		BBBFFFAB269C3F3500E76E3F /* nethcti_reverse_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_reverse_camera.png; sourceTree = "<group>"; };
 		C3006726251E260700F5E478 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1933,7 +1940,6 @@
 		C387A652243F4E9E007FF4DE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
 		C38D455324B7131A006B0B6E /* NotReturnMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
 		C38D9EDD238FFDF60065C731 /* color_neth_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_neth_A.png; sourceTree = "<group>"; };
-		C38D9EE1239009010065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
 		C38D9EE323900AC70065C731 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C38ED0F326090505003B7E6E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ContactsListView.strings; sourceTree = "<group>"; };
 		C38ED0F526090508003B7E6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ContactsListView.strings; sourceTree = "<group>"; };
@@ -1980,7 +1986,6 @@
 		C39AA9CF263956AB00464F06 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C39AA9D0263956AB00464F06 /* nethcti_microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_microphone@2x.png"; sourceTree = "<group>"; };
 		C39CE3F42636EF0F00F63727 /* color_nethcti_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_nethcti_white.png; sourceTree = "<group>"; };
-		C39CE3F62636F05000F63727 /* menu_nethcti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_nethcti.png; sourceTree = "<group>"; };
 		C39DC13A2677AB8D0037305E /* nethcti_green_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_phone.png; sourceTree = "<group>"; };
 		C39DC13B2677AB8E0037305E /* nethcti_green_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_green_phone@2x.png"; sourceTree = "<group>"; };
 		C3A1264625E9512900DFFCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BrandLocalizable.strings; sourceTree = "<group>"; };
@@ -2280,7 +2285,6 @@
 				D350F20C15A43BB100149E54 /* AssistantView.m */,
 				D38187E015FE348A00C3EDCA /* AssistantView.xib */,
 				D3D5126A160B3A8E00946DF8 /* AssistantViewScreens.xib */,
-				C38D9EE0239009010065C731 /* AssistantViewScreens.strings */,
 				63F1DF491BCE983100EDED90 /* CallConferenceTableView.h */,
 				63F1DF4A1BCE983200EDED90 /* CallConferenceTableView.m */,
 				D3F26BEE15986B71005F9CAB /* CallIncomingView.h */,
@@ -2313,7 +2317,6 @@
 				8CBD7BA220B6B7FD00E5DCC0 /* ChatConversationInfoView.xib */,
 				D32B6E2715A5BC430033019F /* ChatConversationTableView.h */,
 				D32B6E2815A5BC430033019F /* ChatConversationTableView.m */,
-				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
 				D3F795D315A582800077328B /* ChatConversationView.h */,
 				D3F795D415A582800077328B /* ChatConversationView.m */,
 				D38187B015FE340100C3EDCA /* ChatConversationView.xib */,
@@ -2337,6 +2340,7 @@
 				D35497FB15875372000081D8 /* ContactsListView.h */,
 				D35497FC15875372000081D8 /* ContactsListView.m */,
 				D38187C015FE342800C3EDCA /* ContactsListView.xib */,
+				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
 				631098471D4660580041F2B3 /* CountryListView.h */,
 				631098481D4660580041F2B3 /* CountryListView.m */,
 				631098501D4660630041F2B3 /* CountryListView.xib */,
@@ -2552,7 +2556,7 @@
 			path = LinphoneUI;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+		29B97314FDCFA39411CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				C34B5B2425ED20C100BC6788 /* linphone-Info.plist */,
@@ -2825,8 +2829,8 @@
 				633FEC391D3CD5570014B822 /* call_video_start_default@2x.png */,
 				633FEC3A1D3CD5570014B822 /* call_video_start_disabled.png */,
 				633FEC3B1D3CD5570014B822 /* call_video_start_disabled@2x.png */,
-				24BFAA9B209B062F004F47A7 /* callkit_logo.png */,
-				8CD99A1B20908C27008A7CDA /* callkit_logo@2x.png */,
+				24BFAA9B209B062F004F47A7 /* linphone_callkit_logo.png */,
+				8CD99A1B20908C27008A7CDA /* linphone_callkit_logo@2x.png */,
 				633FEC3C1D3CD5570014B822 /* camera_default.png */,
 				633FEC3D1D3CD5570014B822 /* camera_default@2x.png */,
 				633FEC3E1D3CD5570014B822 /* camera_disabled.png */,
@@ -3051,7 +3055,6 @@
 				61586B86217A17150038AC45 /* menu_assistant@2x.png */,
 				61586B88217A17220038AC45 /* menu_link_account.png */,
 				61586B8A217A17320038AC45 /* menu_link_account@2x.png */,
-				C39CE3F62636F05000F63727 /* menu_nethcti.png */,
 				61586B8C217A173F0038AC45 /* menu_options.png */,
 				61586B8E217A174F0038AC45 /* menu_options@2x.png */,
 				61586B90217A175C0038AC45 /* menu_recordings.png */,
@@ -3126,6 +3129,8 @@
 				39A124B0263ABF4D00CF1DB9 /* nethcti_missed_call@2x.png */,
 				39D09CCB265BBA9600AFD3BA /* nethcti_missed_calls.png */,
 				39D09CCA265BBA9400AFD3BA /* nethcti_missed_calls@2x.png */,
+				BB7FB93626E651D000DCC61C /* nethcti_menu.png */,
+				BB7FB93526E651D000DCC61C /* nethcti_menu@2x.png */,
 				39F2B9B1264AA58E00ADBFCE /* nethcti_multiselect_default.png */,
 				39F2B9B2264AA59000ADBFCE /* nethcti_multiselect_default@2x.png */,
 				39F2B9B6264AA5DE00ADBFCE /* nethcti_multiselect_selected.png */,
@@ -3412,6 +3417,7 @@
 				63CDC4511C3BDE370085F529 /* sounds */,
 				C3006725251E260700F5E478 /* InfoPlist.strings */,
 				C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */,
+				BBB62CF826DF68470035F6D2 /* colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3847,7 +3853,7 @@
 				Base,
 				it,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3871,7 +3877,7 @@
 				633FEDA81D3CD5590014B822 /* backspace_default.png in Resources */,
 				636316D11A1DEBCB0009B839 /* AboutView.xib in Resources */,
 				C37B2E8F25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib in Resources */,
-				C3F4DAE925E0069400713A0B /* (null) in Resources */,
+				C3F4DAE925E0069400713A0B /* BuildFile in Resources */,
 				C3B0C7BA266E14DF005F86CD /* nethcti_answer_video.png in Resources */,
 				8CBD7BA620B6B82400E5DCC0 /* UIChatConversationInfoTableViewCell.xib in Resources */,
 				244523AF1E8266CC0037A187 /* chat_delivered.png in Resources */,
@@ -3915,7 +3921,7 @@
 				633FEED41D3CD55A0014B822 /* numpad_7_default@2x.png in Resources */,
 				633FEEE01D3CD55A0014B822 /* numpad_8_over~ipad@2x.png in Resources */,
 				633FEDDC1D3CD5590014B822 /* call_start_body_disabled~ipad.png in Resources */,
-				63E802DB1C625AEF000D5509 /* (null) in Resources */,
+				63E802DB1C625AEF000D5509 /* BuildFile in Resources */,
 				633FEE2E1D3CD5590014B822 /* color_F.png in Resources */,
 				633FEDC51D3CD5590014B822 /* call_hangup_disabled@2x.png in Resources */,
 				633FEEDF1D3CD55A0014B822 /* numpad_8_over~ipad.png in Resources */,
@@ -4055,6 +4061,7 @@
 				398DE71B264D21AA008B65A9 /* nethcti_remove@2x.png in Resources */,
 				39A1249E263AB3B700CF1DB9 /* dashboard_contacts.png in Resources */,
 				3949CDB42638251500379BFC /* history@2x.png in Resources */,
+				BB7FB93826E651D000DCC61C /* nethcti_menu.png in Resources */,
 				633FEE6F1D3CD5590014B822 /* footer_history_default@2x.png in Resources */,
 				633FEF201D3CD55A0014B822 /* presence_unregistered.png in Resources */,
 				61586B8D217A173F0038AC45 /* menu_options.png in Resources */,
@@ -4096,6 +4103,7 @@
 				633FEEE71D3CD55A0014B822 /* numpad_9_over~ipad.png in Resources */,
 				633FEEEA1D3CD55A0014B822 /* numpad_9~ipad@2x.png in Resources */,
 				633FEEC31D3CD55A0014B822 /* numpad_5_default.png in Resources */,
+				BB7FB93726E651D000DCC61C /* nethcti_menu@2x.png in Resources */,
 				633FEE3B1D3CD5590014B822 /* contact_add_disabled@2x.png in Resources */,
 				633FEF011D3CD55A0014B822 /* options_default@2x.png in Resources */,
 				C339F3AB241A98FF00447319 /* logo_nethCTI_portrait.png in Resources */,
@@ -4122,7 +4130,6 @@
 				633FEE931D3CD55A0014B822 /* menu@2x.png in Resources */,
 				633FEF3D1D3CD55A0014B822 /* security_ok@2x.png in Resources */,
 				3966FC212636DC7000C52FF1 /* color_nethcti_cyan.png in Resources */,
-				C38D9EE2239009010065C731 /* AssistantViewScreens.strings in Resources */,
 				633FEF161D3CD55A0014B822 /* pause_small_disabled.png in Resources */,
 				633FEF521D3CD55A0014B822 /* voicemail.png in Resources */,
 				633FEE711D3CD5590014B822 /* footer_history_disabled@2x.png in Resources */,
@@ -4218,7 +4225,7 @@
 				615A2813217F24D40060F920 /* security_1_indicator.png in Resources */,
 				C339F39A241A538A00447319 /* neth-splash-portrait_1242x2208.png in Resources */,
 				39A7C2C0264401370056735F /* nethcti_numpad_hashtag.png in Resources */,
-				24BFAAA7209B0630004F47A7 /* callkit_logo.png in Resources */,
+				24BFAAA7209B0630004F47A7 /* linphone_callkit_logo.png in Resources */,
 				C3907C3F264570D3003E14E0 /* back@2x.png in Resources */,
 				C39AA9D2263956AC00464F06 /* nethcti_microphone.png in Resources */,
 				615A2811217F1FDE0060F920 /* chat_add_group@2x.png in Resources */,
@@ -4238,7 +4245,7 @@
 				3951056E26398B9000F5AEC5 /* dialpad.png in Resources */,
 				D38187D915FE347700C3EDCA /* CallIncomingView.xib in Resources */,
 				63CDC45F1C3BDE370085F529 /* ringback.wav in Resources */,
-				8CD99A1C20908C27008A7CDA /* callkit_logo@2x.png in Resources */,
+				8CD99A1C20908C27008A7CDA /* linphone_callkit_logo@2x.png in Resources */,
 				633FEE251D3CD5590014B822 /* chat_start_body_over~ipad@2x.png in Resources */,
 				633FEDF91D3CD5590014B822 /* camera_disabled@2x.png in Resources */,
 				C34CFBA7249BAB7800D22DB8 /* neth_dialer_background.png in Resources */,
@@ -4495,7 +4502,6 @@
 				39D09CD9265BDD3000AFD3BA /* nethcti_call_status_outgoing@2x.png in Resources */,
 				633FEDBF1D3CD5590014B822 /* call_back_default@2x.png in Resources */,
 				24BFAAA8209B0630004F47A7 /* contacts_sip_selected@2x.png in Resources */,
-				C39CE3F72636F05100F63727 /* menu_nethcti.png in Resources */,
 				39EC1D27265EAD9700070BF7 /* nethcti_transfer_call_green.png in Resources */,
 				633FEE141D3CD5590014B822 /* chat_send_default.png in Resources */,
 				C397271A2657E6F70072D986 /* nethcti_cam.png in Resources */,
@@ -4590,6 +4596,7 @@
 				633FEE791D3CD5590014B822 /* history_chat_indicator@2x.png in Resources */,
 				633FEEBA1D3CD55A0014B822 /* numpad_3~ipad@2x.png in Resources */,
 				C397F3A22657BB0D00AB3178 /* nethcti_volume.png in Resources */,
+				BBB62CF926DF68470035F6D2 /* colors.xcassets in Resources */,
 				633FEEA61D3CD55A0014B822 /* numpad_1_over@2x.png in Resources */,
 				633FEE371D3CD5590014B822 /* conference_exit_over@2x.png in Resources */,
 				639E9CA01C0DB7E500019A75 /* UIChatBubblePhotoCell.xib in Resources */,
@@ -4690,6 +4697,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NethCTI/Pods-NethCTI-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox-ios.framework",
 				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox-tester.framework",
@@ -4710,9 +4724,17 @@
 				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msx264.framework",
 				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/ortp.framework",
 				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
@@ -4733,6 +4755,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msx264.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ortp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4747,8 +4770,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/linphone.xcarchive/dSYMs/linphone.app.dSYM/Contents/Resources/DWARF/linphone",
-				"$(SRCROOT)/linphone-Info.plist",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputFileListPaths = (
 			);
@@ -4756,7 +4779,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "val=`expr \"$GCC_PREPROCESSOR_DEFINITIONS\" : \".*USE_CRASHLYTICS=\\([0-9]*\\)\"`\nif [ $val = 1 ]; then\n    ${PODS_ROOT}/FirebaseCrashlytics/run\nfi\n\n\n";
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
 		};
 		79A1D7EAAB5A8E79E8140CE2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5067,6 +5090,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				638F1A871C2167C2004B8E02 /* Base */,
+				BB7FB93A26E65A4D00DCC61C /* it */,
 			);
 			name = "CallView~ipad.xib";
 			sourceTree = "<group>";
@@ -5164,6 +5188,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				639E9CAD1C0DB80300019A75 /* Base */,
+				BBB6A19926FB48820023AEF5 /* it */,
 			);
 			name = UIContactDetailsCell.xib;
 			sourceTree = "<group>";
@@ -5297,14 +5322,6 @@
 			name = NethLocalizable.strings;
 			sourceTree = "<group>";
 		};
-		C38D9EE0239009010065C731 /* AssistantViewScreens.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C38D9EE1239009010065C731 /* it */,
-			);
-			name = AssistantViewScreens.strings;
-			sourceTree = "<group>";
-		};
 		C3A1264725E9512900DFFCA8 /* BrandLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5422,6 +5439,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F09548231883F15400E8A69B /* Base */,
+				BB7FB93926E65A0600DCC61C /* it */,
 			);
 			name = CallView.xib;
 			sourceTree = "<group>";
@@ -5472,7 +5490,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
@@ -5484,6 +5502,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
+					"USE_CRASHLYTICS=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
@@ -5511,9 +5530,10 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
@@ -5605,15 +5625,18 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 32;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = linphone_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -5640,9 +5663,9 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5695,7 +5718,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "nethcti-app-iphone/linphone-Info.plist";
+				INFOPLIST_FILE = "linphone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
@@ -5737,7 +5760,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5745,7 +5768,10 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = linphone_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -5772,10 +5798,10 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Development";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5829,7 +5855,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "nethcti-app-iphone/linphone-Info.plist";
+				INFOPLIST_FILE = "linphone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
@@ -5871,15 +5897,18 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 32;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = linphone_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -5906,9 +5935,9 @@
 					"$(inherited)",
 					"-DLINPHONE_SDK_VERSION=\\\"4.4.2\\\"",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -5941,10 +5970,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
-				DYLIB_CURRENT_VERSION = 8;
+				DYLIB_CURRENT_VERSION = 32;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5958,7 +5987,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
@@ -5986,10 +6015,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
-				DYLIB_CURRENT_VERSION = 8;
+				DYLIB_CURRENT_VERSION = 32;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -6000,7 +6029,7 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI 3 Extension Development";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.extension";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -6028,10 +6057,10 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				DYLIB_CURRENT_VERSION = 8;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
+				DYLIB_CURRENT_VERSION = 32;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -6043,7 +6072,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.extension";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -6071,10 +6100,10 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
-				DYLIB_CURRENT_VERSION = 8;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
+				DYLIB_CURRENT_VERSION = 32;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -6086,7 +6115,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.extension";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
@@ -6135,7 +6164,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "nethcti-app-iphone/linphone-Info.plist";
+				INFOPLIST_FILE = "linphone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
@@ -6183,7 +6212,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6192,6 +6221,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
+					"USE_CRASHLYTICS=1",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -6203,9 +6233,9 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.msgNotificationService";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -6239,12 +6269,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -6254,9 +6287,9 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Service Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.msgNotificationService";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6289,12 +6322,15 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -6304,9 +6340,9 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationService";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6339,12 +6375,15 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -6354,9 +6393,9 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationService";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6388,7 +6427,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6397,6 +6436,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
+					"USE_CRASHLYTICS=1",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -6408,9 +6448,9 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.msgNotificationContent";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -6443,12 +6483,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -6458,9 +6501,9 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "NethCTI3 Message Notification Content Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.msgNotificationContent";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6492,12 +6535,15 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -6507,9 +6553,9 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationContent";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6541,12 +6587,15 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"USE_CRASHLYTICS=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -6556,9 +6605,9 @@
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationContent";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

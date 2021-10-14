@@ -46,8 +46,8 @@
 + (BOOL)isAuthorized;
 
 // TOOLS
-
 + (Contact *)getContactWithAddress:(const LinphoneAddress *)address;
++ (Contact *)getContactWithAddress:(const LinphoneAddress *)address fromFriendsOnly:(BOOL)only;
 - (CNContact *)getCNContactFromContact:(Contact *)acontact;
 
 + (UIImage *)imageForContact:(Contact *)contact;
@@ -59,6 +59,7 @@
 
 + (NSString *)displayNameForContact:(Contact *)person;
 + (NSString *)displayNameForAddress:(const LinphoneAddress *)addr;
++ (NSString *)displayNameForAddress:(const LinphoneAddress *)addr fromFriendsOnly:(BOOL)only;
 
 + (BOOL)isSipURI:(NSString *)address;
 + (BOOL)isSipAddress:(CNLabeledValue<CNInstantMessageAddress *> *)sipAddr;

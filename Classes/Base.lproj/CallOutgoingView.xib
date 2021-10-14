@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,32 +34,32 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="HpM-if-114" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view tag="1" contentMode="scaleToFill" id="25">
-                    <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Call" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83h-qP-Ddk" userLabel="titleLabel" propertyAccessControl="localizable">
-                            <rect key="frame" x="20" y="32" width="388" height="23.666666666666671"/>
+                            <rect key="frame" x="20" y="32" width="280" height="23.5"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flc-PI-fT4" userLabel="avatarContainer">
-                            <rect key="frame" x="107" y="87.666666666666686" width="214" height="214"/>
+                            <rect key="frame" x="80" y="87.5" width="160" height="160"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="bNo-O5-DWh" userLabel="avatarImage">
-                                    <rect key="frame" x="0.0" y="0.0" width="214" height="214"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                     <accessibility key="accessibilityConfiguration" label="Contact avatar">
                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                         <bool key="isElement" value="YES"/>
                                     </accessibility>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEb-jS-rae" userLabel="nameInitialsLabel">
-                                    <rect key="frame" x="69" y="69.666666666666671" width="76.333333333333314" height="75.000000000000014"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="64"/>
+                                    <rect key="frame" x="56" y="56.5" width="48" height="47"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -76,27 +76,27 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adalia La Balia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5s-yP-8VE" userLabel="nameLabel">
-                            <rect key="frame" x="20" y="333.66666666666669" width="388" height="24"/>
+                            <rect key="frame" x="20" y="279.5" width="280" height="24"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adalia.labalia@sip.linphone.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fa-Ag-3GW" userLabel="addressLabel">
-                            <rect key="frame" x="20" y="389.66666666666669" width="388" height="17"/>
+                            <rect key="frame" x="20" y="335.5" width="280" height="17"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view hidden="YES" alpha="0.0" tag="37" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyf-nk-ORJ" userLabel="routesView">
-                            <rect key="frame" x="321" y="665" width="108" height="198"/>
+                            <rect key="frame" x="240" y="307" width="81" height="198"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" tag="38" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="xEp-Iw-uII" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="108" height="198"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="81" height="198"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <button opaque="NO" tag="39" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SH1-xD-Agw" userLabel="routesBluetoothButton" customClass="UIBluetoothButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="108" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="81" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Bluetooth"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -117,7 +117,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="40" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zs4-Zy-FrP" userLabel="routesEarpieceButton">
-                                    <rect key="frame" x="0.0" y="66" width="108" height="66"/>
+                                    <rect key="frame" x="0.0" y="66" width="81" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Receiver"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -138,7 +138,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKz-6p-EAF" userLabel="routesSpeakerButton" customClass="UISpeakerButton">
-                                    <rect key="frame" x="0.0" y="132" width="108" height="66"/>
+                                    <rect key="frame" x="0.0" y="132" width="81" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Speaker"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -161,7 +161,7 @@
                             </subviews>
                         </view>
                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-cH-pvW" userLabel="declineButton">
-                            <rect key="frame" x="32" y="830" width="64" height="64"/>
+                            <rect key="frame" x="32" y="472" width="64" height="64"/>
                             <accessibility key="accessibilityConfiguration" label="Decline"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="64" id="OYp-t9-OI8"/>
@@ -177,7 +177,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26e-Pj-2Oh" userLabel="microButton" customClass="UIMutedMicroButton">
-                            <rect key="frame" x="236" y="830" width="64" height="64"/>
+                            <rect key="frame" x="128" y="472" width="64" height="64"/>
                             <accessibility key="accessibilityConfiguration" label="Accept"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="64" id="MBj-43-P1q"/>
@@ -187,11 +187,11 @@
                             <state key="normal" image="nethcti_microphone_disabled.png" backgroundImage="nethcti_button_circle.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="disabled" image="micro_disabled.png"/>
-                            <state key="selected" image="nethcti_microphone.png" backgroundImage="nethcti_button_circle.png"/>
+                            <state key="disabled" image="micro_disabled.png" backgroundImage="nethcti_button_circle.png"/>
+                            <state key="selected" backgroundImage="nethcti_blue_circle.png"/>
                         </button>
                         <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7m-Av-QlR" userLabel="speakerButton" customClass="UISpeakerButton">
-                            <rect key="frame" x="332" y="830" width="64" height="64"/>
+                            <rect key="frame" x="224" y="472" width="64" height="64"/>
                             <accessibility key="accessibilityConfiguration" label="Accept"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="G7m-Av-QlR" secondAttribute="height" multiplier="1:1" id="May-SR-4hv"/>
@@ -202,14 +202,14 @@
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled" image="speaker_disabled.png"/>
-                            <state key="selected" image="nethcti_volume.png" backgroundImage="nethcti_blue_circle.png"/>
+                            <state key="selected" backgroundImage="nethcti_blue_circle.png"/>
                         </button>
                         <view hidden="YES" alpha="0.0" tag="7" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Qi-Cq-3XH" userLabel="tabBar">
-                            <rect key="frame" x="0.0" y="863" width="428" height="63"/>
+                            <rect key="frame" x="0.0" y="505" width="320" height="63"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29K-Sd-aHF" userLabel="routesButton" customClass="UIToggleButton">
-                                    <rect key="frame" x="321" y="0.0" width="108" height="63"/>
+                                    <rect key="frame" x="240" y="0.0" width="81" height="63"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Route"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -255,15 +255,15 @@
             <point key="canvasLocation" x="40.654205607476634" y="109.50323974082075"/>
         </view>
         <view contentMode="scaleToFill" id="YAs-im-wvR" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Czn-ec-dh8">
-                    <rect key="frame" x="0.0" y="42" width="428" height="884"/>
+                    <rect key="frame" x="0.0" y="42" width="320" height="526"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAv-Cz-FaR" userLabel="headerBar">
-                            <rect key="frame" x="0.0" y="0.0" width="428" height="66"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
@@ -275,21 +275,21 @@
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="john.doe@sip.linphone.org" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fj8-Pu-ShI" userLabel="addressLabel">
-                            <rect key="frame" x="189.5" y="439.5" width="237" height="87"/>
+                            <rect key="frame" x="141.5" y="261.5" width="177" height="51.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="ubQ-ZN-AhT" userLabel="nameLabel">
-                            <rect key="frame" x="189.5" y="318.5" width="238.5" height="99"/>
+                            <rect key="frame" x="141.5" y="189.5" width="178.5" height="58.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="33"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" fixedFrame="YES" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ZH-n6-QZ0" userLabel="avatarImage" customClass="UIRoundedImageView">
-                            <rect key="frame" x="69.5" y="74" width="116" height="731"/>
+                            <rect key="frame" x="51.5" y="74" width="87" height="373"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                             <accessibility key="accessibilityConfiguration" label="Contact avatar">
                                 <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -297,15 +297,15 @@
                             </accessibility>
                         </imageView>
                         <view hidden="YES" tag="37" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-SR-bqv" userLabel="routesView">
-                            <rect key="frame" x="319.5" y="623" width="108.5" height="198"/>
+                            <rect key="frame" x="238.5" y="265" width="81.5" height="198"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" tag="38" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tvo-Jg-0h8" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="108.5" height="198"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="81.5" height="198"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <button opaque="NO" tag="39" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7s-YH-dJQ" userLabel="routesBluetoothButton" customClass="UIBluetoothButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="108.5" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="81.5" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Bluetooth"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -323,7 +323,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" tag="40" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg7-Cv-tyO" userLabel="routesEarpieceButton">
-                                    <rect key="frame" x="0.0" y="66" width="108.5" height="66"/>
+                                    <rect key="frame" x="0.0" y="66" width="81.5" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Receiver"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -341,7 +341,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" tag="41" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-ed-g8u" userLabel="routesSpeakerButton" customClass="UISpeakerButton">
-                                    <rect key="frame" x="0.0" y="132" width="108.5" height="66"/>
+                                    <rect key="frame" x="0.0" y="132" width="81.5" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Speaker"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -361,15 +361,15 @@
                             </subviews>
                         </view>
                         <view tag="7" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vJ1-A8-eFV" userLabel="tabBar">
-                            <rect key="frame" x="0.0" y="821" width="428" height="63"/>
+                            <rect key="frame" x="0.0" y="463" width="320" height="63"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="eYb-yI-yVB" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfG-HJ-FPI" userLabel="declineButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="214" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="63"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Decline"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -383,7 +383,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLg-1u-ulZ" userLabel="microButton" customClass="UIMutedMicroButton">
-                                    <rect key="frame" x="214" y="0.0" width="105.5" height="63"/>
+                                    <rect key="frame" x="160" y="0.0" width="78.5" height="63"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -395,7 +395,7 @@
                                     <state key="highlighted" backgroundImage="color_E.png"/>
                                 </button>
                                 <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61B-DK-jZ6" userLabel="routesButton" customClass="UIToggleButton">
-                                    <rect key="frame" x="319.5" y="0.0" width="108.5" height="63"/>
+                                    <rect key="frame" x="238.5" y="0.0" width="81.5" height="63"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Route"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
@@ -407,7 +407,7 @@
                                     <state key="highlighted" backgroundImage="color_E.png"/>
                                 </button>
                                 <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5CY-aN-NLX" userLabel="speakerButton" customClass="UISpeakerButton">
-                                    <rect key="frame" x="319.5" y="0.0" width="108.5" height="63"/>
+                                    <rect key="frame" x="238.5" y="0.0" width="81.5" height="63"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="Accept"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -444,7 +444,6 @@
         <image name="nethcti_blue_circle.png" width="187.5" height="187.5"/>
         <image name="nethcti_button_circle.png" width="167" height="167"/>
         <image name="nethcti_close_button.png" width="128" height="128"/>
-        <image name="nethcti_microphone.png" width="40" height="40"/>
         <image name="nethcti_microphone_disabled.png" width="32" height="32"/>
         <image name="nethcti_volume.png" width="32" height="32"/>
         <image name="route_bluetooth_default.png" width="26.399999618530273" height="41.599998474121094"/>

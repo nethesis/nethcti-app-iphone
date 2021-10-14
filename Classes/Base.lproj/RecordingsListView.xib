@@ -134,7 +134,7 @@
                             <state key="normal" image="nethcti_trash.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="disabled" image="nethcti_edit.png"/>
+                            <state key="disabled" image="nethcti_trash.png"/>
                             <state key="highlighted" backgroundImage="color_E.png"/>
                             <connections>
                                 <action selector="onEditClick:" destination="1pR-qo-CIP" eventType="touchUpInside" id="0LH-n9-p0c"/>
@@ -168,7 +168,7 @@
                         <outlet property="delegate" destination="1pR-qo-CIP" id="eJQ-AV-7ts"/>
                     </connections>
                 </tableView>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No recording found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXd-Ic-rwm" userLabel="emptyTableLabel">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No recording" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXd-Ic-rwm" userLabel="emptyTableLabel">
                     <rect key="frame" x="0.0" y="176" width="414" height="686"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -216,7 +216,6 @@
         <image name="cancel_edit_disabled.png" width="47.200000762939453" height="47.200000762939453"/>
         <image name="color_E.png" width="2" height="2"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
-        <image name="nethcti_edit.png" width="40" height="40"/>
         <image name="nethcti_multiselect_default.png" width="40" height="40"/>
         <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
         <image name="nethcti_trash.png" width="40" height="40"/>

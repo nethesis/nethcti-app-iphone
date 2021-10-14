@@ -105,8 +105,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 										 animated:FALSE];
 	}
 	[[UIApplication sharedApplication] setStatusBarHidden:NO]; // Fix UIImagePickerController status bar hide
-	[[UIApplication sharedApplication]
-		setStatusBarStyle:UIStatusBarStyleDefault]; // Fix UIImagePickerController status bar style change
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault]; // Fix UIImagePickerController status bar style change
 
 	[PhoneMainView.instance hideStatusBar:YES];
 	

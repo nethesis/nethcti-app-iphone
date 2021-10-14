@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,6 +20,7 @@
             <connections>
                 <outlet property="addressLabel" destination="ypg-P8-Els" id="gRv-Fz-Dbk"/>
                 <outlet property="grayBackground" destination="ccB-VK-LF9" id="Rbz-Ix-k62"/>
+                <outlet property="headerView" destination="i1P-cG-q8h" id="LAt-Fo-9PE"/>
                 <outlet property="nameLabel" destination="XbU-2B-u1b" id="rKF-4e-1HA"/>
                 <outlet property="presenceImage" destination="tNM-uE-Eum" id="dfy-Sb-hgE"/>
                 <outlet property="sideMenuTableViewController" destination="Yyh-z6-IGO" id="6Xq-OQ-vYm"/>
@@ -53,15 +55,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="206" height="100"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_F.png" translatesAutoresizingMaskIntoConstraints="NO" id="90B-Re-hmt" userLabel="backgroundColor">
-                                    <rect key="frame" x="0.0" y="0.0" width="206" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Adalia La Balia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="XbU-2B-u1b" userLabel="nameLabel">
                                     <rect key="frame" x="8" y="15" width="190" height="31"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="25"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="john.doe@sip.linphone.org" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ypg-P8-Els" userLabel="addressLabel">
@@ -76,6 +74,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <gestureRecognizers/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="1kD-az-BAx" appends="YES" id="OGc-fj-HQy"/>
@@ -83,8 +82,8 @@
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ttt-1k-jAm">
                             <rect key="frame" x="0.0" y="100" width="206" height="754"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             <connections>
                                 <outlet property="dataSource" destination="Yyh-z6-IGO" id="ytx-b8-NGX"/>
@@ -121,7 +120,9 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="color_F.png" width="2" height="2"/>
         <image name="led_connected.png" width="19.200000762939453" height="19.200000762939453"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

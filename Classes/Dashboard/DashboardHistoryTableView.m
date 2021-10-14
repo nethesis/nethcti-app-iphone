@@ -104,12 +104,21 @@
         cell = [[RecentCallTableViewCell alloc] initWithIdentifier:kCellId];
     }
     
-    id logId = _historyLogs[indexPath.row];
-    LinphoneCallLog *log = [logId pointerValue];
-    [cell setRecentCall:log];
-    cell.contentView.userInteractionEnabled = false;
-    
-    return cell;
+    @try {
+        id logId = _historyLogs[indexPath.row];
+        LinphoneCallLog *log = [logId pointerValue];
+        if(!log) {
+            return nil;
+        }
+        [cell setRecentCall:log];
+        cell.contentView.userInteractionEnabled = false;
+        
+        return cell;
+    }
+    @catch (NSException *exception) {
+        LOGE(@"Uncaught exception : %@", exception.description);
+        return nil;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

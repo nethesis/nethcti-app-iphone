@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -35,15 +38,15 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="XnN-PU-Vk7" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="1">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="428" height="848"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view alpha="0.90000000000000002" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="topBar">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                            <rect key="frame" x="0.0" y="0.0" width="428" height="66"/>
                             <subviews>
                                 <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-aJ-Lk6" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
                                     <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
@@ -79,7 +82,7 @@
                                     </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuB-yy-R9o" userLabel="deleteButton" customClass="UIInterfaceStyleToggleButton">
-                                    <rect key="frame" x="282" y="0.0" width="66" height="66"/>
+                                    <rect key="frame" x="296" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="MuB-yy-R9o" secondAttribute="height" multiplier="1:1" id="5Rr-t6-kbV"/>
@@ -97,7 +100,7 @@
                                     </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8" userLabel="editButton" customClass="UIInterfaceStyleToggleButton">
-                                    <rect key="frame" x="348" y="0.0" width="66" height="66"/>
+                                    <rect key="frame" x="362" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="8" secondAttribute="height" multiplier="1:1" id="Xow-Ge-EJ9"/>
@@ -116,7 +119,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="9" firstAttribute="top" secondItem="4" secondAttribute="top" id="0FR-wU-aiN"/>
                                 <constraint firstAttribute="bottom" secondItem="bPQ-aJ-Lk6" secondAttribute="bottom" id="9p3-xN-Qjw"/>
@@ -134,23 +137,23 @@
                             </constraints>
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="7" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D6-vy-obt" userLabel="contentView">
-                            <rect key="frame" x="0.0" y="66" width="414" height="752"/>
+                            <rect key="frame" x="0.0" y="66" width="428" height="782"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBo-dQ-CbJ">
-                                    <rect key="frame" x="0.0" y="8" width="414" height="752"/>
+                                    <rect key="frame" x="0.0" y="8" width="428" height="782"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rz5-fE-NgU" userLabel="avatarView">
-                                            <rect key="frame" x="157" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="154" y="0.0" width="120" height="120"/>
                                             <subviews>
-                                                <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nethcti_grey_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="B6X-C9-2vm" userLabel="avatarImage" customClass="UIRoundedImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <imageView tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nethcti_avatar_call.png" translatesAutoresizingMaskIntoConstraints="NO" id="B6X-C9-2vm" userLabel="avatarImage" customClass="UIRoundedImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <connections>
                                                         <outletCollection property="gestureRecognizers" destination="8bV-f4-pLL" appends="YES" id="4V5-Px-aHT"/>
                                                     </connections>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7r-o9-4KF" userLabel="nameInitialLabel">
-                                                    <rect key="frame" x="36.5" y="22" width="27" height="56"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="48"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k7r-o9-4KF" userLabel="nameInitialLabel">
+                                                    <rect key="frame" x="36.333333333333343" y="36.666666666666657" width="47.666666666666657" height="47"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -160,27 +163,26 @@
                                                 <constraint firstItem="k7r-o9-4KF" firstAttribute="centerY" secondItem="rz5-fE-NgU" secondAttribute="centerY" id="95u-PC-7hd"/>
                                                 <constraint firstAttribute="bottom" secondItem="B6X-C9-2vm" secondAttribute="bottom" id="InU-1o-uan"/>
                                                 <constraint firstAttribute="trailing" secondItem="B6X-C9-2vm" secondAttribute="trailing" id="cYf-PL-POc"/>
-                                                <constraint firstAttribute="width" constant="100" id="doc-rH-uV8"/>
+                                                <constraint firstAttribute="width" constant="120" id="doc-rH-uV8"/>
                                                 <constraint firstItem="B6X-C9-2vm" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="top" id="maO-8U-oQ2"/>
                                                 <constraint firstItem="B6X-C9-2vm" firstAttribute="leading" secondItem="rz5-fE-NgU" secondAttribute="leading" id="ySz-Xp-Ooq"/>
                                                 <constraint firstItem="k7r-o9-4KF" firstAttribute="centerX" secondItem="rz5-fE-NgU" secondAttribute="centerX" id="ydI-7u-kg6"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Adalia La Balia" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
-                                            <rect key="frame" x="8" y="108" width="398" height="82"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="27"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Adalia La Balia" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moZ-Bg-zcv" userLabel="nameLabel">
+                                            <rect key="frame" x="16" y="136" width="396" height="28.333333333333343"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Nethesis " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
-                                            <rect key="frame" x="8" y="168" width="398" height="57"/>
-                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Nethesis " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="94e-AC-2ZP" userLabel="workLabel">
+                                            <rect key="frame" x="16" y="180.33333333333331" width="396" height="16.666666666666657"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="19" userLabel="tableView">
-                                            <rect key="frame" x="0.0" y="233" width="414" height="519"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="19" userLabel="tableView">
+                                            <rect key="frame" x="0.0" y="213" width="428" height="569"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                                             <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -192,15 +194,18 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="94e-AC-2ZP" secondAttribute="trailing" constant="8" id="X4O-pO-dVU"/>
-                                        <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" constant="8" id="afS-a9-sMT"/>
-                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="8" id="asa-jB-FgO"/>
-                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="8" id="ePe-8b-RHr"/>
+                                        <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" id="D8u-Kh-0ui"/>
+                                        <constraint firstAttribute="trailing" secondItem="94e-AC-2ZP" secondAttribute="trailing" constant="16" id="X4O-pO-dVU"/>
+                                        <constraint firstItem="19" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" id="Z1G-Mb-622"/>
+                                        <constraint firstAttribute="trailing" secondItem="moZ-Bg-zcv" secondAttribute="trailing" constant="16" id="afS-a9-sMT"/>
+                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="16" id="asa-jB-FgO"/>
+                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="leading" secondItem="MBo-dQ-CbJ" secondAttribute="leading" constant="16" id="ePe-8b-RHr"/>
                                         <constraint firstItem="rz5-fE-NgU" firstAttribute="centerX" secondItem="MBo-dQ-CbJ" secondAttribute="centerX" id="gZG-on-qeZ"/>
                                         <constraint firstItem="rz5-fE-NgU" firstAttribute="top" secondItem="MBo-dQ-CbJ" secondAttribute="top" id="gwu-qu-Ms7"/>
-                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="bottom" constant="8" id="lFx-AF-X8H"/>
-                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="8" id="qB5-bk-E8H"/>
+                                        <constraint firstItem="moZ-Bg-zcv" firstAttribute="top" secondItem="rz5-fE-NgU" secondAttribute="bottom" constant="16" id="lFx-AF-X8H"/>
+                                        <constraint firstItem="94e-AC-2ZP" firstAttribute="top" secondItem="moZ-Bg-zcv" secondAttribute="bottom" constant="16" id="qB5-bk-E8H"/>
                                         <constraint firstItem="19" firstAttribute="top" secondItem="94e-AC-2ZP" secondAttribute="bottom" constant="16" id="teh-tc-WI6"/>
+                                        <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" id="u8b-No-nRb"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -215,17 +220,17 @@
                             </constraints>
                         </scrollView>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="40" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No contact selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdj-Pz-nu4" userLabel="emptyLabel">
-                            <rect key="frame" x="0.0" y="66" width="414" height="752"/>
+                            <rect key="frame" x="0.0" y="66" width="428" height="782"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view hidden="YES" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK8-Td-I1i" userLabel="waitView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <rect key="frame" x="0.0" y="0.0" width="428" height="848"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="J67-KE-kHm" userLabel="activityIndicatorView">
-                                    <rect key="frame" x="199" y="395" width="20" height="20"/>
+                                    <rect key="frame" x="206" y="410" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -254,7 +259,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="-633.33333333333337" y="128.57142857142856"/>
+            <point key="canvasLocation" x="-633.64485981308405" y="128.29373650107993"/>
         </view>
         <view contentMode="scaleToFill" id="gnD-7x-PSh" userLabel="iphone6MetricsView">
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
@@ -420,9 +425,9 @@
         <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
         <image name="edit_default.png" width="46.400001525878906" height="46.400001525878906"/>
         <image name="edit_disabled.png" width="46.400001525878906" height="46.400001525878906"/>
+        <image name="nethcti_avatar_call.png" width="256" height="256"/>
         <image name="nethcti_cancel.png" width="40" height="40"/>
         <image name="nethcti_edit.png" width="40" height="40"/>
-        <image name="nethcti_grey_circle.png" width="250" height="250"/>
         <image name="nethcti_trash.png" width="40" height="40"/>
         <image name="nethcti_trash_disabled.png" width="40" height="40"/>
         <image name="valid_default.png" width="44.799999237060547" height="30.399999618530273"/>

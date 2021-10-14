@@ -499,6 +499,7 @@
     //splitString: first element is the 'recording' prefix, last element is the date with the "E-d-MMM-yyyy-HH-mm-ss" format.
     NSString *name = [[splitString subarrayWithRange:NSMakeRange(1, [splitString count] -2)] componentsJoinedByString:@""];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     [format setDateFormat:@"E-d-MMM-yyyy-HH-mm-ss"];
     NSString *dateWithMkv = [splitString objectAtIndex:[splitString count]-1]; //this will be in the form "E-d-MMM-yyyy-HH-mm-ss.mkv", we have to delete the extension
     NSDate *date = [format dateFromString:[dateWithMkv substringToIndex:[dateWithMkv length] - 4]];
@@ -614,27 +615,33 @@
 	}
 }
 
-+ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel{
-	Contact *contact = [FastAddressBook getContactWithAddress:addr];
-	NSString *tmpAddress = nil;
-	if (contact) {
-		[ContactDisplay setDisplayNameLabel:label forContact:contact];
-		tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
-		addressLabel.hidden = FALSE;
-	} else {
-		label.text = [FastAddressBook displayNameForAddress:addr];
-		if([LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"])
-			addressLabel.hidden = TRUE;
-		else
-			tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
-	}
-	NSRange range = [tmpAddress rangeOfString:@";"];
-	if (range.location != NSNotFound) {
-		tmpAddress = [tmpAddress substringToIndex:range.location];
-	}
-	addressLabel.text = tmpAddress;
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel {
+    [self setDisplayNameLabel:label forAddress:addr withAddressLabel:addressLabel fromFriendsOnly:NO];
 }
 
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel fromFriendsOnly:(BOOL)only {
+    Contact *contact = [FastAddressBook getContactWithAddress:addr fromFriendsOnly:only];
+    if (contact) {
+        [ContactDisplay setDisplayNameLabel:label forContact:contact];
+    } else {
+        label.text = [FastAddressBook displayNameForAddress:addr fromFriendsOnly:YES];
+    }
+    
+    const bool display_phone_only = [LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"];
+    if(display_phone_only) {
+        addressLabel.hidden = YES;
+        return;
+    }
+    
+    addressLabel.hidden = NO;
+    NSString *tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
+    NSRange range = [tmpAddress rangeOfString:@";"];
+    if (range.location != NSNotFound) {
+        tmpAddress = [tmpAddress substringToIndex:range.location];
+    }
+    NSRange at = [tmpAddress rangeOfString:@"@"]; // TODO: Hide ip address in sip address in call outgoing view.
+    addressLabel.text = tmpAddress;
+}
 
 + (void)setOrganizationLabel: (UILabel *)label forContact: (Contact *)contact{
     label.text = contact.company;
@@ -677,7 +684,7 @@
         }
         
         label.text = resultString;
-        [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+        // [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
 
     } else {
         label.text = @"";
@@ -696,15 +703,13 @@
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image{
     if (contact) {
         [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
-        if ([contact.displayName  isEqual: @""]){
-            [image setImage:[UIImage imageNamed:@"avatar.png"]];
-        } else {
-            [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+        if (![contact.displayName isEqual: @""]){
+            [image setImage:[UIImage imageNamed:@"nethcti_avatar_call.png"]];
+            return;
         }
-    } else {
-        label.text = @"";
-        [image setImage:[UIImage imageNamed:@"avatar.png"]];
     }
+    label.text = @"";
+    [image setImage:[UIImage imageNamed:@"avatar.png"]];
 }
 
 + (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr {
@@ -913,29 +918,39 @@
 /// Get the color defined in config files from the name given fetched in info.plist file.
 /// @param name Color name defined in info.plist
 + (UIColor *)getColorByName:(NSString *)name {
-    
     NSString *hexString = [NSBundle.mainBundle objectForInfoDictionaryKey:name];
+    if(hexString) {
+        return [self convertString:hexString];
+    }
     
-    NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
-        if([cleanString length] == 3) {
-            cleanString = [NSString stringWithFormat:@"%@%@%@%@%@%@",
-                            [cleanString substringWithRange:NSMakeRange(0, 1)],[cleanString substringWithRange:NSMakeRange(0, 1)],
-                            [cleanString substringWithRange:NSMakeRange(1, 1)],[cleanString substringWithRange:NSMakeRange(1, 1)],
-                            [cleanString substringWithRange:NSMakeRange(2, 1)],[cleanString substringWithRange:NSMakeRange(2, 1)]];
-        }
-        if([cleanString length] == 6) {
-            cleanString = [cleanString stringByAppendingString:@"ff"];
-        }
-        
-        unsigned int baseValue;
-        [[NSScanner scannerWithString:cleanString] scanHexInt:&baseValue];
-        
-        float red = ((baseValue >> 24) & 0xFF)/255.0f;
-        float green = ((baseValue >> 16) & 0xFF)/255.0f;
-        float blue = ((baseValue >> 8) & 0xFF)/255.0f;
-        float alpha = ((baseValue >> 0) & 0xFF)/255.0f;
-        
-        return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    if (@available(iOS 11.0, *)) {
+        return [UIColor colorNamed:name];
+    }
+    
+    return LINPHONE_MAIN_COLOR;
+}
+
++ (UIColor *)convertString:(NSString *)colorString{
+    NSString *cleanString = [colorString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    if([cleanString length] == 3) {
+        cleanString = [NSString stringWithFormat:@"%@%@%@%@%@%@",
+                       [cleanString substringWithRange:NSMakeRange(0, 1)],[cleanString substringWithRange:NSMakeRange(0, 1)],
+                       [cleanString substringWithRange:NSMakeRange(1, 1)],[cleanString substringWithRange:NSMakeRange(1, 1)],
+                       [cleanString substringWithRange:NSMakeRange(2, 1)],[cleanString substringWithRange:NSMakeRange(2, 1)]];
+    }
+    if([cleanString length] == 6) {
+        cleanString = [cleanString stringByAppendingString:@"ff"];
+    }
+    
+    unsigned int baseValue;
+    [[NSScanner scannerWithString:cleanString] scanHexInt:&baseValue];
+    
+    float red = ((baseValue >> 24) & 0xFF)/255.0f;
+    float green = ((baseValue >> 16) & 0xFF)/255.0f;
+    float blue = ((baseValue >> 8) & 0xFF)/255.0f;
+    float alpha = ((baseValue >> 0) & 0xFF)/255.0f;
+    
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 @end
