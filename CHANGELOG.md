@@ -31,6 +31,7 @@ Group changes to describe their impact on the project, as follows:
 ### Fixed
 
 - Fix issues with toggle buttons, now they change color accordingly to their settings
+- The ringing audio volume is reduced because too high
 
 ### Removed
 
