@@ -19,8 +19,9 @@ Group changes to describe their impact on the project, as follows:
 
 - New dashboard
 - New FontAwesome icons
-- New overall flat style 
+- New overall flat style
 - New font (Roboto)
+- More dark theme support
 
 ### Changed
 
@@ -30,3 +31,7 @@ Group changes to describe their impact on the project, as follows:
 ### Fixed
 
 - Fix issues with toggle buttons, now they change color accordingly to their settings
+
+### Removed
+
+- Support for landscape orientation
