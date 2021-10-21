@@ -206,9 +206,9 @@
 - (IBAction)onSMSInviteClick:(id)sender {
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText]) {
-        // controller.body = NSLocalizedString(@"Hello! Join me on Linphone! You can download it for free at: https://www.linphone.org/download",nil);
         // Use the new NethCTI string from the new NethLocalizable file.
-        controller.body = NSLocalizedStringFromTable(@"Hello! Join me on NethCTI 3! You can download it for free at: link", @"BrandLocalizable", @"");
+        NSString *name = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        controller.body = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Hello! Join me on %@! You can download it for free at: link", @"BrandLocalizable", @""), name];
         controller.recipients = [NSArray arrayWithObjects:[self.addressLabel text], nil];
         
         controller.messageComposeDelegate = PhoneMainView.instance;

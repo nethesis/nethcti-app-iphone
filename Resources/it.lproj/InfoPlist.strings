@@ -6,15 +6,17 @@
   
 */
 
+"NSBluetoothPeripheralUsageDescription" = "Puoi usare i tuoi auricolari bluetooth";
+
 "NSCameraUsageDescription" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
 
 "NSContactsUsageDescription" = "Chiama i tuoi amici. Non invieremo i tuoi contatti a nessun server esterno.";
 
-"NSBluetoothPeripheralUsageDescription" = "Puoi usare i tuoi auricolari bluetooth";
-
-"NSPhotoLibraryAddUsageDescription" = "Aggiungi i file trasferiti alla tua libreria";
+"NSLocationWhenInUseUsageDescription" = "NethCTI non usa, conserva o comunica la tua posizione. L'autorizzazione permette di rilevare cambiamenti alla connessione Wi-Fi.";
 
 "NSMicrophoneUsageDescription" = "Usa il microfono per poter effettuare chiamate audio";
+
+"NSPhotoLibraryAddUsageDescription" = "Aggiungi i file trasferiti alla tua libreria";
 
 "NSPhotoLibraryUsageDescription" = "Condividi foto con i tuoi amici e modifica il tuo avatar";
 
