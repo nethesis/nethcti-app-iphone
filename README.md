@@ -1,3 +1,4 @@
+# NethCTI
 
 NethCTI is a free VoIP and video softphone based on Linphone and the SIP protocol.
 Linphone is an open source softphone for voice and video over IP calling and instant messaging. It is fully SIP-based, for all calling, presence and IM features.
@@ -19,8 +20,7 @@ Linphone is dual licensed, and is available either :
 
 # How can I contribute?
 
-Thanks for asking! We love pull requests from everyone. Depending on what you want to do, you can help us improve Linphone in
-various ways:
+Thanks for asking! We love pull requests from everyone. Depending on what you want to do, you can help us improve Linphone in various ways:
 
 ## Help on translations
 
