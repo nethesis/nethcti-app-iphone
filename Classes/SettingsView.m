@@ -764,6 +764,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
         if([key hasPrefix:@"account_"] &&
            ![key isEqualToString:@"account_display_name_preference"] &&
            ![key isEqualToString:@"account_pushnotification_preference"] &&
+           ![key isEqualToString:@"account_is_enabled_preference"] &&
            ![key isEqualToString:@"account_expire_preference"]) {
             [hiddenKeys addObject:key];
         }
