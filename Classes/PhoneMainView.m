@@ -202,6 +202,12 @@ static RootViewManager *rootViewManagerInstance = nil;
                                              object:nil];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    UIApplication *app = UIApplication.sharedApplication;
+    LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)app.delegate;
+    [delegate handleStatusBarTheme:app];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -231,7 +237,6 @@ static RootViewManager *rootViewManagerInstance = nil;
             [self setNeedsUpdateOfHomeIndicatorAutoHidden];
         }
     }
-    
 }
 
 - (BOOL)prefersHomeIndicatorAutoHidden{

@@ -278,6 +278,7 @@
 	_waitView.hidden = YES;
     _editButton.hidden = YES; // ([ContactSelection getSelectionMode] != ContactSelectionModeEdit &&
 						  // [ContactSelection getSelectionMode] != ContactSelectionModeNone); Now is not editable.
+    [_workLabel addObserver:self forKeyPath:@"frame" options:0 context:nil];
 	[_tableController.tableView addObserver:self forKeyPath:@"contentSize" options:0 context:NULL];
 	_tableController.waitView = _waitView;
 	if (!IPAD)
@@ -299,8 +300,25 @@
 				cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] shouldHideLinphoneImageOfAddress];
 		}
 	}
-	[_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
-    [_nameInitialLabel setTextColor:[UIColor getColorByName:@"Grey"]];
+    [self setUIColors];
+}
+
+- (void)setUIColors{
+    [_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [_backButton setTintColor:grey];
+    [_cancelButton setTintColor:grey];
+    [_deleteButton setTintColor:grey];
+    [_nameInitialLabel setTextColor:grey];
+    [_tableController.tableView setSeparatorColor:separator];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
@@ -430,14 +448,15 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)recomputeTableViewSize:(BOOL)editing {
     CGRect frame = _tableController.tableView.frame;
-    const int avatarFrame = _avatarImage.frame.size.height + _avatarImage.frame.origin.y;
-    if ([self viewIsCurrentlyPortrait]) { //} && !editing) { Atm the contact is not editable.
-        const int labelFrame = _nameLabel.frame.size.height; // Add here more label heights.
-        frame.origin.y = avatarFrame + labelFrame;
-    } else if(![self viewIsCurrentlyPortrait]) {
-        const int labelFrame = _nameLabel.frame.origin.y + _nameLabel.frame.size.height; // Add here more label heights.
-        frame.origin.y = avatarFrame > labelFrame ? avatarFrame : labelFrame;
-    } // Missing one case?
+    const int avatarFrame = _workLabel.frame.size.height + _workLabel.frame.origin.y + 16;
+    frame.origin.y = avatarFrame;
+    // if ([self viewIsCurrentlyPortrait]) { //} && !editing) { Atm the contact is not editable.
+        // const int labelFrame = _workLabel.frame.size.height; // Add here more label heights.
+        // frame.origin.y = avatarFrame + labelFrame;
+    // } else if(![self viewIsCurrentlyPortrait]) {
+        // const int labelFrame = _workLabel.frame.origin.y + _workLabel.frame.size.height; // Add here more label heights.
+        // frame.origin.y = avatarFrame > labelFrame ? avatarFrame : labelFrame;
+    // } // Missing one case?
     
     frame.size.height = _tableController.tableView.contentSize.height;
     _tableController.tableView.frame = frame;
@@ -451,13 +470,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 	CGRect frame = _tableController.tableView.frame;
 	frame.size = _tableController.tableView.contentSize;
 	_tableController.tableView.frame = frame;
-	[self recomputeContentViewSize];
+    [self recomputeTableViewSize:_editButton.hidden];// [self recomputeContentViewSize];
 }
 
 - (void)recomputeContentViewSize {
 	_contentView.contentSize =
 		CGSizeMake(_tableController.tableView.frame.size.width + _tableController.tableView.frame.origin.x,
-				   _tableController.tableView.frame.size.height + _tableController.tableView.frame.origin.y);
+				   _tableController.tableView.frame.size.height + _tableController.tableView.frame.origin.y + 15);
 }
 
 #pragma mark - Action Functions

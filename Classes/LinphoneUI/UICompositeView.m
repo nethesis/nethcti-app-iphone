@@ -131,17 +131,17 @@
 	oppositeFrame.size.width = frame.size.height;
 
 	// if we start in portrait, the landscape view must get the opposite height and width
-	if (portrait || [[UIDevice currentDevice].systemVersion floatValue] < 8) {
+	// if (portrait /* || [[UIDevice currentDevice].systemVersion floatValue] < 8 */) {
 		LOGI(@"landscape get opposite: %@", NSStringFromCGSize(oppositeFrame.size));
 		[landscapeView setFrame:oppositeFrame];
-	} else {
+	/* } else {
 		// if we start in landscape, the landscape view has to get the current size,
 		// whereas the portrait has to get the opposite
 		LOGI(@"landscape get frame: %@ and portrait gets opposite: %@", NSStringFromCGSize(frame.size),
 			 NSStringFromCGSize(oppositeFrame.size));
 		[landscapeView setFrame:frame];
 		[portraitView setFrame:oppositeFrame];
-	}
+	} */
 }
 
 - (void)viewDidLoad {
@@ -600,12 +600,14 @@
 	CGRect tabFrame = self.tabBarView.frame;
 	if (self.tabBarViewController != nil && currentViewDescription.tabBarEnabled) {
 		tabFrame.origin.x = 0;
-		if (UIInterfaceOrientationIsPortrait([self currentOrientation])) {
+        
+		// if (UIInterfaceOrientationIsPortrait([self currentOrientation])) {
 			tabFrame.origin.y = viewFrame.size.height - tabFrame.size.height;
-		} else {
-			tabFrame.origin.y = origin;
-			tabFrame.size.height = viewFrame.size.height - tabFrame.origin.y;
-		}
+		// } // else {
+			// tabFrame.origin.y = origin;
+			// tabFrame.size.height = viewFrame.size.height - tabFrame.origin.y;
+		// }
+        
 	} else {
 		tabFrame.origin.x = -tabFrame.size.width;
 		tabFrame.origin.y = viewFrame.size.height;
@@ -616,12 +618,12 @@
 	mainFrame.origin.y = origin;
 	mainFrame.size.height -= mainFrame.origin.y;
 	if (!currentViewDescription.fullscreen) {
-		if (UIInterfaceOrientationIsPortrait([self currentOrientation])) {
+		// if (UIInterfaceOrientationIsPortrait([self currentOrientation])) {
 			mainFrame.size.height -= viewFrame.size.height - tabFrame.origin.y;
-		} else {
-			mainFrame.origin.x = tabFrame.origin.x + tabFrame.size.width;
-			mainFrame.size.width -= mainFrame.origin.x;
-		}
+		// } // else {
+			// mainFrame.origin.x = tabFrame.origin.x + tabFrame.size.width;
+			// mainFrame.size.width -= mainFrame.origin.x;
+		// }
 	}
 	CGRect detailsFrame = mainFrame;
 	if (self.detailsViewController != nil) {

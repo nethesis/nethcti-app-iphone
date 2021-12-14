@@ -33,9 +33,7 @@
 #import <Intents/Intents.h>
 #import <IntentsUI/IntentsUI.h>
 
-#ifdef USE_CRASHLYTICS
 #include "FIRApp.h"
-#endif
 
 @implementation LinphoneAppDelegate
 
@@ -77,6 +75,7 @@
     [LinphoneManager.instance startLinphoneCore];
     [LinphoneManager.instance.fastAddressBook reloadFriends];
     [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneMessageReceived object:nil];
+    [self handleStatusBarTheme:application];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -94,6 +93,7 @@
 	const LinphoneCallParams *params = linphone_call_get_current_params(call);
 	if (linphone_call_params_video_enabled(params))
 		linphone_call_enable_camera(call, false);
+    [self handleStatusBarTheme:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -154,6 +154,7 @@
         [self handleShortcut:_shortcutItem];
         _shortcutItem = nil;
     }
+    [self handleStatusBarTheme:application];
 }
 
 #pragma deploymate push "ignored-api-availability"
@@ -259,65 +260,65 @@
 #pragma deploymate pop
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-#ifdef USE_CRASHLYTICS
-	[FIRApp configure];
-#endif
+
+    // Enable crashlytics by default.
+    [FIRApp configure];
     
     UIApplication *app = [UIApplication sharedApplication];
-	UIApplicationState state = app.applicationState;
-
-	LinphoneManager *instance = [LinphoneManager instance];
-	//init logs asap
-	[Log enableLogs:[[LinphoneManager instance] lpConfigIntForKey:@"debugenable_preference"]];
-
-	if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
-		[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
-					[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Photo's permission", nil) message:NSLocalizedString(@"Photo not authorized", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Continue", nil] show];
-				}
-			});
-		}];
-	}
-
-	BOOL background_mode = [instance lpConfigBoolForKey:@"backgroundmode_preference"];
-	BOOL start_at_boot = [instance lpConfigBoolForKey:@"start_at_boot_preference"];
-	[self registerForNotifications]; // Register for notifications must be done ASAP to give a chance for first SIP register to be done with right token. Specially true in case of remote provisionning or re-install with new type of signing certificate, like debug to release.
-
-	if (state == UIApplicationStateBackground) {
-		// we've been woken up directly to background;
-		if (!start_at_boot || !background_mode) {
-			// autoboot disabled or no background, and no push: do nothing and wait for a real launch
-			//output a log with NSLog, because the ortp logging system isn't activated yet at this time
-			NSLog(@"Linphone launch doing nothing because start_at_boot or background_mode are not activated.", NULL);
-			return YES;
-		}
-		startedInBackground = true;
-	}
-	bgStartId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-	  LOGW(@"Background task for application launching expired.");
-	  [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
-	}];
-
-	[LinphoneManager.instance launchLinphoneCore];
-	LinphoneManager.instance.iapManager.notificationCategory = @"expiry_notification";
-	// initialize UI
-	[self.window makeKeyAndVisible];
-	[RootViewManager setupWithPortrait:(PhoneMainView *)self.window.rootViewController];
-
-	if (bgStartId != UIBackgroundTaskInvalid)
-		[[UIApplication sharedApplication] endBackgroundTask:bgStartId];
-
+    UIApplicationState state = app.applicationState;
+    
+    LinphoneManager *instance = [LinphoneManager instance];
+    //init logs asap
+    [Log enableLogs:[[LinphoneManager instance] lpConfigIntForKey:@"debugenable_preference"]];
+    
+    if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Photo's permission", nil) message:NSLocalizedString(@"Photo not authorized", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Continue", nil] show];
+                }
+            });
+        }];
+    }
+    
+    BOOL background_mode = [instance lpConfigBoolForKey:@"backgroundmode_preference"];
+    BOOL start_at_boot = [instance lpConfigBoolForKey:@"start_at_boot_preference"];
+    [self registerForNotifications]; // Register for notifications must be done ASAP to give a chance for first SIP register to be done with right token. Specially true in case of remote provisionning or re-install with new type of signing certificate, like debug to release.
+    
+    if (state == UIApplicationStateBackground) {
+        // we've been woken up directly to background;
+        if (!start_at_boot || !background_mode) {
+            // autoboot disabled or no background, and no push: do nothing and wait for a real launch
+            //output a log with NSLog, because the ortp logging system isn't activated yet at this time
+            NSLog(@"Linphone launch doing nothing because start_at_boot or background_mode are not activated.", NULL);
+            return YES;
+        }
+        startedInBackground = true;
+    }
+    bgStartId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        LOGW(@"Background task for application launching expired.");
+        [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
+    }];
+    
+    [LinphoneManager.instance launchLinphoneCore];
+    LinphoneManager.instance.iapManager.notificationCategory = @"expiry_notification";
+    // initialize UI
+    [self.window makeKeyAndVisible];
+    [RootViewManager setupWithPortrait:(PhoneMainView *)self.window.rootViewController];
+    
+    if (bgStartId != UIBackgroundTaskInvalid)
+        [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
+    
     // Enable all notification type.
     // VoIP Notifications don't present a UI but we will use this to show local nofications later.
     UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert| UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-
+    
     // Register the notification settings.
     [application registerUserNotificationSettings:notificationSettings];
     
     // Color status bar accordingly to the background color.
     [self handleStatusBarTheme:application];
-
+    
     // Output what state the app is in.
     // This will be used to see when the app is started in the background.
     LOGI(@"app launched with state : %li", (long)application.applicationState);
@@ -330,8 +331,8 @@
     }
     
     [self setDefaultNethesis];
-
-	return YES;
+    
+    return YES;
 }
 
 - (void)setDefaultNethesis {
@@ -349,29 +350,63 @@
         
         [defaults setBool:YES forKey:@"has_already_launched_once"];
     }
+    
+    // Bugfix sip address visualization.
+    [LinphoneManager.instance lpConfigSetBool:YES forKey:@"display_phone_only" inSection:@"app"];
+    
+    int last_version_used = [defaults valueForKey:@"last_version_used"];
+    if(last_version_used < 1) {
+        const bool cred = [ApiCredentials checkCredentials];
+        const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
+        // Get info only if authenticated without main extension.
+        if(cred && main_ext) {
+            [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+                const int expire = meUser.proxyPort != -1 ? 2678400 : 3600;
+                const size_t l = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
+                LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+                linphone_proxy_config_set_expires(cfg, expire); // Set Expiration Time from proxy values.
+                linphone_core_set_default_proxy_config(LC, cfg);
+            }
+                                                  errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                LOGE(@"[WEDO] error: %@", string);
+            }];
+        }
+    }
+    [defaults setInteger:1 forKey:@"last_version_used"];
 }
 
 /// Apply status bar theming for devices with iOS 13+.
-/// @param application application launched from didFinishWithLaunchingOptions.
+/// @param application application launched from didFinishLaunchingWithOptions.
 - (void)handleStatusBarTheme:(UIApplication *)application {
-    UIColor *statusBarBgColor = [UIColor getColorByName:@"StatusBarBgColor"];
+    UIColor *statusBarBgColor;
+    if(@available(iOS 11.0, *)) {
+        statusBarBgColor = [UIColor colorNamed:@"statusBarBgColor"];
+    } else {
+        statusBarBgColor = [UIColor getColorByName:@"StatusBarBgColor"];
+    }
+    
+    bool isBright = [statusBarBgColor isBright];
     // Set status bar style accordingly to the background color.
     if (@available(iOS 13.0, *)) {
-        [application setStatusBarStyle:[statusBarBgColor isBright] ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
-        [self changeStatusBarBackground:application withColor:statusBarBgColor];
-    } else if([statusBarBgColor isBright]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [application setStatusBarStyle:isBright ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent];
+            [self changeStatusBarBackground:application withColor:statusBarBgColor];
+        });
+    } else if(isBright) {
         [application setStatusBarStyle:UIStatusBarStyleLightContent];
         [self changeStatusBarBackground:application withColor:statusBarBgColor];
     } else {
+        [application setStatusBarStyle:UIStatusBarStyleDefault];
+        [self changeStatusBarBackground:application withColor:statusBarBgColor];
         // Can't set status bar style if color is not compatible with iOS version.
         float iosVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
-        LOGI(@"Can't set status bar style. Color %@ is not compatible with iOS version %f.", statusBarBgColor, iosVersion);
+        LOGI(@"[WEDO] Can't set status bar style. Color %@ is not compatible with iOS version %f.", statusBarBgColor, iosVersion);
         return;
     }
 }
 
 /// Change status bar background color. Use only inside handleStatusBarTheme:(UIApplication *) method.
-/// @param application application launched from didFinishWithLaunchingOptions.
+/// @param application application launched from didFinishLaunchingWithOptions.
 /// @param color status bar background color from config files.
 - (void)changeStatusBarBackground:(UIApplication *)application withColor:(UIColor *)color {
     CGRect sbframe = application.statusBarFrame;

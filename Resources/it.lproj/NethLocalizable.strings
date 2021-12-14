@@ -10,7 +10,7 @@
  * Others.
  */
 
-"Cancel" = "Cancella";
+"Cancel" = "Annulla";
 
 "Confirm" = "Conferma";
 
@@ -19,6 +19,10 @@
  */
 
 "AUTHENTICATE-HEADER-MISSING" = "Credenziali errate, vi preghiamo di controllarle e di riprovare.";
+
+"No user information provided, contact an administrator." = "Nessuna informazione sull'utente trovata, contattare un amministratore.";
+
+"Error while reading the QRCODE." = "Errore durante la lettura del QRCODE.";
 
 /*
  * Phonebook strings.
@@ -59,11 +63,17 @@
  */
 
 /* No comment provided by engineer. */
-"Extensions" = "Interni";
+"Extension" = "Interno";
 
 "Company" = "Azienda";
 
-"Home location" = "Casa";
+"Home address" = "Indirizzo casa";
+
+"Home city" = "Città casa";
+
+"Home state" = "Provincia casa";
+
+"Home country" = "Stato casa";
 
 "Home pob" = "Home pob";
 
@@ -83,7 +93,13 @@
 
 "Url" = "Url";
 
-"Work location" = "Lavoro";
+"Work address" = "Indirizzo lavoro";
+
+"Work city" = "Città lavoro";
+
+"Work state" = "Provincia lavoro";
+
+"Work country" = "Stato lavoro";
 
 "Work pob" = "Work pob";
 

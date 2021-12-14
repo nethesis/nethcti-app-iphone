@@ -70,7 +70,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 	ms_free(uri);
 	
     //[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
-    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
     
 	[self hideSpeaker:LinphoneManager.instance.bluetoothAvailable];
@@ -82,6 +81,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)setUIColors {
     UIColor *midgrey = [UIColor getColorByName:@"MidGrey"];
+    _nameInitialsLabel.textColor = [UIColor getColorByName:@"Grey"];
     _titleLabel.textColor = midgrey;
     _nameLabel.textColor = midgrey;
     _addressLabel.textColor = LINPHONE_MAIN_COLOR;

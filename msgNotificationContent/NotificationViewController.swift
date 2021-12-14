@@ -21,9 +21,8 @@ import UIKit
 import UserNotifications
 import UserNotificationsUI
 import linphonesw
-#if USE_CRASHLYTICS
+
 import Firebase
-#endif
 
 var APP_GROUP_ID = Bundle.main.object(forInfoDictionaryKey: "NotificationAppGroupId") as! String // "group.it.nethesis.nethcti3.msgNotification"
 var isReplySent: Bool = false
@@ -42,9 +41,9 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any required interface initialization here.
-#if USE_CRASHLYTICS
+
 		FirebaseApp.configure()
-#endif
+
         NSLog("[msgNotificationContent] start msgNotificationContent extension")
 
         let replyAction = UNTextInputNotificationAction(identifier: "Reply",

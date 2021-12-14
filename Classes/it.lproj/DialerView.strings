@@ -1,9 +1,9 @@
 
-/* Class = "UITextField"; accessibilityLabel = "Enter an address"; ObjectID = "4"; */
-"4.accessibilityLabel" = "Inserisci un indirizzo";
+/* Class = "UITextField"; accessibilityLabel = "Enter a number"; ObjectID = "4"; */
+"4.accessibilityLabel" = "Inserisci un numero";
 
-/* Class = "UITextField"; placeholder = "Enter a number or an address"; ObjectID = "4"; */
-"4.placeholder" = "Inserisci un numero o un indirizzo";
+/* Class = "UITextField"; placeholder = "Enter a number"; ObjectID = "4"; */
+"4.placeholder" = "Inserisci un numero";
 
 /* Class = "UIButton"; accessibilityLabel = "3"; ObjectID = "29"; */
 "29.accessibilityLabel" = "3";

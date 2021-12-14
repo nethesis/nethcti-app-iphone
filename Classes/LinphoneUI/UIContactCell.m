@@ -76,22 +76,34 @@
 #pragma mark - Property Functions
 
 - (void)setContact:(Contact *)acontact {
-	_contact = acontact;
-	_linphoneImage.hidden = TRUE;
-	if(_contact) {
-		[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
-		_linphoneImage.hidden = _contact.nethesis || // If is Nethesis, surely hide the icon.
+    _contact = acontact;
+    _linphoneImage.hidden = TRUE;
+    if(_contact) {
+        [ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
+        _linphoneImage.hidden = _contact.nethesis || // If is Nethesis, surely hide the icon.
         [LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"] ||
         !((_contact.friend &&
            linphone_presence_model_get_basic_status(linphone_friend_get_presence_model(_contact.friend)) == LinphonePresenceBasicStatusOpen) ||
           [FastAddressBook contactHasValidSipDomain:_contact]);
-	}
+        if(_contact.nethesis && _contact.company) {
+            _companyLabel.text = _contact.company;
+            _companyLabel.hidden = NO;
+        } else {
+            _companyLabel.hidden = YES;
+        }
+    }
     
-    _nameLabel.textColor = [UIColor getColorByName:@"Grey"];
+    UIColor *grey;
+    if(@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed:@"textColor"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
     
+    _nameLabel.textColor = grey;
+    _companyLabel.textColor = grey;
+    _nameInitialLabel.textColor = grey;
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact];
-
-    _nameInitialLabel.textColor = [UIColor getColorByName:@"Grey"];
 }
 
 #pragma mark -

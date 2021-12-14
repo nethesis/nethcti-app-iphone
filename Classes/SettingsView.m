@@ -293,7 +293,7 @@ INIT_WITH_COMMON_CF {
 	else
 		[view setBackgroundColor:[UIColor clearColor]];
     */
-    [view setBackgroundColor:[UIColor whiteColor]];
+    // [view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -303,11 +303,17 @@ INIT_WITH_COMMON_CF {
 
 		[viewController view]; // Force view
 		UILabel *labelTitleView = [[UILabel alloc] init];
-		labelTitleView.backgroundColor = [UIColor clearColor];
+        UIColor *backgroundColor;
+        if (@available(iOS 11.0, *)) {
+            backgroundColor = [UIColor colorNamed: @"mainBackground"];
+        } else {
+            backgroundColor = [UIColor getColorByName:@"White"];
+        }
+        labelTitleView.backgroundColor = backgroundColor;// [UIColor clearColor];
 		labelTitleView.textColor =
 			[UIColor colorWithRed:0x41 / 255.0f green:0x48 / 255.0f blue:0x4f / 255.0f alpha:1.0];
 		labelTitleView.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-		labelTitleView.font = [UIFont boldSystemFontOfSize:20];
+        labelTitleView.font = [UIFont fontWithName:@"Roboto-Bold" size:24];// [UIFont boldSystemFontOfSize:20];
 		labelTitleView.shadowOffset = CGSizeMake(0, 1);
 		labelTitleView.textAlignment = NSTextAlignmentCenter;
 		labelTitleView.text = viewController.title;
@@ -401,6 +407,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 										   selector:@selector(appSettingChanged:)
 											   name:kIASKAppSettingChanged
 											 object:nil];
+    
+    [self setUIColors];
+}
+
+- (void) setUIColors {
+    UIColor *grey;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+    }
+    [_backButton setTintColor:grey];
 }
 
 #pragma mark - Account Creator callbacks
@@ -449,8 +467,11 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	linphone_account_creator_set_password(creator, _tmpPwd.UTF8String);
 	[settingsStore setObject:_tmpPwd forKey:@"account_mandatory_password_preference"];
 	
-	LinphoneProxyConfig *config = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC),
-													  [settingsStore integerForKey:@"current_proxy_config_preference"]);
+	LinphoneProxyConfig *config =
+        bctbx_list_nth_data(
+                        linphone_core_get_proxy_config_list(LC),
+                        [settingsStore integerForKey:@"current_proxy_config_preference"]
+                        );
 	if (config != NULL) {
 		const LinphoneAuthInfo *auth = linphone_proxy_config_find_auth_info(config);
 		if (auth) {
@@ -464,13 +485,15 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	[settingsStore setObject:_tmpPwd forKey:@"account_mandatory_password_preference"];
 	_tmpPwd = NULL;
 	
+	UIAlertController *errView =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Changing your password", nil)
+                                        message:NSLocalizedString(@"Your password has been successfully changed", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
 	
-	UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Changing your password", nil)
-																	 message:NSLocalizedString(@"Your password has been successfully changed", nil)
-															  preferredStyle:UIAlertControllerStyleAlert];
-	
-	UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-														  handler:^(UIAlertAction * action) {}];
+	UIAlertAction* defaultAction =
+    [UIAlertAction actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {}];
 	
 	[errView addAction:defaultAction];
 	[self presentViewController:errView animated:YES completion:nil];
@@ -511,14 +534,16 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		}
 		[Log enableLogs:debugLevel];
 		[LinphoneManager.instance lpConfigSetInt:debugLevel forKey:@"debugenable_preference"];
-	} else if ([@"account_mandatory_advanced_preference" compare:notif.object] == NSOrderedSame) {
+	} /*
+       Removed by Nethesis restyling.
+       else if ([@"account_mandatory_advanced_preference" compare:notif.object] == NSOrderedSame) {
 		removeFromHiddenKeys = [[notif.userInfo objectForKey:@"account_mandatory_advanced_preference"] boolValue];
 		for (NSString *key in settingsStore->dict) {
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
 				[keys addObject:key];
 			}
 		}
-	} else if ([@"video_preset_preference" compare:notif.object] == NSOrderedSame) {
+	} */else if ([@"video_preset_preference" compare:notif.object] == NSOrderedSame) {
 		NSString *video_preset = [notif.userInfo objectForKey:@"video_preset_preference"];
 		removeFromHiddenKeys = [video_preset isEqualToString:@"custom"];
 		[keys addObject:@"video_preferred_fps_preference"];
@@ -709,13 +734,14 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		[hiddenKeys addObject:@"tunnel_menu"];
 	}
 
-	if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
+    // All Account settings are hidden, but we leave this condition for future developments.
+	/*if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
 		for (NSString *key in settingsStore->dict) {
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
 				[hiddenKeys addObject:key];
 			}
 		}
-	}
+	}*/
 
 	if (![[LinphoneManager.instance iapManager] enabled]) {
 		[hiddenKeys addObject:@"in_app_products_button"];
@@ -733,13 +759,44 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
         [hiddenKeys addObject:@"auto_download_incoming_files_max_size"];
     }
     
-    // Nethesis customization.
-    [hiddenKeys addObject:@"presence_title"];
-    [hiddenKeys addObject:@"use_rls_presence"];
-    [hiddenKeys addObject:@"account_mandatory_password_preference"];
+    // Hide Account SIP iOS
+    for(NSString *key in settingsStore->dict) {
+        if([key hasPrefix:@"account_"] &&
+           ![key isEqualToString:@"account_display_name_preference"] &&
+           ![key isEqualToString:@"account_pushnotification_preference"] &&
+           ![key isEqualToString:@"account_is_enabled_preference"] &&
+           ![key isEqualToString:@"account_expire_preference"]) {
+            [hiddenKeys addObject:key];
+        }
+    }
     [hiddenKeys addObject:@"account_mandatory_change_password"];
     [hiddenKeys addObject:@"account_mandatory_remove_button"];
-
+    
+    // Hide Audio
+    [hiddenKeys addObject:@"eq_active"];
+    [hiddenKeys addObject:@"voiceproc_preference"];
+    // Hide Video
+    [hiddenKeys addObject:@"preview_preference"];
+    [hiddenKeys addObject:@"video_preset_preference"];
+    [hiddenKeys addObject:@"video_preferred_size_preference"];
+    [hiddenKeys addObject:@"video_preferred_fps_preference"];
+    [hiddenKeys addObject:@"download_bandwidth_preference"];
+    // Hide Chiamata
+    [hiddenKeys addObject:@"call_menu"];
+    // Hide Network
+    [hiddenKeys addObject:@"network_menu"];
+    // Hide Advanced
+    [hiddenKeys addObject:@"presence_title"];
+    [hiddenKeys addObject:@"use_rls_presence"];
+    [hiddenKeys addObject:@"show_msg_in_notif"];
+    [hiddenKeys addObject:@"advanced_other"];
+    [hiddenKeys addObject:@"animations_preference"];
+    [hiddenKeys addObject:@"start_at_boot_preference"];
+    [hiddenKeys addObject:@"enable_first_login_view_preference"];
+    [hiddenKeys addObject:@"advanced_primary_account"];
+    [hiddenKeys addObject:@"primary_displayname_preference"];
+    [hiddenKeys addObject:@"primary_username_preference"];
+    
 	return hiddenKeys;
 }
 

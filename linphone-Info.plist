@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AccentColor</key>
-	<string>$(ACCENT_COLOR)</string>
 	<key>AppApnsAuthKey</key>
 	<string>$(PUSH_WEDO_AUTH_KEY)</string>
 	<key>AppApnsAuthKeyDev</key>
@@ -91,7 +89,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>1</string>
 	<key>Cyan</key>
 	<string>$(CYAN)</string>
 	<key>Green</key>
@@ -102,9 +100,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <!-- NOTE: This color can be different from main background color. -->
-    <key>StatusBarBgColor</key>
-    <string>$(WHITE)</string>
 	<key>LightCyan</key>
 	<string>$(LIGHT_CYAN)</string>
 	<key>LightGreen</key>
@@ -181,6 +176,8 @@
 	<string>Make audio/video calls with sip protocol.</string>
 	<key>NotificationAppGroupId</key>
 	<string>$(MSG_NOTIFICATION_APP_GROUP_ID)</string>
+	<key>StatusBarBgColor</key>
+	<string>$(WHITE)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Bold.ttf</string>

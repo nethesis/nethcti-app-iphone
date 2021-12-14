@@ -94,7 +94,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 			<key>Key</key>
 			<string>autoanswer_notif_preference</string>
 			<key>Title</key>
@@ -103,6 +103,8 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
+			<key>Key</key>
+			<string>advanced_other</string>
 			<key>Title</key>
 			<string>Other</string>
 			<key>Type</key>
@@ -139,6 +141,8 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
+			<key>Key</key>
+			<string>advanced_primary_account</string>
 			<key>Title</key>
 			<string>Primary account</string>
 			<key>Type</key>

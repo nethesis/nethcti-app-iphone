@@ -502,62 +502,77 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (void)tableView:(UITableView *)tableView
-	commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-	 forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[NSNotificationCenter.defaultCenter removeObserver:self];
-		
-		NSString *msg = NSLocalizedString(@"Do you want to delete selected contact?\nIt will also be deleted from your phone's address book.", nil);
-		[UIConfirmationDialog ShowWithMessage:msg
-					cancelMessage:nil
-					confirmMessage:nil
-					onCancelClick:nil
-					onConfirmationClick:^() {
-						[tableView beginUpdates];
-
-						NSString *firstChar = [addressBookMap keyAtIndex:[indexPath section]];
-						NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
-						Contact *contact = subAr[indexPath.row];
-						[subAr removeObjectAtIndex:indexPath.row];
-						if (subAr.count == 0) {
-							[addressBookMap removeObjectForKey:firstChar];
-							[tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
-							withRowAnimation:UITableViewRowAnimationFade];
-						}
-						UIContactCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
-						[cell setContact:NULL];
-						[[LinphoneManager.instance fastAddressBook] deleteContact:contact];
-						[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-						[tableView endUpdates];
-
-						[NSNotificationCenter.defaultCenter	addObserver:self selector:@selector(onAddressBookUpdate:)
-											name:kLinphoneAddressBookUpdate
-											object:nil];
-						[self loadData];
-					}];
-	}
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [NSNotificationCenter.defaultCenter removeObserver:self];
+        
+        NSString *msg = NSLocalizedString(@"Do you want to delete selected contact?\nIt will also be deleted from your phone's address book.", nil);
+        [UIConfirmationDialog ShowWithMessage:msg
+                                cancelMessage:nil
+                               confirmMessage:nil
+                                onCancelClick:nil
+                          onConfirmationClick:^() {
+            [tableView beginUpdates];
+            
+            NSString *firstChar = [addressBookMap keyAtIndex:[indexPath section]];
+            // Get the right mutable copy of the array.
+            NSMutableArray *subAr = [[addressBookMap objectForKey:firstChar] mutableCopy];
+            Contact *contact = subAr[indexPath.row];
+            [subAr removeObjectAtIndex:indexPath.row];
+            
+            // Set the right new copy of array.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [addressBookMap setValue:subAr forKey:firstChar];
+            });
+            
+            if (subAr.count == 0) {
+                [addressBookMap removeObjectForKey:firstChar];
+                [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
+                         withRowAnimation:UITableViewRowAnimationFade];
+            }
+            UIContactCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            [cell setContact:NULL];
+            [[LinphoneManager.instance fastAddressBook] deleteContact:contact];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [tableView deleteRowsAtIndexPaths:@[indexPath]
+                                 withRowAnimation:UITableViewRowAnimationFade];
+                [tableView endUpdates];
+            });
+            
+            [NSNotificationCenter.defaultCenter	addObserver:self
+                                                   selector:@selector(onAddressBookUpdate:)
+                                                       name:kLinphoneAddressBookUpdate
+                                                     object:nil];
+            [self loadData];
+        }];
+    }
 }
 
 - (void)removeSelectionUsing:(void (^)(NSIndexPath *))remover {
-	[super removeSelectionUsing:^(NSIndexPath *indexPath) {
-	  [NSNotificationCenter.defaultCenter removeObserver:self];
-
-	  NSString *firstChar = [addressBookMap keyAtIndex:[indexPath section]];
-	  NSMutableArray *subAr = [addressBookMap objectForKey:firstChar];
-	  Contact *contact = subAr[indexPath.row];
-	  [subAr removeObjectAtIndex:indexPath.row];
-	  if (subAr.count == 0) {
-		  [addressBookMap removeObjectForKey:firstChar];
-	  }
-	  UIContactCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
-	  [cell setContact:NULL];
-	  [[LinphoneManager.instance fastAddressBook] deleteContact:contact];
-
-	  [NSNotificationCenter.defaultCenter addObserver:self
-                 selector:@selector(onAddressBookUpdate:)
-                     name:kLinphoneAddressBookUpdate
-                   object:nil];
-	}];
+    [super removeSelectionUsing:^(NSIndexPath *indexPath) {
+        [NSNotificationCenter.defaultCenter removeObserver:self];
+        
+        NSString *firstChar = [addressBookMap keyAtIndex:[indexPath section]];
+        NSMutableArray *subAr = [[addressBookMap objectForKey:firstChar] mutableCopy];
+        Contact *contact = subAr[indexPath.row];
+        [subAr removeObjectAtIndex:indexPath.row];
+        
+        // Set the right new copy of array.
+        [addressBookMap setValue:subAr forKey:firstChar];
+        
+        if (subAr.count == 0) {
+            [addressBookMap removeObjectForKey:firstChar];
+        }
+        UIContactCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [cell setContact:NULL];
+        [[LinphoneManager.instance fastAddressBook] deleteContact:contact];
+        
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(onAddressBookUpdate:)
+                                                   name:kLinphoneAddressBookUpdate
+                                                 object:nil];
+    }];
 }
 
 @end

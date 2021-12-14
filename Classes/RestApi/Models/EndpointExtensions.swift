@@ -38,4 +38,8 @@ extension Extension {
         self.actions = Actions(from:actions ?? ["":""])
         self.proxyPort = from["proxy_port"] as? Int
     }
+    
+    public func export() -> Extension {
+        return Extension.init(type: self.type, id: self.id, extensionDescription: self.extensionDescription, secret: nil, username: self.username, actions: self.actions, proxyPort: self.proxyPort)
+    }
 }

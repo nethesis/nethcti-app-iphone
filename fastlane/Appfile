@@ -1,8 +1,8 @@
-app_identifier("it.nethesis.nethcti3") # The bundle identifier of your app
+app_identifier(ENV["BUNDLE_IDENTIFIER"]) # The bundle identifier of your app
 apple_id("d.tentoni@wedoit.io") # Your Apple email address
 
-itc_team_id("117964282") # App Store Connect Team ID
-team_id("8D66VDADVH") # Developer Portal Team ID
+itc_team_id(ENV["ITC_TEAM_ID"]) # App Store Connect Team ID
+team_id(ENV["TEAM_ID"]) # Developer Portal Team ID
 
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile

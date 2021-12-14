@@ -1,0 +1,10 @@
+git_url "https://github.com/wedoit-io/fastlane_match_repo.git"
+git_branch(ENV["GIT_BRANCH"])
+
+bundle_identifier = ENV["BUNDLE_IDENTIFIER"]
+app_identifier([
+  "#{bundle_identifier}",
+  "#{bundle_identifier}.extension",
+  "#{bundle_identifier}.msgNotificationService",
+  "#{bundle_identifier}.msgNotificationContent"
+])

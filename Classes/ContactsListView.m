@@ -368,9 +368,21 @@ static UICompositeViewDescription *compositeDescription = nil;
 /// Set view buttons consistently to the sip filter mode selected.
 - (void)refreshButtons {
     bool sipFilter = [ContactSelection getSipFilter];
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [addButton setTintColor:grey];
     [addButton setHidden:sipFilter];
+    [_backSpaceButton setTintColor:grey];
     [tableController.deleteButton setHidden:sipFilter];
     [tableController.editButton setHidden:sipFilter];
+    [tableController.tableView setSeparatorColor:separator];
     [self changeView:sipFilter ? ContactsLinphone : ContactsAll];
 }
 
@@ -453,7 +465,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     // WEDO: Perform the search api call after 0.5 seconds after finished input text.
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
-    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:1];
     return;
     
     // display searchtext in UPPERCASE

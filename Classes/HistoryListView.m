@@ -61,7 +61,28 @@ static UICompositeViewDescription *compositeDescription = nil;
 	linphone_core_reset_missed_calls_count(LC);
 	// Fake event
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
+    
+    // Set btn images.
 	[_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
+    UIImage *allLogs = [[UIImage imageNamed:@"nethcti_grey_phone.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *loseLogs = [[UIImage imageNamed:@"nethcti_missed_calls.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_allButton setImage:allLogs forState:UIControlStateNormal];
+    [_missedButton setImage:loseLogs forState:UIControlStateNormal];
+    
+    [self setUIColors];
+}
+
+- (void) setUIColors {
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [_tableController.tableView setSeparatorColor:separator];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -71,27 +92,19 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark -
 
 - (void)changeView:(HistoryView)view {
-	CGRect frame = _selectedButtonImage.frame;
 	if (view == History_All) {
-		frame.origin.x = _allButton.frame.origin.x;
 		_allButton.selected = TRUE;
 		[_tableController setMissedFilter:FALSE];
 		_missedButton.selected = FALSE;
         [_allButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
         [_missedButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-
-        // Colorare all
 	} else {
-		frame.origin.x = _missedButton.frame.origin.x;
 		_missedButton.selected = TRUE;
 		[_tableController setMissedFilter:TRUE];
 		_allButton.selected = FALSE;
         [_allButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
         [_missedButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-
-        // Colorare missed
 	}
-	//_selectedButtonImage.frame = frame;
 }
 
 #pragma m ~ark - Action Functions
@@ -105,7 +118,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onDeleteClick:(id)event {
-	NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete selected logs?", nil)];
+	NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete the selected calls from  call logs?", nil)];
 	[UIConfirmationDialog ShowWithMessage:msg
 		cancelMessage:nil
 		confirmMessage:nil

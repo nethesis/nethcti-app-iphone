@@ -88,6 +88,7 @@ typedef enum {
 + (void)setOrganizationLabel:(UILabel *)label forContact: (Contact *)contact;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel;
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel fromFriendsOnly:(BOOL)only;
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact;
 + (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image;
 + (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name;

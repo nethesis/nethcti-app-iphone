@@ -211,6 +211,12 @@ CGRect IASKCGRectSwap(CGRect rect);
 	if (self.delegate && [self.delegate conformsToProtocol:@protocol(IASKSettingsDelegate)]) {
 		[self.delegate settingsViewControllerWillAppear:self];
 	}
+    
+    if (@available(iOS 13, *)) {
+        [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
+    } else {
+        [self.view setBackgroundColor:UIColor.whiteColor];
+    }
 
 	[super viewWillAppear:animated];
 }
@@ -678,8 +684,6 @@ CGRect IASKCGRectSwap(CGRect rect);
 		[textFieldCell.textField becomeFirstResponder];
     }
     else if ([[specifier type] isEqualToString:kIASKPSChildPaneSpecifier]) {
-
-        
         Class vcClass = [specifier viewControllerClass];
         if (vcClass) {
             SEL initSelector = [specifier viewControllerSelector];
@@ -712,11 +716,11 @@ CGRect IASKCGRectSwap(CGRect rect);
             // the view controller has not been created yet, create it and set it to our viewList array
             // create a new dictionary with the new view controller
             NSMutableDictionary *newItemDict = [NSMutableDictionary dictionaryWithCapacity:3];
-            [newItemDict addEntriesFromDictionary: [self.viewList objectAtIndex:kIASKSpecifierChildViewControllerIndex]];	// copy the title and explain strings
+            [newItemDict addEntriesFromDictionary: [self.viewList objectAtIndex:kIASKSpecifierChildViewControllerIndex]]; // copy the title and explain strings
             
             targetViewController = [[[self class] alloc] init];
 			targetViewController.showDoneButton = NO;
-			targetViewController.settingsStore = self.settingsStore; 
+			targetViewController.settingsStore = self.settingsStore;
 			targetViewController.delegate = self.delegate;
 
             // add the new view controller to the dictionary and then to the 'viewList' array

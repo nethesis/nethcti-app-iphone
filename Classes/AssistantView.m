@@ -186,6 +186,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                                        assistant_is_account_linked);
     
 }
+
 - (void)loadAssistantConfig:(NSString *)rcFilename {
 	linphone_core_load_config_from_xml(LC,
 									   [LinphoneManager bundleFile:rcFilename].UTF8String);
@@ -449,7 +450,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)displayAssistantConfigurationError {
     UIAlertController *errView =
-    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Assistant error", nil)
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Login error", nil)
                                         message:NSLocalizedString(@"Could not configure your account, please check parameters or try again later", nil)
                                  preferredStyle:UIAlertControllerStyleAlert];
     
@@ -603,8 +604,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     UIRoundBorderedButton *button = [self findButton:field];
     if(button != nil) {
         // TODO: Change to NETHCTI_DARK_GRAY.
-        [button setTintColor:[UIColor darkGrayColor]];
-        [button setBackgroundColor:[UIColor lightGrayColor]];
+        UIColor *grey;
+        if (@available(iOS 11.0, *)) {
+            grey = [UIColor colorNamed: @"iconTint"];
+        } else {
+            grey = [UIColor getColorByName:@"Grey"];
+        }
+        [button setTintColor:grey];
+        button.titleLabel.textColor = [UIColor clearColor];
         [button.layer setCornerRadius:36.f];
     }
 }
@@ -1482,17 +1489,6 @@ _waitView.hidden = YES; \
     [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, domain] waitUntilDone:YES];
 }
 
--(void)showErrorController:(NSString*)error {
-    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
-                                                                     message:NSLocalizedStringFromTable(error, @"NethLocalizable", nil)
-                                                              preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {}];
-    [errView addAction:defaultAction];
-    [self presentViewController:errView animated:YES completion:nil];
-}
-
 - (IBAction)onLoginClick:(id)sender {
     ONCLICKBUTTON(sender, 100, {
         _waitView.hidden = NO;
@@ -1745,32 +1741,71 @@ _waitView.hidden = YES; \
         delegate.onlyPortrait = TRUE;
     });
     
+    // Doesn't allow other qrcode founds notifications from cam view.
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
+    
+    // Check the number of components in the qrcode text.
     NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
     NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
+    if(components.count != 3) {
+        return [self dismissViewWithMessage:NSLocalizedStringFromTable(@"Error while reading the QRCODE.", @"NethLocalizable", @"Error message thrown when user had scanned a wrong QrCode.")];
+    }
+    
+    // Perform the login call.
     NethCTIAPI* api = [NethCTIAPI sharedInstance];
     [api setAuthTokenWithUsername:components[0] token:components[1] domain:components[2]];
     [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
         [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
-        NSLog(@"API_ERROR: %@", string);
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {// Allow other screen orientations.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissViewWithMessage:string];
+        });
     }];
-    /*
-     if ([historyViews count] > 0) {
-     // TODO: Test this behavior.
-     // This mage must return correct fields to login page.
-     if (currentView == _qrCodeView) {
-     UIView *view = [historyViews lastObject];
-     [historyViews removeLastObject];
-     dispatch_async(dispatch_get_main_queue(), ^{
-     [self changeView:view back:TRUE animation:TRUE];
-     });
-     } else {
-     // TODO: This code can be safely removed?
-     [self changeView:_welcomeView back:TRUE animation:TRUE];
-     }
-     }
-     */
+}
+
+- (void)showErrorController:(NSString * _Nonnull)message completion:(void (^)(void))completion {
+    UIAlertController *errView =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
+                                        message:NSLocalizedStringFromTable(message, @"NethLocalizable", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction =
+    [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {}];
+    [errView addAction:defaultAction];
+    [self presentViewController:errView animated:YES completion:completion];
+}
+
+- (void)showErrorController:(NSString*)error {
+    return [self showErrorController:error completion:nil];
+}
+
+/// Return to _loginView while we are not ready to go to Dashboard after show an error dialog.
+/// @param message Optional message to show to user.
+/// @param title Optional title of the dialog to show to user.
+- (void)dismissViewWithMessage:(NSString * _Nonnull)message {
+    return [self showErrorController:message completion:^{
+        [self dismissView];
+    }];
+}
+
+/// Return to _loginView while we are not ready to go to Dashboard.
+- (void)dismissView {
+    if ([historyViews count] > 0) {
+        // This mage must return correct fields to login page.
+        if (currentView == _qrCodeView) {
+            UIView *view = [historyViews lastObject];
+            [historyViews removeLastObject];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeView:view back:TRUE animation:TRUE];
+            });
+        } else {
+            // _loginView is the new default view for Nethesis.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeView:_loginView back:TRUE animation:TRUE];
+            });
+        }
+    }
 }
 
 @end
