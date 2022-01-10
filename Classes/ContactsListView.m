@@ -120,6 +120,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [[NethPhoneBook instance] reset];
     
     tableController.tableView.accessibilityIdentifier = @"Contacts table";

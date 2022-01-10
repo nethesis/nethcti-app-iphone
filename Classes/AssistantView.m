@@ -104,6 +104,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                                name:kLinphoneConfiguringStateUpdate
                                              object:nil];
     if (!account_creator) {
+        
         account_creator = linphone_account_creator_new(
                                                        LC,
                                                        [LinphoneManager.instance lpConfigStringForKey:@"xmlrpc_url" inSection:@"assistant" withDefault:@""]
@@ -111,36 +112,54 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     
     if (!mustRestoreView) {
+        
         new_config = NULL;
         number_of_configs_before = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
+        
         [self resetTextFields];
+        
         [self changeView:_loginView back:FALSE animation:FALSE]; // Target changed to _loginView from _welcomeView.
     }
+    
     mustRestoreView = NO;
+    
     _outgoingView = DialerView.compositeViewDescription;
     _qrCodeButton.hidden = !ENABLE_QRCODE; // TODO: Enable QR Code scansioning.
+    
     [self resetLiblinphone:FALSE];
+    
     [self styleContent];
+    
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
-- (void) styleContent {
+
+- (void)styleContent {
+    
     [self setStyleForField:ViewElement_Domain];
     [self setStyleForField:ViewElement_Username];
     [self setStyleForField:ViewElement_Password];
     [self setStyleForButton:ViewElement_NextButton];
     [self setStyleForButton:ViewElement_QrCodeButton];
     
+    // TODO: commentare prima di rilasciare!!!
+    [self findTextField:ViewElement_Domain].text = @"nethctiapp.nethserver.net";
+    [self findTextField:ViewElement_Username].text = @"dctestuser4";
+    [self findTextField:ViewElement_Password].text = @"BG8tuPXQ";
+
     UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[self findButton:ViewElement_NextButton] setImage:loginImage forState:UIControlStateNormal];
     
     UIImage *qrImage = [[UIImage imageNamed:@"qr.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[self findButton:ViewElement_QrCodeButton] setImage:qrImage forState:UIControlStateNormal];
 }
+
 
 - (void)fitContent {
     // always resize content view so that it fits whole available width
@@ -161,13 +180,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Utils
 
 - (void)resetLiblinphone:(BOOL)core {
+    
     if (account_creator) {
+        
         linphone_account_creator_unref(account_creator);
         account_creator = NULL;
     }
+    
     if (core) {
+        
         [LinphoneManager.instance resetLinphoneCore];
     }
+    
     account_creator = linphone_account_creator_new(
                                                    LC, [LinphoneManager.instance lpConfigStringForKey:@"xmlrpc_url" inSection:@"assistant" withDefault:@""]
                                                    .UTF8String);
@@ -187,6 +211,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
 }
 
+
 - (void)loadAssistantConfig:(NSString *)rcFilename {
 	linphone_core_load_config_from_xml(LC,
 									   [LinphoneManager bundleFile:rcFilename].UTF8String);
@@ -201,8 +226,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)reset {
+    
     [LinphoneManager.instance removeAllAccounts];
+    
     [self resetTextFields];
+    
     [self changeView:_loginView back:FALSE animation:FALSE]; // Target changed to _loginView from _welcomeView.
     
     [self styleContent];
@@ -594,6 +622,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)setStyleForField:(ViewElement *)field {
+    
     UIAssistantTextField *assistantTextField = [self findTextField:field];
     if (assistantTextField != nil) {
         [assistantTextField style];
@@ -629,6 +658,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)fillDefaultValues {
+    
     [self resetTextFields];
     
     LinphoneProxyConfig *default_conf = linphone_core_create_proxy_config(LC);
@@ -652,7 +682,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     linphone_proxy_config_destroy(default_conf);
 }
 
+
 - (void)resetTextFields { // TODO: This dosen't need changes to Login View.
+    
     for (UIView *view in @[
         _welcomeView,
         _createAccountView,
@@ -662,14 +694,17 @@ static UICompositeViewDescription *compositeDescription = nil;
         _createAccountActivateSMSView,
         _remoteProvisioningLoginView
     ]) {
+        
         [AssistantView cleanTextField:view];
 #if DEBUG
         // We don't set the sip address default text anymore.
         // UIAssistantTextField *atf = (UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
 #endif
     }
+    
     phone_number_length = 0;
 }
+
 
 + (void)cleanTextField:(UIView *)view {
     if ([view isKindOfClass:UIAssistantTextField.class]) {
@@ -698,6 +733,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (UIAssistantTextField *)findTextField:(ViewElement)tag {
+    
     return (UIAssistantTextField *)[self findView:tag inView:self.contentView ofType:[UIAssistantTextField class]];
 }
 
@@ -710,11 +746,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)prepareErrorLabels {
+    
     UIAssistantTextField *createUsername = [self findTextField:ViewElement_Username];
-    [createUsername
-     showError:[AssistantView
-                errorForLinphoneAccountCreatorUsernameStatus:LinphoneAccountCreatorUsernameStatusInvalid]
-     when:^BOOL(NSString *inputEntry) {
+    
+    [createUsername showError:[AssistantView errorForLinphoneAccountCreatorUsernameStatus:LinphoneAccountCreatorUsernameStatusInvalid]
+                         when:^BOOL(NSString *inputEntry) {
         LinphoneAccountCreatorUsernameStatus s =
         linphone_account_creator_set_username(account_creator, inputEntry.UTF8String);
         if (s != LinphoneAccountCreatorUsernameStatusOk)
@@ -723,10 +759,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         return s != LinphoneAccountCreatorUsernameStatusOk;
     }];
     UIAssistantTextField *createPhone = [self findTextField:ViewElement_Phone];
-    [createPhone
-     showError:[AssistantView
-                errorForLinphoneAccountCreatorPhoneNumberStatus:LinphoneAccountCreatorPhoneNumberStatusInvalid]
-     when:^BOOL(NSString *inputEntry) {
+    
+    [createPhone showError:[AssistantView errorForLinphoneAccountCreatorPhoneNumberStatus:LinphoneAccountCreatorPhoneNumberStatusInvalid]
+                      when:^BOOL(NSString *inputEntry) {
         
         UIAssistantTextField *countryCodeField = [self findTextField:ViewElement_PhoneCC];
         NSString *newStr =
@@ -735,9 +770,11 @@ static UICompositeViewDescription *compositeDescription = nil;
         LinphoneAccountCreatorPhoneNumberStatus s = linphone_account_creator_set_phone_number(
                                                                                               account_creator, inputEntry.length > 0 ? inputEntry.UTF8String : NULL, prefix.UTF8String);
         if (s != LinphoneAccountCreatorPhoneNumberStatusOk) {
+            
             linphone_account_creator_set_phone_number(account_creator, NULL, NULL);
             // if phone is empty and username is empty, this is wrong
             if (linphone_account_creator_get_username(account_creator) == NULL) {
+                
                 s = LinphoneAccountCreatorPhoneNumberStatusTooShort;
             }
         }
@@ -748,9 +785,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     }];
     
     UIAssistantTextField *password = [self findTextField:ViewElement_Password];
-    [password showError:[AssistantView
-                         errorForLinphoneAccountCreatorPasswordStatus:LinphoneAccountCreatorPasswordStatusTooShort]
+    
+    [password showError:[AssistantView errorForLinphoneAccountCreatorPasswordStatus:LinphoneAccountCreatorPasswordStatusTooShort]
                    when:^BOOL(NSString *inputEntry) {
+        
         LinphoneAccountCreatorPasswordStatus s =
         linphone_account_creator_set_password(account_creator, inputEntry.UTF8String);
         password.errorLabel.text = [AssistantView errorForLinphoneAccountCreatorPasswordStatus:s];
@@ -758,15 +796,18 @@ static UICompositeViewDescription *compositeDescription = nil;
     }];
     
     UIAssistantTextField *password2 = [self findTextField:ViewElement_Password2];
+    
     [password2 showError:NSLocalizedString(@"The confirmation code is invalid. \nPlease check your SMS and try again.", nil)
                     when:^BOOL(NSString *inputEntry) {
+        
         return ![inputEntry isEqualToString:[self findTextField:ViewElement_Password].text];
     }];
     
     UIAssistantTextField *email = [self findTextField:ViewElement_Email];
-    [email
-     showError:[AssistantView errorForLinphoneAccountCreatorEmailStatus:LinphoneAccountCreatorEmailStatusMalformed]
-     when:^BOOL(NSString *inputEntry) {
+    
+    [email showError:[AssistantView errorForLinphoneAccountCreatorEmailStatus:LinphoneAccountCreatorEmailStatusMalformed]
+                when:^BOOL(NSString *inputEntry) {
+        
         LinphoneAccountCreatorEmailStatus s =
         linphone_account_creator_set_email(account_creator, inputEntry.UTF8String);
         email.errorLabel.text = [AssistantView errorForLinphoneAccountCreatorEmailStatus:s];
@@ -774,25 +815,34 @@ static UICompositeViewDescription *compositeDescription = nil;
     }];
     
     UIAssistantTextField *domain = [self findTextField:ViewElement_Domain];
+    
     [domain showError:[AssistantView errorForLinphoneAccountCreatorDomainStatus:LinphoneAccountCreatorDomainInvalid]
                  when:^BOOL(NSString *inputEntry) {
+        
         if (![inputEntry isEqualToString:@""]) {
+            
             LinphoneAccountCreatorDomainStatus s =
             linphone_account_creator_set_domain(account_creator, inputEntry.UTF8String);
             domain.errorLabel.text = [AssistantView errorForLinphoneAccountCreatorDomainStatus:s];
             return s != LinphoneAccountCreatorDomainOk;
         }
+        
         return true;
     }];
     
     UIAssistantTextField *url = [self findTextField:ViewElement_URL];
+    
     [url showError:NSLocalizedString(@"Invalid remote provisioning URL", nil)
               when:^BOOL(NSString *inputEntry) {
+        
         if (inputEntry.length > 0) {
+            
             // missing prefix will result in http:// being used
             if ([inputEntry rangeOfString:@"://"].location == NSNotFound) {
+                
                 inputEntry = [NSString stringWithFormat:@"http://%@", inputEntry];
             }
+            
             return (linphone_core_set_provisioning_uri(LC, inputEntry.UTF8String) != 0);
         }
         return TRUE;
@@ -812,12 +862,17 @@ static UICompositeViewDescription *compositeDescription = nil;
      }];
      */
     UIAssistantTextField *smsCode = [self findTextField:ViewElement_SMSCode];
-    [smsCode showError:nil when:^BOOL(NSString *inputEntry) {
+    
+    [smsCode showError:nil
+                  when:^BOOL(NSString *inputEntry) {
+        
         return inputEntry.length != 4;
     }];
+    
     [self shouldEnableNextButton];
     
 }
+
 
 - (void)shouldEnableNextButton {
     BOOL invalidInputs = NO;
@@ -1637,15 +1692,22 @@ _waitView.hidden = YES; \
     if (!emailView.hidden) {
         _createAccountNextButtonPositionConstraint.constant += emailView.frame.size.height;
     }
+    
     // make view scrollable only if next button is too away
     CGRect viewframe = currentView.frame;
+    
     viewframe.size.height = 30 + _createAccountNextButtonPositionConstraint.constant - old + [self findButton:ViewElement_NextButton].frame.origin.y + [self findButton:ViewElement_NextButton].frame.size.height;
+    
     [_contentView setContentSize:viewframe.size];
+    
     if (emailSwitch.isOn) {
+        
         [self findButton:ViewElement_NextButton].enabled = TRUE;
     }
+    
     [self shouldEnableNextButton];
 }
+
 
 - (IBAction)onCountryCodeClick:(id)sender {
     mustRestoreView = YES;

@@ -103,6 +103,7 @@
 }
 
 - (void)update:(BOOL)appear {
+    
 	[self updateSelectedButton:[PhoneMainView.instance currentView]];
 	[self updateMissedCall:linphone_core_get_missed_calls_count(LC) appear:appear];
 	[self updateUnreadMessage:appear];
@@ -132,9 +133,12 @@
     
     if ([view equal:HistoryListView.compositeViewDescription] ||
         [view equal:HistoryDetailsView.compositeViewDescription]) {
+        
         _historyButton.selected = true;
         [self.historyButton.imageView setTintColor:mainColor];
-    } else {
+        
+    }else {
+        
         _historyButton.selected = false;
         [self.historyButton.imageView setTintColor:grey];
     }
@@ -142,18 +146,23 @@
     if ([view equal:ContactsListView.compositeViewDescription] ||
         [view equal:ContactDetailsView.compositeViewDescription] ||
         [view equal:ContactDetailsViewNethesis.compositeViewDescription]) {
+        
         _contactsButton.selected = true;
         [self.contactsButton.imageView setTintColor:mainColor];
-    } else {
+        
+    }else {
+        
         _contactsButton.selected = false;
         [self.contactsButton.imageView setTintColor:grey];
-
     }
 
     if ([view equal:DialerView.compositeViewDescription]) {
+        
         _dialerButton.selected = true;
         [self.dialerButton.imageView setTintColor:mainColor];
-    } else {
+        
+    }else {
+        
         _dialerButton.selected = false;
         [self.dialerButton.imageView setTintColor:grey];
     }
@@ -201,6 +210,7 @@
 #pragma mark - Action Functions
 
 - (IBAction)onHistoryClick:(id)event {
+    // contatti
 	linphone_core_reset_missed_calls_count(LC);
 	[self update:FALSE];
 	[PhoneMainView.instance updateApplicationBadgeNumber];
@@ -211,6 +221,8 @@
 }
 
 - (IBAction)onContactsClick:(id)event {
+    // tastierino
+    
 	[ContactSelection setAddAddress:nil];
 	[ContactSelection enableEmailFilter:FALSE];
 	[ContactSelection setNameOrEmailFilter:nil];
@@ -221,6 +233,7 @@
 }
 
 - (IBAction)onDialerClick:(id)event {
+    
 	[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
     [self.historyButton.imageView setTintColor:grey];
     [self.dialerButton.imageView setTintColor:mainColor];
@@ -228,10 +241,12 @@
 }
 
 - (IBAction)onSettingsClick:(id)event {
+    
 	[PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
 }
 
 - (IBAction)onChatClick:(id)event {
+    
 	[PhoneMainView.instance changeCurrentView:ChatsListView.compositeViewDescription];
 }
 
