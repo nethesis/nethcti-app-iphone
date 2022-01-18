@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresenceViewController">
+            <connections>
+                <outlet property="backButton" destination="kaq-Gc-w19" id="9NC-IV-Qjb"/>
+                <outlet property="topBar" destination="hpk-fC-cXZ" id="N9P-68-chV"/>
+                <outlet property="view" destination="iN0-l3-epB" id="wwd-HT-MMU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpk-fC-cXZ" userLabel="View - topBar">
+                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
+                    <subviews>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-Gc-w19" userLabel="Button - backButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                            <accessibility key="accessibilityConfiguration" label="Back"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="kaq-Gc-w19" secondAttribute="height" multiplier="1:1" id="9fb-b9-ZX2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="back.png">
+                                <color key="titleColor" red="0.28619974850000002" green="0.3214434981" blue="0.3598001301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled" image="back_disabled.png"/>
+                            <connections>
+                                <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="CcV-1x-u8f"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-km-ilc" userLabel="Label - titleLabel">
+                            <rect key="frame" x="66" y="12" width="198" height="42"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
+                            <color key="textColor" red="0.0" green="0.63529411759999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-fM-8Wj">
+                            <rect key="frame" x="274" y="12" width="120" height="42"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="OyC-Xg-0GN"/>
+                                <constraint firstAttribute="height" constant="42" id="XWa-Qn-nnq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" title="DISPONIBILE">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="CRH-km-ilc" firstAttribute="leading" secondItem="kaq-Gc-w19" secondAttribute="trailing" id="12Q-0A-VJx"/>
+                        <constraint firstItem="CRH-km-ilc" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="HEq-e3-ujH"/>
+                        <constraint firstAttribute="trailing" secondItem="IT6-fM-8Wj" secondAttribute="trailing" constant="20" id="ZqL-8s-tvd"/>
+                        <constraint firstAttribute="height" constant="66" id="adt-eL-3gR"/>
+                        <constraint firstItem="kaq-Gc-w19" firstAttribute="height" secondItem="hpk-fC-cXZ" secondAttribute="height" id="cgH-8s-zyJ"/>
+                        <constraint firstItem="IT6-fM-8Wj" firstAttribute="leading" secondItem="CRH-km-ilc" secondAttribute="trailing" constant="10" id="ejT-1j-1Kp"/>
+                        <constraint firstItem="IT6-fM-8Wj" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="gHZ-sN-rfZ"/>
+                        <constraint firstItem="kaq-Gc-w19" firstAttribute="leading" secondItem="hpk-fC-cXZ" secondAttribute="leading" id="jVx-4e-za1"/>
+                        <constraint firstItem="kaq-Gc-w19" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="psp-eY-aS3"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-PQ-HGg" userLabel="View - Filtri">
+                    <rect key="frame" x="57" y="118" width="300" height="110"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7o-y9-s7e" userLabel="View - Preferiti">
+                            <rect key="frame" x="160" y="0.0" width="140" height="110"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obq-Rh-YLp" userLabel="Button - SelezionaPreferiti">
+                                    <rect key="frame" x="29" y="0.0" width="82" height="82"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PREFERITI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCj-n4-acz" userLabel="Label - PREFERITI">
+                                    <rect key="frame" x="31" y="90" width="76" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="140" id="dYp-Ya-Mdq"/>
+                                <constraint firstAttribute="height" constant="110" id="g9u-PD-Bk4"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRE-PL-hJh" userLabel="View - Gruppi">
+                            <rect key="frame" x="0.0" y="0.0" width="140" height="110"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u55-l7-u5O" userLabel="Button - SelezionaGruppo">
+                                    <rect key="frame" x="29" y="0.0" width="82" height="82"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GRUPPI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9P-Y5-h5p" userLabel="Label - GRUPPI">
+                                    <rect key="frame" x="40" y="89" width="57" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="140" id="0tj-RO-X86"/>
+                                <constraint firstAttribute="height" constant="110" id="d98-ZL-NNs"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="e7o-y9-s7e" firstAttribute="centerY" secondItem="vmA-PQ-HGg" secondAttribute="centerY" id="5XD-Id-mJD"/>
+                        <constraint firstItem="aRE-PL-hJh" firstAttribute="leading" secondItem="vmA-PQ-HGg" secondAttribute="leading" id="BK8-Jh-QT4"/>
+                        <constraint firstAttribute="width" constant="300" id="NEM-8w-LVZ"/>
+                        <constraint firstAttribute="height" constant="110" id="mba-Bs-IlW"/>
+                        <constraint firstAttribute="trailing" secondItem="e7o-y9-s7e" secondAttribute="trailing" id="myI-6D-85k"/>
+                        <constraint firstItem="aRE-PL-hJh" firstAttribute="centerY" secondItem="vmA-PQ-HGg" secondAttribute="centerY" id="tU2-05-1fr"/>
+                        <constraint firstItem="e7o-y9-s7e" firstAttribute="leading" secondItem="aRE-PL-hJh" secondAttribute="trailing" constant="20" id="zOz-dI-RBY"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YPe-l8-lbz">
+                    <rect key="frame" x="0.0" y="236" width="414" height="660"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="YPe-l8-lbz" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="6L2-O3-R27"/>
+                <constraint firstItem="YPe-l8-lbz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="E05-bH-KXX"/>
+                <constraint firstItem="hpk-fC-cXZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="F0X-kK-UlT"/>
+                <constraint firstItem="YPe-l8-lbz" firstAttribute="top" secondItem="vmA-PQ-HGg" secondAttribute="bottom" constant="8" symbolic="YES" id="Tar-dI-GSV"/>
+                <constraint firstItem="vmA-PQ-HGg" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="oy0-f5-xWY"/>
+                <constraint firstItem="hpk-fC-cXZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qo5-tV-17x"/>
+                <constraint firstAttribute="bottom" secondItem="YPe-l8-lbz" secondAttribute="bottom" id="tVW-gf-Acg"/>
+                <constraint firstItem="hpk-fC-cXZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uZ6-MS-0YZ"/>
+                <constraint firstItem="vmA-PQ-HGg" firstAttribute="top" secondItem="hpk-fC-cXZ" secondAttribute="bottom" constant="8" symbolic="YES" id="v6w-km-iWu"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back.png" width="32" height="32"/>
+        <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

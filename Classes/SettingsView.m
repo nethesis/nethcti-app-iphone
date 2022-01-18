@@ -194,6 +194,7 @@
 }
 
 - (IASKSettingsReader *)settingsReader {
+    
 	IASKSettingsReader *r = [super settingsReader];
 	NSMutableArray *dataSource = [NSMutableArray arrayWithArray:[r dataSource]];
 	if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateBackground) {
@@ -235,6 +236,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 	UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
 
 	if ([cell isKindOfClass:[IASKPSTextFieldSpecifierViewCell class]]) {
@@ -250,6 +252,7 @@
 	return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *headerFooterView = view;
     headerFooterView.textLabel.textColor = [UIColor getColorByName:@"MainColor"];
@@ -257,6 +260,7 @@
     headerFooterView.textLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:24];
 }
 @end
+
 
 #pragma mark - UINavigationBarEx Class
 
@@ -272,6 +276,7 @@ INIT_WITH_COMMON_CF {
 
 @end
 
+
 #pragma mark - UINavigationControllerEx Class
 
 @interface UINavigationControllerEx : UINavigationController
@@ -281,7 +286,9 @@ INIT_WITH_COMMON_CF {
 @implementation UINavigationControllerEx
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController {
+    
 	[UINavigationControllerEx removeBackground:rootViewController.view];
+    
 	return [super initWithRootViewController:rootViewController];
 }
 
@@ -321,6 +328,7 @@ INIT_WITH_COMMON_CF {
 		viewController.navigationItem.titleView = labelTitleView;
 
 		[super pushViewController:viewController animated:animated];
+        
 	} @catch (NSException *e) {
 		// when device is slow and you are typing an item too much, a crash may happen
 		// because we try to push the same view multiple times - in that case we should
@@ -346,6 +354,8 @@ INIT_WITH_COMMON_CF {
 
 @end
 
+
+
 @implementation SettingsView
 
 #pragma mark - UICompositeViewDelegate Functions
@@ -353,7 +363,9 @@ INIT_WITH_COMMON_CF {
 static UICompositeViewDescription *compositeDescription = nil;
 
 + (UICompositeViewDescription *)compositeViewDescription {
+    
 	if (compositeDescription == nil) {
+        
 		compositeDescription = [[UICompositeViewDescription alloc] init:self.class
 															  statusBar:StatusBarView.class
 																 tabBar:nil
@@ -362,12 +374,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 														 isLeftFragment:YES
 														   fragmentWith:nil];
 	}
+    
 	return compositeDescription;
 }
 
+
 - (UICompositeViewDescription *)compositeViewDescription {
+    
 	return self.class.compositeViewDescription;
 }
+
+
 
 #pragma mark - ViewController Functions
 

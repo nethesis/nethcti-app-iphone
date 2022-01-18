@@ -716,7 +716,7 @@
 		63E27A321C4FECD000D332AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E27A311C4FECD000D332AE /* LaunchScreen.xib */; };
 		63E27A521C50EDB000D332AE /* hold.mkv in Resources */ = {isa = PBXBuildFile; fileRef = 63E27A511C50EB2700D332AE /* hold.mkv */; };
 		63E59A3F1ADE70D900646FB3 /* InAppProductsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E59A3E1ADE70D900646FB3 /* InAppProductsManager.m */; };
-		63E802DB1C625AEF000D5509 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		63E802DB1C625AEF000D5509 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		63EC8D391D7438660066547B /* AssistantLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63EC8D3B1D7438660066547B /* AssistantLinkView.xib */; };
 		63F1DF441BCE618E00EDED90 /* UIAddressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1DF431BCE618E00EDED90 /* UIAddressTextField.m */; };
 		63F1DF4B1BCE983200EDED90 /* CallConferenceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1DF4A1BCE983200EDED90 /* CallConferenceTableView.m */; };
@@ -765,6 +765,8 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
+		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
+		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
 		BB7FB93726E651D000DCC61C /* nethcti_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7FB93526E651D000DCC61C /* nethcti_menu@2x.png */; };
 		BB7FB93826E651D000DCC61C /* nethcti_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7FB93626E651D000DCC61C /* nethcti_menu.png */; };
@@ -868,7 +870,7 @@
 		C3B43D7B2695D977005D01E1 /* nethcti_users_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B43D792695D977005D01E1 /* nethcti_users_sip@2x.png */; };
 		C3CAB9B623A919AD00257577 /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CAB9B523A919AD00257577 /* NethCTIAPI.ErrorCodes.swift */; };
 		C3F4DAE625E0068B00713A0B /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */; };
-		C3F4DAE925E0069400713A0B /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		C3F4DAE925E0069400713A0B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		C3F4DAED25E006A200713A0B /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */; };
 		C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C90FAA7715AF54E6002091CB /* HistoryDetailsView.m */; };
 		CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF15F21C20E4F9A3008B1DE6 /* UIImageViewDeletable.m */; };
@@ -1892,6 +1894,9 @@
 		928B424D5EBE16EAE8708522 /* Pods-NethCTI.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NethCTI.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-NethCTI/Pods-NethCTI.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
 		969DA4BE655B6AEB5803BEA0 /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBD6E980619195CB7EE32AC /* Pods_liblinphoneTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liblinphoneTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
+		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
+		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
 		ABB887316C42EE876A3051A9 /* Pods-linphoneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-linphoneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-linphoneTests/Pods-linphoneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADCA571A7CF61077747BFE53 /* Pods-msgNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationService/Pods-msgNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C77D3BA284DC519E80F23C /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2281,11 +2286,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C3A406F7261DF5FF00526F9B /* History */,
-				C3A406E4261DE6D000526F9B /* Dashboard */,
 				22E0A81D111C44E100B04932 /* AboutView.h */,
 				22E0A81C111C44E100B04932 /* AboutView.m */,
 				636316D31A1DEBCB0009B839 /* AboutView.xib */,
+				6134812E2407B35200695B41 /* AppManager.swift */,
 				633E417F1D74258F00320475 /* AssistantLinkView.h */,
 				633E41801D74258F00320475 /* AssistantLinkView.m */,
 				63EC8D3B1D7438660066547B /* AssistantLinkView.xib */,
@@ -2298,6 +2302,7 @@
 				D3F26BEE15986B71005F9CAB /* CallIncomingView.h */,
 				D3F26BEF15986B71005F9CAB /* CallIncomingView.m */,
 				D38187DC15FE347700C3EDCA /* CallIncomingView.xib */,
+				614C087923D1A37400217F80 /* CallManager.swift */,
 				6346100D1B61409800548952 /* CallOutgoingView.h */,
 				6346100E1B61409800548952 /* CallOutgoingView.m */,
 				634610101B6140A500548952 /* CallOutgoingView.xib */,
@@ -2333,25 +2338,28 @@
 				D35E7594159460560066B1C1 /* ChatsListView.h */,
 				D35E7595159460560066B1C1 /* ChatsListView.m */,
 				D38187B415FE340500C3EDCA /* ChatsListView.xib */,
-				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
-				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
-				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
-				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
-				C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */,
+				6134812C2406CECC00695B41 /* ConfigManager.swift */,
 				D37C639915AADEF4009D0BAC /* ContactDetailsTableView.h */,
 				D37C639A15AADEF5009D0BAC /* ContactDetailsTableView.m */,
+				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
+				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
 				D3128FDE15AABC7E00A2147A /* ContactDetailsView.h */,
 				D3128FDF15AABC7E00A2147A /* ContactDetailsView.m */,
 				D38187BC15FE342200C3EDCA /* ContactDetailsView.xib */,
+				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
+				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
+				C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */,
+				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
 				D3549814158761CF000081D8 /* ContactsListTableView.h */,
 				D3549815158761D0000081D8 /* ContactsListTableView.m */,
 				D35497FB15875372000081D8 /* ContactsListView.h */,
 				D35497FC15875372000081D8 /* ContactsListView.m */,
 				D38187C015FE342800C3EDCA /* ContactsListView.xib */,
-				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
+				EA88F3B0241BDAA100E66528 /* CoreManager.swift */,
 				631098471D4660580041F2B3 /* CountryListView.h */,
 				631098481D4660580041F2B3 /* CountryListView.m */,
 				631098501D4660630041F2B3 /* CountryListView.xib */,
+				C3A406E4261DE6D000526F9B /* Dashboard */,
 				61AEBEB5219198EF00F35E7F /* DevicesListView.h */,
 				61AEBEBC2191990A00F35E7F /* DevicesListView.m */,
 				61AEBEBE2191991F00F35E7F /* DevicesListView.xib */,
@@ -2362,6 +2370,7 @@
 				6306440B1BECB08500134C72 /* FirstLoginView.h */,
 				6306440C1BECB08500134C72 /* FirstLoginView.m */,
 				639E9C951C0DB7BE00019A75 /* FirstLoginView.xib */,
+				C3A406F7261DF5FF00526F9B /* History */,
 				635775231B6673EC00C8B704 /* HistoryDetailsTableView.h */,
 				635775241B6673EC00C8B704 /* HistoryDetailsTableView.m */,
 				C90FAA7615AF54E6002091CB /* HistoryDetailsView.h */,
@@ -2381,6 +2390,7 @@
 				63E59A3E1ADE70D900646FB3 /* InAppProductsManager.m */,
 				6130C85B22BBB493009CC79C /* LaunchScreen.h */,
 				63E27A311C4FECD000D332AE /* LaunchScreen.xib */,
+				614C087623D1A35E00217F80 /* linphone-Bridging-Header.h */,
 				1D3623240D0F684500981E51 /* LinphoneAppDelegate.h */,
 				1D3623250D0F684500981E51 /* LinphoneAppDelegate.m */,
 				D37DC6BF1594AE1800B2A5EB /* LinphoneCoreSettingsStore.h */,
@@ -2392,6 +2402,10 @@
 				D3F83F8C158229C500336684 /* PhoneMainView.h */,
 				D3F83F8D15822ABD00336684 /* PhoneMainView.m */,
 				639E9CB31C0DB88200019A75 /* PhoneMainView.xib */,
+				A9F4924A2790833600564AED /* PresenceViewController.h */,
+				A9F4924B2790833600564AED /* PresenceViewController.m */,
+				A9F4924D279087FE00564AED /* PresenceViewController.xib */,
+				614C087723D1A35F00217F80 /* ProviderDelegate.swift */,
 				CF7602DF21086EB100749F76 /* RecordingsListTableView.h */,
 				CF7602E021086EB200749F76 /* RecordingsListTableView.m */,
 				CF7602D4210867E800749F76 /* RecordingsListView.h */,
@@ -2420,12 +2434,6 @@
 				D326483415887D4400930C67 /* Utils */,
 				34216F3E1547EBCD00EA9777 /* VideoZoomHandler.h */,
 				34216F3F1547EBCD00EA9777 /* VideoZoomHandler.m */,
-				614C087723D1A35F00217F80 /* ProviderDelegate.swift */,
-				614C087923D1A37400217F80 /* CallManager.swift */,
-				EA88F3B0241BDAA100E66528 /* CoreManager.swift */,
-				6134812C2406CECC00695B41 /* ConfigManager.swift */,
-				6134812E2407B35200695B41 /* AppManager.swift */,
-				614C087623D1A35E00217F80 /* linphone-Bridging-Header.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2564,7 +2572,7 @@
 			path = LinphoneUI;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA = {
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				C34B5B2425ED20C100BC6788 /* linphone-Info.plist */,
@@ -3486,12 +3494,12 @@
 		C33FD41F244EFCF100767A47 /* NethModels */ = {
 			isa = PBXGroup;
 			children = (
-				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
-				C33FD422244F013B00767A47 /* NethContact.swift */,
-				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
-				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
 				BB4BF16824C887F300667B10 /* CallIdTest.swift */,
+				C33FD422244F013B00767A47 /* NethContact.swift */,
 				C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */,
+				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
+				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
+				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
 			);
 			path = NethModels;
 			sourceTree = "<group>";
@@ -3865,7 +3873,7 @@
 				Base,
 				it,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3889,7 +3897,7 @@
 				633FEDA81D3CD5590014B822 /* backspace_default.png in Resources */,
 				636316D11A1DEBCB0009B839 /* AboutView.xib in Resources */,
 				C37B2E8F25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib in Resources */,
-				C3F4DAE925E0069400713A0B /* BuildFile in Resources */,
+				C3F4DAE925E0069400713A0B /* (null) in Resources */,
 				C3B0C7BA266E14DF005F86CD /* nethcti_answer_video.png in Resources */,
 				8CBD7BA620B6B82400E5DCC0 /* UIChatConversationInfoTableViewCell.xib in Resources */,
 				244523AF1E8266CC0037A187 /* chat_delivered.png in Resources */,
@@ -3933,7 +3941,7 @@
 				633FEED41D3CD55A0014B822 /* numpad_7_default@2x.png in Resources */,
 				633FEEE01D3CD55A0014B822 /* numpad_8_over~ipad@2x.png in Resources */,
 				633FEDDC1D3CD5590014B822 /* call_start_body_disabled~ipad.png in Resources */,
-				63E802DB1C625AEF000D5509 /* BuildFile in Resources */,
+				63E802DB1C625AEF000D5509 /* (null) in Resources */,
 				633FEE2E1D3CD5590014B822 /* color_F.png in Resources */,
 				633FEDC51D3CD5590014B822 /* call_hangup_disabled@2x.png in Resources */,
 				633FEEDF1D3CD55A0014B822 /* numpad_8_over~ipad.png in Resources */,
@@ -4347,6 +4355,7 @@
 				633FEE241D3CD5590014B822 /* chat_start_body_over~ipad.png in Resources */,
 				8C2A81951F87B8000012A66B /* chat_group_avatar@2x.png in Resources */,
 				3966FC242636DC7000C52FF1 /* color_nethcti_light_magenta.png in Resources */,
+				A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */,
 				633FEE091D3CD5590014B822 /* chat_add_disabled@2x.png in Resources */,
 				633FEE191D3CD5590014B822 /* chat_send_over@2x.png in Resources */,
 				633FEF181D3CD55A0014B822 /* pause_small_over_selected.png in Resources */,
@@ -4863,6 +4872,7 @@
 				63B8D6A21BCBF43100C12B09 /* UIChatCreateCell.m in Sources */,
 				636BC9971B5F921B00C754CE /* UIIconButton.m in Sources */,
 				63423C0A1C4501D000D9A050 /* Contact.m in Sources */,
+				A9F4924C2790833600564AED /* PresenceViewController.m in Sources */,
 				340751E7150F38FD00B89C47 /* UIVideoButton.m in Sources */,
 				34216F401547EBCD00EA9777 /* VideoZoomHandler.m in Sources */,
 				614C087823D1A35F00217F80 /* ProviderDelegate.swift in Sources */,
@@ -5532,7 +5542,7 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
@@ -5665,7 +5675,7 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
@@ -5735,7 +5745,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -5800,7 +5810,7 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
@@ -5872,7 +5882,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -5937,7 +5947,7 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
@@ -5997,7 +6007,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -6041,7 +6051,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
@@ -6083,7 +6093,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
@@ -6126,7 +6136,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
@@ -6181,7 +6191,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;

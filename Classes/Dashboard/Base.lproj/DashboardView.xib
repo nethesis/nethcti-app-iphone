@@ -77,7 +77,6 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="EY6-Z8-ENO" firstAttribute="width" secondItem="Aoo-aO-4bO" secondAttribute="width" multiplier="0.45" id="6gk-tf-vXd"/>
                                         <constraint firstItem="P0X-Ol-AUn" firstAttribute="width" secondItem="Aoo-aO-4bO" secondAttribute="width" multiplier="0.45" id="qhv-X1-sgu"/>
@@ -104,7 +103,7 @@
                                                 <constraint firstAttribute="width" secondItem="dsR-yB-5d5" secondAttribute="height" multiplier="1:1" id="az3-je-iAm"/>
                                             </constraints>
                                             <inset key="imageEdgeInsets" minX="25" minY="25" maxX="25" maxY="25"/>
-                                            <state key="normal" image="dashboard_settings.png" backgroundImage="nethcti_button_circle.png"/>
+                                            <state key="normal" image="icn_presence" backgroundImage="nethcti_button_circle.png"/>
                                             <connections>
                                                 <action selector="onSettingsClick:" destination="-1" eventType="touchUpInside" id="b7x-Q1-rYs"/>
                                             </connections>
@@ -123,7 +122,6 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="fhd-MS-KBx" firstAttribute="width" secondItem="Y72-UC-Mf4" secondAttribute="width" multiplier="0.75" id="4T7-3c-Eio"/>
                         <constraint firstItem="fhd-MS-KBx" firstAttribute="centerX" secondItem="Y72-UC-Mf4" secondAttribute="centerX" id="E7u-6W-e9h"/>
@@ -189,7 +187,7 @@
         <image name="dashboard_contacts.png" width="60" height="60"/>
         <image name="dashboard_dialer.png" width="60" height="60"/>
         <image name="dashboard_history.png" width="60" height="60"/>
-        <image name="dashboard_settings.png" width="60" height="60"/>
+        <image name="icn_presence" width="60" height="60"/>
         <image name="logo_dashboard.png" width="125" height="39"/>
         <image name="nethcti_button_circle.png" width="167" height="167"/>
         <systemColor name="systemBackgroundColor">
