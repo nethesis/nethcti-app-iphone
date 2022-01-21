@@ -765,6 +765,14 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
+		A97616482797207000D19212 /* PresenceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97616472797207000D19212 /* PresenceTableViewController.m */; };
+		A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97E15F527981A4900FE057E /* PresenceTableViewCell.m */; };
+		A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */; };
+		A9916DEC279AB677006A37E7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEB279AB677006A37E7 /* Profile.swift */; };
+		A9916DEE279AC557006A37E7 /* MacroPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DED279AC557006A37E7 /* MacroPermissions.swift */; };
+		A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEF279AF41D006A37E7 /* PresencePanel.swift */; };
+		A9916DF2279AF9EC006A37E7 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF1279AF9EC006A37E7 /* Permissions.swift */; };
+		A9916DF4279AFF43006A37E7 /* AdPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF3279AFF43006A37E7 /* AdPermission.swift */; };
 		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
 		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
@@ -1894,6 +1902,16 @@
 		928B424D5EBE16EAE8708522 /* Pods-NethCTI.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NethCTI.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-NethCTI/Pods-NethCTI.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
 		969DA4BE655B6AEB5803BEA0 /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBD6E980619195CB7EE32AC /* Pods_liblinphoneTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liblinphoneTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A97616462797207000D19212 /* PresenceTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewController.h; sourceTree = "<group>"; };
+		A97616472797207000D19212 /* PresenceTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewController.m; sourceTree = "<group>"; };
+		A97E15F427981A4900FE057E /* PresenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
+		A97E15F527981A4900FE057E /* PresenceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewCell.m; sourceTree = "<group>"; };
+		A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceTableViewCell.xib; sourceTree = "<group>"; };
+		A9916DEB279AB677006A37E7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A9916DED279AC557006A37E7 /* MacroPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroPermissions.swift; sourceTree = "<group>"; };
+		A9916DEF279AF41D006A37E7 /* PresencePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresencePanel.swift; sourceTree = "<group>"; };
+		A9916DF1279AF9EC006A37E7 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		A9916DF3279AFF43006A37E7 /* AdPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPermission.swift; sourceTree = "<group>"; };
 		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
 		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
 		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
@@ -2402,9 +2420,7 @@
 				D3F83F8C158229C500336684 /* PhoneMainView.h */,
 				D3F83F8D15822ABD00336684 /* PhoneMainView.m */,
 				639E9CB31C0DB88200019A75 /* PhoneMainView.xib */,
-				A9F4924A2790833600564AED /* PresenceViewController.h */,
-				A9F4924B2790833600564AED /* PresenceViewController.m */,
-				A9F4924D279087FE00564AED /* PresenceViewController.xib */,
+				A976164527971ECA00D19212 /* Presence */,
 				614C087723D1A35F00217F80 /* ProviderDelegate.swift */,
 				CF7602DF21086EB100749F76 /* RecordingsListTableView.h */,
 				CF7602E021086EB200749F76 /* RecordingsListTableView.m */,
@@ -3479,6 +3495,21 @@
 			path = ringtones;
 			sourceTree = "<group>";
 		};
+		A976164527971ECA00D19212 /* Presence */ = {
+			isa = PBXGroup;
+			children = (
+				A97616462797207000D19212 /* PresenceTableViewController.h */,
+				A97616472797207000D19212 /* PresenceTableViewController.m */,
+				A9F4924A2790833600564AED /* PresenceViewController.h */,
+				A9F4924B2790833600564AED /* PresenceViewController.m */,
+				A9F4924D279087FE00564AED /* PresenceViewController.xib */,
+				A97E15F427981A4900FE057E /* PresenceTableViewCell.h */,
+				A97E15F527981A4900FE057E /* PresenceTableViewCell.m */,
+				A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */,
+			);
+			path = Presence;
+			sourceTree = "<group>";
+		};
 		C33BF99223717014003461CC /* RestApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -3547,6 +3578,11 @@
 				C35E33B923758CB500CC5C24 /* Endpoints.swift */,
 				C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */,
 				C35E33BD23758DFE00CC5C24 /* Action.swift */,
+				A9916DEB279AB677006A37E7 /* Profile.swift */,
+				A9916DED279AC557006A37E7 /* MacroPermissions.swift */,
+				A9916DEF279AF41D006A37E7 /* PresencePanel.swift */,
+				A9916DF1279AF9EC006A37E7 /* Permissions.swift */,
+				A9916DF3279AFF43006A37E7 /* AdPermission.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4581,6 +4617,7 @@
 				C39DC13D2677AB8E0037305E /* nethcti_green_phone@2x.png in Resources */,
 				615A281F217F6FB40060F920 /* security_alert_indicator.png in Resources */,
 				CF7602F5210898CC00749F76 /* rec_off_default@2x.png in Resources */,
+				A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */,
 				633FEDB41D3CD5590014B822 /* call_alt_back_disabled.png in Resources */,
 				398DE717264D209B008B65A9 /* nethcti_blue_circle.png in Resources */,
 				398DE715264D173B008B65A9 /* nethcti_done@2x.png in Resources */,
@@ -4859,6 +4896,7 @@
 				633756391B67BAF400E21BAD /* SideMenuTableView.m in Sources */,
 				2214EB7A12F846B1002A5394 /* UICallButton.m in Sources */,
 				6352A5751BE0D4B800594C1C /* CallSideMenuView.m in Sources */,
+				A9916DF2279AF9EC006A37E7 /* Permissions.swift in Sources */,
 				2214EB8912F84EBB002A5394 /* UIHangUpButton.m in Sources */,
 				630CF5571AF7CE1500539F7A /* UITextField+DoneButton.m in Sources */,
 				2214EBF312F86360002A5394 /* UIMutedMicroButton.m in Sources */,
@@ -4866,6 +4904,7 @@
 				22968A5F12F875C600588287 /* UISpeakerButton.m in Sources */,
 				EA88F3B1241BDAA100E66528 /* CoreManager.swift in Sources */,
 				63701DDF1BA32039006A9AE3 /* UIConfirmationDialog.m in Sources */,
+				A9916DEE279AC557006A37E7 /* MacroPermissions.swift in Sources */,
 				6134812D2406CECC00695B41 /* ConfigManager.swift in Sources */,
 				22C755601317E59C007BC101 /* UIBluetoothButton.m in Sources */,
 				22AA8B0113D83F6300B30535 /* UICamSwitch.m in Sources */,
@@ -4894,6 +4933,8 @@
 				8C1B67061E671826001EA2FE /* AudioHelper.m in Sources */,
 				D35497FE15875372000081D8 /* ContactsListView.m in Sources */,
 				635173F91BA082A40095EB0A /* UIChatBubblePhotoCell.m in Sources */,
+				A9916DEC279AB677006A37E7 /* Profile.swift in Sources */,
+				A9916DF4279AFF43006A37E7 /* AdPermission.swift in Sources */,
 				D3549816158761D0000081D8 /* ContactsListTableView.m in Sources */,
 				633888461BFB2C49001D5E7B /* HPTextViewInternal.m in Sources */,
 				D35498211587716B000081D8 /* StatusBarView.m in Sources */,
@@ -4919,6 +4960,7 @@
 				D3EA53FD159850E80037DC6B /* LinphoneManager.m in Sources */,
 				63B81A0E1B57DA33009604A6 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				633888451BFB2C49001D5E7B /* HPGrowingTextView.m in Sources */,
+				A97616482797207000D19212 /* PresenceTableViewController.m in Sources */,
 				63F1DF441BCE618E00EDED90 /* UIAddressTextField.m in Sources */,
 				D3EA540D1598528B0037DC6B /* ChatsListTableView.m in Sources */,
 				D3EA5411159853750037DC6B /* UIChatCell.m in Sources */,
@@ -4936,6 +4978,7 @@
 				D3A8BB7015A6C7D500F96BE5 /* UIChatBubbleTextCell.m in Sources */,
 				63D11C531C3D501200E8FCEE /* Log.m in Sources */,
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
+				A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */,
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
 				D37C639B15AADEF6009D0BAC /* ContactDetailsTableView.m in Sources */,
 				C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */,
@@ -4984,6 +5027,7 @@
 				D380800215C2894A005BE9BC /* IASKTextField.m in Sources */,
 				D380801315C299D0005BE9BC /* ColorSpaceUtilites.m in Sources */,
 				C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */,
+				A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */,
 				8C92ABF31FA773E50006FB5D /* UIChatNotifiedEventCell.m in Sources */,
 				633FEF581D3CD5E00014B822 /* UIAvatarPresence.m in Sources */,
 				637157A11B283FE200C91677 /* FileTransferDelegate.m in Sources */,

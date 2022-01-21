@@ -25,10 +25,14 @@
 #import "OrderedDictionary.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface ContactsListTableView : UICheckBoxTableView {
+    
   @private OrderedDictionary *addressBookMap;
 }
+
 @property(nonatomic) BOOL ongoing;
+
 - (void)loadData;
 - (void)loadSearchedData;
 - (void)removeAllContacts;

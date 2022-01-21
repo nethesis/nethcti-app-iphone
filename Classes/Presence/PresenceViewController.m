@@ -1,4 +1,9 @@
-
+//
+//  PresenceTableViewController.m
+//  NethCTI
+//
+//  Created by Democom S.r.l. on 18/01/22.
+//
 
 #import "PresenceViewController.h"
 #import "PhoneMainView.h"
@@ -7,7 +12,7 @@
 
 @implementation PresenceViewController
 
-@synthesize tableController;
+@synthesize presenceTableViewController;
 @synthesize topBar;
 
 
@@ -43,8 +48,47 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //tableController.tableView.accessibilityIdentifier = @"Recordings table";
-    //tableController.tableView.tableFooterView = [[UIView alloc] init];
+    NethCTIAPI *api = [NethCTIAPI sharedInstance];
+    /*
+    [api postLogin:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
+        
+        [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+            
+            [self performLogin:meUser domain:domain];
+            
+        } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+            
+            // Get me error handling.
+            LOGE(@"API_ERROR: %@", string);
+            [self performSelectorOnMainThread:@selector(showErrorController:)
+                                   withObject:string
+                                waitUntilDone:YES];
+            
+        }];
+        
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        
+        // Post login error handling.
+        [self performSelectorOnMainThread:@selector(showErrorController:)
+                               withObject:string
+                            waitUntilDone:YES];
+    }];
+    */
+    
+    [api getAllUsersWithSuccessHandler:^(PortableNethUser * _Nullable user) {
+        
+        
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        
+        // Get me error handling.
+        LOGE(@"API_ERROR: %@", string);
+        [self performSelectorOnMainThread:@selector(showErrorController:)
+                               withObject:string
+                            waitUntilDone:YES];
+        
+    }];
+    
+    
 }
 
 
@@ -82,11 +126,20 @@ static UICompositeViewDescription *compositeDescription = nil;
         
     [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
         
-    [self.tableController.tableView setSeparatorColor:[UIColor colorNamed: @"tableSeparator"]];
+    [self.presenceTableViewController.tableView setSeparatorColor:[UIColor colorNamed: @"accentColor"/*@"tableSeparator"*/]];
 }
 
 
 #pragma mark - IBAction Functions
+
+- (IBAction)ibaVisualizzaPreferiti:(id)sender {
+}
+
+- (IBAction)ibaVisualizzaGruppi:(id)sender {
+}
+
+- (IBAction)ibaSelezionePresence:(id)sender {
+}
 
 - (IBAction)onBackPressed:(id)sender {
     

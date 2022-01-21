@@ -1545,7 +1545,9 @@ _waitView.hidden = YES; \
 }
 
 - (IBAction)onLoginClick:(id)sender {
+    
     ONCLICKBUTTON(sender, 100, {
+        
         _waitView.hidden = NO;
         NSString* domain = [NSString stringWithUTF8String:[self findTextField:ViewElement_Domain].text.UTF8String];
         NSString* username = [NSString stringWithUTF8String:[self findTextField:ViewElement_Username].text.UTF8String];
@@ -1568,6 +1570,7 @@ _waitView.hidden = YES; \
                                    withObject:string
                                 waitUntilDone:YES];
         }];
+        
     });
 }
 
