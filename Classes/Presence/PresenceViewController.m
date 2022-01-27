@@ -82,8 +82,6 @@ static UICompositeViewDescription *compositeDescription = nil;
             for (NSString *idGroupEnable in portableNethUser.arrayPermissionsIdGroups) {
                 
                 LOGD(@"idGroupEnable: %@", idGroupEnable);
-
-                
                 
                 for (PortableGroup *currentGroup in arrayGroups) {
                     
@@ -93,12 +91,13 @@ static UICompositeViewDescription *compositeDescription = nil;
                     if (idGroupEnable == currentGroup.id_group) {
 
                         // aggiungi gruppo..
+                        printf("currentGroup.id_group: %@", currentGroup.users);
+                        LOGD(@"currentGroup.id_group: %@", currentGroup.users);
                     }
                     
                 }
                 
             }
-            
             
             
             
