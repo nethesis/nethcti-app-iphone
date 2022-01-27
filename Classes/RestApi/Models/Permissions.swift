@@ -14,29 +14,73 @@ struct Permissions: Codable {
         ad_recording,
         pickup,
         hangup: AdPermission?
+    var arrayPermissionGroups: [[String: AdPermission]]?
+    var arrayKeyGroupEnable = [String]()
 }
+
 
 extension Permissions {
     
     init?(from:[String:Any]) {
         
-        guard let spy = from["spy"] as? AdPermission,
-            let intrude = from["intrude"] as? AdPermission,
-            let ad_recording = from["ad_recording"] as? AdPermission,
-            let pickup = from["pickup"] as? AdPermission,
-            let hangup = from["hangup"] as? AdPermission else {
+        guard let spy = from["spy"] as? [String: Any],
+            let intrude = from["intrude"] as? [String: Any],
+            let ad_recording = from["ad_recording"] as? [String: Any],
+            let pickup = from["pickup"] as? [String: Any],
+            let hangup = from["hangup"] as? [String: Any] else {
                 return nil
         }
         
         // azione “Spia”
-        self.spy = spy
+        self.spy = AdPermission(from: spy)
         // azione “Intromettiti”
-        self.intrude = intrude
+        self.intrude = AdPermission(from: intrude)
         // azione “Registra”
-        self.ad_recording = ad_recording
-        self.pickup = pickup
+        self.ad_recording = AdPermission(from: ad_recording)
+        self.pickup = AdPermission(from: pickup)
         // azione “Chiudi”
-        self.hangup = hangup
+        self.hangup = AdPermission(from: hangup)
+        
+        var arrayAdPermission: [[String: AdPermission]] = []
+        var arrayKeyNameEnables: [String] = []
+        
+        for (key, _) in from {
+            
+            //print("key: \(key)")
+
+            if key.contains("grp_") {
+                
+                //print("value: \(value)")
+
+                guard let currentGroup = from[key] as? [String: Any] else {
+                    return nil
+                }
+                //print("currentGroup: \(String(describing: currentGroup))")
+
+                let currentGroupAdPermission: AdPermission = AdPermission(from: currentGroup)!
+                //print("currentGroupAdPermission: \(currentGroupAdPermission)")
+
+                arrayAdPermission.append([key : currentGroupAdPermission])
+                
+                if currentGroupAdPermission.value {
+                    
+                    arrayKeyNameEnables.append(key)
+                }
+                
+            }else {
+                
+                print("Non aggiunto")
+            }
+        }
+                
+        self.arrayPermissionGroups = arrayAdPermission
+        //print("arrayPermissionGroups.count: \(arrayPermissionGroups?.count)")
+        
+        //print("arrayKeyNameEnables: \(arrayKeyNameEnables)")
+
+        self.arrayKeyGroupEnable = arrayKeyNameEnables
+        //print("arrayKeyGroupEnable.count: \(arrayKeyGroupEnable.count)")
+
     }
     
     func export() -> Permissions {
@@ -44,6 +88,8 @@ extension Permissions {
                                 intrude: self.intrude,
                                 ad_recording: self.ad_recording,
                                 pickup: self.pickup,
-                                hangup: self.hangup)
+                                hangup: self.hangup,
+                                arrayPermissionGroups: self.arrayPermissionGroups,
+                                arrayKeyGroupEnable: self.arrayKeyGroupEnable)
     }
 }

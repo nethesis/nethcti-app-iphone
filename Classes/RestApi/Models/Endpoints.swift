@@ -46,10 +46,11 @@ extension Endpoints {
         
         self.endpointsExtension = extensions
         
+        
         // Get the main extension.
-        let ext = from["mainextension"] as? [[String:Any]]
-        let idExtension = ext?[0]["id"] as? String
-        self.mainExtension = idExtension
+        let mainextension = from["mainextension"] as? [[String:Any]]
+        let idFirstMainextension = mainextension?[0]["id"] as? String
+        self.mainExtension = idFirstMainextension
     }
     
     public func export() -> Endpoints {

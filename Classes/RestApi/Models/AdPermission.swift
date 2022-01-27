@@ -11,7 +11,7 @@ struct AdPermission: Codable {
     
     let id: String?
     let name: String?
-    let value: Bool?
+    let value: Bool
 }
 
 extension AdPermission {

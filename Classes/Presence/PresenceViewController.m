@@ -49,44 +49,114 @@ static UICompositeViewDescription *compositeDescription = nil;
     [super viewDidLoad];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    /*
-    [api postLogin:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
         
-        [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+    // Download info utente
+    [api getUserMeWithSuccessHandler:^(PortableNethUser * _Nullable portableNethUser) {
+        
+        printf("portableNethUser.mainextension: %@", portableNethUser.mainExtension);
+
+        LOGD(@"portableNethUser.recallOnBusy: %@", portableNethUser.recallOnBusy);
+
+        LOGD(@"portableNethUser.permissionsSpy: %@", portableNethUser.permissionsSpy ? @"Yes" : @"No");
+
+        LOGD(@"portableNethUser.permissionsIntrude: %@", portableNethUser.permissionsIntrude ? @"Yes" : @"No");
+        
+        LOGD(@"portableNethUser.permissionsRecording: %@", portableNethUser.permissionsRecording ? @"Yes" : @"No");
+        
+        LOGD(@"portableNethUser.permissionsPickup: %@", portableNethUser.permissionsPickup ? @"Yes" : @"No");
+        
+        printf("portableNethUser.mainextension: %@", portableNethUser.arrayPermissionsIdGroups);
+
+        LOGD(@"portableNethUser.recallOnBusy: %@", portableNethUser.arrayPermissionsIdGroups);
+        
+        
+        // Download gruppi
+        [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
             
-            [self performLogin:meUser domain:domain];
+            LOGD(@"arrayGroups.count: %d", arrayGroups.count);
+
+            PortableGroup *portableGroup = arrayGroups.firstObject;
+            LOGD(@"currentGroup: %@", portableGroup.id_group);
+
+            
+            for (NSString *idGroupEnable in portableNethUser.arrayPermissionsIdGroups) {
+                
+                LOGD(@"idGroupEnable: %@", idGroupEnable);
+
+                
+                
+                for (PortableGroup *currentGroup in arrayGroups) {
+                    
+                    printf("currentGroup.id_group: %@", currentGroup.id_group);
+                    LOGD(@"currentGroup.id_group: %@", currentGroup.id_group);
+                    
+                    if (idGroupEnable == currentGroup.id_group) {
+
+                        // aggiungi gruppo..
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            // Download utenti
+            [api getUserAllWithSuccessHandler:^(NSArray * _Nonnull arrayUsers) {
+                
+                //printf("arrayUsers: %@", arrayUsers);
+                LOGD(@"arrayUsers.firstObject: %@", arrayUsers.firstObject);
+
+                
+                PortablePresenceUser *firstPortablePresenceUser = arrayUsers.firstObject;
+                LOGD(@"firstPortablePresenceUser.presence: %@", firstPortablePresenceUser.presence);
+
+                LOGD(@"firstPortablePresenceUser.mainExtension: %@", firstPortablePresenceUser.mainExtension);
+
+                LOGD(@"arrayUsers.count: %d", arrayUsers.count);
+                
+                
+
+            } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                
+                // Get me error handling.
+                LOGE(@"API_ERROR: %@", string);
+                
+                [self performSelectorOnMainThread:@selector(showErrorController:)
+                                       withObject:string
+                                    waitUntilDone:YES];
+            }];
+            
+            
             
         } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             
             // Get me error handling.
             LOGE(@"API_ERROR: %@", string);
+            
             [self performSelectorOnMainThread:@selector(showErrorController:)
                                    withObject:string
                                 waitUntilDone:YES];
-            
         }];
-        
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
-        
-        // Post login error handling.
-        [self performSelectorOnMainThread:@selector(showErrorController:)
-                               withObject:string
-                            waitUntilDone:YES];
-    }];
-    */
-    
-    [api getAllUsersWithSuccessHandler:^(PortableNethUser * _Nullable user) {
         
         
     } errorHandler:^(NSInteger code, NSString * _Nullable string) {
         
         // Get me error handling.
         LOGE(@"API_ERROR: %@", string);
+        
         [self performSelectorOnMainThread:@selector(showErrorController:)
                                withObject:string
                             waitUntilDone:YES];
-        
     }];
+    
+    
+
+    
+    
+    
+
     
     
 }

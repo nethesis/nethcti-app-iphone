@@ -8,13 +8,20 @@
 import Foundation
 
 struct NethUser: Codable {
+    
     let name: String?
     let username: String?
     let presence: String?
     let endpoints: Endpoints
     let profile: Profile
     let recallOnBusy: String?
-
+    let mainExtension: String?
+    let permissionsSpy: Bool?
+    let permissionsIntrude: Bool?
+    let permissionsRecording: Bool?
+    let permissionsPickup: Bool?
+    let permissionsHangup: Bool?
+    let arrayPermissionsIdGroups: Array <String>?
 }
 
 enum SerializationError: Error {
@@ -57,14 +64,31 @@ extension NethUser {
             return nil
         }
         self.recallOnBusy = recallOnBusy
+        
+        self.mainExtension = self.endpoints.mainExtension
+
+        self.permissionsSpy = self.profile.macroPermissions?.presencePanel?.permissions?.spy?.value
+
+        self.permissionsIntrude = self.profile.macroPermissions?.presencePanel?.permissions?.intrude?.value
+        
+        self.permissionsRecording = self.profile.macroPermissions?.presencePanel?.permissions?.ad_recording?.value
+        
+        self.permissionsPickup = self.profile.macroPermissions?.presencePanel?.permissions?.pickup?.value
+        
+        self.permissionsHangup = self.profile.macroPermissions?.presencePanel?.permissions?.hangup?.value
+        
+        self.arrayPermissionsIdGroups = self.profile.macroPermissions?.presencePanel?.permissions?.arrayKeyGroupEnable
     }
+    
     
     public func export() -> PortableNethUser {
         
         let user = PortableNethUser.init(from: self)
         user?.endpoints = self.endpoints.export()
+        
         return user!
     }
+    
     
     public func portable() -> PortableNethUser {
         
@@ -82,8 +106,16 @@ extension NethUser {
     @objc public let proxyPort : Int
     let profile : Profile
     @objc public let recallOnBusy: String?
-
+    @objc public let mainExtension: String?
+    @objc public let permissionsSpy: Bool
+    @objc public let permissionsIntrude: Bool
+    @objc public let permissionsRecording: Bool
+    @objc public let permissionsPickup: Bool
+    @objc public let permissionsHangup: Bool
+    @objc public let arrayPermissionsIdGroups: Array <String>
+    
     init?(from:NethUser){
+        
         self.name = from.name
         self.username = from.username
         self.presence = from.presence
@@ -94,8 +126,25 @@ extension NethUser {
         self.secret = mobile.secret
         self.intern = mobile.username
         self.proxyPort = mobile.proxyPort ?? -1
-        
         self.profile = from.profile
+        
+        self.mainExtension = from.endpoints.mainExtension
+        
+        // --- Permessi ---
         self.recallOnBusy = from.recallOnBusy
+
+        self.permissionsSpy = ((from.profile.macroPermissions?.presencePanel?.permissions?.spy?.value) != nil)
+        
+        self.permissionsIntrude = ((from.profile.macroPermissions?.presencePanel?.permissions?.intrude?.value) != nil)
+        
+        self.permissionsRecording = ((self.profile.macroPermissions?.presencePanel?.permissions?.ad_recording?.value) != nil)
+
+        self.permissionsPickup = ((self.profile.macroPermissions?.presencePanel?.permissions?.pickup?.value) != nil)
+        
+        self.permissionsHangup = ((self.profile.macroPermissions?.presencePanel?.permissions?.hangup?.value) != nil)
+
+        self.arrayPermissionsIdGroups = self.profile.macroPermissions?.presencePanel?.permissions?.arrayKeyGroupEnable ?? []
+        
+        // -----------------
     }
 }

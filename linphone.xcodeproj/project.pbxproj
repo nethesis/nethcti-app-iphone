@@ -765,6 +765,7 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
+		A971E369279F0367009017E7 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971E368279F0367009017E7 /* Group.swift */; };
 		A97616482797207000D19212 /* PresenceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97616472797207000D19212 /* PresenceTableViewController.m */; };
 		A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97E15F527981A4900FE057E /* PresenceTableViewCell.m */; };
 		A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */; };
@@ -773,6 +774,7 @@
 		A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEF279AF41D006A37E7 /* PresencePanel.swift */; };
 		A9916DF2279AF9EC006A37E7 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF1279AF9EC006A37E7 /* Permissions.swift */; };
 		A9916DF4279AFF43006A37E7 /* AdPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF3279AFF43006A37E7 /* AdPermission.swift */; };
+		A996E82827A04CDF007AD6E4 /* PresenceUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996E82727A04CDF007AD6E4 /* PresenceUser.swift */; };
 		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
 		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
@@ -1902,6 +1904,7 @@
 		928B424D5EBE16EAE8708522 /* Pods-NethCTI.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NethCTI.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-NethCTI/Pods-NethCTI.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
 		969DA4BE655B6AEB5803BEA0 /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBD6E980619195CB7EE32AC /* Pods_liblinphoneTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liblinphoneTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A971E368279F0367009017E7 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		A97616462797207000D19212 /* PresenceTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewController.h; sourceTree = "<group>"; };
 		A97616472797207000D19212 /* PresenceTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewController.m; sourceTree = "<group>"; };
 		A97E15F427981A4900FE057E /* PresenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
@@ -1912,6 +1915,7 @@
 		A9916DEF279AF41D006A37E7 /* PresencePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresencePanel.swift; sourceTree = "<group>"; };
 		A9916DF1279AF9EC006A37E7 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
 		A9916DF3279AFF43006A37E7 /* AdPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPermission.swift; sourceTree = "<group>"; };
+		A996E82727A04CDF007AD6E4 /* PresenceUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceUser.swift; sourceTree = "<group>"; };
 		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
 		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
 		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
@@ -3583,6 +3587,8 @@
 				A9916DEF279AF41D006A37E7 /* PresencePanel.swift */,
 				A9916DF1279AF9EC006A37E7 /* Permissions.swift */,
 				A9916DF3279AFF43006A37E7 /* AdPermission.swift */,
+				A971E368279F0367009017E7 /* Group.swift */,
+				A996E82727A04CDF007AD6E4 /* PresenceUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4881,6 +4887,7 @@
 				8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */,
 				1D3623260D0F684500981E51 /* LinphoneAppDelegate.m in Sources */,
 				614C087A23D1A37400217F80 /* CallManager.swift in Sources */,
+				A996E82827A04CDF007AD6E4 /* PresenceUser.swift in Sources */,
 				CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */,
 				C3A406FE261DF6AE00526F9B /* HistoryTableViewCell.swift in Sources */,
 				22F2508E107141E100AC9B3F /* DialerView.m in Sources */,
@@ -5018,6 +5025,7 @@
 				D3807FF615C2894A005BE9BC /* IASKSpecifier.m in Sources */,
 				D3807FF815C2894A005BE9BC /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				C35E33BC23758DD600CC5C24 /* EndpointExtensions.swift in Sources */,
+				A971E369279F0367009017E7 /* Group.swift in Sources */,
 				D3807FFA15C2894A005BE9BC /* IASKPSTextFieldSpecifierViewCell.m in Sources */,
 				D3807FFC15C2894A005BE9BC /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
 				C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */,

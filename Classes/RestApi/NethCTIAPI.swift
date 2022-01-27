@@ -230,27 +230,27 @@ import Foundation
                               headers: postArgs,
                               body: nil,
                               successHandler: {
-                    
-                    data, response in
-                    // Here we are sure that status code is 200.
-                    ApiCredentials.clear()
                                 
-                    successHandler("Logged out.")
+                                data, response in
+                                // Here we are sure that status code is 200.
+                                ApiCredentials.clear()
                                 
-                }, errorHandler: {error, response in
-                    // Error handling.
-                    guard error == nil,
-                          let httpResponse = response as? HTTPURLResponse else {
-                        
-                        successHandler("Unknown error: Not logged out.")
-                        
-                        return
-                    }
-                    
-                    successHandler("\(httpResponse.statusCode): Not logged out.")
-                    
-                    return
-                })
+                                successHandler("Logged out.")
+                                
+                              }, errorHandler: {error, response in
+                                // Error handling.
+                                guard error == nil,
+                                      let httpResponse = response as? HTTPURLResponse else {
+                                    
+                                    successHandler("Unknown error: Not logged out.")
+                                    
+                                    return
+                                }
+                                
+                                successHandler("\(httpResponse.statusCode): Not logged out.")
+                                
+                                return
+                              })
                 
             } else {
                 
@@ -311,52 +311,52 @@ import Foundation
                       headers: getHeaders,
                       body: nil,
                       successHandler: {
-            
-            data, response in
-            guard let responseData = data else { // Responde handling.
-                
-                errorHandler(-2, "No user information provided, contact an administrator.")
-                
-                return
-            }
-            
-            do{
-                let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                let nethUser = try NethUser(from: userDict)
-                
-                // Set the right username if obtained (even with QrCode login too).
-                ApiCredentials.Username = nethUser?.username ?? ApiCredentials.Username
-                ApiCredentials.MainExtension = nethUser?.endpoints.mainExtension ?? ""
-                ApiCredentials.NethUserExport = nethUser?.export()
-                
-                self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
-                    //ignored
-                }
-                
-                successHandler(nethUser?.portable())
-                
-            } catch (let errorThrown) {
-                
-                errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
-                
-                return
-            }
-            
-        }, errorHandler: {
-            
-            error, response in
-            // Error handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                
-                errorHandler(-2, "Error calling GET on /user/me: missing response data.")
-                
-                return
-            }
-            
-            errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
-            
-            return
-        })
+                        
+                        data, response in
+                        guard let responseData = data else { // Responde handling.
+                            
+                            errorHandler(-2, "No user information provided, contact an administrator.")
+                            
+                            return
+                        }
+                        
+                        do{
+                            let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            let nethUser = try NethUser(from: userDict)
+                            
+                            // Set the right username if obtained (even with QrCode login too).
+                            ApiCredentials.Username = nethUser?.username ?? ApiCredentials.Username
+                            ApiCredentials.MainExtension = nethUser?.endpoints.mainExtension ?? ""
+                            ApiCredentials.NethUserExport = nethUser?.export()
+                            
+                            self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
+                                //ignored
+                            }
+                            
+                            successHandler(nethUser?.portable())
+                            
+                        } catch (let errorThrown) {
+                            
+                            errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
+                            
+                            return
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /user/me: missing response data.")
+                            
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
+                        
+                        return
+                      })
     }
     
     
@@ -416,22 +416,22 @@ import Foundation
                       headers: headers,
                       body: body,
                       successHandler: {
-            
-            data, response in
-            guard let responseData = data as Data? else {
-                print("[WEDO] [APNS SERVER]: No data provided")
-                success(false)
-                return
-            }
-            
-            let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-            print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
-            success(true)
                         
-        }, errorHandler: { error, response in
-            
-            success(false)
-        })
+                        data, response in
+                        guard let responseData = data as Data? else {
+                            print("[WEDO] [APNS SERVER]: No data provided")
+                            success(false)
+                            return
+                        }
+                        
+                        let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
+                        print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
+                        success(true)
+                        
+                      }, errorHandler: { error, response in
+                        
+                        success(false)
+                      })
     }
     
     
@@ -461,39 +461,39 @@ import Foundation
                       headers: getHeaders,
                       body: nil,
                       successHandler: {
-            
-            data, response in
-            
-            guard let responseData = data else { // Response handling.
-                errorHandler(-2, "No data provided.")
-                return
-            }
-            
-            do{
-                // Nothing here atm.
-                _ = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                successHandler()
-                
-            } catch {
-                
-                errorHandler(-2, "json error: \(error.localizedDescription)")
-                return
-            }
                         
-        }, errorHandler: {
-            
-            error, response in
-            // Error handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                
-                errorHandler(-2, "Error calling GET on /user/presence: missing response data.")
-                return
-            }
-            
-            errorHandler(httpResponse.statusCode, "Error calling GET on /user/presence")
-            
-            return
-        })
+                        data, response in
+                        
+                        guard let responseData = data else { // Response handling.
+                            errorHandler(-2, "No data provided.")
+                            return
+                        }
+                        
+                        do{
+                            // Nothing here atm.
+                            _ = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            successHandler()
+                            
+                        } catch {
+                            
+                            errorHandler(-2, "json error: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /user/presence: missing response data.")
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling GET on /user/presence")
+                        
+                        return
+                      })
     }
     
     
@@ -549,59 +549,59 @@ import Foundation
                       headers: getHeaders,
                       body: nil,
                       successHandler: {
-            
-            data, response in
-            guard let responseData = data else { // Response handling.
-                
-                errorHandler(1, "No data provided.")
-                return
-            }
-            
-            do{ // Receive the results.
-                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                
-                let contacts = try NethPhoneBookReturn(raw: rawContacts) // Convert to phonebook.
-                
-                // NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
-                NethPhoneBook.instance().load(contacts.rows.count, more: contacts.rows.count >= self.cLimit)
-                
-                success(contacts.rows.map({ (NethContact) -> Contact in
-                    
-                    NethContact.toLinphoneContact()
-                }))
-                
-            } catch SerializationError.missing(let obj) {
-                
-                errorHandler(1, "Missing json fields: \(obj)")
-                
-            } catch {
-                
-                errorHandler(1, "Unknown error: \(error.localizedDescription)") // error refer to catched error.
-            }
                         
-        }, errorHandler: {
-            
-            error, response in // Error handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                
-                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
-                
-                return
-            }
-            
-            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
-            
-            return
-        })
+                        data, response in
+                        guard let responseData = data else { // Response handling.
+                            
+                            errorHandler(1, "No data provided.")
+                            return
+                        }
+                        
+                        do{ // Receive the results.
+                            let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            
+                            let contacts = try NethPhoneBookReturn(raw: rawContacts) // Convert to phonebook.
+                            
+                            // NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
+                            NethPhoneBook.instance().load(contacts.rows.count, more: contacts.rows.count >= self.cLimit)
+                            
+                            success(contacts.rows.map({ (NethContact) -> Contact in
+                                
+                                NethContact.toLinphoneContact()
+                            }))
+                            
+                        } catch SerializationError.missing(let obj) {
+                            
+                            errorHandler(1, "Missing json fields: \(obj)")
+                            
+                        } catch {
+                            
+                            errorHandler(1, "Unknown error: \(error.localizedDescription)") // error refer to catched error.
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
+                            
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
+                        
+                        return
+                      })
     }
     
     
     
     /**
-     GET all users of my groups from NethCTI server.
+     GET my user info from NethCTI server.
      */
-    @objc public func getAllUsers(successHandler: @escaping (PortableNethUser?) -> Void,
-                                  errorHandler: @escaping (Int, String?) -> Void) -> Void {
+    @objc public func getUserMe(successHandler: @escaping (PortableNethUser?) -> Void,
+                                errorHandler: @escaping (Int, String?) -> Void) -> Void {
         
         if !ApiCredentials.checkCredentials() {
             
@@ -625,58 +625,214 @@ import Foundation
                       method: "GET",
                       headers: getHeaders,
                       body: nil,
-                      successHandler: {
+                      successHandler: {data, response in
+                        
+                        guard let responseData = data else { // Responde handling.
+                            
+                            errorHandler(-2, "No information provided, contact an administrator.")
+                            
+                            return
+                        }
+                        
+                        do{
+                            
+                            let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            //print("userDict: \(userDict)")
+                            
+                            let nethUser = try NethUser(from: userDict)
+                            
+                            //print("nethUser?.profile.macroPermissions?.presencePanel?.permissions?.hangup?.name: \(String(describing: nethUser?.profile.macroPermissions?.presencePanel?.permissions?.hangup?.name))")
+                            
+                            successHandler(nethUser?.portable())
+                            
+                            
+                        } catch (let errorThrown) {
+                            
+                            errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
+                            
+                            return
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /user/me: missing response data.")
+                            
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
+                        
+                        return
+                      })
+    }
+    
+    
+    @objc public func getGroups(successHandler: @escaping(Array<PortableGroup>) -> Void,
+                                errorHandler: @escaping(Int, String?) -> Void) -> Void { // Ready for the second release.
+        
+        if !ApiCredentials.checkCredentials() {
             
-            data, response in
-            guard let responseData = data else { // Responde handling.
-                
-                errorHandler(-2, "No information provided, contact an administrator.")
-                
-                return
-            }
-            
-            do{
-                                
-                let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                print("userDict: \(userDict)")
-
-                let nethUser = try NethUser(from: userDict)
-                print("nethUser.username: \(nethUser?.username)")
-
-                // Set the right username if obtained (even with QrCode login too).
-                ApiCredentials.Username = nethUser?.username ?? ApiCredentials.Username
-                ApiCredentials.MainExtension = nethUser?.endpoints.mainExtension ?? ""
-                ApiCredentials.NethUserExport = nethUser?.export()
-                
-                self.registerPushToken(ApiCredentials.DeviceToken, unregister: false) { success in
-                    //ignored
-                }
-                
-                successHandler(nethUser?.portable())
-                
-                
-            } catch (let errorThrown) {
-                
-                errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
-                
-                return
-            }
-            
-        }, errorHandler: {
-            
-            error, response in
-            // Error handling.
-            guard let httpResponse = response as? HTTPURLResponse else {
-                
-                errorHandler(-2, "Error calling GET on /user/me: missing response data.")
-                
-                return
-            }
-            
-            errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
-        })
+        }
+        
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/opgroups" // Set the endpoint URL.
+        
+        guard let url = URL(string:endPoint) else {
+            
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        self.baseCall(url: url,
+                      method: "GET",
+                      headers: getHeaders,
+                      body: nil,
+                      successHandler: {
+                        
+                        data, response in
+                        
+                        guard let responseData = data else { // Response handling.
+                            errorHandler(-2, "No data provided.")
+                            return
+                        }
+                        
+                        do {
+                            
+                            let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            //print("resultJson: \(resultJson)")
+                            
+                            var arrayGroups: [PortableGroup] = []
+                            
+                            for (key, value) in resultJson {
+                                
+                                let currentGroup: Group = Group(key: key, value: value as! [String: Any])!
+                                //print("currentGroup: \(currentGroup)")
+                                
+                                arrayGroups.append(currentGroup.portable() as PortableGroup)
+                            }
+                            
+                            //print("arrayGroups: \(arrayGroups)")
+                            
+                            successHandler(arrayGroups)
+                            
+                        } catch {
+                            
+                            errorHandler(-2, "json error: \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /astproxy/opgroups: missing response data.")
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling GET on /astproxy/opgroups")
+                        
+                        return
+                      })
+    }
+    
+    
+    /**
+     GET all users of my groups from NethCTI server.
+     */
+    @objc public func getUserAll(successHandler: @escaping(Array<PortablePresenceUser>) -> Void,
+                                 errorHandler: @escaping (Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/user/endpoints/all" // Set the endpoint URL.
+        
+        guard let url = URL(string: endPoint) else {
+            
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
+            
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        self.baseCall(url: url,
+                      method: "GET",
+                      headers: getHeaders,
+                      body: nil,
+                      successHandler: {data, response in
+                        
+                        guard let responseData = data else { // Responde handling.
+                            
+                            errorHandler(-2, "No information provided, contact an administrator.")
+                            
+                            return
+                        }
+                        
+                        do{
+                            
+                            let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            //print("resultJson: \(resultJson)")
+                            
+                            var arrayUsers: [PortablePresenceUser] = []
+                            
+                            for (_, value) in resultJson {
+                                
+                                //print("current key: \(key)")
+                                //print("current value: \(value)")
+                                
+                                if let valueDictionary = value as? [String: Any] {
+                                    
+                                    let currentPresenceUser = try PresenceUser(from: valueDictionary)
+                                    //print("currentPresenceUser: \(String(describing: currentPresenceUser))")
+                                    
+                                    arrayUsers.append((currentPresenceUser?.portable())!)
+                                }
+                            }
+                            
+                            //print("arrayUsers: \(arrayUsers)")
+                            
+                            successHandler(arrayUsers)
+                            
+                            
+                        } catch (let errorThrown) {
+                            
+                            errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
+                            
+                            return
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /user/endpoints/all: missing response data.")
+                            
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "No users information provided, contact an administrator.")
+                        
+                        return
+                      })
     }
     
     
