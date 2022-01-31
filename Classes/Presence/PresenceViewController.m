@@ -1,5 +1,5 @@
 //
-//  PresenceTableViewController.m
+//  PresenceViewController.m
 //  NethCTI
 //
 //  Created by Democom S.r.l. on 18/01/22.
@@ -7,13 +7,16 @@
 
 #import "PresenceViewController.h"
 #import "PhoneMainView.h"
+#import "PresenceTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 
 @implementation PresenceViewController
 
-@synthesize presenceTableViewController;
 @synthesize topBar;
+@synthesize arrayUsers;
+@synthesize userMe;
 
 
 #pragma mark - UICompositeViewDelegate Functions
@@ -65,55 +68,102 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         LOGD(@"portableNethUser.permissionsPickup: %@", portableNethUser.permissionsPickup ? @"Yes" : @"No");
         
-        printf("portableNethUser.mainextension: %@", portableNethUser.arrayPermissionsIdGroups);
+        //printf("portableNethUser.mainextension: %@", portableNethUser.arrayPermissionsIdGroups);
+        LOGD(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.userMe = portableNethUser;
+            
+            self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
+            
+            [self.ibButtonSelezionePresence setImage:[UIImage imageNamed:@"icn_online"] forState:UIControlStateNormal];
+        });
+        
+        
+        
 
-        LOGD(@"portableNethUser.recallOnBusy: %@", portableNethUser.arrayPermissionsIdGroups);
         
-        
-        // Download gruppi
+        // Download GRUPPI
         [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
             
-            LOGD(@"arrayGroups.count: %d", arrayGroups.count);
+            //LOGD(@"arrayGroups.count: %d", arrayGroups.count);
 
-            PortableGroup *portableGroup = arrayGroups.firstObject;
-            LOGD(@"currentGroup: %@", portableGroup.id_group);
-
-            
-            for (NSString *idGroupEnable in portableNethUser.arrayPermissionsIdGroups) {
+            NSMutableArray *arrayGruppiVisibili = [NSMutableArray new];
+                        
+            for (NSString *idGroupEnableCorrente in portableNethUser.arrayPermissionsIdGroups) {
                 
-                LOGD(@"idGroupEnable: %@", idGroupEnable);
+                //LOGD(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
                 
-                for (PortableGroup *currentGroup in arrayGroups) {
+                for (PortableGroup *groupCorrente in arrayGroups) {
                     
-                    printf("currentGroup.id_group: %@", currentGroup.id_group);
-                    LOGD(@"currentGroup.id_group: %@", currentGroup.id_group);
-                    
-                    if (idGroupEnable == currentGroup.id_group) {
+                    if (idGroupEnableCorrente == groupCorrente.id_group) {
+                        
+                        LOGD(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
 
-                        // aggiungi gruppo..
-                        printf("currentGroup.id_group: %@", currentGroup.users);
-                        LOGD(@"currentGroup.id_group: %@", currentGroup.users);
+                        [arrayGruppiVisibili addObject:groupCorrente];
                     }
-                    
                 }
-                
             }
             
+            LOGD(@"arrayGruppiVisibili.count: %d", arrayGruppiVisibili.count);
             
+            // --- Selezione default primo gruppo ---
+            PortableGroup *groupVisibileSelezionato = arrayGruppiVisibili.firstObject;
+            //LOGD(@"groupVisibileSelezionato: %@", groupVisibileSelezionato);
+            
+            LOGD(@"groupVisibileSelezionato.users: %@", groupVisibileSelezionato.users);
+            // --------------------------------------
+            
+            
+            NSMutableArray *arrayUsersVisibili = [NSMutableArray new];
             
             // Download utenti
             [api getUserAllWithSuccessHandler:^(NSArray * _Nonnull arrayUsers) {
                 
-                //printf("arrayUsers: %@", arrayUsers);
-                LOGD(@"arrayUsers.firstObject: %@", arrayUsers.firstObject);
-
+                //LOGD(@"arrayUsers.firstObject: %@", arrayUsers.firstObject);
                 
-                PortablePresenceUser *firstPortablePresenceUser = arrayUsers.firstObject;
-                LOGD(@"firstPortablePresenceUser.presence: %@", firstPortablePresenceUser.presence);
+                //PortablePresenceUser *firstPortablePresenceUser = arrayUsers.firstObject;
+                //LOGD(@"firstPortablePresenceUser.presence: %@", firstPortablePresenceUser.presence);
 
-                LOGD(@"firstPortablePresenceUser.mainExtension: %@", firstPortablePresenceUser.mainExtension);
+                //LOGD(@"firstPortablePresenceUser.mainExtension: %@", firstPortablePresenceUser.mainExtension);
 
                 LOGD(@"arrayUsers.count: %d", arrayUsers.count);
+                
+                for (PortablePresenceUser *userCorrente in arrayUsers) {
+                    
+                    //LOGD(@"userCorrente.username: %@", userCorrente.username);
+                    //LOGD(@"userCorrente.name: %@", userCorrente.name);
+
+                    for (NSString *keyUsernameCorrente in groupVisibileSelezionato.users) {
+                        
+                        if (userCorrente.username == keyUsernameCorrente) {
+                            
+                            LOGD(@"AGGIUNTO userCorrente.username: %@", userCorrente.username);
+
+                            [arrayUsersVisibili addObject:userCorrente];
+                        }
+                    }
+                }
+                
+                LOGD(@"arrayUsersVisibili.count: %d", arrayUsersVisibili.count);
+
+                
+                
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    
+
+                    PortablePresenceUser *firstPortablePresenceUser = (PortablePresenceUser *)arrayUsersVisibili.firstObject;
+                    LOGD(@"firstPortablePresenceUser: %@", firstPortablePresenceUser);
+                    
+                    self.arrayUsers = arrayUsersVisibili;
+                    
+                    [self loadData];
+
+                });
+                
                 
                 
 
@@ -195,24 +245,150 @@ static UICompositeViewDescription *compositeDescription = nil;
         
     [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
         
-    [self.presenceTableViewController.tableView setSeparatorColor:[UIColor colorNamed: @"accentColor"/*@"tableSeparator"*/]];
+    //[self.presenceTableViewController.tableView setSeparatorColor:[UIColor colorNamed: @"accentColor"/*@"tableSeparator"*/]];
 }
+
+
+- (void)loadData {
+    
+    //LOGD(@"arrayUsers: %@", self.arrayUsers);
+
+    [self.ibTableViewPresence reloadData];
+}
+
 
 
 #pragma mark - IBAction Functions
 
 - (IBAction)ibaVisualizzaPreferiti:(id)sender {
+    
+    LOGD(@"ibaVisualizzaPreferiti");
+
 }
 
 - (IBAction)ibaVisualizzaGruppi:(id)sender {
+    
+    LOGD(@"ibaVisualizzaGruppi");
+
 }
 
 - (IBAction)ibaSelezionePresence:(id)sender {
+    
+    LOGD(@"ibaSelezionePresence");
+
 }
 
 - (IBAction)onBackPressed:(id)sender {
     
+    LOGD(@"onBackPressed");
+
     [PhoneMainView.instance popCurrentView];
 }
 
+
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+#warning Incomplete implementation, return the number of sections
+    
+    //LOGD(@"LOGD arrayUsers.count: %d", self.arrayUsers.count);
+
+    if (self.arrayUsers.count > 0) {
+        
+        return 1;
+        
+    }else {
+        
+        return 0;
+    }
+     
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+#warning Incomplete implementation, return the number of rows
+    
+    //LOGD(@"LOGD arrayUsers.count: %d", self.arrayUsers.count);
+
+    return self.arrayUsers.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"
+
+    LOGD(@"LOGD cellForRowAtIndexPath indexPath.row: %d", indexPath.row);
+
+    static NSString *CellIdentifier = @"idPresenceTableViewCell";
+    
+    PresenceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+        
+        [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([PresenceTableViewCell class]) owner:self options:nil];
+        
+        cell = (PresenceTableViewCell *)self.ibPresenceTableViewCell;
+        
+        self.ibPresenceTableViewCell = nil;
+    }
+    
+    PortablePresenceUser *portablePresenceUser = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:indexPath.row];
+    //LOGD(@"LOGD portablePresenceUser: %@", portablePresenceUser.name);
+
+    
+    [cell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOnline"] CGColor]];
+    [cell.ibImageViewSfontoStatus.layer setBorderWidth: 1.0];
+    
+    
+    cell.ibLabelIniziali.layer.masksToBounds = YES;
+    cell.ibLabelIniziali.layer.cornerRadius = 22.0;
+
+
+    
+    
+    NSString *noteUtente = portablePresenceUser.name;
+    NSArray *arrayFirstLastStrings = [noteUtente componentsSeparatedByString:@" "];
+    
+    NSString *nome = [arrayFirstLastStrings objectAtIndex:0];
+    char nomeInitialChar = [nome characterAtIndex:0];
+
+    //LOGD(@"LOGD nomeInitialChar: %c", nomeInitialChar);
+
+    if (arrayFirstLastStrings.count > 1) {
+
+        NSString *cognome = [arrayFirstLastStrings objectAtIndex:1];
+
+        char cognomeInitialChar = [cognome characterAtIndex:0];
+        //LOGD(@"LOGD cognomeInitialChar: %c", cognomeInitialChar);
+
+        cell.ibLabelIniziali.text = [NSString stringWithFormat:@"%c%c", nomeInitialChar, cognomeInitialChar];
+
+    }else {
+        
+        cell.ibLabelIniziali.text = [NSString stringWithFormat:@"%c", nomeInitialChar];
+    }
+    
+    
+    cell.ibLabelName.text = noteUtente;
+    
+    
+    cell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
+    cell.ibViewSfondoLabelStatus.layer.masksToBounds = YES;
+    cell.ibViewSfondoLabelStatus.layer.cornerRadius = 4.0;
+    
+    cell.ibLabelStatus.text = [[NSString stringWithFormat:@"%@", portablePresenceUser.presence] uppercaseString];
+    
+    
+    cell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
+    cell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_online"];
+    
+    return cell;
+}
+
+ 
 @end

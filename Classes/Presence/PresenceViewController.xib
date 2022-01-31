@@ -21,14 +21,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresenceViewController">
             <connections>
                 <outlet property="backButton" destination="kaq-Gc-w19" id="9NC-IV-Qjb"/>
-                <outlet property="ibButtonGruppi" destination="u55-l7-u5O" id="ZIK-sD-iR8"/>
-                <outlet property="ibButtonPreferiti" destination="Obq-Rh-YLp" id="HBQ-Yq-9tb"/>
+                <outlet property="ibButtonSelezionaGruppi" destination="u55-l7-u5O" id="iqi-Ne-nZf"/>
+                <outlet property="ibButtonSelezionaPreferiti" destination="Obq-Rh-YLp" id="gD7-8Y-Di5"/>
                 <outlet property="ibButtonSelezionePresence" destination="IT6-fM-8Wj" id="N56-bF-SS9"/>
-                <outlet property="ibLabelGruppi" destination="B9P-Y5-h5p" id="b1i-JB-f0C"/>
-                <outlet property="ibLabelPreferiti" destination="XCj-n4-acz" id="G8p-eT-j3W"/>
-                <outlet property="presenceTableViewController" destination="H0g-ir-5Y4" id="Yqy-nv-lxb"/>
+                <outlet property="ibLabelGruppi" destination="B9P-Y5-h5p" id="gXE-Lh-1Pd"/>
+                <outlet property="ibLabelPreferiti" destination="XCj-n4-acz" id="Eot-nv-dF7"/>
+                <outlet property="ibTableViewPresence" destination="YPe-l8-lbz" id="Jqx-Xd-VZR"/>
                 <outlet property="topBar" destination="hpk-fC-cXZ" id="N9P-68-chV"/>
-                <outlet property="view" destination="iN0-l3-epB" id="wwd-HT-MMU"/>
+                <outlet property="view" destination="iN0-l3-epB" id="bVs-eS-d2p"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -189,12 +189,12 @@
                         <constraint firstItem="e7o-y9-s7e" firstAttribute="leading" secondItem="aRE-PL-hJh" secondAttribute="trailing" constant="20" id="zOz-dI-RBY"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YPe-l8-lbz">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YPe-l8-lbz" userLabel="Table View - Presence">
                     <rect key="frame" x="0.0" y="236" width="414" height="660"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
-                        <outlet property="dataSource" destination="H0g-ir-5Y4" id="xbn-MN-j0g"/>
-                        <outlet property="delegate" destination="H0g-ir-5Y4" id="Oau-AL-3S3"/>
+                        <outlet property="dataSource" destination="-1" id="pJ6-1m-CXm"/>
+                        <outlet property="delegate" destination="-1" id="5br-yI-MPu"/>
                     </connections>
                 </tableView>
             </subviews>
@@ -213,18 +213,6 @@
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
         </view>
-        <tableViewController id="H0g-ir-5Y4" customClass="PresenceTableViewController">
-            <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PBU-vT-WFV">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                <connections>
-                    <outlet property="dataSource" destination="H0g-ir-5Y4" id="kWS-ap-m2M"/>
-                    <outlet property="delegate" destination="H0g-ir-5Y4" id="Dev-Dc-WaA"/>
-                </connections>
-            </tableView>
-            <point key="canvasLocation" x="996" y="131"/>
-        </tableViewController>
     </objects>
     <resources>
         <image name="back.png" width="32" height="32"/>

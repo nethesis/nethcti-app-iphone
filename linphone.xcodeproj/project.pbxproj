@@ -766,7 +766,6 @@
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		A971E369279F0367009017E7 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971E368279F0367009017E7 /* Group.swift */; };
-		A97616482797207000D19212 /* PresenceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97616472797207000D19212 /* PresenceTableViewController.m */; };
 		A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97E15F527981A4900FE057E /* PresenceTableViewCell.m */; };
 		A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */; };
 		A9916DEC279AB677006A37E7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEB279AB677006A37E7 /* Profile.swift */; };
@@ -1905,8 +1904,6 @@
 		969DA4BE655B6AEB5803BEA0 /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBD6E980619195CB7EE32AC /* Pods_liblinphoneTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liblinphoneTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A971E368279F0367009017E7 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		A97616462797207000D19212 /* PresenceTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewController.h; sourceTree = "<group>"; };
-		A97616472797207000D19212 /* PresenceTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewController.m; sourceTree = "<group>"; };
 		A97E15F427981A4900FE057E /* PresenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
 		A97E15F527981A4900FE057E /* PresenceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewCell.m; sourceTree = "<group>"; };
 		A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3502,8 +3499,6 @@
 		A976164527971ECA00D19212 /* Presence */ = {
 			isa = PBXGroup;
 			children = (
-				A97616462797207000D19212 /* PresenceTableViewController.h */,
-				A97616472797207000D19212 /* PresenceTableViewController.m */,
 				A9F4924A2790833600564AED /* PresenceViewController.h */,
 				A9F4924B2790833600564AED /* PresenceViewController.m */,
 				A9F4924D279087FE00564AED /* PresenceViewController.xib */,
@@ -4967,7 +4962,6 @@
 				D3EA53FD159850E80037DC6B /* LinphoneManager.m in Sources */,
 				63B81A0E1B57DA33009604A6 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				633888451BFB2C49001D5E7B /* HPGrowingTextView.m in Sources */,
-				A97616482797207000D19212 /* PresenceTableViewController.m in Sources */,
 				63F1DF441BCE618E00EDED90 /* UIAddressTextField.m in Sources */,
 				D3EA540D1598528B0037DC6B /* ChatsListTableView.m in Sources */,
 				D3EA5411159853750037DC6B /* UIChatCell.m in Sources */,

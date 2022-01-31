@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelIniziali;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewStatus;
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelName;
+@property (weak, nonatomic) IBOutlet UIView *ibViewSfondoLabelStatus;
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelStatus;
 @property (weak, nonatomic) IBOutlet UIButton *ibButtonVisualizzaAzioni;
 
