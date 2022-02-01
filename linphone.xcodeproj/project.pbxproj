@@ -768,6 +768,7 @@
 		A971E369279F0367009017E7 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971E368279F0367009017E7 /* Group.swift */; };
 		A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97E15F527981A4900FE057E /* PresenceTableViewCell.m */; };
 		A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */; };
+		A9861AD727A9559600EFD779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A9861AD527A9559500EFD779 /* MBProgressHUD.m */; };
 		A9916DEC279AB677006A37E7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEB279AB677006A37E7 /* Profile.swift */; };
 		A9916DEE279AC557006A37E7 /* MacroPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DED279AC557006A37E7 /* MacroPermissions.swift */; };
 		A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEF279AF41D006A37E7 /* PresencePanel.swift */; };
@@ -1907,6 +1908,8 @@
 		A97E15F427981A4900FE057E /* PresenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
 		A97E15F527981A4900FE057E /* PresenceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewCell.m; sourceTree = "<group>"; };
 		A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceTableViewCell.xib; sourceTree = "<group>"; };
+		A9861AD527A9559500EFD779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A9861AD627A9559500EFD779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A9916DEB279AB677006A37E7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A9916DED279AC557006A37E7 /* MacroPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroPermissions.swift; sourceTree = "<group>"; };
 		A9916DEF279AF41D006A37E7 /* PresencePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresencePanel.swift; sourceTree = "<group>"; };
@@ -3509,6 +3512,16 @@
 			path = Presence;
 			sourceTree = "<group>";
 		};
+		A9861AD427A9559500EFD779 /* MBProgressHUD-1.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				A9861AD527A9559500EFD779 /* MBProgressHUD.m */,
+				A9861AD627A9559500EFD779 /* MBProgressHUD.h */,
+			);
+			name = "MBProgressHUD-1.2.0";
+			path = "Utils/MBProgressHUD-1.2.0";
+			sourceTree = "<group>";
+		};
 		C33BF99223717014003461CC /* RestApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -3591,6 +3604,7 @@
 		D326483415887D4400930C67 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9861AD427A9559500EFD779 /* MBProgressHUD-1.2.0 */,
 				C33BF99223717014003461CC /* RestApi */,
 				D37E3ECA1619C27A0087659A /* CAAnimationBlocks */,
 				D380801215C299D0005BE9BC /* ColorSpaceUtilites.m */,
@@ -4928,6 +4942,7 @@
 				D3ED3E871586291E006C0DE4 /* TabBarView.m in Sources */,
 				D3ED3EA71587334E006C0DE4 /* HistoryListTableView.m in Sources */,
 				61AEBEBD2191990A00F35E7F /* DevicesListView.m in Sources */,
+				A9861AD727A9559600EFD779 /* MBProgressHUD.m in Sources */,
 				C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */,
 				C3A40703261E01EF00526F9B /* IncomingCallTableViewCell.swift in Sources */,
 				D3ED3EB81587392C006C0DE4 /* HistoryListView.m in Sources */,

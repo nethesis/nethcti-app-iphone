@@ -64,7 +64,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-fM-8Wj" userLabel="Button - SelezionePresence">
                             <rect key="frame" x="274" y="11" width="120" height="44"/>
-                            <color key="backgroundColor" name="ColorStatusPresenceOnline"/>
+                            <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="OyC-Xg-0GN"/>
                                 <constraint firstAttribute="height" constant="44" id="XWa-Qn-nnq"/>
@@ -72,7 +72,7 @@
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="LABEL" image="icn_cerchio_online">
+                            <state key="normal" title="N/D" image="icn_cerchio_online">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -111,7 +111,7 @@
                                         <constraint firstAttribute="height" constant="82" id="fH5-3P-tbn"/>
                                         <constraint firstAttribute="width" constant="82" id="tRe-MR-nT8"/>
                                     </constraints>
-                                    <state key="normal" image="icn_gruppi_off"/>
+                                    <state key="normal" image="icn_gruppi_on"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="41"/>
@@ -124,7 +124,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GRUPPI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9P-Y5-h5p" userLabel="Label - GRUPPI">
                                     <rect key="frame" x="40" y="87" width="60" height="23"/>
                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -218,10 +218,10 @@
         <image name="back.png" width="32" height="32"/>
         <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
         <image name="icn_cerchio_online" width="24" height="24"/>
-        <image name="icn_gruppi_off" width="50" height="50"/>
+        <image name="icn_gruppi_on" width="50" height="50"/>
         <image name="icn_preferiti_off" width="50" height="50"/>
-        <namedColor name="ColorStatusPresenceOnline">
-            <color red="0.65490196078431373" green="0.88235294117647056" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="ColorStatusPresenceOffline">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SfondoButtons">
             <color red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -54,10 +54,10 @@
                                 <color key="textColor" name="ColorFontIniziali"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_online" translatesAutoresizingMaskIntoConstraints="NO" id="6iR-jD-jha" userLabel="Image View - Status">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_offline" translatesAutoresizingMaskIntoConstraints="NO" id="6iR-jD-jha" userLabel="Image View - Status">
                                 <rect key="frame" x="42" y="42" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="ColorStatusPresenceOnline"/>
+                                <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
@@ -65,29 +65,29 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="ZWi-M0-Ri4"/>
                             <constraint firstAttribute="width" constant="70" id="zdc-hD-AGy"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcv-QT-C9F" userLabel="Label - Name">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcv-QT-C9F" userLabel="Label - Name">
                         <rect key="frame" x="90" y="10" width="150" height="27"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                         <color key="textColor" name="ColorFontIniziali"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-a5-cWI" userLabel="View - StatusPresence">
-                        <rect key="frame" x="90" y="42" width="33.5" height="18"/>
+                        <rect key="frame" x="90" y="42" width="25" height="18"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMD-hJ-ygw" userLabel="Label - Status">
-                                <rect key="frame" x="2" y="2" width="29.5" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMD-hJ-ygw" userLabel="Label - Status">
+                                <rect key="frame" x="2" y="2" width="21" height="14"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="ColorStatusPresenceOnline"/>
+                        <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="LMD-hJ-ygw" secondAttribute="trailing" constant="2" id="62B-pn-htK"/>
                             <constraint firstAttribute="height" constant="18" id="FBp-UG-JdL"/>
@@ -136,12 +136,12 @@
     </objects>
     <resources>
         <image name="icn_azioni" width="50" height="50"/>
-        <image name="icn_online" width="36" height="36"/>
+        <image name="icn_offline" width="36" height="36"/>
         <namedColor name="ColorFontIniziali">
             <color red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="ColorStatusPresenceOnline">
-            <color red="0.65490196078431373" green="0.88235294117647056" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="ColorStatusPresenceOffline">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SfondoButtons">
             <color red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
