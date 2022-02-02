@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibButtonSelezionePresence;
 @property (weak, nonatomic) IBOutlet UITableViewCell *ibPresenceTableViewCell;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableViewPresence;
+@property (weak, nonatomic) IBOutlet UILabel *ibLabelNessunDato;
 
 @property(strong, nonatomic) NSMutableArray *arrayUsers;
 @property(strong, nonatomic) PortableNethUser *userMe;

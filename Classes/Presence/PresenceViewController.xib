@@ -25,6 +25,7 @@
                 <outlet property="ibButtonSelezionaPreferiti" destination="Obq-Rh-YLp" id="gD7-8Y-Di5"/>
                 <outlet property="ibButtonSelezionePresence" destination="IT6-fM-8Wj" id="N56-bF-SS9"/>
                 <outlet property="ibLabelGruppi" destination="B9P-Y5-h5p" id="gXE-Lh-1Pd"/>
+                <outlet property="ibLabelNessunDato" destination="aaK-7o-JIZ" id="zJf-iq-Ytk"/>
                 <outlet property="ibLabelPreferiti" destination="XCj-n4-acz" id="Eot-nv-dF7"/>
                 <outlet property="ibTableViewPresence" destination="YPe-l8-lbz" id="Jqx-Xd-VZR"/>
                 <outlet property="topBar" destination="hpk-fC-cXZ" id="N9P-68-chV"/>
@@ -36,68 +37,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpk-fC-cXZ" userLabel="View - topBar">
-                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
-                    <subviews>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-Gc-w19" userLabel="Button - backButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
-                            <accessibility key="accessibilityConfiguration" label="Back"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="kaq-Gc-w19" secondAttribute="height" multiplier="1:1" id="9fb-b9-ZX2"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="back.png">
-                                <color key="titleColor" red="0.28619974850000002" green="0.3214434981" blue="0.3598001301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <state key="disabled" image="back_disabled.png"/>
-                            <connections>
-                                <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="CcV-1x-u8f"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-km-ilc" userLabel="Label - titleLabel">
-                            <rect key="frame" x="66" y="12" width="198" height="42"/>
-                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
-                            <color key="textColor" name="mainColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-fM-8Wj" userLabel="Button - SelezionePresence">
-                            <rect key="frame" x="274" y="11" width="120" height="44"/>
-                            <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="120" id="OyC-Xg-0GN"/>
-                                <constraint firstAttribute="height" constant="44" id="XWa-Qn-nnq"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
-                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="N/D" image="icn_cerchio_online">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="ibaSelezionePresence:" destination="-1" eventType="touchUpInside" id="NPd-OQ-kt5"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="CRH-km-ilc" firstAttribute="leading" secondItem="kaq-Gc-w19" secondAttribute="trailing" id="12Q-0A-VJx"/>
-                        <constraint firstItem="CRH-km-ilc" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="HEq-e3-ujH"/>
-                        <constraint firstAttribute="trailing" secondItem="IT6-fM-8Wj" secondAttribute="trailing" constant="20" id="ZqL-8s-tvd"/>
-                        <constraint firstAttribute="height" constant="66" id="adt-eL-3gR"/>
-                        <constraint firstItem="kaq-Gc-w19" firstAttribute="height" secondItem="hpk-fC-cXZ" secondAttribute="height" id="cgH-8s-zyJ"/>
-                        <constraint firstItem="IT6-fM-8Wj" firstAttribute="leading" secondItem="CRH-km-ilc" secondAttribute="trailing" constant="10" id="ejT-1j-1Kp"/>
-                        <constraint firstItem="IT6-fM-8Wj" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="gHZ-sN-rfZ"/>
-                        <constraint firstItem="kaq-Gc-w19" firstAttribute="leading" secondItem="hpk-fC-cXZ" secondAttribute="leading" id="jVx-4e-za1"/>
-                        <constraint firstItem="kaq-Gc-w19" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="psp-eY-aS3"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-PQ-HGg" userLabel="View - Filtri">
                     <rect key="frame" x="57" y="118" width="300" height="110"/>
                     <subviews>
@@ -197,6 +136,74 @@
                         <outlet property="delegate" destination="-1" id="5br-yI-MPu"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpk-fC-cXZ" userLabel="View - topBar">
+                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
+                    <subviews>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-Gc-w19" userLabel="Button - backButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                            <accessibility key="accessibilityConfiguration" label="Back"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="kaq-Gc-w19" secondAttribute="height" multiplier="1:1" id="9fb-b9-ZX2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="back.png">
+                                <color key="titleColor" red="0.28619974850000002" green="0.3214434981" blue="0.3598001301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled" image="back_disabled.png"/>
+                            <connections>
+                                <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="CcV-1x-u8f"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-km-ilc" userLabel="Label - titleLabel">
+                            <rect key="frame" x="66" y="12" width="198" height="42"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
+                            <color key="textColor" name="mainColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-fM-8Wj" userLabel="Button - SelezionePresence">
+                            <rect key="frame" x="274" y="11" width="120" height="44"/>
+                            <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="OyC-Xg-0GN"/>
+                                <constraint firstAttribute="height" constant="44" id="XWa-Qn-nnq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
+                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="N/D" image="icn_cerchio_online">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="ibaSelezionePresence:" destination="-1" eventType="touchUpInside" id="NPd-OQ-kt5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="CRH-km-ilc" firstAttribute="leading" secondItem="kaq-Gc-w19" secondAttribute="trailing" id="12Q-0A-VJx"/>
+                        <constraint firstItem="CRH-km-ilc" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="HEq-e3-ujH"/>
+                        <constraint firstAttribute="trailing" secondItem="IT6-fM-8Wj" secondAttribute="trailing" constant="20" id="ZqL-8s-tvd"/>
+                        <constraint firstAttribute="height" constant="66" id="adt-eL-3gR"/>
+                        <constraint firstItem="kaq-Gc-w19" firstAttribute="height" secondItem="hpk-fC-cXZ" secondAttribute="height" id="cgH-8s-zyJ"/>
+                        <constraint firstItem="IT6-fM-8Wj" firstAttribute="leading" secondItem="CRH-km-ilc" secondAttribute="trailing" constant="10" id="ejT-1j-1Kp"/>
+                        <constraint firstItem="IT6-fM-8Wj" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="gHZ-sN-rfZ"/>
+                        <constraint firstItem="kaq-Gc-w19" firstAttribute="leading" secondItem="hpk-fC-cXZ" secondAttribute="leading" id="jVx-4e-za1"/>
+                        <constraint firstItem="kaq-Gc-w19" firstAttribute="centerY" secondItem="hpk-fC-cXZ" secondAttribute="centerY" id="psp-eY-aS3"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nessun utente" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaK-7o-JIZ" userLabel="Label - NessunDato">
+                    <rect key="frame" x="148.5" y="442.5" width="117" height="21"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                    <color key="textColor" name="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -204,9 +211,11 @@
                 <constraint firstItem="YPe-l8-lbz" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="6L2-O3-R27"/>
                 <constraint firstItem="YPe-l8-lbz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="E05-bH-KXX"/>
                 <constraint firstItem="hpk-fC-cXZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="F0X-kK-UlT"/>
+                <constraint firstItem="aaK-7o-JIZ" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="JmP-cF-coa"/>
                 <constraint firstItem="YPe-l8-lbz" firstAttribute="top" secondItem="vmA-PQ-HGg" secondAttribute="bottom" constant="8" symbolic="YES" id="Tar-dI-GSV"/>
                 <constraint firstItem="vmA-PQ-HGg" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="oy0-f5-xWY"/>
                 <constraint firstItem="hpk-fC-cXZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qo5-tV-17x"/>
+                <constraint firstItem="aaK-7o-JIZ" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="t8J-k7-kJ4"/>
                 <constraint firstAttribute="bottom" secondItem="YPe-l8-lbz" secondAttribute="bottom" id="tVW-gf-Acg"/>
                 <constraint firstItem="hpk-fC-cXZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uZ6-MS-0YZ"/>
                 <constraint firstItem="vmA-PQ-HGg" firstAttribute="top" secondItem="hpk-fC-cXZ" secondAttribute="bottom" constant="8" symbolic="YES" id="v6w-km-iWu"/>
@@ -228,6 +237,9 @@
         </namedColor>
         <namedColor name="mainColor">
             <color red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

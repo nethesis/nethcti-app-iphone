@@ -148,11 +148,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self setStyleForButton:ViewElement_NextButton];
     [self setStyleForButton:ViewElement_QrCodeButton];
     
-    // TODO: commentare prima di rilasciare!!!
+    
+    // --- TODO: commentare prima di rilasciare!!!
     [self findTextField:ViewElement_Domain].text = @"nethctiapp.nethserver.net";
-    [self findTextField:ViewElement_Username].text = @"dctestuser4";
-    [self findTextField:ViewElement_Password].text = @"BG8tuPXQ";
-
+    [self findTextField:ViewElement_Username].text = @"dctestuser3";//@"dctestuser4";
+    [self findTextField:ViewElement_Password].text = @"eOyQwSSw";//@"BG8tuPXQ";
+    // -----------------------------------------------
+    
+    
     UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [[self findButton:ViewElement_NextButton] setImage:loginImage forState:UIControlStateNormal];
     

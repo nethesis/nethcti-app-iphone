@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresenceSelectListGroupViewController">
+            <connections>
+                <outlet property="ibButtonChiudi" destination="5MZ-Sf-XHd" id="3ls-Nx-PLv"/>
+                <outlet property="ibLabelNessunDato" destination="Cb6-qz-4WT" id="c82-3o-2En"/>
+                <outlet property="ibLabelTitolo" destination="pzc-6F-fFD" id="7mn-AX-W5a"/>
+                <outlet property="ibTableViewGruppi" destination="Erp-Nl-e1S" id="PRJ-qB-w2f"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gruppi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-6F-fFD" userLabel="Label - Titolo">
+                    <rect key="frame" x="20" y="74" width="110.5" height="42"/>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
+                    <color key="textColor" name="mainColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MZ-Sf-XHd" userLabel="Button - Chiudi">
+                    <rect key="frame" x="344" y="64" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="ryP-b5-PyD"/>
+                        <constraint firstAttribute="height" constant="50" id="xkw-Kc-8ts"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                    <state key="normal" title="Fine">
+                        <color key="titleColor" name="mainColor"/>
+                    </state>
+                    <connections>
+                        <action selector="ibaChiudi:" destination="-1" eventType="touchUpInside" id="Mai-Ox-jhO"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Erp-Nl-e1S" userLabel="Table View - Gruppi">
+                    <rect key="frame" x="0.0" y="142" width="414" height="754"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nessun gruppo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cb6-qz-4WT" userLabel="Label - NessunDato">
+                    <rect key="frame" x="145" y="442.5" width="124" height="21"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                    <color key="textColor" name="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="pzc-6F-fFD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="4UP-op-8YP"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5MZ-Sf-XHd" secondAttribute="trailing" constant="20" id="JpL-Bu-hJw"/>
+                <constraint firstItem="5MZ-Sf-XHd" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="OmF-Hg-vxX"/>
+                <constraint firstItem="Cb6-qz-4WT" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="Ozn-Gq-P3q"/>
+                <constraint firstItem="pzc-6F-fFD" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="cyW-BS-rOR"/>
+                <constraint firstItem="Cb6-qz-4WT" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="fP9-xc-Tcq"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="mainColor">
+            <color red="0.0" green="0.63529411764705879" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

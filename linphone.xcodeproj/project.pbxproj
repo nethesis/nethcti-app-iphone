@@ -775,6 +775,10 @@
 		A9916DF2279AF9EC006A37E7 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF1279AF9EC006A37E7 /* Permissions.swift */; };
 		A9916DF4279AFF43006A37E7 /* AdPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF3279AFF43006A37E7 /* AdPermission.swift */; };
 		A996E82827A04CDF007AD6E4 /* PresenceUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996E82727A04CDF007AD6E4 /* PresenceUser.swift */; };
+		A9B9E9B027AAA1930062CCDE /* PresenceSelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */; };
+		A9B9E9B227AAA21B0062CCDE /* PresenceSelectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */; };
+		A9B9E9B627AADB060062CCDE /* PresenceSelectListGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */; };
+		A9B9E9B727AADB060062CCDE /* PresenceSelectListGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */; };
 		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
 		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
@@ -1916,6 +1920,12 @@
 		A9916DF1279AF9EC006A37E7 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
 		A9916DF3279AFF43006A37E7 /* AdPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPermission.swift; sourceTree = "<group>"; };
 		A996E82727A04CDF007AD6E4 /* PresenceUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceUser.swift; sourceTree = "<group>"; };
+		A9B9E9AE27AAA1930062CCDE /* PresenceSelectListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListViewController.h; sourceTree = "<group>"; };
+		A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListViewController.m; sourceTree = "<group>"; };
+		A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListViewController.xib; sourceTree = "<group>"; };
+		A9B9E9B327AADB060062CCDE /* PresenceSelectListGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListGroupViewController.h; sourceTree = "<group>"; };
+		A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListGroupViewController.m; sourceTree = "<group>"; };
+		A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListGroupViewController.xib; sourceTree = "<group>"; };
 		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
 		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
 		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
@@ -3508,6 +3518,12 @@
 				A97E15F427981A4900FE057E /* PresenceTableViewCell.h */,
 				A97E15F527981A4900FE057E /* PresenceTableViewCell.m */,
 				A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */,
+				A9B9E9AE27AAA1930062CCDE /* PresenceSelectListViewController.h */,
+				A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */,
+				A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */,
+				A9B9E9B327AADB060062CCDE /* PresenceSelectListGroupViewController.h */,
+				A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */,
+				A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */,
 			);
 			path = Presence;
 			sourceTree = "<group>";
@@ -4539,6 +4555,7 @@
 				633FEE611D3CD5590014B822 /* edit_list_disabled@2x.png in Resources */,
 				633FEE761D3CD5590014B822 /* history_all_selected.png in Resources */,
 				C39727242657EFD50072D986 /* nethcti_call_accept@2x.png in Resources */,
+				A9B9E9B727AADB060062CCDE /* PresenceSelectListGroupViewController.xib in Resources */,
 				39A7C2C5264401370056735F /* nethcti_numpad_asterisk.png in Resources */,
 				8C300D9B1E40E0CC00728EF3 /* lime_ko@2x.png in Resources */,
 				39F2B9A4264937DC00ADBFCE /* nethcti_user_add.png in Resources */,
@@ -4638,6 +4655,7 @@
 				398DE715264D173B008B65A9 /* nethcti_done@2x.png in Resources */,
 				633FEE631D3CD5590014B822 /* footer_chat_default@2x.png in Resources */,
 				615A281B217F6F9C0060F920 /* security_2_indicator.png in Resources */,
+				A9B9E9B227AAA21B0062CCDE /* PresenceSelectListViewController.xib in Resources */,
 				C391A9A1264EB10E00F9FD76 /* nethcti_pause@2x.png in Resources */,
 				633FEE661D3CD5590014B822 /* footer_contacts_default.png in Resources */,
 				633FEDC11D3CD5590014B822 /* call_back_disabled@2x.png in Resources */,
@@ -4891,6 +4909,7 @@
 				C3A40701261DF6F200526F9B /* LostCallTableViewCell.swift in Sources */,
 				C342BA1924B5D49200003F8D /* UIInterfaceStyleButton.m in Sources */,
 				63B81A0F1B57DA33009604A6 /* TPKeyboardAvoidingTableView.m in Sources */,
+				A9B9E9B027AAA1930062CCDE /* PresenceSelectListViewController.m in Sources */,
 				CF1DE92D210A0F5D00A0A97E /* UILinphoneAudioPlayer.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */,
@@ -4955,6 +4974,7 @@
 				D3549816158761D0000081D8 /* ContactsListTableView.m in Sources */,
 				633888461BFB2C49001D5E7B /* HPTextViewInternal.m in Sources */,
 				D35498211587716B000081D8 /* StatusBarView.m in Sources */,
+				A9B9E9B627AADB060062CCDE /* PresenceSelectListGroupViewController.m in Sources */,
 				D3A55FBC15877E5E003FD403 /* UIContactCell.m in Sources */,
 				6341807C1BBC103100F71761 /* ChatConversationCreateTableView.m in Sources */,
 				63BE7A781D75BDF6000990EF /* ShopTableView.m in Sources */,
