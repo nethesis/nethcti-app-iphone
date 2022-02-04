@@ -18,6 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresenceSelectListViewController">
             <connections>
                 <outlet property="ibButtonChiudi" destination="afL-0Y-3Wn" id="qmJ-9Q-EQV"/>
+                <outlet property="ibLabelNessunDato" destination="Grd-45-ldG" id="izl-hn-mYs"/>
                 <outlet property="ibLabelTitolo" destination="5dM-3u-IFP" id="rJ1-16-v5g"/>
                 <outlet property="ibTableViewSelezionePresence" destination="gPX-Rp-bSE" id="6HY-Js-bWG"/>
                 <outlet property="ibViewContenitore" destination="1NT-ys-ZDi" id="AQy-EE-F8P"/>
@@ -36,13 +37,13 @@
                             <rect key="frame" x="20" y="23" width="234" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afL-0Y-3Wn" userLabel="Button - Chiudi">
                             <rect key="frame" x="262" y="8" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="icn_chiudi"/>
                             <connections>
                                 <action selector="ibaChiudi:" destination="-1" eventType="touchUpInside" id="ydD-wo-byz"/>
@@ -53,7 +54,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" name="ColorLineaSeparatrice"/>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Rp-bSE" userLabel="Table View - SelezionePresence">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Rp-bSE" userLabel="Table View - SelezionePresence">
                             <rect key="frame" x="0.0" y="61" width="320" height="289"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -62,9 +63,13 @@
                                     <integer key="value" value="20"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="YhG-yF-CLw"/>
+                                <outlet property="delegate" destination="-1" id="VT9-YK-AaF"/>
+                            </connections>
                         </tableView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nessun status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grd-45-ldG" userLabel="Label - NessunDato">
-                            <rect key="frame" x="109" y="165.5" width="102" height="19"/>
+                            <rect key="frame" x="108.5" y="165.5" width="103" height="19"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                             <color key="textColor" name="textColor"/>
                             <nil key="highlightedColor"/>
@@ -90,13 +95,13 @@
                 <constraint firstItem="1NT-ys-ZDi" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="WGs-GG-RWW"/>
                 <constraint firstItem="1NT-ys-ZDi" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="jid-ZV-iWw"/>
             </constraints>
-            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
+            <point key="canvasLocation" x="-197" y="112"/>
         </view>
     </objects>
     <resources>
         <image name="icn_chiudi" width="32" height="32"/>
         <namedColor name="ColorLineaSeparatrice">
-            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84700000286102295" green="0.84700000286102295" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

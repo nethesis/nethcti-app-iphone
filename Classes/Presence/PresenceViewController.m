@@ -551,7 +551,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
     // Download info utente
-    [api getUserMeWithSuccessHandler:^(PortableNethUser * _Nullable portableNethUser) {
+    [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
         printf("portableNethUser.mainextension: %@", portableNethUser.mainExtension);
         
@@ -585,7 +585,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             
             
             // Download utenti
-            [api getUserAllWithSuccessHandler:^(NSArray * _Nonnull arrayUsers) {
+            [api getUserAllWithSuccessHandler:^(NSArray *arrayUsers) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     

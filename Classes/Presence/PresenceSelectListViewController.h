@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *ibButtonChiudi;
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelTitolo;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableViewSelezionePresence;
+@property (weak, nonatomic) IBOutlet UILabel *ibLabelNessunDato;
+@property (weak, nonatomic) IBOutlet UITableViewCell *ibPresenceSelectListTableViewCell;
 
 
 - (IBAction)ibaChiudi:(id)sender;

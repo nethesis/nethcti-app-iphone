@@ -290,7 +290,8 @@ import Foundation
         
         if !ApiCredentials.checkCredentials() {
             
-            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
         }
@@ -299,6 +300,7 @@ import Foundation
         
         guard let url = URL(string: endPoint) else {
             
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             
             return
@@ -440,7 +442,8 @@ import Foundation
         
         if !ApiCredentials.checkCredentials() {
             
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
         }
@@ -449,6 +452,7 @@ import Foundation
         
         guard let url = URL(string:endPoint) else {
             
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             
             return
@@ -605,7 +609,8 @@ import Foundation
         
         if !ApiCredentials.checkCredentials() {
             
-            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
         }
@@ -614,6 +619,7 @@ import Foundation
         
         guard let url = URL(string: endPoint) else {
             
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             
             return
@@ -672,11 +678,12 @@ import Foundation
     
     
     @objc public func getGroups(successHandler: @escaping(Array<PortableGroup>) -> Void,
-                                errorHandler: @escaping(Int, String?) -> Void) -> Void { // Ready for the second release.
+                                errorHandler: @escaping(Int, String?) -> Void) -> Void {
         
         if !ApiCredentials.checkCredentials() {
             
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
         }
@@ -685,6 +692,7 @@ import Foundation
         
         guard let url = URL(string:endPoint) else {
             
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             
             return
@@ -749,14 +757,15 @@ import Foundation
     
     
     /**
-     GET all users of my groups from NethCTI server.
+     GET all users from NethCTI server.
      */
     @objc public func getUserAll(successHandler: @escaping(Array<PortablePresenceUser>) -> Void,
                                  errorHandler: @escaping (Int, String?) -> Void) -> Void {
         
         if !ApiCredentials.checkCredentials() {
             
-            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
         }
@@ -765,6 +774,7 @@ import Foundation
         
         guard let url = URL(string: endPoint) else {
             
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
             errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
             
             return
@@ -834,6 +844,84 @@ import Foundation
                         return
                       })
     }
+    
+    
+    /**
+     GET list of Presence for users from NethCTI server.
+     */
+    @objc public func getPresenceList(successHandler: @escaping(Array<String>) -> Void,
+                                      errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/user/presencelist"
+        
+        guard let url = URL(string:endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        self.baseCall(url: url,
+                      method: "GET",
+                      headers: getHeaders,
+                      body: nil,
+                      successHandler: {
+                        
+                        data, response in
+                        
+                        // Response handling.
+                        guard let responseData = data else {
+                            
+                            errorHandler(-2, "No data provided.")
+                            
+                            return
+                        }
+                        
+                        do {
+                            
+                            let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String]
+                            //print("resultJson: \(resultJson)")
+                            
+                            successHandler(resultJson)
+                            
+                        }catch {
+                            
+                            errorHandler(-2, "json error: \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        
+                      }, errorHandler: {
+                        
+                        error, response in
+                        
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /user/presencelist: missing response data.")
+                            
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling GET on /user/presencelist")
+                        
+                        return
+                      })
+    }
+    
+    
     
     
 }

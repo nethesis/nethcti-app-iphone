@@ -766,6 +766,8 @@
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
 		A971E369279F0367009017E7 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971E368279F0367009017E7 /* Group.swift */; };
+		A97ACC0E27AD48480038EEE0 /* PresenceSelectListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97ACC0C27AD48480038EEE0 /* PresenceSelectListTableViewCell.m */; };
+		A97ACC0F27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97ACC0D27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib */; };
 		A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97E15F527981A4900FE057E /* PresenceTableViewCell.m */; };
 		A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */; };
 		A9861AD727A9559600EFD779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A9861AD527A9559500EFD779 /* MBProgressHUD.m */; };
@@ -1909,6 +1911,9 @@
 		969DA4BE655B6AEB5803BEA0 /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBD6E980619195CB7EE32AC /* Pods_liblinphoneTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liblinphoneTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A971E368279F0367009017E7 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		A97ACC0B27AD48480038EEE0 /* PresenceSelectListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListTableViewCell.h; sourceTree = "<group>"; };
+		A97ACC0C27AD48480038EEE0 /* PresenceSelectListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListTableViewCell.m; sourceTree = "<group>"; };
+		A97ACC0D27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListTableViewCell.xib; sourceTree = "<group>"; };
 		A97E15F427981A4900FE057E /* PresenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
 		A97E15F527981A4900FE057E /* PresenceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewCell.m; sourceTree = "<group>"; };
 		A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceTableViewCell.xib; sourceTree = "<group>"; };
@@ -3512,12 +3517,10 @@
 		A976164527971ECA00D19212 /* Presence */ = {
 			isa = PBXGroup;
 			children = (
+				A97ACC1027AD6FBB0038EEE0 /* Views */,
 				A9F4924A2790833600564AED /* PresenceViewController.h */,
 				A9F4924B2790833600564AED /* PresenceViewController.m */,
 				A9F4924D279087FE00564AED /* PresenceViewController.xib */,
-				A97E15F427981A4900FE057E /* PresenceTableViewCell.h */,
-				A97E15F527981A4900FE057E /* PresenceTableViewCell.m */,
-				A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */,
 				A9B9E9AE27AAA1930062CCDE /* PresenceSelectListViewController.h */,
 				A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */,
 				A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */,
@@ -3526,6 +3529,19 @@
 				A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */,
 			);
 			path = Presence;
+			sourceTree = "<group>";
+		};
+		A97ACC1027AD6FBB0038EEE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A97E15F427981A4900FE057E /* PresenceTableViewCell.h */,
+				A97E15F527981A4900FE057E /* PresenceTableViewCell.m */,
+				A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */,
+				A97ACC0B27AD48480038EEE0 /* PresenceSelectListTableViewCell.h */,
+				A97ACC0C27AD48480038EEE0 /* PresenceSelectListTableViewCell.m */,
+				A97ACC0D27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A9861AD427A9559500EFD779 /* MBProgressHUD-1.2.0 */ = {
@@ -4681,6 +4697,7 @@
 				39F2B9A3264937DC00ADBFCE /* nethcti_user_add@2x.png in Resources */,
 				39F80F872678E0250046E287 /* nethcti_bluetooth.png in Resources */,
 				8CB2B8F91F86229E0015CEE2 /* chat_secure.png in Resources */,
+				A97ACC0F27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib in Resources */,
 				633FEF4E1D3CD55A0014B822 /* valid_default.png in Resources */,
 				570742581D5A0691004B9C84 /* ShopView.xib in Resources */,
 				633FEE361D3CD5590014B822 /* conference_exit_over.png in Resources */,
@@ -5075,6 +5092,7 @@
 				D306459E1611EC2A00BB571E /* UILoadingImageView.m in Sources */,
 				6381DA7D1C1AD5EA00DF3BBD /* UIBouncingView.m in Sources */,
 				D37E3ECD1619C27A0087659A /* CAAnimation+Blocks.m in Sources */,
+				A97ACC0E27AD48480038EEE0 /* PresenceSelectListTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

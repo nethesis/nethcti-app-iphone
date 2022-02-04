@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresenceSelectListViewController">
+            <connections>
+                <outlet property="ibPresenceSelectListTableViewCell" destination="KGk-i7-Jjw" id="5b4-Ai-fsM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationLevel="10" indentationWidth="10" reuseIdentifier="idPresenceSelectListTableViewCell" rowHeight="50" id="KGk-i7-Jjw" customClass="PresenceSelectListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEA-BJ-3wL" userLabel="Label - Nome">
+                        <rect key="frame" x="48" y="10" width="212" height="30"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
+                        <color key="textColor" name="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ddt-bs-Wfi" userLabel="Image View - Selezionato">
+                        <rect key="frame" x="280" y="13" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Eax-8G-E5s"/>
+                            <constraint firstAttribute="width" constant="24" id="yAW-Pn-0b8"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="81u-5Y-Xyk" userLabel="Image View - Status">
+                        <rect key="frame" x="16" y="13" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="PJo-Ac-vqL"/>
+                            <constraint firstAttribute="width" constant="24" id="ztu-Tk-i69"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Ddt-bs-Wfi" secondAttribute="trailing" constant="16" id="0Ym-4d-bsU"/>
+                    <constraint firstItem="81u-5Y-Xyk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7xF-qZ-MPA"/>
+                    <constraint firstItem="yEA-BJ-3wL" firstAttribute="leading" secondItem="81u-5Y-Xyk" secondAttribute="trailing" constant="8" symbolic="YES" id="FPh-FD-iP2"/>
+                    <constraint firstItem="Ddt-bs-Wfi" firstAttribute="leading" secondItem="yEA-BJ-3wL" secondAttribute="trailing" constant="20" id="TMu-q9-2Lh"/>
+                    <constraint firstAttribute="bottom" secondItem="yEA-BJ-3wL" secondAttribute="bottom" constant="10" id="Ymc-YT-v2J"/>
+                    <constraint firstItem="81u-5Y-Xyk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="k4s-er-hiG"/>
+                    <constraint firstItem="yEA-BJ-3wL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="swc-Wc-8ET"/>
+                    <constraint firstItem="Ddt-bs-Wfi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zoc-Dz-VUM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="ibImageViewSelezionato" destination="Ddt-bs-Wfi" id="m54-dH-W0i"/>
+                <outlet property="ibImageViewStatus" destination="81u-5Y-Xyk" id="OKV-bC-06Q"/>
+                <outlet property="ibLabelNome" destination="yEA-BJ-3wL" id="YiU-kq-r9G"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="textColor">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
