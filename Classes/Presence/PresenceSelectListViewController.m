@@ -11,9 +11,6 @@
 
 
 #define kKeyOnline @"online"
-#define kKeyBusy @"busy"
-#define kKeyRinging @"ringing"
-#define kKeyOffline @"offline"
 #define kKeyCellphone @"cellphone"
 #define kKeyVoicemail @"voicemail"
 #define kKeyDnd @"dnd"
@@ -31,6 +28,10 @@
 
 
 @implementation PresenceSelectListViewController
+
+@synthesize presenceSelezionata;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -194,7 +195,6 @@
     NSString *presenceCurrent = (NSString *)[self.arrayPresence objectAtIndex:indexPath.row];
     //LOGD(@"LOGD presenceCurrent: %@", presenceCurrent);
     
-    
     [self setPresenceCell:presenceSelectListTableViewCell withPresence:presenceCurrent];
     
     
@@ -204,10 +204,59 @@
 
 
 
-
-- (void)setPresenceCell:(PresenceSelectListTableViewCell *)presenceSelectListTableViewCell withPresence: (NSString *)presence {
+#pragma mark -
+#pragma mark === Table view delegate ===
+#pragma mark -
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LOGD(@"LOGD setPresenceCell: %@ - presence: %@", presenceSelectListTableViewCell, presence);
+    NSString *presenceSelezionata = (NSString *)[self.arrayPresence objectAtIndex:indexPath.row];
+    LOGD(@"LOGD presenceSelezionata: %@", presenceSelezionata);
+    
+    if ([presenceSelezionata isEqualToString:kKeyCallforward]) {
+        
+        // INOLTRO
+        
+        [self impostaPresenceInoltro];
+        
+    }else {
+        
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        [api postSetPresenceWithStatus:presenceSelezionata
+                                number:@""
+                        successHandler:^(NSString * _Nullable success) {
+            
+            NSLog(@"success: %@", success);
+            
+            
+        }
+                          errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+            
+            NSLog(@"errorCode: %d - errorString: %@", errorCode, errorString);
+            
+        }];
+        
+    }
+}
+
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+        
+    
+    NSString *presenceCurrent = (NSString *)[self.arrayPresence objectAtIndex:indexPath.row];
+    LOGD(@"LOGD presenceCurrent: %@", presenceCurrent);
+    
+    [self setPresenceCell:(PresenceSelectListTableViewCell *)cell withPresence:presenceCurrent];
+    
+}
+
+
+
+
+- (void)setPresenceCell:(PresenceSelectListTableViewCell *)presenceSelectListTableViewCell withPresence:(NSString *)presence {
+    
+    //LOGD(@"LOGD setPresenceCell: %@ - presence: %@", presenceSelectListTableViewCell, presence);
         
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
@@ -263,10 +312,133 @@
     }
     
     
+    // SELEZIONATO
+    if ([self.presenceSelezionata isEqualToString:presence]) {
+        
+        presenceSelectListTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"mainColor"];
+        
+        presenceSelectListTableViewCell.ibImageViewSelezionato.image = [UIImage imageNamed:@"icn_check_blu"];
+
+    }else {
+        
+        presenceSelectListTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"textColor"];
+
+        presenceSelectListTableViewCell.ibImageViewSelezionato.image = [UIImage imageNamed:@""];
+    }
+    
+    
 }
 
 
+- (void)impostaPresenceInoltro {
 
+    NSLog(@"impostaPresenceInoltro");
+
+    UIAlertController *alertControllerInoltro = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Inserisci", nil)
+                                                                              message:NSLocalizedString(@"Numero telefonico", nil)
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertControllerInoltro addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        
+        //textField.textColor = [UIColor blueColor];
+        textField.placeholder = NSLocalizedString(@"Numero", nil);
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        //textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.keyboardType = UIKeyboardTypePhonePad;
+
+    }];
+    
+    // OK
+    [alertControllerInoltro addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+        
+        NSArray *arrayTextfields = alertControllerInoltro.textFields;
+        UITextField *numeroTextField = arrayTextfields.firstObject;
+        //UITextField * passwordfiled = textfields[1];
+        
+        NSLog(@"numeroTextField: %@", numeroTextField.text);
+        
+        if ([numeroTextField.text isEqual:@""]) {
+            
+            UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+                                                                                           message:NSLocalizedString(@"Devi inserire il numero telefonico da utilizzare per inoltrare la chiamata", nil)
+                                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            // Annulla
+            [alertControllerAvviso addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:^(UIAlertAction *action) {
+                
+                // chiudi
+                [alertControllerAvviso dismissViewControllerAnimated:YES completion:nil];
+
+            }]];
+            
+            // chiudo il precedente
+            [alertControllerInoltro dismissViewControllerAnimated:YES completion:nil];
+
+            [self presentViewController:alertControllerAvviso animated:YES completion:nil];
+            
+        }else {
+            
+            // POST...
+            
+            NethCTIAPI *api = [NethCTIAPI sharedInstance];
+            
+            [api postSetPresenceWithStatus:@"callforward"
+                                    number:numeroTextField.text
+                            successHandler:^(NSString * _Nullable success) {
+                
+                NSLog(@"success: %@", success);
+                
+                
+            }
+                              errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                
+                NSLog(@"errorCode: %d - errorString: %@", errorCode, errorString);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    //NSLog(@"API_ERROR: %@, code: %li", string, (long)code);
+                    
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    
+                    
+                     // Get me error handling.
+                     LOGE(@"errorString: %@", errorString);
+                     
+                     [self performSelectorOnMainThread:@selector(showErrorController:)
+                                            withObject:errorString
+                                         waitUntilDone:YES];
+                     
+                });
+                
+            }];
+            
+            
+        }
+        
+    }]];
+    
+    // Annulla
+    [alertControllerInoltro addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Annulla", nil)
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+        
+        // chiudi
+        [alertControllerInoltro dismissViewControllerAnimated:YES completion:nil];
+
+        
+    }]];
+    
+    
+    
+    [self presentViewController:alertControllerInoltro animated:YES completion:nil];
+    
+}
 
 
 @end

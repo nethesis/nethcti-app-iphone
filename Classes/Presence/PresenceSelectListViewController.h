@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)ibaChiudi:(id)sender;
 
+
+@property (strong, nonatomic) NSString *presenceSelezionata;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

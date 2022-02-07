@@ -128,26 +128,34 @@ extension NethCTIAPI {
             return t;
         }
         
+        
         /**
          Prepare the login credential as form-data.
          */
         public class func getAuthenticationCredentials(password: String) -> [String: String]? {
+            
             return ["username": Username, "password": password] as [String: String]
         }
+        
         
         /**
          Use this after a successful login.
          TODO: Make this function stronger.
          */
         public class func getAuthenticatedCredentials() -> [String: String]? {
+            
             return ["Authorization": "\(Username):\(NethApiToken)"] as [String: String]
         }
         
+        
         @objc public class func checkCredentials() -> Bool {
+            
             return Username != "" && Domain != "" && NethApiToken != ""
         }
         
+        
         public class func clear() -> Void {
+            
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)

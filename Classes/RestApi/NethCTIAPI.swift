@@ -312,9 +312,8 @@ import Foundation
                       method: "GET",
                       headers: getHeaders,
                       body: nil,
-                      successHandler: {
+                      successHandler: { data, response in
                         
-                        data, response in
                         guard let responseData = data else { // Responde handling.
                             
                             errorHandler(-2, "No user information provided, contact an administrator.")
@@ -344,9 +343,9 @@ import Foundation
                             return
                         }
                         
-                      }, errorHandler: {
+                      },
+                      errorHandler: { error, response in
                         
-                        error, response in
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
@@ -421,8 +420,10 @@ import Foundation
                         
                         data, response in
                         guard let responseData = data as Data? else {
+                            
                             print("[WEDO] [APNS SERVER]: No data provided")
                             success(false)
+                            
                             return
                         }
                         
@@ -430,7 +431,8 @@ import Foundation
                         print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
                         success(true)
                         
-                      }, errorHandler: { error, response in
+                      },
+                      errorHandler: { error, response in
                         
                         success(false)
                       })
@@ -468,8 +470,11 @@ import Foundation
                         
                         data, response in
                         
-                        guard let responseData = data else { // Response handling.
+                        guard let responseData = data else {
+                            
+                            // Response handling.
                             errorHandler(-2, "No data provided.")
+                            
                             return
                         }
                         
@@ -484,7 +489,8 @@ import Foundation
                             return
                         }
                         
-                      }, errorHandler: {
+                      },
+                      errorHandler: {
                         
                         error, response in
                         // Error handling.
@@ -552,12 +558,12 @@ import Foundation
                       method: "GET",
                       headers: getHeaders,
                       body: nil,
-                      successHandler: {
+                      successHandler: { data, response in
                         
-                        data, response in
                         guard let responseData = data else { // Response handling.
                             
                             errorHandler(1, "No data provided.")
+                            
                             return
                         }
                         
@@ -583,9 +589,9 @@ import Foundation
                             errorHandler(1, "Unknown error: \(error.localizedDescription)") // error refer to catched error.
                         }
                         
-                      }, errorHandler: {
+                      },
+                      errorHandler: { error, response in // Error handling.
                         
-                        error, response in // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
                             errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
@@ -631,7 +637,7 @@ import Foundation
                       method: "GET",
                       headers: getHeaders,
                       body: nil,
-                      successHandler: {data, response in
+                      successHandler: { data, response in
                         
                         guard let responseData = data else { // Responde handling.
                             
@@ -659,9 +665,9 @@ import Foundation
                             return
                         }
                         
-                      }, errorHandler: {
+                      },
+                      errorHandler: { error, response in
                         
-                        error, response in
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
@@ -739,13 +745,14 @@ import Foundation
                             return
                         }
                         
-                      }, errorHandler: {
+                      },
+                      errorHandler: { error, response in
                         
-                        error, response in
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
                             errorHandler(-2, "Error calling GET on /astproxy/opgroups: missing response data.")
+                            
                             return
                         }
                         
@@ -828,9 +835,9 @@ import Foundation
                             return
                         }
                         
-                      }, errorHandler: {
+                      },
+                      errorHandler: { error, response in
                         
-                        error, response in
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
@@ -871,15 +878,13 @@ import Foundation
             return
         }
         
-        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        let headers = ApiCredentials.getAuthenticatedCredentials()
         
         self.baseCall(url: url,
                       method: "GET",
-                      headers: getHeaders,
+                      headers: headers,
                       body: nil,
-                      successHandler: {
-                        
-                        data, response in
+                      successHandler: { data, response in
                         
                         // Response handling.
                         guard let responseData = data else {
@@ -903,9 +908,8 @@ import Foundation
                             return
                         }
                         
-                      }, errorHandler: {
-                        
-                        error, response in
+                      },
+                      errorHandler: { error, response in
                         
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
@@ -919,9 +923,78 @@ import Foundation
                         
                         return
                       })
+        
     }
     
     
+    
+    /**
+     Make a POST set presence request to NethCTI server.
+     */
+    @objc public func postSetPresence(status: String,
+                                      number: String,
+                                      successHandler: @escaping (String?) -> Void,
+                                      errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/user/presence"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["status"] = status
+        body["to"] = number
+        //print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                        
+                        
+                        successHandler("Success")
+                        
+                        
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on /user/presence: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on /user/presence: missing response data.")
+
+                        return
+                      })
+        
+    }
     
     
 }

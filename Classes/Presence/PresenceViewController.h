@@ -11,6 +11,12 @@
 //#import "UIInterfaceStyleButton.h"
 
 
+@protocol PresenceDelegate <NSObject>
+
+
+
+@end
+
 
 @interface PresenceViewController : UIViewController <UICompositeViewDelegate>
 

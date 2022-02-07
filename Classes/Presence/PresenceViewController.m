@@ -28,7 +28,7 @@
 @interface PresenceViewController ()
 
 @property (strong, nonatomic) MBProgressHUD *HUD;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -96,6 +96,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self.ibTableViewPresence addSubview:self.refreshControl];
     // ------------------------
     
+    
+    self.ibButtonSelezionePresence.titleLabel.adjustsFontSizeToFitWidth = 0.7;
     
     [self downloadPresence];
     
@@ -193,13 +195,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     LOGD(@"ibaSelezionePresence");
     
-    
     PresenceSelectListViewController *presenceSelectListViewController = [[PresenceSelectListViewController alloc] init];
     
+    presenceSelectListViewController.presenceSelezionata = self.userMe.presence;
+
     [presenceSelectListViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 
     [presenceSelectListViewController setModalPresentationStyle:UIModalPresentationCustom];
-    
+
     [self presentViewController:presenceSelectListViewController animated:true completion:nil];
     
 }
@@ -734,8 +737,8 @@ static UICompositeViewDescription *compositeDescription = nil;
              */
         });
         
-        
     }];
+    
 }
 
 

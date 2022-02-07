@@ -1831,20 +1831,25 @@ _waitView.hidden = YES; \
     }];
 }
 
+
 - (void)showErrorController:(NSString * _Nonnull)message completion:(void (^)(void))completion {
-    UIAlertController *errView =
-    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
-                                        message:NSLocalizedStringFromTable(message, @"NethLocalizable", nil)
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* defaultAction =
-    [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
-                             style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action) {}];
+    
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
+                                                                     message:NSLocalizedStringFromTable(message, @"NethLocalizable", nil)
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
     [errView addAction:defaultAction];
+    
     [self presentViewController:errView animated:YES completion:completion];
 }
 
+
 - (void)showErrorController:(NSString*)error {
+    
     return [self showErrorController:error completion:nil];
 }
 
