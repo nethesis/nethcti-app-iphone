@@ -668,6 +668,8 @@ import Foundation
                       },
                       errorHandler: { error, response in
                         
+                        print("error: \(String(describing: error?.localizedDescription))")
+
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
@@ -710,9 +712,7 @@ import Foundation
                       method: "GET",
                       headers: getHeaders,
                       body: nil,
-                      successHandler: {
-                        
-                        data, response in
+                      successHandler: { data, response in
                         
                         guard let responseData = data else { // Response handling.
                             errorHandler(-2, "No data provided.")
@@ -971,11 +971,17 @@ import Foundation
                       headers: headers,
                       body: body,
                       successHandler: { data, response in
+                                                
+
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post impostazione presence SUCCESS")
+                            
+                            return
+                        }
                         
-                        
-                        successHandler("Success")
-                        
-                        
+                        successHandler("Post impostazione presence SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
                       },
                       errorHandler: { error, response in
                         
@@ -989,9 +995,9 @@ import Foundation
                             return
                         }
                         
-                        errorHandler(httpResponse.statusCode, "Error calling POST on /user/presence: missing response data.")
+                        errorHandler(httpResponse.statusCode, "Error calling POST on /user/presence")
 
-                        return
+                        //return
                       })
         
     }

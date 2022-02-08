@@ -7,6 +7,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+// delegate custom
+@protocol PresenceSelectListDelegate <NSObject>
+
+- (void)reloadPresence;
+
+@end
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PresenceSelectListViewController : UIViewController
@@ -24,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (strong, nonatomic) NSString *presenceSelezionata;
+@property (weak, nonatomic) id <PresenceSelectListDelegate> presenceSelectListDelegate;
 
 
 @end

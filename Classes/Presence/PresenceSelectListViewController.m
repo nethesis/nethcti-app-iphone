@@ -220,6 +220,8 @@
         
     }else {
         
+        [self.HUD showAnimated:YES];
+
         NethCTIAPI *api = [NethCTIAPI sharedInstance];
         
         [api postSetPresenceWithStatus:presenceSelezionata
@@ -227,10 +229,25 @@
                         successHandler:^(NSString * _Nullable success) {
             
             NSLog(@"success: %@", success);
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                
+                // Nascondo la ViewCaricamento
+                [self.HUD hideAnimated:YES];
+                            
+                // chiudi controller
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                // implementare nel completion?
+                [self.presenceSelectListDelegate reloadPresence];
+                
+            });
             
             
         }
                           errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+            
             
             NSLog(@"errorCode: %d - errorString: %@", errorCode, errorString);
             
@@ -382,8 +399,20 @@
             
         }else {
             
+            // Controllo numeri
+            /*
+            NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+            
+            if ([numeroTextField.text rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
+                
+                // newString consists only of the digits 0 through 9
+            }
+            */
+            
             // POST...
             
+            [self.HUD showAnimated:YES];
+
             NethCTIAPI *api = [NethCTIAPI sharedInstance];
             
             [api postSetPresenceWithStatus:@"callforward"
@@ -391,6 +420,23 @@
                             successHandler:^(NSString * _Nullable success) {
                 
                 NSLog(@"success: %@", success);
+                                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    // chiudo alert
+                    [alertControllerInoltro dismissViewControllerAnimated:YES completion:nil];
+                    
+                    // chiudo controller
+                    [self dismissViewControllerAnimated:YES completion:nil];
+
+                    // implementare nel completion?
+                    [self.presenceSelectListDelegate reloadPresence];
+                    
+                });
+                
                 
                 
             }
@@ -399,12 +445,9 @@
                 NSLog(@"errorCode: %d - errorString: %@", errorCode, errorString);
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    //NSLog(@"API_ERROR: %@, code: %li", string, (long)code);
-                    
+                                        
                     // Nascondo la ViewCaricamento
                     [self.HUD hideAnimated:YES];
-                    
                     
                     
                      // Get me error handling.

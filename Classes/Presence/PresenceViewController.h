@@ -9,16 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UICompositeView.h"
 //#import "UIInterfaceStyleButton.h"
+#import "PresenceSelectListViewController.h"
 
 
-@protocol PresenceDelegate <NSObject>
-
-
-
-@end
-
-
-@interface PresenceViewController : UIViewController <UICompositeViewDelegate>
+@interface PresenceViewController : UIViewController <UICompositeViewDelegate, PresenceSelectListDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *topBar;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
