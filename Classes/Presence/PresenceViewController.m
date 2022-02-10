@@ -29,6 +29,7 @@
 
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic, retain) NSTimer *timer;
 
 @end
 
@@ -80,7 +81,6 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.HUD.mode = MBProgressHUDModeIndeterminate;
     [self.view addSubview:self.HUD];
     
-    [self.HUD showAnimated:YES];
     
     
     // --- UIRefreshControl ---
@@ -98,8 +98,32 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     
     self.ibButtonSelezionePresence.titleLabel.adjustsFontSizeToFitWidth = 0.7;
+
     
-    [self downloadPresence];
+    /*
+    if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
+        // This method should send more error codes than one.
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:401], @"code", nil];
+        
+        [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
+                                                          object:self
+                                                        userInfo:dict];
+
+    }else {
+        */
+        [self.HUD showAnimated:YES];
+
+        [self downloadPresence];
+        
+        
+        // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
+        // ------------------------------------------
+    //}
+    
+    
+
     
 }
 
@@ -121,7 +145,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    LOGD(@"viewDidAppear");
+    NSLog(@"viewDidAppear");
     
 }
 
@@ -130,7 +154,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    LOGD(@"viewWillDisappear");
+    NSLog(@"viewWillDisappear");
     
     // --- ATTENZIONE: forza il viewDidLoad! ---
     self.view = NULL;
@@ -138,6 +162,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     [self.refreshControl endRefreshing];
     
+    self.timer = nil;
 }
 
 
@@ -163,14 +188,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)ibaVisualizzaPreferiti:(id)sender {
     
-    LOGD(@"ibaVisualizzaPreferiti");
+    NSLog(@"ibaVisualizzaPreferiti");
     
 }
 
 
 - (IBAction)ibaVisualizzaGruppi:(id)sender {
     
-    LOGD(@"ibaVisualizzaGruppi");
+    NSLog(@"ibaVisualizzaGruppi");
     
     PresenceSelectListGroupViewController *presenceSelectListGroupViewController = [[PresenceSelectListGroupViewController alloc] init];
         
@@ -571,6 +596,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         NSLog(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
         
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             self.userMe = portableNethUser;
@@ -672,66 +698,51 @@ static UICompositeViewDescription *compositeDescription = nil;
                 
             } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 
-                /*
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                 
-                 // Nascondo la ViewCaricamento
-                 [self.HUD hideAnimated:YES];
-                 
-                 [self.refreshControl endRefreshing];
-                 
-                 // Get me error handling.
-                 LOGE(@"API_ERROR: %@", string);
-                 
-                 [self performSelectorOnMainThread:@selector(showErrorController:)
-                 withObject:string
-                 waitUntilDone:YES];
-                 });
-                 */
+                NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    [self.refreshControl endRefreshing];
+                    
+                    [self showAlertError:code withError:string];
+                    
+                });
+
             }];
             
         } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             
-            /*
-             dispatch_async(dispatch_get_main_queue(), ^{
-             
-             // Nascondo la ViewCaricamento
-             [self.HUD hideAnimated:YES];
-             
-             [self.refreshControl endRefreshing];
-             
-             // Get me error handling.
-             LOGE(@"API_ERROR: %@", string);
-             
-             [self performSelectorOnMainThread:@selector(showErrorController:)
-             withObject:string
-             waitUntilDone:YES];
-             });
-             */
-            
+            NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // Nascondo la ViewCaricamento
+                [self.HUD hideAnimated:YES];
+                
+                [self.refreshControl endRefreshing];
+                
+                [self showAlertError:code withError:string];
+                
+            });
+                         
         }];
-        
         
     } errorHandler:^(NSInteger code, NSString * _Nullable string) {
         
-        
+        NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSLog(@"API_ERROR: %@, code: %li", string, (long)code);
             
             // Nascondo la ViewCaricamento
             [self.HUD hideAnimated:YES];
             
             [self.refreshControl endRefreshing];
             
-            /*
-             // Get me error handling.
-             LOGE(@"API_ERROR: %@", string);
-             
-             [self performSelectorOnMainThread:@selector(showErrorController:)
-             withObject:string
-             waitUntilDone:YES];
-             */
+            [self showAlertError:code withError:string];
+                        
         });
         
     }];
@@ -749,11 +760,57 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSLog(@"reloadPresence");
     
-    [self downloadPresence];
+    [self.HUD showAnimated:YES];
 
+    [self downloadPresence];
 
     
 }
+
+
+
+- (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
+    
+    NSString *message = @"";
+
+    NSInteger code = codeError;
+    
+    switch (code) {
+        case 2:
+            
+            message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
+            break;
+            
+        case 401:
+            
+            message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
+            break;
+            
+        default:{
+
+            message = stringError;
+            
+            break;
+        }
+    }
+                
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+                                                                                   message:message
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    // btn OK
+    [alertControllerAvviso addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+        
+        // chiudi alert
+        [alertControllerAvviso dismissViewControllerAnimated:YES completion:nil];
+
+    }]];
+    
+    [self presentViewController:alertControllerAvviso animated:YES completion:nil];
+}
+
 
 
 

@@ -294,9 +294,12 @@
 /// @param term Term to search inside contact name.
 /// @param retry TO BE REMOVED: after a 401, login and retry one time.
 -(BOOL)loadNeth:(NSString *)view withTerm:(NSString *)term {
+    
     if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
         // This method should send more error codes than one.
+        
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:401], @"code", nil];
+        
         [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
                                                           object:self
                                                         userInfo:dict];
@@ -305,6 +308,7 @@
     
     // Synchronize on this object to check if there's already an api call.
     @synchronized (_addressBookMap) {
+        
         if(_isLoading)
             return false;
         _isLoading = YES;
@@ -312,7 +316,9 @@
     
     // Fetch contacts in a background thread. No more actions in this method are executed on main thread.
     [NethCTIAPI.sharedInstance fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
+        
         @try {
+            
             for (Contact* nethContact in contacts) {
                 @synchronized(LinphoneManager.instance.fastAddressBook) {
                     @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
@@ -323,9 +329,13 @@
             
             // Mark contact as updated if loaded are more than 0.
             [LinphoneManager.instance setContactsUpdated:TRUE];
+            
         } @catch (NSException *exception) {
+            
             LOGE(@"[FastAddressBook] Exception thrown while loading Neth results: %s", exception.description);
+            
         } @finally {
+            
             // Release the block on loading action before exit callback.
             @synchronized (_addressBookMap) {
                 _isLoading = NO;
@@ -334,6 +344,7 @@
             [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
         }
     } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        
         // [LinphoneManager.instance clearProxies];
         @try {
             // Show error message.
@@ -344,11 +355,16 @@
             [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
                                                               object:self
                                                             userInfo:dict];
+            
         } @catch (NSException *exception) {
+            
             LOGE(@"[FastAddressBook] Exception thrown while error handling Neth results: %s", exception.description);
+            
         } @finally {
+            
             // Release the block on loading action before exit callback.
             @synchronized (_addressBookMap) {
+                
                 _isLoading = NO;
             }
         }

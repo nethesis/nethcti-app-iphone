@@ -77,6 +77,8 @@ import Foundation
                           successHandler: @escaping (Data?, URLResponse?) -> Void,
                           errorHandler: @escaping(Error?, URLResponse?) -> Void) -> Void {
         
+        print("baseCall url: \(url), method: \(method), body: \(String(describing: body))")
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         
@@ -173,24 +175,28 @@ import Foundation
             return
         }
         
-        self.baseCall(url: url, method: "POST", headers: nil, body: postStr, successHandler: {
-            
-            data, response in
-            errorHandler(-2, "Why am I here? Post Login need to return a 401 status code, not 200.")
-            
-        }, errorHandler: {
-            
-            error, response in
-            // Error and Digest handling.
-            guard let httpResponse = response as? HTTPURLResponse,
-                  let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
-                errorHandler(-2, "AUTHENTICATE-HEADER-MISSING")
-                
-                return
-            }
-            
-            successHandler(ApiCredentials.setToken(password: password, digest: digest))
-        })
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: nil,
+                      body: postStr,
+                      successHandler: { data, response in
+                        
+                        errorHandler(-2, "Why am I here? Post Login need to return a 401 status code, not 200.")
+                        
+                      },
+                      errorHandler: { error, response in
+                        
+                        // Error and Digest handling.
+                        guard let httpResponse = response as? HTTPURLResponse,
+                              let digest = httpResponse.allHeaderFields[AnyHashable("Www-Authenticate")] as? String else {
+                            
+                            errorHandler(-2, "AUTHENTICATE-HEADER-MISSING")
+                            
+                            return
+                        }
+                        
+                        successHandler(ApiCredentials.setToken(password: password, digest: digest))
+                      })
     }
     
     
@@ -207,62 +213,65 @@ import Foundation
         }
         
         // Before unregister from notificatore.
-        registerPushToken(ApiCredentials.DeviceToken, unregister: true, success: {
-            
-            result in
-            // Check result.
-            if (result) {
-                // Logout from asterisk.
-                // Set the url.
-                let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
-                
-                guard let url = URL(string: endPoint) else {
-                    
-                    print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
-                    
-                    return
-                }
-                
-                let postArgs = ApiCredentials.getAuthenticatedCredentials()
-                
-                self.baseCall(url: url,
-                              method: "POST",
-                              headers: postArgs,
-                              body: nil,
-                              successHandler: {
+        registerPushToken(ApiCredentials.DeviceToken,
+                          unregister: true,
+                          success: { result in
+                            
+                            // Check result.
+                            if (result) {
+                                // Logout from asterisk.
+                                // Set the url.
+                                let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
                                 
-                                data, response in
-                                // Here we are sure that status code is 200.
-                                ApiCredentials.clear()
-                                
-                                successHandler("Logged out.")
-                                
-                              }, errorHandler: {error, response in
-                                // Error handling.
-                                guard error == nil,
-                                      let httpResponse = response as? HTTPURLResponse else {
+                                guard let url = URL(string: endPoint) else {
                                     
-                                    successHandler("Unknown error: Not logged out.")
+                                    print(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
                                     
                                     return
                                 }
                                 
-                                successHandler("\(httpResponse.statusCode): Not logged out.")
+                                let postArgs = ApiCredentials.getAuthenticatedCredentials()
                                 
-                                return
-                              })
-                
-            } else {
-                
-                print("[WEDO PUSH] Error unloading notificatore.")
-                
-                successHandler("Not logged out.")
-            }
-        })
+                                self.baseCall(url: url,
+                                              method: "POST",
+                                              headers: postArgs,
+                                              body: nil,
+                                              successHandler: { data, response in
+                                                
+                                                // Here we are sure that status code is 200.
+                                                ApiCredentials.clear()
+                                                
+                                                successHandler("Logged out.")
+                                                
+                                              },
+                                              errorHandler: { error, response in
+                                                // Error handling.
+                                                
+                                                guard error == nil,
+                                                      let httpResponse = response as? HTTPURLResponse else {
+                                                    
+                                                    successHandler("Unknown error: Not logged out.")
+                                                    
+                                                    return
+                                                }
+                                                
+                                                successHandler("\(httpResponse.statusCode): Not logged out.")
+                                                
+                                                return
+                                              })
+                                
+                            } else {
+                                
+                                print("[WEDO PUSH] Error unloading notificatore.")
+                                
+                                successHandler("Not logged out.")
+                            }
+                          })
     }
     
     
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
+        
         guard let u = username as String? else {
             print("API_ERROR: No username provided.")
             return
@@ -669,6 +678,7 @@ import Foundation
                       errorHandler: { error, response in
                         
                         print("error: \(String(describing: error?.localizedDescription))")
+                        print("response: \(String(describing: response)))")
 
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
