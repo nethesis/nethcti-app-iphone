@@ -10,9 +10,10 @@
 #import "UICompositeView.h"
 //#import "UIInterfaceStyleButton.h"
 #import "PresenceSelectListViewController.h"
+#import "PresenceSelectListGroupViewController.h"
 
 
-@interface PresenceViewController : UIViewController <UICompositeViewDelegate, PresenceSelectListDelegate>
+@interface PresenceViewController : UIViewController <UICompositeViewDelegate, PresenceSelectListDelegate, PresenceSelectListGroupDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *topBar;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
@@ -27,6 +28,7 @@
 
 @property(strong, nonatomic) NSMutableArray *arrayUsers;
 @property(strong, nonatomic) PortableNethUser *userMe;
+@property(strong, nonatomic) NSString *id_groupSelezionato;
 
 
 - (void)loadData;

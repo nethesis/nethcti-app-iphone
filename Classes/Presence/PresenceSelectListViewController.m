@@ -38,30 +38,28 @@
     // Do any additional setup after loading the view.
     
     
+    // --- MBProgressHUD ---
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
     [self.view addSubview:self.HUD];
-    
-    [self.HUD showAnimated:YES];
+    // ------------------------
     
     
     // --- UIRefreshControl ---
-    // Initialize Refresh Control
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     //self.refreshControl.tintColor = colorDivider;
     
-    // Configure Refresh Control
     [self.refreshControl addTarget:self action:@selector(downloadPresenceList) forControlEvents:UIControlEventValueChanged];
     
-    // Configure View Controller
     [self.ibTableViewSelezionePresence addSubview:self.refreshControl];
     // ------------------------
     
     
+    
+    [self.HUD showAnimated:YES];
+
     [self downloadPresenceList];
-    
-    
     
     
 }
@@ -80,8 +78,9 @@
 
 - (IBAction)ibaChiudi:(id)sender {
     
+    NSLog(@"ibaChiudi");
+
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 
@@ -95,7 +94,6 @@
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    // Download GRUPPI
     [api getPresenceListWithSuccessHandler:^(NSArray *arrayPresence) {
                 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -134,12 +132,13 @@
 
 
 
-
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark === Table view data source ===
+#pragma mark -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    //LOGD(@"LOGD arrayUsers.count: %d", self.arrayUsers.count);
+    //NSLog(@"arrayUsers.count: %d", self.arrayUsers.count);
     
     if (self.arrayPresence.count > 0) {
         
@@ -159,7 +158,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    //LOGD(@"LOGD arrayUsers.count: %d", self.arrayUsers.count);
+    //NSLog(@"arrayUsers.count: %d", self.arrayUsers.count);
     
     return self.arrayPresence.count;
 }

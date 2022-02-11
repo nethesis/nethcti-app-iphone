@@ -40,7 +40,6 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MZ-Sf-XHd" userLabel="Button - Chiudi">
                     <rect key="frame" x="344" y="64" width="50" height="50"/>
-                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="ryP-b5-PyD"/>
                         <constraint firstAttribute="height" constant="50" id="xkw-Kc-8ts"/>
@@ -53,10 +52,13 @@
                         <action selector="ibaChiudi:" destination="-1" eventType="touchUpInside" id="Mai-Ox-jhO"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Erp-Nl-e1S" userLabel="Table View - Gruppi">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Erp-Nl-e1S" userLabel="Table View - Gruppi">
                     <rect key="frame" x="0.0" y="142" width="414" height="754"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Jt2-mh-ANi"/>
+                        <outlet property="delegate" destination="-1" id="QBH-Q3-TAe"/>
+                    </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nessun gruppo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cb6-qz-4WT" userLabel="Label - NessunDato">
                     <rect key="frame" x="145" y="442.5" width="124" height="21"/>
@@ -68,12 +70,16 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Erp-Nl-e1S" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="0ER-c1-wT6"/>
                 <constraint firstItem="pzc-6F-fFD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="4UP-op-8YP"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5MZ-Sf-XHd" secondAttribute="trailing" constant="20" id="JpL-Bu-hJw"/>
+                <constraint firstAttribute="bottom" secondItem="Erp-Nl-e1S" secondAttribute="bottom" id="KwY-We-Sec"/>
                 <constraint firstItem="5MZ-Sf-XHd" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="OmF-Hg-vxX"/>
                 <constraint firstItem="Cb6-qz-4WT" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="Ozn-Gq-P3q"/>
+                <constraint firstItem="Erp-Nl-e1S" firstAttribute="top" secondItem="pzc-6F-fFD" secondAttribute="bottom" constant="26" id="Tp5-Ya-3xG"/>
                 <constraint firstItem="pzc-6F-fFD" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="cyW-BS-rOR"/>
                 <constraint firstItem="Cb6-qz-4WT" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="fP9-xc-Tcq"/>
+                <constraint firstItem="Erp-Nl-e1S" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="hfM-JC-R84"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
         </view>

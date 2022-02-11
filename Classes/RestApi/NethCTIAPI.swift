@@ -677,7 +677,7 @@ import Foundation
                       },
                       errorHandler: { error, response in
                         
-                        print("error: \(String(describing: error?.localizedDescription))")
+                        //print("error: \(String(describing: error?.localizedDescription))")
                         print("response: \(String(describing: response)))")
 
                         // Error handling.
@@ -725,26 +725,28 @@ import Foundation
                       successHandler: { data, response in
                         
                         guard let responseData = data else { // Response handling.
+                            
                             errorHandler(-2, "No data provided.")
+                            
                             return
                         }
                         
                         do {
                             
                             let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                            //print("resultJson: \(resultJson)")
+                            print("resultJson: \(resultJson)")
                             
                             var arrayGroups: [PortableGroup] = []
                             
                             for (key, value) in resultJson {
                                 
                                 let currentGroup: Group = Group(key: key, value: value as! [String: Any])!
-                                //print("currentGroup: \(currentGroup)")
+                                print("currentGroup: \(currentGroup)")
                                 
                                 arrayGroups.append(currentGroup.portable() as PortableGroup)
                             }
                             
-                            //print("arrayGroups: \(arrayGroups)")
+                            print("arrayGroups.count: \(arrayGroups.count)")
                             
                             successHandler(arrayGroups)
                             
