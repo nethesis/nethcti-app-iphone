@@ -12,6 +12,7 @@ struct NethUser: Codable {
     let name: String?
     let username: String?
     let presence: String?
+    let mainPresence: String?
     let endpoints: Endpoints
     let profile: Profile
     let recallOnBusy: String?
@@ -44,14 +45,22 @@ extension NethUser {
         }
         self.username = username
 
-        // MODIFICARE...
-        guard let presence = from["presence"] as? String,
-            let endpoints = from["endpoints"] as? [String: Any] else {
+        guard let presence = from["presence"] as? String else {
             
                 return nil
         }
-        
         self.presence = presence
+
+        guard let mainPresence = from["mainPresence"] as? String else {
+            
+                return nil
+        }
+        self.mainPresence = mainPresence
+
+        guard let endpoints = from["endpoints"] as? [String: Any] else {
+            
+                return nil
+        }
         self.endpoints = Endpoints(from:endpoints)!
         
         
@@ -99,7 +108,11 @@ extension NethUser {
 
 @objc public class PortableNethUser: NSObject, Codable {
     
-    @objc public let name, username, presence: String?
+    @objc public let name: String?
+    @objc public let username: String?
+    @objc public let presence: String?
+    @objc public let mainPresence: String?
+
     var endpoints: Endpoints
     @objc public let intern: String?
     @objc public let secret: String?
@@ -119,6 +132,8 @@ extension NethUser {
         self.name = from.name
         self.username = from.username
         self.presence = from.presence
+        self.mainPresence = from.mainPresence
+
         self.endpoints = from.endpoints
         let mobile = from.endpoints.endpointsExtension.first(where: { (Extension) -> Bool in
             Extension.type == "mobile"

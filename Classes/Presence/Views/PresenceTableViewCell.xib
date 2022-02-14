@@ -96,7 +96,7 @@
                             <constraint firstItem="LMD-hJ-ygw" firstAttribute="top" secondItem="VsM-a5-cWI" secondAttribute="top" constant="2" id="veb-te-CoW"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2t-3Z-E1H" userLabel="Button - Azioni">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2t-3Z-E1H" userLabel="Button - VisualizzaAzioni">
                         <rect key="frame" x="250" y="15" width="50" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -104,6 +104,9 @@
                             <constraint firstAttribute="width" constant="50" id="Txs-oS-h5y"/>
                         </constraints>
                         <state key="normal" image="icn_azioni"/>
+                        <connections>
+                            <action selector="ibaVisualizzaAzioni:" destination="-1" eventType="touchUpInside" id="YTm-Ra-lSU"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

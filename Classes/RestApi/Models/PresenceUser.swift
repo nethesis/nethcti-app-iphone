@@ -13,6 +13,7 @@ struct PresenceUser: Codable {
     let name: String?
     let username: String?
     let presence: String?
+    let mainPresence: String?
     let endpoints: Endpoints
     let mainExtension: String?
 }
@@ -41,6 +42,11 @@ extension PresenceUser {
         }
         self.presence = presence
                         
+        guard let mainPresence = from["mainPresence"] as? String else {
+            
+            return nil
+        }
+        self.mainPresence = mainPresence
         
         guard let endpoints = from["endpoints"] as? [String: Any] else {
             return nil
@@ -65,6 +71,7 @@ extension PresenceUser {
     @objc public let name: String?
     @objc public let username: String?
     @objc public let presence: String?
+    @objc public let mainPresence: String?
     @objc public let mainExtension: String?
     //var endpoints: Endpoints
 
@@ -74,6 +81,8 @@ extension PresenceUser {
         self.name = from.name
         self.username = from.username
         self.presence = from.presence
+        self.mainPresence = from.mainPresence
+
         self.mainExtension = from.endpoints.mainExtension
         //self.endpoints = from.endpoints
 

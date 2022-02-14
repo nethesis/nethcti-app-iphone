@@ -28,9 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
-    //NSLog(@"arrayGroups: %@", self.arrayGroups);
-    //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
+    NSLog(@"viewDidLoad()");
+
+    NSLog(@"arrayGroups: %@", self.arrayGroups);
+    NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
     
     
     // --- MBProgressHUD ---
@@ -87,7 +88,7 @@
     // Download INFO UTENTE
     [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
-        NSLog(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
+        //NSLog(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
         
         // Download GRUPPI
         [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
@@ -119,7 +120,8 @@
                     }
                 }
                 
-                
+                NSLog(@"arrayGroups: %@", arrayGroups);
+
                 [self.ibTableViewGruppi reloadData];
                 
             });
@@ -130,7 +132,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+                NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
                 
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
@@ -173,7 +175,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    NSLog(@"arrayGroups.count: %lu", (unsigned long)self.arrayGroups.count);
+    //NSLog(@"arrayGroups.count: %lu", (unsigned long)self.arrayGroups.count);
     
     if (self.arrayGroups.count > 0) {
         
@@ -193,7 +195,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSLog(@"arrayGroups.count: %lu", (unsigned long)self.arrayGroups.count);
+    //NSLog(@"arrayGroups.count: %lu", (unsigned long)self.arrayGroups.count);
     
     return self.arrayGroups.count;
 }
@@ -201,7 +203,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"cellForRowAtIndexPath indexPath.row: %ld", (long)indexPath.row);
+    //NSLog(@"cellForRowAtIndexPath indexPath.row: %ld", (long)indexPath.row);
     
     static NSString *CellIdentifier = @"idPresenceSelectListGroupTableViewCell";
     
@@ -219,13 +221,14 @@
     
     PortableGroup *groupSelezionato = (PortableGroup *)[self.arrayGroups objectAtIndex:indexPath.row];
     
-    NSLog(@"groupSelezionato.name: %@", groupSelezionato.name);
+    //NSLog(@"groupSelezionato.name: %@", groupSelezionato.name);
     presenceSelectListGroupTableViewCell.ibLabelNome.text = groupSelezionato.name;
     
     
     // SELEZIONATO
-    NSLog(@"groupSelezionato.id_group: %@", groupSelezionato.id_group);
-    
+    //NSLog(@"groupSelezionato.id_group: %@", groupSelezionato.id_group);
+    NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
+
     if ([self.id_groupSelezionato isEqualToString:groupSelezionato.id_group]) {
         
         presenceSelectListGroupTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"mainColor"];
@@ -250,30 +253,30 @@
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSLog(@"didSelectRowAtIndexPath: %ld", (long)indexPath.row);
+
     PortableGroup *groupSelezionato = (PortableGroup *)[self.arrayGroups objectAtIndex:indexPath.row];
-    NSLog(@"groupSelezionato.id_group: %@", groupSelezionato.id_group);
     
     self.id_groupSelezionato = groupSelezionato.id_group;
+    NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
+
     
     [self.ibTableViewGruppi reloadData];
+
+    [self.presenceSelectListGroupDelegate reloadPresenceWithGroup:self.id_groupSelezionato];
     
-    
-    //[self.presenceSelectListGroupDelegate reloadPresenceWithGroup:self.id_groupSelezionato];
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 
-
+/*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    /*
-     NSString *presenceCurrent = (NSString *)[self.arrayPresence objectAtIndex:indexPath.row];
-     //NSLog(@" presenceCurrent: %@", presenceCurrent);
-     
-     [self setPresenceCell:(PresenceSelectListTableViewCell *)cell withPresence:presenceCurrent];
-     */
-}
 
+    
+}
+*/
 
 
 - (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {

@@ -38,5 +38,6 @@
 - (IBAction)ibaSelezionePresence:(id)sender;
 - (IBAction)ibaVisualizzaGruppi:(id)sender;
 - (IBAction)ibaVisualizzaPreferiti:(id)sender;
+- (IBAction)ibaVisualizzaAzioni:(UIButton *)sender;
 
 @end

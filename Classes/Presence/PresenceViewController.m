@@ -12,6 +12,8 @@
 #import "MBProgressHUD.h"
 #import "PresenceSelectListViewController.h"
 #import "PresenceSelectListGroupViewController.h"
+#import "PresenceActionViewController.h"
+
 
 
 #define kKeyOnline @"online"
@@ -100,6 +102,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     self.ibButtonSelezionePresence.titleLabel.adjustsFontSizeToFitWidth = 0.7;
 
+    self.id_groupSelezionato = @"";
     
     /*
     if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
@@ -187,6 +190,27 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 #pragma mark - IBAction Functions
 
+- (IBAction)ibaVisualizzaAzioni:(UIButton *)sender {
+    
+    //NSLog(@"ibaVisualizzaAzioni sender.tag: %ld", (long)sender.tag);
+
+    PortablePresenceUser *portablePresenceUserSelezionato = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:sender.tag];
+    //NSLog(@"portablePresenceUserSelezionato.name: %@", portablePresenceUserSelezionato.name);
+    
+    PresenceActionViewController *presenceActionViewController = [[PresenceActionViewController alloc] init];
+    
+    presenceActionViewController.portablePresenceUser = portablePresenceUserSelezionato;
+    presenceActionViewController.portableNethUserMe = self.userMe;
+    
+    [presenceActionViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+
+    [presenceActionViewController setModalPresentationStyle:UIModalPresentationCustom];
+
+    [self presentViewController:presenceActionViewController animated:true completion:nil];
+    
+}
+
+
 - (IBAction)ibaVisualizzaPreferiti:(id)sender {
     
     NSLog(@"ibaVisualizzaPreferiti");
@@ -227,7 +251,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     PresenceSelectListViewController *presenceSelectListViewController = [[PresenceSelectListViewController alloc] init];
     
-    presenceSelectListViewController.presenceSelezionata = self.userMe.presence;
+    presenceSelectListViewController.presenceSelezionata = self.userMe.mainPresence;
     presenceSelectListViewController.presenceSelectListDelegate = self;
     
     [presenceSelectListViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
@@ -250,7 +274,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark === Table view data source ===
+#pragma mark -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -302,6 +328,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     PortablePresenceUser *portablePresenceUser = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:indexPath.row];
     //LOGD(@"LOGD portablePresenceUser: %@", portablePresenceUser.name);
     
+    presenceTableViewCell.ibButtonVisualizzaAzioni.tag = indexPath.row;
     
     [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderWidth: 1.0];
     
@@ -352,12 +379,45 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 
 
+#pragma mark -
+#pragma mark === Table view delegate ===
+#pragma mark -
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"didSelectRowAtIndexPath: %ld", (long)indexPath.row);
+
+    /*
+    PortablePresenceUser *portablePresenceUserSelezionato = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:indexPath.row];
+
+    PresenceActionViewController *presenceActionViewController = [[PresenceActionViewController alloc] init];
+    
+    presenceActionViewController.portablePresenceUser = portablePresenceUserSelezionato;
+    presenceActionViewController.portableNethUserMe = self.userMe;
+    
+    [presenceActionViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+
+    [presenceActionViewController setModalPresentationStyle:UIModalPresentationCustom];
+
+    [self presentViewController:presenceActionViewController animated:true completion:nil];
+    
+    */
+}
+
+
+/*
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+}
+*/
+
+
 
 - (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPortablePresenceUser: (PortablePresenceUser *)portablePresenceUser {
     
     LOGD(@"LOGD setMePresence");
     
-    NSString *presence = portablePresenceUser.presence;
+    NSString *presence = portablePresenceUser.mainPresence;
     LOGD(@"LOGD presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
@@ -486,7 +546,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSLog(@"setMePresence");
     
-    NSString *presence = self.userMe.presence;
+    NSString *presence = self.userMe.mainPresence;
     NSLog(@"presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
@@ -587,30 +647,15 @@ static UICompositeViewDescription *compositeDescription = nil;
     // Download INFO UTENTE
     [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
-        NSLog(@"portableNethUser.mainextension: %@", portableNethUser.mainExtension);
-        
-        NSLog(@"portableNethUser.recallOnBusy: %@", portableNethUser.recallOnBusy);
-        
-        NSLog(@"portableNethUser.permissionsSpy: %@", portableNethUser.permissionsSpy ? @"Yes" : @"No");
-        
-        NSLog(@"portableNethUser.permissionsIntrude: %@", portableNethUser.permissionsIntrude ? @"Yes" : @"No");
-        
-        NSLog(@"portableNethUser.permissionsRecording: %@", portableNethUser.permissionsRecording ? @"Yes" : @"No");
-        
-        NSLog(@"portableNethUser.permissionsPickup: %@", portableNethUser.permissionsPickup ? @"Yes" : @"No");
-        
-        NSLog(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
-        
-        
+        NSLog(@"portableNethUser.mainPresence: %@", portableNethUser.mainPresence);
+
         dispatch_async(dispatch_get_main_queue(), ^{
             
             self.userMe = portableNethUser;
             
             [self setMePresence];
         });
-        
-        
-        
+                
         
         // Download GRUPPI
         [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
@@ -622,13 +667,13 @@ static UICompositeViewDescription *compositeDescription = nil;
                 
                 for (NSString *idGroupEnableCorrente in self.userMe.arrayPermissionsIdGroups) {
                     
-                    NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
+                    //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
                     
                     for (PortableGroup *groupCorrente in arrayGroups) {
                         
                         if ([idGroupEnableCorrente isEqualToString:groupCorrente.id_group]) {
                             
-                            NSLog(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
+                            //NSLog(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
                             
                             [self.arrayGruppiVisibili addObject:groupCorrente];
                         }
@@ -644,22 +689,37 @@ static UICompositeViewDescription *compositeDescription = nil;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                                                             
-                    //NSLog(@"arrayGruppiVisibili.count: %lu", (unsigned long)arrayGruppiVisibili.count);
-                    
-                    // --- Selezione default primo gruppo ---
-                    PortableGroup *groupVisibileSelezionato = self.arrayGruppiVisibili.firstObject;
-                    NSLog(@"groupVisibileSelezionato: %@", groupVisibileSelezionato);
-                    
-                    self.id_groupSelezionato = groupVisibileSelezionato.id_group;
-                    self.ibLabelGruppi.text = [[NSString stringWithFormat:@"GRUPPI (%@)", groupVisibileSelezionato.name] uppercaseString];
-                    
-                    //NSLog(@"groupVisibileSelezionato.count: %lu", (unsigned long)groupVisibileSelezionato.users.count);
+                    //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
+                    //NSLog(@"self.arrayGruppiVisibili: %@", self.arrayGruppiVisibili);
 
+                    PortableGroup *groupVisibileSelezionato = nil;
+                    
+                    if ([self.id_groupSelezionato isEqualToString:@""]) {
+                        
+                        // --- Selezione default primo gruppo ---
+                        groupVisibileSelezionato = self.arrayGruppiVisibili.firstObject;
+                        
+                        self.id_groupSelezionato = groupVisibileSelezionato.id_group;
+                        // --------------------------------------
+                                                
+                    }else {
+                        
+                        for (PortableGroup *gruppoVisibileCorrente in self.arrayGruppiVisibili) {
+                            
+                            if ([self.id_groupSelezionato isEqualToString:gruppoVisibileCorrente.id_group]) {
+                                
+                                //NSLog(@"gruppoVisibileCorrente.id_group: %@", gruppoVisibileCorrente.id_group);
+                                
+                                groupVisibileSelezionato = gruppoVisibileCorrente;
+                            }
+                        }
+                    }
+                    
                     //NSLog(@"groupVisibileSelezionato.users: %@", groupVisibileSelezionato.users);
-                    // --------------------------------------
+                    //NSLog(@"groupVisibileSelezionato.count: %lu", (unsigned long)groupVisibileSelezionato.users.count);
                     
-                    
-                    //NSLog(@"arrayUsers.count: %lu", (unsigned long)arrayUsers.count);
+
+                    self.ibLabelGruppi.text = [[NSString stringWithFormat:@"GRUPPI (%@)", groupVisibileSelezionato.name] uppercaseString];
                     
                     
                     NSMutableArray *arrayUsersVisibili = [NSMutableArray new];
@@ -682,7 +742,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                     }
                     
                     
-                    NSLog(@"arrayUsersVisibili.count: %lu", (unsigned long)arrayUsersVisibili.count);
+                    //NSLog(@"arrayUsersVisibili.count: %lu", (unsigned long)arrayUsersVisibili.count);
 
                     self.arrayUsers = arrayUsersVisibili;
                     
@@ -782,11 +842,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     self.id_groupSelezionato = id_group;
     
+    
     [self.HUD showAnimated:YES];
-
     
     [self downloadPresence];
-
 }
 
 
