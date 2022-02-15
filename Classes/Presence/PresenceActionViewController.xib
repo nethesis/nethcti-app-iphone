@@ -10,8 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Medium.ttf">
             <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -20,7 +26,7 @@
                 <outlet property="ibButtonChiudi" destination="Sag-rL-de8" id="sci-OX-dKW"/>
                 <outlet property="ibButtonPreferito" destination="5ME-Yd-Chh" id="gOa-WK-Qle"/>
                 <outlet property="ibCollectionView" destination="PLV-qI-mOh" id="g0D-To-w6K"/>
-                <outlet property="ibImageViewSfondoStatus" destination="kuO-V8-0Em" id="ZNN-N5-7YA"/>
+                <outlet property="ibImageViewBordoStatus" destination="kuO-V8-0Em" id="ZNN-N5-7YA"/>
                 <outlet property="ibImageViewStatus" destination="zYI-XN-ZbS" id="gBA-zY-Jds"/>
                 <outlet property="ibLabelIniziali" destination="39K-WW-YOx" id="iGt-6R-VO1"/>
                 <outlet property="ibLabelMainExtension" destination="eqb-qX-n8Z" id="Hqh-Gn-XUT"/>
@@ -37,7 +43,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0HU-aJ-HvZ" userLabel="View - Contenitore">
-                    <rect key="frame" x="0.0" y="366" width="414" height="530"/>
+                    <rect key="frame" x="0.0" y="396" width="414" height="530"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHe-cR-5AX" userLabel="View - Intestazione">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -57,7 +63,6 @@
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sag-rL-de8" userLabel="Button - Chiudi">
                                     <rect key="frame" x="356" y="5" width="50" height="50"/>
-                                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="EFt-hp-2zs"/>
                                         <constraint firstAttribute="height" constant="50" id="ExQ-Ud-8uz"/>
@@ -68,7 +73,6 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="VZR-oV-Mca" firstAttribute="leading" secondItem="iHe-cR-5AX" secondAttribute="leading" id="3ql-19-mPV"/>
                                 <constraint firstAttribute="trailing" secondItem="Sag-rL-de8" secondAttribute="trailing" constant="8" id="M8B-q2-J5v"/>
@@ -84,70 +88,118 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ral-L8-dvg" userLabel="View - Info">
                             <rect key="frame" x="0.0" y="68" width="414" height="100"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jvf-9t-sbB" userLabel="View - Status">
-                                    <rect key="frame" x="8" y="0.0" width="100" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jvf-9t-sbB" userLabel="View - Status">
+                                    <rect key="frame" x="20" y="0.0" width="100" height="100"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuO-V8-0Em" userLabel="Image View - SfondoStatus">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuO-V8-0Em" userLabel="Image View - BordoStatus">
                                             <rect key="frame" x="10.5" y="11" width="78" height="78"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="39"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39K-WW-YOx" userLabel="Label - Iniziali">
-                                            <rect key="frame" x="41.5" y="40" width="16" height="21"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fmn-SR-606" userLabel="Image View - SfondoLabelIniziali">
+                                            <rect key="frame" x="15.5" y="16" width="68" height="68"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="backgroundColor" name="SfondoButtons"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="34"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39K-WW-YOx" userLabel="Label - Iniziali">
+                                            <rect key="frame" x="14.5" y="15" width="70" height="70"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="32"/>
+                                            <color key="textColor" name="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYI-XN-ZbS" userLabel="Image View - Status">
-                                            <rect key="frame" x="64" y="64" width="36" height="36"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_offline" translatesAutoresizingMaskIntoConstraints="NO" id="zYI-XN-ZbS" userLabel="Image View - Status">
+                                            <rect key="frame" x="60" y="60" width="36" height="36"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="18"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="IfC-Zt-BeL"/>
+                                        <constraint firstAttribute="width" constant="100" id="q3V-QU-cqc"/>
+                                    </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o33-N5-pSr" userLabel="Label - Nome">
-                                    <rect key="frame" x="116" y="27" width="290" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="o33-N5-pSr" userLabel="Label - Nome">
+                                    <rect key="frame" x="140" y="15" width="254" height="28"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
+                                    <color key="textColor" name="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqb-qX-n8Z" userLabel="Label - MainExtension">
-                                    <rect key="frame" x="116" y="56" width="42" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqb-qX-n8Z" userLabel="Label - MainExtension">
+                                    <rect key="frame" x="140" y="58" width="28.5" height="19"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                    <color key="textColor" name="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Epj-6o-USd" userLabel="View - StatusPresence">
-                                    <rect key="frame" x="186" y="57" width="56" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7X-1L-8ZL" userLabel="Label - Status">
-                                            <rect key="frame" x="7" y="-2" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                </view>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-Yd-Chh" userLabel="Button - Preferito">
-                                    <rect key="frame" x="301" y="50" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-Yd-Chh" userLabel="Button - Preferito">
+                                    <rect key="frame" x="324" y="48" width="50" height="50"/>
                                     <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="Uwa-sp-Hsm"/>
+                                        <constraint firstAttribute="height" constant="50" id="hHn-dw-wAd"/>
+                                    </constraints>
                                     <state key="normal" image="icn_preferiti_traccia"/>
                                     <connections>
                                         <action selector="ibaSetPreferito:" destination="-1" eventType="touchUpInside" id="bfI-qv-cFh"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Epj-6o-USd" userLabel="View - StatusPresence">
+                                    <rect key="frame" x="183.5" y="58" width="25.5" height="18"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7X-1L-8ZL" userLabel="Label - Status">
+                                            <rect key="frame" x="3" y="2" width="19.5" height="14"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="11"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
+                                    <constraints>
+                                        <constraint firstItem="P7X-1L-8ZL" firstAttribute="top" secondItem="Epj-6o-USd" secondAttribute="top" constant="2" id="5s5-pJ-y9O"/>
+                                        <constraint firstAttribute="height" constant="18" id="ASn-Nm-SfG"/>
+                                        <constraint firstAttribute="bottom" secondItem="P7X-1L-8ZL" secondAttribute="bottom" constant="2" id="KAq-hJ-Z75"/>
+                                        <constraint firstItem="P7X-1L-8ZL" firstAttribute="leading" secondItem="Epj-6o-USd" secondAttribute="leading" constant="3" id="Say-2G-yYj"/>
+                                        <constraint firstAttribute="trailing" secondItem="P7X-1L-8ZL" secondAttribute="trailing" constant="3" id="tCh-Qw-7Fx"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.98431372549999996" green="0.80000000000000004" blue="0.0" alpha="0.50401498150000001" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="Epj-6o-USd" firstAttribute="leading" secondItem="eqb-qX-n8Z" secondAttribute="trailing" constant="15" id="04P-EK-aL3"/>
+                                <constraint firstItem="5ME-Yd-Chh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Epj-6o-USd" secondAttribute="trailing" constant="15" id="4Fz-HQ-Aec"/>
+                                <constraint firstAttribute="trailing" secondItem="o33-N5-pSr" secondAttribute="trailing" constant="20" id="A4K-cr-EhX"/>
+                                <constraint firstItem="Jvf-9t-sbB" firstAttribute="top" secondItem="ral-L8-dvg" secondAttribute="top" id="EQ3-br-uEP"/>
+                                <constraint firstItem="o33-N5-pSr" firstAttribute="leading" secondItem="Jvf-9t-sbB" secondAttribute="trailing" constant="20" id="FLY-LN-lL2"/>
                                 <constraint firstAttribute="height" constant="100" id="GqL-pk-iYh"/>
+                                <constraint firstItem="Epj-6o-USd" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" constant="15" id="J7a-oU-cpO"/>
+                                <constraint firstItem="5ME-Yd-Chh" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" constant="5" id="OrR-3J-iGz"/>
+                                <constraint firstItem="eqb-qX-n8Z" firstAttribute="leading" secondItem="Jvf-9t-sbB" secondAttribute="trailing" constant="20" id="Scl-3a-1E3"/>
+                                <constraint firstItem="eqb-qX-n8Z" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" constant="15" id="Wje-Uy-dRL"/>
+                                <constraint firstItem="Jvf-9t-sbB" firstAttribute="leading" secondItem="ral-L8-dvg" secondAttribute="leading" constant="20" id="bCx-uE-aIY"/>
+                                <constraint firstItem="o33-N5-pSr" firstAttribute="top" secondItem="ral-L8-dvg" secondAttribute="top" constant="15" id="daE-Ux-fBj"/>
+                                <constraint firstAttribute="bottom" secondItem="Jvf-9t-sbB" secondAttribute="bottom" id="kri-70-sCp"/>
+                                <constraint firstAttribute="trailing" secondItem="5ME-Yd-Chh" secondAttribute="trailing" constant="40" id="nOz-ct-y4l"/>
                             </constraints>
                         </view>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PLV-qI-mOh" userLabel="Collection View - Azioni">
@@ -185,7 +237,7 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="0HU-aJ-HvZ" secondAttribute="bottom" id="Fgg-D6-ViT"/>
+                <constraint firstAttribute="bottom" secondItem="0HU-aJ-HvZ" secondAttribute="bottom" constant="-30" id="Fgg-D6-ViT"/>
                 <constraint firstItem="0HU-aJ-HvZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="MHN-XL-aU2"/>
                 <constraint firstItem="0HU-aJ-HvZ" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="hf8-AH-4GN"/>
             </constraints>
@@ -194,9 +246,16 @@
     </objects>
     <resources>
         <image name="icn_chiudi" width="32" height="32"/>
+        <image name="icn_offline" width="36" height="36"/>
         <image name="icn_preferiti_traccia" width="50" height="50"/>
         <namedColor name="ColorLineaSeparatrice">
             <color red="0.84700000286102295" green="0.84700000286102295" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorStatusPresenceOffline">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SfondoButtons">
+            <color red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

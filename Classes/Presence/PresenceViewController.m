@@ -309,9 +309,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"
-    
-    LOGD(@"LOGD cellForRowAtIndexPath indexPath.row: %d", indexPath.row);
-    
+        
     static NSString *CellIdentifier = @"idPresenceTableViewCell";
     
     PresenceTableViewCell *presenceTableViewCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -330,15 +328,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     presenceTableViewCell.ibButtonVisualizzaAzioni.tag = indexPath.row;
     
-    [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderWidth: 1.0];
-    
-    
-    presenceTableViewCell.ibLabelIniziali.layer.masksToBounds = YES;
-    presenceTableViewCell.ibLabelIniziali.layer.cornerRadius = 22.0;
-    
-    
-    presenceTableViewCell.ibViewSfondoLabelStatus.layer.masksToBounds = YES;
-    presenceTableViewCell.ibViewSfondoLabelStatus.layer.cornerRadius = 4.0;
+    // bordo status
+    [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderWidth: 1.0];
     
     
     
@@ -366,7 +357,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     // ----------------------
     
-    // NOME per esteso
+    
+    // NOME utente
     presenceTableViewCell.ibLabelName.text = noteUtente;
     
     
@@ -415,15 +407,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPortablePresenceUser: (PortablePresenceUser *)portablePresenceUser {
     
-    LOGD(@"LOGD setMePresence");
     
     NSString *presence = portablePresenceUser.mainPresence;
-    LOGD(@"LOGD presence: %@", presence);
+    //NSLog(@"LOGD presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOnline"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOnline"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         
@@ -436,7 +427,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyBusy]) {
         // BUSY
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceBusy"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceBusy"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
         
@@ -449,7 +440,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyRinging]) {
         // INCOMING
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceIncoming"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceIncoming"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         
@@ -462,7 +453,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyOffline]) {
         // OFFLINE
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
@@ -475,7 +466,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyCellphone]) {
         // CELLPHONE
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCellphone"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCellphone"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
         
@@ -488,7 +479,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyVoicemail]) {
         // VOICEMAIL
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceVoicemail"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceVoicemail"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
         
@@ -501,7 +492,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyDnd]) {
         // DND
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceDnd"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceDnd"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         
@@ -514,7 +505,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyCallforward]) {
         // CALLFORWORD
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCallforward"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCallforward"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         
@@ -527,7 +518,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else {
         // DEFAULT
         
-        [presenceTableViewCell.ibImageViewSfontoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
+        [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
@@ -544,10 +535,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)setMePresence {
     
-    NSLog(@"setMePresence");
+    //NSLog(@"setMePresence");
     
     NSString *presence = self.userMe.mainPresence;
-    NSLog(@"presence: %@", presence);
+    //NSLog(@"presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
@@ -622,9 +613,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         [self.ibButtonSelezionePresence setImage:[UIImage imageNamed:@"icn_cerchio_callforward"] forState:UIControlStateNormal];
         
     }else {
-        // DEFAULT
+        // Default
         
-        [self.ibButtonSelezionePresence setTitle:@"ND" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:@"N/D" forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
@@ -647,7 +638,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     // Download INFO UTENTE
     [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
-        NSLog(@"portableNethUser.mainPresence: %@", portableNethUser.mainPresence);
+        //NSLog(@"portableNethUser.mainPresence: %@", portableNethUser.mainPresence);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -838,7 +829,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 // delegate custom
 - (void)reloadPresenceWithGroup:(NSString * _Nullable) id_group {
     
-    NSLog(@"id_group: %@", id_group);
+    //NSLog(@"id_group: %@", id_group);
     
     self.id_groupSelezionato = id_group;
     

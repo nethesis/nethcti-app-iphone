@@ -30,8 +30,8 @@
     
     NSLog(@"viewDidLoad()");
 
-    NSLog(@"arrayGroups: %@", self.arrayGroups);
-    NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
+    //NSLog(@"arrayGroups: %@", self.arrayGroups);
+    //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
     
     
     // --- MBProgressHUD ---
@@ -84,7 +84,6 @@
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    
     // Download INFO UTENTE
     [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
@@ -107,20 +106,20 @@
                 
                 for (NSString *idGroupEnableCorrente in portableNethUser.arrayPermissionsIdGroups) {
                     
-                    NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
+                    //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
                     
                     for (PortableGroup *groupCorrente in arrayGroups) {
                         
                         if ([idGroupEnableCorrente isEqualToString:groupCorrente.id_group]) {
                             
-                            NSLog(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
+                            //NSLog(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
                             
                             [self.arrayGroups addObject:groupCorrente];
                         }
                     }
                 }
                 
-                NSLog(@"arrayGroups: %@", arrayGroups);
+                //NSLog(@"arrayGroups: %@", arrayGroups);
 
                 [self.ibTableViewGruppi reloadData];
                 
@@ -130,9 +129,9 @@
             
         } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             
+            NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
                 
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
@@ -253,12 +252,12 @@
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"didSelectRowAtIndexPath: %ld", (long)indexPath.row);
+    //NSLog(@"didSelectRowAtIndexPath: %ld", (long)indexPath.row);
 
     PortableGroup *groupSelezionato = (PortableGroup *)[self.arrayGroups objectAtIndex:indexPath.row];
     
     self.id_groupSelezionato = groupSelezionato.id_group;
-    NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
+    //NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
 
     
     [self.ibTableViewGruppi reloadData];

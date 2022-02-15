@@ -36,7 +36,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWd-JN-BNm" userLabel="View - Status">
                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="706-e5-gfI" userLabel="Image View - SfondoStatus">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="706-e5-gfI" userLabel="Image View - BordoStatus">
                                 <rect key="frame" x="14.600000000000023" y="15.400000000000091" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,10 +46,20 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q35-e4-Vhb" userLabel="Image View - SfondoLabelIniziali">
+                                <rect key="frame" x="17.5" y="18" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="SfondoButtons"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNw-Go-ANJ" userLabel="Label - Iniziali">
                                 <rect key="frame" x="17.799999999999955" y="18.200000000000045" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="SfondoButtons"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="21"/>
                                 <color key="textColor" name="ColorFontIniziali"/>
                                 <nil key="highlightedColor"/>
@@ -95,6 +105,11 @@
                             <constraint firstItem="LMD-hJ-ygw" firstAttribute="leading" secondItem="VsM-a5-cWI" secondAttribute="leading" constant="3" id="iY0-cU-9CO"/>
                             <constraint firstItem="LMD-hJ-ygw" firstAttribute="top" secondItem="VsM-a5-cWI" secondAttribute="top" constant="2" id="veb-te-CoW"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2t-3Z-E1H" userLabel="Button - VisualizzaAzioni">
                         <rect key="frame" x="250" y="15" width="50" height="50"/>
@@ -127,7 +142,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="ibButtonVisualizzaAzioni" destination="x2t-3Z-E1H" id="Y7K-ZR-HOD"/>
-                <outlet property="ibImageViewSfontoStatus" destination="706-e5-gfI" id="091-M7-S70"/>
+                <outlet property="ibImageViewBordoStatus" destination="706-e5-gfI" id="091-M7-S70"/>
                 <outlet property="ibImageViewStatus" destination="6iR-jD-jha" id="57U-gQ-jAc"/>
                 <outlet property="ibLabelIniziali" destination="sNw-Go-ANJ" id="7s5-bv-tBN"/>
                 <outlet property="ibLabelName" destination="Pcv-QT-C9F" id="pa0-tL-KAK"/>

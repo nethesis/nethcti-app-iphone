@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PresenceTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *ibImageViewSfontoStatus;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageViewBordoStatus;
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelIniziali;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewStatus;
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelName;

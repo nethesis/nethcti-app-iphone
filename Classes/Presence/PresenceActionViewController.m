@@ -87,38 +87,116 @@
 
     self.ibLabelNome.text = self.portablePresenceUser.name;
     
+    
+    // --- INIZIALI NOME ---
+    NSString *noteUtente = self.portablePresenceUser.name;
+    NSArray *arrayFirstLastStrings = [noteUtente componentsSeparatedByString:@" "];
+    
+    NSString *nome = [arrayFirstLastStrings objectAtIndex:0];
+    char nomeInitialChar = [nome characterAtIndex:0];
+    
+    //LOGD(@"LOGD nomeInitialChar: %c", nomeInitialChar);
+    
+    if (arrayFirstLastStrings.count > 1) {
+        
+        NSString *cognome = [arrayFirstLastStrings objectAtIndex:1];
+        
+        char cognomeInitialChar = [cognome characterAtIndex:0];
+        //LOGD(@"LOGD cognomeInitialChar: %c", cognomeInitialChar);
+        
+        self.ibLabelIniziali.text = [NSString stringWithFormat:@"%c%c", nomeInitialChar, cognomeInitialChar];
+        
+    }else {
+        
+        self.ibLabelIniziali.text = [NSString stringWithFormat:@"%c", nomeInitialChar];
+    }
+    // ----------------------
+        
+    
     self.ibLabelStatusPresence.text = self.portablePresenceUser.mainPresence;
     
     self.ibLabelMainExtension.text = self.portablePresenceUser.mainExtension;
     
     
-    //LOGD(@"LOGD setPresenceCell: %@ - presence: %@", presenceSelectListTableViewCell, presence);
+    
+    // bordo
+    [self.ibImageViewBordoStatus.layer setBorderWidth: 1.0];
+
     
     NSString *presence = self.portablePresenceUser.mainPresence;
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
         
-        self.ibLabelStatusPresence.text = @"Disponibile";
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOnline"] CGColor]];
         
+        // status
+        self.ibLabelStatusPresence.text = @"DISPONIBILE";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
+        
+        // icona
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_online"];
+        
+    }else if ([presence isEqualToString:kKeyBusy]) {
+        // BUSY
+        
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceBusy"] CGColor]];
+        
+        self.ibLabelStatusPresence.text = @"BUSY";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
+
+        self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
+        self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_busy"];
+        
+    }else if ([presence isEqualToString:kKeyRinging]) {
+        // INCOMING
+        
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceIncoming"] CGColor]];
+        
+        self.ibLabelStatusPresence.text = @"INCOMING";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
+
+        self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
+        self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_incoming"];
+        
+    }else if ([presence isEqualToString:kKeyOffline]) {
+        // OFFLINE
+        
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
+        
+        self.ibLabelStatusPresence.text = @"OFFLINE";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
+
+        self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
+        self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
         
         
     }else if ([presence isEqualToString:kKeyCellphone]) {
         // CELLPHONE
         
-        self.ibLabelStatusPresence.text = @"Cellulare";
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCellphone"] CGColor]];
         
+        self.ibLabelStatusPresence.text = @"CELLULARE";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
+
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_cellphone"];
-        
         
     }else if ([presence isEqualToString:kKeyVoicemail]) {
         // VOICEMAIL
         
-        self.ibLabelStatusPresence.text = @"Casella Vocale";
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceVoicemail"] CGColor]];
         
+        self.ibLabelStatusPresence.text = @"CASELLA VOCALE";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
+
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_voicemail"];
         
@@ -126,29 +204,39 @@
     }else if ([presence isEqualToString:kKeyDnd]) {
         // DND
         
-        self.ibLabelStatusPresence.text = @"Non distrubare";
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceDnd"] CGColor]];
         
+        self.ibLabelStatusPresence.text = @"NON DISTURBARE";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
+
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_dnd"];
         
     }else if ([presence isEqualToString:kKeyCallforward]) {
-        // DND
+        // CALLFORWORD
         
-        self.ibLabelStatusPresence.text = @"Inoltro";
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCallforward"] CGColor]];
         
+        self.ibLabelStatusPresence.text = @"INOLTRO";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
+
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_callforward"];
         
     }else {
-        // Disabilitato
+        // Default
         
-        self.ibLabelStatusPresence.text = @"Disabilitato";
+        // bordo
+        [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
         
+        self.ibLabelStatusPresence.text = @"N/D";
+        self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
+
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
-        
     }
-    
     
 }
 

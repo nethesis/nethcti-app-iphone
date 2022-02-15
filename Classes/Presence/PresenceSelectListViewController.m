@@ -166,7 +166,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
         
-    //NSLog(@"LOGD cellForRowAtIndexPath indexPath.row: %ld", (long)indexPath.row);
+    //NSLog(@"cellForRowAtIndexPath indexPath.row: %ld", (long)indexPath.row);
     
     static NSString *CellIdentifier = @"idPresenceSelectListTableViewCell";
     
@@ -268,12 +268,12 @@
 
 - (void)setPresenceCell:(PresenceSelectListTableViewCell *)presenceSelectListTableViewCell withPresence:(NSString *)presence {
     
-    //LOGD(@"LOGD setPresenceCell: %@ - presence: %@", presenceSelectListTableViewCell, presence);
+    //NSLog(@"setPresenceCell: %@ - presence: %@", presenceSelectListTableViewCell, presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
         
-        presenceSelectListTableViewCell.ibLabelNome.text = @"Disponibile";
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Disponibile", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_online"];
@@ -282,7 +282,7 @@
     }else if ([presence isEqualToString:kKeyCellphone]) {
         // CELLPHONE
         
-        presenceSelectListTableViewCell.ibLabelNome.text = @"Cellulare";
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Cellulare", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_cellphone"];
@@ -291,7 +291,7 @@
     }else if ([presence isEqualToString:kKeyVoicemail]) {
         // VOICEMAIL
         
-        presenceSelectListTableViewCell.ibLabelNome.text = @"Casella Vocale";
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Casella Vocale", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_voicemail"];
@@ -300,7 +300,7 @@
     }else if ([presence isEqualToString:kKeyDnd]) {
         // DND
         
-        presenceSelectListTableViewCell.ibLabelNome.text = @"Non distrubare";
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Non distrubare", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_dnd"];
@@ -308,7 +308,7 @@
     }else if ([presence isEqualToString:kKeyCallforward]) {
         // DND
         
-        presenceSelectListTableViewCell.ibLabelNome.text = @"Inoltro";
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Inoltro", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_callforward"];
@@ -316,7 +316,7 @@
     }else {
         // Disabilitato
         
-        presenceSelectListTableViewCell.ibLabelNome.text = @"Disabilitato";
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Disabilitato", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
@@ -411,7 +411,7 @@
                 
                 NethCTIAPI *api = [NethCTIAPI sharedInstance];
                 
-                [api postSetPresenceWithStatus:@"callforward"
+                [api postSetPresenceWithStatus:kKeyCallforward
                                         number:numeroTextField.text
                                 successHandler:^(NSString * _Nullable success) {
                     
