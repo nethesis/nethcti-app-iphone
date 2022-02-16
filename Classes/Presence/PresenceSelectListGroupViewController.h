@@ -2,7 +2,7 @@
 //  PresenceSelectListGroupViewController.h
 //  NethCTI
 //
-//  Created by Marco on 02/02/22.
+//  Created by Democom S.r.l. on 02/02/22.
 //
 
 #import <UIKit/UIKit.h>

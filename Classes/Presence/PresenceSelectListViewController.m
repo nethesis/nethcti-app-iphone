@@ -2,7 +2,7 @@
 //  PresenceSelectListViewController.m
 //  NethCTI
 //
-//  Created by Marco on 02/02/22.
+//  Created by Democom S.r.l. on 02/02/22.
 //
 
 #import "PresenceSelectListViewController.h"
@@ -10,11 +10,7 @@
 #import "PresenceSelectListTableViewCell.h"
 
 
-#define kKeyOnline @"online"
-#define kKeyCellphone @"cellphone"
-#define kKeyVoicemail @"voicemail"
-#define kKeyDnd @"dnd"
-#define kKeyCallforward @"callforward"
+
 
 
 @interface PresenceSelectListViewController ()

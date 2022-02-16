@@ -2,7 +2,7 @@
 //  PresenceTableViewCell.m
 //  NethCTI
 //
-//  Created by Marco on 19/01/22.
+//  Created by Democom S.r.l. on 19/01/22.
 //
 
 #import "PresenceTableViewCell.h"

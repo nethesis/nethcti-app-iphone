@@ -2,7 +2,7 @@
 //  MacroPermissions.swift
 //  NethCTI
 //
-//  Created by Marco on 21/01/22.
+//  Created by Democom S.r.l. on 21/01/22.
 //
 
 import Foundation

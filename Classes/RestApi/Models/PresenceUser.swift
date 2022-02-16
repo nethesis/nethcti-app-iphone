@@ -2,7 +2,7 @@
 //  PresenceUser.swift
 //  NethCTI
 //
-//  Created by Marco on 25/01/22.
+//  Created by Democom S.r.l. on 25/01/22.
 //
 
 import Foundation
@@ -35,7 +35,6 @@ extension PresenceUser {
         }
         self.username = username
 
-        // MODIFICARE!!!!
         guard let presence = from["presence"] as? String else {
             
             return nil

@@ -2,7 +2,7 @@
 //  PresenceSelectListGroupTableViewCell.h
 //  NethCTI
 //
-//  Created by Marco on 11/02/22.
+//  Created by Democom S.r.l. on 11/02/22.
 //
 
 #import <UIKit/UIKit.h>

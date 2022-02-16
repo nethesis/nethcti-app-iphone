@@ -16,16 +16,6 @@
 
 
 
-#define kKeyOnline @"online"
-#define kKeyBusy @"busy"
-#define kKeyRinging @"ringing"
-#define kKeyOffline @"offline"
-#define kKeyCellphone @"cellphone"
-#define kKeyVoicemail @"voicemail"
-#define kKeyDnd @"dnd"
-#define kKeyCallforward @"callforward"
-
-
 
 @interface PresenceViewController ()
 
@@ -78,7 +68,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    LOGD(@"viewDidAppear");
+    NSLog(@"viewDidAppear");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;

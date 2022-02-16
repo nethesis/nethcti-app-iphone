@@ -2,7 +2,7 @@
 //  PresenceSelectListTableViewCell.m
 //  NethCTI
 //
-//  Created by Marco on 04/02/22.
+//  Created by Democom S.r.l. on 04/02/22.
 //
 
 #import "PresenceSelectListTableViewCell.h"

@@ -2,20 +2,11 @@
 //  PresenceActionViewController.m
 //  NethCTI
 //
-//  Created by Marco on 14/02/22.
+//  Created by Democom S.r.l. on 14/02/22.
 //
 
 #import "PresenceActionViewController.h"
-
-
-#define kKeyOnline @"online"
-#define kKeyBusy @"busy"
-#define kKeyRinging @"ringing"
-#define kKeyOffline @"offline"
-#define kKeyCellphone @"cellphone"
-#define kKeyVoicemail @"voicemail"
-#define kKeyDnd @"dnd"
-#define kKeyCallforward @"callforward"
+#import "PresenceActionCollectionViewCell.h"
 
 
 
@@ -37,18 +28,13 @@
     
     
     NSLog(@"portableNethUser.mainextension: %@", self.portableNethUserMe.mainExtension);
-    
-    NSLog(@"portableNethUser.recallOnBusy: %@", self.portableNethUserMe.recallOnBusy);
-    
-    NSLog(@"portableNethUser.permissionsSpy: %@", self.portableNethUserMe.permissionsSpy ? @"Yes" : @"No");
-    
-    NSLog(@"portableNethUser.permissionsIntrude: %@", self.portableNethUserMe.permissionsIntrude ? @"Yes" : @"No");
-    
-    NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsRecording ? @"Yes" : @"No");
-    
-    NSLog(@"portableNethUser.permissionsPickup: %@", self.portableNethUserMe.permissionsPickup ? @"Yes" : @"No");
+        
+
     
     
+    
+    UINib *nibPresenceActionCollectionViewCell = [UINib nibWithNibName:NSStringFromClass([PresenceActionCollectionViewCell class]) bundle:nil];
+    [self.ibCollectionView registerNib:nibPresenceActionCollectionViewCell forCellWithReuseIdentifier:@"idPresenceActionCollectionViewCell"];
     
 }
 
@@ -64,9 +50,83 @@
 
 
 
+- (IBAction)ibaEseguiAzione:(UIButton *)sender {
+    
+    NSLog(@"ibaEseguiAzione sender: %ld", (long)sender.tag);
+
+    switch (sender.tag) {
+            
+        case 0:
+            // CHIAMA
+            
+            NSLog(@"CHIAMA");
+
+            
+            
+            break;
+            
+        case 1:
+            // CHIUDI
+            
+            NSLog(@"CHIUDI");
+
+            
+            break;
+            
+        case 2:
+            // REGISTRA
+            
+            NSLog(@"REGISTRA");
+
+            
+            break;
+            
+        case 3:
+            // INTROMETTITI
+            
+            NSLog(@"INTROMETTITI");
+
+            
+            
+            break;
+            
+        case 4:
+            // PRENOTA
+            
+            NSLog(@"PRENOTA");
+
+           
+            
+            break;
+            
+        case 5:
+            // PICKUP
+            
+            NSLog(@"PICKUP");
+
+            
+            
+            break;
+            
+        case 6:
+            // SPIA
+            
+            NSLog(@"SPIA");
+
+            
+            break;
+            
+     
+    }
+}
+
+
+
+
 - (IBAction)ibaSetPreferito:(id)sender {
     
-    
+    NSLog(@"ibaSetPreferito");
+
     
 }
 
@@ -239,6 +299,306 @@
     }
     
 }
+
+
+
+#pragma mark -
+#pragma mark === UICollectionViewDataSource ===
+#pragma mark -
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return 7;
+}
+
+
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PresenceActionCollectionViewCell *presenceActionCollectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"idPresenceActionCollectionViewCell" forIndexPath:indexPath];
+    
+
+    presenceActionCollectionViewCell.ibButtonAzione.tag = indexPath.row;
+
+    switch (indexPath.row) {
+            
+        case 0:
+            // CHIAMA
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"CHIAMA", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiama_on"] forState:UIControlStateNormal];
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiama_off"] forState:UIControlStateDisabled];
+            
+            
+            if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyOnline] ||
+                [self.portablePresenceUser.mainPresence isEqualToString:kKeyCellphone] ||
+                [self.portablePresenceUser.mainPresence isEqualToString:kKeyVoicemail] ||
+                [self.portablePresenceUser.mainPresence isEqualToString:kKeyCallforward]) {
+                
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+            }else {
+                
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+            }
+            
+            
+            break;
+            
+        case 1:
+            // CHIUDI
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"CHIUDI", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiudi_on"] forState:UIControlStateNormal];
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiudi_off"] forState:UIControlStateDisabled];
+            
+            NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsHangup ? @"Yes" : @"No");
+
+            if (self.portableNethUserMe.permissionsHangup != false) {
+                                
+                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy] ||
+                    [self.portablePresenceUser.mainPresence isEqualToString:kKeyRinging]) {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+                }else {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+                }
+                
+            }else {
+                
+
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+                
+            }
+            
+            break;
+            
+        case 2:
+            // REGISTRA
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"REGISTRA", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_registra_on"] forState:UIControlStateNormal];
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_registra_off"] forState:UIControlStateDisabled];
+            
+            NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsRecording ? @"Yes" : @"No");
+
+            if (self.portableNethUserMe.permissionsRecording != false) {
+                
+                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+                }else {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+                }
+                
+            }else {
+                
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+            }
+            
+            
+            break;
+            
+        case 3:
+            // INTROMETTITI
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"INTROMETTITI", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_intromettiti_on"] forState:UIControlStateNormal];
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_intromettiti_off"] forState:UIControlStateDisabled];
+            
+            NSLog(@"portableNethUser.permissionsIntrude: %@", self.portableNethUserMe.permissionsIntrude ? @"Yes" : @"No");
+
+            if (self.portableNethUserMe.permissionsIntrude != false) {
+                
+                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+                }else {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+                }
+
+            }else {
+             
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+            }
+            
+            
+            break;
+            
+        case 4:
+            // PRENOTA
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"PRENOTA", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_prenota_on"] forState:UIControlStateNormal];
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_prenota_off"] forState:UIControlStateDisabled];
+            
+            NSLog(@"portableNethUser.recallOnBusy: %@", self.portableNethUserMe.recallOnBusy);
+
+            if ([self.portableNethUserMe.recallOnBusy isEqualToString:kKeyRecallOnBusyEnabled]) {
+                
+                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+                }else {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+                }
+
+            }else {
+                
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+            }
+            
+            break;
+            
+        case 5:
+            // PICKUP
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"PICKUP", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_pickup_on"] forState:UIControlStateNormal];
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_pickup_off"] forState:UIControlStateDisabled];
+            
+            NSLog(@"portableNethUser.permissionsPickup: %@", self.portableNethUserMe.permissionsPickup ? @"Yes" : @"No");
+
+            if (self.portableNethUserMe.permissionsPickup != false) {
+                
+                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyRinging]) {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+                }else {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+                }
+
+            }else {
+                
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+            }
+            
+            
+            break;
+            
+        case 6:
+            // SPIA
+            
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"SPIA", nil);
+
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_spia_on"] forState:UIControlStateNormal];
+            [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_spia_off"] forState:UIControlStateDisabled];
+            
+            NSLog(@"portableNethUser.permissionsSpy: %@", self.portableNethUserMe.permissionsSpy ? @"Yes" : @"No");
+
+            if (self.portableNethUserMe.permissionsSpy != false) {
+                
+                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+
+                }else {
+                    
+                    presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+                }
+
+            }else {
+             
+                presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
+
+            }
+            
+            break;
+            
+     
+    }
+
+    
+    
+    return presenceActionCollectionViewCell;
+}
+
+
+
+#pragma mark -
+#pragma mark === UICollectionView delegate ===
+#pragma mark -
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+
+}
+
+
+/*
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGSize sizeCollectionView = CGSizeZero;
+    
+    if (0 == self.statoCella) {
+        
+        sizeCollectionView = CGSizeMake(self.view.frame.size.width - self.paddingCellaGrande, self.heigthCella);
+
+        self.statoCella = 1;
+        
+    }else if (1 == self.statoCella) {
+        
+        sizeCollectionView = CGSizeMake((self.view.frame.size.width / 2) - self.paddingCellaPiccola, self.heigthCella);
+        
+        self.statoCella = 2;
+        
+    }else if (2 == self.statoCella) {
+        
+        sizeCollectionView = CGSizeMake((self.view.frame.size.width / 2) - self.paddingCellaPiccola, self.heigthCella);
+        
+        self.statoCella = 0;
+    }
+    
+    return sizeCollectionView;
+}
+*/
 
 
 @end

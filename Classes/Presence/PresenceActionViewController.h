@@ -2,7 +2,7 @@
 //  PresenceActionViewController.h
 //  NethCTI
 //
-//  Created by Marco on 14/02/22.
+//  Created by Democom S.r.l. on 14/02/22.
 //
 
 #import <UIKit/UIKit.h>
@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)ibaChiudi:(id)sender;
 - (IBAction)ibaSetPreferito:(id)sender;
+- (IBAction)ibaEseguiAzione:(UIButton *)sender;
 
 
 @end

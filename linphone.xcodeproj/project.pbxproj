@@ -785,6 +785,8 @@
 		A9B9E9B227AAA21B0062CCDE /* PresenceSelectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */; };
 		A9B9E9B627AADB060062CCDE /* PresenceSelectListGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */; };
 		A9B9E9B727AADB060062CCDE /* PresenceSelectListGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */; };
+		A9C51F4727BBF21000234769 /* PresenceActionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */; };
+		A9C51F4827BBF21000234769 /* PresenceActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */; };
 		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
 		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
@@ -1941,6 +1943,9 @@
 		A9B9E9B327AADB060062CCDE /* PresenceSelectListGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListGroupViewController.h; sourceTree = "<group>"; };
 		A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListGroupViewController.m; sourceTree = "<group>"; };
 		A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListGroupViewController.xib; sourceTree = "<group>"; };
+		A9C51F4427BBF21000234769 /* PresenceActionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceActionCollectionViewCell.h; sourceTree = "<group>"; };
+		A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceActionCollectionViewCell.m; sourceTree = "<group>"; };
+		A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceActionCollectionViewCell.xib; sourceTree = "<group>"; };
 		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
 		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
 		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
@@ -3556,6 +3561,9 @@
 				A9854F0827B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.h */,
 				A9854F0927B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m */,
 				A9854F0A27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib */,
+				A9C51F4427BBF21000234769 /* PresenceActionCollectionViewCell.h */,
+				A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */,
+				A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4389,6 +4397,7 @@
 				398DE727264D5647008B65A9 /* nethcti_edit@2x.png in Resources */,
 				39A12497263AB33600CF1DB9 /* dashboard_dialer.png in Resources */,
 				392AC7E2267245670055DFCF /* nethcti_trash_disabled@2x.png in Resources */,
+				A9C51F4827BBF21000234769 /* PresenceActionCollectionViewCell.xib in Resources */,
 				633FEDB51D3CD5590014B822 /* call_alt_back_disabled@2x.png in Resources */,
 				631098521D4660630041F2B3 /* CountryListView.xib in Resources */,
 				633FEF271D3CD55A0014B822 /* route_bluetooth_selected@2x.png in Resources */,
@@ -5061,6 +5070,7 @@
 				C3A406EE261DE9F400526F9B /* DashboardViewController.m in Sources */,
 				C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */,
 				631348301B6F7B6600C6BDCB /* UIRoundBorderedButton.m in Sources */,
+				A9C51F4727BBF21000234769 /* PresenceActionCollectionViewCell.m in Sources */,
 				C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */,
 				63FB30351A680E73008CA393 /* UIRoundedImageView.m in Sources */,
 				635775251B6673EC00C8B704 /* HistoryDetailsTableView.m in Sources */,
@@ -5665,7 +5675,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -5798,7 +5808,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -5933,7 +5943,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -6070,7 +6080,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",

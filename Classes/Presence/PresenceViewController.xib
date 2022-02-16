@@ -156,7 +156,7 @@
                                 <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="CcV-1x-u8f"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-km-ilc" userLabel="Label - titleLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-km-ilc" userLabel="Label - titleLabel">
                             <rect key="frame" x="66" y="12" width="198" height="42"/>
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
                             <color key="textColor" name="mainColor"/>
