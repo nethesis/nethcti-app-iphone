@@ -463,7 +463,9 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return tempView;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
     // If is editing, select the checkbox instead open contact detail.
@@ -475,23 +477,36 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
     
     // Go to right ContactDetailsView(Nethesis)
     if([ContactSelection getSipFilter] && contact.nethesis) {
+        
         ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
         [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        
         if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+            
             [view setContact:contact];
+            
         } else {
+            
             if (IPAD) {
                 [view resetContact];
                 view.isAdding = FALSE;
             }
+            
             [view editContact:contact address:[ContactSelection getAddAddress]];
         }
+        
     } else {
+        
         ContactDetailsView *view = VIEW(ContactDetailsView);
+        
         [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        
         if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+            
             [view setContact:contact];
+            
         } else {
+            
             if (IPAD) {
                 [view resetContact];
                 view.isAdding = FALSE;

@@ -50,6 +50,7 @@
 #pragma mark -
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!inhibUpdate && ![_tableController isEditing] &&
             (PhoneMainView.instance.currentView == self.compositeViewDescription) &&

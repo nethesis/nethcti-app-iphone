@@ -454,6 +454,7 @@
 }
 
 + (LinphoneAddress *)normalizeSipOrPhoneAddress:(NSString *)value {
+    
   	if (!value || [value isEqualToString:@""])
     	return NULL;
 

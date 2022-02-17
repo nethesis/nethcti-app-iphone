@@ -44,6 +44,7 @@
 #pragma mark - UITableViewCell Functions
 
 - (void)setAddress:(NSString *)address {
+    
     _addressLabel.text = _editTextfield.text = address;
     char *normAddr = (char *)_addressLabel.text.UTF8String;
     LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
@@ -171,13 +172,20 @@
 }
 
 - (IBAction)onCallClick:(id)event {
+    
+    NSLog(@"onCallClick - addressLabel.text: %@", self.addressLabel.text);
+    
 	LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
+    NSLog(@"addr: %@", addr);
+
 	[LinphoneManager.instance call:addr];
+    
 	if (addr)
 		linphone_address_unref(addr);
 }
 
 - (IBAction)onChatClick:(id)event {
+    
 	LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
 	[LinphoneManager.instance lpConfigSetBool:TRUE forKey:@"create_chat"];
 	[PhoneMainView.instance getOrCreateOneToOneChatRoom:addr waitView:_waitView isEncrypted:FALSE];
@@ -185,6 +193,7 @@
 }
 
 - (IBAction)onEncrptedChatClick:(id)sender {
+    
     LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
 	[LinphoneManager.instance lpConfigSetBool:TRUE forKey:@"create_chat"];
     [PhoneMainView.instance getOrCreateOneToOneChatRoom:addr waitView:_waitView isEncrypted:TRUE];

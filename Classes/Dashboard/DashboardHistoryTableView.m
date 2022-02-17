@@ -44,30 +44,39 @@
 #pragma mark - Event Functions
 
 - (void)coreUpdateEvent:(NSNotification *)notif {
+    
     @try {
         // Invalid all pointers
         [self loadData];
     }
     @catch (NSException *exception) {
+        
         if ([exception.name isEqualToString:@"LinphoneCoreException"]) {
             LOGE(@"Core already destroyed");
             return;
         }
+        
         LOGE(@"Uncaught exception : %@", exception.description);
         abort();
     }
 }
 
 - (void)loadData {
+    
     for (id log in self.historyLogs) {
+        
         linphone_call_log_unref([log pointerValue]);
     }
     
     const bctbx_list_t *logs = linphone_core_get_call_logs(LC);
     self.historyLogs = [NSMutableArray array];
+    
     while (logs != NULL) {
+        
         LinphoneCallLog *log = (LinphoneCallLog *)logs->data;
+        
         if (self.historyLogs.count < HISTORY_SIZE) {
+            
             [self.historyLogs addObject:[NSValue valueWithPointer: linphone_call_log_ref(log)]];
         }
         
@@ -76,6 +85,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^(void) {
+        
         // Here we calc the new total, this is a long time running operation.
         bool emptyLog = _historyLogs == nil || [_historyLogs count] == 0;
         [self.historyView setHidden:emptyLog];
@@ -85,6 +95,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     // If there isn't any log, the table view has to be hidden.
     bool emptyLog = _historyLogs == nil || [_historyLogs count] == 0;
     NSInteger numSections = emptyLog ? 0 : 1;
@@ -92,36 +103,50 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     bool emptyLog = _historyLogs == nil || [_historyLogs count] == 0;
     NSInteger numRows = emptyLog ? 0 : [_historyLogs count];
     return numRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *kCellId = @"RecentCallTableViewCell";
+    
     RecentCallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    
     if (cell == nil) {
+        
         cell = [[RecentCallTableViewCell alloc] initWithIdentifier:kCellId];
     }
     
     @try {
+        
         id logId = _historyLogs[indexPath.row];
+        
         LinphoneCallLog *log = [logId pointerValue];
+        
         if(!log) {
+            
             return nil;
         }
+        
         [cell setRecentCall:log];
+        
         cell.contentView.userInteractionEnabled = false;
         
         return cell;
     }
     @catch (NSException *exception) {
+        
         LOGE(@"Uncaught exception : %@", exception.description);
+        
         return nil;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return 87;
 }
 

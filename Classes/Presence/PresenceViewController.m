@@ -314,7 +314,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     
     PortablePresenceUser *portablePresenceUser = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:indexPath.row];
-    //LOGD(@"LOGD portablePresenceUser: %@", portablePresenceUser.name);
+    //NSLog(@"portablePresenceUser: %@", portablePresenceUser.name);
     
     presenceTableViewCell.ibButtonVisualizzaAzioni.tag = indexPath.row;
     
@@ -330,14 +330,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSString *nome = [arrayFirstLastStrings objectAtIndex:0];
     char nomeInitialChar = [nome characterAtIndex:0];
     
-    //LOGD(@"LOGD nomeInitialChar: %c", nomeInitialChar);
+    //NSLog(@"nomeInitialChar: %c", nomeInitialChar);
     
     if (arrayFirstLastStrings.count > 1) {
         
         NSString *cognome = [arrayFirstLastStrings objectAtIndex:1];
         
         char cognomeInitialChar = [cognome characterAtIndex:0];
-        //LOGD(@"LOGD cognomeInitialChar: %c", cognomeInitialChar);
+        //NSLog(@"cognomeInitialChar: %c", cognomeInitialChar);
         
         presenceTableViewCell.ibLabelIniziali.text = [NSString stringWithFormat:@"%c%c", nomeInitialChar, cognomeInitialChar];
         
@@ -354,7 +354,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     [self setUserPresence:presenceTableViewCell withPortablePresenceUser:portablePresenceUser];
     
-    
+    if ([portablePresenceUser.username isEqualToString:self.userMe.username]) {
+        
+        presenceTableViewCell.ibButtonVisualizzaAzioni.hidden = YES;
+        
+    }else {
+        
+        presenceTableViewCell.ibButtonVisualizzaAzioni.hidden = NO;
+    }
     
     return presenceTableViewCell;
 }
@@ -399,7 +406,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     
     NSString *presence = portablePresenceUser.mainPresence;
-    //NSLog(@"LOGD presence: %@", presence);
+    //NSLog(@"presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE

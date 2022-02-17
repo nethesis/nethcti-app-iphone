@@ -34,6 +34,7 @@ import AVFoundation
  * There is only one CallManager by calling CallManager.instance().
  */
 @objc class CallManager: NSObject {
+    
     static var theCallManager: CallManager?
     let providerDelegate: ProviderDelegate! // to support callkit
     let callController: CXCallController! // to support callkit
@@ -451,7 +452,10 @@ import AVFoundation
     }
 }
 
+
+
 class CoreManagerDelegate: CoreDelegate {
+    
     static var speaker_already_enabled : Bool = false
     var globalState : GlobalState = .Off
     var actionsToPerformOnceWhenCoreIsOn : [(()->Void)] = []

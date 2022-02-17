@@ -7,6 +7,8 @@
 
 #import "PresenceActionViewController.h"
 #import "PresenceActionCollectionViewCell.h"
+//#import "PhoneMainView.h"
+#import "Utils.h"
 
 
 
@@ -27,8 +29,9 @@
     [self setPresenceUser];
     
     
-    NSLog(@"portableNethUser.mainextension: %@", self.portableNethUserMe.mainExtension);
+    NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
         
+    NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
 
     
     
@@ -61,7 +64,23 @@
             
             NSLog(@"CHIAMA");
 
+            NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
+
+            LinphoneAddress *linphoneAddress = [LinphoneUtils normalizeSipOrPhoneAddress:self.portablePresenceUser.mainExtension];
+
+            [LinphoneManager.instance call:linphoneAddress];
             
+            if (linphoneAddress) {
+                
+                linphone_address_unref(linphoneAddress);
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+
+            }else {
+                
+                NSLog(@"linphoneAddress false!");
+
+            }
             
             break;
             

@@ -1752,6 +1752,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 }
 
 #pragma mark - Call Functions
+
 - (void)send:(NSString *)replyText toChatRoom:(LinphoneChatRoom *)room {
 	LinphoneChatMessage *msg = linphone_chat_room_create_message(room, replyText.UTF8String);
 	linphone_chat_message_send(msg);
@@ -1760,15 +1761,20 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 }
 
 - (void)call:(const LinphoneAddress *)iaddr {
+    
 	// First verify that network is available, abort otherwise.
 	if (!linphone_core_is_network_reachable(theLinphoneCore)) {
+        
 		[PhoneMainView.instance presentViewController:[LinphoneUtils networkErrorView] animated:YES completion:nil];
+        
 		return;
 	}
 
 	// Then check that no GSM calls are in progress, abort otherwise.
 	CTCallCenter *callCenter = [[CTCallCenter alloc] init];
+    
 	if ([callCenter currentCalls] != nil && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+        
 		LOGE(@"GSM call in progress, cancelling outgoing SIP call request");
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cannot make call", nil)
 					      message:NSLocalizedString(@"Please terminate GSM call first.", nil)
@@ -1779,12 +1785,15 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 						handler:^(UIAlertAction * action) {}];
 
 		[errView addAction:defaultAction];
+        
 		[PhoneMainView.instance presentViewController:errView animated:YES completion:nil];
+        
 		return;
 	}
 
 	// Then check that the supplied address is valid
 	if (!iaddr) {
+        
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Invalid SIP address", nil)
 					      message:NSLocalizedString(@"Either configure a SIP proxy server from settings prior to place a "
 									@"call or use a valid SIP address (I.E sip:john@example.net)", nil)
