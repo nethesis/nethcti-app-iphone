@@ -126,9 +126,10 @@ import Foundation
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse,
-               httpResponse.statusCode != 200 {
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
+                
                 errorHandler(error, response)
+                
                 return;
             }
             
@@ -523,7 +524,7 @@ import Foundation
     /// - Parameters:
     ///   - v: Person, Company or All (fetch both)
     ///   - t: Search term to filter by;
-    ///   - success: Handle success result
+    ///   - successHandler: Handle success result
     ///   - errorHandler: Handle error result
     @objc public func fetchContacts(_ v: String,
                                     t: String?,
@@ -616,9 +617,10 @@ import Foundation
     
     
     
-    /**
-     GET my user info from NethCTI server.
-     */
+    /// Ottengo le info dell'utente loggato nell'app
+    /// - Parameters:
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func getUserMe(successHandler: @escaping (PortableNethUser?) -> Void,
                                 errorHandler: @escaping (Int, String?) -> Void) -> Void {
         
@@ -678,7 +680,7 @@ import Foundation
                       errorHandler: { error, response in
                         
                         //print("error: \(String(describing: error?.localizedDescription))")
-                        print("response: \(String(describing: response)))")
+                        //print("response: \(String(describing: response)))")
 
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
@@ -690,11 +692,15 @@ import Foundation
                         
                         errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
                         
-                        return
+                        //return
                       })
     }
     
     
+    /// Ottengo la lista di tutti i gruppi associati all'utente loggato nell'app
+    /// - Parameters:
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func getGroups(successHandler: @escaping(Array<PortableGroup>) -> Void,
                                 errorHandler: @escaping(Int, String?) -> Void) -> Void {
         
@@ -775,9 +781,10 @@ import Foundation
     }
     
     
-    /**
-     GET all users from NethCTI server.
-     */
+    /// Ottengo la lista di tutti gli utenti
+    /// - Parameters:
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func getUserAll(successHandler: @escaping(Array<PortablePresenceUser>) -> Void,
                                  errorHandler: @escaping (Int, String?) -> Void) -> Void {
         
@@ -865,9 +872,11 @@ import Foundation
     }
     
     
-    /**
-     GET list of Presence for users from NethCTI server.
-     */
+    
+    /// Ottengo la lista delle presence impostabili per l'utente loggato nell'app
+    /// - Parameters:
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func getPresenceList(successHandler: @escaping(Array<String>) -> Void,
                                       errorHandler: @escaping(Int, String?) -> Void) -> Void {
         
@@ -940,9 +949,12 @@ import Foundation
     
     
     
-    /**
-     Make a POST set presence request to NethCTI server.
-     */
+    /// Imposta la presence dell'utente loggato nell'App
+    /// - Parameters:
+    ///   - status: tipologia di presence
+    ///   - number: parametro opzionale che nel caso di Inoltro contiene il numero inserito dall'utente a ciu viene inoltrata la chiamata in arrivo
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
     @objc public func postSetPresence(status: String,
                                       number: String,
                                       successHandler: @escaping (String?) -> Void,
@@ -1008,8 +1020,322 @@ import Foundation
                         }
                         
                         errorHandler(httpResponse.statusCode, "Error calling POST on /user/presence")
+                      })
+        
+    }
+    
+    
+    /// Prenota la chiamata per un utente momentaneamente occupato.
+    /// - Parameters:
+    ///   - caller: mainExtension di chi prenota la richiamata
+    ///   - called: mainExtension del destinatario della richiamata
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func postRecallOnBusy(caller: String,
+                                       called: String,
+                                       successHandler: @escaping (String?) -> Void,
+                                       errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/recall_on_busy"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["caller"] = caller
+        body["called"] = called
+        
+        //print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                                                
 
-                        //return
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post prenota OK!")
+                            
+                            return
+                        }
+                        
+                        successHandler("Post prenota SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on ../astproxy/recall_on_busy: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/recall_on_busy")
+                      })
+        
+    }
+    
+    
+    
+    /// Invia al server la richiesta per spiare la chiamata di un utente.
+    /// - Parameters:
+    ///   - conversationsId: l’id della conversazione in corso
+    ///   - conversationOwner: l’estensione che ha la conversazione in corso
+    ///   - extensionId: l’estensione dell'utente loggato sull’app
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func postStartSpy(conversationsId: String,
+                                   conversationOwner: String,
+                                   extensionId: String,
+                                   successHandler: @escaping (String?) -> Void,
+                                   errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/start_spy"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["convid"] = conversationsId
+        body["endpointId"] = conversationOwner
+        body["destId"] = extensionId
+
+        print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                                                
+
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post spina OK!")
+                            
+                            return
+                        }
+                        
+                        successHandler("POST spina SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on ../astproxy/start_spy: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/start_spy")
+                      })
+        
+    }
+    
+    
+    
+    /// Invia al server la richiesta per intromettersi nella chiamata di un utente.
+    /// - Parameters:
+    ///   - conversationsId: l’id della conversazione in corso
+    ///   - conversationOwner: l’estensione che ha la conversazione in corso
+    ///   - extensionId: l’estensione dell'utente loggato sull’app
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func postIntrude(conversationsId: String,
+                                  conversationOwner: String,
+                                  extensionId: String,
+                                  successHandler: @escaping (String?) -> Void,
+                                  errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/intrude"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["convid"] = conversationsId
+        body["endpointId"] = conversationOwner
+        body["destId"] = extensionId
+
+        print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                                                
+
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post intromettiti OK!")
+                            
+                            return
+                        }
+                        
+                        successHandler("POST intromettiti SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on ../astproxy/intrude: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/intrude")
+                      })
+        
+    }
+    
+    
+    /// Invia al server la richiesta per registrare una chiamata in corso di un utente.
+    /// - Parameters:
+    ///   - conversationsId: l’id della conversazione in corso
+    ///   - conversationOwner: l’estensione che ha la conversazione in corso
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func postAdRecording(conversationsId: String,
+                                      conversationOwner: String,
+                                      successHandler: @escaping (String?) -> Void,
+                                      errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/unmute_record"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["convid"] = conversationsId
+        body["endpointId"] = conversationOwner
+
+        print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                                                
+
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post registrazione OK!")
+                            
+                            return
+                        }
+                        
+                        successHandler("POST registrazione SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on ../astproxy/unmute_record: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/unmute_record")
                       })
         
     }

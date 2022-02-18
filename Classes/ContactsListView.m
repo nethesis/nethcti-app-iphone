@@ -319,6 +319,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)onPhonebookPermissionRejection:(NSNotification *)notif {
+    
     if ([notif.userInfo count] == 0){
         return;
     }

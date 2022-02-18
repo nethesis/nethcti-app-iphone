@@ -95,29 +95,25 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.id_groupSelezionato = @"";
     
     /*
-    if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
-        // This method should send more error codes than one.
+    // controllo autenticazione...
+    if([NethCTIAPI.sharedInstance isUserAuthenticated]) {
         
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:401], @"code", nil];
-        
-        [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
-                                                          object:self
-                                                        userInfo:dict];
+        NSLog(@"isUserAuthenticated");
 
     }else {
-        */
-        [self.HUD showAnimated:YES];
+        
 
-        [self downloadPresence];
-        
-        
-        // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
-        // ------------------------------------------
-    //}
+    }
+    */
+    
+    //[self.HUD showAnimated:YES];
+
+    [self downloadPresence];
     
     
-
+    // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
+    // ------------------------------------------
     
 }
 
@@ -746,9 +742,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                 
                 
                 
-            } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+            } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
                 
-                NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+                NSLog(@"getUserAll ERROR code: %ld, string: %@", (long)code, messageDefault);
 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
@@ -757,15 +753,15 @@ static UICompositeViewDescription *compositeDescription = nil;
                     
                     [self.refreshControl endRefreshing];
                     
-                    [self showAlertError:code withError:string];
+                    [self showAlertError:code withError:messageDefault];
                     
                 });
 
             }];
             
-        } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
             
-            NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+            NSLog(@"getGroups ERROR code: %ld, string: %@", (long)code, messageDefault);
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -774,15 +770,15 @@ static UICompositeViewDescription *compositeDescription = nil;
                 
                 [self.refreshControl endRefreshing];
                 
-                [self showAlertError:code withError:string];
+                [self showAlertError:code withError:messageDefault];
                 
             });
                          
         }];
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+    } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
         
-        NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+        NSLog(@"getUserMe API_ERROR code: %ld, string: %@", (long)code, messageDefault);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -791,7 +787,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             
             [self.refreshControl endRefreshing];
             
-            [self showAlertError:code withError:string];
+            [self showAlertError:code withError:messageDefault];
                         
         });
         
@@ -810,7 +806,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSLog(@"reloadPresence");
     
-    [self.HUD showAnimated:YES];
+    //[self.HUD showAnimated:YES];
 
     
     [self downloadPresence];
@@ -831,7 +827,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.id_groupSelezionato = id_group;
     
     
-    [self.HUD showAnimated:YES];
+    //[self.HUD showAnimated:YES];
     
     [self downloadPresence];
 }

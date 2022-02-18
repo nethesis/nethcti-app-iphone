@@ -53,8 +53,8 @@
     
     
     
-    [self.HUD showAnimated:YES];
-
+    //[self.HUD showAnimated:YES];
+    
     [self downloadPresenceList];
     
     
@@ -75,7 +75,7 @@
 - (IBAction)ibaChiudi:(id)sender {
     
     NSLog(@"ibaChiudi");
-
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -91,7 +91,7 @@
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
     [api getPresenceListWithSuccessHandler:^(NSArray *arrayPresence) {
-                
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // Nascondo la ViewCaricamento
@@ -106,19 +106,19 @@
             
         });
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+    } errorHandler:^(NSInteger code, NSString * _Nullable messageDafault) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            //NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
-
+            NSLog(@"getPresenceList ERROR code: %ld, messageDafault: %@", (long)code, messageDafault);
+            
             // Nascondo la ViewCaricamento
             [self.HUD hideAnimated:YES];
             
             [self.refreshControl endRefreshing];
             
-            [self showAlertError:code withError:string];
-
+            [self showAlertError:code withError:messageDafault];
+            
         });
         
         
@@ -161,7 +161,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        
+    
     //NSLog(@"cellForRowAtIndexPath indexPath.row: %ld", (long)indexPath.row);
     
     static NSString *CellIdentifier = @"idPresenceSelectListTableViewCell";
@@ -205,7 +205,7 @@
         
     }else {
         
-        [self.HUD showAnimated:YES];
+        //[self.HUD showAnimated:YES];
         
         NethCTIAPI *api = [NethCTIAPI sharedInstance];
         
@@ -229,17 +229,17 @@
             
             
         }
-                          errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                          errorHandler:^(NSInteger errorCode, NSString * _Nullable errorDefault) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //NSLog(@"API_ERROR code: %ld, string: %@", (long)errorCode, errorString);
-
+                NSLog(@"postSetPresence ERROR code: %ld, errorDefault: %@", (long)errorCode, errorDefault);
+                
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self showAlertError:errorCode withError:errorString];
-
+                [self showAlertError:errorCode withError:errorDefault];
+                
             });
             
         }];
@@ -401,9 +401,7 @@
                 // newString consists only of the digits 0 through 9
                 //NSLog(@"consists only of the digits 0 through 9");
                 
-                // POST...
-                
-                [self.HUD showAnimated:YES];
+                //[self.HUD showAnimated:YES];
                 
                 NethCTIAPI *api = [NethCTIAPI sharedInstance];
                 
@@ -430,16 +428,16 @@
                     });
                     
                 }
-                                  errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                                  errorHandler:^(NSInteger errorCode, NSString * _Nullable messageDafault) {
                     
-                    //NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+                    NSLog(@"postSetPresence errorCode: %ld - messageDafault: %@", (long)errorCode, messageDafault);
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
                         // Nascondo la ViewCaricamento
                         [self.HUD hideAnimated:YES];
                         
-                        [self showAlertError:errorCode withError:errorString];
+                        [self showAlertError:errorCode withError:messageDafault];
                         
                     });
                     
@@ -489,7 +487,7 @@
 - (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
     
     NSString *message = @"";
-
+    
     NSInteger code = codeError;
     
     switch (code) {
@@ -504,25 +502,25 @@
             break;
             
         default:{
-
+            
             message = stringError;
             
             break;
         }
     }
-                
+    
     UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
                                                                                    message:message
                                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     // btn OK
     [alertControllerAvviso addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction *action) {
+                                                              style:UIAlertActionStyleCancel
+                                                            handler:^(UIAlertAction *action) {
         
         // chiudi alert
         [alertControllerAvviso dismissViewControllerAnimated:YES completion:nil];
-
+        
     }]];
     
     [self presentViewController:alertControllerAvviso animated:YES completion:nil];

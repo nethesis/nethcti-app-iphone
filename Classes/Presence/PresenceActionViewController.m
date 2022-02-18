@@ -9,10 +9,13 @@
 #import "PresenceActionCollectionViewCell.h"
 //#import "PhoneMainView.h"
 #import "Utils.h"
+#import "MBProgressHUD.h"
 
 
 
 @interface PresenceActionViewController ()
+
+@property (strong, nonatomic) MBProgressHUD *HUD;
 
 @end
 
@@ -23,7 +26,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    // --- MBProgressHUD ---
+    self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    [self.view addSubview:self.HUD];
+    // ------------------------
         
 
     [self setPresenceUser];
@@ -114,8 +121,9 @@
             
             NSLog(@"PRENOTA");
 
-           
-            
+            [self prenota];
+                
+                
             break;
             
         case 5:
@@ -618,6 +626,96 @@
     return sizeCollectionView;
 }
 */
+
+
+- (void)prenota {
+    
+    NSLog(@"prenota");
+
+    NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
+    NSLog(@"portableNethUserMe.mainExtension: %@", self.portableNethUserMe.mainExtension);
+
+    //[self.HUD showAnimated:YES];
+    
+    NethCTIAPI *api = [NethCTIAPI sharedInstance];
+    
+    [api postRecallOnBusyWithCaller:self.portableNethUserMe.mainExtension
+                             called:self.portablePresenceUser.mainExtension
+                    successHandler:^(NSString * _Nullable success) {
+        
+        //NSLog(@"success: %@", success);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+
+            
+        });
+        
+    }
+                      errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+        
+        //NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            [self showAlertError:errorCode withError:errorString];
+            
+        });
+        
+    }];
+}
+
+
+
+- (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
+    
+    NSString *message = @"";
+
+    NSInteger code = codeError;
+    
+    switch (code) {
+        case 2:
+            
+            message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
+            break;
+            
+        case 401:
+            
+            message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
+            break;
+            
+        default:{
+
+            message = stringError;
+            
+            break;
+        }
+    }
+                
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+                                                                                   message:message
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    // btn OK
+    [alertControllerAvviso addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+        
+        // chiudi alert
+        [alertControllerAvviso dismissViewControllerAnimated:YES completion:nil];
+
+    }]];
+    
+    [self presentViewController:alertControllerAvviso animated:YES completion:nil];
+}
+
 
 
 @end

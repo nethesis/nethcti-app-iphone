@@ -53,7 +53,7 @@
     
     
     // --- Download ---
-    [self.HUD showAnimated:YES];
+    //[self.HUD showAnimated:YES];
     
     [self downloadGruppiAbilitati];
     // ----------------

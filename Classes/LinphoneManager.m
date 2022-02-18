@@ -1776,6 +1776,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	if ([callCenter currentCalls] != nil && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
         
 		LOGE(@"GSM call in progress, cancelling outgoing SIP call request");
+        
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cannot make call", nil)
 					      message:NSLocalizedString(@"Please terminate GSM call first.", nil)
 					      preferredStyle:UIAlertControllerStyleAlert];
