@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Extension
-struct Extension: Codable {
+
+struct EndpointExtension: Codable {
     let type: String
     let id,
         extensionDescription,
@@ -25,7 +25,7 @@ struct Extension: Codable {
     }
 }
 
-extension Extension {
+extension EndpointExtension {
     
     init?(from:[String:Any]){
         
@@ -34,7 +34,7 @@ extension Extension {
             return nil
         }
         self.type = type // This is the only field that can't be null.
-
+        
         self.id = from["id"] as? String
         self.secret = from["secret"] as? String
         self.username = from["username"] as? String
@@ -46,14 +46,14 @@ extension Extension {
         self.proxyPort = from["proxy_port"] as? Int
     }
     
-    public func export() -> Extension {
+    public func export() -> EndpointExtension {
         
-        return Extension.init(type: self.type,
-                              id: self.id,
-                              extensionDescription: self.extensionDescription,
-                              secret: nil,
-                              username: self.username,
-                              actions: self.actions,
-                              proxyPort: self.proxyPort)
+        return EndpointExtension.init(type: self.type,
+                                      id: self.id,
+                                      extensionDescription: self.extensionDescription,
+                                      secret: nil,
+                                      username: self.username,
+                                      actions: self.actions,
+                                      proxyPort: self.proxyPort)
     }
 }

@@ -117,6 +117,8 @@ extension NethUser {
     @objc public let intern: String?
     @objc public let secret: String?
     @objc public let proxyPort : Int
+    @objc public let mobileID: String?
+
     let profile : Profile
     @objc public let recallOnBusy: String?
     @objc public let mainExtension: String?
@@ -126,6 +128,8 @@ extension NethUser {
     @objc public let permissionsPickup: Bool
     @objc public let permissionsHangup: Bool
     @objc public let arrayPermissionsIdGroups: Array <String>
+    @objc public let arrayExtensionsId: Array <String>
+
     
     init?(from:NethUser){
         
@@ -138,10 +142,29 @@ extension NethUser {
         let mobile = from.endpoints.endpointsExtension.first(where: { (Extension) -> Bool in
             Extension.type == "mobile"
         })!
+        
         self.secret = mobile.secret
         self.intern = mobile.username
         self.proxyPort = mobile.proxyPort ?? -1
+        self.mobileID = mobile.id
         self.profile = from.profile
+        
+        
+        var extensionsId: [String] = []
+        
+        for currentExtension in from.endpoints.endpointsExtension {
+                        
+            guard let ext = currentExtension.id as String? else {
+                
+                return nil
+            }
+            
+            extensionsId.append(ext)
+        }
+        //print("extensionsId: \(extensionsId)");
+
+        self.arrayExtensionsId = extensionsId
+        
         
         self.mainExtension = from.endpoints.mainExtension
         

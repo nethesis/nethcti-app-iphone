@@ -108,7 +108,7 @@
                     
                     //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
                     
-                    for (PortableGroup *groupCorrente in arrayGroups) {
+                    for (GroupObjc *groupCorrente in arrayGroups) {
                         
                         if ([idGroupEnableCorrente isEqualToString:groupCorrente.id_group]) {
                             
@@ -218,7 +218,7 @@
     }
     
     
-    PortableGroup *groupSelezionato = (PortableGroup *)[self.arrayGroups objectAtIndex:indexPath.row];
+    GroupObjc *groupSelezionato = (GroupObjc *)[self.arrayGroups objectAtIndex:indexPath.row];
     
     //NSLog(@"groupSelezionato.name: %@", groupSelezionato.name);
     presenceSelectListGroupTableViewCell.ibLabelNome.text = groupSelezionato.name;
@@ -254,7 +254,7 @@
     
     //NSLog(@"didSelectRowAtIndexPath: %ld", (long)indexPath.row);
 
-    PortableGroup *groupSelezionato = (PortableGroup *)[self.arrayGroups objectAtIndex:indexPath.row];
+    GroupObjc *groupSelezionato = (GroupObjc *)[self.arrayGroups objectAtIndex:indexPath.row];
     
     self.id_groupSelezionato = groupSelezionato.id_group;
     //NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);

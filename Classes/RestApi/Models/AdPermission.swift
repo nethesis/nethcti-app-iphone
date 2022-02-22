@@ -35,6 +35,7 @@ extension AdPermission {
     }
     
     func export() -> AdPermission {
+        
         return AdPermission.init(id: self.id,
                                  name: self.name,
                                  value: self.value)

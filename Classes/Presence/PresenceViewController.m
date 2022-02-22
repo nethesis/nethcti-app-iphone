@@ -68,7 +68,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"viewDidAppear");
+    NSLog(@"viewDidLoad");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
@@ -108,7 +108,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //[self.HUD showAnimated:YES];
 
-    [self downloadPresence];
+    //[self downloadPresence];
     
     
     // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
@@ -121,14 +121,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    /*
-     if (tableController.isEditing) {
-     
-     tableController.editing = NO;
-     }
-     */
+    NSLog(@"viewDidAppear");
     
     [self setUIColors];
+
+    //[self.HUD showAnimated:YES];
+
+    [self downloadPresence];
+    
 }
 
 
@@ -161,7 +161,6 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
     
-    //[self.presenceTableViewController.tableView setSeparatorColor:[UIColor colorNamed: @"accentColor"/*@"tableSeparator"*/]];
 }
 
 
@@ -653,7 +652,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                     
                     //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
                     
-                    for (PortableGroup *groupCorrente in arrayGroups) {
+                    for (GroupObjc *groupCorrente in arrayGroups) {
                         
                         if ([idGroupEnableCorrente isEqualToString:groupCorrente.id_group]) {
                             
@@ -676,7 +675,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                     //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
                     //NSLog(@"self.arrayGruppiVisibili: %@", self.arrayGruppiVisibili);
 
-                    PortableGroup *groupVisibileSelezionato = nil;
+                    GroupObjc *groupVisibileSelezionato = nil;
                     
                     if ([self.id_groupSelezionato isEqualToString:@""]) {
                         
@@ -688,7 +687,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                                 
                     }else {
                         
-                        for (PortableGroup *gruppoVisibileCorrente in self.arrayGruppiVisibili) {
+                        for (GroupObjc *gruppoVisibileCorrente in self.arrayGruppiVisibili) {
                             
                             if ([self.id_groupSelezionato isEqualToString:gruppoVisibileCorrente.id_group]) {
                                 

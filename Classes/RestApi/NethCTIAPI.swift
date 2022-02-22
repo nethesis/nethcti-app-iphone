@@ -448,7 +448,7 @@ import Foundation
                       })
     }
     
-    
+    /*
     @objc public func getPresence(successHandler: @escaping() -> Void,
                                   errorHandler: @escaping(Int, String?) -> Void) -> Void { // Ready for the second release.
         
@@ -515,7 +515,7 @@ import Foundation
                         return
                       })
     }
-    
+    */
     
     
     let cLimit = 100
@@ -701,7 +701,7 @@ import Foundation
     /// - Parameters:
     ///   - successHandler: Handle success result
     ///   - errorHandler: Handle error result
-    @objc public func getGroups(successHandler: @escaping(Array<PortableGroup>) -> Void,
+    @objc public func getGroups(successHandler: @escaping(Array<GroupObjc>) -> Void,
                                 errorHandler: @escaping(Int, String?) -> Void) -> Void {
         
         if !ApiCredentials.checkCredentials() {
@@ -742,14 +742,14 @@ import Foundation
                             let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                             print("resultJson: \(resultJson)")
                             
-                            var arrayGroups: [PortableGroup] = []
+                            var arrayGroups: [GroupObjc] = []
                             
                             for (key, value) in resultJson {
                                 
                                 let currentGroup: Group = Group(key: key, value: value as! [String: Any])!
                                 print("currentGroup: \(currentGroup)")
                                 
-                                arrayGroups.append(currentGroup.portable() as PortableGroup)
+                                arrayGroups.append(currentGroup.exportObjc() as GroupObjc)
                             }
                             
                             print("arrayGroups.count: \(arrayGroups.count)")
@@ -1023,6 +1023,113 @@ import Foundation
                       })
         
     }
+    
+    
+        
+    /// Ottengo le informazioni di tutti gli interni e lo stato telefonico di ognuno
+    /// - Parameters:
+    ///   - arrayExtensionsId: lista di Extension da controllare
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func getExtensions(arrayExtensionsId: Array<String>,
+                                      successHandler: @escaping(ConversationObjc?) -> Void,
+                                        errorHandler: @escaping (Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/extensions" // Set the endpoint URL.
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)
+            
+            return
+        }
+        
+        let getHeaders = ApiCredentials.getAuthenticatedCredentials()
+        
+        self.baseCall(url: url,
+                      method: "GET",
+                      headers: getHeaders,
+                      body: nil,
+                      successHandler: {data, response in
+                        
+                        guard let responseData = data else { // Responde handling.
+                            
+                            errorHandler(-2, "No information provided, contact an administrator.")
+                            
+                            return
+                        }
+                        
+                        do{
+                            
+                            let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            //print("resultJson: \(resultJson)")
+                            
+                            
+                            for currentExtension: String in arrayExtensionsId {
+                                
+                                print("currentExtension: \(currentExtension)")
+                                
+                                if let dictConversation = resultJson[currentExtension] as? [String: Any] {
+                                    
+                                    //print("dictConversation: \(dictConversation)")
+                                    
+                                    let astproxyExtension = Extension(from: dictConversation)
+                                    //print("astproxyExtension: \(String(describing: astproxyExtension))")
+                                    
+                                    //print("astproxyExtension?.conversations: \(String(describing: astproxyExtension?.conversations))")
+
+                                    if astproxyExtension?.conversations != nil {
+                                                                                                                        
+                                        successHandler((astproxyExtension?.conversations?.exportObjc())!)
+                                        
+                                        return
+                                        
+                                    }else {
+                                        
+                                        print("conversation nil!")
+                                    }
+                                    
+                                    //print("astproxyExtension?.conversations: \(String(describing: astproxyExtension?.conversations))")
+                                    
+                                }else {
+                                    
+                                    print("chiave non trovata!")
+                                }
+                            }
+                            
+                        } catch (let errorThrown) {
+                            
+                            errorHandler(-2, "json error: \(errorThrown.localizedDescription)")
+                            
+                            return
+                        }
+                        
+                      },
+                      errorHandler: { error, response in
+                        
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling GET on /user/endpoints/all: missing response data.")
+                            
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "No users information provided, contact an administrator.")
+                        
+                        return
+                      })
+    }
+    
     
     
     /// Prenota la chiamata per un utente momentaneamente occupato.
@@ -1315,12 +1422,12 @@ import Foundation
 
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
-                            successHandler("Post registrazione OK!")
+                            successHandler("Post Registra OK!")
                             
                             return
                         }
                         
-                        successHandler("POST registrazione SUCCESS with statusCode: \(httpResponse.statusCode)")
+                        successHandler("POST Registra SUCCESS with statusCode: \(httpResponse.statusCode)")
                                                 
                       },
                       errorHandler: { error, response in
@@ -1339,6 +1446,162 @@ import Foundation
                       })
         
     }
+    
+    
+    
+    /// Invia al server la richiesta per chiudere la chiamata di qualcun’altro.
+    /// - Parameters:
+    ///   - conversationsId: l’id della conversazione in corso
+    ///   - conversationOwner: l’estensione che ha la conversazione in corso
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func postChiudi(conversationsId: String,
+                                 conversationOwner: String,
+                                 successHandler: @escaping (String?) -> Void,
+                                 errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/pickup_conv"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["convid"] = conversationsId
+        body["endpointId"] = conversationOwner
+
+        print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                                                
+
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post Pickup OK!")
+                            
+                            return
+                        }
+                        
+                        successHandler("POST Pickup SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on ../astproxy/pickup_conv: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/pickup_conv")
+                      })
+        
+    }
+    
+    
+    /// Invia al server la richiesta per prendere la chiamata di un utente che ha una chiamata in arrivo in stato ringing.
+    /// - Parameters:
+    ///   - mainExtensionId: l’id della la main extension dell'utente che ha la conversazione in corso
+    ///   - extensionId: l’estensione dell'utente loggato sull’app
+    ///   - successHandler: Handle success result
+    ///   - errorHandler: Handle error result
+    @objc public func postPickup(mainExtensionId: String,
+                                 extensionId: String,
+                                 successHandler: @escaping (String?) -> Void,
+                                 errorHandler: @escaping(Int, String?) -> Void) -> Void {
+        
+        if !ApiCredentials.checkCredentials() {
+            
+            print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
+            errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            
+            return
+        }
+        
+        
+        // Set the endpoint URL.
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/pickup_conv"
+        
+        guard let url = URL(string: endPoint) else {
+            
+            print("NethCTIAPI.ErrorCodes.MissingServerURL.rawValue: \(NethCTIAPI.ErrorCodes.MissingServerURL.rawValue)")
+            errorHandler(-2, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
+            
+            return
+        }
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
+        
+        
+        var body: [String: Any] = [:]
+        
+        body["endpointId"] = mainExtensionId
+        body["destId"] = extensionId
+
+        print("body: \(body)")
+        
+        
+        self.baseCall(url: url,
+                      method: "POST",
+                      headers: headers,
+                      body: body,
+                      successHandler: { data, response in
+                                                
+
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            successHandler("Post Pickup OK!")
+                            
+                            return
+                        }
+                        
+                        successHandler("POST Pickup SUCCESS with statusCode: \(httpResponse.statusCode)")
+                                                
+                      },
+                      errorHandler: { error, response in
+                        
+                        print("error: \(String(describing: error?.localizedDescription))")
+
+                        // Error handling.
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            
+                            errorHandler(-2, "Error calling POST on ../astproxy/pickup_conv: missing response data.")
+
+                            return
+                        }
+                        
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/pickup_conv")
+                      })
+        
+    }
+    
     
     
 }

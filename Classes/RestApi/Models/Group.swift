@@ -31,20 +31,22 @@ extension Group {
         self.users = value["users"] as? [String]
     }
     
+    
     func export() -> Group {
+        
         return Group.init(id_group: self.id_group,
                           name: self.name,
                           users: self.users)
     }
     
-    public func portable() -> PortableGroup {
+    public func exportObjc() -> GroupObjc {
         
-        return PortableGroup.init(from: self)!
+        return GroupObjc.init(from: self)!
     }
 }
 
 
-@objc public class PortableGroup: NSObject, Codable {
+@objc public class GroupObjc: NSObject, Codable {
     
     @objc public let id_group: String?
     @objc public let name: String?

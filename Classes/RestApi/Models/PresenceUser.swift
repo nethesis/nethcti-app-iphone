@@ -72,7 +72,8 @@ extension PresenceUser {
     @objc public let presence: String?
     @objc public let mainPresence: String?
     @objc public let mainExtension: String?
-    //var endpoints: Endpoints
+    var endpoints: Endpoints
+    @objc public let arrayExtensionsId: Array <String>
 
     
     init?(from:PresenceUser) {
@@ -83,7 +84,23 @@ extension PresenceUser {
         self.mainPresence = from.mainPresence
 
         self.mainExtension = from.endpoints.mainExtension
-        //self.endpoints = from.endpoints
+        self.endpoints = from.endpoints
 
+        var extensionsId: [String] = []
+        
+        for currentExtension in from.endpoints.endpointsExtension {
+                        
+            guard let ext = currentExtension.id as String? else {
+                
+                return nil
+            }
+            
+            extensionsId.append(ext)
+        }
+        //print("extensionsId: \(extensionsId)");
+
+        self.arrayExtensionsId = extensionsId
+
+        
     }
 }

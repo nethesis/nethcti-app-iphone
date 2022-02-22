@@ -8,11 +8,10 @@
 import Foundation
 
 
-// MARK: - Endpoints
 
 struct Endpoints: Codable {
     
-    let endpointsExtension: [Extension]
+    let endpointsExtension: [EndpointExtension]
     let mainExtension: String?
     
     enum CodingKeys: String, CodingKey {
@@ -29,7 +28,7 @@ extension Endpoints {
             return nil
         }
         
-        var extensions: [Extension] = []
+        var extensions: [EndpointExtension] = []
         
         for string in endpointExtension {
             
@@ -37,7 +36,7 @@ extension Endpoints {
                 return nil
             }
             
-            guard let ext = Extension(from: elem) else {
+            guard let ext = EndpointExtension(from: elem) else {
                 return nil
             }
             

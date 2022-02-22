@@ -775,6 +775,7 @@
 		A9854F0B27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9854F0927B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m */; };
 		A9854F0C27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9854F0A27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib */; };
 		A9861AD727A9559600EFD779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A9861AD527A9559500EFD779 /* MBProgressHUD.m */; };
+		A986D1C127C3F3A9006978AE /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A986D1C027C3F3A9006978AE /* Conversation.swift */; };
 		A9916DEC279AB677006A37E7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEB279AB677006A37E7 /* Profile.swift */; };
 		A9916DEE279AC557006A37E7 /* MacroPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DED279AC557006A37E7 /* MacroPermissions.swift */; };
 		A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEF279AF41D006A37E7 /* PresencePanel.swift */; };
@@ -787,6 +788,7 @@
 		A9B9E9B727AADB060062CCDE /* PresenceSelectListGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */; };
 		A9C51F4727BBF21000234769 /* PresenceActionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */; };
 		A9C51F4827BBF21000234769 /* PresenceActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */; };
+		A9CCB1CF27C4F12F00B279B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CCB1CE27C4F12F00B279B6 /* Extension.swift */; };
 		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
 		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
@@ -1931,6 +1933,7 @@
 		A9854F0A27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListGroupTableViewCell.xib; sourceTree = "<group>"; };
 		A9861AD527A9559500EFD779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A9861AD627A9559500EFD779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A986D1C027C3F3A9006978AE /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		A9916DEB279AB677006A37E7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A9916DED279AC557006A37E7 /* MacroPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroPermissions.swift; sourceTree = "<group>"; };
 		A9916DEF279AF41D006A37E7 /* PresencePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresencePanel.swift; sourceTree = "<group>"; };
@@ -1946,6 +1949,7 @@
 		A9C51F4427BBF21000234769 /* PresenceActionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceActionCollectionViewCell.h; sourceTree = "<group>"; };
 		A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceActionCollectionViewCell.m; sourceTree = "<group>"; };
 		A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceActionCollectionViewCell.xib; sourceTree = "<group>"; };
+		A9CCB1CE27C4F12F00B279B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
 		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
 		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
@@ -3642,17 +3646,19 @@
 		C3C6979623D20419004B6240 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C35E33B723758C0400CC5C24 /* NethUser.swift */,
-				C35E33B923758CB500CC5C24 /* Endpoints.swift */,
-				C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */,
 				C35E33BD23758DFE00CC5C24 /* Action.swift */,
-				A9916DEB279AB677006A37E7 /* Profile.swift */,
-				A9916DED279AC557006A37E7 /* MacroPermissions.swift */,
-				A9916DEF279AF41D006A37E7 /* PresencePanel.swift */,
-				A9916DF1279AF9EC006A37E7 /* Permissions.swift */,
 				A9916DF3279AFF43006A37E7 /* AdPermission.swift */,
+				A986D1C027C3F3A9006978AE /* Conversation.swift */,
+				C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */,
+				C35E33B923758CB500CC5C24 /* Endpoints.swift */,
 				A971E368279F0367009017E7 /* Group.swift */,
+				A9916DED279AC557006A37E7 /* MacroPermissions.swift */,
+				C35E33B723758C0400CC5C24 /* NethUser.swift */,
+				A9916DF1279AF9EC006A37E7 /* Permissions.swift */,
+				A9916DEF279AF41D006A37E7 /* PresencePanel.swift */,
 				A996E82727A04CDF007AD6E4 /* PresenceUser.swift */,
+				A9916DEB279AB677006A37E7 /* Profile.swift */,
+				A9CCB1CE27C4F12F00B279B6 /* Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -5037,6 +5043,7 @@
 				C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */,
 				570742611D5A09B8004B9C84 /* ShopView.m in Sources */,
 				63F1DF4F1BCE985F00EDED90 /* UICallConferenceCell.m in Sources */,
+				A986D1C127C3F3A9006978AE /* Conversation.swift in Sources */,
 				BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */,
 				D37DC6C11594AE1800B2A5EB /* LinphoneCoreSettingsStore.m in Sources */,
 				63CD4B4F1A5AAC8C00B84282 /* DTAlertView.m in Sources */,
@@ -5051,6 +5058,7 @@
 				C37672F025C17D6100AB1F82 /* NethPhoneBook.swift in Sources */,
 				D31AAF5E159B3919002C6B02 /* CallPausedTableView.m in Sources */,
 				8C9C5E0D1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.m in Sources */,
+				A9CCB1CF27C4F12F00B279B6 /* Extension.swift in Sources */,
 				631098491D4660580041F2B3 /* CountryListView.m in Sources */,
 				D32B9DFC15A2F131000B6DEC /* FastAddressBook.m in Sources */,
 				D350F20E15A43BB100149E54 /* AssistantView.m in Sources */,
