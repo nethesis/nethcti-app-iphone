@@ -26,6 +26,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+    NSLog(@"viewDidLoad - PresenceActionViewController");
+
     // --- MBProgressHUD ---
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
@@ -36,9 +39,8 @@
     [self setPresenceUser];
     
     
-    NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
-        
-    NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
+    //NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
+    //NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
 
     
     
@@ -80,7 +82,8 @@
             
             NSLog(@"CHIUDI");
 
-            
+            [self azioneChiudi];
+
             break;
             
         case 2:
@@ -129,7 +132,6 @@
             
             break;
             
-     
     }
 }
 
@@ -617,19 +619,16 @@
 - (void)azionePrenota {
     
     NSLog(@"azionePrenota");
-
-    NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
-    NSLog(@"portableNethUserMe.mainExtension: %@", self.portableNethUserMe.mainExtension);
-
+        
     //[self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
     [api postRecallOnBusyWithCaller:self.portableNethUserMe.mainExtension
                              called:self.portablePresenceUser.mainExtension
-                    successHandler:^(NSString * _Nullable success) {
+                     successHandler:^(NSString * _Nullable successMessage) {
         
-        //NSLog(@"success: %@", success);
+        NSLog(@"successMessage: %@", successMessage);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -637,14 +636,12 @@
             [self.HUD hideAnimated:YES];
             
             [self dismissViewControllerAnimated:YES completion:nil];
-
-            
         });
         
     }
-                      errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                       errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
         
-        //NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+        NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -652,7 +649,6 @@
             [self.HUD hideAnimated:YES];
             
             [self showAlertError:errorCode withError:errorString];
-            
         });
         
     }];
@@ -663,9 +659,6 @@
 - (void)azioneSpia {
     
     NSLog(@"azioneSpia");
-
-    //NSLog(@"portableNethUserMe.mobileID: %@", self.portableNethUserMe.mobileID);
-    //NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
     
     //[self.HUD showAnimated:YES];
     
@@ -675,27 +668,22 @@
     [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
-        
         //NSLog(@"conversationObject: %@", conversationObject.conversationId);
         //NSLog(@"conversationObject: %@", conversationObject.owner);
         
         [api postStartSpyWithConversationsId:conversationObject.conversationId
                            conversationOwner:conversationObject.owner
                                  extensionId:self.portableNethUserMe.mobileID
-                              successHandler:^(NSString * _Nullable success) {
+                              successHandler:^(NSString * _Nullable successMessage) {
             
-            //NSLog(@"success: %@", success);
+            NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                
                 
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
-                
-                
             });
             
         }
@@ -713,7 +701,6 @@
             });
             
         }];
-        
         
         
     } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
@@ -739,28 +726,22 @@
     
     NSLog(@"azioneIntromettiti");
     
-    //NSLog(@"portableNethUserMe.mobileID: %@", self.portableNethUserMe.mobileID);
-    //NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
-    
     //[self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    
     [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
-        
-        NSLog(@"conversationObject: %@", conversationObject.conversationId);
-        NSLog(@"conversationObject: %@", conversationObject.owner);
-        
+        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+        //NSLog(@"conversationObject: %@", conversationObject.owner);
         
         [api postIntrudeWithConversationsId:conversationObject.conversationId
                           conversationOwner:conversationObject.owner
                                 extensionId:self.portableNethUserMe.mobileID
-                             successHandler:^(NSString * _Nullable success) {
+                             successHandler:^(NSString * _Nullable successMessage) {
             
-            //NSLog(@"success: %@", success);
+            NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -769,13 +750,12 @@
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
-                
             });
             
         }
                                errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            //NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -835,8 +815,7 @@
     
     NSLog(@"azioneRegistra");
     
-    NSLog(@"portableNethUserMe.mobileID: %@", self.portableNethUserMe.mobileID);
-    NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
+    //NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
     
     //[self.HUD showAnimated:YES];
     
@@ -846,16 +825,14 @@
     [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
-        
-        NSLog(@"conversationObject: %@", conversationObject.conversationId);
-        NSLog(@"conversationObject: %@", conversationObject.owner);
-        
+        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+        //NSLog(@"conversationObject: %@", conversationObject.owner);
         
         [api postAdRecordingWithConversationsId:conversationObject.conversationId
                           conversationOwner:conversationObject.owner
-                             successHandler:^(NSString * _Nullable success) {
+                             successHandler:^(NSString * _Nullable successMessage) {
             
-            NSLog(@"success: %@", success);
+            NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -864,13 +841,12 @@
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
-                
             });
             
         }
                                errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            //NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -905,34 +881,29 @@
     
     NSLog(@"azionePickup");
     
-    NSLog(@"portableNethUserMe.mobileID: %@", self.portableNethUserMe.mobileID);
-    NSLog(@"portablePresenceUser.mainExtension: %@", self.portablePresenceUser.mainExtension);
-    
     //[self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    
+    // chiudo prima perchè la post non mi risponde fino a quando l'utente non prende la chiamata in entrata dal server
+    [self dismissViewControllerAnimated:YES completion:nil];
+
     [api postPickupWithMainExtensionId:self.portablePresenceUser.mainExtension
                            extensionId:self.portableNethUserMe.mobileID
-                        successHandler:^(NSString * _Nullable success) {
+                        successHandler:^(NSString * _Nullable successMessage) {
         
-        NSLog(@"success: %@", success);
+        NSLog(@"successMessage: %@", successMessage);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // Nascondo la ViewCaricamento
             [self.HUD hideAnimated:YES];
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-            
         });
         
     }
                           errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
         
-        //NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+        NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -947,6 +918,71 @@
     
     
 }
+
+
+
+
+- (void)azioneChiudi {
+    
+    NSLog(@"azioneChiudi");
+        
+    //[self.HUD showAnimated:YES];
+    
+    NethCTIAPI *api = [NethCTIAPI sharedInstance];
+    
+    [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
+                             successHandler:^(ConversationObjc * _Nullable conversationObject) {
+        
+        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+        //NSLog(@"conversationObject: %@", conversationObject.owner);
+        
+        [api postChiudiWithConversationsId:conversationObject.conversationId
+                         conversationOwner:conversationObject.owner
+                            successHandler:^(NSString * _Nullable successMessage) {
+            
+            NSLog(@"successMessage: %@", successMessage);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // Nascondo la ViewCaricamento
+                [self.HUD hideAnimated:YES];
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+            
+        }
+                              errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+            
+            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // Nascondo la ViewCaricamento
+                [self.HUD hideAnimated:YES];
+                
+                [self showAlertError:errorCode withError:errorString];
+                
+            });
+            
+        }];
+        
+        
+    } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
+        
+        NSLog(@"getUserMe API_ERROR code: %ld, string: %@", (long)code, messageDefault);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            [self showAlertError:code withError:messageDefault];
+        });
+        
+    }];
+    
+}
+
 
 
 

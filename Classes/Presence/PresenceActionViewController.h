@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *ibButtonPreferito;
 
 
-@property(strong, nonatomic) PortablePresenceUser *portablePresenceUser;
+@property(strong, nonatomic) PresenceUserObjc *portablePresenceUser;
 @property(strong, nonatomic) PortableNethUser *portableNethUserMe;
 
 

@@ -31,14 +31,6 @@ extension Group {
         self.users = value["users"] as? [String]
     }
     
-    
-    func export() -> Group {
-        
-        return Group.init(id_group: self.id_group,
-                          name: self.name,
-                          users: self.users)
-    }
-    
     public func exportObjc() -> GroupObjc {
         
         return GroupObjc.init(from: self)!

@@ -77,7 +77,7 @@ import Foundation
                           successHandler: @escaping (Data?, URLResponse?) -> Void,
                           errorHandler: @escaping(Error?, URLResponse?) -> Void) -> Void {
         
-        print("baseCall url: \(url), method: \(method), body: \(String(describing: body))")
+        //print("baseCall url: \(url), method: \(method), body: \(String(describing: body))")
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
@@ -274,15 +274,21 @@ import Foundation
     @objc public func setAuthToken(username:String, token: String, domain: String) -> Void {
         
         guard let u = username as String? else {
+            
             print("API_ERROR: No username provided.")
+            
             return
         }
         guard let t = token as String? else {
+            
             print("API_ERROR: No token provided.")
+            
             return
         }
         guard let d = domain as String? else {
+            
             print("API_ERROR: No domain provided.")
+            
             return
         }
         
@@ -389,6 +395,7 @@ import Foundation
             !user.isEmpty && !domain.isEmpty else {
             
             print("[WEDO] Missing information for notificator.")
+            
             return
         }
         
@@ -432,13 +439,16 @@ import Foundation
                         guard let responseData = data as Data? else {
                             
                             print("[WEDO] [APNS SERVER]: No data provided")
+                            
                             success(false)
                             
                             return
                         }
                         
                         let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
+                        
                         print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
+                        
                         success(true)
                         
                       },
@@ -659,13 +669,11 @@ import Foundation
                         
                         do{
                             
-                            let userDict = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                            //print("userDict: \(userDict)")
+                            let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                            //print("resultJson: \(resultJson)")
                             
-                            let nethUser = try NethUser(from: userDict)
-                            
-                            //print("nethUser?.profile.macroPermissions?.presencePanel?.permissions?.hangup?.name: \(String(describing: nethUser?.profile.macroPermissions?.presencePanel?.permissions?.hangup?.name))")
-                            
+                            let nethUser = try NethUser(from: resultJson)
+                                                        
                             successHandler(nethUser?.portable())
                             
                             
@@ -740,20 +748,18 @@ import Foundation
                         do {
                             
                             let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                            print("resultJson: \(resultJson)")
+                            //print("resultJson: \(resultJson)")
                             
                             var arrayGroups: [GroupObjc] = []
                             
                             for (key, value) in resultJson {
                                 
                                 let currentGroup: Group = Group(key: key, value: value as! [String: Any])!
-                                print("currentGroup: \(currentGroup)")
+                                print("currentGroup.id_group: \(String(describing: currentGroup.id_group))")
                                 
                                 arrayGroups.append(currentGroup.exportObjc() as GroupObjc)
                             }
-                            
-                            print("arrayGroups.count: \(arrayGroups.count)")
-                            
+                                                        
                             successHandler(arrayGroups)
                             
                         } catch {
@@ -785,7 +791,7 @@ import Foundation
     /// - Parameters:
     ///   - successHandler: Handle success result
     ///   - errorHandler: Handle error result
-    @objc public func getUserAll(successHandler: @escaping(Array<PortablePresenceUser>) -> Void,
+    @objc public func getUserAll(successHandler: @escaping(Array<PresenceUserObjc>) -> Void,
                                  errorHandler: @escaping (Int, String?) -> Void) -> Void {
         
         if !ApiCredentials.checkCredentials() {
@@ -826,7 +832,7 @@ import Foundation
                             let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                             //print("resultJson: \(resultJson)")
                             
-                            var arrayUsers: [PortablePresenceUser] = []
+                            var arrayUsers: [PresenceUserObjc] = []
                             
                             for (_, value) in resultJson {
                                 
@@ -838,7 +844,7 @@ import Foundation
                                     let currentPresenceUser = try PresenceUser(from: valueDictionary)
                                     //print("currentPresenceUser: \(String(describing: currentPresenceUser))")
                                     
-                                    arrayUsers.append((currentPresenceUser?.portable())!)
+                                    arrayUsers.append((currentPresenceUser?.exportObjc())!)
                                 }
                             }
                             
@@ -1076,7 +1082,7 @@ import Foundation
                             
                             for currentExtension: String in arrayExtensionsId {
                                 
-                                print("currentExtension: \(currentExtension)")
+                                //print("currentExtension: \(currentExtension)")
                                 
                                 if let dictConversation = resultJson[currentExtension] as? [String: Any] {
                                     
@@ -1252,7 +1258,7 @@ import Foundation
         body["endpointId"] = conversationOwner
         body["destId"] = extensionId
 
-        print("body: \(body)")
+        //print("body: \(body)")
         
         
         self.baseCall(url: url,
@@ -1333,7 +1339,7 @@ import Foundation
         body["endpointId"] = conversationOwner
         body["destId"] = extensionId
 
-        print("body: \(body)")
+        //print("body: \(body)")
         
         
         self.baseCall(url: url,
@@ -1410,7 +1416,7 @@ import Foundation
         body["convid"] = conversationsId
         body["endpointId"] = conversationOwner
 
-        print("body: \(body)")
+        //print("body: \(body)")
         
         
         self.baseCall(url: url,
@@ -1470,7 +1476,7 @@ import Foundation
         
         
         // Set the endpoint URL.
-        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/pickup_conv"
+        let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/hangup"
         
         guard let url = URL(string: endPoint) else {
             
@@ -1488,7 +1494,7 @@ import Foundation
         body["convid"] = conversationsId
         body["endpointId"] = conversationOwner
 
-        print("body: \(body)")
+        //print("body: \(body)")
         
         
         self.baseCall(url: url,
@@ -1500,12 +1506,12 @@ import Foundation
 
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
-                            successHandler("Post Pickup OK!")
+                            successHandler("Post Chiudi OK!")
                             
                             return
                         }
                         
-                        successHandler("POST Pickup SUCCESS with statusCode: \(httpResponse.statusCode)")
+                        successHandler("POST Chiudi SUCCESS with statusCode: \(httpResponse.statusCode)")
                                                 
                       },
                       errorHandler: { error, response in
@@ -1515,12 +1521,12 @@ import Foundation
                         // Error handling.
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
-                            errorHandler(-2, "Error calling POST on ../astproxy/pickup_conv: missing response data.")
+                            errorHandler(-2, "Error calling POST on ../astproxy/hangup: missing response data.")
 
                             return
                         }
                         
-                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/pickup_conv")
+                        errorHandler(httpResponse.statusCode, "Error calling POST on ../astproxy/hangup")
                       })
         
     }
@@ -1565,7 +1571,7 @@ import Foundation
         body["endpointId"] = mainExtensionId
         body["destId"] = extensionId
 
-        print("body: \(body)")
+        //print("body: \(body)")
         
         
         self.baseCall(url: url,

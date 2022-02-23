@@ -121,6 +121,14 @@
                 
                 //NSLog(@"arrayGroups: %@", arrayGroups);
 
+                
+                // --- ordinamento dal più piccolo al più grande sulla chiave name ---
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                NSArray *arrayGroupsSorted = [self.arrayGroups sortedArrayUsingDescriptors:@[sortDescriptor]];
+                self.arrayGroups = [[NSMutableArray alloc]initWithArray:arrayGroupsSorted];
+                // -------------------------------------------------------------------
+                
+                
                 [self.ibTableViewGruppi reloadData];
                 
             });
@@ -139,9 +147,7 @@
                 [self.refreshControl endRefreshing];
                 
                 [self showAlertError:code withError:string];
-                
             });
-            
             
         }];
         

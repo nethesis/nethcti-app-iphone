@@ -68,7 +68,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"viewDidLoad");
+    NSLog(@"viewDidLoad - PresenceViewController");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
@@ -121,7 +121,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"viewDidAppear");
+    NSLog(@"viewDidAppear - PresenceViewController");
     
     [self setUIColors];
 
@@ -179,7 +179,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //NSLog(@"ibaVisualizzaAzioni sender.tag: %ld", (long)sender.tag);
 
-    PortablePresenceUser *portablePresenceUserSelezionato = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:sender.tag];
+    PresenceUserObjc *portablePresenceUserSelezionato = (PresenceUserObjc *)[self.arrayUsers objectAtIndex:sender.tag];
     //NSLog(@"portablePresenceUserSelezionato.name: %@", portablePresenceUserSelezionato.name);
     
     PresenceActionViewController *presenceActionViewController = [[PresenceActionViewController alloc] init];
@@ -308,7 +308,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         self.ibPresenceTableViewCell = nil;
     }
     
-    PortablePresenceUser *portablePresenceUser = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:indexPath.row];
+    PresenceUserObjc *portablePresenceUser = (PresenceUserObjc *)[self.arrayUsers objectAtIndex:indexPath.row];
     //NSLog(@"portablePresenceUser: %@", portablePresenceUser.name);
     
     presenceTableViewCell.ibButtonVisualizzaAzioni.tag = indexPath.row;
@@ -397,7 +397,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 
 
-- (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPortablePresenceUser: (PortablePresenceUser *)portablePresenceUser {
+- (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPortablePresenceUser: (PresenceUserObjc *)portablePresenceUser {
     
     
     NSString *presence = portablePresenceUser.mainPresence;
@@ -630,7 +630,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     // Download INFO UTENTE
     [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
-        //NSLog(@"portableNethUser.mainPresence: %@", portableNethUser.mainPresence);
+        NSLog(@"portableNethUser: %@", portableNethUser);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -639,13 +639,15 @@ static UICompositeViewDescription *compositeDescription = nil;
             [self setMePresence];
         });
                 
-        
+        NSLog(@"self.userMe.arrayPermissionsIdGroups: %@", self.userMe.arrayPermissionsIdGroups);
+
         // Download GRUPPI
         [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
             
+            //NSLog(@"arrayGroups: %@", arrayGroups);
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                                
                 self.arrayGruppiVisibili = [NSMutableArray new];
                 
                 for (NSString *idGroupEnableCorrente in self.userMe.arrayPermissionsIdGroups) {
@@ -662,6 +664,13 @@ static UICompositeViewDescription *compositeDescription = nil;
                         }
                     }
                 }
+                
+                
+                // --- ordinamento dal più piccolo al più grande sulla chiave name ---
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                NSArray *arrayGroupsSorted = [self.arrayGruppiVisibili sortedArrayUsingDescriptors:@[sortDescriptor]];
+                self.arrayGruppiVisibili = [[NSMutableArray alloc]initWithArray:arrayGroupsSorted];
+                // -------------------------------------------------------------------
                 
             });
 
@@ -711,7 +720,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                         
                         //NSLog(@"CERCO keyUsernameCorrente: %@", keyUsernameCorrente);
 
-                        for (PortablePresenceUser *userFromAllCorrente in arrayUsers) {
+                        for (PresenceUserObjc *userFromAllCorrente in arrayUsers) {
                             
                             //NSLog(@"userFromAllCorrente.username: %@", userFromAllCorrente.username);
 

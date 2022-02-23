@@ -58,14 +58,14 @@ extension PresenceUser {
     }
         
     
-    public func portable() -> PortablePresenceUser {
+    public func exportObjc() -> PresenceUserObjc {
         
-        return PortablePresenceUser.init(from: self)!
+        return PresenceUserObjc.init(from: self)!
     }
     
 }
 
-@objc public class PortablePresenceUser: NSObject, Codable {
+@objc public class PresenceUserObjc: NSObject, Codable {
     
     @objc public let name: String?
     @objc public let username: String?
@@ -100,7 +100,5 @@ extension PresenceUser {
         //print("extensionsId: \(extensionsId)");
 
         self.arrayExtensionsId = extensionsId
-
-        
     }
 }

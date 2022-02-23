@@ -44,20 +44,19 @@ extension Permissions {
         var arrayAdPermission: [[String: AdPermission]] = []
         var arrayKeyNameEnables: [String] = []
         
-        for (key, _) in from {
+        for (key, value) in from {
             
-            //print("key: \(key)")
-
             if key.contains("grp_") {
                 
-                //print("value: \(value)")
+                print("Permissions key: \(key)")
+                //print("Permissions value: \(value)")
 
-                guard let currentGroup = from[key] as? [String: Any] else {
+                guard let currentGroupValue = value as? [String: Any] else {
                     return nil
                 }
-                //print("currentGroup: \(String(describing: currentGroup))")
+                //print("currentGroupValue: \(currentGroupValue)")
 
-                let currentGroupAdPermission: AdPermission = AdPermission(from: currentGroup)!
+                let currentGroupAdPermission: AdPermission = AdPermission(from: currentGroupValue)!
                 //print("currentGroupAdPermission: \(currentGroupAdPermission)")
 
                 arrayAdPermission.append([key : currentGroupAdPermission])
