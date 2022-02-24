@@ -53,12 +53,12 @@
     
     
     // --- Download ---
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     [self downloadGruppiAbilitati];
     // ----------------
-    
 }
+
 
 /*
  #pragma mark - Navigation
@@ -101,9 +101,7 @@
                 
                 
                 self.arrayGroups = [NSMutableArray new];
-                
-                // TODO: Modificare per mantenere lo stesso ordinamento!!
-                
+                                
                 for (NSString *idGroupEnableCorrente in portableNethUser.arrayPermissionsIdGroups) {
                     
                     //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);

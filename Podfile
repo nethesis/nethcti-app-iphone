@@ -12,6 +12,8 @@ def all_pods
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # local sdk
 	end
 
+  pod 'Alamofire', '~> 4.9'
+  
 	crashlytics
 end
 

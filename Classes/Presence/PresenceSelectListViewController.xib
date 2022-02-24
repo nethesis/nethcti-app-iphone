@@ -31,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NT-ys-ZDi" userLabel="View - Contenitore">
-                    <rect key="frame" x="47" y="278" width="320" height="350"/>
+                    <rect key="frame" x="47" y="273" width="320" height="360"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29e-vI-ZEQ" userLabel="View - Intestazione">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -74,11 +74,11 @@
                                 <constraint firstAttribute="height" constant="60" id="ndR-UW-kpX"/>
                             </constraints>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Rp-bSE" userLabel="Table View - SelezionePresence">
-                            <rect key="frame" x="0.0" y="60" width="320" height="290"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-Rp-bSE" userLabel="Table View - SelezionePresence">
+                            <rect key="frame" x="0.0" y="60" width="320" height="300"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="290" id="4fq-8N-HVg"/>
+                                <constraint firstAttribute="height" constant="300" id="4fq-8N-HVg"/>
                                 <constraint firstAttribute="width" constant="320" id="rd3-w9-0hT"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
@@ -92,7 +92,7 @@
                             </connections>
                         </tableView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nessun status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grd-45-ldG" userLabel="Label - NessunDato">
-                            <rect key="frame" x="109" y="165.5" width="102" height="19"/>
+                            <rect key="frame" x="109" y="170.5" width="102" height="19"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                             <color key="textColor" name="textColor"/>
                             <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                         <constraint firstAttribute="trailing" secondItem="gPX-Rp-bSE" secondAttribute="trailing" id="PWA-Um-dIm"/>
                         <constraint firstItem="gPX-Rp-bSE" firstAttribute="top" secondItem="29e-vI-ZEQ" secondAttribute="bottom" id="W35-ao-KSr"/>
                         <constraint firstItem="Grd-45-ldG" firstAttribute="centerX" secondItem="1NT-ys-ZDi" secondAttribute="centerX" id="h2H-3x-6rh"/>
-                        <constraint firstAttribute="height" constant="350" id="h6r-SH-5OA"/>
+                        <constraint firstAttribute="height" constant="360" id="h6r-SH-5OA"/>
                         <constraint firstAttribute="trailing" secondItem="29e-vI-ZEQ" secondAttribute="trailing" id="hKU-FW-NU8"/>
                         <constraint firstItem="gPX-Rp-bSE" firstAttribute="leading" secondItem="1NT-ys-ZDi" secondAttribute="leading" id="hSY-Wh-ZrP"/>
                         <constraint firstItem="29e-vI-ZEQ" firstAttribute="leading" secondItem="1NT-ys-ZDi" secondAttribute="leading" id="j0z-yi-AfE"/>
@@ -131,7 +131,7 @@
     <resources>
         <image name="icn_chiudi" width="32" height="32"/>
         <namedColor name="ColorLineaSeparatrice">
-            <color red="0.84700000286102295" green="0.84700000286102295" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -23,6 +23,9 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (retain, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *arrayGruppiVisibili;
+@property (assign) BOOL isGroupsFilter;
+@property(strong, nonatomic) NSMutableArray *arrayUsersFiltered;
+@property(strong, nonatomic) NSMutableArray *arrayUsersVisibili;
 
 @end
 
@@ -30,7 +33,6 @@
 @implementation PresenceViewController
 
 @synthesize topBar;
-@synthesize arrayUsers;
 @synthesize userMe;
 @synthesize id_groupSelezionato;
 
@@ -92,7 +94,22 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     self.ibButtonSelezionePresence.titleLabel.adjustsFontSizeToFitWidth = 0.7;
 
+    // --- Default filtro per gruppi selezionato ---
     self.id_groupSelezionato = @"";
+    self.isGroupsFilter = YES;
+    
+    self.ibLabelPreferiti.textColor = UIColor.blackColor;
+
+    [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
+    self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
+
+    
+    self.ibLabelGruppi.textColor = [UIColor colorNamed: @"mainColor"];
+
+    [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_preferiti_on"] forState:UIControlStateNormal];
+    self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
+    // ----------------------------------------------
+    
     
     /*
     // controllo autenticazione...
@@ -125,10 +142,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     [self setUIColors];
 
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
 
     [self downloadPresence];
-    
 }
 
 
@@ -164,9 +180,15 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 
-- (void)loadData {
+- (void)loadDataFiltered {
     
-    //LOGD(@"arrayUsers: %@", self.arrayUsers);
+    NSLog(@"loadDataFiltered");
+    
+    // TODO: filtrare per preferiti e non
+    
+    
+    
+    
     
     [self.ibTableViewPresence reloadData];
 }
@@ -179,13 +201,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //NSLog(@"ibaVisualizzaAzioni sender.tag: %ld", (long)sender.tag);
 
-    PresenceUserObjc *portablePresenceUserSelezionato = (PresenceUserObjc *)[self.arrayUsers objectAtIndex:sender.tag];
+    PresenceUserObjc *portablePresenceUserSelezionato = (PresenceUserObjc *)[self.arrayUsersFiltered objectAtIndex:sender.tag];
     //NSLog(@"portablePresenceUserSelezionato.name: %@", portablePresenceUserSelezionato.name);
     
     PresenceActionViewController *presenceActionViewController = [[PresenceActionViewController alloc] init];
     
     presenceActionViewController.portablePresenceUser = portablePresenceUserSelezionato;
     presenceActionViewController.portableNethUserMe = self.userMe;
+    presenceActionViewController.presenceActionDelegate = self;
     
     [presenceActionViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 
@@ -200,6 +223,29 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSLog(@"ibaVisualizzaPreferiti");
     
+    if (YES == self.isGroupsFilter) {
+
+        self.isGroupsFilter = NO;
+        
+        self.ibLabelPreferiti.textColor = [UIColor colorNamed: @"mainColor"];
+        
+        [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_on"] forState:UIControlStateNormal];
+        self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
+
+        
+        self.ibLabelGruppi.textColor = UIColor.blackColor;
+
+        [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_off"] forState:UIControlStateNormal];
+        self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
+
+        [self loadDataFiltered];
+        
+    }else {
+        
+        
+    }
+    
+    
 }
 
 
@@ -207,26 +253,51 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSLog(@"ibaVisualizzaGruppi");
     
-    PresenceSelectListGroupViewController *presenceSelectListGroupViewController = [[PresenceSelectListGroupViewController alloc] init];
-        
-    presenceSelectListGroupViewController.arrayGroups = self.arrayGruppiVisibili;
-    presenceSelectListGroupViewController.id_groupSelezionato = self.id_groupSelezionato;
-    presenceSelectListGroupViewController.presenceSelectListGroupDelegate = self;
-
-    /*
-    if (@available(iOS 13.0, *)) {
-        
-        [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationAutomatic];
-        
-    } else {
-        // Fallback on earlier versions
-        [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationFullScreen];
-    }
-    */
-    [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationOverFullScreen];
-
     
-    [self presentViewController:presenceSelectListGroupViewController animated:true completion:nil];
+    if (YES == self.isGroupsFilter) {
+        
+        PresenceSelectListGroupViewController *presenceSelectListGroupViewController = [[PresenceSelectListGroupViewController alloc] init];
+            
+        presenceSelectListGroupViewController.arrayGroups = self.arrayGruppiVisibili;
+        presenceSelectListGroupViewController.id_groupSelezionato = self.id_groupSelezionato;
+        presenceSelectListGroupViewController.presenceSelectListGroupDelegate = self;
+
+        /*
+        if (@available(iOS 13.0, *)) {
+            
+            [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationAutomatic];
+            
+        } else {
+            // Fallback on earlier versions
+            [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationFullScreen];
+        }
+        */
+        [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationOverFullScreen];
+
+        
+        [self presentViewController:presenceSelectListGroupViewController animated:true completion:nil];
+        
+    }else {
+        
+        self.isGroupsFilter = YES;
+        
+        self.ibLabelPreferiti.textColor = UIColor.blackColor;
+
+        [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
+        self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
+
+        
+        self.ibLabelGruppi.textColor = [UIColor colorNamed: @"mainColor"];
+
+        [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_on"] forState:UIControlStateNormal];
+        self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
+
+        
+        [self loadDataFiltered];
+
+    }
+    
+
 }
 
 
@@ -267,7 +338,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //LOGD(@"LOGD arrayUsers.count: %d", self.arrayUsers.count);
     
-    if (self.arrayUsers.count > 0) {
+    if (self.arrayUsersFiltered.count > 0) {
         
         self.ibLabelNessunDato.hidden = YES;
 
@@ -287,7 +358,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //LOGD(@"LOGD arrayUsers.count: %d", self.arrayUsers.count);
     
-    return self.arrayUsers.count;
+    return self.arrayUsersFiltered.count;
 }
 
 
@@ -308,7 +379,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         self.ibPresenceTableViewCell = nil;
     }
     
-    PresenceUserObjc *portablePresenceUser = (PresenceUserObjc *)[self.arrayUsers objectAtIndex:indexPath.row];
+    PresenceUserObjc *portablePresenceUser = (PresenceUserObjc *)[self.arrayUsersFiltered objectAtIndex:indexPath.row];
     //NSLog(@"portablePresenceUser: %@", portablePresenceUser.name);
     
     presenceTableViewCell.ibButtonVisualizzaAzioni.tag = indexPath.row;
@@ -736,9 +807,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                     
                     //NSLog(@"arrayUsersVisibili.count: %lu", (unsigned long)arrayUsersVisibili.count);
 
-                    self.arrayUsers = arrayUsersVisibili;
+                    self.arrayUsersFiltered = arrayUsersVisibili;
                     
-                    [self loadData];
+                    [self loadDataFiltered];
                     
                     
                     // Nascondo la ViewCaricamento
@@ -809,36 +880,47 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark === PresenceSselectListeViewController delegate ===
 #pragma mark -
 
-// delegate custom
 - (void)reloadPresence {
     
     NSLog(@"reloadPresence");
     
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
 
-    
     [self downloadPresence];
-
-    
 }
 
 
 #pragma mark -
-#pragma mark === PresenceSselectListeViewController delegate ===
+#pragma mark === PresenceSelectListeViewController delegate ===
 #pragma mark -
 
-// delegate custom
 - (void)reloadPresenceWithGroup:(NSString * _Nullable) id_group {
     
-    //NSLog(@"id_group: %@", id_group);
+    NSLog(@"reloadPresenceWithGroup: %@", id_group);
     
     self.id_groupSelezionato = id_group;
     
-    
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     [self downloadPresence];
 }
+
+
+
+#pragma mark -
+#pragma mark === PresenceActionViewController delegate ===
+#pragma mark -
+
+- (void)reloadPresenceFromAction {
+    
+    NSLog(@"reloadPresenceFromAction");
+        
+    [self.HUD showAnimated:YES];
+    
+    [self downloadPresence];
+}
+
+
 
 
 - (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
@@ -851,11 +933,13 @@ static UICompositeViewDescription *compositeDescription = nil;
         case 2:
             
             message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
+            
             break;
             
         case 401:
             
             message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
+            
             break;
             
         default:{

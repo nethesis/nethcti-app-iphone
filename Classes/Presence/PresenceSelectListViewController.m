@@ -53,11 +53,9 @@
     
     
     
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     [self downloadPresenceList];
-    
-    
 }
 
 
@@ -205,7 +203,7 @@
         
     }else {
         
-        //[self.HUD showAnimated:YES];
+        [self.HUD showAnimated:YES];
         
         NethCTIAPI *api = [NethCTIAPI sharedInstance];
         
@@ -401,7 +399,7 @@
                 // newString consists only of the digits 0 through 9
                 //NSLog(@"consists only of the digits 0 through 9");
                 
-                //[self.HUD showAnimated:YES];
+                [self.HUD showAnimated:YES];
                 
                 NethCTIAPI *api = [NethCTIAPI sharedInstance];
                 

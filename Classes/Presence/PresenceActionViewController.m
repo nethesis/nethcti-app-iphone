@@ -149,8 +149,11 @@
 - (IBAction)ibaChiudi:(id)sender {
     
     NSLog(@"ibaChiudi");
-
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        [self.presenceActionDelegate reloadPresenceFromAction];
+    }];
 }
 
 
@@ -620,7 +623,7 @@
     
     NSLog(@"azionePrenota");
         
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -635,7 +638,11 @@
             // Nascondo la ViewCaricamento
             [self.HUD hideAnimated:YES];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+                [self.presenceActionDelegate reloadPresenceFromAction];
+            }];
         });
         
     }
@@ -660,10 +667,9 @@
     
     NSLog(@"azioneSpia");
     
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
     
     [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
@@ -683,7 +689,11 @@
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                //[self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    [self.presenceActionDelegate reloadPresenceFromAction];
+                }];
             });
             
         }
@@ -726,7 +736,7 @@
     
     NSLog(@"azioneIntromettiti");
     
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -748,8 +758,11 @@
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
+                //[self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    [self.presenceActionDelegate reloadPresenceFromAction];
+                }];
             });
             
         }
@@ -800,8 +813,12 @@
         
         linphone_address_unref(linphoneAddress);
         
-        [self dismissViewControllerAnimated:YES completion:nil];
-
+        //[self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+            [self.presenceActionDelegate reloadPresenceFromAction];
+        }];
+        
     }else {
         
         NSLog(@"linphoneAddress false!");
@@ -817,10 +834,9 @@
     
     //NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
     
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
     
     [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
@@ -839,8 +855,11 @@
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
+                //[self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    [self.presenceActionDelegate reloadPresenceFromAction];
+                }];
             });
             
         }
@@ -881,7 +900,7 @@
     
     NSLog(@"azionePickup");
     
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -926,7 +945,7 @@
     
     NSLog(@"azioneChiudi");
         
-    //[self.HUD showAnimated:YES];
+    [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -947,7 +966,10 @@
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    [self.presenceActionDelegate reloadPresenceFromAction];
+                }];
             });
             
         }

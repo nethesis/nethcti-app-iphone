@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Alamofire
+
 
 @objc class NethCTIAPI : NSObject, URLSessionTaskDelegate {
     
@@ -544,7 +546,7 @@ import Foundation
         
         if !ApiCredentials.checkCredentials() {
             
-            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            //print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             errorHandler(1, NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
             
             return
@@ -566,6 +568,7 @@ import Foundation
               let complete = "\(domain)\(endpoint!)" as String?,
               let sanitized = complete.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string:sanitized) else {
+            
             errorHandler(1, NethCTIAPI.ErrorCodes.MissingServerURL.rawValue);
             
             return
@@ -652,6 +655,14 @@ import Foundation
             return
         }
         
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
+        
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
         self.baseCall(url: url,
@@ -700,7 +711,6 @@ import Foundation
                         
                         errorHandler(httpResponse.statusCode, "No user information provided, contact an administrator.")
                         
-                        //return
                       })
     }
     
@@ -729,6 +739,14 @@ import Foundation
             
             return
         }
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -811,6 +829,14 @@ import Foundation
             
             return
         }
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -905,6 +931,14 @@ import Foundation
             return
         }
         
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
+        
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
         self.baseCall(url: url,
@@ -986,6 +1020,14 @@ import Foundation
             return
         }
         
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
+        
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
         
@@ -1058,6 +1100,14 @@ import Foundation
             
             return
         }
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1169,6 +1219,14 @@ import Foundation
             return
         }
         
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
+        
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
         
@@ -1248,6 +1306,15 @@ import Foundation
             
             return
         }
+        
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1330,6 +1397,15 @@ import Foundation
             return
         }
         
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
+        
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
         
@@ -1407,6 +1483,15 @@ import Foundation
             
             return
         }
+        
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1486,8 +1571,15 @@ import Foundation
             return
         }
         
-        let headers = ApiCredentials.getAuthenticatedCredentials()
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
         
+        
+        let headers = ApiCredentials.getAuthenticatedCredentials()
         
         var body: [String: Any] = [:]
         
@@ -1563,6 +1655,14 @@ import Foundation
             return
         }
         
+        
+        if !self.isConnectedToInternet() {
+
+            errorHandler(2, "Errore Connessione")
+            
+            return
+        }
+        
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
         
@@ -1608,6 +1708,11 @@ import Foundation
         
     }
     
+    
+    func isConnectedToInternet() -> Bool {
+        
+        return NetworkReachabilityManager()!.isReachable
+    }
     
     
 }

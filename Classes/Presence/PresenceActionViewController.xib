@@ -150,7 +150,6 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-Yd-Chh" userLabel="Button - Preferito">
                                     <rect key="frame" x="344" y="48" width="50" height="50"/>
-                                    <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="Uwa-sp-Hsm"/>
                                         <constraint firstAttribute="height" constant="50" id="hHn-dw-wAd"/>
@@ -230,6 +229,7 @@
                         <constraint firstAttribute="trailing" secondItem="PLV-qI-mOh" secondAttribute="trailing" id="m6m-VC-u4e"/>
                         <constraint firstAttribute="trailing" secondItem="ral-L8-dvg" secondAttribute="trailing" id="n8a-kJ-kJe"/>
                         <constraint firstItem="iHe-cR-5AX" firstAttribute="leading" secondItem="0HU-aJ-HvZ" secondAttribute="leading" id="tSy-i2-Xcy"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="wIr-Ra-sQC"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -242,8 +242,9 @@
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="0HU-aJ-HvZ" secondAttribute="bottom" constant="-30" id="Fgg-D6-ViT"/>
-                <constraint firstItem="0HU-aJ-HvZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="MHN-XL-aU2"/>
-                <constraint firstItem="0HU-aJ-HvZ" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="hf8-AH-4GN"/>
+                <constraint firstItem="0HU-aJ-HvZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" priority="750" id="MHN-XL-aU2"/>
+                <constraint firstItem="0HU-aJ-HvZ" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" priority="750" id="hf8-AH-4GN"/>
+                <constraint firstItem="0HU-aJ-HvZ" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="uPX-gw-iPT"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
         </view>
@@ -253,7 +254,7 @@
         <image name="icn_offline" width="36" height="36"/>
         <image name="icn_preferiti_traccia" width="50" height="50"/>
         <namedColor name="ColorLineaSeparatrice">
-            <color red="0.84700000286102295" green="0.84700000286102295" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorStatusPresenceOffline">
             <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

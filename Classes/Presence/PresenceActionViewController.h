@@ -7,6 +7,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+// delegate custom
+@protocol PresenceActionDelegate <NSObject>
+
+- (void)reloadPresenceFromAction;
+
+@end
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PresenceActionViewController : UIViewController
@@ -23,14 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelStatusPresence;
 @property (weak, nonatomic) IBOutlet UIButton *ibButtonPreferito;
 
-
-@property(strong, nonatomic) PresenceUserObjc *portablePresenceUser;
-@property(strong, nonatomic) PortableNethUser *portableNethUserMe;
-
-
 - (IBAction)ibaChiudi:(id)sender;
 - (IBAction)ibaSetPreferito:(id)sender;
 - (IBAction)ibaEseguiAzione:(UIButton *)sender;
+
+@property(strong, nonatomic) PresenceUserObjc *portablePresenceUser;
+@property(strong, nonatomic) PortableNethUser *portableNethUserMe;
+@property (weak, nonatomic) id <PresenceActionDelegate> presenceActionDelegate;
 
 
 @end
