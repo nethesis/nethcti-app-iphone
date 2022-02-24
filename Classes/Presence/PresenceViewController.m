@@ -98,7 +98,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.id_groupSelezionato = @"";
     self.isGroupsFilter = YES;
     
-    self.ibLabelPreferiti.textColor = UIColor.blackColor;
+    self.ibLabelPreferiti.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
     [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
     self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
@@ -187,7 +187,17 @@ static UICompositeViewDescription *compositeDescription = nil;
     // TODO: filtrare per preferiti e non
     
     
-    
+    if (YES == self.isGroupsFilter) {
+        //GRUPPI
+        
+        self.arrayUsersFiltered = [[NSMutableArray alloc] initWithArray:self.arrayUsersVisibili];
+
+        
+    }else {
+        //PREFERITI
+
+        self.arrayUsersFiltered = [NSMutableArray new];
+    }
     
     
     [self.ibTableViewPresence reloadData];
@@ -233,26 +243,19 @@ static UICompositeViewDescription *compositeDescription = nil;
         self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
 
         
-        self.ibLabelGruppi.textColor = UIColor.blackColor;
+        self.ibLabelGruppi.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
         [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_off"] forState:UIControlStateNormal];
         self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
 
         [self loadDataFiltered];
-        
-    }else {
-        
-        
     }
-    
-    
 }
 
 
 - (IBAction)ibaVisualizzaGruppi:(id)sender {
     
     NSLog(@"ibaVisualizzaGruppi");
-    
     
     if (YES == self.isGroupsFilter) {
         
@@ -281,7 +284,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         self.isGroupsFilter = YES;
         
-        self.ibLabelPreferiti.textColor = UIColor.blackColor;
+        self.ibLabelPreferiti.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
         [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
         self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
@@ -785,7 +788,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                     self.ibLabelGruppi.text = [[NSString stringWithFormat:@"GRUPPI (%@)", groupVisibileSelezionato.name] uppercaseString];
                     
                     
-                    NSMutableArray *arrayUsersVisibili = [NSMutableArray new];
+                    self.arrayUsersVisibili = [NSMutableArray new];
                     
                     for (NSString *keyUsernameCorrente in groupVisibileSelezionato.users) {
                         
@@ -799,15 +802,15 @@ static UICompositeViewDescription *compositeDescription = nil;
                                 
                                 //NSLog(@"AGGIUNTO userCorrente.username: %@", userFromAllCorrente.username);
                                 
-                                [arrayUsersVisibili addObject:userFromAllCorrente];
+                                [self.arrayUsersVisibili addObject:userFromAllCorrente];
                             }
                         }
                     }
                     
                     
                     //NSLog(@"arrayUsersVisibili.count: %lu", (unsigned long)arrayUsersVisibili.count);
-
-                    self.arrayUsersFiltered = arrayUsersVisibili;
+                    
+                    
                     
                     [self loadDataFiltered];
                     

@@ -355,7 +355,7 @@
                 [self.portablePresenceUser.mainPresence isEqualToString:kKeyCallforward]) {
                 
                 presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
             }else {
                 
@@ -384,7 +384,7 @@
                     [self.portablePresenceUser.mainPresence isEqualToString:kKeyRinging]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
                 }else {
                     
@@ -419,7 +419,7 @@
                 if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
                 }else {
                     
@@ -451,7 +451,7 @@
                 if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
                 }else {
                     
@@ -485,7 +485,7 @@
                 if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
                 }else {
                     
@@ -518,7 +518,7 @@
                 if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyRinging]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
                 }else {
                     
@@ -552,7 +552,7 @@
                 if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
-                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = UIColor.blackColor;
+                    presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
                 }else {
                     
