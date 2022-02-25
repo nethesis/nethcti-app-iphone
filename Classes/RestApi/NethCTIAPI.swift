@@ -21,6 +21,7 @@ import Alamofire
         return NethCTIAPI._singletonInstance;
     }
     
+    
     private func transformDomain(_ domain:String) -> String {
         
         return "https://\(domain)/webrest"
@@ -404,6 +405,7 @@ import Alamofire
         // Generate the necessary headers. Content type is already in the header.
         var headers: [String: Any] = [:]
         headers["X-HTTP-Method-Override"] = "Register"
+        
         #if DEBUG
         headers["X-AuthKey"] = self.authKeyForSandNot
         let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"

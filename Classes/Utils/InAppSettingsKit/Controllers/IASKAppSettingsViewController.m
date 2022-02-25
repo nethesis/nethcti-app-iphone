@@ -200,10 +200,12 @@ CGRect IASKCGRectSwap(CGRect rect);
 	}
 	
 	if ([self.settingsStore isKindOfClass:[IASKSettingsStoreUserDefaults class]]) {
+        
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(userDefaultsDidChange)
 													 name:NSUserDefaultsDidChangeNotification
 												   object:[NSUserDefaults standardUserDefaults]];
+        
 		[self userDefaultsDidChange]; // force update in case of changes while we were hidden
 	}
 
@@ -877,12 +879,18 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 static NSDictionary *oldUserDefaults = nil;
+
 - (void)userDefaultsDidChange {
+    
 	NSDictionary *currentDict = [NSUserDefaults standardUserDefaults].dictionaryRepresentation;
 	NSMutableArray *indexPathsToUpdate = [NSMutableArray array];
+    
 	for (NSString *key in currentDict.allKeys) {
+        
 		if (![[oldUserDefaults valueForKey:key] isEqual:[currentDict valueForKey:key]]) {
+            
 			NSIndexPath *path = [self.settingsReader indexPathForKey:key];
+            
 			if (path && ![[self.settingsReader specifierForKey:key].type isEqualToString:kIASKCustomViewSpecifier]) {
 				[indexPathsToUpdate addObject:path];
 			}
@@ -891,11 +899,15 @@ static NSDictionary *oldUserDefaults = nil;
 	oldUserDefaults = currentDict;
 
 	for (UITableViewCell *cell in self.tableView.visibleCells) {
+        
 		if ([cell isKindOfClass:[IASKPSTextFieldSpecifierViewCell class]] && [((IASKPSTextFieldSpecifierViewCell*)cell).textField isFirstResponder]) {
+            
 			[indexPathsToUpdate removeObject:[self.tableView indexPathForCell:cell]];
 		}
 	}
+    
 	if (indexPathsToUpdate.count) {
+        
 		[self.tableView reloadRowsAtIndexPaths:indexPathsToUpdate withRowAnimation:UITableViewRowAnimationNone];
 	}
 }

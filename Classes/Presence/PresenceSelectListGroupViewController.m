@@ -99,7 +99,6 @@
                 
                 [self.refreshControl endRefreshing];
                 
-                
                 self.arrayGroups = [NSMutableArray new];
                                 
                 for (NSString *idGroupEnableCorrente in portableNethUser.arrayPermissionsIdGroups) {

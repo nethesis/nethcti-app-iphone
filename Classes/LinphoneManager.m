@@ -338,6 +338,7 @@ static int check_should_migrate_images(void *data, int argc, char **argv, char *
 }
 
 - (void)migrateFromUserPrefs {
+    
 	static NSString *migration_flag = @"userpref_migration_done";
 
 	if (_configDb == nil)
@@ -358,12 +359,17 @@ static int check_should_migrate_images(void *data, int argc, char **argv, char *
 	LOGI(@"%lu user prefs", (unsigned long)[defaults_keys count]);
 
 	for (NSString *userpref in values) {
+        
 		if ([defaults_keys containsObject:userpref]) {
+            
 			LOGI(@"Migrating %@ from user preferences: %d", userpref, [[defaults objectForKey:userpref] boolValue]);
+            
 			[self lpConfigSetBool:[[defaults objectForKey:userpref] boolValue] forKey:userpref];
 			[[NSUserDefaults standardUserDefaults] removeObjectForKey:userpref];
 			shouldSync = TRUE;
+            
 		} else if ([self lpConfigStringForKey:userpref] == nil) {
+            
 			// no default value found in our linphonerc, we need to add them
 			[self lpConfigSetBool:[[values objectForKey:userpref] boolValue] forKey:userpref];
 		}
@@ -373,6 +379,7 @@ static int check_should_migrate_images(void *data, int argc, char **argv, char *
 		LOGI(@"Synchronizing...");
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
+    
 	// don't get back here in the future
 	[self lpConfigSetBool:YES forKey:migration_flag];
 }

@@ -25,7 +25,8 @@
 @property (strong, nonatomic) NSMutableArray *arrayGruppiVisibili;
 @property (assign) BOOL isGroupsFilter;
 @property(strong, nonatomic) NSMutableArray *arrayUsersFiltered;
-@property(strong, nonatomic) NSMutableArray *arrayUsersVisibili;
+@property(strong, nonatomic) NSMutableArray *arrayUsersGruppoSelezionato;
+@property(strong, nonatomic) NSArray *arrayAllUsers;
 
 @end
 
@@ -106,7 +107,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     self.ibLabelGruppi.textColor = [UIColor colorNamed: @"mainColor"];
 
-    [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_preferiti_on"] forState:UIControlStateNormal];
+    [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_on"] forState:UIControlStateNormal];
     self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
     // ----------------------------------------------
     
@@ -131,6 +132,10 @@ static UICompositeViewDescription *compositeDescription = nil;
     // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
     // ------------------------------------------
+    
+    
+    [self migrateFromUserPrefs];
+    
     
 }
 
@@ -184,19 +189,51 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSLog(@"loadDataFiltered");
     
-    // TODO: filtrare per preferiti e non
-    
-    
     if (YES == self.isGroupsFilter) {
         //GRUPPI
         
-        self.arrayUsersFiltered = [[NSMutableArray alloc] initWithArray:self.arrayUsersVisibili];
+        self.arrayUsersFiltered = [[NSMutableArray alloc] initWithArray:self.arrayUsersGruppoSelezionato];
 
         
     }else {
         //PREFERITI
 
         self.arrayUsersFiltered = [NSMutableArray new];
+        
+        
+        NSArray *arrayUsersPreferiti = [[NSArray alloc] initWithObjects:@"dctestuser1", @"dctestuser2", nil];
+        
+        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+        NSArray *defaults_keys = [defaults allKeys];
+        NSLog(@"defaults_keys: %@", defaults_keys);
+        
+        
+        if (arrayUsersPreferiti.count > 0) {
+            
+            for (NSString *usernameCorrente in arrayUsersPreferiti) {
+                
+                //NSLog(@"CERCO usernameCorrente: %@", usernameCorrente);
+
+                if (self.arrayAllUsers.count > 0) {
+                    
+                    for (PresenceUserObjc *presenceUserObjcCorrente in self.arrayAllUsers) {
+                        
+                        //NSLog(@"presenceUserObjcCorrente.username: %@", presenceUserObjcCorrente.username);
+
+                        if ([presenceUserObjcCorrente.username isEqualToString:usernameCorrente]) {
+                            
+                            //NSLog(@"AGGIUNTO presenceUserObjcCorrente.username: %@", presenceUserObjcCorrente.username);
+                            
+                            [self.arrayUsersFiltered addObject:presenceUserObjcCorrente];
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        
+        
     }
     
     
@@ -758,6 +795,8 @@ static UICompositeViewDescription *compositeDescription = nil;
                     //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
                     //NSLog(@"self.arrayGruppiVisibili: %@", self.arrayGruppiVisibili);
 
+                    self.arrayAllUsers = [[NSArray alloc] initWithArray:arrayUsers];
+                    
                     GroupObjc *groupVisibileSelezionato = nil;
                     
                     if ([self.id_groupSelezionato isEqualToString:@""]) {
@@ -788,13 +827,13 @@ static UICompositeViewDescription *compositeDescription = nil;
                     self.ibLabelGruppi.text = [[NSString stringWithFormat:@"GRUPPI (%@)", groupVisibileSelezionato.name] uppercaseString];
                     
                     
-                    self.arrayUsersVisibili = [NSMutableArray new];
+                    self.arrayUsersGruppoSelezionato = [NSMutableArray new];
                     
                     for (NSString *keyUsernameCorrente in groupVisibileSelezionato.users) {
                         
                         //NSLog(@"CERCO keyUsernameCorrente: %@", keyUsernameCorrente);
 
-                        for (PresenceUserObjc *userFromAllCorrente in arrayUsers) {
+                        for (PresenceUserObjc *userFromAllCorrente in self.arrayAllUsers) {
                             
                             //NSLog(@"userFromAllCorrente.username: %@", userFromAllCorrente.username);
 
@@ -802,7 +841,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                 
                                 //NSLog(@"AGGIUNTO userCorrente.username: %@", userFromAllCorrente.username);
                                 
-                                [self.arrayUsersVisibili addObject:userFromAllCorrente];
+                                [self.arrayUsersGruppoSelezionato addObject:userFromAllCorrente];
                             }
                         }
                     }
@@ -923,6 +962,42 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self downloadPresence];
 }
 
+
+
+- (void)migrateFromUserPrefs {
+    
+
+    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    NSArray *defaults_keys = [defaults allKeys];
+    NSLog(@"defaults_keys: %@", defaults_keys);
+
+    
+    NSDictionary *values =
+        @{ @"backgroundmode_preference" : @NO,
+           @"debugenable_preference" : @NO,
+           @"start_at_boot_preference" : @YES };
+    BOOL shouldSync = FALSE;
+
+    NSLog(@"%lu user prefs", (unsigned long)[defaults_keys count]);
+
+    for (NSString *userpref in values) {
+        
+        if ([defaults_keys containsObject:userpref]) {
+            
+            NSLog(@"Migrating %@ from user preferences: %d", userpref, [[defaults objectForKey:userpref] boolValue]);
+            
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:userpref];
+            shouldSync = TRUE;
+            
+        }
+    }
+
+    if (shouldSync) {
+        NSLog(@"Synchronizing...");
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+}
 
 
 

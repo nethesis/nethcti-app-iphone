@@ -643,8 +643,10 @@
 
 - (void)dumpContactsDisplayNamesToUserDefaults {
 	LOGD(@"dumpContactsDisplayNamesToUserDefaults");
+    
     NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
 	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
+    
 	__block NSDictionary *oldDisplayNames = [defaults dictionaryForKey:@"addressBook"];
 	LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
 
@@ -677,6 +679,7 @@
 
 - (void)removeContactFromUserDefaults:(Contact *)contact {
 	LOGD(@"removeContactFromUserDefaults contact: [%p]", contact);
+    
     NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
 	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
 	NSMutableDictionary *displayNames = [[NSMutableDictionary alloc] initWithDictionary:[defaults dictionaryForKey:@"addressBook"]];
