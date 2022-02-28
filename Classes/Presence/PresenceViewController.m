@@ -128,9 +128,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 
     //[self downloadPresence];
     
+    // TODO: impostare il refresh a 3 secondi
     
     // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
     // ------------------------------------------
     
     
@@ -230,6 +231,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                 }
                 
             }
+        }else {
+            
+            NSLog(@"Nessun preferito salvato");
         }
         
         
@@ -521,7 +525,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"DISPONIBILE";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"DISPONIBILE", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_online"];
@@ -534,7 +538,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"BUSY";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"OCCUPATO", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_busy"];
@@ -547,7 +551,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"INCOMING";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"INCOMING", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_incoming"];
@@ -560,7 +564,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"OFFLINE";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"NON DISPONIBILE", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
@@ -573,7 +577,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"CELLULARE";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"CELLULARE", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_cellphone"];
@@ -586,7 +590,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"CASELLA VOCALE";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"CASELLA VOCALE", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_voicemail"];
@@ -599,7 +603,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"NON DISTURBARE";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"NON DISTURBARE", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_dnd"];
@@ -612,20 +616,20 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"INOLTRO";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"INOLTRO", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_callforward"];
         
         
     }else {
-        // DEFAULT
+        // Default
         
         [presenceTableViewCell.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
-        presenceTableViewCell.ibLabelStatus.text = @"N/D";
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"N/D", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
@@ -646,7 +650,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
         
-        [self.ibButtonSelezionePresence setTitle:@"DISPONIBILE" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"DISPONIBILE", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         
@@ -655,7 +659,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyBusy]) {
         // BUSY
         
-        [self.ibButtonSelezionePresence setTitle:@"BUSY" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"OCCUPATO", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
         
@@ -664,7 +668,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyRinging]) {
         // INCOMING
         
-        [self.ibButtonSelezionePresence setTitle:@"INCOMING" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"INCOMING", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         
@@ -673,7 +677,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyOffline]) {
         // OFFLINE
         
-        [self.ibButtonSelezionePresence setTitle:@"OFFLINE" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"NON DISPONIBILE", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
@@ -682,7 +686,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyCellphone]) {
         // CELLPHONE
         
-        [self.ibButtonSelezionePresence setTitle:@"CELLULARE" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"CELLULARE", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
         
@@ -691,7 +695,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyVoicemail]) {
         // VOICEMAIL
         
-        [self.ibButtonSelezionePresence setTitle:@"CASELLA VOCALE" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"CASELLA VOCALE", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
         
@@ -700,7 +704,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyDnd]) {
         // DND
         
-        [self.ibButtonSelezionePresence setTitle:@"NON DISTURBARE" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"NON DISTURBARE", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         
@@ -709,7 +713,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyCallforward]) {
         // CALLFORWORD
         
-        [self.ibButtonSelezionePresence setTitle:@"INOLTRO" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"INOLTRO", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         
@@ -718,7 +722,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else {
         // Default
         
-        [self.ibButtonSelezionePresence setTitle:@"N/D" forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"N/D", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         

@@ -210,7 +210,7 @@
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOnline"] CGColor]];
         
         // status
-        self.ibLabelStatusPresence.text = @"DISPONIBILE";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"DISPONIBILE", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOnline"];
         
         // icona
@@ -223,11 +223,16 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceBusy"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"BUSY";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"OCCUPATO", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceBusy"];
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_busy"];
+        
+        // TODO: fare la get extensions per ottenere lo status della registrazione
+        
+        
+        
         
     }else if ([presence isEqualToString:kKeyRinging]) {
         // INCOMING
@@ -235,7 +240,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceIncoming"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"INCOMING";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"INCOMING", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
@@ -247,7 +252,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"OFFLINE";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"NON DISPONIBILE", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
@@ -260,7 +265,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCellphone"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"CELLULARE";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"CELLULARE", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCellphone"];
@@ -272,7 +277,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceVoicemail"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"CASELLA VOCALE";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"CASELLA VOCALE", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceVoicemail"];
@@ -285,7 +290,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceDnd"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"NON DISTURBARE";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"NON DISTURBARE", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
@@ -297,7 +302,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceCallforward"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"INOLTRO";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"INOLTRO", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
@@ -309,7 +314,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceOffline"] CGColor]];
         
-        self.ibLabelStatusPresence.text = @"N/D";
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"N/D", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
