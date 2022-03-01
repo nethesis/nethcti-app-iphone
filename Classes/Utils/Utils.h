@@ -164,3 +164,4 @@ typedef enum {
 #define kKeyCallforward @"callforward"
 #define kKeyRecallOnBusyDisabled @"disabled"
 #define kKeyRecallOnBusyEnabled @"enabled"
+#define kKeyPreferiti @"preferiti_username_nethesis"

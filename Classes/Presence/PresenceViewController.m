@@ -24,9 +24,9 @@
 @property (retain, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *arrayGruppiVisibili;
 @property (assign) BOOL isGroupsFilter;
-@property(strong, nonatomic) NSMutableArray *arrayUsersFiltered;
-@property(strong, nonatomic) NSMutableArray *arrayUsersGruppoSelezionato;
-@property(strong, nonatomic) NSArray *arrayAllUsers;
+@property (strong, nonatomic) NSMutableArray *arrayUsersFiltered;
+@property (strong, nonatomic) NSMutableArray *arrayUsersGruppoSelezionato;
+@property (strong, nonatomic) NSArray *arrayAllUsers;
 
 @end
 
@@ -71,7 +71,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"viewDidLoad - PresenceViewController");
+    //NSLog(@"viewDidLoad - PresenceViewController");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
@@ -112,18 +112,6 @@ static UICompositeViewDescription *compositeDescription = nil;
     // ----------------------------------------------
     
     
-    /*
-    // controllo autenticazione...
-    if([NethCTIAPI.sharedInstance isUserAuthenticated]) {
-        
-        NSLog(@"isUserAuthenticated");
-
-    }else {
-        
-
-    }
-    */
-    
     //[self.HUD showAnimated:YES];
 
     //[self downloadPresence];
@@ -135,60 +123,54 @@ static UICompositeViewDescription *compositeDescription = nil;
     // ------------------------------------------
     
     
-    [self migrateFromUserPrefs];
-    
-    
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"viewDidAppear - PresenceViewController");
-    
-    [self setUIColors];
+    //NSLog(@"viewWillAppear - PresenceViewController");
 
+    [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
+    
     [self.HUD showAnimated:YES];
 
     [self downloadPresence];
 }
 
 
+/*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"viewDidAppear");
+    NSLog(@"viewDidAppear - PresenceViewController");
     
 }
-
+*/
 
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    NSLog(@"viewWillDisappear");
+    //NSLog(@"viewWillDisappear - PresenceViewController");
+    
+    [self.refreshControl endRefreshing];
+    
+    [self.timer invalidate];
+    self.timer = nil;
     
     // --- ATTENZIONE: forza il viewDidLoad! ---
     self.view = NULL;
     // -----------------------------------------
-    
-    [self.refreshControl endRefreshing];
-    
-    self.timer = nil;
 }
 
 
 
-- (void)setUIColors{
-    
-    [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
-    
-}
 
 
 - (void)loadDataFiltered {
     
-    NSLog(@"loadDataFiltered");
+    //NSLog(@"loadDataFiltered");
     
     if (YES == self.isGroupsFilter) {
         //GRUPPI
@@ -202,42 +184,53 @@ static UICompositeViewDescription *compositeDescription = nil;
         self.arrayUsersFiltered = [NSMutableArray new];
         
         
-        NSArray *arrayUsersPreferiti = [[NSArray alloc] initWithObjects:@"dctestuser1", @"dctestuser2", nil];
-        
-        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-        NSArray *defaults_keys = [defaults allKeys];
-        NSLog(@"defaults_keys: %@", defaults_keys);
-        
-        
-        if (arrayUsersPreferiti.count > 0) {
-            
-            for (NSString *usernameCorrente in arrayUsersPreferiti) {
-                
-                //NSLog(@"CERCO usernameCorrente: %@", usernameCorrente);
+        // --- Rimozione delle NSUserDefaults ---
+        //NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+        //[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+        // --------------------------------------
+   
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
 
-                if (self.arrayAllUsers.count > 0) {
-                    
-                    for (PresenceUserObjc *presenceUserObjcCorrente in self.arrayAllUsers) {
+        if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]){
                         
-                        //NSLog(@"presenceUserObjcCorrente.username: %@", presenceUserObjcCorrente.username);
+            if ([defaults arrayForKey:kKeyPreferiti] != nil) {
+                
+                // getting an NSArray
+                NSArray *arrayUsersPreferiti = [[NSArray alloc] initWithArray:[defaults arrayForKey:kKeyPreferiti]];
 
-                        if ([presenceUserObjcCorrente.username isEqualToString:usernameCorrente]) {
+                if (arrayUsersPreferiti.count > 0) {
+                    
+                    for (NSString *usernameCorrente in arrayUsersPreferiti) {
+                        
+                        //NSLog(@"CERCO usernameCorrente: %@", usernameCorrente);
+
+                        if (self.arrayAllUsers.count > 0) {
                             
-                            //NSLog(@"AGGIUNTO presenceUserObjcCorrente.username: %@", presenceUserObjcCorrente.username);
-                            
-                            [self.arrayUsersFiltered addObject:presenceUserObjcCorrente];
+                            for (PresenceUserObjc *presenceUserObjcCorrente in self.arrayAllUsers) {
+                                
+                                //NSLog(@"presenceUserObjcCorrente.username: %@", presenceUserObjcCorrente.username);
+
+                                if ([presenceUserObjcCorrente.username isEqualToString:usernameCorrente]) {
+                                    
+                                    //NSLog(@"AGGIUNTO presenceUserObjcCorrente.username: %@", presenceUserObjcCorrente.username);
+                                    
+                                    [self.arrayUsersFiltered addObject:presenceUserObjcCorrente];
+                                }
+                            }
                         }
                     }
+                    
+                }else {
+                    
+                    NSLog(@"Nessun preferito salvato");
                 }
-                
             }
+            
         }else {
             
-            NSLog(@"Nessun preferito salvato");
+            NSLog(@"key preferiti_username_nethesis NOT found!");
         }
-        
-        
-        
     }
     
     
@@ -272,7 +265,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)ibaVisualizzaPreferiti:(id)sender {
     
-    NSLog(@"ibaVisualizzaPreferiti");
+    //NSLog(@"ibaVisualizzaPreferiti");
     
     if (YES == self.isGroupsFilter) {
 
@@ -296,7 +289,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)ibaVisualizzaGruppi:(id)sender {
     
-    NSLog(@"ibaVisualizzaGruppi");
+    //NSLog(@"ibaVisualizzaGruppi");
     
     if (YES == self.isGroupsFilter) {
         
@@ -347,7 +340,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (IBAction)ibaSelezionePresence:(id)sender {
     
-    NSLog(@"ibaSelezionePresence");
+    //NSLog(@"ibaSelezionePresence");
     
     PresenceSelectListViewController *presenceSelectListViewController = [[PresenceSelectListViewController alloc] init];
     
@@ -359,14 +352,13 @@ static UICompositeViewDescription *compositeDescription = nil;
     [presenceSelectListViewController setModalPresentationStyle:UIModalPresentationCustom];
 
     [self presentViewController:presenceSelectListViewController animated:true completion:nil];
-    
 }
 
 
 
 - (IBAction)onBackPressed:(id)sender {
     
-    NSLog(@"onBackPressed");
+    //NSLog(@"onBackPressed");
     
     [PhoneMainView.instance popCurrentView];
 }
@@ -481,11 +473,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark -
 #pragma mark === Table view delegate ===
 #pragma mark -
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"didSelectRowAtIndexPath: %ld", (long)indexPath.row);
 
-    /*
     PortablePresenceUser *portablePresenceUserSelezionato = (PortablePresenceUser *)[self.arrayUsers objectAtIndex:indexPath.row];
 
     PresenceActionViewController *presenceActionViewController = [[PresenceActionViewController alloc] init];
@@ -498,10 +490,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     [presenceActionViewController setModalPresentationStyle:UIModalPresentationCustom];
 
     [self presentViewController:presenceActionViewController animated:true completion:nil];
-    
-    */
 }
-
+*/
 
 /*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -513,7 +503,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 
 - (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPortablePresenceUser: (PresenceUserObjc *)portablePresenceUser {
-    
     
     NSString *presence = portablePresenceUser.mainPresence;
     //NSLog(@"presence: %@", presence);
@@ -633,7 +622,6 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
-        
     }
     
 }
@@ -738,14 +726,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)downloadPresence {
     
-    NSLog(@"downloadPresence");
+    //NSLog(@"downloadPresence");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
     // Download INFO UTENTE
     [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
         
-        NSLog(@"portableNethUser: %@", portableNethUser);
+        //NSLog(@"portableNethUser: %@", portableNethUser);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -754,7 +742,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             [self setMePresence];
         });
                 
-        NSLog(@"self.userMe.arrayPermissionsIdGroups: %@", self.userMe.arrayPermissionsIdGroups);
+        //NSLog(@"self.userMe.arrayPermissionsIdGroups: %@", self.userMe.arrayPermissionsIdGroups);
 
         // Download GRUPPI
         [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
@@ -928,7 +916,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)reloadPresence {
     
-    NSLog(@"reloadPresence");
+    //NSLog(@"reloadPresence");
     
     [self.HUD showAnimated:YES];
 
@@ -942,7 +930,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)reloadPresenceWithGroup:(NSString * _Nullable) id_group {
     
-    NSLog(@"reloadPresenceWithGroup: %@", id_group);
+    //NSLog(@"reloadPresenceWithGroup: %@", id_group);
     
     self.id_groupSelezionato = id_group;
     
@@ -959,49 +947,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)reloadPresenceFromAction {
     
-    NSLog(@"reloadPresenceFromAction");
+    //NSLog(@"reloadPresenceFromAction");
         
     [self.HUD showAnimated:YES];
     
     [self downloadPresence];
 }
 
-
-
-- (void)migrateFromUserPrefs {
-    
-
-    NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-    NSArray *defaults_keys = [defaults allKeys];
-    NSLog(@"defaults_keys: %@", defaults_keys);
-
-    
-    NSDictionary *values =
-        @{ @"backgroundmode_preference" : @NO,
-           @"debugenable_preference" : @NO,
-           @"start_at_boot_preference" : @YES };
-    BOOL shouldSync = FALSE;
-
-    NSLog(@"%lu user prefs", (unsigned long)[defaults_keys count]);
-
-    for (NSString *userpref in values) {
-        
-        if ([defaults_keys containsObject:userpref]) {
-            
-            NSLog(@"Migrating %@ from user preferences: %d", userpref, [[defaults objectForKey:userpref] boolValue]);
-            
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:userpref];
-            shouldSync = TRUE;
-            
-        }
-    }
-
-    if (shouldSync) {
-        NSLog(@"Synchronizing...");
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
-}
 
 
 

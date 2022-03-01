@@ -23,6 +23,7 @@ extension NethCTIAPI {
         case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
         case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
         case UserDefaultKey = "UserDefaultKey"              // Logged username.
+        case KeyPreferiti = "preferiti_username_nethesis"   // Preferiti salvati dall'utente
     }
     
     @objc public class ApiCredentials: NSObject {
@@ -159,6 +160,8 @@ extension NethCTIAPI {
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
+            // rimozione preferiti
+            UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.KeyPreferiti.rawValue)
         }
     }
 }

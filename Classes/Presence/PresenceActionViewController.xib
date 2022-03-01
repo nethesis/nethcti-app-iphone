@@ -149,12 +149,12 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-Yd-Chh" userLabel="Button - Preferito">
-                                    <rect key="frame" x="344" y="48" width="50" height="50"/>
+                                    <rect key="frame" x="339" y="43" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="Uwa-sp-Hsm"/>
                                         <constraint firstAttribute="height" constant="50" id="hHn-dw-wAd"/>
                                     </constraints>
-                                    <state key="normal" image="icn_preferiti_traccia"/>
+                                    <state key="normal" image="icn_preferito"/>
                                     <connections>
                                         <action selector="ibaSetPreferito:" destination="-1" eventType="touchUpInside" id="bfI-qv-cFh"/>
                                     </connections>
@@ -192,13 +192,13 @@
                                 <constraint firstItem="o33-N5-pSr" firstAttribute="leading" secondItem="Jvf-9t-sbB" secondAttribute="trailing" constant="15" id="FLY-LN-lL2"/>
                                 <constraint firstAttribute="height" constant="100" id="GqL-pk-iYh"/>
                                 <constraint firstItem="Epj-6o-USd" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" constant="15" id="J7a-oU-cpO"/>
-                                <constraint firstItem="5ME-Yd-Chh" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" constant="5" id="OrR-3J-iGz"/>
+                                <constraint firstItem="5ME-Yd-Chh" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" id="OrR-3J-iGz"/>
                                 <constraint firstItem="eqb-qX-n8Z" firstAttribute="leading" secondItem="Jvf-9t-sbB" secondAttribute="trailing" constant="15" id="Scl-3a-1E3"/>
                                 <constraint firstItem="eqb-qX-n8Z" firstAttribute="top" secondItem="o33-N5-pSr" secondAttribute="bottom" constant="15" id="Wje-Uy-dRL"/>
                                 <constraint firstItem="Jvf-9t-sbB" firstAttribute="leading" secondItem="ral-L8-dvg" secondAttribute="leading" constant="10" id="bCx-uE-aIY"/>
                                 <constraint firstItem="o33-N5-pSr" firstAttribute="top" secondItem="ral-L8-dvg" secondAttribute="top" constant="15" id="daE-Ux-fBj"/>
                                 <constraint firstAttribute="bottom" secondItem="Jvf-9t-sbB" secondAttribute="bottom" id="kri-70-sCp"/>
-                                <constraint firstAttribute="trailing" secondItem="5ME-Yd-Chh" secondAttribute="trailing" constant="20" id="nOz-ct-y4l"/>
+                                <constraint firstAttribute="trailing" secondItem="5ME-Yd-Chh" secondAttribute="trailing" constant="25" id="nOz-ct-y4l"/>
                             </constraints>
                         </view>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PLV-qI-mOh" userLabel="Collection View - Azioni">
@@ -261,7 +261,7 @@
     <resources>
         <image name="icn_chiudi" width="32" height="32"/>
         <image name="icn_offline" width="36" height="36"/>
-        <image name="icn_preferiti_traccia" width="50" height="50"/>
+        <image name="icn_preferito" width="40" height="40"/>
         <namedColor name="ColorLineaSeparatrice">
             <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -48,7 +48,7 @@ extension Permissions {
             
             if key.contains("grp_") {
                 
-                print("Permissions key: \(key)")
+                //print("Permissions key: \(key)")
                 //print("Permissions value: \(value)")
 
                 guard let currentGroupValue = value as? [String: Any] else {
@@ -66,10 +66,11 @@ extension Permissions {
                     arrayKeyNameEnables.append(key)
                 }
                 
-            }else {
+            }/*else {
                 
-                print("Non aggiunto")
+                print("key: %@ NON aggiunta", key)
             }
+            */
         }
                 
         self.arrayPermissionGroups = arrayAdPermission

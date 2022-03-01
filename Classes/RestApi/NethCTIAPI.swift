@@ -216,7 +216,7 @@ import Alamofire
             return
         }
         
-        // Before unregister from notificatore.
+        // Before unregister from notificatore push.
         registerPushToken(ApiCredentials.DeviceToken,
                           unregister: true,
                           success: { result in
@@ -224,7 +224,7 @@ import Alamofire
                             // Check result.
                             if (result) {
                                 // Logout from asterisk.
-                                // Set the url.
+                                
                                 let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/authentication/logout"
                                 
                                 guard let url = URL(string: endPoint) else {
@@ -235,14 +235,16 @@ import Alamofire
                                 }
                                 
                                 let postArgs = ApiCredentials.getAuthenticatedCredentials()
-                                
+                                //print("postArgs: \(String(describing: postArgs))")
+
                                 self.baseCall(url: url,
                                               method: "POST",
                                               headers: postArgs,
                                               body: nil,
                                               successHandler: { data, response in
+                                                // Ok handling.
                                                 
-                                                // Here we are sure that status code is 200.
+                                                // Rimozione username, dominio, token nethesis e preferiti
                                                 ApiCredentials.clear()
                                                 
                                                 successHandler("Logged out.")
@@ -251,8 +253,7 @@ import Alamofire
                                               errorHandler: { error, response in
                                                 // Error handling.
                                                 
-                                                guard error == nil,
-                                                      let httpResponse = response as? HTTPURLResponse else {
+                                                guard error == nil, let httpResponse = response as? HTTPURLResponse else {
                                                     
                                                     successHandler("Unknown error: Not logged out.")
                                                     
@@ -266,7 +267,7 @@ import Alamofire
                                 
                             } else {
                                 
-                                print("[WEDO PUSH] Error unloading notificatore.")
+                                print("ERRORE rimozione registrazione alle Notifiche Push.")
                                 
                                 successHandler("Not logged out.")
                             }
@@ -775,7 +776,7 @@ import Alamofire
                             for (key, value) in resultJson {
                                 
                                 let currentGroup: Group = Group(key: key, value: value as! [String: Any])!
-                                print("currentGroup.id_group: \(String(describing: currentGroup.id_group))")
+                                //print("currentGroup.id_group: \(String(describing: currentGroup.id_group))")
                                 
                                 arrayGroups.append(currentGroup.exportObjc() as GroupObjc)
                             }

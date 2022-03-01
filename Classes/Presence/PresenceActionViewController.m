@@ -16,8 +16,10 @@
 @interface PresenceActionViewController ()
 
 @property (strong, nonatomic) MBProgressHUD *HUD;
+@property (assign) BOOL isPreferito;
 
 @end
+
 
 
 @implementation PresenceActionViewController
@@ -27,6 +29,10 @@
     // Do any additional setup after loading the view from its nib.
     
     
+    //NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
+    //NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
+    
+    
     NSLog(@"viewDidLoad - PresenceActionViewController");
 
     // --- MBProgressHUD ---
@@ -34,21 +40,33 @@
     self.HUD.mode = MBProgressHUDModeIndeterminate;
     [self.view addSubview:self.HUD];
     // ------------------------
-        
-
-    [self setPresenceUser];
-    
-    
-    //NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
-    //NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
-
-    
     
     
     UINib *nibPresenceActionCollectionViewCell = [UINib nibWithNibName:NSStringFromClass([PresenceActionCollectionViewCell class]) bundle:nil];
     [self.ibCollectionView registerNib:nibPresenceActionCollectionViewCell forCellWithReuseIdentifier:@"idPresenceActionCollectionViewCell"];
     
+    
+    
+    [self setPreferito];
 }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSLog(@"viewWillAppear - PresenceActionViewController");
+    
+    [self setPresenceUser];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    NSLog(@"viewDidAppear - PresenceActionViewController");
+    
+    [self setPresenceUser];
+}
+
 
 /*
 #pragma mark - Navigation
@@ -141,8 +159,15 @@
 - (IBAction)ibaSetPreferito:(id)sender {
     
     NSLog(@"ibaSetPreferito");
-
     
+    if (self.isPreferito) {
+                
+        [self rimuoviPreferito];
+        
+    }else {
+        
+        [self aggiungiPreferito];
+    }
 }
 
 
@@ -321,6 +346,204 @@
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
     }
     
+}
+
+
+- (void)setPreferito {
+
+    NSLog(@"setPreferito username: %@", self.portablePresenceUser.username);
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
+    
+    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]){
+        
+        NSLog(@"key preferiti_username_nethesis found");
+        
+        if ([defaults arrayForKey:kKeyPreferiti] != nil) {
+            
+            // getting an NSArray
+            NSArray *arrayUsersPreferiti = [[NSArray alloc] initWithArray:[defaults arrayForKey:kKeyPreferiti]];
+            
+            if (arrayUsersPreferiti.count > 0) {
+                
+                for (NSString *usernameCorrente in arrayUsersPreferiti) {
+                                        
+                    NSLog(@"usernameCorrente: %@", usernameCorrente);
+                    
+                    if ([self.portablePresenceUser.username isEqualToString:usernameCorrente]) {
+                        
+                        self.isPreferito = YES;
+                    }
+                }
+                
+            }else {
+                
+                NSLog(@"Nessun preferito salvato");
+                
+                self.isPreferito = NO;
+            }
+            
+        }else {
+            
+            NSLog(@"Nessun preferito salvato");
+            
+            self.isPreferito = NO;
+        }
+        
+    }else {
+        
+        NSLog(@"key preferiti_username_nethesis NOT found!");
+        
+        self.isPreferito = NO;
+    }
+    
+    
+    if (self.isPreferito) {
+        
+        [self.ibButtonPreferito setImage:[UIImage imageNamed:@"icn_preferito_selezionato"] forState:UIControlStateNormal];
+
+    }else {
+        // NO
+        
+        [self.ibButtonPreferito setImage:[UIImage imageNamed:@"icn_preferito"] forState:UIControlStateNormal];
+    }
+}
+
+
+
+- (void)aggiungiPreferito {
+
+    NSLog(@"aggiungiPreferito");
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
+    
+    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]) {
+                    
+        if ([defaults arrayForKey:kKeyPreferiti] != nil) {
+            
+            // getting an NSArray
+            NSMutableArray *arrayUsersPreferiti = [[NSMutableArray alloc] initWithArray:[defaults arrayForKey:kKeyPreferiti]];
+            
+            BOOL isGiaPresente = NO;
+            
+            if (arrayUsersPreferiti.count > 0) {
+                
+                for (NSString *usernameCorrente in arrayUsersPreferiti) {
+                                        
+                    //NSLog(@"usernameCorrente: %@", usernameCorrente);
+                    
+                    if ([self.portablePresenceUser.username isEqualToString:usernameCorrente]) {
+                        
+                        NSLog(@"username già presente!!!");
+
+                        isGiaPresente = YES;
+                    }
+                }
+            }
+            
+            if (NO == isGiaPresente) {
+                // aggiungo username
+                                    
+                [arrayUsersPreferiti addObject:self.portablePresenceUser.username];
+                
+                [defaults setObject:arrayUsersPreferiti forKey:kKeyPreferiti];
+                [defaults synchronize];
+                
+                [self.ibButtonPreferito setImage:[UIImage imageNamed:@"icn_preferito_selezionato"] forState:UIControlStateNormal];
+
+                self.isPreferito = YES;
+            }
+            
+        }else {
+            
+            NSLog(@"Nessun preferito salvato: array VUOTO!");
+            
+            NSMutableArray *nuovoArrayPreferiti = [NSMutableArray new];
+            
+            [nuovoArrayPreferiti addObject:self.portablePresenceUser.username];
+            
+            [defaults setObject:nuovoArrayPreferiti forKey:kKeyPreferiti];
+            [defaults synchronize];
+            
+            
+            [self.ibButtonPreferito setImage:[UIImage imageNamed:@"icn_preferito_selezionato"] forState:UIControlStateNormal];
+
+            self.isPreferito = YES;
+        }
+        
+    }else {
+        
+        NSLog(@"key preferiti_username_nethesis NOT found!");
+        
+        NSMutableArray *nuovoArrayPreferiti = [NSMutableArray new];
+        
+        [nuovoArrayPreferiti addObject:self.portablePresenceUser.username];
+        
+        [defaults setObject:nuovoArrayPreferiti forKey:kKeyPreferiti];
+        [defaults synchronize];
+        
+        
+        [self.ibButtonPreferito setImage:[UIImage imageNamed:@"icn_preferito_selezionato"] forState:UIControlStateNormal];
+
+        self.isPreferito = YES;
+    }
+}
+
+
+- (void)rimuoviPreferito {
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
+    
+    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]) {
+                    
+        if ([defaults arrayForKey:kKeyPreferiti] != nil) {
+            
+            // getting an NSArray
+            NSMutableArray *arrayUsersPreferiti = [[NSMutableArray alloc] initWithArray:[defaults arrayForKey:kKeyPreferiti]];
+            
+            //NSLog(@"arrayUsersPreferiti.count: %lu", (unsigned long)arrayUsersPreferiti.count);
+            if (arrayUsersPreferiti.count > 0) {
+                
+                for (int i = 0; i < arrayUsersPreferiti.count; i++) {
+
+                    NSString *usernameCorrente = [arrayUsersPreferiti objectAtIndex:i];
+                    //NSLog(@"usernameCorrente: %@", usernameCorrente);
+                    
+                    if ([self.portablePresenceUser.username isEqualToString:usernameCorrente]) {
+                        
+                        [arrayUsersPreferiti removeObjectAtIndex:i];
+                        
+                        //NSLog(@"arrayUsersPreferiti.count: %lu", (unsigned long)arrayUsersPreferiti.count);
+
+                        [defaults setObject:arrayUsersPreferiti forKey:kKeyPreferiti];
+                        [defaults synchronize];
+                        
+                        
+                        self.isPreferito = NO;
+
+                        [self.ibButtonPreferito setImage:[UIImage imageNamed:@"icn_preferito"] forState:UIControlStateNormal];
+                        
+                        break;
+                    }
+                }
+                
+            }else {
+                
+                NSLog(@"Nessun preferito salvato");
+            }
+            
+        }else {
+            
+            NSLog(@"Nessun preferito salvato");
+        }
+        
+    }else {
+        
+        NSLog(@"key preferiti_username_nethesis NOT found!");
+    }
 }
 
 

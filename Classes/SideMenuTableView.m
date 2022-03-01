@@ -52,14 +52,18 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
+    
     linphone_core_stop_dtmf_stream(LC);
+    
     [super viewWillAppear:animated];
     
     _sideMenuEntries = [[NSMutableArray alloc] init];
     
     // If an account is configured, I must hide the Assistant row.
     BOOL account_configured = (linphone_core_get_default_proxy_config(LC) == NULL);
+    
     if(!account_configured) {
         [_sideMenuEntries addObject:
          [[SideMenuEntry alloc] initWithTitle:@"Dahsboard"
@@ -119,12 +123,14 @@
         [PhoneMainView.instance changeCurrentView:AboutView.compositeViewDescription];
     }]];
     
+    
     if(!account_configured) {
-        [_sideMenuEntries addObject:
-         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
-                                        image:[UIImage imageNamed:@"logout.png"]
-                                     tapBlock:^() {
-            [LinphoneManager.instance clearProxies]; // Remove remote sip proxies info.
+        
+        [_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
+                                                                   image:[UIImage imageNamed:@"logout.png"]
+                                                                tapBlock:^() {
+            // Remove remote sip proxies info.
+            [LinphoneManager.instance clearProxies];
         }]];
     }
 }
