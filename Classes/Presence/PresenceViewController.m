@@ -71,7 +71,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //NSLog(@"viewDidLoad - PresenceViewController");
+    NSLog(@"viewDidLoad - PresenceViewController");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
@@ -116,12 +116,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 
     //[self downloadPresence];
     
-    // TODO: impostare il refresh a 3 secondi
+    
+    // TODO: impostare il refresh a 3 secondi oppure usare websocket
     
     // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
+    //self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
     // ------------------------------------------
-    
     
 }
 
@@ -129,13 +129,25 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //NSLog(@"viewWillAppear - PresenceViewController");
+    NSLog(@"viewWillAppear - PresenceViewController");
 
     [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
     
+    
+    // Set observer
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(registrationUpdate:) name:kLinphoneRegistrationUpdate object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(globalStateUpdate:) name:kLinphoneGlobalStateUpdate object:nil];
+    //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(notifyReceived:) name:kLinphoneNotifyReceived object:nil];
+    //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(mainViewChanged:) name:kLinphoneMainViewChange object:nil];
+    //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(callUpdate:) name:kLinphoneCallUpdate object:nil];
+    //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(onCallEncryptionChanged:) name:kLinphoneCallEncryptionChanged object:nil];
+    
     [self.HUD showAnimated:YES];
-
     [self downloadPresence];
+    
+    // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
+    // ------------------------------------------
 }
 
 
@@ -152,7 +164,16 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    //NSLog(@"viewWillDisappear - PresenceViewController");
+    NSLog(@"viewWillDisappear - PresenceViewController");
+    
+    
+    // Remove observer
+    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneRegistrationUpdate object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneGlobalStateUpdate object:nil];
+    //[NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneNotifyReceived object:nil];
+    //[NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneCallUpdate object:nil];
+    //[NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneMainViewChange object:nil];
+    
     
     [self.refreshControl endRefreshing];
     
@@ -160,11 +181,105 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.timer = nil;
     
     // --- ATTENZIONE: forza il viewDidLoad! ---
-    self.view = NULL;
+    //self.view = NULL;
     // -----------------------------------------
 }
 
 
+
+#pragma mark - Event Functions
+
+/**
+ * Handle the update.
+ * @param notif The nofication received.
+ */
+- (void)registrationUpdate:(NSNotification *)notification {
+    
+    NSLog(@"registrationUpdate - notification: %@", notification);
+
+    LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
+    
+    [self proxyConfigUpdate:config];
+}
+
+- (void)globalStateUpdate:(NSNotification *)notification {
+    
+    NSLog(@"globalStateUpdate - notification: %@", notification);
+
+    [self registrationUpdate:nil];
+}
+
+
+- (void)proxyConfigUpdate:(LinphoneProxyConfig *)config {
+    
+    LinphoneRegistrationState state = LinphoneRegistrationNone;
+    LinphoneGlobalState gstate = linphone_core_get_global_state(LC);
+    
+    NSString *message = nil;
+
+    if ([PhoneMainView.instance.currentView equal:AssistantView.compositeViewDescription] || [PhoneMainView.instance.currentView equal:CountryListView.compositeViewDescription]) {
+        
+        message = NSLocalizedString(@"Configuring account", nil);
+        
+    } else if (gstate == LinphoneGlobalOn && !linphone_core_is_network_reachable(LC)) {
+        
+        message = NSLocalizedString(@"Network down", nil);
+        
+    } else if (gstate == LinphoneGlobalConfiguring) {
+        
+        message = NSLocalizedString(@"Fetching remote configuration", nil);
+        
+    } else if (config == NULL) {
+        
+        state = LinphoneRegistrationNone;
+        
+        if (linphone_core_get_proxy_config_list(LC) != NULL) {
+            
+            message = NSLocalizedString(@"No default account", nil);
+            
+        }else {
+            
+            message = NSLocalizedString(@"No account configured", nil);
+        }
+
+    }else {
+        
+        state = linphone_proxy_config_get_state(config);
+
+        switch (state) {
+            case LinphoneRegistrationOk:
+                
+                message = NSLocalizedString(@"Connected", nil);
+                break;
+                
+            case LinphoneRegistrationNone:
+                
+            case LinphoneRegistrationCleared:
+                
+                message = NSLocalizedString(@"Not connected", nil);
+                break;
+                
+            case LinphoneRegistrationFailed:
+                
+                message = NSLocalizedString(@"Connection failed", nil);
+                break;
+                
+            case LinphoneRegistrationProgress:
+                
+                message = NSLocalizedString(@"Connection in progress", nil);
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+
+    NSLog(@"message: %@", message);
+    
+    // Nascondo la ViewCaricamento
+    [self.HUD hideAnimated:YES];
+}
 
 
 
@@ -726,7 +841,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)downloadPresence {
     
-    //NSLog(@"downloadPresence");
+    NSLog(@"downloadPresence");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     

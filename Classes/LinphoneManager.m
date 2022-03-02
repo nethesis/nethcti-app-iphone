@@ -649,53 +649,81 @@ static void linphone_iphone_configuring_status_changed(LinphoneCore *lc, Linphon
                cfg:(LinphoneProxyConfig *)cfg
              state:(LinphoneRegistrationState)state
            message:(const char *)cmessage {
+    
     LOGI(@"New registration state: %s (message: %s)", linphone_registration_state_to_string(state), cmessage);
     
-    LinphoneReason reason = linphone_proxy_config_get_error(cfg);
     NSString *message = nil;
+
+    LinphoneReason reason = linphone_proxy_config_get_error(cfg);
+    
     switch (reason) {
         case LinphoneReasonBadCredentials:
+            
             message = NSLocalizedString(@"Bad credentials, check your account settings", nil);
             break;
+            
         case LinphoneReasonNoResponse:
+            
             message = NSLocalizedString(@"No response received from remote", nil);
             break;
+            
         case LinphoneReasonUnsupportedContent:
+            
             message = NSLocalizedString(@"Unsupported content", nil);
             break;
+            
         case LinphoneReasonIOError:
-            message = NSLocalizedString(
-                                        @"Cannot reach the server: either it is an invalid address or it may be temporary down.", nil);
+            
+            message = NSLocalizedString(@"Cannot reach the server: either it is an invalid address or it may be temporary down.", nil);
             break;
+            
         case LinphoneReasonUnauthorized:
+            
             message = NSLocalizedString(@"Operation is unauthorized because missing credential", nil);
             break;
+            
         case LinphoneReasonNoMatch:
+            
             message = NSLocalizedString(@"Operation could not be executed by server or remote client because it "
                                         @"didn't have any context for it",
                                         nil);
             break;
+            
         case LinphoneReasonMovedPermanently:
+            
             message = NSLocalizedString(@"Resource moved permanently", nil);
             break;
+            
         case LinphoneReasonGone:
+            
             message = NSLocalizedString(@"Resource no longer exists", nil);
             break;
+            
         case LinphoneReasonTemporarilyUnavailable:
+            
             message = NSLocalizedString(@"Temporarily unavailable", nil);
             break;
+            
         case LinphoneReasonAddressIncomplete:
+            
             message = NSLocalizedString(@"Address incomplete", nil);
             break;
+            
         case LinphoneReasonNotImplemented:
+            
             message = NSLocalizedString(@"Not implemented", nil);
             break;
+            
         case LinphoneReasonBadGateway:
+            
             message = NSLocalizedString(@"Bad gateway", nil);
             break;
+            
         case LinphoneReasonServerTimeout:
+            
             message = NSLocalizedString(@"Server timeout", nil);
             break;
+            
         case LinphoneReasonNotAcceptable:
         case LinphoneReasonDoNotDisturb:
         case LinphoneReasonDeclined:
@@ -704,20 +732,23 @@ static void linphone_iphone_configuring_status_changed(LinphoneCore *lc, Linphon
         case LinphoneReasonBusy:
         case LinphoneReasonNone:
         case LinphoneReasonUnknown:
+            
         case LinphoneReasonSessionIntervalTooSmall:
+            
             message = NSLocalizedString(@"Unknown error", nil);
             break;
     }
     
     // Post event
-    NSDictionary *dict =
-    [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:state], @"state",
-     [NSValue valueWithPointer:cfg], @"cfg", message, @"message", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:state], @"state",
+                          [NSValue valueWithPointer:cfg], @"cfg", message, @"message", nil];
+    
     [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneRegistrationUpdate object:self userInfo:dict];
 }
 
-static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyConfig *cfg,
-					       LinphoneRegistrationState state, const char *message) {
+
+static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyConfig *cfg, LinphoneRegistrationState state, const char *message) {
+    
 	[(__bridge LinphoneManager *)linphone_core_cbs_get_user_data(linphone_core_get_current_callbacks(lc)) onRegister:lc cfg:cfg state:state message:message];
 }
 

@@ -1155,6 +1155,10 @@ import Alamofire
                                     }else {
                                         
                                         print("conversation nil!")
+                                        
+                                        errorHandler(-2, "No information provided, contact an administrator.")
+                                        
+                                        return
                                     }
                                     
                                     //print("astproxyExtension?.conversations: \(String(describing: astproxyExtension?.conversations))")
@@ -1162,6 +1166,10 @@ import Alamofire
                                 }else {
                                     
                                     print("chiave non trovata!")
+                                    
+                                    errorHandler(-2, "No information provided, contact an administrator.")
+                                    
+                                    return
                                 }
                             }
                             

@@ -117,11 +117,14 @@
  * @param notif The nofication received.
  */
 - (void)registrationUpdate:(NSNotification *)notif {
+    
 	LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
+    
 	[self proxyConfigUpdate:config];
 }
 
 - (void)globalStateUpdate:(NSNotification *)notif {
+    
 	[self registrationUpdate:nil];
 }
 
@@ -192,49 +195,74 @@
 }
 
 - (void)proxyConfigUpdate:(LinphoneProxyConfig *)config {
+    
 	LinphoneRegistrationState state = LinphoneRegistrationNone;
-	NSString *message = nil;
 	LinphoneGlobalState gstate = linphone_core_get_global_state(LC);
 	
+    NSString *message = nil;
+
 	if ([PhoneMainView.instance.currentView equal:AssistantView.compositeViewDescription] || [PhoneMainView.instance.currentView equal:CountryListView.compositeViewDescription]) {
+        
 		message = NSLocalizedString(@"Configuring account", nil);
+        
 	} else if (gstate == LinphoneGlobalOn && !linphone_core_is_network_reachable(LC)) {
+        
 		message = NSLocalizedString(@"Network down", nil);
+        
 	} else if (gstate == LinphoneGlobalConfiguring) {
+        
 		message = NSLocalizedString(@"Fetching remote configuration", nil);
+        
 	} else if (config == NULL) {
+        
 		state = LinphoneRegistrationNone;
+        
 		if (linphone_core_get_proxy_config_list(LC) != NULL) {
+            
 			message = NSLocalizedString(@"No default account", nil);
-		} else {
+            
+		}else {
+            
 			message = NSLocalizedString(@"No account configured", nil);
 		}
 
-	} else {
+	}else {
+        
 		state = linphone_proxy_config_get_state(config);
 
 		switch (state) {
 			case LinphoneRegistrationOk:
+                
 				message = NSLocalizedString(@"Connected", nil);
 				break;
+                
 			case LinphoneRegistrationNone:
+                
 			case LinphoneRegistrationCleared:
+                
 				message = NSLocalizedString(@"Not connected", nil);
 				break;
+                
 			case LinphoneRegistrationFailed:
+                
 				message = NSLocalizedString(@"Connection failed", nil);
 				break;
+                
 			case LinphoneRegistrationProgress:
+                
 				message = NSLocalizedString(@"Connection in progress", nil);
 				break;
+                
 			default:
 				break;
 		}
 	}
+    
 	[_registrationState setTitle:message forState:UIControlStateNormal];
 	_registrationState.accessibilityValue = message;
 	[_registrationState setImage:[self.class imageForState:state] forState:UIControlStateNormal];
 }
+
 
 #pragma mark -
 
