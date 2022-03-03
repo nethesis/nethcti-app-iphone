@@ -145,8 +145,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self.HUD showAnimated:YES];
     [self downloadPresence];
     
-    // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
+    // --- AGGIORNAMENTO DATI OGNI 3 SECONDI ---
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
     // ------------------------------------------
 }
 

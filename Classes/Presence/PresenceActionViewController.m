@@ -1171,7 +1171,7 @@
 
 - (void)azioneChiudi {
     
-    //NSLog(@"azioneChiudi");
+    NSLog(@"azioneChiudi");
         
     [self.HUD showAnimated:YES];
     

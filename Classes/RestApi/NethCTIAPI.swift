@@ -1086,6 +1086,8 @@ import Alamofire
                                       successHandler: @escaping(ConversationObjc?) -> Void,
                                         errorHandler: @escaping (Int, String?) -> Void) -> Void {
         
+        //print("arrayExtensionsId: \(arrayExtensionsId)")
+
         if !ApiCredentials.checkCredentials() {
             
             print("NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue: \(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)")
@@ -1132,7 +1134,8 @@ import Alamofire
                             let resultJson = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                             //print("resultJson: \(resultJson)")
                             
-                            
+                            //print("arrayExtensionsId.count: \(arrayExtensionsId.count)")
+
                             for currentExtension: String in arrayExtensionsId {
                                 
                                 //print("currentExtension: \(currentExtension)")
@@ -1144,7 +1147,7 @@ import Alamofire
                                     let astproxyExtension = Extension(from: dictConversation)
                                     //print("astproxyExtension: \(String(describing: astproxyExtension))")
                                     
-                                    //print("astproxyExtension?.conversations: \(String(describing: astproxyExtension?.conversations))")
+                                    //print("conversations: \(String(describing: astproxyExtension?.conversations))")
 
                                     if astproxyExtension?.conversations != nil {
                                                                                                                         
@@ -1154,14 +1157,10 @@ import Alamofire
                                         
                                     }else {
                                         
-                                        print("conversation nil!")
+                                        print("conversations nil! -> continue")
                                         
-                                        errorHandler(-2, "No information provided, contact an administrator.")
-                                        
-                                        return
+                                        continue
                                     }
-                                    
-                                    //print("astproxyExtension?.conversations: \(String(describing: astproxyExtension?.conversations))")
                                     
                                 }else {
                                     
@@ -1172,6 +1171,13 @@ import Alamofire
                                     return
                                 }
                             }
+                            
+                            print("Nessuna conversation trovata!")
+                            
+                            errorHandler(-2, "No information provided, contact an administrator.")
+                            
+                            return
+                            
                             
                         } catch (let errorThrown) {
                             
