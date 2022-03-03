@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSLog(@"viewDidLoad()");
+    //NSLog(@"viewDidLoad()");
 
     //NSLog(@"arrayGroups: %@", self.arrayGroups);
     //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
@@ -72,7 +72,7 @@
 
 - (IBAction)ibaChiudi:(id)sender {
     
-    NSLog(@"ibaChiudi");
+    //NSLog(@"ibaChiudi");
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -80,7 +80,7 @@
 
 - (void)downloadGruppiAbilitati {
     
-    NSLog(@"downloadGruppiAbilitati");
+    //NSLog(@"downloadGruppiAbilitati");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -229,7 +229,7 @@
     
     // SELEZIONATO
     //NSLog(@"groupSelezionato.id_group: %@", groupSelezionato.id_group);
-    NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
+    //NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
 
     if ([self.id_groupSelezionato isEqualToString:groupSelezionato.id_group]) {
         

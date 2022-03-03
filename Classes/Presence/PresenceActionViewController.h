@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)ibaSetPreferito:(id)sender;
 - (IBAction)ibaEseguiAzione:(UIButton *)sender;
 
-@property(strong, nonatomic) PresenceUserObjc *portablePresenceUser;
+@property(strong, nonatomic) PresenceUserObjc *presenceUserObjcSelezionato;
 @property(strong, nonatomic) PortableNethUser *portableNethUserMe;
 @property (weak, nonatomic) id <PresenceActionDelegate> presenceActionDelegate;
 

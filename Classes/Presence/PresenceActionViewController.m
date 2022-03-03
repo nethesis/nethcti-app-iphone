@@ -28,12 +28,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    //NSLog(@"viewDidLoad - PresenceActionViewController");
+
     //NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
-    //NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
     
+    //NSLog(@"portablePresenceUser.mainextension: %@", self.presenceUserObjcSelezionato.mainExtension);
+    //NSLog(@"portablePresenceUser.mainPresence: %@", self.presenceUserObjcSelezionato.mainPresence);
+
     
-    NSLog(@"viewDidLoad - PresenceActionViewController");
 
     // --- MBProgressHUD ---
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -54,7 +56,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"viewWillAppear - PresenceActionViewController");
+    //NSLog(@"viewWillAppear - PresenceActionViewController");
     
     [self setPresenceUser];
 }
@@ -62,7 +64,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    NSLog(@"viewDidAppear - PresenceActionViewController");
+    //NSLog(@"viewDidAppear - PresenceActionViewController");
     
     [self setPresenceUser];
 }
@@ -82,7 +84,7 @@
 
 - (IBAction)ibaEseguiAzione:(UIButton *)sender {
     
-    NSLog(@"ibaEseguiAzione sender: %ld", (long)sender.tag);
+    //NSLog(@"ibaEseguiAzione sender: %ld", (long)sender.tag);
 
     switch (sender.tag) {
             
@@ -158,7 +160,7 @@
 
 - (IBAction)ibaSetPreferito:(id)sender {
     
-    NSLog(@"ibaSetPreferito");
+    //NSLog(@"ibaSetPreferito");
     
     if (self.isPreferito) {
                 
@@ -173,7 +175,7 @@
 
 - (IBAction)ibaChiudi:(id)sender {
     
-    NSLog(@"ibaChiudi");
+    //NSLog(@"ibaChiudi");
     
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -186,13 +188,13 @@
 
 - (void)setPresenceUser {
     
-    NSLog(@"portablePresenceUser: %@", self.portablePresenceUser);
+    //NSLog(@"portablePresenceUser: %@", self.presenceUserObjcSelezionato);
 
-    self.ibLabelNome.text = self.portablePresenceUser.name;
+    self.ibLabelNome.text = self.presenceUserObjcSelezionato.name;
     
     
     // --- INIZIALI NOME ---
-    NSString *noteUtente = self.portablePresenceUser.name;
+    NSString *noteUtente = self.presenceUserObjcSelezionato.name;
     NSArray *arrayFirstLastStrings = [noteUtente componentsSeparatedByString:@" "];
     
     NSString *nome = [arrayFirstLastStrings objectAtIndex:0];
@@ -216,9 +218,9 @@
     // ----------------------
         
     
-    self.ibLabelStatusPresence.text = self.portablePresenceUser.mainPresence;
+    self.ibLabelStatusPresence.text = self.presenceUserObjcSelezionato.mainPresence;
     
-    self.ibLabelMainExtension.text = self.portablePresenceUser.mainExtension;
+    self.ibLabelMainExtension.text = self.presenceUserObjcSelezionato.mainExtension;
     
     
     
@@ -226,7 +228,7 @@
     [self.ibImageViewBordoStatus.layer setBorderWidth: 1.0];
 
     
-    NSString *presence = self.portablePresenceUser.mainPresence;
+    NSString *presence = self.presenceUserObjcSelezionato.mainPresence;
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
@@ -255,9 +257,7 @@
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_busy"];
         
         // TODO: fare la get extensions per ottenere lo status della registrazione
-        
-        
-        
+                
         
     }else if ([presence isEqualToString:kKeyRinging]) {
         // INCOMING
@@ -265,7 +265,7 @@
         // bordo
         [self.ibImageViewBordoStatus.layer setBorderColor: [[UIColor colorNamed: @"ColorStatusPresenceIncoming"] CGColor]];
         
-        self.ibLabelStatusPresence.text = NSLocalizedString(@"INCOMING", nil);
+        self.ibLabelStatusPresence.text = NSLocalizedString(@"IN ENTRATA", nil);
         self.ibViewPresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
 
         self.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
@@ -351,14 +351,14 @@
 
 - (void)setPreferito {
 
-    NSLog(@"setPreferito username: %@", self.portablePresenceUser.username);
+    //NSLog(@"setPreferito username: %@", self.presenceUserObjcSelezionato.username);
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
     
     if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]){
         
-        NSLog(@"key preferiti_username_nethesis found");
+        //NSLog(@"key preferiti_username_nethesis found");
         
         if ([defaults arrayForKey:kKeyPreferiti] != nil) {
             
@@ -369,9 +369,9 @@
                 
                 for (NSString *usernameCorrente in arrayUsersPreferiti) {
                                         
-                    NSLog(@"usernameCorrente: %@", usernameCorrente);
+                    //NSLog(@"usernameCorrente: %@", usernameCorrente);
                     
-                    if ([self.portablePresenceUser.username isEqualToString:usernameCorrente]) {
+                    if ([self.presenceUserObjcSelezionato.username isEqualToString:usernameCorrente]) {
                         
                         self.isPreferito = YES;
                     }
@@ -414,7 +414,7 @@
 
 - (void)aggiungiPreferito {
 
-    NSLog(@"aggiungiPreferito");
+    //NSLog(@"aggiungiPreferito");
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
@@ -434,7 +434,7 @@
                                         
                     //NSLog(@"usernameCorrente: %@", usernameCorrente);
                     
-                    if ([self.portablePresenceUser.username isEqualToString:usernameCorrente]) {
+                    if ([self.presenceUserObjcSelezionato.username isEqualToString:usernameCorrente]) {
                         
                         NSLog(@"username già presente!!!");
 
@@ -446,7 +446,7 @@
             if (NO == isGiaPresente) {
                 // aggiungo username
                                     
-                [arrayUsersPreferiti addObject:self.portablePresenceUser.username];
+                [arrayUsersPreferiti addObject:self.presenceUserObjcSelezionato.username];
                 
                 [defaults setObject:arrayUsersPreferiti forKey:kKeyPreferiti];
                 [defaults synchronize];
@@ -462,7 +462,7 @@
             
             NSMutableArray *nuovoArrayPreferiti = [NSMutableArray new];
             
-            [nuovoArrayPreferiti addObject:self.portablePresenceUser.username];
+            [nuovoArrayPreferiti addObject:self.presenceUserObjcSelezionato.username];
             
             [defaults setObject:nuovoArrayPreferiti forKey:kKeyPreferiti];
             [defaults synchronize];
@@ -479,7 +479,7 @@
         
         NSMutableArray *nuovoArrayPreferiti = [NSMutableArray new];
         
-        [nuovoArrayPreferiti addObject:self.portablePresenceUser.username];
+        [nuovoArrayPreferiti addObject:self.presenceUserObjcSelezionato.username];
         
         [defaults setObject:nuovoArrayPreferiti forKey:kKeyPreferiti];
         [defaults synchronize];
@@ -512,7 +512,7 @@
                     NSString *usernameCorrente = [arrayUsersPreferiti objectAtIndex:i];
                     //NSLog(@"usernameCorrente: %@", usernameCorrente);
                     
-                    if ([self.portablePresenceUser.username isEqualToString:usernameCorrente]) {
+                    if ([self.presenceUserObjcSelezionato.username isEqualToString:usernameCorrente]) {
                         
                         [arrayUsersPreferiti removeObjectAtIndex:i];
                         
@@ -577,10 +577,10 @@
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiama_off"] forState:UIControlStateDisabled];
             
             
-            if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyOnline] ||
-                [self.portablePresenceUser.mainPresence isEqualToString:kKeyCellphone] ||
-                [self.portablePresenceUser.mainPresence isEqualToString:kKeyVoicemail] ||
-                [self.portablePresenceUser.mainPresence isEqualToString:kKeyCallforward]) {
+            if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyOnline] ||
+                [self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyCellphone] ||
+                [self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyVoicemail] ||
+                [self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyCallforward]) {
                 
                 presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                 presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -604,12 +604,12 @@
 
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiudi_off"] forState:UIControlStateDisabled];
             
-            NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsHangup ? @"Yes" : @"No");
+            //NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsHangup ? @"Yes" : @"No");
 
             if (self.portableNethUserMe.permissionsHangup != false) {
                                 
-                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy] ||
-                    [self.portablePresenceUser.mainPresence isEqualToString:kKeyRinging]) {
+                if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyBusy] ||
+                    [self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyRinging]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -640,11 +640,11 @@
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_registra_on"] forState:UIControlStateNormal];
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_registra_off"] forState:UIControlStateDisabled];
             
-            NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsRecording ? @"Yes" : @"No");
+            //NSLog(@"portableNethUser.permissionsRecording: %@", self.portableNethUserMe.permissionsRecording ? @"Yes" : @"No");
 
             if (self.portableNethUserMe.permissionsRecording != false) {
                 
-                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -672,11 +672,11 @@
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_intromettiti_on"] forState:UIControlStateNormal];
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_intromettiti_off"] forState:UIControlStateDisabled];
             
-            NSLog(@"portableNethUser.permissionsIntrude: %@", self.portableNethUserMe.permissionsIntrude ? @"Yes" : @"No");
+            //NSLog(@"portableNethUser.permissionsIntrude: %@", self.portableNethUserMe.permissionsIntrude ? @"Yes" : @"No");
 
             if (self.portableNethUserMe.permissionsIntrude != false) {
                 
-                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -706,11 +706,11 @@
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_prenota_on"] forState:UIControlStateNormal];
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_prenota_off"] forState:UIControlStateDisabled];
             
-            NSLog(@"portableNethUser.recallOnBusy: %@", self.portableNethUserMe.recallOnBusy);
+            //NSLog(@"portableNethUser.recallOnBusy: %@", self.portableNethUserMe.recallOnBusy);
 
             if ([self.portableNethUserMe.recallOnBusy isEqualToString:kKeyRecallOnBusyEnabled]) {
                 
-                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -739,11 +739,11 @@
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_pickup_on"] forState:UIControlStateNormal];
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_pickup_off"] forState:UIControlStateDisabled];
             
-            NSLog(@"portableNethUser.permissionsPickup: %@", self.portableNethUserMe.permissionsPickup ? @"Yes" : @"No");
+            //NSLog(@"portableNethUser.permissionsPickup: %@", self.portableNethUserMe.permissionsPickup ? @"Yes" : @"No");
 
             if (self.portableNethUserMe.permissionsPickup != false) {
                 
-                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyRinging]) {
+                if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyRinging]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -773,11 +773,11 @@
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_spia_on"] forState:UIControlStateNormal];
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_spia_off"] forState:UIControlStateDisabled];
             
-            NSLog(@"portableNethUser.permissionsSpy: %@", self.portableNethUserMe.permissionsSpy ? @"Yes" : @"No");
+            //NSLog(@"portableNethUser.permissionsSpy: %@", self.portableNethUserMe.permissionsSpy ? @"Yes" : @"No");
 
             if (self.portableNethUserMe.permissionsSpy != false) {
                 
-                if ([self.portablePresenceUser.mainPresence isEqualToString:kKeyBusy]) {
+                if ([self.presenceUserObjcSelezionato.mainPresence isEqualToString:kKeyBusy]) {
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = YES;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed:@"ColorTextBlack"];
@@ -849,17 +849,17 @@
 
 - (void)azionePrenota {
     
-    NSLog(@"azionePrenota");
+    //NSLog(@"azionePrenota");
         
     [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
     [api postRecallOnBusyWithCaller:self.portableNethUserMe.mainExtension
-                             called:self.portablePresenceUser.mainExtension
+                             called:self.presenceUserObjcSelezionato.mainExtension
                      successHandler:^(NSString * _Nullable successMessage) {
         
-        NSLog(@"successMessage: %@", successMessage);
+        //NSLog(@"successMessage: %@", successMessage);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -893,13 +893,13 @@
 
 - (void)azioneSpia {
     
-    NSLog(@"azioneSpia");
+    //NSLog(@"azioneSpia");
     
     [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
+    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
         //NSLog(@"conversationObject: %@", conversationObject.conversationId);
@@ -910,7 +910,7 @@
                                  extensionId:self.portableNethUserMe.mobileID
                               successHandler:^(NSString * _Nullable successMessage) {
             
-            NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -962,13 +962,13 @@
 
 - (void)azioneIntromettiti {
     
-    NSLog(@"azioneIntromettiti");
+    //NSLog(@"azioneIntromettiti");
     
     [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
+    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
         //NSLog(@"conversationObject: %@", conversationObject.conversationId);
@@ -979,7 +979,7 @@
                                 extensionId:self.portableNethUserMe.mobileID
                              successHandler:^(NSString * _Nullable successMessage) {
             
-            NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -1029,11 +1029,11 @@
 
 - (void)azioneChiama {
     
-    NSLog(@"azioneChiama");
+    //NSLog(@"azioneChiama");
 
     //NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
 
-    LinphoneAddress *linphoneAddress = [LinphoneUtils normalizeSipOrPhoneAddress:self.portablePresenceUser.mainExtension];
+    LinphoneAddress *linphoneAddress = [LinphoneUtils normalizeSipOrPhoneAddress:self.presenceUserObjcSelezionato.mainExtension];
 
     [LinphoneManager.instance call:linphoneAddress];
     
@@ -1058,7 +1058,7 @@
 
 - (void)azioneRegistra {
     
-    NSLog(@"azioneRegistra");
+    //NSLog(@"azioneRegistra");
     
     //NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
     
@@ -1066,7 +1066,7 @@
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
+    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
         //NSLog(@"conversationObject: %@", conversationObject.conversationId);
@@ -1076,7 +1076,7 @@
                           conversationOwner:conversationObject.owner
                              successHandler:^(NSString * _Nullable successMessage) {
             
-            NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -1126,7 +1126,7 @@
 
 - (void)azionePickup {
     
-    NSLog(@"azionePickup");
+    //NSLog(@"azionePickup");
     
     [self.HUD showAnimated:YES];
     
@@ -1135,11 +1135,11 @@
     // chiudo prima perchè la post non mi risponde fino a quando l'utente non prende la chiamata in entrata dal server
     [self dismissViewControllerAnimated:YES completion:nil];
 
-    [api postPickupWithMainExtensionId:self.portablePresenceUser.mainExtension
+    [api postPickupWithMainExtensionId:self.presenceUserObjcSelezionato.mainExtension
                            extensionId:self.portableNethUserMe.mobileID
                         successHandler:^(NSString * _Nullable successMessage) {
         
-        NSLog(@"successMessage: %@", successMessage);
+        //NSLog(@"successMessage: %@", successMessage);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -1171,13 +1171,13 @@
 
 - (void)azioneChiudi {
     
-    NSLog(@"azioneChiudi");
+    //NSLog(@"azioneChiudi");
         
     [self.HUD showAnimated:YES];
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
-    [api getExtensionsWithArrayExtensionsId:self.portablePresenceUser.arrayExtensionsId
+    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
                              successHandler:^(ConversationObjc * _Nullable conversationObject) {
         
         //NSLog(@"conversationObject: %@", conversationObject.conversationId);
@@ -1187,7 +1187,7 @@
                          conversationOwner:conversationObject.owner
                             successHandler:^(NSString * _Nullable successMessage) {
             
-            NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"successMessage: %@", successMessage);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 

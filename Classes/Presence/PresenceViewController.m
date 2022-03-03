@@ -34,7 +34,7 @@
 @implementation PresenceViewController
 
 @synthesize topBar;
-@synthesize userMe;
+@synthesize portableNethUserMe;
 @synthesize id_groupSelezionato;
 
 
@@ -71,7 +71,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"viewDidLoad - PresenceViewController");
+    //NSLog(@"viewDidLoad - PresenceViewController");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
@@ -129,7 +129,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"viewWillAppear - PresenceViewController");
+    //NSLog(@"viewWillAppear - PresenceViewController");
 
     [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
     
@@ -164,7 +164,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    NSLog(@"viewWillDisappear - PresenceViewController");
+    //NSLog(@"viewWillDisappear - PresenceViewController");
     
     
     // Remove observer
@@ -195,7 +195,7 @@ static UICompositeViewDescription *compositeDescription = nil;
  */
 - (void)registrationUpdate:(NSNotification *)notification {
     
-    NSLog(@"registrationUpdate - notification: %@", notification);
+    //NSLog(@"registrationUpdate - notification: %@", notification);
 
     LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
     
@@ -204,7 +204,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)globalStateUpdate:(NSNotification *)notification {
     
-    NSLog(@"globalStateUpdate - notification: %@", notification);
+    //NSLog(@"globalStateUpdate - notification: %@", notification);
 
     [self registrationUpdate:nil];
 }
@@ -360,13 +360,12 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //NSLog(@"ibaVisualizzaAzioni sender.tag: %ld", (long)sender.tag);
 
-    PresenceUserObjc *portablePresenceUserSelezionato = (PresenceUserObjc *)[self.arrayUsersFiltered objectAtIndex:sender.tag];
-    //NSLog(@"portablePresenceUserSelezionato.name: %@", portablePresenceUserSelezionato.name);
+    PresenceUserObjc *presenceUserObjcSelezionato = (PresenceUserObjc *)[self.arrayUsersFiltered objectAtIndex:sender.tag];
     
     PresenceActionViewController *presenceActionViewController = [[PresenceActionViewController alloc] init];
     
-    presenceActionViewController.portablePresenceUser = portablePresenceUserSelezionato;
-    presenceActionViewController.portableNethUserMe = self.userMe;
+    presenceActionViewController.presenceUserObjcSelezionato = presenceUserObjcSelezionato;
+    presenceActionViewController.portableNethUserMe = self.portableNethUserMe;
     presenceActionViewController.presenceActionDelegate = self;
     
     [presenceActionViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
@@ -459,7 +458,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     PresenceSelectListViewController *presenceSelectListViewController = [[PresenceSelectListViewController alloc] init];
     
-    presenceSelectListViewController.presenceSelezionata = self.userMe.mainPresence;
+    presenceSelectListViewController.presenceSelezionata = self.portableNethUserMe.presence;
     presenceSelectListViewController.presenceSelectListDelegate = self;
     
     [presenceSelectListViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
@@ -530,7 +529,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         self.ibPresenceTableViewCell = nil;
     }
     
-    PresenceUserObjc *portablePresenceUser = (PresenceUserObjc *)[self.arrayUsersFiltered objectAtIndex:indexPath.row];
+    PresenceUserObjc *presenceUserObjcCorrente = (PresenceUserObjc *)[self.arrayUsersFiltered objectAtIndex:indexPath.row];
     //NSLog(@"portablePresenceUser: %@", portablePresenceUser.name);
     
     presenceTableViewCell.ibButtonVisualizzaAzioni.tag = indexPath.row;
@@ -541,7 +540,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     
     // --- INIZIALI NOME ---
-    NSString *noteUtente = portablePresenceUser.name;
+    NSString *noteUtente = presenceUserObjcCorrente.name;
     NSArray *arrayFirstLastStrings = [noteUtente componentsSeparatedByString:@" "];
     
     NSString *nome = [arrayFirstLastStrings objectAtIndex:0];
@@ -569,9 +568,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     presenceTableViewCell.ibLabelName.text = noteUtente;
     
     
-    [self setUserPresence:presenceTableViewCell withPortablePresenceUser:portablePresenceUser];
+    [self setUserPresence:presenceTableViewCell withPresenceUserObjc:presenceUserObjcCorrente];
     
-    if ([portablePresenceUser.username isEqualToString:self.userMe.username]) {
+    if ([presenceUserObjcCorrente.username isEqualToString:self.portableNethUserMe.username]) {
         
         presenceTableViewCell.ibButtonVisualizzaAzioni.hidden = YES;
         
@@ -617,9 +616,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 
 
-- (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPortablePresenceUser: (PresenceUserObjc *)portablePresenceUser {
+- (void)setUserPresence:(PresenceTableViewCell *)presenceTableViewCell withPresenceUserObjc: (PresenceUserObjc *)presenceUserObjc {
     
-    NSString *presence = portablePresenceUser.mainPresence;
+    NSString *presence = presenceUserObjc.mainPresence;
     //NSLog(@"presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
@@ -655,7 +654,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         presenceTableViewCell.ibViewSfondoLabelStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         
-        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"INCOMING", nil);
+        presenceTableViewCell.ibLabelStatus.text = NSLocalizedString(@"IN ENTRATA", nil);
         
         presenceTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         presenceTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_incoming"];
@@ -747,7 +746,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //NSLog(@"setMePresence");
     
-    NSString *presence = self.userMe.mainPresence;
+    NSString *presence = self.portableNethUserMe.presence;
     //NSLog(@"presence: %@", presence);
     
     if ([presence isEqualToString:kKeyOnline]) {
@@ -771,7 +770,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }else if ([presence isEqualToString:kKeyRinging]) {
         // INCOMING
         
-        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"INCOMING", nil) forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"IN ENTRATA", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceIncoming"];
         
@@ -852,7 +851,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            self.userMe = portableNethUser;
+            self.portableNethUserMe = portableNethUser;
             
             [self setMePresence];
         });
@@ -868,7 +867,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                                 
                 self.arrayGruppiVisibili = [NSMutableArray new];
                 
-                for (NSString *idGroupEnableCorrente in self.userMe.arrayPermissionsIdGroups) {
+                for (NSString *idGroupEnableCorrente in self.portableNethUserMe.arrayPermissionsIdGroups) {
                     
                     //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
                     

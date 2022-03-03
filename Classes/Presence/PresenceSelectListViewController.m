@@ -72,7 +72,7 @@
 
 - (IBAction)ibaChiudi:(id)sender {
     
-    NSLog(@"ibaChiudi");
+    //NSLog(@"ibaChiudi");
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -84,7 +84,7 @@
 
 - (void)downloadPresenceList {
     
-    NSLog(@"downloadListPresence");
+    //NSLog(@"downloadListPresence");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -338,7 +338,7 @@
 
 - (void)impostaPresenceInoltro {
     
-    NSLog(@"impostaPresenceInoltro");
+    //NSLog(@"impostaPresenceInoltro");
     
     UIAlertController *alertControllerInoltro = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Inserisci", nil)
                                                                                     message:NSLocalizedString(@"Numero telefonico", nil)

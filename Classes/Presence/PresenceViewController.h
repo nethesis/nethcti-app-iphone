@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibTableViewPresence;
 @property (weak, nonatomic) IBOutlet UILabel *ibLabelNessunDato;
 
-@property(strong, nonatomic) PortableNethUser *userMe;
+@property(strong, nonatomic) PortableNethUser *portableNethUserMe;
 @property(strong, nonatomic) NSString *id_groupSelezionato;
 
 
