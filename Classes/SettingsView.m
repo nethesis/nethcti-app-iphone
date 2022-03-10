@@ -405,18 +405,23 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[self.view addSubview:_navigationController.view];
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
+    
 	[_settingsController dismiss:self];
+    
 	// Set observer
 	[NSNotificationCenter.defaultCenter removeObserver:self name:kIASKAppSettingChanged object:nil];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
 	// Sync settings with linphone core settings
 	[settingsStore transformLinphoneCoreToKeys];
+    
 	[self recomputeAccountLabelsAndSync];
 
 	// Set observer

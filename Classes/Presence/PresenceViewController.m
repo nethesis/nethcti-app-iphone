@@ -285,19 +285,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)loadDataFiltered {
     
-    //NSLog(@"loadDataFiltered");
+    NSLog(@"loadDataFiltered");
     
     if (YES == self.isGroupsFilter) {
-        //GRUPPI
+        // visualizza GRUPPI
         
         self.arrayUsersFiltered = [[NSMutableArray alloc] initWithArray:self.arrayUsersGruppoSelezionato];
-
         
     }else {
-        //PREFERITI
+        //visualizza PREFERITI
 
         self.arrayUsersFiltered = [NSMutableArray new];
-        
         
         // --- Rimozione delle NSUserDefaults ---
         //NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -347,6 +345,13 @@ static UICompositeViewDescription *compositeDescription = nil;
             NSLog(@"key preferiti_username_nethesis NOT found!");
         }
     }
+    
+    
+    // --- ordinamento dal più piccolo al più grande sulla chiave name ---
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *arrayUsersSorted = [self.arrayUsersFiltered sortedArrayUsingDescriptors:@[sortDescriptor]];
+    self.arrayUsersFiltered = [[NSMutableArray alloc]initWithArray:arrayUsersSorted];
+    // -------------------------------------------------------------------
     
     
     [self.ibTableViewPresence reloadData];

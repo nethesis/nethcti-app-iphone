@@ -261,21 +261,17 @@
     
     self.id_groupSelezionato = groupSelezionato.id_group;
     //NSLog(@"id_groupSelezionato: %@", id_groupSelezionato);
-
     
     [self.ibTableViewGruppi reloadData];
 
     [self.presenceSelectListGroupDelegate reloadPresenceWithGroup:self.id_groupSelezionato];
     
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 
 /*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-
     
 }
 */
@@ -288,6 +284,7 @@
     NSInteger code = codeError;
     
     switch (code) {
+            
         case 2:
             
             message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
