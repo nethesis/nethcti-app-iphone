@@ -1037,8 +1037,12 @@ import Alamofire
         var body: [String: Any] = [:]
         
         body["status"] = status
-        body["to"] = number
-        //print("body: \(body)")
+        
+        if (number != "") {
+            
+            body["to"] = number
+        }
+        print("body: \(body)")
         
         
         self.baseCall(url: url,

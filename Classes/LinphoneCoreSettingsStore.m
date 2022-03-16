@@ -162,9 +162,10 @@
 	}
 }
 
+
 - (void)transformAccountToKeys:(NSString *)username {
     
-    NSLog(@"username: %@", username);
+    NSLog(@"transformAccountToKeys - username: %@", username);
     
     const MSList *proxies = linphone_core_get_proxy_config_list(LC);
     
@@ -172,24 +173,32 @@
         
         proxies = proxies->next;
     }
+    
     LinphoneProxyConfig *proxy = NULL;
     
-    // default values
+    // DEFAULT values
     {
+        // --- salvo le notifiche push DISABILITATE ---
         [self setBool:NO forKey:@"account_pushnotification_preference"];
+        // --------------------------------------------
+        
         [self setObject:@"" forKey:@"account_mandatory_username_preference"];
         [self setObject:@"" forKey:@"account_mandatory_domain_preference"];
-        [self setCString:"" forKey:@"account_display_name_preference"];
+        [self setCString:"" forKey:@"account_display_name_preference"];// Nome da visualizzare
         [self setObject:@"" forKey:@"account_proxy_preference"];
         [self setObject:@"tls" forKey:@"account_transport_preference"];
         [self setBool:NO forKey:@"account_outbound_proxy_preference"];
         [self setBool:NO forKey:@"account_avpf_preference"];
         [self setBool:YES forKey:@"account_is_default_preference"];
+        
+        // --- salvo l'account come ABILITATO ---
         [self setBool:YES forKey:@"account_is_enabled_preference"];
+        // -----------------------------------------
+        
         [self setCString:"" forKey:@"account_userid_preference"];
         [self setCString:"" forKey:@"account_mandatory_password_preference"];
         [self setCString:"" forKey:@"ha1_preference"];
-        [self setInteger:2678400 forKey:@"account_expire_preference"]; // Nethesis default expire.
+        [self setInteger:2678400 forKey:@"account_expire_preference"];// Nethesis default expire
         [self setInteger:-1 forKey:@"current_proxy_config_preference"];
         [self setCString:"" forKey:@"account_prefix_preference"];
         [self setBool:NO forKey:@"account_substitute_+_by_00_preference"];
@@ -203,10 +212,15 @@
         
 		// root section
 		{
+            // --- ottengo status delle notifiche push ---
 			BOOL pushEnabled = linphone_proxy_config_is_push_notification_allowed(proxy);
+            // -------------------------------------------
+            
+            // --- salvo lo status attuale delle notifiche push ---
 			[self setBool:pushEnabled forKey:@"account_pushnotification_preference"];
-
-			const LinphoneAddress *identity_addr = linphone_proxy_config_get_identity_address(proxy);
+            // ----------------------------------------------------
+			
+            const LinphoneAddress *identity_addr = linphone_proxy_config_get_identity_address(proxy);
 			const char *server_addr = linphone_proxy_config_get_server_addr(proxy);
 			LinphoneAddress *proxy_addr = linphone_core_interpret_url(LC, server_addr);
             
@@ -239,8 +253,8 @@
 				}
                 
                 const char *tname = "tls";
-                 /*
-                  The transport we'll ever be the tls.
+                /*
+                //The transport we'll ever be the tls.
 				switch (linphone_address_get_transport(proxy_addr)) {
 					case LinphoneTransportTcp:
 						tname = "tcp";
@@ -260,7 +274,17 @@
 
 			[self setBool:(linphone_proxy_config_get_route(proxy) != NULL) forKey:@"account_outbound_proxy_preference"];
 			[self setBool:linphone_proxy_config_avpf_enabled(proxy) forKey:@"account_avpf_preference"];
-			[self setBool:linphone_proxy_config_register_enabled(proxy) forKey:@"account_is_enabled_preference"];
+            
+            // --- MODIFICA ---
+            // ottengo status della registrazione al proxy
+            BOOL registration_to_proxy = linphone_proxy_config_register_enabled(proxy);
+            NSLog(@"registration_to_proxy: %@", registration_to_proxy ? @"YES" : @"NO");
+            
+            // salvo lo status della registrazione al proxy
+            [self setBool:registration_to_proxy forKey:@"account_is_enabled_preference"];
+			//[self setBool:linphone_proxy_config_register_enabled(proxy) forKey:@"account_is_enabled_preference"];
+            // -------------------------
+
 			[self setBool:(linphone_core_get_default_proxy_config(LC) == proxy) forKey:@"account_is_default_preference"];
 
 			const LinphoneAuthInfo *ai = linphone_core_find_auth_info(LC,
@@ -303,18 +327,22 @@
 }
 
 /**
- This function seems to work as a loader of saved settings.
+ Questa funzione salva in userdefault le impostazioni selezionate dall'utente e le visualizza sull'interfaccia.
  */
 - (void)transformLinphoneCoreToKeys {
+    
 	LinphoneManager *lm = LinphoneManager.instance;
 
 	// Root Section.
 	{
 		const bctbx_list_t *accounts = linphone_core_get_proxy_config_list(LC);
 		size_t count = bctbx_list_size(accounts);
+        
 		for (size_t i = 1; i <= count; i++, accounts = accounts->next) {
+            
 			NSString *key = [NSString stringWithFormat:@"menu_account_%lu", i];
 			LinphoneProxyConfig *proxy = (LinphoneProxyConfig *)accounts->data;
+            
 			[self setCString:linphone_address_get_username(linphone_proxy_config_get_identity_address(proxy))
 					  forKey:key];
 		}
@@ -327,7 +355,9 @@
 	}
 
 	// Account section.
-	{ [self transformAccountToKeys:nil]; }
+	{
+        [self transformAccountToKeys:nil];
+    }
 
 	// Audio section.
 	{
@@ -550,24 +580,31 @@
 	BOOL isOutboundProxy = [self boolForKey:@"account_outbound_proxy_preference"];
 	BOOL use_avpf = [self boolForKey:@"account_avpf_preference"];
 	BOOL is_default = [self boolForKey:@"account_is_default_preference"];
-	BOOL is_enabled = [self boolForKey:@"account_is_enabled_preference"];
+    
+	BOOL is_enabled = [self boolForKey:@"account_is_enabled_preference"];// account abilitato
+    
 	BOOL use_ice = [self boolForKey:@"account_ice_preference"];
 	NSString *stun_preference = [self stringForKey:@"account_stun_preference"];
 
 	if (username && [username length] > 0 && domain && [domain length] > 0) {
         
+        // scadenza
 		int expire = [self integerForKey:@"account_expire_preference"];
+        // notifica push
 		BOOL pushnotification = [self boolForKey:@"account_pushnotification_preference"];
+        
 		NSString *prefix = [self stringForKey:@"account_prefix_preference"];
 		NSString *proxyAddress = [self stringForKey:@"account_proxy_preference"];
 
 		const char *route = NULL;
 
 		if ((!proxyAddress || [proxyAddress length] < 1) && domain) {
+            
 			proxyAddress = domain;
 		}
 
 		if (![proxyAddress hasPrefix:@"sip:"] && ![proxyAddress hasPrefix:@"sips:"]) {
+            
 			proxyAddress = [NSString stringWithFormat:@"sip:%@", proxyAddress];
 		}
 
@@ -575,19 +612,24 @@
 		LinphoneAddress *proxy_addr = linphone_core_interpret_url(LC, proxy);
 
 		if (proxy_addr) {
+            
 			LinphoneTransportType type = LinphoneTransportUdp;
-			if ([transport isEqualToString:@"tcp"])
+            
+            if ([transport isEqualToString:@"tcp"]) {
+                
 				type = LinphoneTransportTcp;
-			else if ([transport isEqualToString:@"tls"])
+            
+            }else if ([transport isEqualToString:@"tls"]){
+                
 				type = LinphoneTransportTls;
-
+            }
+            
 			linphone_address_set_transport(proxy_addr, type);
 			ms_free(proxy);
 			proxy = linphone_address_as_string_uri_only(proxy_addr);
 		}
 
-		proxyCfg = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC),
-									   [self integerForKey:@"current_proxy_config_preference"]);
+		proxyCfg = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC), [self integerForKey:@"current_proxy_config_preference"]);
 		// if account was deleted, it is not present anymore
 		if (proxyCfg == NULL)
 			goto bad_proxy;
@@ -649,10 +691,17 @@
 		}
 
 		// use empty string "" instead of NULL to avoid being overwritten by default proxy config values
+        
+        // --- ABILITA/DISABILITA notifiche push ---
 		linphone_proxy_config_set_push_notification_allowed(proxyCfg, pushnotification);
+        // ----------------------------------
+        
 		[LinphoneManager.instance configurePushTokenForProxyConfig:proxyCfg];
-
+        
+        // --- ABILITA/DISABILITA account ---
 		linphone_proxy_config_enable_register(proxyCfg, is_enabled);
+        // ----------------------------------
+        
 		linphone_proxy_config_enable_avpf(proxyCfg, use_avpf);
 		linphone_proxy_config_set_expires(proxyCfg, expire);
         
@@ -676,9 +725,11 @@
             
 			realm = NULL;
 		}
-		// setup new proxycfg
+        
+		// --- setup new proxycfg ---
 		linphone_proxy_config_done(proxyCfg);
-
+        // --------------------------
+        
 		// modify auth info only after finishing editting the proxy config, so that
 		// UNREGISTER succeed
 		if (proxyAi) {

@@ -132,6 +132,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:kCellValue];
     NSArray *titles         = [_currentSpecifier multipleTitles];
 	
@@ -152,14 +153,17 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     if (indexPath == [self checkedItem]) {
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
         return;
     }
     
-    NSArray *values         = [_currentSpecifier multipleValues];
+    NSArray *values = [_currentSpecifier multipleValues];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self deselectCell:[tableView cellForRowAtIndexPath:[self checkedItem]]];
@@ -168,13 +172,16 @@
 	
     [self.settingsStore setObject:[values objectAtIndex:indexPath.row] forKey:[_currentSpecifier key]];
 	[self.settingsStore synchronize];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kIASKAppSettingChanged
                                                         object:[_currentSpecifier key]
                                                       userInfo:[NSDictionary dictionaryWithObject:[values objectAtIndex:indexPath.row]
                                                                                            forKey:[_currentSpecifier key]]];
 }
 
+
 - (CGSize)contentSizeForViewInPopover {
+    
     return [[self view] sizeThatFits:CGSizeMake(320, 2000)];
 }
 

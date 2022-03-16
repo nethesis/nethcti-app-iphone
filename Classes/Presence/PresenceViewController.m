@@ -112,6 +112,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     // ----------------------------------------------
     
     
+    [self setMePresence];
+    
+    
     //[self.HUD showAnimated:YES];
 
     //[self downloadPresence];
@@ -464,6 +467,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     PresenceSelectListViewController *presenceSelectListViewController = [[PresenceSelectListViewController alloc] init];
     
     presenceSelectListViewController.presenceSelezionata = self.portableNethUserMe.presence;
+    presenceSelectListViewController.portableNethUserMe = self.portableNethUserMe;
     presenceSelectListViewController.presenceSelectListDelegate = self;
     
     [presenceSelectListViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
@@ -749,10 +753,44 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)setMePresence {
     
-    //NSLog(@"setMePresence");
+    NSLog(@"setMePresence");
     
     NSString *presence = self.portableNethUserMe.presence;
-    //NSLog(@"presence: %@", presence);
+    NSLog(@"presence: %@", presence);
+    
+    
+    NSString *username = self.portableNethUserMe.intern;
+    NSLog(@"username: %@", username);
+
+    const MSList *proxies = linphone_core_get_proxy_config_list(LC);
+
+    while (username &&
+           proxies &&
+           strcmp(username.UTF8String, linphone_address_get_username(linphone_proxy_config_get_identity_address(proxies->data))) != 0) {
+        
+        proxies = proxies->next;
+    }
+    
+    if (proxies) {
+        
+        LinphoneProxyConfig *linphoneProxyConfig = NULL;
+
+        linphoneProxyConfig = proxies->data;
+        //NSLog(@"proxy: %@", proxy);
+        
+        BOOL is_proxy_config_register_enabled = linphone_proxy_config_register_enabled(linphoneProxyConfig);
+        NSLog(@"is_proxy_config_register_enabled: %@", is_proxy_config_register_enabled ? @"YES" : @"NO");
+        
+        if (NO == is_proxy_config_register_enabled) {
+            
+            presence = kKeyDisconnesso;
+        }
+        
+    }else {
+        
+        NSLog(@"proxies nil!");
+    }
+    
     
     if ([presence isEqualToString:kKeyOnline]) {
         // ONLINE
@@ -826,6 +864,15 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         [self.ibButtonSelezionePresence setImage:[UIImage imageNamed:@"icn_cerchio_callforward"] forState:UIControlStateNormal];
         
+    } else if([presence isEqualToString:kKeyDisconnesso]) {
+        // DISCONNESSO
+        
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"Disconnesso", nil) forState:UIControlStateNormal];
+        
+        self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
+        
+        [self.ibButtonSelezionePresence setImage:[UIImage imageNamed:@"icn_cerchio_offline"] forState:UIControlStateNormal];
+        
     }else {
         // Default
         
@@ -837,6 +884,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     
 }
+
 
 
 #pragma mark -

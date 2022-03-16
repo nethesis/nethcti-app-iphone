@@ -17,7 +17,8 @@
 
 @property (strong, nonatomic) MBProgressHUD *HUD;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property(strong, nonatomic) NSMutableArray *arrayPresence;
+@property (strong, nonatomic) NSMutableArray *arrayPresence;
+@property (strong, nonatomic) NSString *numeroInoltro;
 
 @end
 
@@ -26,12 +27,34 @@
 @implementation PresenceSelectListViewController
 
 @synthesize presenceSelezionata;
+@synthesize portableNethUserMe;
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSLog(@"PresenceSelectListViewController - viewDidLoad");
+
+    /*
+    LinphoneProxyConfig *linphoneProxyConfig = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC), YES);
+
+    BOOL proxy_config_register_is_enabled = linphone_proxy_config_register_enabled(linphoneProxyConfig);
+    NSLog(@"proxy_config_register_is_enabled: %@", proxy_config_register_is_enabled ? @"YES" : @"NO");
+    
+    if (proxy_config_register_is_enabled == NO) {
+        
+        presenceSelezionata = kKeyDisconnesso;
+    }
+    */
+    
+    
+    NSLog(@"portableNethUserMe: %@", portableNethUserMe);
+
+    [self getProxyState];
+    
+    
     
     
     // --- MBProgressHUD ---
@@ -90,6 +113,8 @@
     
     [api getPresenceListWithSuccessHandler:^(NSArray *arrayPresence) {
         
+        NSLog(@"arrayPresence: %@", arrayPresence);
+
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // Nascondo la ViewCaricamento
@@ -98,8 +123,10 @@
             [self.refreshControl endRefreshing];
             
             self.arrayPresence = [[NSMutableArray alloc] initWithArray:arrayPresence];
-            //NSLog(@"arrayPresence: %@", arrayPresence);
             
+            [self.arrayPresence addObject:kKeyDisconnesso];
+            //NSLog(@"self.arrayPresence: %@", self.arrayPresence);
+
             [self.ibTableViewSelezionePresence reloadData];
             
         });
@@ -195,54 +222,30 @@
     NSString *presenceSelezionata = (NSString *)[self.arrayPresence objectAtIndex:indexPath.row];
     //NSLog(@" presenceSelezionata: %@", presenceSelezionata);
     
-    if ([presenceSelezionata isEqualToString:kKeyCallforward]) {
+    if ([presenceSelezionata isEqualToString:kKeyDisconnesso]) {
+        // DISCONNESSO
         
-        // --- INOLTRO ---
-        [self impostaPresenceInoltro];
-        // ---------------
+        [self disabilitaProxy];
         
     }else {
+        // altri casi
         
-        [self.HUD showAnimated:YES];
-        
-        NethCTIAPI *api = [NethCTIAPI sharedInstance];
-        
-        [api postSetPresenceWithStatus:presenceSelezionata
-                                number:@""
-                        successHandler:^(NSString * _Nullable success) {
+        if ([presenceSelezionata isEqualToString:kKeyCallforward]) {
+            // INOLTRO
             
-            //NSLog(@"success: %@", success);
+            [self visualizzaAlertInoltro];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
-                
-                // chiudi controller
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
-                // implementare nel completion?
-                [self.presenceSelectListDelegate reloadPresence];
-            });
+        }else {
             
+            [self.HUD showAnimated:YES];
+
+            [self abilitaProxy];
             
+            [self performSelector:@selector(impostaPresence:) withObject:presenceSelezionata afterDelay:1.0];
         }
-                          errorHandler:^(NSInteger errorCode, NSString * _Nullable errorDefault) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSLog(@"postSetPresence ERROR code: %ld, errorDefault: %@", (long)errorCode, errorDefault);
-                
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
-                
-                [self showAlertError:errorCode withError:errorDefault];
-                
-            });
-            
-        }];
         
     }
+    
 }
 
 
@@ -256,6 +259,7 @@
     [self setPresenceCell:(PresenceSelectListTableViewCell *)cell withPresence:presenceCurrent];
     
 }
+
 
 
 
@@ -300,21 +304,20 @@
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_dnd"];
         
     }else if ([presence isEqualToString:kKeyCallforward]) {
-        // DND
+        // CALLFORWARD
         
         presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Inoltro", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceCallforward"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_callforward"];
         
-    }else {
-        // Disabilitato
+    }else if([presence isEqualToString:kKeyDisconnesso]) {
+        // DISCONNESSO
         
-        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Disabilitato", nil);
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Disconnesso", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_offline"];
-        
     }
     
     
@@ -332,13 +335,106 @@
         presenceSelectListTableViewCell.ibImageViewSelezionato.image = nil;
     }
     
+}
+
+
+- (void)impostaPresence:(NSString *)presenceSelezionata {
+    
+    //NSLog(@"impostaPresence: %@", presenceSelezionata);
+    
+    NethCTIAPI *api = [NethCTIAPI sharedInstance];
+    
+    [api postSetPresenceWithStatus:presenceSelezionata
+                            number:@""
+                    successHandler:^(NSString * _Nullable success) {
+        
+        //NSLog(@"success: %@", success);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            // chiudi controller
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            // implementare nel completion?
+            [self.presenceSelectListDelegate reloadPresence];
+        });
+        
+        
+    }
+                      errorHandler:^(NSInteger errorCode, NSString * _Nullable errorDefault) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSLog(@"postSetPresence ERROR code: %ld, errorDefault: %@", (long)errorCode, errorDefault);
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            [self showAlertError:errorCode withError:errorDefault];
+            
+        });
+        
+    }];
+}
+
+
+
+- (void)impostaInoltroWith:(UIAlertController *)alertControllerInoltro {
+
+    //NSLog(@"impostaInoltroWith: %@", alertControllerInoltro);
+
+    //NSLog(@"self.numeroInoltro: %@", self.numeroInoltro);
+    
+    NethCTIAPI *api = [NethCTIAPI sharedInstance];
+    
+    [api postSetPresenceWithStatus:kKeyCallforward
+                            number:self.numeroInoltro
+                    successHandler:^(NSString * _Nullable success) {
+        
+        //NSLog(@"success: %@", success);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            // chiudo alert
+            [alertControllerInoltro dismissViewControllerAnimated:YES completion:nil];
+            
+            // chiudo controller
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            // implementare nel completion?
+            [self.presenceSelectListDelegate reloadPresence];
+            
+        });
+        
+    }
+                      errorHandler:^(NSInteger errorCode, NSString * _Nullable messageDafault) {
+        
+        NSLog(@"postSetPresence errorCode: %ld - messageDafault: %@", (long)errorCode, messageDafault);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Nascondo la ViewCaricamento
+            [self.HUD hideAnimated:YES];
+            
+            [self showAlertError:errorCode withError:messageDafault];
+            
+        });
+        
+    }];
     
 }
 
 
-- (void)impostaPresenceInoltro {
+
+- (void)visualizzaAlertInoltro {
     
-    //NSLog(@"impostaPresenceInoltro");
+    NSLog(@"visualizzaAlertInoltro");
     
     UIAlertController *alertControllerInoltro = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Inserisci", nil)
                                                                                     message:NSLocalizedString(@"Numero telefonico", nil)
@@ -396,51 +492,14 @@
             
             if ([numeroTextField.text rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
                 
-                // newString consists only of the digits 0 through 9
-                //NSLog(@"consists only of the digits 0 through 9");
-                
+                // numeroTextField.text consists only of the digits 0 through 9
+                self.numeroInoltro = numeroTextField.text;
+
                 [self.HUD showAnimated:YES];
-                
-                NethCTIAPI *api = [NethCTIAPI sharedInstance];
-                
-                [api postSetPresenceWithStatus:kKeyCallforward
-                                        number:numeroTextField.text
-                                successHandler:^(NSString * _Nullable success) {
-                    
-                    //NSLog(@"success: %@", success);
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        // Nascondo la ViewCaricamento
-                        [self.HUD hideAnimated:YES];
-                        
-                        // chiudo alert
-                        [alertControllerInoltro dismissViewControllerAnimated:YES completion:nil];
-                        
-                        // chiudo controller
-                        [self dismissViewControllerAnimated:YES completion:nil];
-                        
-                        // implementare nel completion?
-                        [self.presenceSelectListDelegate reloadPresence];
-                        
-                    });
-                    
-                }
-                                  errorHandler:^(NSInteger errorCode, NSString * _Nullable messageDafault) {
-                    
-                    NSLog(@"postSetPresence errorCode: %ld - messageDafault: %@", (long)errorCode, messageDafault);
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        // Nascondo la ViewCaricamento
-                        [self.HUD hideAnimated:YES];
-                        
-                        [self showAlertError:errorCode withError:messageDafault];
-                        
-                    });
-                    
-                }];
-                
+
+                [self abilitaProxy];
+
+                [self performSelector:@selector(impostaInoltroWith:) withObject:alertControllerInoltro afterDelay:1.0];
                 
             }else {
                 
@@ -522,6 +581,118 @@
     }]];
     
     [self presentViewController:alertControllerAvviso animated:YES completion:nil];
+}
+
+
+
+- (void)abilitaProxy {
+ 
+    NSString *username = portableNethUserMe.intern;
+    NSLog(@"username: %@", username);
+
+    const MSList *proxies = linphone_core_get_proxy_config_list(LC);
+
+    while (username &&
+           proxies &&
+           strcmp(username.UTF8String, linphone_address_get_username(linphone_proxy_config_get_identity_address(proxies->data))) != 0) {
+        
+        proxies = proxies->next;
+    }
+    
+    LinphoneProxyConfig *linphoneProxyConfig = NULL;
+    
+    if (proxies) {
+        
+        linphoneProxyConfig = proxies->data;
+        
+        linphone_proxy_config_enable_register(linphoneProxyConfig, YES);
+
+        // --- setup new proxycfg ---
+        //linphone_proxy_config_done(linphoneProxyConfig);
+        // --------------------------
+    }
+    
+}
+
+
+- (void)disabilitaProxy {
+    
+    NSString *username = portableNethUserMe.intern;
+    NSLog(@"username: %@", username);
+
+    const MSList *proxies = linphone_core_get_proxy_config_list(LC);
+
+    while (username &&
+           proxies &&
+           strcmp(username.UTF8String, linphone_address_get_username(linphone_proxy_config_get_identity_address(proxies->data))) != 0) {
+        
+        proxies = proxies->next;
+    }
+    
+    LinphoneProxyConfig *linphoneProxyConfig = NULL;
+    
+    if (proxies) {
+        
+        linphoneProxyConfig = proxies->data;
+        
+        linphone_proxy_config_enable_register(linphoneProxyConfig, NO);
+
+        // --- setup new proxycfg ---
+        //linphone_proxy_config_done(linphoneProxyConfig);
+        // --------------------------
+    }
+    
+    
+    presenceSelezionata = kKeyDisconnesso;
+
+    [self.ibTableViewSelezionePresence reloadData];
+
+    
+    // chiudi controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // implementare nel completion?
+    [self.presenceSelectListDelegate reloadPresence];
+    
+}
+
+
+- (void)getProxyState {
+    
+    NSLog(@"getProxyFrom");
+    
+    NSString *username = portableNethUserMe.intern;
+    NSLog(@"username: %@", username);
+
+    const MSList *proxies = linphone_core_get_proxy_config_list(LC);
+
+    while (username &&
+           proxies &&
+           strcmp(username.UTF8String, linphone_address_get_username(linphone_proxy_config_get_identity_address(proxies->data))) != 0) {
+        
+        proxies = proxies->next;
+    }
+    
+    LinphoneProxyConfig *linphoneProxyConfig = NULL;
+    
+    if (proxies) {
+        
+        linphoneProxyConfig = proxies->data;
+        //NSLog(@"proxy: %@", proxy);
+        
+        BOOL is_proxy_config_register_enabled = linphone_proxy_config_register_enabled(linphoneProxyConfig);
+        NSLog(@"is_proxy_config_register_enabled: %@", is_proxy_config_register_enabled ? @"YES" : @"NO");
+        
+        if (NO == is_proxy_config_register_enabled) {
+            
+            presenceSelezionata = kKeyDisconnesso;
+        }
+        
+    }else {
+        
+        NSLog(@"proxies nil!!!");
+    }
+    
 }
 
 

@@ -65,14 +65,19 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 #pragma mark accessors
 - (IASKSettingsReader*)settingsReader {
+    
 	if (!_settingsReader) {
+        
 		_settingsReader = [[IASKSettingsReader alloc] initWithFile:self.file];
 	}
+    
 	return _settingsReader;
 }
 
 - (id<IASKSettingsStore>)settingsStore {
+    
 	if (!_settingsStore) {
+        
 		_settingsStore = [[IASKSettingsStoreUserDefaults alloc] init];
 	}
 	return _settingsStore;
@@ -178,10 +183,13 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
 	// if there's something selected, the value might have changed
 	// so reload that row
 	NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    
 	if(selectedIndexPath) {
+        
 		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:selectedIndexPath] 
 							  withRowAnimation:UITableViewRowAnimationNone];
 		// and reselect it, so we get the nice default deselect animation from UITableViewController
@@ -189,13 +197,17 @@ CGRect IASKCGRectSwap(CGRect rect);
 	}
 	
 	self.navigationItem.rightBarButtonItem = nil;
+    
 	if (_showDoneButton) {
+        
 		UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
 																					target:self 
 																					action:@selector(dismiss:)];
 		self.navigationItem.rightBarButtonItem = buttonItem;
-	} 
+	}
+    
 	if (!self.title) {
+        
 		self.title = NSLocalizedString(@"Settings", @"");
 	}
 	
@@ -211,6 +223,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 	// hack gautier: be notified when changing page
 	if (self.delegate && [self.delegate conformsToProtocol:@protocol(IASKSettingsDelegate)]) {
+        
 		[self.delegate settingsViewControllerWillAppear:self];
 	}
     
@@ -268,7 +281,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 
 - (void)setHiddenKeys:(NSSet*)theHiddenKeys animated:(BOOL)animated {
+    
     if (_hiddenKeys != theHiddenKeys) {
+        
         NSSet *oldHiddenKeys = _hiddenKeys;
 		_hiddenKeys = theHiddenKeys;
 
@@ -377,25 +392,31 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (void)toggledValue:(id)sender {
+    
 	IASKSwitch *toggle = (IASKSwitch *)sender;
 	IASKSpecifier *spec = [_settingsReader specifierForKey:[toggle key]];
 
 	if ([toggle isOn]) {
+        
 		if ([spec trueValue] != nil) {
+            
             [self.settingsStore setObject:[spec trueValue] forKey:[toggle key]];
-        }
-        else {
+            
+        }else {
+            
             [self.settingsStore setBool:YES forKey:[toggle key]]; 
         }
-    }
-    else {
+        
+    }else {
         if ([spec falseValue] != nil) {
+            
             [self.settingsStore setObject:[spec falseValue] forKey:[toggle key]];
-        }
-        else {
+            
+        }else {
             [self.settingsStore setBool:NO forKey:[toggle key]]; 
         }
     }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kIASKAppSettingChanged
                                                         object:[toggle key]
                                                       userInfo:[NSDictionary dictionaryWithObject:[self.settingsStore objectForKey:[toggle key]]
@@ -425,6 +446,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     IASKSpecifier *specifier  = [self.settingsReader specifierForIndexPath:indexPath];
     if ([[specifier type] isEqualToString:kIASKCustomViewSpecifier]) {
 		if ([self.delegate respondsToSelector:@selector(tableView:heightForSpecifier:)]) {
@@ -523,19 +545,24 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 	IASKSpecifier *specifier  = [self.settingsReader specifierForIndexPath:indexPath];
+    
 	if ([specifier.type isEqualToString:kIASKCustomViewSpecifier] && [self.delegate respondsToSelector:@selector(tableView:cellForSpecifier:)]) {
+        
 		UITableViewCell* cell = [self.delegate tableView:tableView cellForSpecifier:specifier];
 		assert(nil != cell && "delegate must return a UITableViewCell for custom cell types");
 		return cell;
 	}
 	
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:specifier.type];
+    
 	if(nil == cell) {
 		cell = [self newCellForIdentifier:specifier.type];
 	}
 	
 	if ([specifier.type isEqualToString:kIASKPSToggleSwitchSpecifier]) {
+        
 		cell.textLabel.text = specifier.title;
 		
 		id currentValue = [self.settingsStore objectForKey:specifier.key];
@@ -554,13 +581,15 @@ CGRect IASKCGRectSwap(CGRect rect);
 		IASKSwitch *toggle = (IASKSwitch*)cell.accessoryView;
 		toggle.on = toggleState;
 		toggle.key = specifier.key;
-	}
-	else if ([specifier.type isEqualToString:kIASKPSMultiValueSpecifier]) {
+        
+	}else if ([specifier.type isEqualToString:kIASKPSMultiValueSpecifier]) {
+                
 		cell.textLabel.text = specifier.title;
 		cell.detailTextLabel.text = [[specifier titleForCurrentValue:[self.settingsStore objectForKey:specifier.key] != nil ? 
 									  [self.settingsStore objectForKey:specifier.key] : specifier.defaultValue] description];
-	}
-	else if ([specifier.type isEqualToString:kIASKPSTitleValueSpecifier]) {
+        
+	}else if ([specifier.type isEqualToString:kIASKPSTitleValueSpecifier]) {
+        
 		cell.textLabel.text = specifier.title;
 		id value = [self.settingsStore objectForKey:specifier.key] ? : specifier.defaultValue;
 		
@@ -573,8 +602,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 		
 		cell.detailTextLabel.text = stringValue;
 		cell.userInteractionEnabled = NO;
-	}
-	else if ([specifier.type isEqualToString:kIASKPSTextFieldSpecifier]) {
+        
+	}else if ([specifier.type isEqualToString:kIASKPSTextFieldSpecifier]) {
+        
 		cell.textLabel.text = specifier.title;
 		
 		NSString *textValue = [self.settingsStore objectForKey:specifier.key] != nil ? [self.settingsStore objectForKey:specifier.key] : specifier.defaultStringValue;
@@ -595,8 +625,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 		}
 		textField.textAlignment = (NSTextAlignment)specifier.textAlignment;
 		textField.adjustsFontSizeToFitWidth = specifier.adjustsFontSizeToFitWidth;
-	}
-	else if ([specifier.type isEqualToString:kIASKPSSliderSpecifier]) {
+        
+	}else if ([specifier.type isEqualToString:kIASKPSSliderSpecifier]) {
+        
 		if (specifier.minimumValueImage.length > 0) {
 			((IASKPSSliderSpecifierViewCell*)cell).minImage.image = [UIImage imageWithContentsOfFile:[_settingsReader pathForImageNamed:specifier.minimumValueImage]];
 		}
@@ -612,16 +643,25 @@ CGRect IASKCGRectSwap(CGRect rect);
 		[slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
 		slider.key = specifier.key;
 		[cell setNeedsLayout];
-	}
-	else if ([specifier.type isEqualToString:kIASKPSChildPaneSpecifier]) {
+        
+	}else if ([specifier.type isEqualToString:kIASKPSChildPaneSpecifier]) {
+        
+        //NSLog(@"kIASKPSChildPaneSpecifier specifier.title: %@", specifier.title);
+
 		cell.textLabel.text = specifier.title;
+        
 	} else if ([specifier.type isEqualToString:kIASKOpenURLSpecifier] || [specifier.type isEqualToString:kIASKMailComposeSpecifier]) {
+        
 		cell.textLabel.text = specifier.title;
 		cell.detailTextLabel.text = [specifier.defaultValue description];
+        
 	} else if ([specifier.type isEqualToString:kIASKButtonSpecifier]) {
+        
 		NSString *value = [self.settingsStore objectForKey:specifier.key];
 		cell.textLabel.text = [value isKindOfClass:[NSString class]] ? [self.settingsReader titleForStringId:value] : specifier.title;
+        
 	} else {
+        
 		cell.textLabel.text = specifier.title;
 	}
     
@@ -637,7 +677,9 @@ CGRect IASKCGRectSwap(CGRect rect);
     return cell;
 }
 
+
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 	//create a set of specifier types that can't be selected
 	static NSSet* noSelectionTypes = nil;
 	if(nil == noSelectionTypes) {
@@ -653,6 +695,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     IASKSpecifier *specifier  = [self.settingsReader specifierForIndexPath:indexPath];
     
     //switches and sliders can't be selected (should be captured by tableView:willSelectRowAtIndexPath: delegate method)
@@ -680,15 +723,20 @@ CGRect IASKCGRectSwap(CGRect rect);
         targetViewController.settingsReader = self.settingsReader;
         targetViewController.settingsStore = self.settingsStore;
         [[self navigationController] pushViewController:targetViewController animated:YES];
-    }
-    else if ([[specifier type] isEqualToString:kIASKPSTextFieldSpecifier]) {
+        
+    }else if ([[specifier type] isEqualToString:kIASKPSTextFieldSpecifier]) {
+        
 		IASKPSTextFieldSpecifierViewCell *textFieldCell = (id)[tableView cellForRowAtIndexPath:indexPath];
 		[textFieldCell.textField becomeFirstResponder];
-    }
-    else if ([[specifier type] isEqualToString:kIASKPSChildPaneSpecifier]) {
+        
+    }else if ([[specifier type] isEqualToString:kIASKPSChildPaneSpecifier]) {
+        
         Class vcClass = [specifier viewControllerClass];
+        
         if (vcClass) {
+            
             SEL initSelector = [specifier viewControllerSelector];
+            
             if (!initSelector) {
                 initSelector = @selector(init);
             }
@@ -696,19 +744,26 @@ CGRect IASKCGRectSwap(CGRect rect);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 			vc = [vc performSelector:initSelector withObject:[specifier file] withObject:specifier];
+            
 #pragma clang diagnostic pop
 			if ([vc respondsToSelector:@selector(setDelegate:)]) {
 				[vc performSelector:@selector(setDelegate:) withObject:self.delegate];
 			}
+            
 			if ([vc respondsToSelector:@selector(setSettingsStore:)]) {
+                
 				[vc performSelector:@selector(setSettingsStore:) withObject:self.settingsStore];
 			}
+            
             [self.navigationController pushViewController:vc animated:YES];
+            
             return;
         }
         
         if (nil == [specifier file]) {
+            
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
             return;
         }        
         
@@ -736,11 +791,16 @@ CGRect IASKCGRectSwap(CGRect rect);
         targetViewController.hiddenKeys = self.hiddenKeys;
 		targetViewController.title = specifier.title;
         targetViewController.showCreditsFooter = NO;
+        
         [[self navigationController] pushViewController:targetViewController animated:YES];
+        
 	} else if ([[specifier type] isEqualToString:kIASKOpenURLSpecifier]) {
+        
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:specifier.file]];    
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:specifier.file]];
+        
     } else if ([[specifier type] isEqualToString:kIASKButtonSpecifier]) {
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
 		if ([self.delegate respondsToSelector:@selector(settingsViewController:buttonTappedForSpecifier:)]) {
 			[self.delegate settingsViewController:self buttonTappedForSpecifier:specifier];
@@ -761,7 +821,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 				NSLog(@"InAppSettingsKit Warning: Using IASKButtonSpecifier without implementing the delegate method is deprecated");
 			}
 		}
+        
     } else if ([[specifier type] isEqualToString:kIASKMailComposeSpecifier]) {
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if ([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
@@ -807,7 +869,9 @@ CGRect IASKCGRectSwap(CGRect rect);
             
             mailViewController.mailComposeDelegate = vc;
             [vc presentModalViewController:mailViewController animated:YES];
+            
         } else {
+            
 			UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Mail not configured", @"InAppSettingKit")
 																			 message:NSLocalizedString(@"This device is not configured for sending Email. Please configure the Mail settings in the Settings app.", @"InAppSettingsKit")
 																	  preferredStyle:UIAlertControllerStyleAlert];
@@ -821,10 +885,14 @@ CGRect IASKCGRectSwap(CGRect rect);
         }
 
 	} else if ([[specifier type] isEqualToString:kIASKCustomViewSpecifier] && [self.delegate respondsToSelector:@selector(settingsViewController:tableView:didSelectCustomViewSpecifier:)]) {
+        
         [self.delegate settingsViewController:self tableView:tableView didSelectCustomViewSpecifier:specifier];
+        
     } else {
+        
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
+    
 }
 
 

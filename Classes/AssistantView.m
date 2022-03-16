@@ -1466,10 +1466,12 @@ _waitView.hidden = YES; \
 
 // - (void)exLinphoneLogin:(PortableNethUser*)meUser domain:(NSString*)domain {
 - (void)exLinphoneLogin:(NSArray*)objs {
+    
     PortableNethUser* meUser = (PortableNethUser*)[objs objectAtIndex:0];
     NSString* domain = (NSString*)[objs objectAtIndex:1];
     NSString* intern = [meUser intern];
     NSString* secret = [meUser secret];
+    
     // From here the Username and Password became another things.
     LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
     LinphoneAddress *addr = linphone_address_new(NULL);
@@ -1477,13 +1479,17 @@ _waitView.hidden = YES; \
     
     // NethCTI Proxy Settings
     linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
+    
     if(meUser.proxyPort != -1) {
+        
         [address appendString:[NSString stringWithFormat:@":%ld", (long)meUser.proxyPort]];
         linphone_proxy_config_set_push_notification_allowed(config, YES); // Enable pushNotification flag.
         linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], YES); // Enable Media Encryption Mandatory flag.
         linphone_core_set_http_proxy_port([LinphoneManager getLc], (int) meUser.proxyPort); // Set core proxy port.
         linphone_proxy_config_set_expires(config, 2678400); // Set Expiration Time from proxy values.
+        
     } else {
+        
         linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], NO); // Disable pushNotification flag.
         linphone_proxy_config_set_push_notification_allowed(config, NO); // Disable Media Encryption Mandatory flag.
         linphone_proxy_config_set_expires(config, 3600); // Set Expiration Time from proxy values.
@@ -1507,7 +1513,7 @@ _waitView.hidden = YES; \
     linphone_proxy_config_set_server_addr(config, fullAddr);
     
     linphone_proxy_config_enable_publish(config, FALSE);
-    linphone_proxy_config_enable_register(config, TRUE);
+    linphone_proxy_config_enable_register(config, TRUE);// abilita proxy
     
     LinphoneAuthInfo *info =
     linphone_auth_info_new(linphone_address_get_username(addr), // username
@@ -1522,7 +1528,9 @@ _waitView.hidden = YES; \
     linphone_address_unref(tmpAddr);
     
     if (config) {
+        
         [[LinphoneManager instance] configurePushTokenForProxyConfig:config];
+        
         if (linphone_core_add_proxy_config(LC, config) != -1) {
             // set boolean
             [[LinphoneManager instance] lpConfigSetBool:YES forKey:@"hide_run_assistant_preference"];
@@ -1535,13 +1543,19 @@ _waitView.hidden = YES; \
             [[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
             
             [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+            
         } else {
+            
             [self displayAssistantConfigurationError];
         }
+        
     } else {
+        
         [self displayAssistantConfigurationError];
     }
+    
 }
+
 
 -(void)performLogin:(PortableNethUser*)meUser domain:(NSString*)domain {
     [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, domain] waitUntilDone:YES];

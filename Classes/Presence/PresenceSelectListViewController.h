@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *presenceSelezionata;
 @property (weak, nonatomic) id <PresenceSelectListDelegate> presenceSelectListDelegate;
+@property (strong, nonatomic) PortableNethUser *portableNethUserMe;
 
 
 @end

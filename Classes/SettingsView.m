@@ -144,6 +144,7 @@
 }
 
 - (void)toggledValue:(id)sender {
+    
 	IASKSwitchEx *toggle = (IASKSwitchEx *)sender;
 	IASKSpecifier *spec = [_settingsReader specifierForKey:[toggle key]];
 
@@ -433,7 +434,9 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self setUIColors];
 }
 
+
 - (void) setUIColors {
+    
     UIColor *grey;
     if (@available(iOS 11.0, *)) {
         grey = [UIColor colorNamed: @"iconTint"];
@@ -442,6 +445,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     }
     [_backButton setTintColor:grey];
 }
+
 
 #pragma mark - Account Creator callbacks
 
@@ -521,31 +525,44 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	[self presentViewController:errView animated:YES completion:nil];
 }
 
+
 #pragma mark - Event Functions
 
 - (void)appSettingChanged:(NSNotification *)notif {
+    
 	NSMutableSet *hiddenKeys = [NSMutableSet setWithSet:[_settingsController hiddenKeys]];
 	NSMutableArray *keys = [NSMutableArray array];
 	BOOL removeFromHiddenKeys = TRUE;
 
 	if ([@"enable_video_preference" compare:notif.object] == NSOrderedSame) {
+        
 		removeFromHiddenKeys = [[notif.userInfo objectForKey:@"enable_video_preference"] boolValue];
 		[keys addObject:@"video_menu"];
+        
 	} else if ([@"random_port_preference" compare:notif.object] == NSOrderedSame) {
+        
 		removeFromHiddenKeys = ![[notif.userInfo objectForKey:@"random_port_preference"] boolValue];
 		[keys addObject:@"port_preference"];
+        
 	} else if ([@"backgroundmode_preference" compare:notif.object] == NSOrderedSame) {
+        
 		removeFromHiddenKeys = [[notif.userInfo objectForKey:@"backgroundmode_preference"] boolValue];
 		[keys addObject:@"start_at_boot_preference"];
+        
 	} else if ([@"stun_preference" compare:notif.object] == NSOrderedSame) {
+        
 		NSString *stun_server = [notif.userInfo objectForKey:@"stun_preference"];
 		removeFromHiddenKeys = (stun_server && ([stun_server length] > 0));
 		[keys addObject:@"ice_preference"];
+        
 	} else if ([@"turn_preference" compare:notif.object] == NSOrderedSame) {
+        
 		LinphoneNatPolicy *LNP = linphone_core_get_nat_policy(LC);
 		linphone_nat_policy_enable_turn(LNP, !linphone_nat_policy_turn_enabled(LNP));
 		[keys addObject:@"turn_preference"];
+        
 	} else if ([@"debugenable_preference" compare:notif.object] == NSOrderedSame) {
+        
 		int debugLevel = [[notif.userInfo objectForKey:@"debugenable_preference"] intValue];
 		BOOL debugEnabled = (debugLevel >= ORTP_DEBUG && debugLevel < ORTP_ERROR);
 		removeFromHiddenKeys = debugEnabled;
@@ -556,21 +573,28 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		}
 		[Log enableLogs:debugLevel];
 		[LinphoneManager.instance lpConfigSetInt:debugLevel forKey:@"debugenable_preference"];
-	} /*
-       Removed by Nethesis restyling.
-       else if ([@"account_mandatory_advanced_preference" compare:notif.object] == NSOrderedSame) {
+        
+        //Removed by Nethesis restyling.
+	} /* else if ([@"account_mandatory_advanced_preference" compare:notif.object] == NSOrderedSame) {
+       
 		removeFromHiddenKeys = [[notif.userInfo objectForKey:@"account_mandatory_advanced_preference"] boolValue];
+       
 		for (NSString *key in settingsStore->dict) {
+       
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
+       
 				[keys addObject:key];
 			}
 		}
 	} */else if ([@"video_preset_preference" compare:notif.object] == NSOrderedSame) {
+        
 		NSString *video_preset = [notif.userInfo objectForKey:@"video_preset_preference"];
 		removeFromHiddenKeys = [video_preset isEqualToString:@"custom"];
 		[keys addObject:@"video_preferred_fps_preference"];
 		[keys addObject:@"download_bandwidth_preference"];
+        
     } else if ([@"auto_download_mode" compare:notif.object] == NSOrderedSame) {
+        
         NSString *download_mode = [notif.userInfo objectForKey:@"auto_download_mode"];
         removeFromHiddenKeys = [download_mode isEqualToString:@"Customize"];
         if (removeFromHiddenKeys)
@@ -579,6 +603,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
     }
 
 	for (NSString *key in keys) {
+        
 		if (removeFromHiddenKeys)
 			[hiddenKeys removeObject:key];
 		else
@@ -588,9 +613,11 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	[_settingsController setHiddenKeys:hiddenKeys animated:TRUE];
 }
 
+
 #pragma mark -
 
 + (IASKSpecifier *)filterSpecifier:(IASKSpecifier *)specifier {
+    
 	if (!linphone_core_sip_transport_supported(LC, LinphoneTransportTls)) {
 		if ([[specifier key] isEqualToString:@"account_transport_preference"]) {
 			NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[specifier specifierDict]];
@@ -757,42 +784,55 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	}
 
     // All Account settings are hidden, but we leave this condition for future developments.
-	/*if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
+	/*
+     if (![lm lpConfigBoolForKey:@"account_mandatory_advanced_preference"]) {
+     
 		for (NSString *key in settingsStore->dict) {
+     
 			if (([key hasPrefix:@"account_"]) && (![key hasPrefix:@"account_mandatory_"])) {
+     
 				[hiddenKeys addObject:key];
 			}
 		}
-	}*/
+	}
+     */
 
 	if (![[LinphoneManager.instance iapManager] enabled]) {
+        
 		[hiddenKeys addObject:@"in_app_products_button"];
 	}
 
 	if ([[UIDevice currentDevice].systemVersion floatValue] < 8) {
+        
 		[hiddenKeys addObject:@"repeat_call_notification_preference"];
 	}
 	
 	if (![lm lpConfigBoolForKey:@"accept_early_media" inSection:@"app"]) {
+        
 		[hiddenKeys addObject:@"pref_accept_early_media_preference"];
 	}
 
     if (![[lm lpConfigStringForKey:@"auto_download_mode"] isEqualToString:@"Customize"]) {
+        
         [hiddenKeys addObject:@"auto_download_incoming_files_max_size"];
     }
     
-    // Hide Account SIP iOS
+    // --- Hide Account SIP iOS ---
     for(NSString *key in settingsStore->dict) {
+        
         if([key hasPrefix:@"account_"] &&
            ![key isEqualToString:@"account_display_name_preference"] &&
            ![key isEqualToString:@"account_pushnotification_preference"] &&
            ![key isEqualToString:@"account_is_enabled_preference"] &&
            ![key isEqualToString:@"account_expire_preference"]) {
+            
             [hiddenKeys addObject:key];
         }
     }
+    
     [hiddenKeys addObject:@"account_mandatory_change_password"];
     [hiddenKeys addObject:@"account_mandatory_remove_button"];
+    // ---------------------------
     
     // Hide Audio
     [hiddenKeys addObject:@"eq_active"];
@@ -823,6 +863,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 }
 
 - (void)recomputeAccountLabelsAndSync {
+    
 	// it's a bit violent... but IASK is not designed to dynamically change subviews' name
 	_settingsController.hiddenKeys = [self findHiddenKeys];
 	[_settingsController.settingsReader indexPathForKey:@"menu_account_1"]; // force refresh username'
@@ -839,37 +880,53 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 }
 
 - (void)settingsViewControllerWillAppear:(IASKAppSettingsViewController *)sender {
+    
 	isRoot = (sender.file == nil || [sender.file isEqualToString:@"Root"]);
+    
 	_titleLabel.text = sender.title;
 
 	// going to account: fill account specific info
 	if ([sender.file isEqualToString:@"Account"]) {
-		LOGI(@"Going editting account %@", sender.title);
+        
+		LOGI(@"Going editting account: %@", sender.title);
+        
 		[settingsStore transformAccountToKeys:sender.title];
 		// coming back to default: if we were in account, we must synchronize account now
+        
 	} else if ([sender.file isEqualToString:@"Root"]) {
+        
 		[settingsStore synchronize];
+        
 		[self recomputeAccountLabelsAndSync];
 	}
 }
 
 - (void)settingsViewController:(IASKAppSettingsViewController *)sender
 	  buttonTappedForSpecifier:(IASKSpecifier *)specifier {
+    
 	NSString *key = [specifier.specifierDict objectForKey:kIASKKey];
+    
 #ifdef DEBUG
 	if ([key isEqual:@"release_button"]) {
+        
 		[UIApplication sharedApplication].keyWindow.rootViewController = nil;
 		[[UIApplication sharedApplication].keyWindow setRootViewController:nil];
 		[LinphoneManager.instance destroyLinphoneCore];
 		[LinphoneManager instanceRelease];
+        
 	} else if ([key isEqual:@"clear_cache_button"]) {
+        
 		[PhoneMainView.instance.mainViewController
 			clearCache:[NSArray arrayWithObject:[PhoneMainView.instance currentView]]];
+        
 	} else if ([key isEqual:@"battery_alert_button"]) {
+        
 		[[UIDevice currentDevice] setBatteryState:UIDeviceBatteryStateUnplugged];
 		[[UIDevice currentDevice] setBatteryLevel:0.01f];
 		[NSNotificationCenter.defaultCenter postNotificationName:UIDeviceBatteryLevelDidChangeNotification object:self];
+        
 	} else if ([key isEqual:@"flush_images_button"]) {
+        
 		const MSList *rooms = linphone_core_get_chat_rooms(LC);
 		while (rooms) {
 			const MSList *events = linphone_chat_room_get_history_message_events(rooms->data, 0);
@@ -889,9 +946,13 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 	}
 #endif
 	if ([key isEqual:@"assistant_button"]) {
+        
 		[PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        
 		return;
+        
 	} else if ([key isEqual:@"account_mandatory_remove_button"]) {
+        
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Warning", nil)
 																		 message:NSLocalizedString(@"Are you sure to want to remove your proxy setup?", nil)
 																  preferredStyle:UIAlertControllerStyleAlert];
@@ -914,6 +975,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
         // NethCTI users have to logout from new button, so unable them to remove their accounts.
 		// [self presentViewController:errView animated:YES completion:nil];
 	} else if ([key isEqual:@"account_mandatory_change_password"]) {
+        
 		UIAlertController *alertView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Change your password", nil)
 																		 message:NSLocalizedString(@"Please enter and confirm your new password", nil)
 																  preferredStyle:UIAlertControllerStyleAlert];
@@ -1043,8 +1105,11 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
         // NethCTI users cannot change their passwords. Thi unable them.
 		// [self presentViewController:alertView animated:YES completion:nil];
 	} else if ([key isEqual:@"reset_logs_button"]) {
+        
 		linphone_core_reset_log_collection();
+        
 	} else if ([key isEqual:@"send_logs_button"]) {
+        
 		NSString *message;
 
 		if ([LinphoneManager.instance lpConfigBoolForKey:@"send_logs_include_linphonerc_and_chathistory"]) {
@@ -1079,10 +1144,14 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		[errView addAction:defaultAction];
 		[errView addAction:continueAction];
 		[self presentViewController:errView animated:YES completion:nil];
+        
 	} else if ([key isEqual:@"send_db_button"]) {
+        
 		 [self sendEmailWithPrivacyAttachments];
 	}
+    
 }
+
 
 #pragma mark - Mail composer for sending logs
 

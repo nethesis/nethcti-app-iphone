@@ -38,9 +38,9 @@ hiddenKeys = _hiddenKeys;
 	return [self initWithFile:@"Root"];
 }
 
+
 - (id)initWithFile:(NSString*)file {
 	if ((self=[super init])) {
-
 
 		self.path = [self locateSettingsFile: file];
 		[self setSettingsBundle:[NSDictionary dictionaryWithContentsOfFile:self.path]];
