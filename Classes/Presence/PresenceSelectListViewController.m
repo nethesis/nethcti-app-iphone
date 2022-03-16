@@ -8,6 +8,7 @@
 #import "PresenceSelectListViewController.h"
 #import "MBProgressHUD.h"
 #import "PresenceSelectListTableViewCell.h"
+#import "PhoneMainView.h"
 
 
 
@@ -37,25 +38,24 @@
     
     NSLog(@"PresenceSelectListViewController - viewDidLoad");
 
+    //NSLog(@"portableNethUserMe: %@", portableNethUserMe);
+
     /*
-    LinphoneProxyConfig *linphoneProxyConfig = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC), YES);
-
-    BOOL proxy_config_register_is_enabled = linphone_proxy_config_register_enabled(linphoneProxyConfig);
-    NSLog(@"proxy_config_register_is_enabled: %@", proxy_config_register_is_enabled ? @"YES" : @"NO");
+    // Set observer
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(globalStateUpdate:) name:kLinphoneGlobalStateUpdate object:nil];
     
-    if (proxy_config_register_is_enabled == NO) {
+    
+    LinphoneGlobalState gstate = linphone_core_get_global_state(LC);
+
+    if (gstate == LinphoneGlobalOn && !linphone_core_is_network_reachable(LC)) {
         
-        presenceSelezionata = kKeyDisconnesso;
+        NSLog(@"linphone_core_is_network_reachable %@", NSLocalizedString(@"Network down", nil)) ;
+        
     }
+    
+    BOOL is_network_reachable = linphone_core_is_network_reachable(LC);
+    NSLog(@"is_network_reachable: %@", is_network_reachable ? @"YES" : @"NO");
     */
-    
-    
-    NSLog(@"portableNethUserMe: %@", portableNethUserMe);
-
-    [self getProxyState];
-    
-    
-    
     
     // --- MBProgressHUD ---
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -74,23 +74,29 @@
     [self.ibTableViewSelezionePresence addSubview:self.refreshControl];
     // ------------------------
     
-    
-    
     [self.HUD showAnimated:YES];
+
+    [self getProxyState];
     
     [self downloadPresenceList];
 }
 
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    
+    NSLog(@"viewWillDisappear - PresenceViewController");
+    
+    // Remove observer
+    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneGlobalStateUpdate object:nil];
+    
+    
+    [self.refreshControl endRefreshing];
+    
+}
+
 
 
 - (IBAction)ibaChiudi:(id)sender {
@@ -101,19 +107,102 @@
 }
 
 
+#pragma mark - Event Functions
+
+- (void)globalStateUpdate:(NSNotification *)notification {
+    
+    LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
+
+    [self proxyConfigUpdate:config];
+}
+
+
+- (void)proxyConfigUpdate:(LinphoneProxyConfig *)config {
+    
+    LinphoneRegistrationState state = LinphoneRegistrationNone;
+    LinphoneGlobalState gstate = linphone_core_get_global_state(LC);
+    
+    NSString *message = nil;
+
+    if ([PhoneMainView.instance.currentView equal:AssistantView.compositeViewDescription] || [PhoneMainView.instance.currentView equal:CountryListView.compositeViewDescription]) {
+        
+        message = NSLocalizedString(@"Configuring account", nil);
+        
+    } else if (gstate == LinphoneGlobalOn && !linphone_core_is_network_reachable(LC)) {
+        
+        message = NSLocalizedString(@"Network down", nil);
+        
+    } else if (gstate == LinphoneGlobalConfiguring) {
+        
+        message = NSLocalizedString(@"Fetching remote configuration", nil);
+        
+    } else if (config == NULL) {
+        
+        state = LinphoneRegistrationNone;
+        
+        if (linphone_core_get_proxy_config_list(LC) != NULL) {
+            
+            message = NSLocalizedString(@"No default account", nil);
+            
+        }else {
+            
+            message = NSLocalizedString(@"No account configured", nil);
+        }
+
+    }else {
+        
+        state = linphone_proxy_config_get_state(config);
+
+        switch (state) {
+            case LinphoneRegistrationOk:
+                
+                message = NSLocalizedString(@"Connected", nil);
+                break;
+                
+            case LinphoneRegistrationNone:
+                
+            case LinphoneRegistrationCleared:
+                
+                message = NSLocalizedString(@"Not connected", nil);
+                break;
+                
+            case LinphoneRegistrationFailed:
+                
+                message = NSLocalizedString(@"Connection failed", nil);
+                break;
+                
+            case LinphoneRegistrationProgress:
+                
+                message = NSLocalizedString(@"Connection in progress", nil);
+                break;
+                
+            default:
+                break;
+        }
+    }
+
+    NSLog(@"message: %@", message);
+    
+    // Nascondo la ViewCaricamento
+    [self.HUD hideAnimated:YES];
+}
+
+
+
+
 #pragma mark -
 #pragma mark === downloadPresence ===
 #pragma mark -
 
 - (void)downloadPresenceList {
     
-    //NSLog(@"downloadListPresence");
+    NSLog(@"downloadListPresence");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
     [api getPresenceListWithSuccessHandler:^(NSArray *arrayPresence) {
         
-        NSLog(@"arrayPresence: %@", arrayPresence);
+        //NSLog(@"arrayPresence: %@", arrayPresence);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -239,7 +328,10 @@
             
             [self.HUD showAnimated:YES];
 
-            [self abilitaProxy];
+            if ([kKeyDisconnesso isEqualToString:self.presenceSelezionata]) {
+                
+                [self abilitaProxy];
+            }
             
             [self performSelector:@selector(impostaPresence:) withObject:presenceSelezionata afterDelay:1.0];
         }
@@ -497,8 +589,11 @@
 
                 [self.HUD showAnimated:YES];
 
-                [self abilitaProxy];
-
+                if ([kKeyDisconnesso isEqualToString:self.presenceSelezionata]) {
+                    
+                    [self abilitaProxy];
+                }
+                
                 [self performSelector:@selector(impostaInoltroWith:) withObject:alertControllerInoltro afterDelay:1.0];
                 
             }else {
@@ -586,9 +681,10 @@
 
 
 - (void)abilitaProxy {
- 
+    NSLog(@"abilitaProxy");
+
     NSString *username = portableNethUserMe.intern;
-    NSLog(@"username: %@", username);
+    //NSLog(@"username: %@", username);
 
     const MSList *proxies = linphone_core_get_proxy_config_list(LC);
 
@@ -608,7 +704,7 @@
         linphone_proxy_config_enable_register(linphoneProxyConfig, YES);
 
         // --- setup new proxycfg ---
-        //linphone_proxy_config_done(linphoneProxyConfig);
+        linphone_proxy_config_done(linphoneProxyConfig);
         // --------------------------
     }
     
@@ -617,8 +713,10 @@
 
 - (void)disabilitaProxy {
     
+    NSLog(@"disabilitaProxy");
+
     NSString *username = portableNethUserMe.intern;
-    NSLog(@"username: %@", username);
+    //NSLog(@"username: %@", username);
 
     const MSList *proxies = linphone_core_get_proxy_config_list(LC);
 
@@ -638,7 +736,7 @@
         linphone_proxy_config_enable_register(linphoneProxyConfig, NO);
 
         // --- setup new proxycfg ---
-        //linphone_proxy_config_done(linphoneProxyConfig);
+        linphone_proxy_config_done(linphoneProxyConfig);
         // --------------------------
     }
     
@@ -662,7 +760,7 @@
     NSLog(@"getProxyFrom");
     
     NSString *username = portableNethUserMe.intern;
-    NSLog(@"username: %@", username);
+    //NSLog(@"username: %@", username);
 
     const MSList *proxies = linphone_core_get_proxy_config_list(LC);
 
@@ -681,7 +779,7 @@
         //NSLog(@"proxy: %@", proxy);
         
         BOOL is_proxy_config_register_enabled = linphone_proxy_config_register_enabled(linphoneProxyConfig);
-        NSLog(@"is_proxy_config_register_enabled: %@", is_proxy_config_register_enabled ? @"YES" : @"NO");
+        //NSLog(@"is_proxy_config_register_enabled: %@", is_proxy_config_register_enabled ? @"YES" : @"NO");
         
         if (NO == is_proxy_config_register_enabled) {
             

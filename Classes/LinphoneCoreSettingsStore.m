@@ -278,7 +278,7 @@
             // --- MODIFICA ---
             // ottengo status della registrazione al proxy
             BOOL registration_to_proxy = linphone_proxy_config_register_enabled(proxy);
-            NSLog(@"registration_to_proxy: %@", registration_to_proxy ? @"YES" : @"NO");
+            //NSLog(@"registration_to_proxy: %@", registration_to_proxy ? @"YES" : @"NO");
             
             // salvo lo status della registrazione al proxy
             [self setBool:registration_to_proxy forKey:@"account_is_enabled_preference"];

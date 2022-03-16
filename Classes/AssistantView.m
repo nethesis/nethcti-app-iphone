@@ -1467,11 +1467,13 @@ _waitView.hidden = YES; \
 // - (void)exLinphoneLogin:(PortableNethUser*)meUser domain:(NSString*)domain {
 - (void)exLinphoneLogin:(NSArray*)objs {
     
-    PortableNethUser* meUser = (PortableNethUser*)[objs objectAtIndex:0];
-    NSString* domain = (NSString*)[objs objectAtIndex:1];
-    NSString* intern = [meUser intern];
-    NSString* secret = [meUser secret];
-    
+    PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
+    NSString *domain = (NSString*)[objs objectAtIndex:1];
+    NSString *intern = [meUser intern];
+    //NSLog(@"intern: %@", intern);
+    NSString *secret = [meUser secret];
+    //NSLog(@"secret: %@", secret);
+
     // From here the Username and Password became another things.
     LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
     LinphoneAddress *addr = linphone_address_new(NULL);

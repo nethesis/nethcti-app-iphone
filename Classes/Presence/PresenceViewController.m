@@ -16,7 +16,6 @@
 
 
 
-
 @interface PresenceViewController ()
 
 @property (strong, nonatomic) MBProgressHUD *HUD;
@@ -114,18 +113,6 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     [self setMePresence];
     
-    
-    //[self.HUD showAnimated:YES];
-
-    //[self downloadPresence];
-    
-    
-    // TODO: impostare il refresh a 3 secondi oppure usare websocket
-    
-    // --- AGGIORNAMENTO DATI OGNI 10 SECONDI ---
-    //self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
-    // ------------------------------------------
-    
 }
 
 
@@ -220,7 +207,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSString *message = nil;
 
-    if ([PhoneMainView.instance.currentView equal:AssistantView.compositeViewDescription] || [PhoneMainView.instance.currentView equal:CountryListView.compositeViewDescription]) {
+    if ([PhoneMainView.instance.currentView equal:AssistantView.compositeViewDescription] ||
+        [PhoneMainView.instance.currentView equal:CountryListView.compositeViewDescription]) {
         
         message = NSLocalizedString(@"Configuring account", nil);
         
@@ -250,9 +238,11 @@ static UICompositeViewDescription *compositeDescription = nil;
         state = linphone_proxy_config_get_state(config);
 
         switch (state) {
+                
             case LinphoneRegistrationOk:
                 
                 message = NSLocalizedString(@"Connected", nil);
+                
                 break;
                 
             case LinphoneRegistrationNone:
@@ -260,16 +250,19 @@ static UICompositeViewDescription *compositeDescription = nil;
             case LinphoneRegistrationCleared:
                 
                 message = NSLocalizedString(@"Not connected", nil);
+                
                 break;
                 
             case LinphoneRegistrationFailed:
                 
                 message = NSLocalizedString(@"Connection failed", nil);
+                
                 break;
                 
             case LinphoneRegistrationProgress:
                 
                 message = NSLocalizedString(@"Connection in progress", nil);
+                
                 break;
                 
             default:
@@ -756,11 +749,11 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSLog(@"setMePresence");
     
     NSString *presence = self.portableNethUserMe.presence;
-    NSLog(@"presence: %@", presence);
+    //NSLog(@"presence: %@", presence);
     
     
     NSString *username = self.portableNethUserMe.intern;
-    NSLog(@"username: %@", username);
+    //NSLog(@"username: %@", username);
 
     const MSList *proxies = linphone_core_get_proxy_config_list(LC);
 
@@ -779,7 +772,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         //NSLog(@"proxy: %@", proxy);
         
         BOOL is_proxy_config_register_enabled = linphone_proxy_config_register_enabled(linphoneProxyConfig);
-        NSLog(@"is_proxy_config_register_enabled: %@", is_proxy_config_register_enabled ? @"YES" : @"NO");
+        //NSLog(@"is_proxy_config_register_enabled: %@", is_proxy_config_register_enabled ? @"YES" : @"NO");
         
         if (NO == is_proxy_config_register_enabled) {
             

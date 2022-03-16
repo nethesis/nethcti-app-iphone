@@ -136,7 +136,7 @@ CGRect IASKCGRectSwap(CGRect rect);
     if (!nibNameOrNil) {
         return [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     }
-    NSLog (@"%@ is now deprecated, we are moving away from nibs.", NSStringFromSelector(_cmd));
+    //NSLog (@"%@ is now deprecated, we are moving away from nibs.", NSStringFromSelector(_cmd));
     return [self initWithStyle:UITableViewStyleGrouped];
 }
 
@@ -802,18 +802,25 @@ CGRect IASKCGRectSwap(CGRect rect);
     } else if ([[specifier type] isEqualToString:kIASKButtonSpecifier]) {
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
 		if ([self.delegate respondsToSelector:@selector(settingsViewController:buttonTappedForSpecifier:)]) {
+            
 			[self.delegate settingsViewController:self buttonTappedForSpecifier:specifier];
+            
 		} else if ([self.delegate respondsToSelector:@selector(settingsViewController:buttonTappedForKey:)]) {
+            
 			// deprecated, provided for backward compatibility
-			NSLog(@"InAppSettingsKit Warning: -settingsViewController:buttonTappedForKey: is deprecated. Please use -settingsViewController:buttonTappedForSpecifier:");
+			//NSLog(@"InAppSettingsKit Warning: -settingsViewController:buttonTappedForKey: is deprecated. Please use -settingsViewController:buttonTappedForSpecifier:");
 			[self.delegate settingsViewController:self buttonTappedForKey:[specifier key]];
+            
 		} else {
 			// legacy code, provided for backward compatibility
 			// the delegate mechanism above is much cleaner and doesn't leak
 			Class buttonClass = [specifier buttonClass];
 			SEL buttonAction = [specifier buttonAction];
+            
 			if ([buttonClass respondsToSelector:buttonAction]) {
+                
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 				[buttonClass performSelector:buttonAction withObject:self withObject:[specifier key]];
