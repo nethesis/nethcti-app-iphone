@@ -658,6 +658,7 @@ import Alamofire
             return
         }
         
+        
         if !self.isConnectedToInternet() {
 
             errorHandler(2, "Errore Connessione")
@@ -742,6 +743,7 @@ import Alamofire
             
             return
         }
+        
         
         if !self.isConnectedToInternet() {
 
@@ -832,6 +834,7 @@ import Alamofire
             
             return
         }
+        
         
         if !self.isConnectedToInternet() {
 

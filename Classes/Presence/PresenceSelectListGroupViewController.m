@@ -161,7 +161,6 @@
             [self.refreshControl endRefreshing];
             
             [self showAlertError:code withError:string];
-            
         });
         
     }];

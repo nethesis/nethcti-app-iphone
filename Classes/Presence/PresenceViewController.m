@@ -281,7 +281,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)loadDataFiltered {
     
-    NSLog(@"loadDataFiltered");
+    //NSLog(@"loadDataFiltered");
     
     if (YES == self.isGroupsFilter) {
         // visualizza GRUPPI
@@ -746,7 +746,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)setMePresence {
     
-    NSLog(@"setMePresence");
+    //NSLog(@"setMePresence");
     
     NSString *presence = self.portableNethUserMe.presence;
     //NSLog(@"presence: %@", presence);
@@ -886,7 +886,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)downloadPresence {
     
-    NSLog(@"downloadPresence");
+    //NSLog(@"downloadPresence");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -1124,6 +1124,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     NSInteger code = codeError;
     
     switch (code) {
+            
         case 2:
             
             message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
