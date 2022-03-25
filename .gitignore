@@ -1,35 +1,29 @@
 build-*
 *.locuser
 .DS_Store
-liblinphone-sdk
-liblinphone-iphone-sdk*.zip
 xcuserdata/
 Classes/LinphoneIOSVersion.h
 Pods/
 Podfile.lock
 GoogleService-Info.plist
 build
-test-reports
-WORK
-Makefile
-OUTPUT
 git-clang-format.diff
 submodules/tunnel
 submodules/binaries/dummy-*.a
-linphone-iphone.ipa
-TutorialHellowWorld/hello-world.xcodeproj/project.xcworkspace/
 diff-format.patch
 *.xcscmblueprint
-liblinphone-iphone-sdk-*
-
 # fastlane specific
 **/fastlane/report.xml
-
 # deliver temporary files
 **/fastlane/Preview.html
-
 # snapshot generated screenshots
 **/fastlane/screenshots
-
 # scan temporary files
 **/fastlane/test_output
+Config-extension.xcconfig
+Config-msgNotificationContent.xcconfig
+Config-msgNotificationService.xcconfig
+Config.xcconfig
+extension.entitlements
+linphone.entitlements
+Resources/
