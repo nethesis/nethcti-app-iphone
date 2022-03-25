@@ -11,7 +11,19 @@ Group changes to describe their impact on the project, as follows:
     Fixed for any bug fixes.
     Security to invite users to upgrade in case of vulnerabilities.
 
-## [Unreleased]
+## [1.4.0] - 23/03/2022
+
+### Aggiunta
+
+- Aggiunta la sezione Presence
+- Aggiunta la possibilitò di Disconnettere l'app tramite uno stato specifico di presence
+
+### Cambiamenti
+
+- Sotituito il collegamento nella Dashboard alla nuova sezione Presence
+
+
+
 
 ## [1.3.0] - 03/09/2021
 

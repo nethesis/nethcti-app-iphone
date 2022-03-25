@@ -36,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"PresenceSelectListViewController - viewDidLoad");
+    //NSLog(@"PresenceSelectListViewController - viewDidLoad");
 
     //NSLog(@"portableNethUserMe: %@", portableNethUserMe);
 
@@ -87,7 +87,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    NSLog(@"viewWillDisappear - PresenceViewController");
+    //NSLog(@"viewWillDisappear - PresenceViewController");
     
     // Remove observer
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneGlobalStateUpdate object:nil];
@@ -196,7 +196,7 @@
 
 - (void)downloadPresenceList {
     
-    NSLog(@"downloadListPresence");
+    //NSLog(@"downloadListPresence");
     
     NethCTIAPI *api = [NethCTIAPI sharedInstance];
     
@@ -681,7 +681,8 @@
 
 
 - (void)abilitaProxy {
-    NSLog(@"abilitaProxy");
+    
+    //NSLog(@"abilitaProxy");
 
     NSString *username = portableNethUserMe.intern;
     //NSLog(@"username: %@", username);
@@ -713,7 +714,7 @@
 
 - (void)disabilitaProxy {
     
-    NSLog(@"disabilitaProxy");
+    //NSLog(@"disabilitaProxy");
 
     NSString *username = portableNethUserMe.intern;
     //NSLog(@"username: %@", username);
@@ -757,7 +758,7 @@
 
 - (void)getProxyState {
     
-    NSLog(@"getProxyFrom");
+    //NSLog(@"getProxyFrom");
     
     NSString *username = portableNethUserMe.intern;
     //NSLog(@"username: %@", username);
