@@ -27,3 +27,5 @@ Config.xcconfig
 extension.entitlements
 linphone.entitlements
 Resources/
+.env.appstore
+.env.development
