@@ -173,10 +173,9 @@
 
 - (IBAction)onCallClick:(id)event {
     
-    NSLog(@"onCallClick - addressLabel.text: %@", self.addressLabel.text);
+    //NSLog(@"onCallClick - addressLabel.text: %@", self.addressLabel.text);
     
 	LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
-    NSLog(@"addr: %@", addr);
 
 	[LinphoneManager.instance call:addr];
     
