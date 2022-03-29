@@ -44,3 +44,4 @@ Resources/images/nethcti_logo_sip.png
 Resources/images/nethcti_logo_sip@2x.png
 Resources/AccentColor.colorset/Contents.json
 Resources/Images.xcassets/AppIcon.appiconset/
+.gitlab-ci.yml
