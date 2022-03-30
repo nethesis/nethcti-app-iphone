@@ -11,6 +11,22 @@ Group changes to describe their impact on the project, as follows:
     Fixed for any bug fixes.
     Security to invite users to upgrade in case of vulnerabilities.
 
+## [1.4.2] - 31/03/2022
+
+### Cambiamenti
+
+- Modifica chiave Notifiche Push.
+
+
+
+## [1.4.1] - 29/03/2022
+
+### Fixato
+
+- Risolto il crash sulla chiamata dalla rubrica telefonica.
+
+
+
 ## [1.4.0] - 23/03/2022
 
 ### Aggiunta
@@ -21,7 +37,6 @@ Group changes to describe their impact on the project, as follows:
 ### Cambiamenti
 
 - Sotituito il collegamento nella Dashboard alla nuova sezione Presence
-
 
 
 
