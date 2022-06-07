@@ -1084,7 +1084,9 @@ static void linphone_iphone_is_composing_received(LinphoneCore *lc, LinphoneChat
 
 
 - (NetworkType)network {
+    
 	if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7) {
+        
 		UIApplication *app = [UIApplication sharedApplication];
 		NSArray *subviews = [[[app valueForKey:@"statusBar"] valueForKey:@"foregroundView"] subviews];
 		NSNumber *dataNetworkItemView = nil;
@@ -1098,13 +1100,18 @@ static void linphone_iphone_is_composing_received(LinphoneCore *lc, LinphoneChat
 
 		NSNumber *number = (NSNumber *)[dataNetworkItemView valueForKey:@"dataNetworkType"];
 		return [number intValue];
+        
 	} else {
 #pragma deploymate push "ignored-api-availability"
 		CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
 		NSString *currentRadio = info.currentRadioAccessTechnology;
+        
 		if ([currentRadio isEqualToString:CTRadioAccessTechnologyEdge]) {
+            
 			return network_2g;
+            
 		} else if ([currentRadio isEqualToString:CTRadioAccessTechnologyLTE]) {
+            
 			return network_4g;
 		}
 #pragma deploymate pop

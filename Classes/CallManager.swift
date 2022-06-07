@@ -179,13 +179,18 @@ import AVFoundation
         }
         
         let call = CallManager.instance().callByCallId(callId: callId)
+        
         if (call != nil) {
+            
             let displayName = FastAddressBook.displayName(for: call?.remoteAddress?.getCobject) ?? "Unknow"
             let video = UIApplication.shared.applicationState == .active && (lc!.videoActivationPolicy?.automaticallyAccept ?? false) && (call!.remoteParams?.videoEnabled ?? false)
             // Calllkit mostra tutti i dettagli della chiamata.
             displayIncomingCall(call: call, handle: (call!.remoteAddress?.asStringUriOnly())!, hasVideo: video, callId: callId, displayName: displayName)
+            
         } else {
-            let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
+            
+            //let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
+            
             // Callkit mostra solo la chiamata ricevuta.
             displayIncomingCall(call: nil, handle: "Calling", hasVideo: true, callId: callId, displayName: "Calling")
         }
@@ -523,7 +528,7 @@ class CoreManagerDelegate: CoreDelegate {
                 let lastuuid = map?.1
                 let oldCallInfos = CallManager.instance().providerDelegate.callInfos[lastuuid!]
                 
-                Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallIdSwitch: Old: \(map?.0), New: \(callId)")
+                Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallIdSwitch: Old: \(String(describing: map?.0)), New: \(callId)")
                 
                 CallManager.instance().providerDelegate.uuids.removeValue(forKey: map!.0)
                 CallManager.instance().providerDelegate.uuids.updateValue(lastuuid!, forKey: callId)
