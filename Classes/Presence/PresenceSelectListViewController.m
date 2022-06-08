@@ -390,7 +390,7 @@
     }else if ([presence isEqualToString:kKeyDnd]) {
         // DND
         
-        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Non distrubare", nil);
+        presenceSelectListTableViewCell.ibLabelNome.text = NSLocalizedString(@"Non disturbare", nil);
         
         presenceSelectListTableViewCell.ibImageViewStatus.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceDnd"];
         presenceSelectListTableViewCell.ibImageViewStatus.image = [UIImage imageNamed:@"icn_dnd"];
@@ -560,7 +560,7 @@
             
             
             // --- Alert avviso ---
-            UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+            UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Warning", nil)
                                                                                            message:NSLocalizedString(@"Devi inserire il numero telefonico da utilizzare per inoltrare la chiamata", nil)
                                                                                     preferredStyle:UIAlertControllerStyleAlert];
             
@@ -599,7 +599,7 @@
             }else {
                 
                 // --- Alert Avviso ---
-                UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+                UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Warning", nil)
                                                                                                message:NSLocalizedString(@"Puoi inserire solo numeri", nil)
                                                                                         preferredStyle:UIAlertControllerStyleAlert];
                 
@@ -621,7 +621,7 @@
     }]];
     
     // BTN Annulla
-    [alertControllerInoltro addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Annulla", nil)
+    [alertControllerInoltro addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action) {
         
@@ -661,7 +661,7 @@
         }
     }
     
-    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Warning", nil)
                                                                                    message:message
                                                                             preferredStyle:UIAlertControllerStyleAlert];
     

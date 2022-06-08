@@ -66,7 +66,7 @@
     
     if(!account_configured) {
         [_sideMenuEntries addObject:
-         [[SideMenuEntry alloc] initWithTitle:@"Dahsboard"
+         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Dashboard", nil)
                                         image:[UIImage imageNamed:@"nethcti_menu_home.png"]
                                      tapBlock:^() {
             [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
@@ -83,6 +83,7 @@
     }
     
     BOOL mustLink = ([LinphoneManager.instance lpConfigIntForKey:@"must_link_account_time"] > 0);
+    
     if (mustLink) {
         [_sideMenuEntries addObject:
          [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Link my account", nil)

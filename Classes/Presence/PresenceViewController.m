@@ -976,7 +976,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                     //NSLog(@"groupVisibileSelezionato.count: %lu", (unsigned long)groupVisibileSelezionato.users.count);
                     
 
-                    self.ibLabelGruppi.text = [[NSString stringWithFormat:@"GRUPPI (%@)", groupVisibileSelezionato.name] uppercaseString];
+                    self.ibLabelGruppi.text = [[NSString stringWithFormat:@"%@", groupVisibileSelezionato.name] uppercaseString];
                     
                     
                     self.arrayUsersGruppoSelezionato = [NSMutableArray new];
@@ -1145,7 +1145,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         }
     }
                 
-    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Warning", nil)
                                                                                    message:message
                                                                             preferredStyle:UIAlertControllerStyleAlert];
     
