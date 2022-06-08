@@ -185,7 +185,7 @@
 							   ? _dialerButton.frame.origin.x
 							   : (_chatButton.selected
 									  ? _chatButton.frame.origin.x
-									  : -selectedNewFrame.size.width /*hide it if none is selected))));
+									  : -selectedNewFrame.size.width //hide it if none is selected))));
 	} else {
 		selectedNewFrame.origin.y =
 			(_historyButton.selected
@@ -196,7 +196,7 @@
 							   ? _dialerButton.frame.origin.y
 							   : (_chatButton.selected
 									  ? _chatButton.frame.origin.y
-									  : -selectedNewFrame.size.height /*hide it if none is selected))));
+									  : -selectedNewFrame.size.height //hide it if none is selected))));
 	}
     
     CGFloat delay = ANIMATED ? 0.3 : 0;
