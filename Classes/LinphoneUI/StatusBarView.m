@@ -348,10 +348,16 @@
 }
 
 - (void)callQualityUpdate {
+    
 	LinphoneCall *call = linphone_core_get_current_call(LC);
+    
 	if (call != NULL) {
-		int quality = MIN(4, floor(linphone_call_get_current_quality(call)));
+        
+		//int quality = MIN(4, floor(linphone_call_get_current_quality(call)));
+        int quality = (4) < (floor(linphone_call_get_current_quality(call))) ? (4) : (floor(linphone_call_get_current_quality(call)));
+
 		NSString *accessibilityValue = [NSString stringWithFormat:NSLocalizedString(@"Call quality: %d", nil), quality];
+        
 		if (![accessibilityValue isEqualToString:_callQualityButton.accessibilityValue]) {
 			_callQualityButton.accessibilityValue = accessibilityValue;
 			_callQualityButton.hidden = NO; //(quality == -1.f);

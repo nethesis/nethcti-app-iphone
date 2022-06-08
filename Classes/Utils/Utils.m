@@ -855,6 +855,7 @@
 }
 
 - (UIColor *)adjustHue:(float)hm saturation:(float)sm brightness:(float)bm alpha:(float)am {
+    
 	float hsbH, hsbS, hsbB;
 	float rgbaR, rgbaG, rgbaB, rgbaA;
 
@@ -874,10 +875,17 @@
 
 	RGB2HSL(rgbaR, rgbaG, rgbaB, &hsbH, &hsbS, &hsbB);
 
-	hsbH = MIN(MAX(hsbH + hm, 0.0), 1.0);
-	hsbS = MIN(MAX(hsbS + sm, 0.0), 1.0);
-	hsbB = MIN(MAX(hsbB + bm, 0.0), 1.0);
-	rgbaA = MIN(MAX(rgbaA + am, 0.0), 1.0);
+	//hsbH = MIN(MAX(hsbH + hm, 0.0), 1.0);
+    hsbH = MIN(((hsbH + hm)>(0.0) ? (hsbH + hm) : (0.0)) , 1.0);
+
+	//hsbS = MIN(MAX(hsbS + sm, 0.0), 1.0);
+    hsbS = MIN(((hsbS + sm)>(0.0) ? (hsbS + sm) : (0.0)), 1.0);
+
+	//hsbB = MIN(MAX(hsbB + bm, 0.0), 1.0);
+    hsbB = MIN(((hsbB + bm) > (0.0) ? (hsbB + bm) : (0.0)), 1.0);
+
+	//rgbaA = MIN(MAX(rgbaA + am, 0.0), 1.0);
+    rgbaA = MIN(((rgbaA + am) > (0.0) ? (rgbaA + am) : (0.0)), 1.0);
 
 	HSL2RGB(hsbH, hsbS, hsbB, &rgbaR, &rgbaG, &rgbaB);
 
