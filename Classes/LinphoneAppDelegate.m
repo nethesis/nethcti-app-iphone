@@ -515,24 +515,31 @@
     return YES;
 }
 
+
 // used for callkit. Called when active video.
-- (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
-{
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(nonnull NSUserActivity *)userActivity
+ restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+    
     if ([userActivity.activityType isEqualToString:@"INStartVideoCallIntent"]) {
         LOGI(@"CallKit: start video.");
         CallView *view = VIEW(CallView);
         [view.videoButton setOn];
     }
+    
     if ([userActivity.activityType isEqualToString:@"INStartAudioCallIntent"]) { // tel URI handler.
+        
         INInteraction *interaction = userActivity.interaction;
         INStartAudioCallIntent *startAudioCallIntent = (INStartAudioCallIntent *)interaction.intent;
         INPerson *contact = startAudioCallIntent.contacts[0];
         INPersonHandle *personHandle = contact.personHandle;
+        
         [CallManager.instance performActionWhenCoreIsOnAction:^(void) {
             [LinphoneManager.instance call: [LinphoneUtils normalizeSipOrPhoneAddress:personHandle.value]];
         }];
         
     }
+    
     return YES;
 }
 

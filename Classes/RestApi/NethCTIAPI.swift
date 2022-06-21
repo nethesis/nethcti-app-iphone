@@ -209,6 +209,8 @@ import Alamofire
      */
     @objc public func postLogout(successHandler: @escaping (String?) -> Void) -> Void {
         
+        print("postLogout")
+
         if !ApiCredentials.checkCredentials() {
             
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
@@ -235,7 +237,7 @@ import Alamofire
                                 }
                                 
                                 let postArgs = ApiCredentials.getAuthenticatedCredentials()
-                                //print("postArgs: \(String(describing: postArgs))")
+                                print("postArgs: \(String(describing: postArgs))")
 
                                 self.baseCall(url: url,
                                               method: "POST",
@@ -564,7 +566,7 @@ import Alamofire
             
         } else {
             
-            endpoint = "/phonebook/getall/?limit=\(cLimit)&offset=\(index)"
+            endpoint = "/phonebook/geta ll/?limit=\(cLimit)&offset=\(index)"
         }
         
         guard let domain = self.transformDomain(ApiCredentials.Domain) as String?,
@@ -585,50 +587,51 @@ import Alamofire
                       headers: getHeaders,
                       body: nil,
                       successHandler: { data, response in
-                        
-                        guard let responseData = data else { // Response handling.
-                            
-                            errorHandler(1, "No data provided.")
-                            
-                            return
-                        }
-                        
-                        do{ // Receive the results.
-                            let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
-                            
-                            let contacts = try NethPhoneBookReturn(raw: rawContacts) // Convert to phonebook.
-                            
-                            // NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
-                            NethPhoneBook.instance().load(contacts.rows.count, more: contacts.rows.count >= self.cLimit)
-                            
-                            success(contacts.rows.map({ (NethContact) -> Contact in
-                                
-                                NethContact.toLinphoneContact()
-                            }))
-                            
-                        } catch SerializationError.missing(let obj) {
-                            
-                            errorHandler(1, "Missing json fields: \(obj)")
-                            
-                        } catch {
-                            
-                            errorHandler(1, "Unknown error: \(error.localizedDescription)") // error refer to catched error.
-                        }
-                        
-                      },
+            
+            guard let responseData = data else { // Response handling.
+                
+                errorHandler(1, "No data provided.")
+                
+                return
+            }
+            
+            do{ // Receive the results.
+                let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
+                
+                // Convert to phonebook.
+                let contacts = try NethPhoneBookReturn(raw: rawContacts)
+                
+                // NethPhoneBook.instance().load(phoneBookReturn.rows.count, max: phoneBookReturn.count)
+                NethPhoneBook.instance().load(contacts.rows.count, more: contacts.rows.count >= self.cLimit)
+                
+                success(contacts.rows.map({ (NethContact) -> Contact in
+                    
+                    NethContact.toLinphoneContact()
+                }))
+                
+            } catch SerializationError.missing(let obj) {
+                
+                errorHandler(1, "Missing json fields: \(obj)")
+                
+            } catch {
+                
+                errorHandler(1, "Unknown error: \(error.localizedDescription)") // error refer to catched error.
+            }
+            
+        },
                       errorHandler: { error, response in // Error handling.
-                        
-                        guard let httpResponse = response as? HTTPURLResponse else {
-                            
-                            errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
-                            
-                            return
-                        }
-                        
-                        errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
-                        
-                        return
-                      })
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                
+                errorHandler(-2, "Error calling GET on /phonebook/search: missing response data.")
+                
+                return
+            }
+            
+            errorHandler(httpResponse.statusCode, "Error calling GET on /phonebook/search")
+            
+            return
+        })
     }
     
     

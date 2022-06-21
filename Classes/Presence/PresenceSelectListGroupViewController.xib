@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -33,16 +33,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gruppi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-6F-fFD" userLabel="Label - Titolo">
-                    <rect key="frame" x="20" y="74" width="110.5" height="42"/>
+                    <rect key="frame" x="20" y="74" width="108" height="42"/>
                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
                     <color key="textColor" name="mainColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MZ-Sf-XHd" userLabel="Button - Chiudi">
-                    <rect key="frame" x="344" y="64" width="50" height="50"/>
+                    <rect key="frame" x="334" y="44" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="ryP-b5-PyD"/>
-                        <constraint firstAttribute="height" constant="50" id="xkw-Kc-8ts"/>
+                        <constraint firstAttribute="width" constant="60" id="ryP-b5-PyD"/>
+                        <constraint firstAttribute="height" constant="60" id="xkw-Kc-8ts"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                     <state key="normal" title="Fine">
@@ -68,7 +68,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nessun gruppo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cb6-qz-4WT" userLabel="Label - NessunDato">
-                    <rect key="frame" x="145" y="442.5" width="124" height="21"/>
+                    <rect key="frame" x="145.5" y="442.5" width="123" height="21"/>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                     <color key="textColor" name="textColor"/>
                     <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                 <constraint firstItem="pzc-6F-fFD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="4UP-op-8YP"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5MZ-Sf-XHd" secondAttribute="trailing" constant="20" id="JpL-Bu-hJw"/>
                 <constraint firstAttribute="bottom" secondItem="Erp-Nl-e1S" secondAttribute="bottom" id="KwY-We-Sec"/>
-                <constraint firstItem="5MZ-Sf-XHd" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="OmF-Hg-vxX"/>
+                <constraint firstItem="5MZ-Sf-XHd" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="OmF-Hg-vxX"/>
                 <constraint firstItem="Cb6-qz-4WT" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="Ozn-Gq-P3q"/>
                 <constraint firstAttribute="trailing" secondItem="45y-kg-svd" secondAttribute="trailing" id="QU3-JT-lG5"/>
                 <constraint firstItem="Erp-Nl-e1S" firstAttribute="top" secondItem="45y-kg-svd" secondAttribute="bottom" id="cro-nM-0Qe"/>

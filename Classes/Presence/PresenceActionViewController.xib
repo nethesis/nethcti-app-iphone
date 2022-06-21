@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -137,19 +137,19 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="o33-N5-pSr" userLabel="Label - Nome">
-                                    <rect key="frame" x="125" y="15" width="269" height="28"/>
+                                    <rect key="frame" x="125" y="15" width="269" height="28.5"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                     <color key="textColor" name="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqb-qX-n8Z" userLabel="Label - MainExtension">
-                                    <rect key="frame" x="125" y="58" width="28.5" height="19"/>
+                                    <rect key="frame" x="125" y="58.5" width="28.5" height="19"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                     <color key="textColor" name="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ME-Yd-Chh" userLabel="Button - Preferito">
-                                    <rect key="frame" x="339" y="43" width="50" height="50"/>
+                                    <rect key="frame" x="339" y="43.5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="Uwa-sp-Hsm"/>
                                         <constraint firstAttribute="height" constant="50" id="hHn-dw-wAd"/>
@@ -160,7 +160,7 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Epj-6o-USd" userLabel="View - StatusPresence">
-                                    <rect key="frame" x="168.5" y="58" width="25.5" height="18"/>
+                                    <rect key="frame" x="168.5" y="58.5" width="25.5" height="18"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7X-1L-8ZL" userLabel="Label - Status">
                                             <rect key="frame" x="3" y="2" width="19.5" height="14"/>

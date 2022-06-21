@@ -28,14 +28,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //NSLog(@"viewDidLoad - PresenceActionViewController");
+    NSLog(@"viewDidLoad - PresenceActionViewController");
 
     //NSLog(@"portableNethUserMe.mainextension: %@", self.portableNethUserMe.mainExtension);
     
     //NSLog(@"portablePresenceUser.mainextension: %@", self.presenceUserObjcSelezionato.mainExtension);
     //NSLog(@"portablePresenceUser.mainPresence: %@", self.presenceUserObjcSelezionato.mainPresence);
 
-    
+    self.ibLabelTitolo.text = NSLocalizedString(@"AZIONI", nil);
 
     // --- MBProgressHUD ---
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -91,7 +91,7 @@
         case 0:
             // CHIAMA
             
-            NSLog(@"CHIAMA");
+            //NSLog(@"CHIAMA");
             
             [self azioneChiama];
             
@@ -100,7 +100,7 @@
         case 1:
             // CHIUDI
             
-            NSLog(@"CHIUDI");
+            //NSLog(@"CHIUDI");
 
             [self azioneChiudi];
 
@@ -109,7 +109,7 @@
         case 2:
             // REGISTRA
             
-            NSLog(@"REGISTRA");
+            //NSLog(@"REGISTRA");
 
             [self azioneRegistra];
 
@@ -118,7 +118,7 @@
         case 3:
             // INTROMETTITI
             
-            NSLog(@"INTROMETTITI");
+            //NSLog(@"INTROMETTITI");
 
             [self azioneIntromettiti];
             
@@ -127,7 +127,7 @@
         case 4:
             // PRENOTA
             
-            NSLog(@"PRENOTA");
+            //NSLog(@"PRENOTA");
 
             [self azionePrenota];
                 
@@ -137,7 +137,7 @@
         case 5:
             // PICKUP
             
-            NSLog(@"PICKUP");
+            //NSLog(@"PICKUP");
 
             [self azionePickup];
             
@@ -146,7 +146,7 @@
         case 6:
             // SPIA
             
-            NSLog(@"SPIA");
+            //NSLog(@"SPIA");
 
             [self azioneSpia];
             
@@ -357,9 +357,7 @@
     //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
     
     if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]){
-        
-        //NSLog(@"key preferiti_username_nethesis found");
-        
+                
         if ([defaults arrayForKey:kKeyPreferiti] != nil) {
             
             // getting an NSArray
@@ -393,7 +391,7 @@
         
     }else {
         
-        NSLog(@"key preferiti_username_nethesis NOT found!");
+        NSLog(@"key favorites_username_presence NOT found!");
         
         self.isPreferito = NO;
     }
@@ -475,7 +473,7 @@
         
     }else {
         
-        NSLog(@"key preferiti_username_nethesis NOT found!");
+        NSLog(@"key favorites_username_presence NOT found!");
         
         NSMutableArray *nuovoArrayPreferiti = [NSMutableArray new];
         
@@ -542,7 +540,7 @@
         
     }else {
         
-        NSLog(@"key preferiti_username_nethesis NOT found!");
+        NSLog(@"key favorites_username_presence NOT found!");
     }
 }
 
@@ -571,7 +569,7 @@
         case 0:
             // CHIAMA
             
-            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"CHIAMA", nil);
+            presenceActionCollectionViewCell.ibLabelNomeAzione.text = NSLocalizedString(@"CALL", nil);
 
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiama_on"] forState:UIControlStateNormal];
             [presenceActionCollectionViewCell.ibButtonAzione setImage:[UIImage imageNamed:@"icn_chiama_off"] forState:UIControlStateDisabled];
@@ -1029,19 +1027,20 @@
 
 - (void)azioneChiama {
     
-    //NSLog(@"azioneChiama");
+    NSLog(@"azioneChiama");
 
-    //NSLog(@"portablePresenceUser.mainextension: %@", self.portablePresenceUser.mainExtension);
+    NSLog(@"presenceUserObjcSelezionato.mainextension: %@", self.presenceUserObjcSelezionato.mainExtension);
 
+    //Oggetto che rappresenta un indirizzo SIP che è composto da nome visualizzato, nome utente, nome di dominio, porta e varie intestazioni uri
     LinphoneAddress *linphoneAddress = [LinphoneUtils normalizeSipOrPhoneAddress:self.presenceUserObjcSelezionato.mainExtension];
 
     [LinphoneManager.instance call:linphoneAddress];
     
     if (linphoneAddress) {
         
+        //Decrementa il conteggio dei riferimenti dell'oggetto #LinphoneAddress. Quando viene ridotto a zero, la memoria viene liberata
         linphone_address_unref(linphoneAddress);
         
-        //[self dismissViewControllerAnimated:YES completion:nil];
         [self dismissViewControllerAnimated:YES completion:^{
             
             [self.presenceActionDelegate reloadPresenceFromAction];
@@ -1050,7 +1049,6 @@
     }else {
         
         NSLog(@"linphoneAddress false!");
-
     }
 }
 

@@ -263,10 +263,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
     [ContactSelection setPickerFilter:_pickerData[row]];
     NSString *picker = pickerFilter;
     NSString *search = _searchField.text;
+    
     [LinphoneManager.instance.fastAddressBook resetNeth];
+    
     [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
 }
 
@@ -297,10 +300,13 @@ static UICompositeViewDescription *compositeDescription = nil;
          * Those contacts have contact.nethesis at YES instead of NO.
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
+        
         [LinphoneManager.instance.fastAddressBook resetNeth];
+        
         if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText]) {
             return;
         };
+        
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
         [ContactSelection enableEmailFilter:FALSE];
         linphoneButton.selected = TRUE;
@@ -477,6 +483,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         [LinphoneManager.instance setContactsUpdated:TRUE];
         [tableController loadData];
     } else {
+        
         // Before loading searched data, we have to search them!
         [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
         [tableController loadSearchedData];
@@ -514,8 +521,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)performSearch {
     NSString * text = [ContactSelection getNameOrEmailFilter];
+    
     [LinphoneManager.instance.fastAddressBook resetNeth];
+    
     [LinphoneManager.instance setContactsUpdated:TRUE];
+    
     if([LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:text]) {
         // Deny any other input until search is finished.
         dispatch_async(dispatch_get_main_queue(), ^{

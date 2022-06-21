@@ -59,10 +59,13 @@
 #pragma mark -
 
 - (void)touchUp:(id)sender {
+    
 	NSString *address = addressField.text;
+    
 	if (address.length == 0) {
         // Get the last number called.
 		LinphoneCallLog *log = linphone_core_get_last_outgoing_call_log(LC);
+        
 		if (log) {
 			const LinphoneAddress *to = linphone_call_log_get_to_address(log);
 			const char *domain = linphone_address_get_domain(to);
@@ -72,13 +75,17 @@
 			// if the 'to' address is on the default proxy, only present the username
 			if (def_proxy) {
 				const char *def_domain = linphone_proxy_config_get_domain(def_proxy);
+                
 				if (def_domain && domain && !strcmp(domain, def_domain)) {
+                    
 					bis_address = ms_strdup(linphone_address_get_username(to));
 				}
 			}
+            
 			if (bis_address == NULL) {
 				bis_address = linphone_address_as_string_uri_only(to);
 			}
+            
 			[addressField setText:[NSString stringWithUTF8String:bis_address]];
 			ms_free(bis_address);
 			// return after filling the address, let the user confirm the call by pressing again
@@ -87,7 +94,9 @@
 	} else if ([address length] > 0) {
         // Start a call.
 		LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:address];
-        if([TransferCallManager.instance isCallTransfer]) {
+        
+        if ([TransferCallManager.instance isCallTransfer]) {
+            
             LinphoneCore *core = [LinphoneManager getLc];
             LinphoneCall *call = linphone_core_get_current_call(core);
             
@@ -96,6 +105,7 @@
         }
         
         [LinphoneManager.instance call:addr];
+        
 		if (addr)
 			linphone_address_unref(addr);
 	}

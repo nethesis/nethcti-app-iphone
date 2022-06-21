@@ -93,7 +93,7 @@
 
 - (IBAction)callTouchUpInside:(id)event {
     
-    if(callLog == nil) {
+    if (callLog == nil) {
         
         return;
     }

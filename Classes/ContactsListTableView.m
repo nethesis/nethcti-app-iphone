@@ -385,12 +385,18 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     // If no need to download contacts, don't do it!
-    if([ContactSelection getSipFilter]) {
+    if ([ContactSelection getSipFilter]) {
+        
         NSInteger rowIndex = [self tableView:tableView countRow:indexPath];
-        if([NethPhoneBook.instance hasMore:rowIndex] && rowIndex + 50 > self.itemsNumber) {
+        
+        if ([NethPhoneBook.instance hasMore:rowIndex] && rowIndex + 50 > self.itemsNumber) {
+            
             NSString *searchText = [ContactSelection getNameOrEmailFilter];
-            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+            
+            [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter]
+                                                      withTerm:searchText];
         }
     }
     
@@ -400,6 +406,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		cell = [[UIContactCell alloc] initWithIdentifier:kCellId];
         [cell setFrame: CGRectMake(0, 0, tableView.frame.size.width, rowHeight)];
 	}
+    
     // if(addressBookMap.count > [indexPath section]) { // HackerMAN!
         NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
         // if (subAr.count > indexPath.row) {
@@ -413,6 +420,7 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
             cell.contentView.userInteractionEnabled = false;
         // }
     // }
+    
 	return cell;
 }
 

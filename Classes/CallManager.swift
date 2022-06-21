@@ -241,6 +241,7 @@ import AVFoundation
     
     // for outgoing call. There is not yet callId
     @objc func startCall(addr: OpaquePointer?, isSas: Bool) {
+        
         if (addr == nil) {
             print("Can not start a call with null address!")
             return
@@ -249,6 +250,7 @@ import AVFoundation
         let sAddr = Address.getSwiftObject(cObject: addr!)
         //Removed check "nextCallIsTransfer" to support correctly attended transfer
         if (CallManager.callKitEnabled()) {
+            
             let uuid = UUID()
             let name = FastAddressBook.displayName(for: addr) ?? "unknow"
             let handle = CXHandle(type: .generic, value: sAddr.asStringUriOnly())
@@ -261,12 +263,18 @@ import AVFoundation
             
             setHeldOtherCalls(exceptCallid: "")
             requestTransaction(transaction, action: "startCall")
+            
         }else {
+            
             try? doCall(addr: sAddr, isSas: isSas)
         }
     }
     
+    
     func doCall(addr: Address, isSas: Bool) throws {
+        
+        Log.directLog(BCTBX_LOG_DEBUG, text: "doCall addr: \(addr)");
+
         let displayName = FastAddressBook.displayName(for: addr.getCobject)
         
         let lcallParams = try CallManager.instance().lc!.createCallParams(call: nil)
@@ -280,20 +288,24 @@ import AVFoundation
             try addr.setDisplayname(newValue: displayName!)
         }
         
-        if(ConfigManager.instance().lpConfigBoolForKey(key: "override_domain_with_default_one")) {
+        if (ConfigManager.instance().lpConfigBoolForKey(key: "override_domain_with_default_one")) {
             try addr.setDomain(newValue: ConfigManager.instance().lpConfigStringForKey(key: "domain", section: "assistant"))
         }
         
         // TODO: Qui dovrei mettere la gestione del trasferimento o no della chiamata.
         if (CallManager.instance().nextCallIsTransfer && false) {
+            
             let call = CallManager.instance().lc!.currentCall
             try call?.transfer(referTo: addr.asString())
             CallManager.instance().nextCallIsTransfer = false
+            
         } else {
             //We set the record file name here because we can't do it after the call is started.
             let writablePath = AppManager.recordingFilePathFromCall(address: addr.username )
+            
             Log.directLog(BCTBX_LOG_DEBUG, text: "record file path: \(writablePath)")
             Log.directLog(BCTBX_LOG_DEBUG, text: "Wedo - VideoParams: \(lcallParams.videoEnabled)")
+            
             lcallParams.recordFile = writablePath
             if (isSas) {
                 lcallParams.mediaEncryption = .ZRTP
@@ -305,17 +317,20 @@ import AVFoundation
                 // We are NOT responsible for creating the AppData.
                 let data = CallManager.getAppData(sCall: call!)
                 if (data == nil) {
+                    
                     Log.directLog(BCTBX_LOG_ERROR, text: "New call instanciated but app data was not set. Expect it to crash.")
                     /* will be used later to notify user if video was not activated because of the linphone core*/
                 } else {
+                    
                     data!.videoRequested = lcallParams.videoEnabled
+                    
                     Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO: doCall()->data.videoRequested \(data!.videoRequested)")
+                    
                     CallManager.setAppData(sCall: call!, appData: data)
                 }
                 
                 // If starting transfering a call, save destination call pointer.
-                if TransferCallManager.instance().isCallTransfer,
-                   let _ = TransferCallManager.instance().origin {
+                if TransferCallManager.instance().isCallTransfer, let _ = TransferCallManager.instance().origin {
                     TransferCallManager.instance().destination = call
                 }
             }

@@ -21,10 +21,18 @@ extension NethCTIAPI {
         case MainExtensionKey = "NethesisMainExtension"
         case NethUserExport = "NethUserExport"
         case NethTokenDefaultKey = "NethTokenDefaultKey"    // Logged token for nethcti servers.
-        case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore.
+        case NotifTokenDefaultKey = "NotifTokenDefaultKey"  // Logged auth token for Notificatore. NON UTILIZZATO???
         case UserDefaultKey = "UserDefaultKey"              // Logged username.
-        case KeyPreferiti = "preferiti_username_nethesis"   // Preferiti salvati dall'utente
     }
+    
+    /**
+     Those enums was used for stored group id and favorites
+     */
+    public enum enumUserDefaultIdentifier : String {
+        case KeyPreferiti = "favorites_username_presence"   // Preferiti salvati dall'utente
+        case KeyIdGroup = "id_group_presence"               // Gruppo salvato dall'utente
+    }
+
     
     @objc public class ApiCredentials: NSObject {
         /**
@@ -157,11 +165,15 @@ extension NethCTIAPI {
         
         public class func clear() -> Void {
             
+            print("extension NethCTIAPI - clear()")
+
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.DomainDefaultKey.rawValue)
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.NethTokenDefaultKey.rawValue)
-            // rimozione preferiti
-            UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.KeyPreferiti.rawValue)
+            // rimuovo lista username preferiti in presence
+            UserDefaults.standard.removeObject(forKey: enumUserDefaultIdentifier.KeyPreferiti.rawValue)
+            // rimuovo gruppo selezionato in presence
+            UserDefaults.standard.removeObject(forKey: enumUserDefaultIdentifier.KeyIdGroup.rawValue)
         }
     }
 }

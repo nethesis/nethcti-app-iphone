@@ -70,13 +70,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //NSLog(@"viewDidLoad - PresenceViewController");
+    NSLog(@"viewDidLoad - PresenceViewController");
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
     [self.view addSubview:self.HUD];
     
     
+    self.ibLabelNessunDato.text = NSLocalizedString(@"Nessun utente", nil);
     
     // --- UIRefreshControl ---
     // Initialize Refresh Control
@@ -95,9 +96,33 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.ibButtonSelezionePresence.titleLabel.adjustsFontSizeToFitWidth = 0.7;
 
     // --- Default filtro per gruppi selezionato ---
-    self.id_groupSelezionato = @"";
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
+
+    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyIdGroup]) {
+                    
+        if ([defaults stringForKey:kKeyIdGroup] != nil) {
+            
+            NSString *id_groupSalvato = [defaults stringForKey:kKeyIdGroup];
+            //NSLog(@"id_groupSalvato: %@", id_groupSalvato);
+
+            self.id_groupSelezionato = id_groupSalvato;
+        }
+        
+    }else {
+        
+        NSLog(@"Key: id_group_presence NON presente!");
+        self.id_groupSelezionato = @"";
+    }
+    
+    
     self.isGroupsFilter = YES;
     
+    self.ibLabelGruppi.text = NSLocalizedString(@"GRUPPI", nil);
+
+    self.ibLabelPreferiti.text = NSLocalizedString(@"PREFERITI", nil);
+
     self.ibLabelPreferiti.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
     [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
@@ -301,7 +326,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
 
-        if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]){
+        if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyPreferiti]) {
                         
             if ([defaults arrayForKey:kKeyPreferiti] != nil) {
                 
@@ -338,7 +363,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             
         }else {
             
-            NSLog(@"key preferiti_username_nethesis NOT found!");
+            NSLog(@"key favorites_username_presence NON presente!");
         }
     }
     
@@ -414,42 +439,30 @@ static UICompositeViewDescription *compositeDescription = nil;
         presenceSelectListGroupViewController.id_groupSelezionato = self.id_groupSelezionato;
         presenceSelectListGroupViewController.presenceSelectListGroupDelegate = self;
 
-        /*
-        if (@available(iOS 13.0, *)) {
-            
-            [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationAutomatic];
-            
-        } else {
-            // Fallback on earlier versions
-            [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationFullScreen];
-        }
-        */
         [presenceSelectListGroupViewController setModalPresentationStyle:UIModalPresentationOverFullScreen];
-
         
         [self presentViewController:presenceSelectListGroupViewController animated:true completion:nil];
         
     }else {
         
+        // GRUPPI
         self.isGroupsFilter = YES;
-        
-        self.ibLabelPreferiti.textColor = [UIColor colorNamed:@"ColorTextBlack"];
-
-        [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
-        self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
-
         
         self.ibLabelGruppi.textColor = [UIColor colorNamed: @"mainColor"];
 
         [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_on"] forState:UIControlStateNormal];
         self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
+        
+        // PREFERITI
+        self.ibLabelPreferiti.textColor = [UIColor colorNamed:@"ColorTextBlack"];
 
+        [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_off"] forState:UIControlStateNormal];
+        self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
+        
         
         [self loadDataFiltered];
-
     }
     
-
 }
 
 
@@ -860,7 +873,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     } else if([presence isEqualToString:kKeyDisconnesso]) {
         // DISCONNESSO
         
-        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"Disconnesso", nil) forState:UIControlStateNormal];
+        [self.ibButtonSelezionePresence setTitle:NSLocalizedString(@"DISCONNESSO", nil) forState:UIControlStateNormal];
         
         self.ibButtonSelezionePresence.backgroundColor = [UIColor colorNamed: @"ColorStatusPresenceOffline"];
         
@@ -928,16 +941,12 @@ static UICompositeViewDescription *compositeDescription = nil;
                     }
                 }
                 
-                
                 // --- ordinamento dal più piccolo al più grande sulla chiave name ---
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
                 NSArray *arrayGroupsSorted = [self.arrayGruppiVisibili sortedArrayUsingDescriptors:@[sortDescriptor]];
                 self.arrayGruppiVisibili = [[NSMutableArray alloc]initWithArray:arrayGroupsSorted];
                 // -------------------------------------------------------------------
-                
             });
-
-            
             
             // Download UTENTI
             [api getUserAllWithSuccessHandler:^(NSArray *arrayUsers) {
@@ -955,10 +964,17 @@ static UICompositeViewDescription *compositeDescription = nil;
                         
                         // --- Selezione default primo gruppo ---
                         groupVisibileSelezionato = self.arrayGruppiVisibili.firstObject;
-                        
+
                         self.id_groupSelezionato = groupVisibileSelezionato.id_group;
+                        //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
                         // --------------------------------------
-                                                
+                                            
+                        // --- salvataggio gruppo selezionato ---
+                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                        [defaults setObject:groupVisibileSelezionato.id_group forKey:kKeyIdGroup];
+                        [defaults synchronize];
+                        // --------------------------------------
+                        
                     }else {
                         
                         for (GroupObjc *gruppoVisibileCorrente in self.arrayGruppiVisibili) {
@@ -974,10 +990,8 @@ static UICompositeViewDescription *compositeDescription = nil;
                     
                     //NSLog(@"groupVisibileSelezionato.users: %@", groupVisibileSelezionato.users);
                     //NSLog(@"groupVisibileSelezionato.count: %lu", (unsigned long)groupVisibileSelezionato.users.count);
-                    
 
                     self.ibLabelGruppi.text = [[NSString stringWithFormat:@"%@", groupVisibileSelezionato.name] uppercaseString];
-                    
                     
                     self.arrayUsersGruppoSelezionato = [NSMutableArray new];
                     
@@ -998,22 +1012,15 @@ static UICompositeViewDescription *compositeDescription = nil;
                         }
                     }
                     
-                    
                     //NSLog(@"arrayUsersVisibili.count: %lu", (unsigned long)arrayUsersVisibili.count);
                     
-                    
-                    
                     [self loadDataFiltered];
-                    
                     
                     // Nascondo la ViewCaricamento
                     [self.HUD hideAnimated:YES];
                     
                     [self.refreshControl endRefreshing];
                 });
-                
-                
-                
                 
             } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
                 
@@ -1093,6 +1100,12 @@ static UICompositeViewDescription *compositeDescription = nil;
     //NSLog(@"reloadPresenceWithGroup: %@", id_group);
     
     self.id_groupSelezionato = id_group;
+    
+    // --- salvataggio gruppo selezionato ---
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:id_group forKey:kKeyIdGroup];
+    [defaults synchronize];
+    // --------------------------------------
     
     [self.HUD showAnimated:YES];
     

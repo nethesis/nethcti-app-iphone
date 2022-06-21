@@ -713,9 +713,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onCallClick:(id)sender {
+    
 	bctbx_list_t *participants = linphone_chat_room_get_participants(_chatRoom);
 	LinphoneParticipant *firstParticipant = participants ? (LinphoneParticipant *)participants->data : NULL;
 	const LinphoneAddress *addr = firstParticipant ? linphone_participant_get_address(firstParticipant) : linphone_chat_room_get_peer_address(_chatRoom);
+    
 	[LinphoneManager.instance call:addr];
 }
 

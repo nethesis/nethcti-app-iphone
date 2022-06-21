@@ -28,10 +28,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //NSLog(@"viewDidLoad()");
+    NSLog(@"PresenceSelectListGroupViewController - viewDidLoad()");
 
     //NSLog(@"arrayGroups: %@", self.arrayGroups);
     //NSLog(@"id_groupSelezionato: %@", self.id_groupSelezionato);
+    
+    self.ibLabelTitolo.text = NSLocalizedString(@"Gruppi", nil);
+    
+    
+    [self.ibButtonChiudi setTitle:NSLocalizedString(@"Fine", nil) forState:UIControlStateNormal];
     
     
     // --- MBProgressHUD ---

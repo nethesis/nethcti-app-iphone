@@ -883,84 +883,88 @@ static void linphone_iphone_message_received(LinphoneCore *lc, LinphoneChatRoom 
 }
 
 static void linphone_iphone_message_received_unable_decrypt(LinphoneCore *lc, LinphoneChatRoom *room,
-							    LinphoneChatMessage *message) {
-
-	NSString *callId = [NSString stringWithUTF8String:linphone_chat_message_get_custom_header(message, "Call-ID")];
-	int index = [(NSNumber *)[LinphoneManager.instance.pushDict objectForKey:callId] intValue] - 1;
-	LOGI(@"Decrementing index of long running task for call id : %@ with index : %d", callId, index);
-	[LinphoneManager.instance.pushDict setValue:[NSNumber numberWithInt:index] forKey:callId];
-	BOOL need_bg_task = FALSE;
-	for (NSString *key in [LinphoneManager.instance.pushDict allKeys]) {
-		int value = [(NSNumber *)[LinphoneManager.instance.pushDict objectForKey:key] intValue];
-		if (value > 0) {
-			need_bg_task = TRUE;
-			break;
-		}
-	}
-	if (theLinphoneManager->pushBgTaskMsg && !need_bg_task) {
-		LOGI(@"Message received, stopping message background task for call-id [%@]", callId);
-		[[UIApplication sharedApplication] endBackgroundTask:theLinphoneManager->pushBgTaskMsg];
-		theLinphoneManager->pushBgTaskMsg = 0;
-	}
-	const LinphoneAddress *address = linphone_chat_message_get_peer_address(message);
-	NSString *strAddr = [FastAddressBook displayNameForAddress:address];
-	NSString *title = NSLocalizedString(@"LIME warning", nil);
-	NSString *body = [NSString
-			  stringWithFormat:NSLocalizedString(@"You have received an encrypted message you are unable to decrypt from "
-							     @"%@.\nYou need to call your correspondant in order to exchange your ZRTP "
-							     @"keys if you want to decrypt the future messages you will receive.",
-							     nil),
-			  strAddr];
-	NSString *action = NSLocalizedString(@"Call", nil);
-
-	if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
-		if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
-			UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-			content.title = title;
-			content.body = body;
-			UNNotificationRequest *req =
-				[UNNotificationRequest requestWithIdentifier:@"decrypt_request" content:content trigger:NULL];
-			[[UNUserNotificationCenter currentNotificationCenter]
-			 addNotificationRequest:req
-			 withCompletionHandler:^(NSError *_Nullable error) {
-					// Enable or disable features based on authorization.
-					if (error) {
-						LOGD(@"Error while adding notification request :");
-						LOGD(error.description);
-					}
-				}];
-		} else {
-			UILocalNotification *notification = [[UILocalNotification alloc] init];
-			notification.repeatInterval = 0;
-			notification.alertTitle = title;
-			notification.alertBody = body;
-			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-		}
-	} else {
-		UIAlertController *errView =
-			[UIAlertController alertControllerWithTitle:title message:body preferredStyle:UIAlertControllerStyleAlert];
-
-		UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-						style:UIAlertActionStyleDefault
-						handler:^(UIAlertAction *action){
-			}];
-
-		UIAlertAction *callAction = [UIAlertAction actionWithTitle:action
-					     style:UIAlertActionStyleDefault
-					     handler:^(UIAlertAction *action) {
-				[LinphoneManager.instance call:address];
-			}];
-
-		[errView addAction:defaultAction];
-		[errView addAction:callAction];
-		[PhoneMainView.instance presentViewController:errView animated:YES completion:nil];
-	}
+                                                            LinphoneChatMessage *message) {
+    
+    NSString *callId = [NSString stringWithUTF8String:linphone_chat_message_get_custom_header(message, "Call-ID")];
+    int index = [(NSNumber *)[LinphoneManager.instance.pushDict objectForKey:callId] intValue] - 1;
+    LOGI(@"Decrementing index of long running task for call id : %@ with index : %d", callId, index);
+    [LinphoneManager.instance.pushDict setValue:[NSNumber numberWithInt:index] forKey:callId];
+    BOOL need_bg_task = FALSE;
+    for (NSString *key in [LinphoneManager.instance.pushDict allKeys]) {
+        int value = [(NSNumber *)[LinphoneManager.instance.pushDict objectForKey:key] intValue];
+        if (value > 0) {
+            need_bg_task = TRUE;
+            break;
+        }
+    }
+    if (theLinphoneManager->pushBgTaskMsg && !need_bg_task) {
+        LOGI(@"Message received, stopping message background task for call-id [%@]", callId);
+        [[UIApplication sharedApplication] endBackgroundTask:theLinphoneManager->pushBgTaskMsg];
+        theLinphoneManager->pushBgTaskMsg = 0;
+    }
+    
+    const LinphoneAddress *address = linphone_chat_message_get_peer_address(message);
+    
+    NSString *strAddr = [FastAddressBook displayNameForAddress:address];
+    NSString *title = NSLocalizedString(@"LIME warning", nil);
+    NSString *body = [NSString
+                      stringWithFormat:NSLocalizedString(@"You have received an encrypted message you are unable to decrypt from "
+                                                         @"%@.\nYou need to call your correspondant in order to exchange your ZRTP "
+                                                         @"keys if you want to decrypt the future messages you will receive.",
+                                                         nil),
+                      strAddr];
+    NSString *action = NSLocalizedString(@"Call", nil);
+    
+    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
+            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+            content.title = title;
+            content.body = body;
+            UNNotificationRequest *req =
+            [UNNotificationRequest requestWithIdentifier:@"decrypt_request" content:content trigger:NULL];
+            [[UNUserNotificationCenter currentNotificationCenter]
+             addNotificationRequest:req
+             withCompletionHandler:^(NSError *_Nullable error) {
+                // Enable or disable features based on authorization.
+                if (error) {
+                    LOGD(@"Error while adding notification request :");
+                    LOGD(error.description);
+                }
+            }];
+        } else {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.repeatInterval = 0;
+            notification.alertTitle = title;
+            notification.alertBody = body;
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        }
+    } else {
+        
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:title
+                                                                         message:body
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action){
+        }];
+        
+        UIAlertAction *callAction = [UIAlertAction actionWithTitle:action
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) {
+            [LinphoneManager.instance call:address];
+        }];
+        
+        [errView addAction:defaultAction];
+        [errView addAction:callAction];
+        [PhoneMainView.instance presentViewController:errView animated:YES completion:nil];
+    }
 }
 
 - (void)onNotifyReceived:(LinphoneCore *)lc
-event:(LinphoneEvent *)lev
-notifyEvent:(const char *)notified_event
-content:(const LinphoneContent *)body {
+                   event:(LinphoneEvent *)lev
+             notifyEvent:(const char *)notified_event
+                 content:(const LinphoneContent *)body {
 	// Post event
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	[dict setObject:[NSValue valueWithPointer:lev] forKey:@"event"];
@@ -1799,15 +1803,17 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 #pragma mark - Call Functions
 
 - (void)send:(NSString *)replyText toChatRoom:(LinphoneChatRoom *)room {
+    
 	LinphoneChatMessage *msg = linphone_chat_room_create_message(room, replyText.UTF8String);
 	linphone_chat_message_send(msg);
 
 	[ChatConversationView markAsRead:room];
 }
 
+
 - (void)call:(const LinphoneAddress *)iaddr {
     
-	// First verify that network is available, abort otherwise.
+	// Per prima cosa verifica che la rete sia disponibile, altrimenti interrompi.
 	if (!linphone_core_is_network_reachable(theLinphoneCore)) {
         
 		[PhoneMainView.instance presentViewController:[LinphoneUtils networkErrorView] animated:YES completion:nil];
@@ -1815,20 +1821,23 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 		return;
 	}
 
-	// Then check that no GSM calls are in progress, abort otherwise.
+    /*
+	// Controlla che non ci siano chiamate GSM in corso, altrimenti interrompi.
 	CTCallCenter *callCenter = [[CTCallCenter alloc] init];
     
-	if ([callCenter currentCalls] != nil && floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+    // currentCalls deprecato da iOS 10!
+	if ([callCenter currentCalls] != nil &&
+        floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
         
-		LOGE(@"GSM call in progress, cancelling outgoing SIP call request");
+		LOGE(@"Chiamata GSM in corso, annullamento della richiesta di chiamata SIP in uscita");
         
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cannot make call", nil)
-					      message:NSLocalizedString(@"Please terminate GSM call first.", nil)
-					      preferredStyle:UIAlertControllerStyleAlert];
+                                                                         message:NSLocalizedString(@"Please terminate GSM call first.", nil)
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
 
-		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-						style:UIAlertActionStyleDefault
-						handler:^(UIAlertAction * action) {}];
+		UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
 
 		[errView addAction:defaultAction];
         
@@ -1836,27 +1845,30 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
         
 		return;
 	}
-
+    */
+    
 	// Then check that the supplied address is valid
 	if (!iaddr) {
         
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Invalid SIP address", nil)
-					      message:NSLocalizedString(@"Either configure a SIP proxy server from settings prior to place a "
-									@"call or use a valid SIP address (I.E sip:john@example.net)", nil)
-					      preferredStyle:UIAlertControllerStyleAlert];
+                                                                         message:NSLocalizedString(@"Either configure a SIP proxy server from settings prior to place a call or use a valid SIP address (I.E sip:john@example.net)", nil)
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
 
 		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-						style:UIAlertActionStyleDefault
-						handler:^(UIAlertAction * action) {}];
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
 
 		[errView addAction:defaultAction];
+        
 		[PhoneMainView.instance presentViewController:errView animated:YES completion:nil];
+        
 		return;
 	}
 
 	// For OutgoingCall, show CallOutgoingView
 	[CallManager.instance startCallWithAddr:iaddr isSas:FALSE];
 }
+
 
 #pragma mark - Property Functions
 
@@ -2355,23 +2367,27 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 #pragma mark - Proxy internal helper
 - (void)clearProxies {
     
+    NSLog(@"LinphoneManager - clearProxies");
+
     // --- rimozione configurazioni e autenticazione al Linphone SDK ---
     // Get the default proxy configured.
     LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
 
-    const LinphoneAuthInfo *ai = linphone_proxy_config_find_auth_info(config);
+    // Find authentication info matching proxy config, if any, similarly to linphone_core_find_auth_info.
+    const LinphoneAuthInfo *authInfo = linphone_proxy_config_find_auth_info(config);
     
-    // Remove the selected proxy config.
+    // Remove the selected proxy configuration
     linphone_core_remove_proxy_config(LC, config);
     
-    if (ai) {
-        // Remove the authentication infos.
-        linphone_core_remove_auth_info(LC, ai);
+    if (authInfo) {
+        // Removes an authentication information object
+        linphone_core_remove_auth_info(LC, authInfo);
     }
-    
+    // Erase all proxies from config
     linphone_core_clear_proxy_config(LC);
+    // Clear all authentication information
     linphone_core_clear_all_auth_info(LC);
-    // Confirm the actual configuration. ???
+    // Commits modification made to the proxy configuration
     linphone_proxy_config_done(config);
     // -----------------------------------------------------------------
     

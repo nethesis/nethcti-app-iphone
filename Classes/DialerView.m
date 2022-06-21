@@ -376,15 +376,21 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
 	if (textField == _addressField) {
+        
 		[_addressField resignFirstResponder];
 	}
+    
 	if (textField.text.length > 0) {
+        
 		LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:textField.text];
 		[LinphoneManager.instance call:addr];
+        
 		if (addr)
 			linphone_address_destroy(addr);
 	}
+    
 	return YES;
 }
 

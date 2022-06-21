@@ -36,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //NSLog(@"PresenceSelectListViewController - viewDidLoad");
+    NSLog(@"PresenceSelectListViewController - viewDidLoad");
 
     //NSLog(@"portableNethUserMe: %@", portableNethUserMe);
 
@@ -56,6 +56,9 @@
     BOOL is_network_reachable = linphone_core_is_network_reachable(LC);
     NSLog(@"is_network_reachable: %@", is_network_reachable ? @"YES" : @"NO");
     */
+    
+    self.ibLabelTitolo.text = NSLocalizedString(@"IMPOSTA STATO", nil);;
+    
     
     // --- MBProgressHUD ---
     self.HUD = [[MBProgressHUD alloc] initWithView:self.view];

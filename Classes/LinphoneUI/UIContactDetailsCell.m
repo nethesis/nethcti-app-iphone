@@ -47,6 +47,7 @@
     
     _addressLabel.text = _editTextfield.text = address;
     char *normAddr = (char *)_addressLabel.text.UTF8String;
+    
     LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
     const BOOL isPhone = linphone_proxy_config_is_phone_number(cfg, _addressLabel.text.UTF8String);
     if(_addressLabel.text && cfg && isPhone)
@@ -173,8 +174,9 @@
 
 - (IBAction)onCallClick:(id)event {
     
-    //NSLog(@"onCallClick - addressLabel.text: %@", self.addressLabel.text);
-    
+    NSLog(@"onCallClick");
+    //NSLog(@"_addressLabel.text: %@", _addressLabel.text);
+
 	LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:_addressLabel.text];
 
 	[LinphoneManager.instance call:addr];
