@@ -284,6 +284,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)changeView:(ContactsCategory)view {
     // REQUIRED TO RELOAD WITH FILTER.
     [LinphoneManager.instance setContactsUpdated:TRUE];
+    
     if (view == ContactsAll && !allButton.selected) {
         // REQUIRED TO RELOAD WITH FILTER.
         // [LinphoneManager.instance setContactsUpdated:TRUE];
@@ -294,6 +295,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         [tableController loadData];
         [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
         [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        
     } else if (view == ContactsLinphone && !linphoneButton.selected) {
         /*
          * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
@@ -319,6 +321,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     [addButton setHidden:sipFilter];
     [tableController.deleteButton setHidden:sipFilter];
     [tableController.editButton setHidden:sipFilter];
+    
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         allButton.selected = FALSE;
     }
@@ -481,11 +484,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     if (searchText.length == 0) { // No filter, no search data.
         [LinphoneManager.instance setContactsUpdated:TRUE];
+        
         [tableController loadData];
+        
     } else {
         
         // Before loading searched data, we have to search them!
-        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter]
+                                                  withTerm:searchText];
         [tableController loadSearchedData];
     }
 }
@@ -520,6 +526,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)performSearch {
+    
     NSString * text = [ContactSelection getNameOrEmailFilter];
     
     [LinphoneManager.instance.fastAddressBook resetNeth];

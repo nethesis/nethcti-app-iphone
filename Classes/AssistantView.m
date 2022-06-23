@@ -431,9 +431,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)configureProxyConfig {
+    
     LinphoneManager *lm = LinphoneManager.instance;
     
     if (!linphone_core_is_network_reachable(LC)) {
+        
         UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network Error", nil)
                                                                          message:NSLocalizedString(@"There is no network connection available, enable "
                                                                                                    @"WIFI or WWAN prior to configure an account",
@@ -446,7 +448,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         [errView addAction:defaultAction];
         [self presentViewController:errView animated:YES completion:nil];
+        
         _waitView.hidden = YES;
+        
         return;
     }
     

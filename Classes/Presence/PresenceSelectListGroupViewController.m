@@ -35,6 +35,7 @@
     
     self.ibLabelTitolo.text = NSLocalizedString(@"Gruppi", nil);
     
+    self.ibLabelNessunDato.text = NSLocalizedString(@"Nessun gruppo", nil);
     
     [self.ibButtonChiudi setTitle:NSLocalizedString(@"Fine", nil) forState:UIControlStateNormal];
     
@@ -58,8 +59,6 @@
     
     
     // --- Download ---
-    //[self.HUD showAnimated:YES];
-    
     [self downloadGruppiAbilitati];
     // ----------------
 }
@@ -85,65 +84,84 @@
 
 - (void)downloadGruppiAbilitati {
     
-    //NSLog(@"downloadGruppiAbilitati");
+    NSLog(@"downloadGruppiAbilitati");
     
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    // Download INFO UTENTE
-    [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
+    if (linphone_core_is_network_reachable(LC)) {
+
+        NSLog(@"Connessione OK");
+
+        [self.HUD showAnimated:YES];
+
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
         
-        //NSLog(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
-        
-        // Download GRUPPI
-        [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
+        // Download INFO UTENTE
+        [api getUserMeWithSuccessHandler:^(PortableNethUser *portableNethUser) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            //NSLog(@"portableNethUser.arrayPermissionsIdGroups: %@", portableNethUser.arrayPermissionsIdGroups);
+            
+            // Download GRUPPI
+            [api getGroupsWithSuccessHandler:^(NSArray *arrayGroups) {
                 
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
-                
-                [self.refreshControl endRefreshing];
-                
-                self.arrayGroups = [NSMutableArray new];
-                                
-                for (NSString *idGroupEnableCorrente in portableNethUser.arrayPermissionsIdGroups) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
+                    [self.HUD hideAnimated:YES];
                     
-                    for (GroupObjc *groupCorrente in arrayGroups) {
+                    [self.refreshControl endRefreshing];
+                    
+                    self.arrayGroups = [NSMutableArray new];
+                                    
+                    for (NSString *idGroupEnableCorrente in portableNethUser.arrayPermissionsIdGroups) {
                         
-                        if ([idGroupEnableCorrente isEqualToString:groupCorrente.id_group]) {
+                        //NSLog(@"idGroupEnableCorrente: %@", idGroupEnableCorrente);
+                        
+                        for (GroupObjc *groupCorrente in arrayGroups) {
                             
-                            //NSLog(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
-                            
-                            [self.arrayGroups addObject:groupCorrente];
+                            if ([idGroupEnableCorrente isEqualToString:groupCorrente.id_group]) {
+                                
+                                //NSLog(@"AGGIUNTO id_group: %@", groupCorrente.id_group);
+                                
+                                [self.arrayGroups addObject:groupCorrente];
+                            }
                         }
                     }
-                }
-                
-                //NSLog(@"arrayGroups: %@", arrayGroups);
+                    
+                    //NSLog(@"arrayGroups: %@", arrayGroups);
 
+                    
+                    // --- ordinamento dal più piccolo al più grande sulla chiave name ---
+                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                    NSArray *arrayGroupsSorted = [self.arrayGroups sortedArrayUsingDescriptors:@[sortDescriptor]];
+                    self.arrayGroups = [[NSMutableArray alloc]initWithArray:arrayGroupsSorted];
+                    // -------------------------------------------------------------------
+                    
+                    
+                    [self.ibTableViewGruppi reloadData];
+                    
+                });
                 
-                // --- ordinamento dal più piccolo al più grande sulla chiave name ---
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-                NSArray *arrayGroupsSorted = [self.arrayGroups sortedArrayUsingDescriptors:@[sortDescriptor]];
-                self.arrayGroups = [[NSMutableArray alloc]initWithArray:arrayGroupsSorted];
-                // -------------------------------------------------------------------
                 
+            } errorHandler:^(NSInteger code, NSString * _Nullable string) {
                 
-                [self.ibTableViewGruppi reloadData];
+                NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.HUD hideAnimated:YES];
+                    
+                    [self.refreshControl endRefreshing];
+                    
+                    [self showAlertError:code withError:string];
+                });
                 
-            });
-            
+            }];
             
             
         } errorHandler:^(NSInteger code, NSString * _Nullable string) {
             
             NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
-
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
                 [self.refreshControl endRefreshing];
@@ -153,23 +171,15 @@
             
         }];
         
+    }else {
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        [self.HUD hideAnimated:YES];
         
-        NSLog(@"API_ERROR code: %ld, string: %@", (long)code, string);
+        [self.refreshControl endRefreshing];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self.refreshControl endRefreshing];
-            
-            [self showAlertError:code withError:string];
-        });
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
+    }
         
-    }];
-    
 }
 
 
@@ -283,19 +293,19 @@
 
 - (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
     
-    NSString *message = @"";
-    
+    NSString *title = NSLocalizedString(@"Warning", nil);
+    NSString *message = NSLocalizedString(@"Errore generico", nil);
     NSInteger code = codeError;
     
     switch (code) {
             
         case 2:
-            
+            title = NSLocalizedString(@"Warning", nil);
             message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
             break;
             
         case 401:
-            
+            title = NSLocalizedString(@"Warning", nil);
             message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
             break;
             
@@ -307,7 +317,7 @@
         }
     }
     
-    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:title
                                                                                    message:message
                                                                             preferredStyle:UIAlertControllerStyleAlert];
     

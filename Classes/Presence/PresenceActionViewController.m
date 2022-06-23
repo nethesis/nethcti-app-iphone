@@ -43,13 +43,13 @@
     [self.view addSubview:self.HUD];
     // ------------------------
     
-    
     UINib *nibPresenceActionCollectionViewCell = [UINib nibWithNibName:NSStringFromClass([PresenceActionCollectionViewCell class]) bundle:nil];
     [self.ibCollectionView registerNib:nibPresenceActionCollectionViewCell forCellWithReuseIdentifier:@"idPresenceActionCollectionViewCell"];
     
-    
-    
     [self setPreferito];
+    
+    
+    [self downloadContact];
 }
 
 
@@ -184,6 +184,26 @@
 }
 
 
+- (void)downloadContact {
+    
+    NSLog(@"downloadContact");
+
+    [LinphoneManager.instance.fastAddressBook resetNeth];
+        
+    //Type of contacts to show. Can be: - person: to fetch only persons - company: to fetch only companies - all: to fetch all contacts
+    NSString *paramView = @"all";
+
+    // Term to search inside contact name.
+    NSString *paramTerm = self.presenceUserObjcSelezionato.name;
+    NSLog(@"paramTerm: %@", paramTerm);
+    
+    if ([LinphoneManager.instance.fastAddressBook loadNeth:paramView withTerm:paramTerm]) {
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+        });
+    }
+}
 
 
 - (void)setPresenceUser {
@@ -191,7 +211,6 @@
     //NSLog(@"portablePresenceUser: %@", self.presenceUserObjcSelezionato);
 
     self.ibLabelNome.text = self.presenceUserObjcSelezionato.name;
-    
     
     // --- INIZIALI NOME ---
     NSString *noteUtente = self.presenceUserObjcSelezionato.name;
@@ -216,17 +235,13 @@
         self.ibLabelIniziali.text = [NSString stringWithFormat:@"%c", nomeInitialChar];
     }
     // ----------------------
-        
     
     self.ibLabelStatusPresence.text = self.presenceUserObjcSelezionato.mainPresence;
     
     self.ibLabelMainExtension.text = self.presenceUserObjcSelezionato.mainExtension;
     
-    
-    
     // bordo
     [self.ibImageViewBordoStatus.layer setBorderWidth: 1.0];
-
     
     NSString *presence = self.presenceUserObjcSelezionato.mainPresence;
     
@@ -257,7 +272,6 @@
         self.ibImageViewStatus.image = [UIImage imageNamed:@"icn_busy"];
         
         // TODO: fare la get extensions per ottenere lo status della registrazione
-                
         
     }else if ([presence isEqualToString:kKeyRinging]) {
         // INCOMING
@@ -545,7 +559,6 @@
 }
 
 
-
 #pragma mark -
 #pragma mark === UICollectionViewDataSource ===
 #pragma mark -
@@ -553,8 +566,6 @@
     
     return 7;
 }
-
-
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -616,16 +627,12 @@
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
-
                 }
                 
             }else {
-                
 
                 presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
                 presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
-
-                
             }
             
             break;
@@ -659,7 +666,6 @@
                 presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
             }
             
-            
             break;
             
         case 3:
@@ -683,16 +689,13 @@
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
-
                 }
 
             }else {
              
                 presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
                 presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
-
             }
-            
             
             break;
             
@@ -784,19 +787,15 @@
                     
                     presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
                     presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
-
                 }
 
             }else {
              
                 presenceActionCollectionViewCell.ibButtonAzione.enabled = NO;
                 presenceActionCollectionViewCell.ibLabelNomeAzione.textColor = [UIColor colorNamed: @"ColorTextDisabled"];
-
             }
             
             break;
-            
-     
     }
 
     
@@ -847,181 +846,201 @@
 
 - (void)azionePrenota {
     
-    //NSLog(@"azionePrenota");
-        
-    [self.HUD showAnimated:YES];
+    NSLog(@"azionePrenota");
     
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    [api postRecallOnBusyWithCaller:self.portableNethUserMe.mainExtension
-                             called:self.presenceUserObjcSelezionato.mainExtension
-                     successHandler:^(NSString * _Nullable successMessage) {
+    if (linphone_core_is_network_reachable(LC)) {
         
-        //NSLog(@"successMessage: %@", successMessage);
+        [self.HUD showAnimated:YES];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        [api postRecallOnBusyWithCaller:self.portableNethUserMe.mainExtension
+                                 called:self.presenceUserObjcSelezionato.mainExtension
+                         successHandler:^(NSString * _Nullable successMessage) {
             
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
+            //NSLog(@"successMessage: %@", successMessage);
             
-            //[self dismissViewControllerAnimated:YES completion:nil];
-            [self dismissViewControllerAnimated:YES completion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [self.presenceActionDelegate reloadPresenceFromAction];
-            }];
-        });
+                // Nascondo la ViewCaricamento
+                [self.HUD hideAnimated:YES];
+                
+                //[self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    [self.presenceActionDelegate reloadPresenceFromAction];
+                }];
+            });
+            
+        }
+                           errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+            
+            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // Nascondo la ViewCaricamento
+                [self.HUD hideAnimated:YES];
+                
+                [self showAlertError:errorCode withError:errorString];
+            });
+            
+        }];
         
+    }else {
+        
+        [self.HUD hideAnimated:YES];
+                
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
     }
-                       errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
-        
-        NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self showAlertError:errorCode withError:errorString];
-        });
-        
-    }];
 }
 
 
 
 - (void)azioneSpia {
     
-    //NSLog(@"azioneSpia");
+    NSLog(@"azioneSpia");
     
-    [self.HUD showAnimated:YES];
-    
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
-                             successHandler:^(ConversationObjc * _Nullable conversationObject) {
+    if (linphone_core_is_network_reachable(LC)) {
         
-        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
-        //NSLog(@"conversationObject: %@", conversationObject.owner);
+        [self.HUD showAnimated:YES];
         
-        [api postStartSpyWithConversationsId:conversationObject.conversationId
-                           conversationOwner:conversationObject.owner
-                                 extensionId:self.portableNethUserMe.mobileID
-                              successHandler:^(NSString * _Nullable successMessage) {
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
+                                 successHandler:^(ConversationObjc * _Nullable conversationObject) {
             
-            //NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+            //NSLog(@"conversationObject: %@", conversationObject.owner);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [api postStartSpyWithConversationsId:conversationObject.conversationId
+                               conversationOwner:conversationObject.owner
+                                     extensionId:self.portableNethUserMe.mobileID
+                                  successHandler:^(NSString * _Nullable successMessage) {
                 
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
+                //NSLog(@"successMessage: %@", successMessage);
                 
-                //[self dismissViewControllerAnimated:YES completion:nil];
-                [self dismissViewControllerAnimated:YES completion:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [self.presenceActionDelegate reloadPresenceFromAction];
-                }];
-            });
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    //[self dismissViewControllerAnimated:YES completion:nil];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                        [self.presenceActionDelegate reloadPresenceFromAction];
+                    }];
+                });
+                
+            }
+                                    errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                
+                NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    [self showAlertError:errorCode withError:errorString];
+                    
+                });
+                
+            }];
             
-        }
-                                errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
-            
+        } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
+                        
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self showAlertError:errorCode withError:errorString];
-                
+                [self showAlertError:code withError:messageDefault];
             });
             
         }];
         
+    }else {
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
+        [self.HUD hideAnimated:YES];
         
-        NSLog(@"getUserMe API_ERROR code: %ld, string: %@", (long)code, messageDefault);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self showAlertError:code withError:messageDefault];
-        });
-        
-    }];
-
-    
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
 
 - (void)azioneIntromettiti {
     
-    //NSLog(@"azioneIntromettiti");
+    NSLog(@"azioneIntromettiti");
     
-    [self.HUD showAnimated:YES];
-    
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
-                             successHandler:^(ConversationObjc * _Nullable conversationObject) {
+    if (linphone_core_is_network_reachable(LC)) {
         
-        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
-        //NSLog(@"conversationObject: %@", conversationObject.owner);
+        [self.HUD showAnimated:YES];
         
-        [api postIntrudeWithConversationsId:conversationObject.conversationId
-                          conversationOwner:conversationObject.owner
-                                extensionId:self.portableNethUserMe.mobileID
-                             successHandler:^(NSString * _Nullable successMessage) {
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
+                                 successHandler:^(ConversationObjc * _Nullable conversationObject) {
             
-            //NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+            //NSLog(@"conversationObject: %@", conversationObject.owner);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [api postIntrudeWithConversationsId:conversationObject.conversationId
+                              conversationOwner:conversationObject.owner
+                                    extensionId:self.portableNethUserMe.mobileID
+                                 successHandler:^(NSString * _Nullable successMessage) {
                 
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
+                //NSLog(@"successMessage: %@", successMessage);
                 
-                //[self dismissViewControllerAnimated:YES completion:nil];
-                [self dismissViewControllerAnimated:YES completion:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [self.presenceActionDelegate reloadPresenceFromAction];
-                }];
-            });
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    //[self dismissViewControllerAnimated:YES completion:nil];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                        [self.presenceActionDelegate reloadPresenceFromAction];
+                    }];
+                });
+                
+            }
+                                   errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                
+                NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    // Nascondo la ViewCaricamento
+                    [self.HUD hideAnimated:YES];
+                    
+                    [self showAlertError:errorCode withError:errorString];
+                    
+                });
+                
+            }];
             
-        }
-                               errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
-            
+        } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
+                        
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
                 
-                [self showAlertError:errorCode withError:errorString];
-                
+                [self showAlertError:code withError:messageDefault];
             });
             
         }];
         
+    }else {
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
+        [self.HUD hideAnimated:YES];
         
-        NSLog(@"getUserMe API_ERROR code: %ld, string: %@", (long)code, messageDefault);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self showAlertError:code withError:messageDefault];
-        });
-        
-    }];
-    
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
@@ -1029,7 +1048,7 @@
     
     NSLog(@"azioneChiama");
 
-    NSLog(@"presenceUserObjcSelezionato.mainextension: %@", self.presenceUserObjcSelezionato.mainExtension);
+    //NSLog(@"presenceUserObjcSelezionato.mainextension: %@", self.presenceUserObjcSelezionato.mainExtension);
 
     //Oggetto che rappresenta un indirizzo SIP che è composto da nome visualizzato, nome utente, nome di dominio, porta e varie intestazioni uri
     LinphoneAddress *linphoneAddress = [LinphoneUtils normalizeSipOrPhoneAddress:self.presenceUserObjcSelezionato.mainExtension];
@@ -1056,112 +1075,108 @@
 
 - (void)azioneRegistra {
     
-    //NSLog(@"azioneRegistra");
+    NSLog(@"azioneRegistra");
     
-    //NSLog(@"portablePresenceUser.arrayExtensionsId: %@", self.portablePresenceUser.arrayExtensionsId);
-    
-    [self.HUD showAnimated:YES];
-    
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
-                             successHandler:^(ConversationObjc * _Nullable conversationObject) {
+    if (linphone_core_is_network_reachable(LC)) {
         
-        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
-        //NSLog(@"conversationObject: %@", conversationObject.owner);
+        [self.HUD showAnimated:YES];
         
-        [api postAdRecordingWithConversationsId:conversationObject.conversationId
-                          conversationOwner:conversationObject.owner
-                             successHandler:^(NSString * _Nullable successMessage) {
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
+                                 successHandler:^(ConversationObjc * _Nullable conversationObject) {
             
-            //NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+            //NSLog(@"conversationObject: %@", conversationObject.owner);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [api postAdRecordingWithConversationsId:conversationObject.conversationId
+                                  conversationOwner:conversationObject.owner
+                                     successHandler:^(NSString * _Nullable successMessage) {
                 
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
-                
-                //[self dismissViewControllerAnimated:YES completion:nil];
-                [self dismissViewControllerAnimated:YES completion:^{
+                //NSLog(@"successMessage: %@", successMessage);
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [self.presenceActionDelegate reloadPresenceFromAction];
-                }];
-            });
+                    [self.HUD hideAnimated:YES];
+                    
+                    //[self dismissViewControllerAnimated:YES completion:nil];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                        [self.presenceActionDelegate reloadPresenceFromAction];
+                    }];
+                });
+                
+            }
+                                       errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                
+                NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.HUD hideAnimated:YES];
+                    [self showAlertError:errorCode withError:errorString];
+                });
+                
+            }];
             
-        }
-                               errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
-            
+        } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
+                        
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
-                
-                [self showAlertError:errorCode withError:errorString];
-                
+                [self showAlertError:code withError:messageDefault];
             });
             
         }];
         
+    }else {
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
-        
-        NSLog(@"getUserMe API_ERROR code: %ld, string: %@", (long)code, messageDefault);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self showAlertError:code withError:messageDefault];
-        });
-        
-    }];
-    
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
 - (void)azionePickup {
     
-    //NSLog(@"azionePickup");
+    NSLog(@"azionePickup");
     
-    [self.HUD showAnimated:YES];
-    
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    // chiudo prima perchè la post non mi risponde fino a quando l'utente non prende la chiamata in entrata dal server
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (linphone_core_is_network_reachable(LC)) {
+        
+        [self.HUD showAnimated:YES];
+        
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        // chiudo prima perchè la post non mi risponde fino a quando l'utente non prende la chiamata in entrata dal server
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        [api postPickupWithMainExtensionId:self.presenceUserObjcSelezionato.mainExtension
+                               extensionId:self.portableNethUserMe.mobileID
+                            successHandler:^(NSString * _Nullable successMessage) {
+            
+            //NSLog(@"successMessage: %@", successMessage);
+            dispatch_async(dispatch_get_main_queue(), ^{
 
-    [api postPickupWithMainExtensionId:self.presenceUserObjcSelezionato.mainExtension
-                           extensionId:self.portableNethUserMe.mobileID
-                        successHandler:^(NSString * _Nullable successMessage) {
-        
-        //NSLog(@"successMessage: %@", successMessage);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+                [self.HUD hideAnimated:YES];
+            });
+        }
+                              errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-        });
+            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.HUD hideAnimated:YES];
+                [self showAlertError:errorCode withError:errorString];
+            });
+            
+        }];
         
+    }else {
+        
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
     }
-                          errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
-        
-        NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self showAlertError:errorCode withError:errorString];
-            
-        });
-        
-    }];
-    
-    
 }
 
 
@@ -1170,65 +1185,63 @@
 - (void)azioneChiudi {
     
     NSLog(@"azioneChiudi");
-        
-    [self.HUD showAnimated:YES];
     
-    NethCTIAPI *api = [NethCTIAPI sharedInstance];
-    
-    [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
-                             successHandler:^(ConversationObjc * _Nullable conversationObject) {
+    if (linphone_core_is_network_reachable(LC)) {
         
-        //NSLog(@"conversationObject: %@", conversationObject.conversationId);
-        //NSLog(@"conversationObject: %@", conversationObject.owner);
+        [self.HUD showAnimated:YES];
         
-        [api postChiudiWithConversationsId:conversationObject.conversationId
-                         conversationOwner:conversationObject.owner
-                            successHandler:^(NSString * _Nullable successMessage) {
+        NethCTIAPI *api = [NethCTIAPI sharedInstance];
+        
+        [api getExtensionsWithArrayExtensionsId:self.presenceUserObjcSelezionato.arrayExtensionsId
+                                 successHandler:^(ConversationObjc * _Nullable conversationObject) {
             
-            //NSLog(@"successMessage: %@", successMessage);
+            //NSLog(@"conversationObject: %@", conversationObject.conversationId);
+            //NSLog(@"conversationObject: %@", conversationObject.owner);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [api postChiudiWithConversationsId:conversationObject.conversationId
+                             conversationOwner:conversationObject.owner
+                                successHandler:^(NSString * _Nullable successMessage) {
                 
-                // Nascondo la ViewCaricamento
-                [self.HUD hideAnimated:YES];
+                //NSLog(@"successMessage: %@", successMessage);
                 
-                [self dismissViewControllerAnimated:YES completion:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [self.presenceActionDelegate reloadPresenceFromAction];
-                }];
-            });
+                    [self.HUD hideAnimated:YES];
+                    
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                        [self.presenceActionDelegate reloadPresenceFromAction];
+                    }];
+                });
+                
+            }
+                                  errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
+                
+                NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.HUD hideAnimated:YES];
+                    [self showAlertError:errorCode withError:errorString];
+                });
+                
+            }];
             
-        }
-                              errorHandler:^(NSInteger errorCode, NSString * _Nullable errorString) {
             
-            NSLog(@"errorCode: %ld - errorString: %@", (long)errorCode, errorString);
+        } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                // Nascondo la ViewCaricamento
                 [self.HUD hideAnimated:YES];
-                
-                [self showAlertError:errorCode withError:errorString];
-                
+                [self showAlertError:code withError:messageDefault];
             });
             
         }];
         
+    }else {
         
-    } errorHandler:^(NSInteger code, NSString * _Nullable messageDefault) {
-        
-        NSLog(@"getUserMe API_ERROR code: %ld, string: %@", (long)code, messageDefault);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // Nascondo la ViewCaricamento
-            [self.HUD hideAnimated:YES];
-            
-            [self showAlertError:code withError:messageDefault];
-        });
-        
-    }];
-    
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
@@ -1236,18 +1249,18 @@
 
 - (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
     
-    NSString *message = @"";
-
+    NSString *title = NSLocalizedString(@"Warning", nil);
+    NSString *message = NSLocalizedString(@"Errore generico", nil);
     NSInteger code = codeError;
     
     switch (code) {
         case 2:
-            
+            title = NSLocalizedString(@"Warning", nil);
             message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
             break;
             
         case 401:
-            
+            title = NSLocalizedString(@"Warning", nil);
             message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
             break;
             
@@ -1259,7 +1272,7 @@
         }
     }
                 
-    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione", nil)
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:title
                                                                                    message:message
                                                                             preferredStyle:UIAlertControllerStyleAlert];
     

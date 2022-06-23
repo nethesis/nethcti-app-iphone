@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+//import Alamofire
 
 
 @objc class NethCTIAPI : NSObject, URLSessionTaskDelegate {
@@ -237,7 +237,7 @@ import Alamofire
                                 }
                                 
                                 let postArgs = ApiCredentials.getAuthenticatedCredentials()
-                                print("postArgs: \(String(describing: postArgs))")
+                                //print("postArgs: \(String(describing: postArgs))")
 
                                 self.baseCall(url: url,
                                               method: "POST",
@@ -548,7 +548,6 @@ import Alamofire
                                     success:@escaping([Contact]) -> Void,
                                     errorHandler:@escaping(Int, String?) -> Void) {
         // Build the request.
-        
         if !ApiCredentials.checkCredentials() {
             
             //print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
@@ -562,11 +561,12 @@ import Alamofire
         
         if let term = t, term != "" {
             
+            //Returns all the phonebook contacts founded in the centralized and NethCTI phonebooks.
             endpoint = "/phonebook/search/\(term)?view=all&limit=\(cLimit)&offset=\(index)" // \(term)?view=\(view)&
             
-        } else {
+        }else {
             
-            endpoint = "/phonebook/geta ll/?limit=\(cLimit)&offset=\(index)"
+            endpoint = "/phonebook/getall/?limit=\(cLimit)&offset=\(index)"
         }
         
         guard let domain = self.transformDomain(ApiCredentials.Domain) as String?,
@@ -578,7 +578,8 @@ import Alamofire
             
             return
         }
-        
+        //print("url: \(url)")
+
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
         // Make the request.
@@ -595,7 +596,7 @@ import Alamofire
                 return
             }
             
-            do{ // Receive the results.
+            do { // Receive the results.
                 let rawContacts = try JSONSerialization.jsonObject(with: responseData, options: []) as! [String: Any]
                 
                 // Convert to phonebook.
@@ -661,14 +662,12 @@ import Alamofire
             return
         }
         
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -747,14 +746,12 @@ import Alamofire
             return
         }
         
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -838,14 +835,12 @@ import Alamofire
             return
         }
         
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -939,14 +934,12 @@ import Alamofire
             
             return
         }
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1017,7 +1010,6 @@ import Alamofire
             return
         }
         
-        
         // Set the endpoint URL.
         let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/user/presence"
         
@@ -1028,14 +1020,12 @@ import Alamofire
             
             return
         }
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1115,14 +1105,12 @@ import Alamofire
             
             return
         }
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let getHeaders = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1245,14 +1233,12 @@ import Alamofire
             
             return
         }
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1334,14 +1320,12 @@ import Alamofire
             return
         }
         
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1412,7 +1396,6 @@ import Alamofire
             return
         }
         
-        
         // Set the endpoint URL.
         let endPoint = "\(self.transformDomain(ApiCredentials.Domain))/astproxy/intrude"
         
@@ -1424,14 +1407,12 @@ import Alamofire
             return
         }
         
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1511,14 +1492,12 @@ import Alamofire
             return
         }
         
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1597,14 +1576,12 @@ import Alamofire
             
             return
         }
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         
         let headers = ApiCredentials.getAuthenticatedCredentials()
         
@@ -1681,17 +1658,13 @@ import Alamofire
             
             return
         }
-        
-        
+        /*
         if !self.isConnectedToInternet() {
-
             errorHandler(2, "Errore Connessione")
-            
             return
         }
-        
+        */
         let headers = ApiCredentials.getAuthenticatedCredentials()
-        
         
         var body: [String: Any] = [:]
         
@@ -1700,13 +1673,11 @@ import Alamofire
 
         //print("body: \(body)")
         
-        
         self.baseCall(url: url,
                       method: "POST",
                       headers: headers,
                       body: body,
                       successHandler: { data, response in
-                                                
 
                         guard let httpResponse = response as? HTTPURLResponse else {
                             
@@ -1735,11 +1706,11 @@ import Alamofire
         
     }
     
-    
+    /*
     func isConnectedToInternet() -> Bool {
         
         return NetworkReachabilityManager()!.isReachable
     }
-    
+    */
     
 }

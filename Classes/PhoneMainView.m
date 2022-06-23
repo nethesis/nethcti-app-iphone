@@ -839,6 +839,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 #pragma mark - Chat room Functions
 
 - (void)getOrCreateOneToOneChatRoom:(const LinphoneAddress *)remoteAddress waitView:(UIView *)waitView isEncrypted:(BOOL)isEncrypted{
+    
     if (!remoteAddress) {
         [self changeCurrentView:ChatsListView.compositeViewDescription];
         return;

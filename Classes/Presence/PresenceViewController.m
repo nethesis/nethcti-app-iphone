@@ -157,8 +157,17 @@ static UICompositeViewDescription *compositeDescription = nil;
     //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(callUpdate:) name:kLinphoneCallUpdate object:nil];
     //[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(onCallEncryptionChanged:) name:kLinphoneCallEncryptionChanged object:nil];
     
-    [self.HUD showAnimated:YES];
-    [self downloadPresence];
+    
+    if (linphone_core_is_network_reachable(LC)) {
+        
+        [self.HUD showAnimated:YES];
+        [self downloadPresence];
+        
+    }else {
+        
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withDefaultError:NSLocalizedString(@"Errore generico", nil)];
+    }
     
     // --- AGGIORNAMENTO DATI OGNI 3 SECONDI ---
     self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(downloadPresence) userInfo:nil repeats:YES];
@@ -180,7 +189,6 @@ static UICompositeViewDescription *compositeDescription = nil;
     [super viewWillDisappear:YES];
     
     //NSLog(@"viewWillDisappear - PresenceViewController");
-    
     
     // Remove observer
     [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneRegistrationUpdate object:nil];
@@ -1033,7 +1041,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                     
                     [self.refreshControl endRefreshing];
                     
-                    [self showAlertError:code withError:messageDefault];
+                    [self showAlertError:code withDefaultError:messageDefault];
                     
                 });
 
@@ -1050,7 +1058,7 @@ static UICompositeViewDescription *compositeDescription = nil;
                 
                 [self.refreshControl endRefreshing];
                 
-                [self showAlertError:code withError:messageDefault];
+                [self showAlertError:code withDefaultError:messageDefault];
                 
             });
                          
@@ -1067,7 +1075,7 @@ static UICompositeViewDescription *compositeDescription = nil;
             
             [self.refreshControl endRefreshing];
             
-            [self showAlertError:code withError:messageDefault];
+            [self showAlertError:code withDefaultError:messageDefault];
                         
         });
         
@@ -1083,11 +1091,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)reloadPresence {
     
-    //NSLog(@"reloadPresence");
+    NSLog(@"reloadPresence");
     
-    [self.HUD showAnimated:YES];
-
-    [self downloadPresence];
+    if (linphone_core_is_network_reachable(LC)) {
+        
+        [self.HUD showAnimated:YES];
+        [self downloadPresence];
+        
+    }else {
+        
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withDefaultError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
@@ -1107,9 +1122,16 @@ static UICompositeViewDescription *compositeDescription = nil;
     [defaults synchronize];
     // --------------------------------------
     
-    [self.HUD showAnimated:YES];
-    
-    [self downloadPresence];
+    if (linphone_core_is_network_reachable(LC)) {
+        
+        [self.HUD showAnimated:YES];
+        [self downloadPresence];
+        
+    }else {
+        
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withDefaultError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
@@ -1122,43 +1144,48 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     //NSLog(@"reloadPresenceFromAction");
         
-    [self.HUD showAnimated:YES];
-    
-    [self downloadPresence];
+    if (linphone_core_is_network_reachable(LC)) {
+        
+        [self.HUD showAnimated:YES];
+        [self downloadPresence];
+        
+    }else {
+        
+        [self.HUD hideAnimated:YES];
+        [self showAlertError:2 withDefaultError:NSLocalizedString(@"Errore generico", nil)];
+    }
 }
 
 
 
 
-- (void)showAlertError:(NSInteger *)codeError withError:(NSString *)stringError {
+- (void)showAlertError:(NSInteger *)codeError withDefaultError:(NSString *)defaultError {
     
-    NSString *message = @"";
-
+    NSString *title = NSLocalizedString(@"Warning", nil);
+    NSString *message = NSLocalizedString(@"Errore generico", nil);
     NSInteger code = codeError;
     
     switch (code) {
             
         case 2:
-            
+            title = NSLocalizedString(@"Warning", nil);
             message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
-            
             break;
             
         case 401:
-            
+            title = NSLocalizedString(@"Warning", nil);
             message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
-            
             break;
             
         default:{
 
-            message = stringError;
+            message = defaultError;
             
             break;
         }
     }
                 
-    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Warning", nil)
+    UIAlertController *alertControllerAvviso = [UIAlertController alertControllerWithTitle:title
                                                                                    message:message
                                                                             preferredStyle:UIAlertControllerStyleAlert];
     

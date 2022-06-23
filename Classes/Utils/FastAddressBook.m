@@ -405,11 +405,13 @@
 }
 
 - (void) resetNeth {
+    
     [_addressBookMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * _Nonnull stop) {
         if (((Contact*) obj).nethesis == YES) {
             [_addressBookMap removeObjectForKey:key];
         }
     }];
+    
     [NethPhoneBook.instance reset];
 }
 
@@ -478,6 +480,7 @@
 }
 
 + (NSString *)displayNameForAddress:(const LinphoneAddress *)addr fromFriendsOnly:(BOOL)only {
+    
 	Contact *contact = [FastAddressBook getContactWithAddress:addr];
 	if (contact && !only)
 		return [FastAddressBook displayNameForContact:contact];

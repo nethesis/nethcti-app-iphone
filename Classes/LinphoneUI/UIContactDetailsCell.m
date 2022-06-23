@@ -50,6 +50,7 @@
     
     LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
     const BOOL isPhone = linphone_proxy_config_is_phone_number(cfg, _addressLabel.text.UTF8String);
+    
     if(_addressLabel.text && cfg && isPhone)
         normAddr = linphone_proxy_config_normalize_phone_number(cfg, _addressLabel.text.UTF8String);
     
@@ -63,6 +64,7 @@
     Contact *contact = addr ? [FastAddressBook getContactWithAddress:(addr)] : NULL;
     
     _linphoneImage.hidden = TRUE;
+    
     if (contact) {
         const LinphonePresenceModel *model = contact.friend ? linphone_friend_get_presence_model_for_uri_or_tel(contact.friend, _addressLabel.text.UTF8String) : NULL;
         
