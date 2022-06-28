@@ -131,6 +131,7 @@
     
     [ContactDisplay setOrganizationLabel: _workLabel forContact: _contact];
 	[ContactDisplay setDisplayNameLabel:_nameLabel forContact:_contact];
+    
     [_tableController setContact:_contact];
 
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forContact:_contact forImage:_avatarImage];
@@ -154,34 +155,40 @@
 }
 
 - (void)addCurrentContactContactField:(NSString *)address {
+    
 	LinphoneAddress *linphoneAddress = linphone_core_interpret_url(LC, address.UTF8String);
-	NSString *username =
-		linphoneAddress ? [NSString stringWithUTF8String:linphone_address_get_username(linphoneAddress)] : address;
+	NSString *username = linphoneAddress ? [NSString stringWithUTF8String:linphone_address_get_username(linphoneAddress)] : address;
 
-	if (([username rangeOfString:@"@"].length > 0) &&
-		([LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"] == true)) {
+	if (([username rangeOfString:@"@"].length > 0) && ([LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"] == true)) {
+        
 		[_tableController addEmailField:username];
-	} else if ((linphone_proxy_config_is_phone_number(NULL, [username UTF8String])) &&
-			   ([LinphoneManager.instance lpConfigBoolForKey:@"save_new_contacts_as_phone_number"] == true)) {
+        
+	}else if ((linphone_proxy_config_is_phone_number(NULL, [username UTF8String])) && ([LinphoneManager.instance lpConfigBoolForKey:@"save_new_contacts_as_phone_number"] == true)) {
+        
 		[_tableController addPhoneField:username];
-	} else {
+        
+	}else {
+        
 		[_tableController addSipField:address];
 	}
+    
 	if (linphoneAddress) {
 		linphone_address_destroy(linphoneAddress);
 	}
+    
 	[self setEditing:TRUE];
 	[[_tableController tableView] reloadData];
 }
 
 - (void)newContact {
-	_isAdding = TRUE;
-        CNContact *contact = [[CNContact alloc] init];
-        [self selectContact:[[Contact alloc] initWithCNContact:contact]
-                  andReload:YES];
+    _isAdding = TRUE;
+    CNContact *contact = [[CNContact alloc] init];
+    [self selectContact:[[Contact alloc] initWithCNContact:contact]
+              andReload:YES];
 }
 
 - (void)newContact:(NSString *)address {
+    
   CNContact *contact = [[CNContact alloc] init];
   Contact *mContact = [[Contact alloc] initWithCNContact:contact];
   [self selectContact:mContact andReload:NO];
@@ -196,6 +203,7 @@
 }
 
 - (void)editContact:(Contact *)acontact address:(NSString *)address {
+    
 	[self modifyTmpContact:acontact];
 	[self selectContact:acontact andReload:NO];
 	[self addCurrentContactContactField:address];
@@ -275,6 +283,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    
 	_waitView.hidden = YES;
     _editButton.hidden = YES; // ([ContactSelection getSelectionMode] != ContactSelectionModeEdit &&
 						  // [ContactSelection getSelectionMode] != ContactSelectionModeNone); Now is not editable.
@@ -482,73 +491,73 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Action Functions
 
 - (IBAction)onCancelClick:(id)event {
-	[self dismissKeyboards];
-	if (!_isAdding) {
-		_contact.firstName = _tmpContact.firstName.copy;
-		_contact.lastName = _tmpContact.lastName.copy;
-		while (_contact.sipAddresses.count > 0) {
-			[_contact removeSipAddressAtIndex:0];
-		}
-		NSInteger nbSipAd = 0;
-                if (_tmpContact.sipAddresses) {
-                  while (_tmpContact.sipAddresses.count > nbSipAd) {
-                    [_contact addSipAddress:_tmpContact.sipAddresses[nbSipAd]];
-                    nbSipAd++;
-                  }
-                }
-                while (_contact.phones.count > 0) {
-					if (_contact.phones[0] != NULL && ![_contact.phones[0] isEqualToString:@" "]) {
-						[_contact removePhoneNumberAtIndex:0];
-					} else {
-						// remove empty index
-						[_contact.phones removeObjectAtIndex:0];
-					}
-                }
-                NSInteger nbPhone = 0;
-                if (_tmpContact.phones != NULL) {
-                  while (_tmpContact.phones.count > nbPhone) {
-                    [_contact addPhoneNumber:_tmpContact.phones[nbPhone]];
-                    nbPhone++;
-                  }
-                }
+    [self dismissKeyboards];
+    if (!_isAdding) {
+        _contact.firstName = _tmpContact.firstName.copy;
+        _contact.lastName = _tmpContact.lastName.copy;
+        while (_contact.sipAddresses.count > 0) {
+            [_contact removeSipAddressAtIndex:0];
+        }
+        NSInteger nbSipAd = 0;
+        if (_tmpContact.sipAddresses) {
+            while (_tmpContact.sipAddresses.count > nbSipAd) {
+                [_contact addSipAddress:_tmpContact.sipAddresses[nbSipAd]];
+                nbSipAd++;
+            }
+        }
+        while (_contact.phones.count > 0) {
+            if (_contact.phones[0] != NULL && ![_contact.phones[0] isEqualToString:@" "]) {
+                [_contact removePhoneNumberAtIndex:0];
+            } else {
+                // remove empty index
+                [_contact.phones removeObjectAtIndex:0];
+            }
+        }
+        NSInteger nbPhone = 0;
+        if (_tmpContact.phones != NULL) {
+            while (_tmpContact.phones.count > nbPhone) {
+                [_contact addPhoneNumber:_tmpContact.phones[nbPhone]];
+                nbPhone++;
+            }
+        }
         BOOL hasToContinue = YES;
-                while (hasToContinue && _contact.emails.count > 0) {
-                  hasToContinue = [_contact removeEmailAtIndex:0];
-                }
-                NSInteger nbEmail = 0;
-                if (_tmpContact.emails != NULL) {
-                  while (_tmpContact.emails.count > nbEmail) {
-                    [_contact addEmail:_tmpContact.emails[nbEmail]];
-                    nbEmail++;
-                  }
-                }
-     //           [self saveData];
-        } else {
-          [LinphoneManager.instance.fastAddressBook deleteContact:_contact];
+        while (hasToContinue && _contact.emails.count > 0) {
+            hasToContinue = [_contact removeEmailAtIndex:0];
         }
-
-        [self setEditing:FALSE];
-        if (IPAD) {
-          _emptyLabel.hidden = !_isAdding;
-          _avatarImage.hidden = !_emptyLabel.hidden;
-            _deleteButton.hidden = TRUE; // !_emptyLabel.hidden; Now is not editable.
-            _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
-        } else {
-          if (_isAdding) {
-            [PhoneMainView.instance popCurrentView];
-          } else {
-            _avatarImage.hidden = FALSE;
-              _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
-              _editButton.hidden = YES; // FALSE; Now is not editable.
-          }
+        NSInteger nbEmail = 0;
+        if (_tmpContact.emails != NULL) {
+            while (_tmpContact.emails.count > nbEmail) {
+                [_contact addEmail:_tmpContact.emails[nbEmail]];
+                nbEmail++;
+            }
         }
-
-        self.tmpContact = NULL;
+        //           [self saveData];
+    } else {
+        [LinphoneManager.instance.fastAddressBook deleteContact:_contact];
+    }
+    
+    [self setEditing:FALSE];
+    if (IPAD) {
+        _emptyLabel.hidden = !_isAdding;
+        _avatarImage.hidden = !_emptyLabel.hidden;
+        _deleteButton.hidden = TRUE; // !_emptyLabel.hidden; Now is not editable.
+        _editButton.hidden = YES; // !_emptyLabel.hidden; Now is not editable.
+    } else {
         if (_isAdding) {
-          [PhoneMainView.instance
-              popToView:ContactsListView.compositeViewDescription];
-          _isAdding = FALSE;
+            [PhoneMainView.instance popCurrentView];
+        } else {
+            _avatarImage.hidden = FALSE;
+            _deleteButton.hidden = TRUE; // FALSE; Now is not editable.
+            _editButton.hidden = YES; // FALSE; Now is not editable.
         }
+    }
+    
+    self.tmpContact = NULL;
+    if (_isAdding) {
+        [PhoneMainView.instance
+         popToView:ContactsListView.compositeViewDescription];
+        _isAdding = FALSE;
+    }
 }
 
 - (IBAction)onBackClick:(id)event {
@@ -561,9 +570,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onEditClick:(id)event {
+    
 	if (_tableController.isEditing) {
 		[LinphoneManager.instance setContactsUpdated:TRUE];
 		[self setEditing:FALSE];
+        
 		if(![self hasDuplicateContactOf:_contact]){
 			[self saveData];
 			_isAdding = FALSE;

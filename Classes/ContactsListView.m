@@ -194,7 +194,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                                              object:nil];
     
     if (![FastAddressBook isAuthorized]) {
-        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
+                                                                         message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil)
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
                                                                 style:UIAlertActionStyleDefault
@@ -202,18 +204,25 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         [errView addAction:defaultAction];
         [self presentViewController:errView animated:YES completion:nil];
+        
         [PhoneMainView.instance popCurrentView];
     }
     
     // show message toast when add contact from address
     if ([ContactSelection getAddAddress] != nil && addAddressFromOthers) {
-        UIAlertController *infoView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Info", nil) message:NSLocalizedString(@"Select a contact or create a new one.",nil) preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIAlertController *infoView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Info", nil)
+                                                                          message:NSLocalizedString(@"Select a contact or create a new one.",nil)
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action){
         }];
         
         [infoView addAction:defaultAction];
         addAddressFromOthers = FALSE;
+        
         [PhoneMainView.instance presentViewController:infoView animated:YES completion:nil];
     }
 }
@@ -310,7 +319,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         };
         
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
+        
         [ContactSelection enableEmailFilter:FALSE];
+        
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
         [self.allButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
@@ -415,7 +426,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onAddContactClick:(id)event {
+    
     if([ContactSelection getSipFilter]) {
+        
         ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
         [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
         view.isAdding = TRUE;
@@ -424,7 +437,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         } else {
             [view newContact:[ContactSelection getAddAddress]];
         }
-    } else {
+        
+    }else {
+        
         ContactDetailsView *view = VIEW(ContactDetailsView);
         [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
         view.isAdding = TRUE;
@@ -435,6 +450,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         }
     }
 }
+
 
 - (IBAction)onDeleteClick:(id)sender {
     NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete selected contacts?\nThey will also be deleted from your phone's address book.", nil)];

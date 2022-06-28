@@ -164,7 +164,6 @@ extension NethCTIAPI {
         
         
         public class func clear() -> Void {
-            
             print("extension NethCTIAPI - clear()")
 
             UserDefaults.standard.removeObject(forKey: ApiClientIdentifier.UserDefaultKey.rawValue)

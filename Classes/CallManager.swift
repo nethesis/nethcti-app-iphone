@@ -277,7 +277,7 @@ import AVFoundation
     
     func doCall(addr: Address, isSas: Bool) throws {
         
-        Log.directLog(BCTBX_LOG_DEBUG, text: "doCall addr: \(addr)");
+        //Log.directLog(BCTBX_LOG_DEBUG, text: "doCall addr: \(addr)");
 
         let displayName = FastAddressBook.displayName(for: addr.getCobject)
         

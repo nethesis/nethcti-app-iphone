@@ -302,6 +302,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 #pragma mark - Event Functions
 
 - (void)textReceived:(NSNotification *)notif {
+    
     LinphoneChatMessage *msg = [[notif.userInfo objectForKey:@"message"] pointerValue];
     NSString *callID = [notif.userInfo objectForKey:@"call-id"];
     [self updateApplicationBadgeNumber];
@@ -328,9 +329,12 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)registrationUpdate:(NSNotification *)notif {
+    
     LinphoneRegistrationState state = [[notif.userInfo objectForKey:@"state"] intValue];
+    
     if (state == LinphoneRegistrationFailed && ![currentView equal:AssistantView.compositeViewDescription] &&
         [UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        
         UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
                                                                          message:[notif.userInfo objectForKey:@"message"]
                                                                   preferredStyle:UIAlertControllerStyleAlert];
@@ -341,6 +345,7 @@ static RootViewManager *rootViewManagerInstance = nil;
         
         [errView addAction:defaultAction];
         [self presentViewController:errView animated:YES completion:nil];
+        
     } else if (state == LinphoneRegistrationOk && [currentView equal:ChatsListView.compositeViewDescription]) {
         // update avatarImages
         //ChatsListView *view = VIEW(ChatsListView);
@@ -349,8 +354,10 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)onGlobalStateChanged:(NSNotification *)notif {
+    
     LinphoneGlobalState state = (LinphoneGlobalState)[[[notif userInfo] valueForKey:@"state"] integerValue];
     static BOOL already_shown = FALSE;
+    
     if (state == LinphoneGlobalOn && !already_shown && LinphoneManager.instance.wasRemoteProvisioned) {
         LinphoneProxyConfig *conf = linphone_core_get_default_proxy_config(LC);
         if ([LinphoneManager.instance lpConfigBoolForKey:@"show_login_view" inSection:@"app"] && conf == NULL) {
@@ -363,6 +370,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)callUpdate:(NSNotification *)notif {
+    
     LinphoneCall *call = [[notif.userInfo objectForKey:@"call"] pointerValue];
     LinphoneCallState state = [[notif.userInfo objectForKey:@"state"] intValue];
     NSString *message = [notif.userInfo objectForKey:@"message"];
@@ -655,9 +663,12 @@ static RootViewManager *rootViewManagerInstance = nil;
 - (UIViewController *)_changeCurrentView:(UICompositeViewDescription *)view
                               transition:(CATransition *)transition
                                 animated:(BOOL)animated {
+    
     PhoneMainView *vc = [[RootViewManager instance] setViewControllerForDescription:view];
+    
     if (![view equal:vc.currentView] || vc != self) {
         LOGI(@"Change current view to %@", view.name);
+        
         [self setPreviousViewName:vc.currentView.name];
         NSMutableArray *viewStack = [RootViewManager instance].viewDescriptionStack;
         [viewStack addObject:view];
@@ -677,7 +688,9 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (UIViewController *)popToView:(UICompositeViewDescription *)view {
+    
     NSMutableArray *viewStack = [RootViewManager instance].viewDescriptionStack;
+    
     while (viewStack.count > 0 && ![[viewStack lastObject] equal:view]) {
         [viewStack removeLastObject];
     }
@@ -766,10 +779,12 @@ static RootViewManager *rootViewManagerInstance = nil;
 #pragma mark - ActionSheet Functions
 
 - (void)displayIncomingCall:(LinphoneCall *)call {
+    
     LinphoneCallLog *callLog = linphone_call_get_call_log(call);
     NSString *callId = [NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        
         LinphoneManager *lm = LinphoneManager.instance;
         BOOL callIDFromPush = [lm popPushCallID:[NSString stringWithUTF8String:linphone_call_log_get_call_id(callLog)]];
         BOOL autoAnswer = [lm lpConfigBoolForKey:@"autoanswer_notif_preference"];
@@ -788,23 +803,25 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)batteryLevelChanged:(NSNotification *)notif {
+    
     float level = [UIDevice currentDevice].batteryLevel;
     UIDeviceBatteryState state = [UIDevice currentDevice].batteryState;
     LOGD(@"Battery state:%d level:%.2f", state, level);
     
     LinphoneCall *call = linphone_core_get_current_call(LC);
     if (call && linphone_call_params_video_enabled(linphone_call_get_current_params(call))) {
+        
         CallAppData *data = [CallManager getAppDataWithCall:call];
+        
         if (data != nil) {
             if (state == UIDeviceBatteryStateUnplugged) {
                 if (level <= 0.2f && !data.batteryWarningShown) {
                     LOGI(@"Battery warning");
-                    DTActionSheet *sheet = [[DTActionSheet alloc]
-                                            initWithTitle:NSLocalizedString(@"Battery is running low. Stop video ?", nil)];
+                    
+                    DTActionSheet *sheet = [[DTActionSheet alloc] initWithTitle:NSLocalizedString(@"Battery is running low. Stop video ?", nil)];
                     [sheet addCancelButtonWithTitle:NSLocalizedString(@"Continue video", nil) block:nil];
-                    [sheet
-                     addDestructiveButtonWithTitle:NSLocalizedString(@"Stop video", nil)
-                     block:^() {
+                    [sheet addDestructiveButtonWithTitle:NSLocalizedString(@"Stop video", nil) block:^() {
+                        
                         LinphoneCallParams *params =
                         linphone_core_create_call_params(LC,call);
                         // stop video
@@ -829,6 +846,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)incomingCallAccepted:(LinphoneCall *)call evenWithVideo:(BOOL)video {
+    
     [CallManager.instance acceptCallWithCall:call hasVideo:video];
 }
 

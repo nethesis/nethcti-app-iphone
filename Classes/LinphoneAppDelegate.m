@@ -122,23 +122,27 @@
     
     if (call) {
         if (call == instance->currentCallContextBeforeGoingBackground.call) {
-            const LinphoneCallParams *params =
-            linphone_call_get_current_params(call);
+            
+            const LinphoneCallParams *params = linphone_call_get_current_params(call);
+            
             if (linphone_call_params_video_enabled(params)) {
                 linphone_call_enable_camera(
                                             call, instance->currentCallContextBeforeGoingBackground
                                             .cameraIsEnabled);
             }
             instance->currentCallContextBeforeGoingBackground.call = 0;
-        } else if (linphone_call_get_state(call) ==
-                   LinphoneCallIncomingReceived) {
+            
+        } else if (linphone_call_get_state(call) == LinphoneCallIncomingReceived) {
+            
             if ((floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max)) {
+                
                 if ([LinphoneManager.instance lpConfigBoolForKey:@"autoanswer_notif_preference"]) {
                     linphone_call_accept(call);
                     [PhoneMainView.instance changeCurrentView:CallView.compositeViewDescription];
                 } else {
                     [PhoneMainView.instance displayIncomingCall:call];
                 }
+                
             } else {
                 // Click the call notification when callkit is disabled, show app view.
                 [PhoneMainView.instance displayIncomingCall:call];
@@ -149,6 +153,7 @@
             [self fixRing];
         }
     }
+    
     [LinphoneManager.instance.iapManager check];
     if (_shortcutItem) {
         [self handleShortcut:_shortcutItem];
@@ -460,7 +465,9 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options{
+    
     NSString *scheme = [[url scheme] lowercaseString];
+    
     if ([scheme isEqualToString:@"linphone-config"] || [scheme isEqualToString:@"linphone-config"]) {
         NSString *encodedURL =
         [[url absoluteString] stringByReplacingOccurrencesOfString:@"linphone-config://" withString:@""];
@@ -484,19 +491,27 @@
         [errView addAction:yesAction];
         
         [PhoneMainView.instance presentViewController:errView animated:YES completion:nil];
-    } else if([[url scheme] isEqualToString:@"message-linphone"]) {
+        
+    }else if([[url scheme] isEqualToString:@"message-linphone"]) {
+        
         [PhoneMainView.instance popToView:ChatsListView.compositeViewDescription];
-    } else if ([scheme isEqualToString:@"sip"]) {
+        
+    }else if ([scheme isEqualToString:@"sip"]) {
         // remove "sip://" from the URI, and do it correctly by taking resourceSpecifier and removing leading and
         // trailing "/"
         NSString *sipUri = [[url resourceSpecifier] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
         [VIEW(DialerView) setAddress:sipUri];
-    } else if ([scheme isEqualToString:@"linphone-widget"]) {
+        
+    }else if ([scheme isEqualToString:@"linphone-widget"]) {
+        
         if ([[url host] isEqualToString:@"call_log"] &&
             [[url path] isEqualToString:@"/show"]) {
+            
             [VIEW(HistoryDetailsView) setCallLogId:[url query]];
             [PhoneMainView.instance changeCurrentView:HistoryDetailsView.compositeViewDescription];
-        } else if ([[url host] isEqualToString:@"chatroom"] && [[url path] isEqualToString:@"/show"]) {
+            
+        }else if ([[url host] isEqualToString:@"chatroom"] && [[url path] isEqualToString:@"/show"]) {
+            
             NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url
                                                         resolvingAgainstBaseURL:NO];
             NSArray *queryItems = urlComponents.queryItems;
@@ -580,13 +595,16 @@ continueUserActivity:(nonnull NSUserActivity *)userActivity
     NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
     [CallIdTest.instance setMCallId:callId];
     
-    if([CallManager callKitEnabled]) {
+    if ([CallManager callKitEnabled]) {
         // Since ios13, a new Incoming call must be displayed when the callkit is enabled and app is in background.
         // Otherwise it will cause a crash.
         if(UIApplication.sharedApplication.applicationState != UIApplicationStateActive) {
+            
             [CallManager.instance displayIncomingCallWithCallId:callId];
         }
-    } else {
+        
+    }else {
+        
         if (linphone_core_get_calls(LC)) {
             // if there are calls, obviously our TCP socket shall be working
             LOGD(@"Notification [%p] has no need to be processed because there already is an active call.", userInfo);
@@ -597,6 +615,7 @@ continueUserActivity:(nonnull NSUserActivity *)userActivity
             // Present apn pusher notifications for info
             LOGD(@"Notification [%p] came from flexisip-pusher.", userInfo);
             if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
+                
                 UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
                 content.title = @"APN Pusher";
                 content.body = @"Push notification received !";
@@ -655,9 +674,9 @@ continueUserActivity:(nonnull NSUserActivity *)userActivity
 
 #pragma mark - PushNotification Functions
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     LOGI(@"[APNs] %@ : %@", NSStringFromSelector(_cmd), deviceToken);
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [LinphoneManager.instance setRemoteNotificationToken:deviceToken];
     });
@@ -672,11 +691,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(PKPushType)type {
     LOGI(@"[PushKit] credentials updated with voip token: %@", credentials.token);
+    
     const unsigned char *tokenBuffer = [credentials.token bytes];
     NSMutableString *tokenString = [NSMutableString stringWithCapacity:[credentials.token length] * 2];
+    
     for (int i = 0; i < [credentials.token length]; ++i) {
         [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
     }
+    
     [ApiCredentials setDeviceToken:tokenString];
     [[NethCTIAPI sharedInstance] registerPushToken:tokenString unregister: FALSE success:^(BOOL response) {
         if(response)
@@ -684,6 +706,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         else
             LOGE(@"[WEDO PUSH] chiamato notificatore: risultato negativo");
     }];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [LinphoneManager.instance setPushKitToken:credentials.token];
     });

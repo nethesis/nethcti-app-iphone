@@ -2392,11 +2392,9 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
     // -----------------------------------------------------------------
     
     [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result) {
-        
         LOGW(result);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-
             [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
         });
     }];
