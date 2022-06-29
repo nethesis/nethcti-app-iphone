@@ -942,10 +942,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wstrict-prototypes"
 
-- (void)application:(UIApplication *)application
-handleActionWithIdentifier:(NSString *)identifier
-forLocalNotification:(UILocalNotification *)notification
-  completionHandler:(void (^)(void))completionHandler {
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)(void))completionHandler {
     
     LinphoneCall *call = linphone_core_get_current_call(LC);
     LOGI(@"%@", NSStringFromSelector(_cmd));
