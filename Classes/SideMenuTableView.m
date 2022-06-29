@@ -131,7 +131,6 @@
         [_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
                                                                    image:[UIImage imageNamed:@"logout.png"]
                                                                 tapBlock:^() {
-            //[LinphoneManager.instance clearProxies];
             [self visualizzaAlertLogout];
         }]];
     }

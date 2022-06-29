@@ -94,29 +94,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     
     self.ibButtonSelezionePresence.titleLabel.adjustsFontSizeToFitWidth = 0.7;
-
-    // --- Default filtro per gruppi selezionato ---
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
-
-    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyIdGroup]) {
-                    
-        if ([defaults stringForKey:kKeyIdGroup] != nil) {
-            
-            NSString *id_groupSalvato = [defaults stringForKey:kKeyIdGroup];
-            //NSLog(@"id_groupSalvato: %@", id_groupSalvato);
-
-            self.id_groupSelezionato = id_groupSalvato;
-        }
-        
-    }else {
-        
-        NSLog(@"Key: id_group_presence NON presente!");
-        self.id_groupSelezionato = @"";
-    }
-    
-    
+    // Default filtro per gruppi selezionato
     self.isGroupsFilter = YES;
     
     self.ibLabelGruppi.text = NSLocalizedString(@"GRUPPI", nil);
@@ -144,9 +123,29 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //NSLog(@"viewWillAppear - PresenceViewController");
+    NSLog(@"viewWillAppear - PresenceViewController");
 
     [_backButton setTintColor:[UIColor colorNamed: @"iconTint"]];
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSLog(@"defaults_keys: %@", [[defaults dictionaryRepresentation] allKeys]);
+
+    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:kKeyIdGroup]) {
+                    
+        if ([defaults stringForKey:kKeyIdGroup] != nil) {
+            
+            NSString *id_groupSalvato = [defaults stringForKey:kKeyIdGroup];
+            //NSLog(@"id_groupSalvato: %@", id_groupSalvato);
+
+            self.id_groupSelezionato = id_groupSalvato;
+        }
+        
+    }else {
+        
+        //NSLog(@"Key: id_group_presence NON presente!");
+        self.id_groupSelezionato = @"";
+    }
     
     
     // Set observer

@@ -195,7 +195,7 @@
 
     // Term to search inside contact name.
     NSString *paramTerm = self.presenceUserObjcSelezionato.name;
-    NSLog(@"paramTerm: %@", paramTerm);
+    //NSLog(@"paramTerm: %@", paramTerm);
     
     if ([LinphoneManager.instance.fastAddressBook loadNeth:paramView withTerm:paramTerm]) {
 
