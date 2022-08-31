@@ -15,48 +15,44 @@ Group changes to describe their impact on the project, as follows:
 
 ## [1.4.3] - 28/06/2022
 
-### Cambiamenti
+### Changed
 
-- Aggiornamento compatibilità a iOS 15.
-- Salvataggio ultimo gruppo selezionato.
-- Visualizzazione nome della persona chiamata da presence e rubrica come su Android.
+- The user group selected last time in the Presence is kept set
+- Removed the wording GROUPS and leave only the name of the group in the Presence
 
-### Aggiunta
+### Added
 
-- Aggiunta messaggio di warning quando si sta per effettuare il logout.
-
-### Fixato
-
-- Fix labels.
+- Added the translation of the number into a name on call from the directory, keypad and presence
+- Added a warning message during logout
 
 
 
 ## [1.4.2] - 31/03/2022
 
-### Cambiamenti
+### Changed
 
-- Modifica chiave Notifiche Push.
+- Fix device id registration.
 
 
 
 ## [1.4.1] - 29/03/2022
 
-### Fixato
+### Fixed
 
-- Risolto il crash sulla chiamata dalla rubrica telefonica.
+- In this version the crash on calling from the phone book has been fixed
 
 
 
 ## [1.4.0] - 23/03/2022
 
-### Aggiunta
+### Added
 
-- Aggiunta la sezione Presence
-- Aggiunta la possibilitò di Disconnettere l'app tramite uno stato specifico di presence
+- Presence section added
+- Added the ability to disconnect the app through a specific presence status
 
-### Cambiamenti
+### Changed
 
-- Sotituito il collegamento nella Dashboard alla nuova sezione Presence
+- Added the link in the Dashboard to the new Presence section
 
 
 
