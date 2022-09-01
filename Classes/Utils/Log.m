@@ -61,6 +61,7 @@
 }
 
 + (void)directLog:(OrtpLogLevel)level text:(NSString *)text {
+    
 	bctbx_log(BCTBX_LOG_DOMAIN, level, "%s", text.cString);
 }
 

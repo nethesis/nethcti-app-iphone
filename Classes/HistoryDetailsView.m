@@ -47,7 +47,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Property Functions
 
 - (void)setCallLogId:(NSString *)acallLogId {
+    
 	_callLogId = [acallLogId copy];
+    
 	[self update];
 }
 
@@ -135,15 +137,23 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)update {
 	// Look for the call log
 	callLog = NULL;
+    
 	if (_callLogId) {
+        
 		const MSList *list = linphone_core_get_call_logs(LC);
+        
 		while (list != NULL) {
+            
 			LinphoneCallLog *log = (LinphoneCallLog *)list->data;
+            
 			const char *cid = linphone_call_log_get_call_id(log);
+            
 			if (cid != NULL && [_callLogId isEqualToString:[NSString stringWithUTF8String:cid]]) {
+                
 				callLog = log;
 				break;
 			}
+            
 			list = list->next;
 		}
 	}
@@ -157,16 +167,22 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_emptyLabel.hidden = YES;
 
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
 	_addContactButton.hidden = ([FastAddressBook getContactWithAddress:addr] != nil);
+    
 	[ContactDisplay setDisplayNameLabel:_contactLabel forAddress:addr withAddressLabel:_addressLabel];
 	//[_avatarImage setImage:[FastAddressBook imageForAddress:addr] bordered:NO withRoundedRadius:YES];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forAddress:addr forImage:_avatarImage];
     
     Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
     const LinphonePresenceModel *model = contact.friend ? linphone_friend_get_presence_model(contact.friend) : NULL;
+    
     _linphoneImage.hidden = TRUE;//[LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"] || ! ((model && linphone_presence_model_get_basic_status(model) == LinphonePresenceBasicStatusOpen) || [FastAddressBook contactHasValidSipDomain:contact]);
 	LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+    
 	[self shouldHideEncryptedChatView:cfg && linphone_proxy_config_get_conference_factory_uri(cfg) && model && linphone_presence_model_has_capability(model, LinphoneFriendCapabilityLimeX3dh)];
+    
 	char *addrURI = linphone_address_as_string_uri_only(addr);
 	ms_free(addrURI);
 
@@ -188,19 +204,25 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Action Functions
 
 - (IBAction)onBackClick:(id)event {
+    
     [PhoneMainView.instance popCurrentView];
 }
 
 - (IBAction)onContactClick:(id)event {
+    
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
 	Contact *contact = [FastAddressBook getContactWithAddress:addr];
 	if (contact) {
         if(contact.nethesis) {
+            
             ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
             [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
             [ContactSelection setSelectionMode:ContactSelectionModeNone];
             [view setContact:contact];
-        } else {
+            
+        }else {
+            
             ContactDetailsView *view = VIEW(ContactDetailsView);
             [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
             [ContactSelection setSelectionMode:ContactSelectionModeNone];
@@ -210,9 +232,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onAddContactClick:(id)event {
+    
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
 	char *lAddress = linphone_address_as_string_uri_only(addr);
 	if (lAddress != NULL) {
+        
 		NSString *normSip = [NSString stringWithUTF8String:lAddress];
 		normSip = [normSip hasPrefix:@"sip:"] ? [normSip substringFromIndex:4] : normSip;
 		[ContactSelection setAddAddress:normSip];
@@ -227,18 +252,24 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onCallClick:(id)event {
+    
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
 	[LinphoneManager.instance call:addr];
 }
 
 - (IBAction)onChatClick:(id)event {
+    
 	const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
 	[LinphoneManager.instance lpConfigSetBool:TRUE forKey:@"create_chat"];
     [PhoneMainView.instance getOrCreateOneToOneChatRoom:addr waitView:_waitView isEncrypted:FALSE];
 }
 
 - (IBAction)onEncryptedChatClick:(id)sender {
+    
     const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
 	[LinphoneManager.instance lpConfigSetBool:TRUE forKey:@"create_chat"];
     [PhoneMainView.instance getOrCreateOneToOneChatRoom:addr waitView:_waitView isEncrypted:TRUE];
 }

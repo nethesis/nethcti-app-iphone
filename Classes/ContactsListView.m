@@ -120,6 +120,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [[NethPhoneBook instance] reset];
     
     tableController.tableView.accessibilityIdentifier = @"Contacts table";
@@ -193,7 +194,9 @@ static UICompositeViewDescription *compositeDescription = nil;
                                              object:nil];
     
     if (![FastAddressBook isAuthorized]) {
-        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil) message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
+                                                                         message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil)
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
                                                                 style:UIAlertActionStyleDefault
@@ -201,18 +204,25 @@ static UICompositeViewDescription *compositeDescription = nil;
         
         [errView addAction:defaultAction];
         [self presentViewController:errView animated:YES completion:nil];
+        
         [PhoneMainView.instance popCurrentView];
     }
     
     // show message toast when add contact from address
     if ([ContactSelection getAddAddress] != nil && addAddressFromOthers) {
-        UIAlertController *infoView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Info", nil) message:NSLocalizedString(@"Select a contact or create a new one.",nil) preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIAlertController *infoView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Info", nil)
+                                                                          message:NSLocalizedString(@"Select a contact or create a new one.",nil)
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action){
         }];
         
         [infoView addAction:defaultAction];
         addAddressFromOthers = FALSE;
+        
         [PhoneMainView.instance presentViewController:infoView animated:YES completion:nil];
     }
 }
@@ -262,10 +272,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
     [ContactSelection setPickerFilter:_pickerData[row]];
     NSString *picker = pickerFilter;
     NSString *search = _searchField.text;
+    
     [LinphoneManager.instance.fastAddressBook resetNeth];
+    
     [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
 }
 
@@ -280,6 +293,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)changeView:(ContactsCategory)view {
     // REQUIRED TO RELOAD WITH FILTER.
     [LinphoneManager.instance setContactsUpdated:TRUE];
+    
     if (view == ContactsAll && !allButton.selected) {
         // REQUIRED TO RELOAD WITH FILTER.
         // [LinphoneManager.instance setContactsUpdated:TRUE];
@@ -290,18 +304,24 @@ static UICompositeViewDescription *compositeDescription = nil;
         [tableController loadData];
         [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
         [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        
     } else if (view == ContactsLinphone && !linphoneButton.selected) {
         /*
          * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
          * Those contacts have contact.nethesis at YES instead of NO.
          */
         NSString *searchText = [ContactSelection getNameOrEmailFilter];
+        
         [LinphoneManager.instance.fastAddressBook resetNeth];
+        
         if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText]) {
             return;
         };
+        
         [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
+        
         [ContactSelection enableEmailFilter:FALSE];
+        
         linphoneButton.selected = TRUE;
         allButton.selected = FALSE;
         [self.allButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
@@ -312,12 +332,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     [addButton setHidden:sipFilter];
     [tableController.deleteButton setHidden:sipFilter];
     [tableController.editButton setHidden:sipFilter];
+    
     if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
         allButton.selected = FALSE;
     }
 }
 
 - (void)onPhonebookPermissionRejection:(NSNotification *)notif {
+    
     if ([notif.userInfo count] == 0){
         return;
     }
@@ -404,7 +426,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onAddContactClick:(id)event {
+    
     if([ContactSelection getSipFilter]) {
+        
         ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
         [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
         view.isAdding = TRUE;
@@ -413,7 +437,9 @@ static UICompositeViewDescription *compositeDescription = nil;
         } else {
             [view newContact:[ContactSelection getAddAddress]];
         }
-    } else {
+        
+    }else {
+        
         ContactDetailsView *view = VIEW(ContactDetailsView);
         [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
         view.isAdding = TRUE;
@@ -424,6 +450,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         }
     }
 }
+
 
 - (IBAction)onDeleteClick:(id)sender {
     NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete selected contacts?\nThey will also be deleted from your phone's address book.", nil)];
@@ -473,10 +500,14 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     if (searchText.length == 0) { // No filter, no search data.
         [LinphoneManager.instance setContactsUpdated:TRUE];
+        
         [tableController loadData];
+        
     } else {
+        
         // Before loading searched data, we have to search them!
-        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter]
+                                                  withTerm:searchText];
         [tableController loadSearchedData];
     }
 }
@@ -511,9 +542,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)performSearch {
+    
     NSString * text = [ContactSelection getNameOrEmailFilter];
+    
     [LinphoneManager.instance.fastAddressBook resetNeth];
+    
     [LinphoneManager.instance setContactsUpdated:TRUE];
+    
     if([LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:text]) {
         // Deny any other input until search is finished.
         dispatch_async(dispatch_get_main_queue(), ^{

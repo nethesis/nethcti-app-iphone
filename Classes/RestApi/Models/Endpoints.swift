@@ -7,9 +7,11 @@
 
 import Foundation
 
-// MARK: - Endpoints
+
+
 struct Endpoints: Codable {
-    let endpointsExtension: [Extension]
+    
+    let endpointsExtension: [EndpointExtension]
     let mainExtension: String?
     
     enum CodingKeys: String, CodingKey {
@@ -19,34 +21,40 @@ struct Endpoints: Codable {
 }
 
 extension Endpoints {
+    
     init?(from:[String:Any]){
+        
         guard let endpointExtension = from["extension"] as? [[String: Any]] else {
             return nil
         }
         
-        var extensions: [Extension] = []
+        var extensions: [EndpointExtension] = []
+        
         for string in endpointExtension {
+            
             guard let elem = string as [String: Any]? else {
                 return nil
             }
             
-            guard let ext = Extension(from: elem) else {
+            guard let ext = EndpointExtension(from: elem) else {
                 return nil
             }
             
             extensions.append(ext)
         }
+        
         self.endpointsExtension = extensions
         
+        
         // Get the main extension.
-        let ext = from["mainextension"] as? [[String:Any]]
-        let id = ext?[0]["id"] as? String
-        self.mainExtension = id
+        let mainextension = from["mainextension"] as? [[String:Any]]
+        let idFirstMainextension = mainextension?[0]["id"] as? String
+        self.mainExtension = idFirstMainextension
     }
     
     public func export() -> Endpoints {
-        return Endpoints.init(
-            endpointsExtension: self.endpointsExtension.map { $0.export() },
-            mainExtension: self.mainExtension)
+        
+        return Endpoints.init(endpointsExtension: self.endpointsExtension.map { $0.export() },
+                              mainExtension: self.mainExtension)
     }
 }

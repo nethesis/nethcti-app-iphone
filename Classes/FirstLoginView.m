@@ -199,8 +199,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)onLoginClick:(id)sender {
+    
 	if (!linphone_core_is_network_reachable(LC)) {
+        
         [PhoneMainView.instance presentViewController:[LinphoneUtils networkErrorView] animated:YES completion:nil];
+        
 		return;
 	}
 

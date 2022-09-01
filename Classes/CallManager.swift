@@ -34,6 +34,7 @@ import AVFoundation
  * There is only one CallManager by calling CallManager.instance().
  */
 @objc class CallManager: NSObject {
+    
     static var theCallManager: CallManager?
     let providerDelegate: ProviderDelegate! // to support callkit
     let callController: CXCallController! // to support callkit
@@ -164,10 +165,14 @@ import AVFoundation
         }
     }
     
+    
     // From ios13, display the callkit view when the notification is received.
     @objc func displayIncomingCall(callId: String) {
+        
         let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
+        
         if (uuid != nil) {
+            
             let callInfo = providerDelegate.callInfos[uuid!]
             if (callInfo?.declined ?? false) {
                 // This call was declined.
@@ -178,19 +183,24 @@ import AVFoundation
         }
         
         let call = CallManager.instance().callByCallId(callId: callId)
+        
         if (call != nil) {
+            
             let displayName = FastAddressBook.displayName(for: call?.remoteAddress?.getCobject) ?? "Unknow"
             let video = UIApplication.shared.applicationState == .active && (lc!.videoActivationPolicy?.automaticallyAccept ?? false) && (call!.remoteParams?.videoEnabled ?? false)
             // Calllkit mostra tutti i dettagli della chiamata.
             displayIncomingCall(call: call, handle: (call!.remoteAddress?.asStringUriOnly())!, hasVideo: video, callId: callId, displayName: displayName)
-        } else {
-            let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
+            
+        }else {
+            //let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
+            
             // Callkit mostra solo la chiamata ricevuta.
             displayIncomingCall(call: nil, handle: "Calling", hasVideo: true, callId: callId, displayName: "Calling")
         }
     }
     
     func displayIncomingCall(call:Call?, handle: String, hasVideo: Bool, callId: String, displayName:String) {
+        
         let uuid = UUID()
         let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
         
@@ -235,6 +245,7 @@ import AVFoundation
     
     // for outgoing call. There is not yet callId
     @objc func startCall(addr: OpaquePointer?, isSas: Bool) {
+        
         if (addr == nil) {
             print("Can not start a call with null address!")
             return
@@ -243,6 +254,7 @@ import AVFoundation
         let sAddr = Address.getSwiftObject(cObject: addr!)
         //Removed check "nextCallIsTransfer" to support correctly attended transfer
         if (CallManager.callKitEnabled()) {
+            
             let uuid = UUID()
             let name = FastAddressBook.displayName(for: addr) ?? "unknow"
             let handle = CXHandle(type: .generic, value: sAddr.asStringUriOnly())
@@ -255,12 +267,18 @@ import AVFoundation
             
             setHeldOtherCalls(exceptCallid: "")
             requestTransaction(transaction, action: "startCall")
+            
         }else {
+            
             try? doCall(addr: sAddr, isSas: isSas)
         }
     }
     
+    
     func doCall(addr: Address, isSas: Bool) throws {
+        
+        //Log.directLog(BCTBX_LOG_DEBUG, text: "doCall addr: \(addr)");
+
         let displayName = FastAddressBook.displayName(for: addr.getCobject)
         
         let lcallParams = try CallManager.instance().lc!.createCallParams(call: nil)
@@ -274,20 +292,24 @@ import AVFoundation
             try addr.setDisplayname(newValue: displayName!)
         }
         
-        if(ConfigManager.instance().lpConfigBoolForKey(key: "override_domain_with_default_one")) {
+        if (ConfigManager.instance().lpConfigBoolForKey(key: "override_domain_with_default_one")) {
             try addr.setDomain(newValue: ConfigManager.instance().lpConfigStringForKey(key: "domain", section: "assistant"))
         }
         
         // TODO: Qui dovrei mettere la gestione del trasferimento o no della chiamata.
         if (CallManager.instance().nextCallIsTransfer && false) {
+            
             let call = CallManager.instance().lc!.currentCall
             try call?.transfer(referTo: addr.asString())
             CallManager.instance().nextCallIsTransfer = false
+            
         } else {
             //We set the record file name here because we can't do it after the call is started.
             let writablePath = AppManager.recordingFilePathFromCall(address: addr.username )
+            
             Log.directLog(BCTBX_LOG_DEBUG, text: "record file path: \(writablePath)")
             Log.directLog(BCTBX_LOG_DEBUG, text: "Wedo - VideoParams: \(lcallParams.videoEnabled)")
+            
             lcallParams.recordFile = writablePath
             if (isSas) {
                 lcallParams.mediaEncryption = .ZRTP
@@ -299,17 +321,20 @@ import AVFoundation
                 // We are NOT responsible for creating the AppData.
                 let data = CallManager.getAppData(sCall: call!)
                 if (data == nil) {
+                    
                     Log.directLog(BCTBX_LOG_ERROR, text: "New call instanciated but app data was not set. Expect it to crash.")
                     /* will be used later to notify user if video was not activated because of the linphone core*/
                 } else {
+                    
                     data!.videoRequested = lcallParams.videoEnabled
+                    
                     Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO: doCall()->data.videoRequested \(data!.videoRequested)")
+                    
                     CallManager.setAppData(sCall: call!, appData: data)
                 }
                 
                 // If starting transfering a call, save destination call pointer.
-                if TransferCallManager.instance().isCallTransfer,
-                   let _ = TransferCallManager.instance().origin {
+                if TransferCallManager.instance().isCallTransfer, let _ = TransferCallManager.instance().origin {
                     TransferCallManager.instance().destination = call
                 }
             }
@@ -451,7 +476,10 @@ import AVFoundation
     }
 }
 
+
+
 class CoreManagerDelegate: CoreDelegate {
+    
     static var speaker_already_enabled : Bool = false
     var globalState : GlobalState = .Off
     var actionsToPerformOnceWhenCoreIsOn : [(()->Void)] = []
@@ -519,7 +547,7 @@ class CoreManagerDelegate: CoreDelegate {
                 let lastuuid = map?.1
                 let oldCallInfos = CallManager.instance().providerDelegate.callInfos[lastuuid!]
                 
-                Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallIdSwitch: Old: \(map?.0), New: \(callId)")
+                Log.directLog(BCTBX_LOG_DEBUG, text: "WEDO - CallIdSwitch: Old: \(String(describing: map?.0)), New: \(callId)")
                 
                 CallManager.instance().providerDelegate.uuids.removeValue(forKey: map!.0)
                 CallManager.instance().providerDelegate.uuids.updateValue(lastuuid!, forKey: callId)

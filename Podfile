@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '13.0'
 source "https://gitlab.linphone.org/BC/public/podspec.git"
 source "https://github.com/CocoaPods/Specs.git"
 
@@ -12,6 +12,8 @@ def all_pods
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # local sdk
 	end
 
+  #pod 'Alamofire', '~> 4.9'
+  
 	crashlytics
 end
 

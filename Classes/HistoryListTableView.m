@@ -245,16 +245,25 @@
 #pragma mark - UITableViewDelegate Functions
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
 	if (![self isEditing]) {
+        
 		id log = [_sections objectForKey:_sortedDays[indexPath.section]][indexPath.row];
 		LinphoneCallLog *callLog = [log pointerValue];
+        
 		if (callLog != NULL) {
+            
 			if (IPAD) {
+                
 				UIHistoryCell *cell = (UIHistoryCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
 				[cell onDetails:self];
-			} else {
+                
+			}else {
+                
 				const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+                
 				[LinphoneManager.instance call:addr];
 			}
 		}

@@ -250,8 +250,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *kCellId = @"UIContactDetailsCell";
     UIContactDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    
     if (cell == nil) {
         cell = [[UIContactDetailsCell alloc] initWithIdentifier:kCellId];
         cell.waitView = _waitView;
@@ -274,20 +276,28 @@
         value = _contact.lastName;
         [cell hideDeleteButton:YES];
     } else if (section == ContactSections_Number) {
+        
         value = _contact.phones[indexPath.row];
+        //NSLog(@"value: %@", value);
+
         [cell.editTextfield setKeyboardType:UIKeyboardTypePhonePad];
+        
     } else if (section == ContactSections_Sip) {
+        
         value = _contact.sipAddresses[indexPath.row];
+        //NSLog(@"value: %@", value);
+        
         LinphoneAddress *addr = NULL;
-        if ([LinphoneManager.instance
-             lpConfigBoolForKey:@"contact_display_username_only"] &&
-            (addr = linphone_core_interpret_url(LC, [value UTF8String]))) {
-            value =
-            [NSString stringWithCString:linphone_address_get_username(addr)
-                               encoding:[NSString defaultCStringEncoding]];
+        
+        if ([LinphoneManager.instance lpConfigBoolForKey:@"contact_display_username_only"] && (addr = linphone_core_interpret_url(LC, [value UTF8String]))) {
+            
+            value = [NSString stringWithCString:linphone_address_get_username(addr)
+                                       encoding:[NSString defaultCStringEncoding]];
             linphone_address_destroy(addr);
         }
+        
         [cell.editTextfield setKeyboardType:UIKeyboardTypeASCIICapable];
+        
     } else if (section == ContactSections_Email) {
         value = _contact.emails[indexPath.row];
         [cell.editTextfield setKeyboardType:UIKeyboardTypeEmailAddress];

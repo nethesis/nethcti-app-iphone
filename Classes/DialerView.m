@@ -52,8 +52,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
-	_padView.hidden =
-		!IPAD && UIInterfaceOrientationIsLandscape(PhoneMainView.instance.mainViewController.currentOrientation);
+	_padView.hidden = !IPAD && UIInterfaceOrientationIsLandscape(PhoneMainView.instance.mainViewController.currentOrientation);
 
 	// Set observer
 	[NSNotificationCenter.defaultCenter addObserver:self
@@ -127,20 +126,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 	[_addressField setAdjustsFontSizeToFitWidth:TRUE]; // Not put it in IB: issue with placeholder size
 
-	UILongPressGestureRecognizer *backspaceLongGesture =
-		[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onBackspaceLongClick:)];
+	UILongPressGestureRecognizer *backspaceLongGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onBackspaceLongClick:)];
 	[_backspaceButton addGestureRecognizer:backspaceLongGesture];
     UIImage *backspaceImage = [[UIImage imageNamed:@"nethcti_backspace.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_backspaceButton setImage:backspaceImage forState:UIControlStateNormal];
     [_backspaceButton setImage:backspaceImage forState:UIControlStateHighlighted];
     [_backspaceButton setImage:backspaceImage forState:UIControlStateSelected];
 
-	UILongPressGestureRecognizer *zeroLongGesture =
-		[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onZeroLongClick:)];
+	UILongPressGestureRecognizer *zeroLongGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onZeroLongClick:)];
 	[_zeroButton addGestureRecognizer:zeroLongGesture];
 
-	UILongPressGestureRecognizer *oneLongGesture =
-		[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onOneLongClick:)];
+	UILongPressGestureRecognizer *oneLongGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onOneLongClick:)];
 	[_oneButton addGestureRecognizer:oneLongGesture];
 	
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -197,12 +193,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Event Functions
 
 - (void)callUpdateEvent:(NSNotification *)notif {
+    
     LinphoneCall *call = [[notif.userInfo objectForKey:@"call"] pointerValue];
     LinphoneCallState state = [[notif.userInfo objectForKey:@"state"] intValue];
     [self callUpdate:call state:state];
 }
 
 - (void)coreUpdateEvent:(NSNotification *)notif {
+    
 	@try {
 		if (IPAD) {
 			if (linphone_core_video_display_enabled(LC) && linphone_core_video_preview_enabled(LC)) {
@@ -376,15 +374,21 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
 	if (textField == _addressField) {
+        
 		[_addressField resignFirstResponder];
 	}
+    
 	if (textField.text.length > 0) {
+        
 		LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:textField.text];
 		[LinphoneManager.instance call:addr];
+        
 		if (addr)
 			linphone_address_destroy(addr);
 	}
+    
 	return YES;
 }
 
@@ -393,6 +397,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)mailComposeController:(MFMailComposeViewController *)controller
 		  didFinishWithResult:(MFMailComposeResult)result
 						error:(NSError *)error {
+    
 	[controller dismissViewControllerAnimated:TRUE completion:nil];
 	[self.navigationController setNavigationBarHidden:TRUE animated:FALSE];
 }
@@ -405,15 +410,18 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[ContactSelection setSipFilter:nil];
 	[ContactSelection setNameOrEmailFilter:nil];
 	[ContactSelection enableEmailFilter:FALSE];
+    
 	[PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
 }
 
 - (IBAction)onBackClick:(id)event {
     TransferCallManager.instance.isCallTransfer = NO;
+    
 	[PhoneMainView.instance popToView:CallView.compositeViewDescription];
 }
 
 - (IBAction)onAddressChange:(id)sender {
+    
 	if ([self displayDebugPopup:_addressField.text]) {
 		_addressField.text = @"";
 	}
@@ -448,9 +456,9 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)onZeroLongClick:(id)sender {
 	// replace last character with a '+'
-	NSString *newAddress =
-		[[_addressField.text substringToIndex:[_addressField.text length] - 1] stringByAppendingString:@"+"];
+	NSString *newAddress = [[_addressField.text substringToIndex:[_addressField.text length] - 1] stringByAppendingString:@"+"];
 	[_addressField setText:newAddress];
+    
 	linphone_core_stop_dtmf(LC);
 }
 
@@ -471,4 +479,5 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)dismissKeyboards {
 	[self.addressField resignFirstResponder];
 }
+
 @end

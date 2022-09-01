@@ -8,6 +8,8 @@
 #import "DashboardViewController.h"
 #import "RecentCallTableViewCell.h"
 
+
+
 @implementation DashboardViewController
 
 #pragma mark - UICompositeViewDelegate Functions
@@ -15,7 +17,9 @@
 static UICompositeViewDescription *compositeDescription = nil;
 
 + (UICompositeViewDescription *)compositeViewDescription {
+    
     if (compositeDescription == nil) {
+        
         compositeDescription = [[UICompositeViewDescription alloc] init:self.class
                                                               statusBar:StatusBarView.class
                                                                  tabBar:nil
@@ -25,10 +29,13 @@ static UICompositeViewDescription *compositeDescription = nil;
                                                            fragmentWith:nil];
         compositeDescription.darkBackground = true;
     }
+    
     return compositeDescription;
 }
 
+
 - (UICompositeViewDescription *)compositeViewDescription {
+    
     return self.class.compositeViewDescription;
 }
 
@@ -78,6 +85,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 /// Navigate to old Settings page.
 /// @param sender  must be the new SettingsButton.
 - (IBAction)onSettingsClick:(id)sender {
-    [PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
+    // Impostazioni
+    //[PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
+    // Presence
+    [PhoneMainView.instance changeCurrentView:PresenceViewController.compositeViewDescription];
 }
+
 @end

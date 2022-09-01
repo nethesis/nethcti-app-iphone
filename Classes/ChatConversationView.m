@@ -327,12 +327,14 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 
 - (void)shareFile {
+    
     NSString* groupName = [NSString stringWithFormat:@"group.%@.linphoneExtension",[[NSBundle mainBundle] bundleIdentifier]];
 
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:groupName];
     NSDictionary *dict = [defaults valueForKey:@"photoData"];
     NSDictionary *dictFile = [defaults valueForKey:@"icloudData"];
     NSDictionary *dictUrl = [defaults valueForKey:@"url"];
+    
     if (dict) {
         //file shared from photo lib
         NSString *fileName = dict[@"url"];
@@ -353,13 +355,17 @@ static UICompositeViewDescription *compositeDescription = nil;
         }
         
         [defaults removeObjectForKey:@"photoData"];
+        
     } else if (dictFile) {
+        
         NSString *fileName = dictFile[@"url"];
         [_messageField setText:dictFile[@"message"]];
         [self confirmShare:[self nsDataRead] url:nil fileName:fileName assetId:nil];
         
         [defaults removeObjectForKey:@"icloudData"];
+        
     } else if (dictUrl) {
+        
         NSString *url = dictUrl[@"url"];
         [_messageField setText:dictUrl[@"message"]];
         [self confirmShare:nil url:url fileName:nil assetId:nil];
@@ -707,9 +713,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onCallClick:(id)sender {
+    
 	bctbx_list_t *participants = linphone_chat_room_get_participants(_chatRoom);
 	LinphoneParticipant *firstParticipant = participants ? (LinphoneParticipant *)participants->data : NULL;
 	const LinphoneAddress *addr = firstParticipant ? linphone_participant_get_address(firstParticipant) : linphone_chat_room_get_peer_address(_chatRoom);
+    
 	[LinphoneManager.instance call:addr];
 }
 

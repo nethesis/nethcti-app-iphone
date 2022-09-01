@@ -33,18 +33,42 @@ enum NetworkType: Int {
 * AppManager is a class that includes some useful functions.
 */
 @objc class AppManager: NSObject {
+    
 	static func network() -> NetworkType {
+        
+        /*
 		let info = CTTelephonyNetworkInfo()
 		let currentRadio = info.currentRadioAccessTechnology
+        
 		if (currentRadio == CTRadioAccessTechnologyEdge) {
+            
 			return NetworkType.network_2g
+            
 		} else if (currentRadio == CTRadioAccessTechnologyLTE) {
+            
 			return NetworkType.network_4g
 		}
+        
 		return NetworkType.network_3g
+        */
+        
+        let dict = CTTelephonyNetworkInfo().serviceCurrentRadioAccessTechnology
+        let firstValue = dict?.values.first
+        
+        if (firstValue == CTRadioAccessTechnologyEdge) {
+            
+            return NetworkType.network_2g
+            
+        } else if (firstValue == CTRadioAccessTechnologyLTE) {
+            
+            return NetworkType.network_4g
+        }
+        
+        return NetworkType.network_3g
 	}
 
 	@objc static func recordingFilePathFromCall(address: String) -> String {
+        
 		var filePath = "recording_"
 		filePath = filePath.appending(address.isEmpty ? "unknow" : address)
 		let now = Date()

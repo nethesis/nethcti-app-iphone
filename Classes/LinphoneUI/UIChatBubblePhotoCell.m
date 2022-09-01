@@ -419,10 +419,15 @@ static const CGFloat CELL_IMAGE_X_MARGIN = 100;
 
 
 - (IBAction)onCancelClick:(id)sender {
+    
 	FileTransferDelegate *tmp = _ftd;
+    
 	[self disconnectFromFileDelegate];
+    
 	_fileTransferProgress.progress = 0;
+    
 	[tmp cancel];
+    
 	if (!linphone_core_is_network_reachable(LC)) {
 		[self update];
 	}

@@ -72,13 +72,19 @@
   	return nil;
 }
 
+
 + (Contact *)getContactWithAddress:(const LinphoneAddress *)address {
+    
     return [self getContactWithAddress:address fromFriendsOnly:NO];
 }
 
-+ (Contact *)getContactWithAddress:(const LinphoneAddress *)address fromFriendsOnly:(BOOL)only {
++ (Contact *)getContactWithAddress:(const LinphoneAddress *)address
+                   fromFriendsOnly:(BOOL)only {
+    
 	Contact *contact = nil;
+    
 	if (address) {
+        
         if(!only) {
             char *uri = linphone_address_as_string_uri_only(address);
             NSString *normalizedSipAddress = [FastAddressBook normalizeSipURI:[NSString stringWithUTF8String:uri]];
@@ -89,6 +95,7 @@
 		if (!contact) {
             LinphoneFriend *friend = linphone_core_find_friend(LC, address);
             MSList *numbers = linphone_friend_get_phone_numbers(friend);
+            
             while (numbers) {
                 NSString *phone = [NSString stringWithUTF8String:numbers->data];
                 LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
@@ -98,20 +105,24 @@
                     LinphoneAddress *addr = linphone_proxy_config_normalize_sip_uri(cfg, normvalue);
                     const char *phone_addr = linphone_address_as_string_uri_only(addr);
                     const char *old_addres = linphone_address_as_string_uri_only(address);
-                    if(only) {
+                    
+                    if (only) {
+                        
                         if(strcmp(phone_addr, old_addres)) {
+                            
                             contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
                         }
-                    } else {
+                    }else {
                         contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
                     }
-                } else {
+                }else {
                     contact = [FastAddressBook getContact:phone];
                 }
                 
                 if (contact) {
                     break;
                 }
+                
                 numbers = numbers->next;
             }
         }
@@ -119,7 +130,9 @@
 	return contact;
 }
 
+
 + (BOOL)isSipURI:(NSString *)address {
+    
 	return [address hasPrefix:@"sip:"] || [address hasPrefix:@"sips:"];
 }
 
@@ -162,89 +175,96 @@
 }
 
 - (FastAddressBook *)init {
+    
 	if ((self = [super init]) != nil) {
 		store = [[CNContactStore alloc] init];
 		_addressBookMap = [NSMutableDictionary dictionary];
 
 		[NSNotificationCenter.defaultCenter addObserver:self
-		selector:@selector(onPresenceChanged:)
-			name:kLinphoneNotifyPresenceReceivedForUriOrTel
-			object:nil];
+                                               selector:@selector(onPresenceChanged:)
+                                                   name:kLinphoneNotifyPresenceReceivedForUriOrTel
+                                                 object:nil];
 	}
+    
 	self.needToUpdate = FALSE;
 	if (floor(NSFoundationVersionNumber) >= NSFoundationVersionNumber_iOS_9_x_Max) {
+        
 		if ([CNContactStore class]) {
 			// ios9 or later
 			if (store == NULL)
 				store = [[CNContactStore alloc] init];
+            
 			[self fetchContactsInBackGroundThread];
+            
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAddressBook:) name:CNContactStoreDidChangeNotification object:nil];
 		}
 	}
 	return self;
 }
 
-- (void) fetchContactsInBackGroundThread{
-	[_addressBookMap removeAllObjects];
-	_addressBookMap = [NSMutableDictionary dictionary];
-	CNEntityType entityType = CNEntityTypeContacts;
-	[store requestAccessForEntityType:entityType completionHandler:^(BOOL granted, NSError *_Nullable error) {
-		BOOL success = FALSE;
-		if(granted){
-			LOGD(@"CNContactStore authorization granted");
-			
-			NSError *contactError;
+- (void)fetchContactsInBackGroundThread {
+    
+    [_addressBookMap removeAllObjects];
+    _addressBookMap = [NSMutableDictionary dictionary];
+    CNEntityType entityType = CNEntityTypeContacts;
+    
+    [store requestAccessForEntityType:entityType completionHandler:^(BOOL granted, NSError *_Nullable error) {
+        BOOL success = FALSE;
+        
+        if (granted) {
+            LOGD(@"CNContactStore authorization granted");
+            
+            NSError *contactError;
             /*
              CNContactStore = The object that fetches and saves contacts, groups, and containers from the user's contacts database.
              */
-			CNContactStore* store = [[CNContactStore alloc] init];
-			[store containersMatchingPredicate:[CNContainer predicateForContainersWithIdentifiers:@[ store.defaultContainerIdentifier]] error:&contactError];
-			NSArray *keysToFetch = @[
-									 CNContactEmailAddressesKey, CNContactPhoneNumbersKey,
-									 CNContactFamilyNameKey, CNContactGivenNameKey, CNContactNicknameKey,
-									 CNContactPostalAddressesKey, CNContactIdentifierKey,
-									 CNInstantMessageAddressUsernameKey, CNContactInstantMessageAddressesKey,
-									 CNInstantMessageAddressUsernameKey, CNContactImageDataKey, CNContactOrganizationNameKey
-									 ];
-			CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
-			
+            CNContactStore* store = [[CNContactStore alloc] init];
+            [store containersMatchingPredicate:[CNContainer predicateForContainersWithIdentifiers:@[ store.defaultContainerIdentifier]] error:&contactError];
+            NSArray *keysToFetch = @[
+                CNContactEmailAddressesKey, CNContactPhoneNumbersKey,
+                CNContactFamilyNameKey, CNContactGivenNameKey, CNContactNicknameKey,
+                CNContactPostalAddressesKey, CNContactIdentifierKey,
+                CNInstantMessageAddressUsernameKey, CNContactInstantMessageAddressesKey,
+                CNInstantMessageAddressUsernameKey, CNContactImageDataKey, CNContactOrganizationNameKey
+            ];
+            CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
+            
             // Wedo: here contacts from iPad phonebook are loaded.
-			success = [store enumerateContactsWithFetchRequest:request error:&contactError usingBlock:^(CNContact *__nonnull contact, BOOL *__nonnull stop) {
-				if (contactError) {
-				  NSLog(@"error fetching contacts %@",
-						contactError);
-				} else {
-					Contact *newContact = [[Contact alloc] initWithCNContact:contact];
-					[self registerAddrsFor:newContact];
-				}
-			}];
-		}
-
-		// load Linphone friends
-		const MSList *lists = linphone_core_get_friends_lists(LC);
-		while (lists) {
-			LinphoneFriendList *fl = lists->data;
-			const MSList *friends = linphone_friend_list_get_friends(fl);
-			while (friends) {
-				LinphoneFriend *f = friends->data;
-				// only append friends that are not native contacts (already added
-				// above)
-				if (linphone_friend_get_ref_key(f) == NULL) {
-					Contact *contact = [[Contact alloc] initWithFriend:f];
-					[self registerAddrsFor:contact];
-				}
-				friends = friends->next;
-			}
-			linphone_friend_list_update_subscriptions(fl);
-			lists = lists->next;
-		}
-		[self dumpContactsDisplayNamesToUserDefaults];
-
+            success = [store enumerateContactsWithFetchRequest:request error:&contactError usingBlock:^(CNContact *__nonnull contact, BOOL *__nonnull stop) {
+                if (contactError) {
+                    NSLog(@"error fetching contacts %@",
+                          contactError);
+                } else {
+                    Contact *newContact = [[Contact alloc] initWithCNContact:contact];
+                    [self registerAddrsFor:newContact];
+                }
+            }];
+        }
+        
+        // load Linphone friends
+        const MSList *lists = linphone_core_get_friends_lists(LC);
+        while (lists) {
+            LinphoneFriendList *fl = lists->data;
+            const MSList *friends = linphone_friend_list_get_friends(fl);
+            while (friends) {
+                LinphoneFriend *f = friends->data;
+                // only append friends that are not native contacts (already added
+                // above)
+                if (linphone_friend_get_ref_key(f) == NULL) {
+                    Contact *contact = [[Contact alloc] initWithFriend:f];
+                    [self registerAddrsFor:contact];
+                }
+                friends = friends->next;
+            }
+            linphone_friend_list_update_subscriptions(fl);
+            lists = lists->next;
+        }
+        [self dumpContactsDisplayNamesToUserDefaults];
+        
         // Wedo: here we notify un update for the AddressBook.
-		[NSNotificationCenter.defaultCenter
-		 postNotificationName:kLinphoneAddressBookUpdate
-		 object:self];
-	}];
+        [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate
+                                                          object:self];
+    }];
 }
 
 -(void) updateAddressBook:(NSNotification*) notif {
@@ -293,10 +313,16 @@
 /// - all: to fetch all contacts
 /// @param term Term to search inside contact name.
 /// @param retry TO BE REMOVED: after a 401, login and retry one time.
--(BOOL)loadNeth:(NSString *)view withTerm:(NSString *)term {
-    if(![NethCTIAPI.sharedInstance isUserAuthenticated]) {
+-(BOOL)loadNeth:(NSString *)view
+       withTerm:(NSString *)term {
+    
+    NSLog(@"loadNeth view: %@ withTerm: %@", view, term);
+
+    if (![NethCTIAPI.sharedInstance isUserAuthenticated]) {
         // This method should send more error codes than one.
+        
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:401], @"code", nil];
+        
         [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
                                                           object:self
                                                         userInfo:dict];
@@ -305,35 +331,50 @@
     
     // Synchronize on this object to check if there's already an api call.
     @synchronized (_addressBookMap) {
+        
         if(_isLoading)
             return false;
+        
         _isLoading = YES;
     }
     
     // Fetch contacts in a background thread. No more actions in this method are executed on main thread.
-    [NethCTIAPI.sharedInstance fetchContacts:view t:term success:^(NSArray<Contact *> * _Nonnull contacts) {
+    [NethCTIAPI.sharedInstance fetchContacts:view
+                                           t:term
+                                     success:^(NSArray<Contact *> * _Nonnull contacts) {
+        
         @try {
-            for (Contact* nethContact in contacts) {
+            
+            for (Contact *nethContact in contacts) {
+                
                 @synchronized(LinphoneManager.instance.fastAddressBook) {
+                    
                     @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                        
                         [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
                     }
                 }
             }
-            
             // Mark contact as updated if loaded are more than 0.
             [LinphoneManager.instance setContactsUpdated:TRUE];
+            
         } @catch (NSException *exception) {
+            
             LOGE(@"[FastAddressBook] Exception thrown while loading Neth results: %s", exception.description);
+            
         } @finally {
+            
             // Release the block on loading action before exit callback.
             @synchronized (_addressBookMap) {
                 _isLoading = NO;
             }
             
-            [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate object:self];
+            [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate
+                                                              object:self];
         }
-    } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        
+    }errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        
         // [LinphoneManager.instance clearProxies];
         @try {
             // Show error message.
@@ -344,11 +385,16 @@
             [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
                                                               object:self
                                                             userInfo:dict];
+            
         } @catch (NSException *exception) {
+            
             LOGE(@"[FastAddressBook] Exception thrown while error handling Neth results: %s", exception.description);
+            
         } @finally {
+            
             // Release the block on loading action before exit callback.
             @synchronized (_addressBookMap) {
+                
                 _isLoading = NO;
             }
         }
@@ -359,17 +405,20 @@
 }
 
 - (void) resetNeth {
+    
     [_addressBookMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * _Nonnull stop) {
         if (((Contact*) obj).nethesis == YES) {
             [_addressBookMap removeObjectForKey:key];
         }
     }];
+    
     [NethPhoneBook.instance reset];
 }
 
 #pragma mark - Tools
 
 + (NSString *)localizedLabel:(NSString *)label {
+    
 	if (label)
 		return [CNLabeledValue localizedStringForLabel:label];
 
@@ -377,6 +426,7 @@
 }
 
 + (BOOL)contactHasValidSipDomain:(Contact *)contact {
+    
 	if (!contact)
 		return NO;
 	
@@ -430,6 +480,7 @@
 }
 
 + (NSString *)displayNameForAddress:(const LinphoneAddress *)addr fromFriendsOnly:(BOOL)only {
+    
 	Contact *contact = [FastAddressBook getContactWithAddress:addr];
 	if (contact && !only)
 		return [FastAddressBook displayNameForContact:contact];
@@ -627,8 +678,10 @@
 
 - (void)dumpContactsDisplayNamesToUserDefaults {
 	LOGD(@"dumpContactsDisplayNamesToUserDefaults");
+    
     NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
 	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
+    
 	__block NSDictionary *oldDisplayNames = [defaults dictionaryForKey:@"addressBook"];
 	LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
 
@@ -661,6 +714,7 @@
 
 - (void)removeContactFromUserDefaults:(Contact *)contact {
 	LOGD(@"removeContactFromUserDefaults contact: [%p]", contact);
+    
     NSString *notificationAppGroupId = [LinphoneManager bundleConfig:@"NotificationAppGroupId"];
 	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:notificationAppGroupId];
 	NSMutableDictionary *displayNames = [[NSMutableDictionary alloc] initWithDictionary:[defaults dictionaryForKey:@"addressBook"]];

@@ -92,21 +92,27 @@
 }
 
 - (IBAction)callTouchUpInside:(id)event {
-    if(callLog == nil) {
+    
+    if (callLog == nil) {
+        
         return;
     }
     
     const LinphoneAddress *addr = linphone_call_log_get_remote_address(callLog);
+    
     [LinphoneManager.instance call:addr];
 }
 
 - (IBAction)showHistoryDetails:(id)event {
+    
     if (callLog == nil) {
         return;
     }
 
     HistoryDetailsView *view = VIEW(HistoryDetailsView);
+    
     if (linphone_call_log_get_call_id(callLog) != NULL) {
+        
         // Go to History details view
         const char *log = linphone_call_log_get_call_id(callLog);
         [view setCallLogId:[NSString stringWithUTF8String:log]];

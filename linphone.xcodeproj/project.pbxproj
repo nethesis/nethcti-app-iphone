@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -765,6 +765,32 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		93566413F75DA69D2811A716 /* Pods_msgNotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F30EA7BEA39DA427CE0754E /* Pods_msgNotificationService.framework */; };
+		A971E369279F0367009017E7 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971E368279F0367009017E7 /* Group.swift */; };
+		A97ACC0E27AD48480038EEE0 /* PresenceSelectListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97ACC0C27AD48480038EEE0 /* PresenceSelectListTableViewCell.m */; };
+		A97ACC0F27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97ACC0D27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib */; };
+		A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97E15F527981A4900FE057E /* PresenceTableViewCell.m */; };
+		A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */; };
+		A981806F27BA75B10038C9C7 /* PresenceActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A981806D27BA75B10038C9C7 /* PresenceActionViewController.m */; };
+		A981807027BA75B10038C9C7 /* PresenceActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A981806E27BA75B10038C9C7 /* PresenceActionViewController.xib */; };
+		A9854F0B27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9854F0927B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m */; };
+		A9854F0C27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9854F0A27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib */; };
+		A9861AD727A9559600EFD779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A9861AD527A9559500EFD779 /* MBProgressHUD.m */; };
+		A986D1C127C3F3A9006978AE /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A986D1C027C3F3A9006978AE /* Conversation.swift */; };
+		A9916DEC279AB677006A37E7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEB279AB677006A37E7 /* Profile.swift */; };
+		A9916DEE279AC557006A37E7 /* MacroPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DED279AC557006A37E7 /* MacroPermissions.swift */; };
+		A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DEF279AF41D006A37E7 /* PresencePanel.swift */; };
+		A9916DF2279AF9EC006A37E7 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF1279AF9EC006A37E7 /* Permissions.swift */; };
+		A9916DF4279AFF43006A37E7 /* AdPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9916DF3279AFF43006A37E7 /* AdPermission.swift */; };
+		A996E82827A04CDF007AD6E4 /* PresenceUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996E82727A04CDF007AD6E4 /* PresenceUser.swift */; };
+		A9B9E9B027AAA1930062CCDE /* PresenceSelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */; };
+		A9B9E9B227AAA21B0062CCDE /* PresenceSelectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */; };
+		A9B9E9B627AADB060062CCDE /* PresenceSelectListGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */; };
+		A9B9E9B727AADB060062CCDE /* PresenceSelectListGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */; };
+		A9C51F4727BBF21000234769 /* PresenceActionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */; };
+		A9C51F4827BBF21000234769 /* PresenceActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */; };
+		A9CCB1CF27C4F12F00B279B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CCB1CE27C4F12F00B279B6 /* Extension.swift */; };
+		A9F4924C2790833600564AED /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F4924B2790833600564AED /* PresenceViewController.m */; };
+		A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4924D279087FE00564AED /* PresenceViewController.xib */; };
 		BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BF16824C887F300667B10 /* CallIdTest.swift */; };
 		BB7FB93726E651D000DCC61C /* nethcti_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7FB93526E651D000DCC61C /* nethcti_menu@2x.png */; };
 		BB7FB93826E651D000DCC61C /* nethcti_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7FB93626E651D000DCC61C /* nethcti_menu.png */; };
@@ -1892,6 +1918,41 @@
 		928B424D5EBE16EAE8708522 /* Pods-NethCTI.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NethCTI.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-NethCTI/Pods-NethCTI.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
 		969DA4BE655B6AEB5803BEA0 /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBD6E980619195CB7EE32AC /* Pods_liblinphoneTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liblinphoneTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A971E368279F0367009017E7 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		A97ACC0B27AD48480038EEE0 /* PresenceSelectListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListTableViewCell.h; sourceTree = "<group>"; };
+		A97ACC0C27AD48480038EEE0 /* PresenceSelectListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListTableViewCell.m; sourceTree = "<group>"; };
+		A97ACC0D27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListTableViewCell.xib; sourceTree = "<group>"; };
+		A97E15F427981A4900FE057E /* PresenceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
+		A97E15F527981A4900FE057E /* PresenceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewCell.m; sourceTree = "<group>"; };
+		A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceTableViewCell.xib; sourceTree = "<group>"; };
+		A981806C27BA75B10038C9C7 /* PresenceActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceActionViewController.h; sourceTree = "<group>"; };
+		A981806D27BA75B10038C9C7 /* PresenceActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceActionViewController.m; sourceTree = "<group>"; };
+		A981806E27BA75B10038C9C7 /* PresenceActionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceActionViewController.xib; sourceTree = "<group>"; };
+		A9854F0827B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListGroupTableViewCell.h; sourceTree = "<group>"; };
+		A9854F0927B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListGroupTableViewCell.m; sourceTree = "<group>"; };
+		A9854F0A27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListGroupTableViewCell.xib; sourceTree = "<group>"; };
+		A9861AD527A9559500EFD779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A9861AD627A9559500EFD779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A986D1C027C3F3A9006978AE /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		A9916DEB279AB677006A37E7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A9916DED279AC557006A37E7 /* MacroPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroPermissions.swift; sourceTree = "<group>"; };
+		A9916DEF279AF41D006A37E7 /* PresencePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresencePanel.swift; sourceTree = "<group>"; };
+		A9916DF1279AF9EC006A37E7 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		A9916DF3279AFF43006A37E7 /* AdPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPermission.swift; sourceTree = "<group>"; };
+		A996E82727A04CDF007AD6E4 /* PresenceUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceUser.swift; sourceTree = "<group>"; };
+		A9B9E9AE27AAA1930062CCDE /* PresenceSelectListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListViewController.h; sourceTree = "<group>"; };
+		A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListViewController.m; sourceTree = "<group>"; };
+		A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListViewController.xib; sourceTree = "<group>"; };
+		A9B9E9B327AADB060062CCDE /* PresenceSelectListGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListGroupViewController.h; sourceTree = "<group>"; };
+		A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListGroupViewController.m; sourceTree = "<group>"; };
+		A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceSelectListGroupViewController.xib; sourceTree = "<group>"; };
+		A9C51F4427BBF21000234769 /* PresenceActionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresenceActionCollectionViewCell.h; sourceTree = "<group>"; };
+		A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenceActionCollectionViewCell.m; sourceTree = "<group>"; };
+		A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceActionCollectionViewCell.xib; sourceTree = "<group>"; };
+		A9CCB1CE27C4F12F00B279B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		A9F4924A2790833600564AED /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
+		A9F4924B2790833600564AED /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
+		A9F4924D279087FE00564AED /* PresenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
 		ABB887316C42EE876A3051A9 /* Pods-linphoneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-linphoneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-linphoneTests/Pods-linphoneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADCA571A7CF61077747BFE53 /* Pods-msgNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-msgNotificationService/Pods-msgNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C77D3BA284DC519E80F23C /* Pods_NethCTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NethCTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2281,11 +2342,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C3A406F7261DF5FF00526F9B /* History */,
-				C3A406E4261DE6D000526F9B /* Dashboard */,
 				22E0A81D111C44E100B04932 /* AboutView.h */,
 				22E0A81C111C44E100B04932 /* AboutView.m */,
 				636316D31A1DEBCB0009B839 /* AboutView.xib */,
+				6134812E2407B35200695B41 /* AppManager.swift */,
 				633E417F1D74258F00320475 /* AssistantLinkView.h */,
 				633E41801D74258F00320475 /* AssistantLinkView.m */,
 				63EC8D3B1D7438660066547B /* AssistantLinkView.xib */,
@@ -2298,6 +2358,7 @@
 				D3F26BEE15986B71005F9CAB /* CallIncomingView.h */,
 				D3F26BEF15986B71005F9CAB /* CallIncomingView.m */,
 				D38187DC15FE347700C3EDCA /* CallIncomingView.xib */,
+				614C087923D1A37400217F80 /* CallManager.swift */,
 				6346100D1B61409800548952 /* CallOutgoingView.h */,
 				6346100E1B61409800548952 /* CallOutgoingView.m */,
 				634610101B6140A500548952 /* CallOutgoingView.xib */,
@@ -2333,25 +2394,28 @@
 				D35E7594159460560066B1C1 /* ChatsListView.h */,
 				D35E7595159460560066B1C1 /* ChatsListView.m */,
 				D38187B415FE340500C3EDCA /* ChatsListView.xib */,
-				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
-				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
-				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
-				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
-				C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */,
+				6134812C2406CECC00695B41 /* ConfigManager.swift */,
 				D37C639915AADEF4009D0BAC /* ContactDetailsTableView.h */,
 				D37C639A15AADEF5009D0BAC /* ContactDetailsTableView.m */,
+				C3F4DAEA25E006A100713A0B /* ContactDetailsTableViewNethesis.h */,
+				C3F4DAEB25E006A100713A0B /* ContactDetailsTableViewNethesis.m */,
 				D3128FDE15AABC7E00A2147A /* ContactDetailsView.h */,
 				D3128FDF15AABC7E00A2147A /* ContactDetailsView.m */,
 				D38187BC15FE342200C3EDCA /* ContactDetailsView.xib */,
+				C3F4DAEC25E006A100713A0B /* ContactDetailsViewNethesis.h */,
+				C3F4DAE525E0068B00713A0B /* ContactDetailsViewNethesis.m */,
+				C37B2E8D25F240CA0094DCB8 /* ContactDetailsViewNethesis.xib */,
+				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
 				D3549814158761CF000081D8 /* ContactsListTableView.h */,
 				D3549815158761D0000081D8 /* ContactsListTableView.m */,
 				D35497FB15875372000081D8 /* ContactsListView.h */,
 				D35497FC15875372000081D8 /* ContactsListView.m */,
 				D38187C015FE342800C3EDCA /* ContactsListView.xib */,
-				C3F4DAEE25E006B200713A0B /* ContactSections.h */,
+				EA88F3B0241BDAA100E66528 /* CoreManager.swift */,
 				631098471D4660580041F2B3 /* CountryListView.h */,
 				631098481D4660580041F2B3 /* CountryListView.m */,
 				631098501D4660630041F2B3 /* CountryListView.xib */,
+				C3A406E4261DE6D000526F9B /* Dashboard */,
 				61AEBEB5219198EF00F35E7F /* DevicesListView.h */,
 				61AEBEBC2191990A00F35E7F /* DevicesListView.m */,
 				61AEBEBE2191991F00F35E7F /* DevicesListView.xib */,
@@ -2362,6 +2426,7 @@
 				6306440B1BECB08500134C72 /* FirstLoginView.h */,
 				6306440C1BECB08500134C72 /* FirstLoginView.m */,
 				639E9C951C0DB7BE00019A75 /* FirstLoginView.xib */,
+				C3A406F7261DF5FF00526F9B /* History */,
 				635775231B6673EC00C8B704 /* HistoryDetailsTableView.h */,
 				635775241B6673EC00C8B704 /* HistoryDetailsTableView.m */,
 				C90FAA7615AF54E6002091CB /* HistoryDetailsView.h */,
@@ -2381,6 +2446,7 @@
 				63E59A3E1ADE70D900646FB3 /* InAppProductsManager.m */,
 				6130C85B22BBB493009CC79C /* LaunchScreen.h */,
 				63E27A311C4FECD000D332AE /* LaunchScreen.xib */,
+				614C087623D1A35E00217F80 /* linphone-Bridging-Header.h */,
 				1D3623240D0F684500981E51 /* LinphoneAppDelegate.h */,
 				1D3623250D0F684500981E51 /* LinphoneAppDelegate.m */,
 				D37DC6BF1594AE1800B2A5EB /* LinphoneCoreSettingsStore.h */,
@@ -2392,6 +2458,8 @@
 				D3F83F8C158229C500336684 /* PhoneMainView.h */,
 				D3F83F8D15822ABD00336684 /* PhoneMainView.m */,
 				639E9CB31C0DB88200019A75 /* PhoneMainView.xib */,
+				A976164527971ECA00D19212 /* Presence */,
+				614C087723D1A35F00217F80 /* ProviderDelegate.swift */,
 				CF7602DF21086EB100749F76 /* RecordingsListTableView.h */,
 				CF7602E021086EB200749F76 /* RecordingsListTableView.m */,
 				CF7602D4210867E800749F76 /* RecordingsListView.h */,
@@ -2420,12 +2488,6 @@
 				D326483415887D4400930C67 /* Utils */,
 				34216F3E1547EBCD00EA9777 /* VideoZoomHandler.h */,
 				34216F3F1547EBCD00EA9777 /* VideoZoomHandler.m */,
-				614C087723D1A35F00217F80 /* ProviderDelegate.swift */,
-				614C087923D1A37400217F80 /* CallManager.swift */,
-				EA88F3B0241BDAA100E66528 /* CoreManager.swift */,
-				6134812C2406CECC00695B41 /* ConfigManager.swift */,
-				6134812E2407B35200695B41 /* AppManager.swift */,
-				614C087623D1A35E00217F80 /* linphone-Bridging-Header.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -3471,6 +3533,55 @@
 			path = ringtones;
 			sourceTree = "<group>";
 		};
+		A976164527971ECA00D19212 /* Presence */ = {
+			isa = PBXGroup;
+			children = (
+				A97ACC1027AD6FBB0038EEE0 /* Views */,
+				A9F4924A2790833600564AED /* PresenceViewController.h */,
+				A9F4924B2790833600564AED /* PresenceViewController.m */,
+				A9F4924D279087FE00564AED /* PresenceViewController.xib */,
+				A9B9E9AE27AAA1930062CCDE /* PresenceSelectListViewController.h */,
+				A9B9E9AF27AAA1930062CCDE /* PresenceSelectListViewController.m */,
+				A9B9E9B127AAA21B0062CCDE /* PresenceSelectListViewController.xib */,
+				A9B9E9B327AADB060062CCDE /* PresenceSelectListGroupViewController.h */,
+				A9B9E9B427AADB060062CCDE /* PresenceSelectListGroupViewController.m */,
+				A9B9E9B527AADB060062CCDE /* PresenceSelectListGroupViewController.xib */,
+				A981806C27BA75B10038C9C7 /* PresenceActionViewController.h */,
+				A981806D27BA75B10038C9C7 /* PresenceActionViewController.m */,
+				A981806E27BA75B10038C9C7 /* PresenceActionViewController.xib */,
+			);
+			path = Presence;
+			sourceTree = "<group>";
+		};
+		A97ACC1027AD6FBB0038EEE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A97E15F427981A4900FE057E /* PresenceTableViewCell.h */,
+				A97E15F527981A4900FE057E /* PresenceTableViewCell.m */,
+				A97E15F627981A4900FE057E /* PresenceTableViewCell.xib */,
+				A97ACC0B27AD48480038EEE0 /* PresenceSelectListTableViewCell.h */,
+				A97ACC0C27AD48480038EEE0 /* PresenceSelectListTableViewCell.m */,
+				A97ACC0D27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib */,
+				A9854F0827B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.h */,
+				A9854F0927B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m */,
+				A9854F0A27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib */,
+				A9C51F4427BBF21000234769 /* PresenceActionCollectionViewCell.h */,
+				A9C51F4527BBF21000234769 /* PresenceActionCollectionViewCell.m */,
+				A9C51F4627BBF21000234769 /* PresenceActionCollectionViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9861AD427A9559500EFD779 /* MBProgressHUD-1.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				A9861AD527A9559500EFD779 /* MBProgressHUD.m */,
+				A9861AD627A9559500EFD779 /* MBProgressHUD.h */,
+			);
+			name = "MBProgressHUD-1.2.0";
+			path = "Utils/MBProgressHUD-1.2.0";
+			sourceTree = "<group>";
+		};
 		C33BF99223717014003461CC /* RestApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -3486,12 +3597,12 @@
 		C33FD41F244EFCF100767A47 /* NethModels */ = {
 			isa = PBXGroup;
 			children = (
-				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
-				C33FD422244F013B00767A47 /* NethContact.swift */,
-				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
-				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
 				BB4BF16824C887F300667B10 /* CallIdTest.swift */,
+				C33FD422244F013B00767A47 /* NethContact.swift */,
 				C37672EF25C17D6100AB1F82 /* NethPhoneBook.swift */,
+				C33FD420244F008100767A47 /* NethPhoneBookResult.swift */,
+				C38D455324B7131A006B0B6E /* NotReturnMessage.swift */,
+				C3990D1324B5B67100EE834B /* TransferCallManager.swift */,
 			);
 			path = NethModels;
 			sourceTree = "<group>";
@@ -3535,10 +3646,19 @@
 		C3C6979623D20419004B6240 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C35E33B723758C0400CC5C24 /* NethUser.swift */,
-				C35E33B923758CB500CC5C24 /* Endpoints.swift */,
-				C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */,
 				C35E33BD23758DFE00CC5C24 /* Action.swift */,
+				A9916DF3279AFF43006A37E7 /* AdPermission.swift */,
+				A986D1C027C3F3A9006978AE /* Conversation.swift */,
+				C35E33BB23758DD600CC5C24 /* EndpointExtensions.swift */,
+				C35E33B923758CB500CC5C24 /* Endpoints.swift */,
+				A971E368279F0367009017E7 /* Group.swift */,
+				A9916DED279AC557006A37E7 /* MacroPermissions.swift */,
+				C35E33B723758C0400CC5C24 /* NethUser.swift */,
+				A9916DF1279AF9EC006A37E7 /* Permissions.swift */,
+				A9916DEF279AF41D006A37E7 /* PresencePanel.swift */,
+				A996E82727A04CDF007AD6E4 /* PresenceUser.swift */,
+				A9916DEB279AB677006A37E7 /* Profile.swift */,
+				A9CCB1CE27C4F12F00B279B6 /* Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3546,6 +3666,7 @@
 		D326483415887D4400930C67 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9861AD427A9559500EFD779 /* MBProgressHUD-1.2.0 */,
 				C33BF99223717014003461CC /* RestApi */,
 				D37E3ECA1619C27A0087659A /* CAAnimationBlocks */,
 				D380801215C299D0005BE9BC /* ColorSpaceUtilites.m */,
@@ -3800,7 +3921,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 8D66VDADVH;
@@ -3857,7 +3978,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "linphone" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -4282,6 +4403,7 @@
 				398DE727264D5647008B65A9 /* nethcti_edit@2x.png in Resources */,
 				39A12497263AB33600CF1DB9 /* dashboard_dialer.png in Resources */,
 				392AC7E2267245670055DFCF /* nethcti_trash_disabled@2x.png in Resources */,
+				A9C51F4827BBF21000234769 /* PresenceActionCollectionViewCell.xib in Resources */,
 				633FEDB51D3CD5590014B822 /* call_alt_back_disabled@2x.png in Resources */,
 				631098521D4660630041F2B3 /* CountryListView.xib in Resources */,
 				633FEF271D3CD55A0014B822 /* route_bluetooth_selected@2x.png in Resources */,
@@ -4309,6 +4431,7 @@
 				8CDC61951F84D89B0087CF7F /* check_selected.png in Resources */,
 				C397F39F2657B83B00AB3178 /* nethcti_microphone_disabled.png in Resources */,
 				39F2B9AB26493AD800ADBFCE /* nethcti_trash.png in Resources */,
+				A981807027BA75B10038C9C7 /* PresenceActionViewController.xib in Resources */,
 				633FEEF01D3CD55A0014B822 /* numpad_hash_over~ipad@2x.png in Resources */,
 				63AADBF81B6A0FF200AA16FD /* linphonerc~ipad in Resources */,
 				633FEE8F1D3CD55A0014B822 /* list_details_default@2x.png in Resources */,
@@ -4329,6 +4452,7 @@
 				C3B43D7A2695D977005D01E1 /* nethcti_users_sip.png in Resources */,
 				63CDC45E1C3BDE370085F529 /* msg.caf in Resources */,
 				633FEE6D1D3CD5590014B822 /* footer_dialer_disabled@2x.png in Resources */,
+				A9854F0C27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.xib in Resources */,
 				633FEF171D3CD55A0014B822 /* pause_small_disabled@2x.png in Resources */,
 				3951056F26398B9000F5AEC5 /* dialpad@2x.png in Resources */,
 				D38187DD15FE348A00C3EDCA /* AssistantView.xib in Resources */,
@@ -4347,6 +4471,7 @@
 				633FEE241D3CD5590014B822 /* chat_start_body_over~ipad.png in Resources */,
 				8C2A81951F87B8000012A66B /* chat_group_avatar@2x.png in Resources */,
 				3966FC242636DC7000C52FF1 /* color_nethcti_light_magenta.png in Resources */,
+				A9F4924E279087FE00564AED /* PresenceViewController.xib in Resources */,
 				633FEE091D3CD5590014B822 /* chat_add_disabled@2x.png in Resources */,
 				633FEE191D3CD5590014B822 /* chat_send_over@2x.png in Resources */,
 				633FEF181D3CD55A0014B822 /* pause_small_over_selected.png in Resources */,
@@ -4479,6 +4604,7 @@
 				633FEE611D3CD5590014B822 /* edit_list_disabled@2x.png in Resources */,
 				633FEE761D3CD5590014B822 /* history_all_selected.png in Resources */,
 				C39727242657EFD50072D986 /* nethcti_call_accept@2x.png in Resources */,
+				A9B9E9B727AADB060062CCDE /* PresenceSelectListGroupViewController.xib in Resources */,
 				39A7C2C5264401370056735F /* nethcti_numpad_asterisk.png in Resources */,
 				8C300D9B1E40E0CC00728EF3 /* lime_ko@2x.png in Resources */,
 				39F2B9A4264937DC00ADBFCE /* nethcti_user_add.png in Resources */,
@@ -4572,11 +4698,13 @@
 				C39DC13D2677AB8E0037305E /* nethcti_green_phone@2x.png in Resources */,
 				615A281F217F6FB40060F920 /* security_alert_indicator.png in Resources */,
 				CF7602F5210898CC00749F76 /* rec_off_default@2x.png in Resources */,
+				A97E15F827981A4900FE057E /* PresenceTableViewCell.xib in Resources */,
 				633FEDB41D3CD5590014B822 /* call_alt_back_disabled.png in Resources */,
 				398DE717264D209B008B65A9 /* nethcti_blue_circle.png in Resources */,
 				398DE715264D173B008B65A9 /* nethcti_done@2x.png in Resources */,
 				633FEE631D3CD5590014B822 /* footer_chat_default@2x.png in Resources */,
 				615A281B217F6F9C0060F920 /* security_2_indicator.png in Resources */,
+				A9B9E9B227AAA21B0062CCDE /* PresenceSelectListViewController.xib in Resources */,
 				C391A9A1264EB10E00F9FD76 /* nethcti_pause@2x.png in Resources */,
 				633FEE661D3CD5590014B822 /* footer_contacts_default.png in Resources */,
 				633FEDC11D3CD5590014B822 /* call_back_disabled@2x.png in Resources */,
@@ -4602,6 +4730,7 @@
 				39F2B9A3264937DC00ADBFCE /* nethcti_user_add@2x.png in Resources */,
 				39F80F872678E0250046E287 /* nethcti_bluetooth.png in Resources */,
 				8CB2B8F91F86229E0015CEE2 /* chat_secure.png in Resources */,
+				A97ACC0F27AD48480038EEE0 /* PresenceSelectListTableViewCell.xib in Resources */,
 				633FEF4E1D3CD55A0014B822 /* valid_default.png in Resources */,
 				570742581D5A0691004B9C84 /* ShopView.xib in Resources */,
 				633FEE361D3CD5590014B822 /* conference_exit_over.png in Resources */,
@@ -4711,67 +4840,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NethCTI/Pods-NethCTI-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox-ios.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox-tester.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/bctoolbox.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/belcard.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/belle-sip.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/belr.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/lime.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/limetester.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/linphone.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/linphonetester.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mediastreamer2.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msamr.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mscodec2.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msopenh264.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mssilk.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/mswebrtc.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/msx264.framework",
-				"${PODS_ROOT}/linphone-sdk/linphone-sdk/apple-darwin/Frameworks/ortp.framework",
-				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NethCTI/Pods-NethCTI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belcard.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belle-sip.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/belr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/lime.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/limetester.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphone.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonetester.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mediastreamer2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msamr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mscodec2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msopenh264.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mssilk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mswebrtc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/msx264.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ortp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NethCTI/Pods-NethCTI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4830,11 +4904,14 @@
 				C3A40701261DF6F200526F9B /* LostCallTableViewCell.swift in Sources */,
 				C342BA1924B5D49200003F8D /* UIInterfaceStyleButton.m in Sources */,
 				63B81A0F1B57DA33009604A6 /* TPKeyboardAvoidingTableView.m in Sources */,
+				A9B9E9B027AAA1930062CCDE /* PresenceSelectListViewController.m in Sources */,
 				CF1DE92D210A0F5D00A0A97E /* UILinphoneAudioPlayer.m in Sources */,
+				A9854F0B27B6838500D3E6CA /* PresenceSelectListGroupTableViewCell.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */,
 				1D3623260D0F684500981E51 /* LinphoneAppDelegate.m in Sources */,
 				614C087A23D1A37400217F80 /* CallManager.swift in Sources */,
+				A996E82827A04CDF007AD6E4 /* PresenceUser.swift in Sources */,
 				CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */,
 				C3A406FE261DF6AE00526F9B /* HistoryTableViewCell.swift in Sources */,
 				22F2508E107141E100AC9B3F /* DialerView.m in Sources */,
@@ -4850,6 +4927,7 @@
 				633756391B67BAF400E21BAD /* SideMenuTableView.m in Sources */,
 				2214EB7A12F846B1002A5394 /* UICallButton.m in Sources */,
 				6352A5751BE0D4B800594C1C /* CallSideMenuView.m in Sources */,
+				A9916DF2279AF9EC006A37E7 /* Permissions.swift in Sources */,
 				2214EB8912F84EBB002A5394 /* UIHangUpButton.m in Sources */,
 				630CF5571AF7CE1500539F7A /* UITextField+DoneButton.m in Sources */,
 				2214EBF312F86360002A5394 /* UIMutedMicroButton.m in Sources */,
@@ -4857,12 +4935,14 @@
 				22968A5F12F875C600588287 /* UISpeakerButton.m in Sources */,
 				EA88F3B1241BDAA100E66528 /* CoreManager.swift in Sources */,
 				63701DDF1BA32039006A9AE3 /* UIConfirmationDialog.m in Sources */,
+				A9916DEE279AC557006A37E7 /* MacroPermissions.swift in Sources */,
 				6134812D2406CECC00695B41 /* ConfigManager.swift in Sources */,
 				22C755601317E59C007BC101 /* UIBluetoothButton.m in Sources */,
 				22AA8B0113D83F6300B30535 /* UICamSwitch.m in Sources */,
 				63B8D6A21BCBF43100C12B09 /* UIChatCreateCell.m in Sources */,
 				636BC9971B5F921B00C754CE /* UIIconButton.m in Sources */,
 				63423C0A1C4501D000D9A050 /* Contact.m in Sources */,
+				A9F4924C2790833600564AED /* PresenceViewController.m in Sources */,
 				340751E7150F38FD00B89C47 /* UIVideoButton.m in Sources */,
 				34216F401547EBCD00EA9777 /* VideoZoomHandler.m in Sources */,
 				614C087823D1A35F00217F80 /* ProviderDelegate.swift in Sources */,
@@ -4877,16 +4957,21 @@
 				D3ED3E871586291E006C0DE4 /* TabBarView.m in Sources */,
 				D3ED3EA71587334E006C0DE4 /* HistoryListTableView.m in Sources */,
 				61AEBEBD2191990A00F35E7F /* DevicesListView.m in Sources */,
+				A9861AD727A9559600EFD779 /* MBProgressHUD.m in Sources */,
 				C3990D1424B5B67100EE834B /* TransferCallManager.swift in Sources */,
 				C3A40703261E01EF00526F9B /* IncomingCallTableViewCell.swift in Sources */,
 				D3ED3EB81587392C006C0DE4 /* HistoryListView.m in Sources */,
+				A981806F27BA75B10038C9C7 /* PresenceActionViewController.m in Sources */,
 				24A345A61D95798A00881A5C /* UIShopTableCell.m in Sources */,
 				8C1B67061E671826001EA2FE /* AudioHelper.m in Sources */,
 				D35497FE15875372000081D8 /* ContactsListView.m in Sources */,
 				635173F91BA082A40095EB0A /* UIChatBubblePhotoCell.m in Sources */,
+				A9916DEC279AB677006A37E7 /* Profile.swift in Sources */,
+				A9916DF4279AFF43006A37E7 /* AdPermission.swift in Sources */,
 				D3549816158761D0000081D8 /* ContactsListTableView.m in Sources */,
 				633888461BFB2C49001D5E7B /* HPTextViewInternal.m in Sources */,
 				D35498211587716B000081D8 /* StatusBarView.m in Sources */,
+				A9B9E9B627AADB060062CCDE /* PresenceSelectListGroupViewController.m in Sources */,
 				D3A55FBC15877E5E003FD403 /* UIContactCell.m in Sources */,
 				6341807C1BBC103100F71761 /* ChatConversationCreateTableView.m in Sources */,
 				63BE7A781D75BDF6000990EF /* ShopTableView.m in Sources */,
@@ -4903,6 +4988,7 @@
 				C35E33B823758C0400CC5C24 /* NethUser.swift in Sources */,
 				570742611D5A09B8004B9C84 /* ShopView.m in Sources */,
 				63F1DF4F1BCE985F00EDED90 /* UICallConferenceCell.m in Sources */,
+				A986D1C127C3F3A9006978AE /* Conversation.swift in Sources */,
 				BB4BF16924C887F300667B10 /* CallIdTest.swift in Sources */,
 				D37DC6C11594AE1800B2A5EB /* LinphoneCoreSettingsStore.m in Sources */,
 				63CD4B4F1A5AAC8C00B84282 /* DTAlertView.m in Sources */,
@@ -4917,6 +5003,7 @@
 				C37672F025C17D6100AB1F82 /* NethPhoneBook.swift in Sources */,
 				D31AAF5E159B3919002C6B02 /* CallPausedTableView.m in Sources */,
 				8C9C5E0D1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.m in Sources */,
+				A9CCB1CF27C4F12F00B279B6 /* Extension.swift in Sources */,
 				631098491D4660580041F2B3 /* CountryListView.m in Sources */,
 				D32B9DFC15A2F131000B6DEC /* FastAddressBook.m in Sources */,
 				D350F20E15A43BB100149E54 /* AssistantView.m in Sources */,
@@ -4926,6 +5013,7 @@
 				D3A8BB7015A6C7D500F96BE5 /* UIChatBubbleTextCell.m in Sources */,
 				63D11C531C3D501200E8FCEE /* Log.m in Sources */,
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
+				A97E15F727981A4900FE057E /* PresenceTableViewCell.m in Sources */,
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
 				D37C639B15AADEF6009D0BAC /* ContactDetailsTableView.m in Sources */,
 				C38D455424B7131A006B0B6E /* NotReturnMessage.swift in Sources */,
@@ -4935,6 +5023,7 @@
 				C3A406EE261DE9F400526F9B /* DashboardViewController.m in Sources */,
 				C33FD421244F008100767A47 /* NethPhoneBookResult.swift in Sources */,
 				631348301B6F7B6600C6BDCB /* UIRoundBorderedButton.m in Sources */,
+				A9C51F4727BBF21000234769 /* PresenceActionCollectionViewCell.m in Sources */,
 				C90FAA7915AF54E6002091CB /* HistoryDetailsView.m in Sources */,
 				63FB30351A680E73008CA393 /* UIRoundedImageView.m in Sources */,
 				635775251B6673EC00C8B704 /* HistoryDetailsTableView.m in Sources */,
@@ -4965,6 +5054,7 @@
 				D3807FF615C2894A005BE9BC /* IASKSpecifier.m in Sources */,
 				D3807FF815C2894A005BE9BC /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				C35E33BC23758DD600CC5C24 /* EndpointExtensions.swift in Sources */,
+				A971E369279F0367009017E7 /* Group.swift in Sources */,
 				D3807FFA15C2894A005BE9BC /* IASKPSTextFieldSpecifierViewCell.m in Sources */,
 				D3807FFC15C2894A005BE9BC /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
 				C35F91EF23745E35001A4D7F /* NethCTIAPI.swift in Sources */,
@@ -4974,6 +5064,7 @@
 				D380800215C2894A005BE9BC /* IASKTextField.m in Sources */,
 				D380801315C299D0005BE9BC /* ColorSpaceUtilites.m in Sources */,
 				C35E33BA23758CB500CC5C24 /* Endpoints.swift in Sources */,
+				A9916DF0279AF41D006A37E7 /* PresencePanel.swift in Sources */,
 				8C92ABF31FA773E50006FB5D /* UIChatNotifiedEventCell.m in Sources */,
 				633FEF581D3CD5E00014B822 /* UIAvatarPresence.m in Sources */,
 				637157A11B283FE200C91677 /* FileTransferDelegate.m in Sources */,
@@ -4984,6 +5075,7 @@
 				D306459E1611EC2A00BB571E /* UILoadingImageView.m in Sources */,
 				6381DA7D1C1AD5EA00DF3BBD /* UIBouncingView.m in Sources */,
 				D37E3ECD1619C27A0087659A /* CAAnimation+Blocks.m in Sources */,
+				A97ACC0E27AD48480038EEE0 /* PresenceSelectListTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5506,7 +5598,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
@@ -5532,11 +5624,14 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -5641,7 +5736,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5665,11 +5760,14 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -5713,6 +5811,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -5735,7 +5834,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -5776,7 +5875,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5800,11 +5899,14 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -5849,6 +5951,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -5872,7 +5975,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -5913,7 +6016,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -5937,11 +6040,14 @@
 				IBC_MODULE = linphoneapp;
 				IBSC_MODULE = linphoneapp;
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DBCTBX_LOG_DOMAIN=\\\"ios\\\"",
@@ -5986,7 +6092,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = 1;
@@ -5997,8 +6103,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = NethCTI;
@@ -6031,7 +6137,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = 1;
@@ -6041,8 +6147,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.extension";
@@ -6073,7 +6179,7 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = 1;
@@ -6083,8 +6189,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
@@ -6116,7 +6222,7 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				DYLIB_CURRENT_VERSION = 1;
@@ -6126,8 +6232,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = NethCTI;
 				PROVISIONING_PROFILE = "";
@@ -6157,6 +6263,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -6181,7 +6288,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "linphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LIBRARY_SEARCH_PATHS = "";
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -6228,7 +6335,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6243,9 +6350,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -6285,7 +6396,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6298,17 +6409,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.msgNotificationService";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6338,7 +6454,7 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6351,17 +6467,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationService";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6391,7 +6512,7 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6404,17 +6525,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationService";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6443,7 +6569,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6458,9 +6584,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -6499,7 +6629,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6512,17 +6642,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development it.nethesis.nethcti3.msgNotificationContent";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6551,7 +6686,7 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6564,17 +6699,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore it.nethesis.nethcti3.msgNotificationContent";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/linphone-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6603,7 +6743,7 @@
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6616,9 +6756,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_CRASHLYTICS";

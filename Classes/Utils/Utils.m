@@ -453,30 +453,52 @@
 	return machine;
 }
 
+
 + (LinphoneAddress *)normalizeSipOrPhoneAddress:(NSString *)value {
+    
+    NSLog(@"normalizeSipOrPhoneAddress: %@", value);
+
   	if (!value || [value isEqualToString:@""])
     	return NULL;
 
   	LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+    
   	const char *normvalue;
-	normvalue = linphone_proxy_config_is_phone_number(cfg, value.UTF8String)
-	  	? linphone_proxy_config_normalize_phone_number(cfg, value.UTF8String)
-		: value.UTF8String;
+	//normvalue = linphone_proxy_config_is_phone_number(cfg, value.UTF8String) ? linphone_proxy_config_normalize_phone_number(cfg, value.UTF8String) : value.UTF8String;
 
+    // Controlla se l'input fornito è un numero di telefono o meno.
+    if (linphone_proxy_config_is_phone_number(cfg, value.UTF8String)) {
+        
+        // Normalizza un numero di telefono leggibile in una stringa di base a seconda dell'oggetto #LinphoneProxyConfig.
+        normvalue = linphone_proxy_config_normalize_phone_number(cfg, value.UTF8String);
+        
+    }else {
+        
+        normvalue = value.UTF8String;
+    }
+    
   	LinphoneAddress *addr = linphone_proxy_config_normalize_sip_uri(cfg, normvalue);
+    
   	// first try to find a friend with the given address
-  	Contact *c = [FastAddressBook getContactWithAddress:addr];
+  	Contact *contact = [FastAddressBook getContactWithAddress:addr];
 
-  	if (c && c.friend) {
-    	LinphoneFriend *f = c.friend;
-    	const LinphonePresenceModel *m = f
-			? linphone_friend_get_presence_model_for_uri_or_tel(f, value.UTF8String)
-			: NULL;
-    	const char *contact = m ? linphone_presence_model_get_contact(m) : NULL;
-    	if (contact) {
-      		LinphoneAddress *contact_addr = linphone_address_new(contact);
+  	if (contact && contact.friend) {
+        
+    	LinphoneFriend *friend = contact.friend;
+        
+        // Ottengo il model della presence per un URI SIP specifico o il numero di telefono di un amico
+    	const LinphonePresenceModel *presence_model = friend ? linphone_friend_get_presence_model_for_uri_or_tel(friend, value.UTF8String) : NULL;
+        
+        // Ottengo il contatto di un model della presence
+    	const char *presence_contact = presence_model ? linphone_presence_model_get_contact(presence_model) : NULL;
+        
+    	if (presence_contact) {
+            
+      		LinphoneAddress *contact_addr = linphone_address_new(presence_contact);
+            
       		if (contact_addr) {
 				linphone_address_unref(addr);
+                
         		return contact_addr;
       		}
     	}
@@ -485,12 +507,18 @@
 	// since user wants to escape plus, we assume it expects to have phone
 	// numbers by default
 	if (addr && cfg) {
+        
+        // Sostituisce "+" con "00" nei numeri composti se necessario
 		const char *username = linphone_proxy_config_get_dial_escape_plus(cfg) ? normvalue : value.UTF8String;
+        
+        // Controllo se l'input fornito è un numero di telefono o meno.
 		if (linphone_proxy_config_is_phone_number(cfg, username))
 			linphone_address_set_username(addr, linphone_proxy_config_normalize_phone_number(cfg, username));
 	 }
+    
 	return addr;
 }
+
 
 + (NSArray *)parseRecordingName:(NSString *)filename {
     NSString *rec = @"recording_"; //key that helps find recordings
@@ -854,6 +882,7 @@
 }
 
 - (UIColor *)adjustHue:(float)hm saturation:(float)sm brightness:(float)bm alpha:(float)am {
+    
 	float hsbH, hsbS, hsbB;
 	float rgbaR, rgbaG, rgbaB, rgbaA;
 
@@ -873,10 +902,17 @@
 
 	RGB2HSL(rgbaR, rgbaG, rgbaB, &hsbH, &hsbS, &hsbB);
 
-	hsbH = MIN(MAX(hsbH + hm, 0.0), 1.0);
-	hsbS = MIN(MAX(hsbS + sm, 0.0), 1.0);
-	hsbB = MIN(MAX(hsbB + bm, 0.0), 1.0);
-	rgbaA = MIN(MAX(rgbaA + am, 0.0), 1.0);
+	//hsbH = MIN(MAX(hsbH + hm, 0.0), 1.0);
+    hsbH = MIN(((hsbH + hm)>(0.0) ? (hsbH + hm) : (0.0)) , 1.0);
+
+	//hsbS = MIN(MAX(hsbS + sm, 0.0), 1.0);
+    hsbS = MIN(((hsbS + sm)>(0.0) ? (hsbS + sm) : (0.0)), 1.0);
+
+	//hsbB = MIN(MAX(hsbB + bm, 0.0), 1.0);
+    hsbB = MIN(((hsbB + bm) > (0.0) ? (hsbB + bm) : (0.0)), 1.0);
+
+	//rgbaA = MIN(MAX(rgbaA + am, 0.0), 1.0);
+    rgbaA = MIN(((rgbaA + am) > (0.0) ? (rgbaA + am) : (0.0)), 1.0);
 
 	HSL2RGB(hsbH, hsbS, hsbB, &rgbaR, &rgbaG, &rgbaB);
 

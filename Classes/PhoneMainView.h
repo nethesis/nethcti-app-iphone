@@ -53,6 +53,10 @@
 #import "UIConfirmationDialog.h"
 #import "Utils.h"
 #import "LaunchScreen.h"
+#import "PresenceViewController.h"
+
+
+
 
 #define DYNAMIC_CAST(x, cls)                                                                                           \
 	({                                                                                                                 \

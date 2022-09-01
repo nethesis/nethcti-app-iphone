@@ -50,10 +50,13 @@
 #pragma mark -
 
 - (void)onAddressBookUpdate:(NSNotification *)k {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (!inhibUpdate && ![_tableController isEditing] &&
+        if (!inhibUpdate &&
+            ![_tableController isEditing] &&
             (PhoneMainView.instance.currentView == self.compositeViewDescription) &&
             (_nameLabel.text == PhoneMainView.instance.currentName)) {
+            
             [self resetData];
         }
     });
@@ -96,7 +99,9 @@
     PhoneMainView.instance.currentName = _contact.displayName;
     _nameLabel.text = PhoneMainView.instance.currentName;
     
-    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel forName:PhoneMainView.instance.currentName forImage:_avatarImage];
+    [ContactDisplay setDisplayInitialsLabel:_nameInitialLabel
+                                    forName:PhoneMainView.instance.currentName
+                                   forImage:_avatarImage];
     
     // fix no sipaddresses in contact.friend
     const MSList *sips = linphone_friend_get_addresses(_contact.friend);
@@ -112,6 +117,7 @@
             linphone_address_destroy(addr);
         }
     }
+    
     [LinphoneManager.instance.fastAddressBook saveContact:_contact];
 }
 
@@ -146,12 +152,12 @@
 	}
         @synchronized(LinphoneManager.instance.fastAddressBook) {
           _tmpContact = [[Contact alloc]
-              initWithCNContact:[LinphoneManager.instance.fastAddressBook
-                                    getCNContactFromContact:acontact]];
+              initWithCNContact:[LinphoneManager.instance.fastAddressBook getCNContactFromContact:acontact]];
         }
 }
 
 - (void)addCurrentContactContactField:(NSString *)address {
+    
 	LinphoneAddress *linphoneAddress = linphone_core_interpret_url(LC, address.UTF8String);
 	NSString *username =
 		linphoneAddress ? [NSString stringWithUTF8String:linphone_address_get_username(linphoneAddress)] : address;
@@ -339,6 +345,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
 	if (_tableController && _tableController.tableView && [_tableController.tableView observationInfo]) {
 		[_tableController.tableView removeObserver:self forKeyPath:@"contentSize"];
 	}
@@ -468,72 +475,72 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Action Functions
 
 - (IBAction)onCancelClick:(id)event {
-	[self dismissKeyboards];
-	if (!_isAdding) {
-		_contact.firstName = _tmpContact.firstName.copy;
-		_contact.lastName = _tmpContact.lastName.copy;
-		while (_contact.sipAddresses.count > 0) {
-			[_contact removeSipAddressAtIndex:0];
-		}
-		NSInteger nbSipAd = 0;
-                if (_tmpContact.sipAddresses) {
-                  while (_tmpContact.sipAddresses.count > nbSipAd) {
-                    [_contact addSipAddress:_tmpContact.sipAddresses[nbSipAd]];
-                    nbSipAd++;
-                  }
-                }
-                while (_contact.phones.count > 0) {
-					if (_contact.phones[0] != NULL && ![_contact.phones[0] isEqualToString:@" "]) {
-						[_contact removePhoneNumberAtIndex:0];
-					} else {
-						// remove empty index
-						[_contact.phones removeObjectAtIndex:0];
-					}
-                }
-                NSInteger nbPhone = 0;
-                if (_tmpContact.phones != NULL) {
-                  while (_tmpContact.phones.count > nbPhone) {
-                    [_contact addPhoneNumber:_tmpContact.phones[nbPhone]];
-                    nbPhone++;
-                  }
-                }
-                while (_contact.emails.count > 0) {
-                  [_contact removeEmailAtIndex:0];
-                }
-                NSInteger nbEmail = 0;
-                if (_tmpContact.emails != NULL) {
-                  while (_tmpContact.emails.count > nbEmail) {
-                    [_contact addEmail:_tmpContact.emails[nbEmail]];
-                    nbEmail++;
-                  }
-                }
-     //           [self saveData];
-        } else {
-          [LinphoneManager.instance.fastAddressBook deleteContact:_contact];
+    [self dismissKeyboards];
+    if (!_isAdding) {
+        _contact.firstName = _tmpContact.firstName.copy;
+        _contact.lastName = _tmpContact.lastName.copy;
+        while (_contact.sipAddresses.count > 0) {
+            [_contact removeSipAddressAtIndex:0];
         }
-
-        [self setEditing:FALSE];
-        if (IPAD) {
-          _emptyLabel.hidden = !_isAdding;
-          _avatarImage.hidden = !_emptyLabel.hidden;
-          _deleteButton.hidden = !_emptyLabel.hidden;
-          _editButton.hidden = !_emptyLabel.hidden;
-        } else {
-          if (_isAdding) {
+        NSInteger nbSipAd = 0;
+        if (_tmpContact.sipAddresses) {
+            while (_tmpContact.sipAddresses.count > nbSipAd) {
+                [_contact addSipAddress:_tmpContact.sipAddresses[nbSipAd]];
+                nbSipAd++;
+            }
+        }
+        while (_contact.phones.count > 0) {
+            if (_contact.phones[0] != NULL && ![_contact.phones[0] isEqualToString:@" "]) {
+                [_contact removePhoneNumberAtIndex:0];
+            } else {
+                // remove empty index
+                [_contact.phones removeObjectAtIndex:0];
+            }
+        }
+        NSInteger nbPhone = 0;
+        if (_tmpContact.phones != NULL) {
+            while (_tmpContact.phones.count > nbPhone) {
+                [_contact addPhoneNumber:_tmpContact.phones[nbPhone]];
+                nbPhone++;
+            }
+        }
+        while (_contact.emails.count > 0) {
+            [_contact removeEmailAtIndex:0];
+        }
+        NSInteger nbEmail = 0;
+        if (_tmpContact.emails != NULL) {
+            while (_tmpContact.emails.count > nbEmail) {
+                [_contact addEmail:_tmpContact.emails[nbEmail]];
+                nbEmail++;
+            }
+        }
+        //           [self saveData];
+    } else {
+        [LinphoneManager.instance.fastAddressBook deleteContact:_contact];
+    }
+    
+    [self setEditing:FALSE];
+    if (IPAD) {
+        _emptyLabel.hidden = !_isAdding;
+        _avatarImage.hidden = !_emptyLabel.hidden;
+        _deleteButton.hidden = !_emptyLabel.hidden;
+        _editButton.hidden = !_emptyLabel.hidden;
+    } else {
+        if (_isAdding) {
             [PhoneMainView.instance popCurrentView];
-          } else {
+        } else {
             _avatarImage.hidden = FALSE;
             _deleteButton.hidden = FALSE;
             _editButton.hidden = FALSE;
-          }
         }
-
-        self.tmpContact = NULL;
-        if (_isAdding) {
-          [PhoneMainView.instance
-              popToView:ContactsListView.compositeViewDescription];
-          _isAdding = FALSE;
-        }
+    }
+    
+    self.tmpContact = NULL;
+    if (_isAdding) {
+        [PhoneMainView.instance
+         popToView:ContactsListView.compositeViewDescription];
+        _isAdding = FALSE;
+    }
 }
 
 - (IBAction)onBackClick:(id)event {
@@ -598,25 +605,36 @@ static UICompositeViewDescription *compositeDescription = nil;
 	}
 }
 
-- (BOOL) hasDuplicateContactOf:(Contact*) contactToCheck{
+- (BOOL)hasDuplicateContactOf:(Contact*)contactToCheck {
+    
 	CNContactStore *store = [[CNContactStore alloc] init];
 	NSArray *keysToFetch = @[
-							 CNContactEmailAddressesKey, CNContactPhoneNumbersKey,
-							 CNContactInstantMessageAddressesKey, CNInstantMessageAddressUsernameKey,
-							 CNContactFamilyNameKey, CNContactGivenNameKey, CNContactPostalAddressesKey,
-							 CNContactIdentifierKey, CNContactImageDataKey, CNContactNicknameKey
+							 CNContactEmailAddressesKey,
+                             CNContactPhoneNumbersKey,
+							 CNContactInstantMessageAddressesKey,
+                             CNInstantMessageAddressUsernameKey,
+							 CNContactFamilyNameKey,
+                             CNContactGivenNameKey,
+                             CNContactPostalAddressesKey,
+							 CNContactIdentifierKey,
+                             CNContactImageDataKey,
+                             CNContactNicknameKey
 							 ];
-	CNMutableContact *mCNContact =
-	[[store unifiedContactWithIdentifier:contactToCheck.identifier keysToFetch:keysToFetch error:nil] mutableCopy];
-	if(mCNContact == NULL){
-		for(NSString *address in contactToCheck.sipAddresses){
+	CNMutableContact *mCNContact = [[store unifiedContactWithIdentifier:contactToCheck.identifier keysToFetch:keysToFetch error:nil] mutableCopy];
+    
+	if (mCNContact == NULL) {
+        
+		for (NSString *address in contactToCheck.sipAddresses) {
+            
 			NSString *name = [FastAddressBook normalizeSipURI:address];
-			if([LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:name]){
+            
+			if ([LinphoneManager.instance.fastAddressBook.addressBookMap objectForKey:name]){
 				return TRUE;
 			}
 		}
 		return FALSE;
-	}else{
+        
+	}else {
 		return FALSE;
 	}
 }
@@ -628,6 +646,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	// When getting image from the camera, it may be 90° rotated due to orientation
 	// (image.imageOrientation = UIImageOrientationRight). Just rotate it to be face up.
 	if (image.imageOrientation != UIImageOrientationUp) {
+        
 		UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale);
 		[image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
 		image = UIGraphicsGetImageFromCurrentImageContext();

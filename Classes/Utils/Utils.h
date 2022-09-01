@@ -152,3 +152,18 @@ typedef enum {
 		return [[super initWithFrame:frame] commonInit];                                                               \
 	}                                                                                                                  \
 	INIT_WITH_COMMON_C
+
+
+#define kKeyOnline @"online"
+#define kKeyBusy @"busy"
+#define kKeyRinging @"ringing"
+#define kKeyOffline @"offline"
+#define kKeyCellphone @"cellphone"
+#define kKeyVoicemail @"voicemail"
+#define kKeyDnd @"dnd"
+#define kKeyCallforward @"callforward"
+#define kKeyRecallOnBusyDisabled @"disabled"
+#define kKeyRecallOnBusyEnabled @"enabled"
+#define kKeyDisconnesso @"disconnesso"
+#define kKeyPreferiti @"favorites_username_presence"
+#define kKeyIdGroup @"id_group_presence"

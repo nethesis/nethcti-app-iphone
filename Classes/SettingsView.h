@@ -23,8 +23,7 @@
 #import "IASKAppSettingsViewController.h"
 #import "LinphoneCoreSettingsStore.h"
 
-@interface SettingsView
-	: UIViewController <IASKSettingsDelegate, UICompositeViewDelegate, MFMailComposeViewControllerDelegate> {
+@interface SettingsView: UIViewController <IASKSettingsDelegate, UICompositeViewDelegate, MFMailComposeViewControllerDelegate> {
   @private
 	LinphoneCoreSettingsStore *settingsStore;
 		BOOL isRoot;

@@ -93,12 +93,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             </navigationBar>
-            <point key="canvasLocation" x="-1101" y="-512"/>
+            <point key="canvasLocation" x="-1670" y="175"/>
         </navigationController>
         <viewController autoresizesArchivedViewToFullSize="NO" id="6" userLabel="settingsController" customClass="IASKAppSettingsViewControllerEx">
             <extendedEdge key="edgesForExtendedLayout"/>
             <navigationItem key="navigationItem" id="14" userLabel="settingsItem"/>
-            <point key="canvasLocation" x="-819" y="132"/>
+            <point key="canvasLocation" x="-884" y="175"/>
         </viewController>
     </objects>
     <resources>
