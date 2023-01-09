@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
- * This file is part of linphone-iphone 
+ * This file is part of linphone-iphone
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,11 @@
 #import "SideMenuTableView.h"
 #import "PhoneMainView.h"
 
-@interface SideMenuView : UIViewController <ImagePickerDelegate>
+@interface SideMenuView : UIViewController
 
 @property(strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGestureRecognizer;
-@property(weak, nonatomic) IBOutlet UIRoundedImageView *avatarImage;
+
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 @property(weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property(weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property(weak, nonatomic) IBOutlet UIImageView *presenceImage;
@@ -33,7 +34,6 @@
 @property(weak, nonatomic) IBOutlet UIView *grayBackground;
 - (IBAction)onLateralSwipe:(id)sender;
 - (IBAction)onHeaderClick:(id)sender;
-- (IBAction)onAvatarClick:(id)sender;
 - (IBAction)onBackgroundClicked:(id)sender;
 
 @end

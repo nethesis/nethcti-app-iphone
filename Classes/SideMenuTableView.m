@@ -18,169 +18,243 @@
  */
 
 #import "linphone/core_utils.h"
-
 #import "SideMenuTableView.h"
 #import "Utils.h"
-
 #import "PhoneMainView.h"
 #import "StatusBarView.h"
 #import "ShopView.h"
 #import "LinphoneManager.h"
 #import "RecordingsListView.h"
 #import "linphoneapp-Swift.h"
+#import "DashboardViewController.h"
 
 @implementation SideMenuEntry
 
 - (id)initWithTitle:(NSString *)atitle image:(UIImage *)image tapBlock:(SideMenuEntryBlock)tapBlock {
-	if ((self = [super init])) {
+    if ((self = [super init])) {
         img = image;
-		title = atitle;
-		onTapBlock = tapBlock;
-	}
-	return self;
+        title = atitle;
+        onTapBlock = tapBlock;
+    }
+    return self;
 }
 
 @end
 
+
 @implementation SideMenuTableView
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-
-	// remove separators between empty items, cf
-	// http://stackoverflow.com/questions/1633966/can-i-force-a-uitableview-to-hide-the-separator-between-empty-cells
-	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [super viewDidLoad];
+    
+    // Remove separators between elements: https://stackoverflow.com/a/925202/10220116.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
-	linphone_core_stop_dtmf_stream(LC);
-	[super viewWillAppear:animated];
-
-	_sideMenuEntries = [[NSMutableArray alloc] init];
-
-	[_sideMenuEntries
-		addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Assistant", nil)
-                                                 image:[UIImage imageNamed:@"menu_assistant.png"]
-											  tapBlock:^() {
-												[PhoneMainView.instance
-													changeCurrentView:AssistantView.compositeViewDescription];
-											  }]];
-	BOOL mustLink = ([LinphoneManager.instance lpConfigIntForKey:@"must_link_account_time"] > 0);
-	BOOL hasAccount = linphone_core_get_account_list(LC) != NULL;
-	if (mustLink && hasAccount) {
-		[_sideMenuEntries
-			addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Link my account", nil)
-                                                     image:[UIImage imageNamed:@"menu_link_account.png"]
-												  tapBlock:^() {
-													[PhoneMainView.instance
-														changeCurrentView:AssistantLinkView.compositeViewDescription];
-												  }]];
-	}
-
     
-	[_sideMenuEntries
-		addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", nil)
-                                                 image:[UIImage imageNamed:@"menu_options.png"]
-											  tapBlock:^() {
-												[PhoneMainView.instance
-													changeCurrentView:SettingsView.compositeViewDescription];
-											  }]];
-    [_sideMenuEntries
-     addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
-                                              image:[UIImage imageNamed:@"menu_recordings.png"]
-                                           tapBlock:^() {
-                                               [PhoneMainView.instance
-                                                changeCurrentView:RecordingsListView.compositeViewDescription];
-                                           }]];
-	InAppProductsManager *iapm = LinphoneManager.instance.iapManager;
-	if (iapm.enabled){
-		[_sideMenuEntries
-			addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Shop", nil)
-                                                     image:nil
-												  tapBlock:^() {
-													[PhoneMainView.instance
-														changeCurrentView:ShopView.compositeViewDescription];
-												  }]];
-	}
-	
-	[_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:VoipTexts.conference_scheduled
-															   image:[UIImage imageNamed:@"menu_voip_meeting_schedule"]
-															tapBlock:^() {
-															  [PhoneMainView.instance
-																  changeCurrentView:ScheduledConferencesView.compositeViewDescription];
+    linphone_core_stop_dtmf_stream(LC);
+    
+    [super viewWillAppear:animated];
+    
+    _sideMenuEntries = [[NSMutableArray alloc] init];
+    
+    // If an account is configured, I must hide the Assistant row.
+    BOOL account_configured = (linphone_core_get_default_proxy_config(LC) == NULL);
+    
+    if(!account_configured) {
+        [_sideMenuEntries addObject:
+         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Dashboard", nil)
+                                        image:[UIImage imageNamed:@"nethcti_menu_home.png"]
+                                     tapBlock:^() {
+            [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+        }]];
+    }
+    
+    if (account_configured) {
+        [_sideMenuEntries addObject:
+         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Login", nil)
+                                        image:[UIImage imageNamed:@"login_menu.png"]
+                                     tapBlock:^() {
+            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        }]];
+    }
+    
+    BOOL mustLink = ([LinphoneManager.instance lpConfigIntForKey:@"must_link_account_time"] > 0);
+    
+    if (mustLink) {
+        [_sideMenuEntries addObject:
+         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Link my account", nil)
+                                        image:[UIImage imageNamed:@"menu_link_account.png"]
+                                     tapBlock:^() {
+            [PhoneMainView.instance changeCurrentView:AssistantLinkView.compositeViewDescription];
+        }]];
+    }
+    
+    [_sideMenuEntries addObject:
+     [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", nil)
+                                    image:[UIImage imageNamed:@"settings.png"]
+                                 tapBlock:^() {
+        [PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
+    }]];
+    
+    [_sideMenuEntries addObject:
+     [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
+                                    image:[UIImage imageNamed:@"nethcti_microphone.png"]
+                                 tapBlock:^() {
+        [PhoneMainView.instance changeCurrentView:RecordingsListView.compositeViewDescription];
+    }]];
+    
+    InAppProductsManager *iapm = LinphoneManager.instance.iapManager;
+    if (iapm.enabled){
+        [_sideMenuEntries addObject:
+         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Shop", nil)
+                                        image:nil
+                                     tapBlock:^() {
+            [PhoneMainView.instance changeCurrentView:ShopView.compositeViewDescription];
+        }]];
+    }
+    
+    [_sideMenuEntries addObject:
+     [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"About", nil)
+                                    image:[UIImage imageNamed:@"info.png"]
+                                 tapBlock:^() {
+        [PhoneMainView.instance changeCurrentView:AboutView.compositeViewDescription];
+    }]];
+    
+    
+    if (!account_configured) {
+        // An account is configured
 
-															}]];
-	
-	[_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"About", nil)
-                                                               image:[UIImage imageNamed:@"menu_about.png"]
-															tapBlock:^() {
-															  [PhoneMainView.instance
-																  changeCurrentView:AboutView.compositeViewDescription];
-
-															}]];
+        [_sideMenuEntries addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Logout", nil)
+                                                                   image:[UIImage imageNamed:@"logout.png"]
+                                                                tapBlock:^() {
+            [self visualizzaAlertLogout];
+        }]];
+    }
 }
+
+
+
+- (void)visualizzaAlertLogout {
+    
+    NSLog(@"visualizzaAlertLogout");
+    
+    UIAlertController *alertControllerLogout = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Attenzione!", nil)
+                                                                                    message:NSLocalizedString(@"Eseguendo il logout verranno cancellate le credenziali, sarà quindi necessario eseguire nuovamente la procedura di login.", nil)
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+    
+    // BTN Continua
+    [alertControllerLogout addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                               style:UIAlertActionStyleDestructive
+                                                             handler:^(UIAlertAction *action) {
+        
+        // Remove remote sip proxies info.
+        [LinphoneManager.instance clearProxies];
+        
+    }]];
+    
+    // BTN Annulla
+    [alertControllerLogout addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) {
+        
+        [alertControllerLogout dismissViewControllerAnimated:YES completion:nil];
+        
+    }]];
+    
+    // Visualizza Alert INOLTRO
+    [self presentViewController:alertControllerLogout animated:YES completion:nil];
+}
+
+
 
 #pragma mark - Table View Controller
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 2;
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 64;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == 0) {
-		BOOL hasDefault = (linphone_core_get_default_account(LC) != NULL);
-		// default account is shown in the header already
-		size_t count = bctbx_list_size(linphone_core_get_account_list(LC));
-		return MAX(0, (int)count - (hasDefault ? 1 : 0));
-	} else {
-		return [_sideMenuEntries count];
-	}
+    
+    if (section == 0) {
+        
+        BOOL hasDefault = (linphone_core_get_default_proxy_config(LC) != NULL);
+        // Default account is shown in the header already.
+        size_t count = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
+        return MAX(0, (int)count - (hasDefault ? 1 : 0));
+        
+    } else {
+        
+        return [_sideMenuEntries count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [[UITableViewCell alloc] init];
-
-	// isLcInitialized called here because this is called when going in bg after LC destroy
-	if (indexPath.section == 0 && [LinphoneManager isLcInitialized]) {
-		// do not display default account here, it is already in header view
-		int idx =
-			linphone_core_get_default_account(LC)
-				? bctbx_list_index(linphone_core_get_account_list(LC), linphone_core_get_default_account(LC))
-				: HUGE_VAL;
-		LinphoneAccount *account = bctbx_list_nth_data(linphone_core_get_account_list(LC),
-														 (int)indexPath.row + (idx <= indexPath.row ? 1 : 0));
-		if (account) {
-			cell.textLabel.text = [NSString stringWithUTF8String:linphone_account_params_get_identity(linphone_account_get_params(account))];
-			cell.imageView.image = [StatusBarView imageForState:linphone_account_get_state(account)];
-		} else {
-			LOGE(@"Invalid index requested, no proxy for row %d", indexPath.row);
-		}
-		cell.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-		cell.textLabel.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-		cell.imageView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-		cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_G.png"]];
-	} else {
-		SideMenuEntry *entry = [_sideMenuEntries objectAtIndex:indexPath.row];
-		cell.imageView.image = entry->img;
-		cell.textLabel.text = entry->title;
-	}
-	return cell;
+    
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    // isLcInitialized called here because this is called when going in bg after LC destroy
+    if (indexPath.section == 0 && [LinphoneManager isLcInitialized]) {
+        // do not display default account here, it is already in header view
+        int idx = linphone_core_get_default_proxy_config(LC) ? bctbx_list_index(linphone_core_get_proxy_config_list(LC),
+                                                                                linphone_core_get_default_proxy_config(LC)): HUGE_VAL;
+        
+        LinphoneProxyConfig *proxy = bctbx_list_nth_data(linphone_core_get_proxy_config_list(LC),
+                                                         (int)indexPath.row + (idx <= indexPath.row ? 1 : 0));
+        if (proxy) {
+            cell.textLabel.text = [NSString stringWithUTF8String:linphone_proxy_config_get_identity(proxy)];
+            cell.imageView.image = [StatusBarView imageForState:linphone_proxy_config_get_state(proxy)];
+        } else {
+            LOGE(@"Invalid index requested, no proxy for row %d", indexPath.row);
+        }
+        cell.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        cell.textLabel.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        cell.imageView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"color_G.png"]];
+        
+    }else {
+        
+        SideMenuEntry *entry = [_sideMenuEntries objectAtIndex:indexPath.row];
+        cell.imageView.image = entry->img;
+        cell.textLabel.text = entry->title;
+    }
+    
+    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:19];
+    
+    return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-	if (indexPath.section == 0) {
-		[PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
-	} else {
-		SideMenuEntry *entry = [_sideMenuEntries objectAtIndex:indexPath.row];
-		LOGI(@"Entry %@ has been tapped", entry->title);
-		if (entry->onTapBlock == nil) {
-			LOGF(@"Entry %@ has no onTapBlock!", entry->title);
-		} else {
-			entry->onTapBlock();
-		}
-	}
-	[PhoneMainView.instance.mainViewController hideSideMenu:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    if (indexPath.section == 0) {
+        
+        [PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
+        
+    } else {
+        
+        SideMenuEntry *entry = [_sideMenuEntries objectAtIndex:indexPath.row];
+        
+        //LOGI(@"Entry %@ has been tapped", entry->title);
+        
+        if (entry->onTapBlock == nil) {
+            
+            LOGF(@"Entry %@ has no onTapBlock!", entry->title);
+            
+        }else {
+            
+            entry->onTapBlock();
+        }
+    }
+    
+    [PhoneMainView.instance.mainViewController hideSideMenu:YES];
 }
 
 @end

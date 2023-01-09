@@ -127,6 +127,8 @@ typedef struct _LinphoneManagerSounds {
 - (void)becomeActive;
 - (BOOL)enterBackgroundMode;
 - (void)addPushCallId:(NSString*) callid;
+- (void)configurePushTokenForProxyConfigs;
+- (void)configurePushTokenForProxyConfig: (LinphoneProxyConfig*)cfg;
 - (BOOL)popPushCallID:(NSString*) callId;
 - (void)acceptCallForCallId:(NSString*)callid;
 + (BOOL)langageDirectionIsRTL;
@@ -196,6 +198,7 @@ typedef struct _LinphoneManagerSounds {
 - (void)checkLocalNetworkPermission;
 - (void)setDnsServer;
 
+- (void)clearProxies;
 
 @property (readonly) BOOL isTesting;
 @property(readonly, strong) FastAddressBook *fastAddressBook;
@@ -204,6 +207,8 @@ typedef struct _LinphoneManagerSounds {
 @property (readonly) const char*  backCamId;
 @property(strong, nonatomic) NSString *SSID;
 @property (readonly) sqlite3* database;
+@property(nonatomic, strong) NSData *pushKitToken;
+@property(nonatomic, strong) NSData *remoteNotificationToken;
 @property (readonly) LinphoneManagerSounds sounds;
 @property (readonly) NSMutableArray *logs;
 @property (readonly) NSString* contactSipField;
@@ -217,6 +222,7 @@ typedef struct _LinphoneManagerSounds {
 @property NSDictionary *pushDict;
 @property(strong, nonatomic) OrderedDictionary *linphoneManagerAddressBookMap;
 @property (nonatomic, assign) BOOL contactsUpdated;
+@property (nonatomic, assign) BOOL canConfigurePushTokenForProxyConfigs; // used to register at the right time when receiving push notif tokens
 @property UIImage *avatar;
 @property NSString *customCoreDNS;
 

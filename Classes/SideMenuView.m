@@ -20,126 +20,94 @@
 #import "SideMenuView.h"
 #import "LinphoneManager.h"
 #import "PhoneMainView.h"
+#import "linphoneapp-Swift.h"
 
 @implementation SideMenuView
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
 
 #pragma deploymate push "ignored-api-availability"
-	if (UIDevice.currentDevice.systemVersion.doubleValue >= 7) {
-		// it's better to detect only pan from screen edges
-		UIScreenEdgePanGestureRecognizer *pan =
-			[[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(onLateralSwipe:)];
-		pan.edges = UIRectEdgeRight;
-		[self.view addGestureRecognizer:pan];
-		_swipeGestureRecognizer.enabled = NO;
-	}
+    if (UIDevice.currentDevice.systemVersion.doubleValue >= 7) {
+        // It's better to detect only pan from screen edges
+        UIScreenEdgePanGestureRecognizer *pan =
+            [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(onLateralSwipe:)];
+        pan.edges = UIRectEdgeRight;
+        [self.view addGestureRecognizer:pan];
+        _swipeGestureRecognizer.enabled = NO;
+    }
 #pragma deploymate pop
 }
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[_sideMenuTableViewController viewWillAppear:animated];
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(registrationUpdateEvent:)
-											   name:kLinphoneRegistrationUpdate
-											 object:nil];
 
-	[self updateHeader];
-	[_sideMenuTableViewController.tableView reloadData];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_sideMenuTableViewController viewWillAppear:animated];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(registrationUpdateEvent:)
+                                               name:kLinphoneRegistrationUpdate
+                                             object:nil];
+
+    [self updateHeader];
+    [self setUIColors];
+    [_sideMenuTableViewController.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	_grayBackground.hidden = NO;
+    [super viewDidAppear:animated];
+    _grayBackground.hidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	_grayBackground.hidden = YES;
-	// should be better than that with alpha animation..
+    [super viewWillDisappear:animated];
+    _grayBackground.hidden = YES;
+    // Should be better than that with alpha animation..
+}
+
+- (void)setUIColors {
+    if (@available(iOS 11.0, *)) {
+        [self.view setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+        [self.headerView setBackgroundColor:[UIColor colorNamed: @"mainBackground"]];
+    } else {
+        [self.view setBackgroundColor:[UIColor color:@"White"]];
+    }
 }
 
 - (void)updateHeader {
-	LinphoneAccount *default_account = linphone_core_get_default_account(LC);
+    LinphoneProxyConfig *default_proxy = linphone_core_get_default_proxy_config(LC);
 
-	if (default_account != NULL) {
-		const LinphoneAddress *addr = linphone_account_params_get_identity_address(linphone_account_get_params(default_account));
-		[ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
-		char *str = addr ? linphone_address_as_string(addr) : nil;
-		_addressLabel.text = str ? [NSString stringWithUTF8String:str] : NSLocalizedString(@"No address", nil);
-		if (str) ms_free(str);
-	} else {
-		_nameLabel.text = linphone_core_get_account_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);
-		// display direct IP:port address so that we can be reached
-		LinphoneAddress *addr = linphone_core_get_primary_contact_parsed(LC);
-		if (addr) {
-			char *as_string = linphone_address_as_string(addr);
-			_addressLabel.text = [NSString stringWithFormat:@"%s", as_string];
-			ms_free(as_string);
-			linphone_address_unref(addr);
-		} else {
-			_addressLabel.text = NSLocalizedString(@"No address", nil);
-		}
-		_presenceImage.image = nil;
-	}
-	_avatarImage.image = [LinphoneUtils selfAvatar];
+    if (default_proxy != NULL) {
+        const LinphoneAddress *addr = linphone_proxy_config_get_identity_address(default_proxy);
+        [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
+        // NSString *address_text = addr ? [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)] : NSLocalizedString(@"No address", nil);
+        NSString *main = ApiCredentials.MainExtension;
+        _addressLabel.text = main; // address_text;
+        _presenceImage.image = [StatusBarView imageForState:linphone_proxy_config_get_state(default_proxy)];
+    } else {
+        _nameLabel.text = linphone_core_get_proxy_config_list(LC) ? NSLocalizedString(@"No default account", nil) : NSLocalizedString(@"No account", nil);
+        // Nethesis: if no proxy configured, doesn't show any address info.
+        _addressLabel.text = NSLocalizedString(@"No address", nil);
+        _presenceImage.image = nil;
+    }
 }
 
 #pragma deploymate push "ignored-api-availability"
 - (void)onLateralSwipe:(UIScreenEdgePanGestureRecognizer *)pan {
-	[PhoneMainView.instance.mainViewController hideSideMenu:YES];
+    [PhoneMainView.instance.mainViewController hideSideMenu:YES];
 }
 #pragma deploymate pop
 
 - (IBAction)onHeaderClick:(id)sender {
-	[PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
-	[PhoneMainView.instance.mainViewController hideSideMenu:YES];
-}
-
-- (IBAction)onAvatarClick:(id)sender {
-	// hide ourself because we are on top of image picker
-	if (!IPAD) {
-		[PhoneMainView.instance.mainViewController hideSideMenu:YES];
-	}
-	[ImagePickerView SelectImageFromDevice:self atPosition:_avatarImage inView:self.view withDocumentMenuDelegate:nil];
+    [PhoneMainView.instance changeCurrentView:SettingsView.compositeViewDescription];
+    [PhoneMainView.instance.mainViewController hideSideMenu:YES];
 }
 
 - (IBAction)onBackgroundClicked:(id)sender {
-	[PhoneMainView.instance.mainViewController hideSideMenu:YES];
+    [PhoneMainView.instance.mainViewController hideSideMenu:YES];
 }
 
 - (void)registrationUpdateEvent:(NSNotification *)notif {
-	[self updateHeader];
-	[_sideMenuTableViewController.tableView reloadData];
-}
-
-#pragma mark - Image picker delegate
-
-- (void)imagePickerDelegateImage:(UIImage *)image info:(NSString *)phAssetId {
-	// When getting image from the camera, it may be 90° rotated due to orientation
-	// (image.imageOrientation = UIImageOrientationRight). Just rotate it to be face up.
-	if (image.imageOrientation != UIImageOrientationUp) {
-		UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale);
-		[image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-		image = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-	}
-    
-    [LinphoneManager.instance lpConfigSetString:phAssetId forKey:@"avatar"];
-    _avatarImage.image = [LinphoneUtils selfAvatar];
-    [LinphoneManager.instance loadAvatar];
-
-	// Dismiss popover on iPad
-	if (IPAD) {
-		[VIEW(ImagePickerView).popoverController dismissPopoverAnimated:TRUE];
-	} else {
-		[PhoneMainView.instance.mainViewController hideSideMenu:NO];
-	}
-}
-
-- (void)imagePickerDelegateVideo:(NSURL*)url info:(NSDictionary *)info {
-	return; // Avatar video not supported (yet ;) )
+    [self updateHeader];
+    [_sideMenuTableViewController.tableView reloadData];
 }
 
 @end

@@ -187,6 +187,29 @@
 
 #pragma deploymate push "ignored-api-availability"
 
+- (void)registerForNotifications {
+    if (CallManager.instance.alreadyRegisteredForNotification && [[UIApplication sharedApplication] isRegisteredForRemoteNotifications])
+        return;
+    
+    CallManager.instance.alreadyRegisteredForNotification = true;
+    self.voipRegistry = [[PKPushRegistry alloc] initWithQueue:dispatch_get_main_queue()];
+    self.voipRegistry.delegate = self;
+    
+    // Initiate registration.
+    // LOGI(@"[PushKit] Connecting for push notifications");
+    self.voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
+    
+    int num = [LinphoneManager.instance lpConfigIntForKey:@"unexpected_pushkit" withDefault:0];
+    if (num > 3) {
+        LOGI(@"[PushKit] unexpected pushkit notifications received %d, please clean your sip account.", num);
+    }
+    
+    // Register for remote notifications.
+    LOGI(@"[APNs] register for push notif");
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+    [self configureUINotification];
+}
 
 - (void)configureUINotification {
 	if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max)
@@ -487,17 +510,17 @@
 
 #pragma mark - PushNotification Functions
 
-- (void)application:(UIApplication *)application
-	didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-	LOGI(@"[APNs] %@ : %@", NSStringFromSelector(_cmd), deviceToken);
-	dispatch_async(dispatch_get_main_queue(), ^{
-		linphone_core_did_register_for_remote_push(LC, (__bridge void*)deviceToken);
-	});
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    LOGI(@"[APNs] %@ : %@", NSStringFromSelector(_cmd), deviceToken);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LinphoneManager.instance setRemoteNotificationToken:deviceToken];
+    });
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-	LOGI(@"[APNs] %@ : %@", NSStringFromSelector(_cmd), [error localizedDescription]);
-	linphone_core_did_register_for_remote_push(LC, nil);
+    LOGI(@"[APNs] %@ : %@", NSStringFromSelector(_cmd), [error localizedDescription]);
+    [LinphoneManager.instance setRemoteNotificationToken:nil];
 }
 
 #pragma mark - UNUserNotifications Framework

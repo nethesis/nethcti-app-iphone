@@ -1904,6 +1904,130 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	[CallManager.instance startCallWithAddr:iaddr isSas:FALSE isVideo:false isConference:false];
 }
 
+#pragma mark - Property Functions
+
+- (void)setPushKitToken:(NSData *)pushKitToken {
+    if (pushKitToken == _pushKitToken) {
+        return;
+    }
+    _pushKitToken = pushKitToken;
+
+    [self configurePushTokenForProxyConfigs];
+}
+
+- (void)setRemoteNotificationToken:(NSData *)remoteNotificationToken {
+    if (remoteNotificationToken == _remoteNotificationToken) {
+        return;
+    }
+    _remoteNotificationToken = remoteNotificationToken;
+
+    [self configurePushTokenForProxyConfigs];
+}
+
+- (void)configurePushTokenForProxyConfigs {
+    // we register only when the second token is set
+    if (_canConfigurePushTokenForProxyConfigs) {
+        @try {
+            const MSList *proxies = linphone_core_get_proxy_config_list(LC);
+            while (proxies) {
+                [self configurePushTokenForProxyConfig:proxies->data];
+                proxies = proxies->next;
+            }
+        } @catch (NSException* e) {
+            LOGW(@"%s: linphone core not ready yet, ignoring push token", __FUNCTION__);
+        }
+    } else {
+        _canConfigurePushTokenForProxyConfigs = YES;
+    }
+
+}
+
+- (void)configurePushTokenForProxyConfig:(LinphoneProxyConfig *)proxyCfg {
+    linphone_proxy_config_edit(proxyCfg);
+
+    NSData *remoteTokenData = _remoteNotificationToken;
+    NSData *PKTokenData = _pushKitToken;
+    BOOL pushNotifEnabled = linphone_proxy_config_is_push_notification_allowed(proxyCfg);
+    if ((remoteTokenData != nil || PKTokenData != nil) && pushNotifEnabled) {
+
+        const unsigned char *remoteTokenBuffer = [remoteTokenData bytes];
+        NSMutableString *remoteTokenString = [NSMutableString stringWithCapacity:[remoteTokenData length] * 2];
+        for (int i = 0; i < [remoteTokenData length]; ++i) {
+            [remoteTokenString appendFormat:@"%02X", (unsigned int)remoteTokenBuffer[i]];
+        }
+
+        const unsigned char *PKTokenBuffer = [PKTokenData bytes];
+        NSMutableString *PKTokenString = [NSMutableString stringWithCapacity:[PKTokenData length] * 2];
+        for (int i = 0; i < [PKTokenData length]; ++i) {
+            [PKTokenString appendFormat:@"%02X", (unsigned int)PKTokenBuffer[i]];
+        }
+
+        NSString *token;
+        NSString *services;
+        if (remoteTokenString && PKTokenString) {
+            token = [NSString stringWithFormat:@"%@:remote&%@:voip", remoteTokenString, PKTokenString];
+            services = @"remote&voip";
+        } else if (remoteTokenString) {
+            token = [NSString stringWithFormat:@"%@:remote", remoteTokenString];
+            services = @"remote";
+        } else {
+            token = [NSString stringWithFormat:@"%@:voip", PKTokenString];
+            services = @"voip";
+        }
+
+        // NSLocalizedString(@"IC_MSG", nil); // Fake for genstrings
+        // NSLocalizedString(@"IM_MSG", nil); // Fake for genstrings
+        // NSLocalizedString(@"IM_FULLMSG", nil); // Fake for genstrings
+#ifdef DEBUG
+#define APPMODE_SUFFIX @".dev"
+#else
+#define APPMODE_SUFFIX @""
+#endif
+        NSString *ring =
+            ([LinphoneManager bundleFile:[self lpConfigStringForKey:@"local_ring" inSection:@"sound"].lastPathComponent]
+             ?: [LinphoneManager bundleFile:@"notes_of_the_optimistic.caf"])
+            .lastPathComponent;
+
+        NSString *timeout;
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
+            timeout = @";pn-timeout=0";
+        } else {
+            timeout = @"";
+        }
+        
+        /*
+         * Now we complete token registration when we receive it, skipping this process.
+         [[NethCTIAPI sharedInstance] registerPushToken:token success:^(BOOL response) {
+            NSString* log = [NSString stringWithFormat:@"[WEDO PUSH] Token String: %@", token];
+            LOGD(log);
+            if(response)
+                LOGD(@"[WEDO PUSH] Notificatore: risultato positivo.");
+            else
+                LOGE(@"[WEDO PUSH] Notificatore: risultato negativo");
+        }];*/
+
+        // dummy value, for later use
+        NSString *teamId = @"ABCD1234";
+
+        NSString *params = [NSString
+                    stringWithFormat:@"pn-provider=apns%@;pn-prid=%@;pn-param=%@.%@.%@;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;pn-groupchat-str=GC_MSG;pn-"
+                    @"call-snd=%@;pn-msg-snd=msg.caf%@;pn-silent=1",
+                    APPMODE_SUFFIX, token, teamId, [[NSBundle mainBundle] bundleIdentifier], services, ring, timeout];
+
+        LOGI(@"Proxy config %s configured for push notifications with contact: %@",
+        linphone_proxy_config_get_identity(proxyCfg), params);
+        linphone_proxy_config_set_contact_uri_parameters(proxyCfg, [params UTF8String]);
+        linphone_proxy_config_set_contact_parameters(proxyCfg, NULL);
+    } else {
+        LOGI(@"Proxy config %s NOT configured for push notifications", linphone_proxy_config_get_identity(proxyCfg));
+        // no push token:
+        linphone_proxy_config_set_contact_uri_parameters(proxyCfg, NULL);
+        linphone_proxy_config_set_contact_parameters(proxyCfg, NULL);
+    }
+
+    linphone_proxy_config_done(proxyCfg);
+}
+
 #pragma mark - Misc Functions
 + (PHFetchResult *)getPHAssets:(NSString *)key {
 	PHFetchResult<PHAsset *> *assets;
@@ -2291,6 +2415,42 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 		ret = [UIImage imageNamed:@"avatar.png"];
 	}
 	_avatar = ret;
+}
+
+#pragma mark - Proxy internal helper
+- (void)clearProxies {
+    
+    NSLog(@"LinphoneManager - clearProxies");
+
+    // --- rimozione configurazioni e autenticazione al Linphone SDK ---
+    // Get the default proxy configured.
+    LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
+
+    // Find authentication info matching proxy config, if any, similarly to linphone_core_find_auth_info.
+    const LinphoneAuthInfo *authInfo = linphone_proxy_config_find_auth_info(config);
+    
+    // Remove the selected proxy configuration
+    linphone_core_remove_proxy_config(LC, config);
+    
+    if (authInfo) {
+        // Removes an authentication information object
+        linphone_core_remove_auth_info(LC, authInfo);
+    }
+    // Erase all proxies from config
+    linphone_core_clear_proxy_config(LC);
+    // Clear all authentication information
+    linphone_core_clear_all_auth_info(LC);
+    // Commits modification made to the proxy configuration
+    linphone_proxy_config_done(config);
+    // -----------------------------------------------------------------
+    
+    [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result) {
+        LOGW(result);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        });
+    }];
 }
 
 #pragma mark - Conference

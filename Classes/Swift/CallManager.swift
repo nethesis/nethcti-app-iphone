@@ -52,6 +52,8 @@ import AVFoundation
 	
 	var backgroundContextCall : Call?
 	@objc var backgroundContextCameraIsEnabled : Bool = false
+    
+    @objc var alreadyRegisteredForNotification: Bool = false
 
 	fileprivate override init() {
 		providerDelegate = ProviderDelegate.shared

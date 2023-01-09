@@ -28,6 +28,14 @@ INIT_WITH_COMMON_CF {
 	return self;
 }
 
+- (void)style {
+    self.borderStyle = UITextBorderStyleLine;
+    self.layer.masksToBounds = YES;
+    // assistantTextField.backgroundColor = [UIColor clearColor];
+    self.layer.borderColor = [[UIColor color:@"MainColor"] CGColor];
+    self.layer.borderWidth = .8f;
+}
+
 - (void)showError:(NSString *)msg {
 	_errorLabel.text = msg;
 	_lastText = self.text;

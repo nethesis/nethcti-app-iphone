@@ -33,6 +33,8 @@
 
 @property(weak, nonatomic) IBOutlet UIView *incallView;
 @property(weak, nonatomic) IBOutlet UIView *outcallView;
+@property (weak, nonatomic) IBOutlet UIButton *sideMenuButton;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 - (IBAction)onSecurityClick:(id)sender;
 - (IBAction)onQualityClick:(id)sender;
