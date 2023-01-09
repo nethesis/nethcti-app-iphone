@@ -83,6 +83,7 @@ NSString *const kLinphoneMagicSearchStarted = @"LinphoneMagicSearchStarted";
 NSString *const kLinphoneMagicSearchFinished = @"LinphoneMagicSearchFinished";
 
 NSString *const kLinphoneMsgNotificationAppGroupId = @"group.it.nethesis.nethcti3.msgNotification";
+NSString *const kNethesisPhonebookPermissionRejection = @"NethesisPhonebookPermissionRejection";
 
 const int kLinphoneAudioVbrCodecDefaultBitrate = 36; /*you can override this from linphonerc or linphonerc-factory*/
 

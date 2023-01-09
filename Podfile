@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.0'
+platform :ios, '13.0'
 source "https://gitlab.linphone.org/BC/public/podspec.git"
 source "https://github.com/CocoaPods/Specs.git"
 
@@ -14,10 +14,10 @@ def all_pods
 end
 
 def crashlytics
-	if not ENV['USE_CRASHLYTICS'].nil?
+	#if not ENV['USE_CRASHLYTICS'].nil?
 		pod 'Firebase/Analytics'
 		pod 'Firebase/Crashlytics'
-	end
+	#end
 end
 
 target 'linphone' do

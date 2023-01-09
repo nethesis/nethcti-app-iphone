@@ -665,6 +665,187 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		AC76CCEFDCD59EB01C2DE3F8 /* Pods_msgNotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA35546364BBF65F0DF5E8F /* Pods_msgNotificationContent.framework */; };
+		B3D099DE296C137100F4CFFD /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099D8296C137000F4CFFD /* NotReturnMessage.swift */; };
+		B3D099DF296C137100F4CFFD /* NethContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099D9296C137000F4CFFD /* NethContact.swift */; };
+		B3D099E0296C137100F4CFFD /* NethPhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DA296C137000F4CFFD /* NethPhoneBook.swift */; };
+		B3D099E1296C137100F4CFFD /* NethPhoneBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DB296C137000F4CFFD /* NethPhoneBookResult.swift */; };
+		B3D099E2296C137100F4CFFD /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DC296C137100F4CFFD /* CallIdTest.swift */; };
+		B3D099E3296C137100F4CFFD /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DD296C137100F4CFFD /* TransferCallManager.swift */; };
+		B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099EA296C13A900F4CFFD /* CoreManager.swift */; };
+		B3D099EF296C159200F4CFFD /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099EE296C159200F4CFFD /* NethLocalizable.strings */; };
+		B3D099F2296C15A500F4CFFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F0296C15A500F4CFFD /* InfoPlist.strings */; };
+		B3D099F3296C15A500F4CFFD /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F1296C15A500F4CFFD /* BrandLocalizable.strings */; };
+		B3D099F5296C15EF00F4CFFD /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F4296C15EF00F4CFFD /* Roboto-Light.ttf */; };
+		B3D09A09296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099F7296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift */; };
+		B3D09A0A296C184000F4CFFD /* NethCTIAPI.ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099F8296C184000F4CFFD /* NethCTIAPI.ErrorCodes.swift */; };
+		B3D09A0B296C184000F4CFFD /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099FA296C184000F4CFFD /* Endpoints.swift */; };
+		B3D09A0C296C184000F4CFFD /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099FB296C184000F4CFFD /* Conversation.swift */; };
+		B3D09A0D296C184000F4CFFD /* MacroPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099FC296C184000F4CFFD /* MacroPermissions.swift */; };
+		B3D09A0E296C184000F4CFFD /* NethUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099FD296C184000F4CFFD /* NethUser.swift */; };
+		B3D09A0F296C184000F4CFFD /* PresencePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099FE296C184000F4CFFD /* PresencePanel.swift */; };
+		B3D09A10296C184000F4CFFD /* AdPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099FF296C184000F4CFFD /* AdPermission.swift */; };
+		B3D09A11296C184000F4CFFD /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A00296C184000F4CFFD /* Permissions.swift */; };
+		B3D09A12296C184000F4CFFD /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A01296C184000F4CFFD /* Profile.swift */; };
+		B3D09A13296C184000F4CFFD /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A02296C184000F4CFFD /* Extension.swift */; };
+		B3D09A14296C184000F4CFFD /* EndpointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A03296C184000F4CFFD /* EndpointExtensions.swift */; };
+		B3D09A15296C184000F4CFFD /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A04296C184000F4CFFD /* Group.swift */; };
+		B3D09A16296C184000F4CFFD /* PresenceUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A05296C184000F4CFFD /* PresenceUser.swift */; };
+		B3D09A17296C184000F4CFFD /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A06296C184000F4CFFD /* Action.swift */; };
+		B3D09A18296C184000F4CFFD /* NethCTIAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09A08296C184000F4CFFD /* NethCTIAPI.swift */; };
+		B3D09A1A296C1B7900F4CFFD /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A19296C1B7900F4CFFD /* colors.xcassets */; };
+		B3D09A29296C1C2600F4CFFD /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A1B296C1C2400F4CFFD /* logout@2x.png */; };
+		B3D09A2A296C1C2600F4CFFD /* logo_dashboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A1C296C1C2400F4CFFD /* logo_dashboard@2x.png */; };
+		B3D09A2B296C1C2600F4CFFD /* login_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A1D296C1C2400F4CFFD /* login_menu@2x.png */; };
+		B3D09A2C296C1C2600F4CFFD /* logo_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A1E296C1C2400F4CFFD /* logo_about@2x.png */; };
+		B3D09A2D296C1C2600F4CFFD /* logo_nethCTI_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A1F296C1C2400F4CFFD /* logo_nethCTI_portrait.png */; };
+		B3D09A2E296C1C2600F4CFFD /* logo_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A20296C1C2500F4CFFD /* logo_login@2x.png */; };
+		B3D09A2F296C1C2600F4CFFD /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A21296C1C2500F4CFFD /* login.png */; };
+		B3D09A30296C1C2600F4CFFD /* login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A22296C1C2500F4CFFD /* login@2x.png */; };
+		B3D09A31296C1C2600F4CFFD /* logo_dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A23296C1C2500F4CFFD /* logo_dashboard.png */; };
+		B3D09A32296C1C2600F4CFFD /* logo_login.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A24296C1C2500F4CFFD /* logo_login.png */; };
+		B3D09A33296C1C2600F4CFFD /* logo_nethesis.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A25296C1C2500F4CFFD /* logo_nethesis.png */; };
+		B3D09A34296C1C2600F4CFFD /* logo_about.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A26296C1C2500F4CFFD /* logo_about.png */; };
+		B3D09A35296C1C2600F4CFFD /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A27296C1C2600F4CFFD /* logout.png */; };
+		B3D09A36296C1C2600F4CFFD /* login_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A28296C1C2600F4CFFD /* login_menu.png */; };
+		B3D09A61296C1C4D00F4CFFD /* nethcti_add.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A37296C1C4700F4CFFD /* nethcti_add.png */; };
+		B3D09A62296C1C4D00F4CFFD /* nethcti_cam.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A38296C1C4700F4CFFD /* nethcti_cam.png */; };
+		B3D09A63296C1C4D00F4CFFD /* nethcti_add_field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A39296C1C4700F4CFFD /* nethcti_add_field@2x.png */; };
+		B3D09A64296C1C4D00F4CFFD /* nethcti_add_call.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A3A296C1C4700F4CFFD /* nethcti_add_call.png */; };
+		B3D09A65296C1C4D00F4CFFD /* nethcti_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A3B296C1C4800F4CFFD /* nethcti_edit@2x.png */; };
+		B3D09A66296C1C4D00F4CFFD /* nethcti_call_accept@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A3C296C1C4800F4CFFD /* nethcti_call_accept@2x.png */; };
+		B3D09A67296C1C4D00F4CFFD /* nethcti_blue_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A3D296C1C4800F4CFFD /* nethcti_blue_circle.png */; };
+		B3D09A68296C1C4D00F4CFFD /* nethcti_add_field.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A3E296C1C4800F4CFFD /* nethcti_add_field.png */; };
+		B3D09A69296C1C4D00F4CFFD /* nethcti_button_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A3F296C1C4800F4CFFD /* nethcti_button_circle.png */; };
+		B3D09A6A296C1C4D00F4CFFD /* nethcti_call_accept.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A40296C1C4800F4CFFD /* nethcti_call_accept.png */; };
+		B3D09A6B296C1C4D00F4CFFD /* nethcti_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A41296C1C4800F4CFFD /* nethcti_cancel@2x.png */; };
+		B3D09A6C296C1C4D00F4CFFD /* neth-splash-portrait_1242x2208.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A42296C1C4900F4CFFD /* neth-splash-portrait_1242x2208.png */; };
+		B3D09A6D296C1C4D00F4CFFD /* nethcti_call_status_missed.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A43296C1C4900F4CFFD /* nethcti_call_status_missed.png */; };
+		B3D09A6E296C1C4D00F4CFFD /* nethcti_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A44296C1C4900F4CFFD /* nethcti_edit.png */; };
+		B3D09A6F296C1C4D00F4CFFD /* nethcti_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A45296C1C4900F4CFFD /* nethcti_avatar.png */; };
+		B3D09A70296C1C4D00F4CFFD /* nethcti_call_status_outgoing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A46296C1C4900F4CFFD /* nethcti_call_status_outgoing@2x.png */; };
+		B3D09A71296C1C4D00F4CFFD /* nethcti_bt_speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A47296C1C4900F4CFFD /* nethcti_bt_speaker.png */; };
+		B3D09A72296C1C4D00F4CFFD /* nethcti_add_call_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A48296C1C4A00F4CFFD /* nethcti_add_call_green@2x.png */; };
+		B3D09A73296C1C4D00F4CFFD /* nethcti_bt_speaker.png@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A49296C1C4A00F4CFFD /* nethcti_bt_speaker.png@2x.png */; };
+		B3D09A74296C1C4D00F4CFFD /* nethcti_answer_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A4A296C1C4A00F4CFFD /* nethcti_answer_video.png */; };
+		B3D09A75296C1C4D00F4CFFD /* nethcti_back_to_call.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A4B296C1C4A00F4CFFD /* nethcti_back_to_call.png */; };
+		B3D09A76296C1C4D00F4CFFD /* nethcti_bluetooth.png@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A4C296C1C4A00F4CFFD /* nethcti_bluetooth.png@2x.png */; };
+		B3D09A77296C1C4D00F4CFFD /* nethcti_avatar_call.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A4D296C1C4A00F4CFFD /* nethcti_avatar_call.png */; };
+		B3D09A78296C1C4D00F4CFFD /* neth_dialer_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A4E296C1C4A00F4CFFD /* neth_dialer_background.png */; };
+		B3D09A79296C1C4D00F4CFFD /* nethcti_add_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A4F296C1C4A00F4CFFD /* nethcti_add_call@2x.png */; };
+		B3D09A7A296C1C4D00F4CFFD /* nethcti_call_status_incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A50296C1C4B00F4CFFD /* nethcti_call_status_incoming.png */; };
+		B3D09A7B296C1C4D00F4CFFD /* nethcti_call_status_incoming@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A51296C1C4B00F4CFFD /* nethcti_call_status_incoming@2x.png */; };
+		B3D09A7C296C1C4D00F4CFFD /* nethcti_backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A52296C1C4B00F4CFFD /* nethcti_backspace.png */; };
+		B3D09A7D296C1C4D00F4CFFD /* nethcti_close_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A53296C1C4B00F4CFFD /* nethcti_close_button@2x.png */; };
+		B3D09A7E296C1C4D00F4CFFD /* nethcti_answer_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A54296C1C4B00F4CFFD /* nethcti_answer_video@2x.png */; };
+		B3D09A7F296C1C4D00F4CFFD /* nethcti_done.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A55296C1C4B00F4CFFD /* nethcti_done.png */; };
+		B3D09A80296C1C4D00F4CFFD /* nethcti_bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A56296C1C4B00F4CFFD /* nethcti_bluetooth.png */; };
+		B3D09A81296C1C4D00F4CFFD /* neth_splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A57296C1C4B00F4CFFD /* neth_splashscreen.png */; };
+		B3D09A82296C1C4D00F4CFFD /* nethcti_cam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A58296C1C4C00F4CFFD /* nethcti_cam@2x.png */; };
+		B3D09A83296C1C4D00F4CFFD /* nethcti_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A59296C1C4C00F4CFFD /* nethcti_done@2x.png */; };
+		B3D09A84296C1C4D00F4CFFD /* neth-splash-landscape_2208x1242.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A5A296C1C4C00F4CFFD /* neth-splash-landscape_2208x1242.png */; };
+		B3D09A85296C1C4D00F4CFFD /* nethcti_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A5B296C1C4C00F4CFFD /* nethcti_cancel.png */; };
+		B3D09A86296C1C4D00F4CFFD /* nethcti_call_status_missed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A5C296C1C4C00F4CFFD /* nethcti_call_status_missed@2x.png */; };
+		B3D09A87296C1C4D00F4CFFD /* nethcti_close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A5D296C1C4C00F4CFFD /* nethcti_close_button.png */; };
+		B3D09A88296C1C4D00F4CFFD /* nethcti_call_status_outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A5E296C1C4C00F4CFFD /* nethcti_call_status_outgoing.png */; };
+		B3D09A89296C1C4D00F4CFFD /* nethcti_add_call_green.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A5F296C1C4D00F4CFFD /* nethcti_add_call_green.png */; };
+		B3D09A8A296C1C4D00F4CFFD /* nethcti_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A60296C1C4D00F4CFFD /* nethcti_add@2x.png */; };
+		B3D09ACE296C1C7D00F4CFFD /* nethcti_green_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A8B296C1C7500F4CFFD /* nethcti_green_phone@2x.png */; };
+		B3D09ACF296C1C7D00F4CFFD /* nethcti_three_dots.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A8C296C1C7500F4CFFD /* nethcti_three_dots.png */; };
+		B3D09AD0296C1C7D00F4CFFD /* nethcti_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A8D296C1C7500F4CFFD /* nethcti_refresh.png */; };
+		B3D09AD1296C1C7D00F4CFFD /* nethcti_numpad_9.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A8E296C1C7500F4CFFD /* nethcti_numpad_9.png */; };
+		B3D09AD2296C1C7D00F4CFFD /* nethcti_qr.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A8F296C1C7600F4CFFD /* nethcti_qr.png */; };
+		B3D09AD3296C1C7D00F4CFFD /* nethcti_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A90296C1C7600F4CFFD /* nethcti_menu.png */; };
+		B3D09AD4296C1C7D00F4CFFD /* nethcti_multiselect_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A91296C1C7600F4CFFD /* nethcti_multiselect_default@2x.png */; };
+		B3D09AD5296C1C7D00F4CFFD /* nethcti_missed_calls@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A92296C1C7600F4CFFD /* nethcti_missed_calls@2x.png */; };
+		B3D09AD6296C1C7D00F4CFFD /* nethcti_missed_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A93296C1C7600F4CFFD /* nethcti_missed_call@2x.png */; };
+		B3D09AD7296C1C7D00F4CFFD /* nethcti_green_call.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A94296C1C7600F4CFFD /* nethcti_green_call.png */; };
+		B3D09AD8296C1C7D00F4CFFD /* nethcti_logo_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A95296C1C7600F4CFFD /* nethcti_logo_sip@2x.png */; };
+		B3D09AD9296C1C7D00F4CFFD /* nethcti_user_add.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A96296C1C7600F4CFFD /* nethcti_user_add.png */; };
+		B3D09ADA296C1C7D00F4CFFD /* nethcti_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A97296C1C7600F4CFFD /* nethcti_play@2x.png */; };
+		B3D09ADB296C1C7D00F4CFFD /* nethcti_record.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A98296C1C7700F4CFFD /* nethcti_record.png */; };
+		B3D09ADC296C1C7D00F4CFFD /* nethcti_volume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A99296C1C7700F4CFFD /* nethcti_volume@2x.png */; };
+		B3D09ADD296C1C7D00F4CFFD /* nethcti_multiselect_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A9A296C1C7700F4CFFD /* nethcti_multiselect_selected.png */; };
+		B3D09ADE296C1C7D00F4CFFD /* nethcti_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A9B296C1C7700F4CFFD /* nethcti_pause@2x.png */; };
+		B3D09ADF296C1C7D00F4CFFD /* nethcti_microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A9C296C1C7700F4CFFD /* nethcti_microphone.png */; };
+		B3D09AE0296C1C7D00F4CFFD /* nethcti_users_sip.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A9D296C1C7700F4CFFD /* nethcti_users_sip.png */; };
+		B3D09AE1296C1C7D00F4CFFD /* nethcti_missed_call.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A9E296C1C7700F4CFFD /* nethcti_missed_call.png */; };
+		B3D09AE2296C1C7D00F4CFFD /* nethcti_transfer_call.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09A9F296C1C7700F4CFFD /* nethcti_transfer_call.png */; };
+		B3D09AE3296C1C7D00F4CFFD /* nethcti_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA0296C1C7800F4CFFD /* nethcti_refresh@2x.png */; };
+		B3D09AE4296C1C7D00F4CFFD /* nethcti_trash_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA1296C1C7800F4CFFD /* nethcti_trash_disabled.png */; };
+		B3D09AE5296C1C7D00F4CFFD /* nethcti_grey_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA2296C1C7800F4CFFD /* nethcti_grey_circle.png */; };
+		B3D09AE6296C1C7D00F4CFFD /* nethcti_microphone_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA3296C1C7800F4CFFD /* nethcti_microphone_disabled.png */; };
+		B3D09AE7296C1C7D00F4CFFD /* nethcti_numpad_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA4296C1C7800F4CFFD /* nethcti_numpad_2.png */; };
+		B3D09AE8296C1C7D00F4CFFD /* nethcti_green_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA5296C1C7800F4CFFD /* nethcti_green_call@2x.png */; };
+		B3D09AE9296C1C7D00F4CFFD /* nethcti_microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA6296C1C7800F4CFFD /* nethcti_microphone@2x.png */; };
+		B3D09AEA296C1C7D00F4CFFD /* nethcti_numpad_0.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA7296C1C7900F4CFFD /* nethcti_numpad_0.png */; };
+		B3D09AEB296C1C7D00F4CFFD /* nethcti_multiselect_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA8296C1C7900F4CFFD /* nethcti_multiselect_selected@2x.png */; };
+		B3D09AEC296C1C7D00F4CFFD /* nethcti_transfer_call_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AA9296C1C7900F4CFFD /* nethcti_transfer_call_green@2x.png */; };
+		B3D09AED296C1C7D00F4CFFD /* nethcti_trash.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AAA296C1C7900F4CFFD /* nethcti_trash.png */; };
+		B3D09AEE296C1C7D00F4CFFD /* nethcti_main_color_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AAB296C1C7900F4CFFD /* nethcti_main_color_phone.png */; };
+		B3D09AEF296C1C7D00F4CFFD /* nethcti_remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AAC296C1C7900F4CFFD /* nethcti_remove@2x.png */; };
+		B3D09AF0296C1C7D00F4CFFD /* nethcti_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AAD296C1C7900F4CFFD /* nethcti_menu@2x.png */; };
+		B3D09AF1296C1C7D00F4CFFD /* nethcti_multiselect_default.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AAE296C1C7900F4CFFD /* nethcti_multiselect_default.png */; };
+		B3D09AF2296C1C7D00F4CFFD /* nethcti_numpad_8.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AAF296C1C7900F4CFFD /* nethcti_numpad_8.png */; };
+		B3D09AF3296C1C7D00F4CFFD /* nethcti_remove.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB0296C1C7A00F4CFFD /* nethcti_remove.png */; };
+		B3D09AF4296C1C7D00F4CFFD /* nethcti_user_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB1296C1C7A00F4CFFD /* nethcti_user_add@2x.png */; };
+		B3D09AF5296C1C7D00F4CFFD /* nethcti_numpad_5.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB2296C1C7A00F4CFFD /* nethcti_numpad_5.png */; };
+		B3D09AF6296C1C7D00F4CFFD /* nethcti_transfer_call_green.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB3296C1C7A00F4CFFD /* nethcti_transfer_call_green.png */; };
+		B3D09AF7296C1C7D00F4CFFD /* nethcti_green_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB4296C1C7A00F4CFFD /* nethcti_green_phone.png */; };
+		B3D09AF8296C1C7D00F4CFFD /* nethcti_logo_sip.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB5296C1C7A00F4CFFD /* nethcti_logo_sip.png */; };
+		B3D09AF9296C1C7D00F4CFFD /* nethcti_numpad_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB6296C1C7A00F4CFFD /* nethcti_numpad_3.png */; };
+		B3D09AFA296C1C7D00F4CFFD /* nethcti_trash_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB7296C1C7A00F4CFFD /* nethcti_trash_disabled@2x.png */; };
+		B3D09AFB296C1C7D00F4CFFD /* nethcti_play.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB8296C1C7A00F4CFFD /* nethcti_play.png */; };
+		B3D09AFC296C1C7D00F4CFFD /* nethcti_menu_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AB9296C1C7B00F4CFFD /* nethcti_menu_home@2x.png */; };
+		B3D09AFD296C1C7D00F4CFFD /* nethcti_qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ABA296C1C7B00F4CFFD /* nethcti_qr@2x.png */; };
+		B3D09AFE296C1C7D00F4CFFD /* nethcti_transfer_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ABB296C1C7B00F4CFFD /* nethcti_transfer_call@2x.png */; };
+		B3D09AFF296C1C7D00F4CFFD /* nethcti_numpad_7.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ABC296C1C7B00F4CFFD /* nethcti_numpad_7.png */; };
+		B3D09B00296C1C7D00F4CFFD /* nethcti_volume.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ABD296C1C7B00F4CFFD /* nethcti_volume.png */; };
+		B3D09B01296C1C7D00F4CFFD /* nethcti_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ABE296C1C7B00F4CFFD /* nethcti_record@2x.png */; };
+		B3D09B02296C1C7D00F4CFFD /* nethcti_grey_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ABF296C1C7B00F4CFFD /* nethcti_grey_phone.png */; };
+		B3D09B03296C1C7D00F4CFFD /* nethcti_reverse_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC0296C1C7B00F4CFFD /* nethcti_reverse_camera@2x.png */; };
+		B3D09B04296C1C7D00F4CFFD /* nethcti_menu_home.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC1296C1C7B00F4CFFD /* nethcti_menu_home.png */; };
+		B3D09B05296C1C7D00F4CFFD /* nethcti_reverse_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC2296C1C7B00F4CFFD /* nethcti_reverse_camera.png */; };
+		B3D09B06296C1C7D00F4CFFD /* nethcti_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC3296C1C7C00F4CFFD /* nethcti_pause.png */; };
+		B3D09B07296C1C7D00F4CFFD /* nethcti_numpad_asterisk.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC4296C1C7C00F4CFFD /* nethcti_numpad_asterisk.png */; };
+		B3D09B08296C1C7D00F4CFFD /* nethcti_users_sip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC5296C1C7C00F4CFFD /* nethcti_users_sip@2x.png */; };
+		B3D09B09296C1C7D00F4CFFD /* nethcti_numpad_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC6296C1C7C00F4CFFD /* nethcti_numpad_4.png */; };
+		B3D09B0A296C1C7D00F4CFFD /* nethcti_missed_calls.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC7296C1C7C00F4CFFD /* nethcti_missed_calls.png */; };
+		B3D09B0B296C1C7D00F4CFFD /* nethcti_numpad_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC8296C1C7C00F4CFFD /* nethcti_numpad_1.png */; };
+		B3D09B0C296C1C7D00F4CFFD /* nethcti_numpad_6.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09AC9296C1C7C00F4CFFD /* nethcti_numpad_6.png */; };
+		B3D09B0D296C1C7D00F4CFFD /* nethcti_three_dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ACA296C1C7C00F4CFFD /* nethcti_three_dots@2x.png */; };
+		B3D09B0E296C1C7D00F4CFFD /* nethcti_trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ACB296C1C7C00F4CFFD /* nethcti_trash@2x.png */; };
+		B3D09B0F296C1C7D00F4CFFD /* nethcti_microphone_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ACC296C1C7C00F4CFFD /* nethcti_microphone_disabled@2x.png */; };
+		B3D09B10296C1C7D00F4CFFD /* nethcti_numpad_hashtag.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09ACD296C1C7D00F4CFFD /* nethcti_numpad_hashtag.png */; };
+		B3D09B12296C1C8800F4CFFD /* nethcti_green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B11296C1C8800F4CFFD /* nethcti_green_circle.png */; };
+		B3D09B21296C1D3D00F4CFFD /* DashboardView.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B15296C1D3D00F4CFFD /* DashboardView.strings */; };
+		B3D09B22296C1D3D00F4CFFD /* RecentCallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B17296C1D3D00F4CFFD /* RecentCallTableViewCell.m */; };
+		B3D09B23296C1D3D00F4CFFD /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B18296C1D3D00F4CFFD /* DashboardViewController.m */; };
+		B3D09B24296C1D3D00F4CFFD /* DashboardHistoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B1A296C1D3D00F4CFFD /* DashboardHistoryTableView.m */; };
+		B3D09B25296C1D3D00F4CFFD /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B1B296C1D3D00F4CFFD /* DashboardView.xib */; };
+		B3D09B26296C1D3D00F4CFFD /* RecentCallTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B1D296C1D3D00F4CFFD /* RecentCallTableViewCell.xib */; };
+		B3D09B2E296C1D4D00F4CFFD /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B28296C1D4D00F4CFFD /* HistoryTableViewCell.swift */; };
+		B3D09B2F296C1D4D00F4CFFD /* IncomingCallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B29296C1D4D00F4CFFD /* IncomingCallTableViewCell.swift */; };
+		B3D09B30296C1D4D00F4CFFD /* LostCallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B2A296C1D4D00F4CFFD /* LostCallTableViewCell.swift */; };
+		B3D09B31296C1D4D00F4CFFD /* OutgoingCallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B2B296C1D4D00F4CFFD /* OutgoingCallTableViewCell.swift */; };
+		B3D09B32296C1D4D00F4CFFD /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B2C296C1D4D00F4CFFD /* HistoryTableViewCell.xib */; };
+		B3D09B33296C1D4D00F4CFFD /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B2D296C1D4D00F4CFFD /* HistoryTableViewController.swift */; };
+		B3D09B4F296C217B00F4CFFD /* PresenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B36296C217B00F4CFFD /* PresenceViewController.xib */; };
+		B3D09B50296C217B00F4CFFD /* PresenceSelectListGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B37296C217B00F4CFFD /* PresenceSelectListGroupViewController.m */; };
+		B3D09B51296C217B00F4CFFD /* PresenceSelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B38296C217B00F4CFFD /* PresenceSelectListViewController.m */; };
+		B3D09B52296C217B00F4CFFD /* PresenceSelectListGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B39296C217B00F4CFFD /* PresenceSelectListGroupViewController.xib */; };
+		B3D09B53296C217B00F4CFFD /* PresenceActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B3A296C217B00F4CFFD /* PresenceActionViewController.m */; };
+		B3D09B54296C217B00F4CFFD /* PresenceSelectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B3B296C217B00F4CFFD /* PresenceSelectListViewController.xib */; };
+		B3D09B55296C217C00F4CFFD /* PresenceActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B3C296C217B00F4CFFD /* PresenceActionViewController.xib */; };
+		B3D09B56296C217C00F4CFFD /* PresenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B42296C217B00F4CFFD /* PresenceTableViewCell.m */; };
+		B3D09B57296C217C00F4CFFD /* PresenceActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B44296C217B00F4CFFD /* PresenceActionCollectionViewCell.xib */; };
+		B3D09B58296C217C00F4CFFD /* PresenceSelectListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B45296C217B00F4CFFD /* PresenceSelectListTableViewCell.m */; };
+		B3D09B59296C217C00F4CFFD /* PresenceSelectListGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B48296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.m */; };
+		B3D09B5A296C217C00F4CFFD /* PresenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B49296C217B00F4CFFD /* PresenceTableViewCell.xib */; };
+		B3D09B5B296C217C00F4CFFD /* PresenceSelectListGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B4B296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.xib */; };
+		B3D09B5C296C217C00F4CFFD /* PresenceActionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B4C296C217B00F4CFFD /* PresenceActionCollectionViewCell.m */; };
+		B3D09B5D296C217C00F4CFFD /* PresenceSelectListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B4D296C217B00F4CFFD /* PresenceSelectListTableViewCell.xib */; };
+		B3D09B61296C21C500F4CFFD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B5F296C21C500F4CFFD /* MBProgressHUD.m */; };
+		B3D09B62296C2D2A00F4CFFD /* PresenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D09B35296C217B00F4CFFD /* PresenceViewController.m */; };
 		C61B1BF22667D075001A4E4A /* menu_security_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF12667D075001A4E4A /* menu_security_default.png */; };
 		C61B1BF42667D202001A4E4A /* more_menu_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF32667D202001A4E4A /* more_menu_default.png */; };
 		C61B1BF72667EC6B001A4E4A /* ephemeral_messages_color_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */; };
@@ -1871,6 +2052,200 @@
 		A6FD9930E5B1F4149D45BB1C /* Pods_linphone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_linphone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD31E0BAAE2E50305E05B683 /* Pods-msgNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationService.debug.xcconfig"; path = "Target Support Files/Pods-msgNotificationService/Pods-msgNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D404E542E5871F7437A060 /* Pods-msgNotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationContent.debug.xcconfig"; path = "Target Support Files/Pods-msgNotificationContent/Pods-msgNotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
+		B3D099D8296C137000F4CFFD /* NotReturnMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
+		B3D099D9296C137000F4CFFD /* NethContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
+		B3D099DA296C137000F4CFFD /* NethPhoneBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethPhoneBook.swift; sourceTree = "<group>"; };
+		B3D099DB296C137000F4CFFD /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
+		B3D099DC296C137100F4CFFD /* CallIdTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
+		B3D099DD296C137100F4CFFD /* TransferCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
+		B3D099EA296C13A900F4CFFD /* CoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreManager.swift; sourceTree = "<group>"; };
+		B3D099EE296C159200F4CFFD /* NethLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = NethLocalizable.strings; sourceTree = "<group>"; };
+		B3D099F0296C15A500F4CFFD /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		B3D099F1296C15A500F4CFFD /* BrandLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = BrandLocalizable.strings; sourceTree = "<group>"; };
+		B3D099F4296C15EF00F4CFFD /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		B3D099F7296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
+		B3D099F8296C184000F4CFFD /* NethCTIAPI.ErrorCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ErrorCodes.swift; sourceTree = "<group>"; };
+		B3D099FA296C184000F4CFFD /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		B3D099FB296C184000F4CFFD /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		B3D099FC296C184000F4CFFD /* MacroPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroPermissions.swift; sourceTree = "<group>"; };
+		B3D099FD296C184000F4CFFD /* NethUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethUser.swift; sourceTree = "<group>"; };
+		B3D099FE296C184000F4CFFD /* PresencePanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresencePanel.swift; sourceTree = "<group>"; };
+		B3D099FF296C184000F4CFFD /* AdPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdPermission.swift; sourceTree = "<group>"; };
+		B3D09A00296C184000F4CFFD /* Permissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		B3D09A01296C184000F4CFFD /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		B3D09A02296C184000F4CFFD /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		B3D09A03296C184000F4CFFD /* EndpointExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointExtensions.swift; sourceTree = "<group>"; };
+		B3D09A04296C184000F4CFFD /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		B3D09A05296C184000F4CFFD /* PresenceUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceUser.swift; sourceTree = "<group>"; };
+		B3D09A06296C184000F4CFFD /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		B3D09A08296C184000F4CFFD /* NethCTIAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.swift; sourceTree = "<group>"; };
+		B3D09A19296C1B7900F4CFFD /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
+		B3D09A1B296C1C2400F4CFFD /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@2x.png"; sourceTree = "<group>"; };
+		B3D09A1C296C1C2400F4CFFD /* logo_dashboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_dashboard@2x.png"; sourceTree = "<group>"; };
+		B3D09A1D296C1C2400F4CFFD /* login_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_menu@2x.png"; sourceTree = "<group>"; };
+		B3D09A1E296C1C2400F4CFFD /* logo_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_about@2x.png"; sourceTree = "<group>"; };
+		B3D09A1F296C1C2400F4CFFD /* logo_nethCTI_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_nethCTI_portrait.png; sourceTree = "<group>"; };
+		B3D09A20296C1C2500F4CFFD /* logo_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_login@2x.png"; sourceTree = "<group>"; };
+		B3D09A21296C1C2500F4CFFD /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		B3D09A22296C1C2500F4CFFD /* login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login@2x.png"; sourceTree = "<group>"; };
+		B3D09A23296C1C2500F4CFFD /* logo_dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_dashboard.png; sourceTree = "<group>"; };
+		B3D09A24296C1C2500F4CFFD /* logo_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_login.png; sourceTree = "<group>"; };
+		B3D09A25296C1C2500F4CFFD /* logo_nethesis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_nethesis.png; sourceTree = "<group>"; };
+		B3D09A26296C1C2500F4CFFD /* logo_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_about.png; sourceTree = "<group>"; };
+		B3D09A27296C1C2600F4CFFD /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		B3D09A28296C1C2600F4CFFD /* login_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_menu.png; sourceTree = "<group>"; };
+		B3D09A37296C1C4700F4CFFD /* nethcti_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add.png; sourceTree = "<group>"; };
+		B3D09A38296C1C4700F4CFFD /* nethcti_cam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_cam.png; sourceTree = "<group>"; };
+		B3D09A39296C1C4700F4CFFD /* nethcti_add_field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add_field@2x.png"; sourceTree = "<group>"; };
+		B3D09A3A296C1C4700F4CFFD /* nethcti_add_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_call.png; sourceTree = "<group>"; };
+		B3D09A3B296C1C4800F4CFFD /* nethcti_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_edit@2x.png"; sourceTree = "<group>"; };
+		B3D09A3C296C1C4800F4CFFD /* nethcti_call_accept@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_call_accept@2x.png"; sourceTree = "<group>"; };
+		B3D09A3D296C1C4800F4CFFD /* nethcti_blue_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_blue_circle.png; sourceTree = "<group>"; };
+		B3D09A3E296C1C4800F4CFFD /* nethcti_add_field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_field.png; sourceTree = "<group>"; };
+		B3D09A3F296C1C4800F4CFFD /* nethcti_button_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_button_circle.png; sourceTree = "<group>"; };
+		B3D09A40296C1C4800F4CFFD /* nethcti_call_accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_accept.png; sourceTree = "<group>"; };
+		B3D09A41296C1C4800F4CFFD /* nethcti_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_cancel@2x.png"; sourceTree = "<group>"; };
+		B3D09A42296C1C4900F4CFFD /* neth-splash-portrait_1242x2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-portrait_1242x2208.png"; sourceTree = "<group>"; };
+		B3D09A43296C1C4900F4CFFD /* nethcti_call_status_missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_missed.png; sourceTree = "<group>"; };
+		B3D09A44296C1C4900F4CFFD /* nethcti_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_edit.png; sourceTree = "<group>"; };
+		B3D09A45296C1C4900F4CFFD /* nethcti_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar.png; sourceTree = "<group>"; };
+		B3D09A46296C1C4900F4CFFD /* nethcti_call_status_outgoing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_call_status_outgoing@2x.png"; sourceTree = "<group>"; };
+		B3D09A47296C1C4900F4CFFD /* nethcti_bt_speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_bt_speaker.png; sourceTree = "<group>"; };
+		B3D09A48296C1C4A00F4CFFD /* nethcti_add_call_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add_call_green@2x.png"; sourceTree = "<group>"; };
+		B3D09A49296C1C4A00F4CFFD /* nethcti_bt_speaker.png@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_bt_speaker.png@2x.png"; sourceTree = "<group>"; };
+		B3D09A4A296C1C4A00F4CFFD /* nethcti_answer_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_answer_video.png; sourceTree = "<group>"; };
+		B3D09A4B296C1C4A00F4CFFD /* nethcti_back_to_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_back_to_call.png; sourceTree = "<group>"; };
+		B3D09A4C296C1C4A00F4CFFD /* nethcti_bluetooth.png@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_bluetooth.png@2x.png"; sourceTree = "<group>"; };
+		B3D09A4D296C1C4A00F4CFFD /* nethcti_avatar_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_avatar_call.png; sourceTree = "<group>"; };
+		B3D09A4E296C1C4A00F4CFFD /* neth_dialer_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_dialer_background.png; sourceTree = "<group>"; };
+		B3D09A4F296C1C4A00F4CFFD /* nethcti_add_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add_call@2x.png"; sourceTree = "<group>"; };
+		B3D09A50296C1C4B00F4CFFD /* nethcti_call_status_incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_incoming.png; sourceTree = "<group>"; };
+		B3D09A51296C1C4B00F4CFFD /* nethcti_call_status_incoming@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_call_status_incoming@2x.png"; sourceTree = "<group>"; };
+		B3D09A52296C1C4B00F4CFFD /* nethcti_backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_backspace.png; sourceTree = "<group>"; };
+		B3D09A53296C1C4B00F4CFFD /* nethcti_close_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_close_button@2x.png"; sourceTree = "<group>"; };
+		B3D09A54296C1C4B00F4CFFD /* nethcti_answer_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_answer_video@2x.png"; sourceTree = "<group>"; };
+		B3D09A55296C1C4B00F4CFFD /* nethcti_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_done.png; sourceTree = "<group>"; };
+		B3D09A56296C1C4B00F4CFFD /* nethcti_bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_bluetooth.png; sourceTree = "<group>"; };
+		B3D09A57296C1C4B00F4CFFD /* neth_splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neth_splashscreen.png; sourceTree = "<group>"; };
+		B3D09A58296C1C4C00F4CFFD /* nethcti_cam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_cam@2x.png"; sourceTree = "<group>"; };
+		B3D09A59296C1C4C00F4CFFD /* nethcti_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_done@2x.png"; sourceTree = "<group>"; };
+		B3D09A5A296C1C4C00F4CFFD /* neth-splash-landscape_2208x1242.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neth-splash-landscape_2208x1242.png"; sourceTree = "<group>"; };
+		B3D09A5B296C1C4C00F4CFFD /* nethcti_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_cancel.png; sourceTree = "<group>"; };
+		B3D09A5C296C1C4C00F4CFFD /* nethcti_call_status_missed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_call_status_missed@2x.png"; sourceTree = "<group>"; };
+		B3D09A5D296C1C4C00F4CFFD /* nethcti_close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_close_button.png; sourceTree = "<group>"; };
+		B3D09A5E296C1C4C00F4CFFD /* nethcti_call_status_outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_call_status_outgoing.png; sourceTree = "<group>"; };
+		B3D09A5F296C1C4D00F4CFFD /* nethcti_add_call_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_add_call_green.png; sourceTree = "<group>"; };
+		B3D09A60296C1C4D00F4CFFD /* nethcti_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_add@2x.png"; sourceTree = "<group>"; };
+		B3D09A8B296C1C7500F4CFFD /* nethcti_green_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_green_phone@2x.png"; sourceTree = "<group>"; };
+		B3D09A8C296C1C7500F4CFFD /* nethcti_three_dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_three_dots.png; sourceTree = "<group>"; };
+		B3D09A8D296C1C7500F4CFFD /* nethcti_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_refresh.png; sourceTree = "<group>"; };
+		B3D09A8E296C1C7500F4CFFD /* nethcti_numpad_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_9.png; sourceTree = "<group>"; };
+		B3D09A8F296C1C7600F4CFFD /* nethcti_qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_qr.png; sourceTree = "<group>"; };
+		B3D09A90296C1C7600F4CFFD /* nethcti_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_menu.png; sourceTree = "<group>"; };
+		B3D09A91296C1C7600F4CFFD /* nethcti_multiselect_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_multiselect_default@2x.png"; sourceTree = "<group>"; };
+		B3D09A92296C1C7600F4CFFD /* nethcti_missed_calls@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_missed_calls@2x.png"; sourceTree = "<group>"; };
+		B3D09A93296C1C7600F4CFFD /* nethcti_missed_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_missed_call@2x.png"; sourceTree = "<group>"; };
+		B3D09A94296C1C7600F4CFFD /* nethcti_green_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_call.png; sourceTree = "<group>"; };
+		B3D09A95296C1C7600F4CFFD /* nethcti_logo_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_logo_sip@2x.png"; sourceTree = "<group>"; };
+		B3D09A96296C1C7600F4CFFD /* nethcti_user_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_user_add.png; sourceTree = "<group>"; };
+		B3D09A97296C1C7600F4CFFD /* nethcti_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_play@2x.png"; sourceTree = "<group>"; };
+		B3D09A98296C1C7700F4CFFD /* nethcti_record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_record.png; sourceTree = "<group>"; };
+		B3D09A99296C1C7700F4CFFD /* nethcti_volume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_volume@2x.png"; sourceTree = "<group>"; };
+		B3D09A9A296C1C7700F4CFFD /* nethcti_multiselect_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_multiselect_selected.png; sourceTree = "<group>"; };
+		B3D09A9B296C1C7700F4CFFD /* nethcti_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_pause@2x.png"; sourceTree = "<group>"; };
+		B3D09A9C296C1C7700F4CFFD /* nethcti_microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_microphone.png; sourceTree = "<group>"; };
+		B3D09A9D296C1C7700F4CFFD /* nethcti_users_sip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_users_sip.png; sourceTree = "<group>"; };
+		B3D09A9E296C1C7700F4CFFD /* nethcti_missed_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_missed_call.png; sourceTree = "<group>"; };
+		B3D09A9F296C1C7700F4CFFD /* nethcti_transfer_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_transfer_call.png; sourceTree = "<group>"; };
+		B3D09AA0296C1C7800F4CFFD /* nethcti_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_refresh@2x.png"; sourceTree = "<group>"; };
+		B3D09AA1296C1C7800F4CFFD /* nethcti_trash_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_trash_disabled.png; sourceTree = "<group>"; };
+		B3D09AA2296C1C7800F4CFFD /* nethcti_grey_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_grey_circle.png; sourceTree = "<group>"; };
+		B3D09AA3296C1C7800F4CFFD /* nethcti_microphone_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_microphone_disabled.png; sourceTree = "<group>"; };
+		B3D09AA4296C1C7800F4CFFD /* nethcti_numpad_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_2.png; sourceTree = "<group>"; };
+		B3D09AA5296C1C7800F4CFFD /* nethcti_green_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_green_call@2x.png"; sourceTree = "<group>"; };
+		B3D09AA6296C1C7800F4CFFD /* nethcti_microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_microphone@2x.png"; sourceTree = "<group>"; };
+		B3D09AA7296C1C7900F4CFFD /* nethcti_numpad_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_0.png; sourceTree = "<group>"; };
+		B3D09AA8296C1C7900F4CFFD /* nethcti_multiselect_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_multiselect_selected@2x.png"; sourceTree = "<group>"; };
+		B3D09AA9296C1C7900F4CFFD /* nethcti_transfer_call_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_transfer_call_green@2x.png"; sourceTree = "<group>"; };
+		B3D09AAA296C1C7900F4CFFD /* nethcti_trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_trash.png; sourceTree = "<group>"; };
+		B3D09AAB296C1C7900F4CFFD /* nethcti_main_color_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_main_color_phone.png; sourceTree = "<group>"; };
+		B3D09AAC296C1C7900F4CFFD /* nethcti_remove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_remove@2x.png"; sourceTree = "<group>"; };
+		B3D09AAD296C1C7900F4CFFD /* nethcti_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu@2x.png"; sourceTree = "<group>"; };
+		B3D09AAE296C1C7900F4CFFD /* nethcti_multiselect_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_multiselect_default.png; sourceTree = "<group>"; };
+		B3D09AAF296C1C7900F4CFFD /* nethcti_numpad_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_8.png; sourceTree = "<group>"; };
+		B3D09AB0296C1C7A00F4CFFD /* nethcti_remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_remove.png; sourceTree = "<group>"; };
+		B3D09AB1296C1C7A00F4CFFD /* nethcti_user_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_user_add@2x.png"; sourceTree = "<group>"; };
+		B3D09AB2296C1C7A00F4CFFD /* nethcti_numpad_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_5.png; sourceTree = "<group>"; };
+		B3D09AB3296C1C7A00F4CFFD /* nethcti_transfer_call_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_transfer_call_green.png; sourceTree = "<group>"; };
+		B3D09AB4296C1C7A00F4CFFD /* nethcti_green_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_phone.png; sourceTree = "<group>"; };
+		B3D09AB5296C1C7A00F4CFFD /* nethcti_logo_sip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_logo_sip.png; sourceTree = "<group>"; };
+		B3D09AB6296C1C7A00F4CFFD /* nethcti_numpad_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_3.png; sourceTree = "<group>"; };
+		B3D09AB7296C1C7A00F4CFFD /* nethcti_trash_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_trash_disabled@2x.png"; sourceTree = "<group>"; };
+		B3D09AB8296C1C7A00F4CFFD /* nethcti_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_play.png; sourceTree = "<group>"; };
+		B3D09AB9296C1C7B00F4CFFD /* nethcti_menu_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_menu_home@2x.png"; sourceTree = "<group>"; };
+		B3D09ABA296C1C7B00F4CFFD /* nethcti_qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_qr@2x.png"; sourceTree = "<group>"; };
+		B3D09ABB296C1C7B00F4CFFD /* nethcti_transfer_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_transfer_call@2x.png"; sourceTree = "<group>"; };
+		B3D09ABC296C1C7B00F4CFFD /* nethcti_numpad_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_7.png; sourceTree = "<group>"; };
+		B3D09ABD296C1C7B00F4CFFD /* nethcti_volume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_volume.png; sourceTree = "<group>"; };
+		B3D09ABE296C1C7B00F4CFFD /* nethcti_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_record@2x.png"; sourceTree = "<group>"; };
+		B3D09ABF296C1C7B00F4CFFD /* nethcti_grey_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_grey_phone.png; sourceTree = "<group>"; };
+		B3D09AC0296C1C7B00F4CFFD /* nethcti_reverse_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_reverse_camera@2x.png"; sourceTree = "<group>"; };
+		B3D09AC1296C1C7B00F4CFFD /* nethcti_menu_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_menu_home.png; sourceTree = "<group>"; };
+		B3D09AC2296C1C7B00F4CFFD /* nethcti_reverse_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_reverse_camera.png; sourceTree = "<group>"; };
+		B3D09AC3296C1C7C00F4CFFD /* nethcti_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_pause.png; sourceTree = "<group>"; };
+		B3D09AC4296C1C7C00F4CFFD /* nethcti_numpad_asterisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_asterisk.png; sourceTree = "<group>"; };
+		B3D09AC5296C1C7C00F4CFFD /* nethcti_users_sip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_users_sip@2x.png"; sourceTree = "<group>"; };
+		B3D09AC6296C1C7C00F4CFFD /* nethcti_numpad_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_4.png; sourceTree = "<group>"; };
+		B3D09AC7296C1C7C00F4CFFD /* nethcti_missed_calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_missed_calls.png; sourceTree = "<group>"; };
+		B3D09AC8296C1C7C00F4CFFD /* nethcti_numpad_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_1.png; sourceTree = "<group>"; };
+		B3D09AC9296C1C7C00F4CFFD /* nethcti_numpad_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_6.png; sourceTree = "<group>"; };
+		B3D09ACA296C1C7C00F4CFFD /* nethcti_three_dots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_three_dots@2x.png"; sourceTree = "<group>"; };
+		B3D09ACB296C1C7C00F4CFFD /* nethcti_trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_trash@2x.png"; sourceTree = "<group>"; };
+		B3D09ACC296C1C7C00F4CFFD /* nethcti_microphone_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nethcti_microphone_disabled@2x.png"; sourceTree = "<group>"; };
+		B3D09ACD296C1C7D00F4CFFD /* nethcti_numpad_hashtag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_numpad_hashtag.png; sourceTree = "<group>"; };
+		B3D09B11296C1C8800F4CFFD /* nethcti_green_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethcti_green_circle.png; sourceTree = "<group>"; };
+		B3D09B16296C1D3D00F4CFFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DashboardView.strings; sourceTree = "<group>"; };
+		B3D09B17296C1D3D00F4CFFD /* RecentCallTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentCallTableViewCell.m; sourceTree = "<group>"; };
+		B3D09B18296C1D3D00F4CFFD /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		B3D09B19296C1D3D00F4CFFD /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DashboardView.strings; sourceTree = "<group>"; };
+		B3D09B1A296C1D3D00F4CFFD /* DashboardHistoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardHistoryTableView.m; sourceTree = "<group>"; };
+		B3D09B1C296C1D3D00F4CFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DashboardView.xib; sourceTree = "<group>"; };
+		B3D09B1D296C1D3D00F4CFFD /* RecentCallTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentCallTableViewCell.xib; sourceTree = "<group>"; };
+		B3D09B1E296C1D3D00F4CFFD /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		B3D09B1F296C1D3D00F4CFFD /* RecentCallTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentCallTableViewCell.h; sourceTree = "<group>"; };
+		B3D09B20296C1D3D00F4CFFD /* DashboardHistoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardHistoryTableView.h; sourceTree = "<group>"; };
+		B3D09B28296C1D4D00F4CFFD /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		B3D09B29296C1D4D00F4CFFD /* IncomingCallTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingCallTableViewCell.swift; sourceTree = "<group>"; };
+		B3D09B2A296C1D4D00F4CFFD /* LostCallTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostCallTableViewCell.swift; sourceTree = "<group>"; };
+		B3D09B2B296C1D4D00F4CFFD /* OutgoingCallTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingCallTableViewCell.swift; sourceTree = "<group>"; };
+		B3D09B2C296C1D4D00F4CFFD /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		B3D09B2D296C1D4D00F4CFFD /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		B3D09B35296C217B00F4CFFD /* PresenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceViewController.m; sourceTree = "<group>"; };
+		B3D09B36296C217B00F4CFFD /* PresenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceViewController.xib; sourceTree = "<group>"; };
+		B3D09B37296C217B00F4CFFD /* PresenceSelectListGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListGroupViewController.m; sourceTree = "<group>"; };
+		B3D09B38296C217B00F4CFFD /* PresenceSelectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListViewController.m; sourceTree = "<group>"; };
+		B3D09B39296C217B00F4CFFD /* PresenceSelectListGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceSelectListGroupViewController.xib; sourceTree = "<group>"; };
+		B3D09B3A296C217B00F4CFFD /* PresenceActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceActionViewController.m; sourceTree = "<group>"; };
+		B3D09B3B296C217B00F4CFFD /* PresenceSelectListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceSelectListViewController.xib; sourceTree = "<group>"; };
+		B3D09B3C296C217B00F4CFFD /* PresenceActionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceActionViewController.xib; sourceTree = "<group>"; };
+		B3D09B3D296C217B00F4CFFD /* PresenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceViewController.h; sourceTree = "<group>"; };
+		B3D09B3E296C217B00F4CFFD /* PresenceActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceActionViewController.h; sourceTree = "<group>"; };
+		B3D09B3F296C217B00F4CFFD /* PresenceSelectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListViewController.h; sourceTree = "<group>"; };
+		B3D09B40296C217B00F4CFFD /* PresenceSelectListGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListGroupViewController.h; sourceTree = "<group>"; };
+		B3D09B42296C217B00F4CFFD /* PresenceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceTableViewCell.m; sourceTree = "<group>"; };
+		B3D09B43296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListGroupTableViewCell.h; sourceTree = "<group>"; };
+		B3D09B44296C217B00F4CFFD /* PresenceActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceActionCollectionViewCell.xib; sourceTree = "<group>"; };
+		B3D09B45296C217B00F4CFFD /* PresenceSelectListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListTableViewCell.m; sourceTree = "<group>"; };
+		B3D09B46296C217B00F4CFFD /* PresenceActionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceActionCollectionViewCell.h; sourceTree = "<group>"; };
+		B3D09B47296C217B00F4CFFD /* PresenceSelectListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceSelectListTableViewCell.h; sourceTree = "<group>"; };
+		B3D09B48296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceSelectListGroupTableViewCell.m; sourceTree = "<group>"; };
+		B3D09B49296C217B00F4CFFD /* PresenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceTableViewCell.xib; sourceTree = "<group>"; };
+		B3D09B4A296C217B00F4CFFD /* PresenceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenceTableViewCell.h; sourceTree = "<group>"; };
+		B3D09B4B296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceSelectListGroupTableViewCell.xib; sourceTree = "<group>"; };
+		B3D09B4C296C217B00F4CFFD /* PresenceActionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenceActionCollectionViewCell.m; sourceTree = "<group>"; };
+		B3D09B4D296C217B00F4CFFD /* PresenceSelectListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresenceSelectListTableViewCell.xib; sourceTree = "<group>"; };
+		B3D09B5F296C21C500F4CFFD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B3D09B60296C21C500F4CFFD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C61B1BF12667D075001A4E4A /* menu_security_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_security_default.png; sourceTree = "<group>"; };
 		C61B1BF32667D202001A4E4A /* more_menu_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_menu_default.png; sourceTree = "<group>"; };
 		C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ephemeral_messages_color_A.png; sourceTree = "<group>"; };
@@ -2350,6 +2725,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B3D09B13296C1D2D00F4CFFD /* Nethesis */,
+				B3D099EA296C13A900F4CFFD /* CoreManager.swift */,
 				614C087623D1A35E00217F80 /* linphone-Bridging-Header.h */,
 				C63F7196285A24B10066163B /* Swift */,
 				22E0A81D111C44E100B04932 /* AboutView.h */,
@@ -2597,6 +2974,7 @@
 			children = (
 				8C23BCB71D82AAC3005F19BB /* linphone.entitlements */,
 				614D09CD21E74D5400C43EDF /* GoogleService-Info.plist */,
+				B3D099D7296C133D00F4CFFD /* NethModels */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				61AE364C20C00B370089D9D3 /* linphoneExtension */,
 				EA5F25DA232BD3E200475F2E /* msgNotificationService */,
@@ -2716,101 +3094,6 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				C6F55646287CCFB60056E213 /* menu_voip_meeting_schedule.png */,
-				C6F55644287CC69F0056E213 /* voip_meeting_schedule.png */,
-				C63F72A4285A2F1B0066163B /* conference_schedule_calendar_default.png */,
-				C63F72AD285A2F1C0066163B /* conference_schedule_participants_default.png */,
-				C63F72A8285A2F1C0066163B /* conference_schedule_time_default.png */,
-				C63F7280285A2F160066163B /* voip_audio_routes.png */,
-				C63F729B285A2F1A0066163B /* voip_bluetooth.png */,
-				C63F728A285A2F180066163B /* voip_call_add.png */,
-				C63F72A5285A2F1B0066163B /* voip_call_chat.png */,
-				C63F7282285A2F170066163B /* voip_call_forward.png */,
-				C63F729A285A2F1A0066163B /* voip_call_header_active.png */,
-				C63F7279285A2F150066163B /* voip_call_header_incoming.png */,
-				C63F72B4285A2F1D0066163B /* voip_call_header_outgoing.png */,
-				C63F727B285A2F160066163B /* voip_call_header_paused.png */,
-				C63F72A0285A2F1B0066163B /* voip_call_list_menu.png */,
-				C63F7287285A2F170066163B /* voip_call_more.png */,
-				C63F7276285A2F150066163B /* voip_call_numpad.png */,
-				C63F72A3285A2F1B0066163B /* voip_call_participants.png */,
-				C63F7281285A2F160066163B /* voip_call_record.png */,
-				C63F7288285A2F170066163B /* voip_call_stats.png */,
-				C63F729F285A2F1B0066163B /* voip_call.png */,
-				C63F727A285A2F150066163B /* voip_calls_list.png */,
-				C63F72AA285A2F1C0066163B /* voip_camera_off.png */,
-				C63F729D285A2F1A0066163B /* voip_camera_on.png */,
-				C63F72B3285A2F1D0066163B /* voip_cancel.png */,
-				C63F7283285A2F170066163B /* voip_change_camera.png */,
-				C63F7277285A2F150066163B /* voip_chat_rooms_list.png */,
-				C63F7284285A2F170066163B /* voip_checkbox_checked.png */,
-				C63F72A6285A2F1B0066163B /* voip_checkbox_unchecked.png */,
-				C63F72A1285A2F1B0066163B /* voip_conference_active_speaker.png */,
-				C63F7297285A2F190066163B /* voip_conference_audio_only.png */,
-				C63F72AE285A2F1D0066163B /* voip_conference_mosaic.png */,
-				C63F72B0285A2F1D0066163B /* voip_conference_new_selected.png */,
-				C63F7299285A2F1A0066163B /* voip_conference_new.png */,
-				C63F728C285A2F180066163B /* voip_conference_paused_big.png */,
-				C63F729E285A2F1A0066163B /* voip_conference_play_big.png */,
-				C63F728B285A2F180066163B /* voip_copy.png */,
-				C63F72B2285A2F1D0066163B /* voip_delete.png */,
-				C63F7271285A2F140066163B /* voip_dropdown.png */,
-				C63F7295285A2F190066163B /* voip_earpiece.png */,
-				C63F72A7285A2F1C0066163B /* voip_edit.png */,
-				C63F7275285A2F150066163B /* voip_export.png */,
-				C63F7291285A2F190066163B /* voip_hangup.png */,
-				C63F7285285A2F170066163B /* voip_info.png */,
-				C63F7294285A2F190066163B /* voip_mandatory.png */,
-				C63F7298285A2F1A0066163B /* voip_menu_more.png */,
-				C63F72A9285A2F1C0066163B /* voip_merge_calls.png */,
-				C63F729C285A2F1A0066163B /* voip_micro_off.png */,
-				C63F72AB285A2F1C0066163B /* voip_micro_on.png */,
-				C63F728F285A2F180066163B /* voip_multiple_contacts_avatar.png */,
-				C63F727C285A2F160066163B /* voip_numpad_0.png */,
-				C63F7293285A2F190066163B /* voip_numpad_1.png */,
-				C63F7296285A2F190066163B /* voip_numpad_2.png */,
-				C63F727D285A2F160066163B /* voip_numpad_3.png */,
-				C63F7278285A2F150066163B /* voip_numpad_4.png */,
-				C63F72AF285A2F1D0066163B /* voip_numpad_5.png */,
-				C63F72A2285A2F1B0066163B /* voip_numpad_6.png */,
-				C63F7273285A2F140066163B /* voip_numpad_7.png */,
-				C63F7289285A2F180066163B /* voip_numpad_8.png */,
-				C63F727E285A2F160066163B /* voip_numpad_9.png */,
-				C63F728E285A2F180066163B /* voip_numpad_hash.png */,
-				C63F728D285A2F180066163B /* voip_numpad_star.png */,
-				C63F7292285A2F190066163B /* voip_pause.png */,
-				C63F7274285A2F150066163B /* voip_radio_off.png */,
-				C63F72AC285A2F1C0066163B /* voip_radio_on.png */,
-				C63F7290285A2F180066163B /* voip_remote_recording.png */,
-				C63F72B1285A2F1D0066163B /* voip_single_contact_avatar.png */,
-				C63F7286285A2F170066163B /* voip_speaker_off.png */,
-				C63F727F285A2F160066163B /* voip_speaker_on.png */,
-				C63F7272285A2F140066163B /* voip_spinner.png */,
-				C66B040D26F095CE009B5EDC /* cancel_forward.png */,
-				C66B040926EFDA54009B5EDC /* reply_cancel.png */,
-				C6A1BB4426E890BD00540D50 /* file_voice_default.png */,
-				C6A1BB4226E88F7C00540D50 /* menu_resend_default.png */,
-				C6A1BB4026E889AD00540D50 /* forward_message_default.png */,
-				C6A1BB3926E881E100540D50 /* menu_delete.png */,
-				C6A1BB3326E8815400540D50 /* menu_copy_text_default.png */,
-				C6A1BB3226E8815400540D50 /* menu_forward_default.png */,
-				C6A1BB3126E8815300540D50 /* menu_info.png */,
-				C6A1BB3426E8815400540D50 /* menu_reply_default.png */,
-				C6B4444026AAD0970076C517 /* file_audio_default.png */,
-				C6B4443E26AAD0970076C517 /* file_default.png */,
-				C6B4444126AAD0970076C517 /* file_pdf_default.png */,
-				C6B4443F26AAD0970076C517 /* file_picture_default.png */,
-				C6B4443D26AAD0970076C517 /* file_video_default.png */,
-				C622E3EC26A8128F004F5434 /* vr_off.png */,
-				C622E3EB26A8128F004F5434 /* vr_on.png */,
-				C622E3ED26A8128F004F5434 /* vr_pause.png */,
-				C622E3EE26A81290004F5434 /* vr_play.png */,
-				C622E3E926A8128F004F5434 /* vr_stop.png */,
-				C622E3EA26A8128F004F5434 /* vr_wave.png */,
-				C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */,
-				C61B1BF32667D202001A4E4A /* more_menu_default.png */,
-				C61B1BF12667D075001A4E4A /* menu_security_default.png */,
-				C64A85512667B74100252AD2 /* ephemeral_messages_default.png */,
 				633FEBE21D3CD5570014B822 /* add_field_default.png */,
 				633FEBE31D3CD5570014B822 /* add_field_default@2x.png */,
 				633FEBE41D3CD5570014B822 /* add_field_over.png */,
@@ -2919,6 +3202,7 @@
 				633FEC491D3CD5570014B822 /* cancel_edit_default@2x.png */,
 				633FEC4A1D3CD5570014B822 /* cancel_edit_disabled.png */,
 				633FEC4B1D3CD5570014B822 /* cancel_edit_disabled@2x.png */,
+				C66B040D26F095CE009B5EDC /* cancel_forward.png */,
 				633FEC4C1D3CD5570014B822 /* chat_add_default.png */,
 				633FEC4D1D3CD5570014B822 /* chat_add_default@2x.png */,
 				633FEC4E1D3CD5570014B822 /* chat_add_disabled.png */,
@@ -2994,6 +3278,9 @@
 				633FEC7B1D3CD5570014B822 /* conference_exit_default@2x.png */,
 				633FEC7C1D3CD5570014B822 /* conference_exit_over.png */,
 				633FEC7D1D3CD5570014B822 /* conference_exit_over@2x.png */,
+				C63F72A4285A2F1B0066163B /* conference_schedule_calendar_default.png */,
+				C63F72AD285A2F1C0066163B /* conference_schedule_participants_default.png */,
+				C63F72A8285A2F1C0066163B /* conference_schedule_time_default.png */,
 				633FEC7E1D3CD5570014B822 /* contact_add_default.png */,
 				633FEC7F1D3CD5570014B822 /* contact_add_default@2x.png */,
 				633FEC801D3CD5570014B822 /* contact_add_disabled.png */,
@@ -3034,6 +3321,14 @@
 				633FECA51D3CD5570014B822 /* edit_list_default@2x.png */,
 				633FECA61D3CD5570014B822 /* edit_list_disabled.png */,
 				633FECA71D3CD5570014B822 /* edit_list_disabled@2x.png */,
+				C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */,
+				C64A85512667B74100252AD2 /* ephemeral_messages_default.png */,
+				C6B4444026AAD0970076C517 /* file_audio_default.png */,
+				C6B4443E26AAD0970076C517 /* file_default.png */,
+				C6B4444126AAD0970076C517 /* file_pdf_default.png */,
+				C6B4443F26AAD0970076C517 /* file_picture_default.png */,
+				C6B4443D26AAD0970076C517 /* file_video_default.png */,
+				C6A1BB4426E890BD00540D50 /* file_voice_default.png */,
 				633FECA81D3CD5570014B822 /* footer_chat_default.png */,
 				633FECA91D3CD5570014B822 /* footer_chat_default@2x.png */,
 				633FECAA1D3CD5570014B822 /* footer_chat_disabled.png */,
@@ -3050,6 +3345,7 @@
 				633FECB51D3CD5570014B822 /* footer_history_default@2x.png */,
 				633FECB61D3CD5570014B822 /* footer_history_disabled.png */,
 				633FECB71D3CD5570014B822 /* footer_history_disabled@2x.png */,
+				C6A1BB4026E889AD00540D50 /* forward_message_default.png */,
 				633FECB81D3CD5570014B822 /* history_all_default.png */,
 				633FECB91D3CD5570014B822 /* history_all_default@2x.png */,
 				633FECBA1D3CD5570014B822 /* history_all_disabled.png */,
@@ -3086,12 +3382,28 @@
 				633FECD51D3CD5580014B822 /* list_details_default@2x.png */,
 				633FECD61D3CD5580014B822 /* list_details_over.png */,
 				633FECD71D3CD5580014B822 /* list_details_over@2x.png */,
-				633FECD81D3CD5580014B822 /* menu.png */,
-				633FECD91D3CD5580014B822 /* menu@2x.png */,
+				B3D09A28296C1C2600F4CFFD /* login_menu.png */,
+				B3D09A1D296C1C2400F4CFFD /* login_menu@2x.png */,
+				B3D09A21296C1C2500F4CFFD /* login.png */,
+				B3D09A22296C1C2500F4CFFD /* login@2x.png */,
+				B3D09A26296C1C2500F4CFFD /* logo_about.png */,
+				B3D09A1E296C1C2400F4CFFD /* logo_about@2x.png */,
+				B3D09A23296C1C2500F4CFFD /* logo_dashboard.png */,
+				B3D09A1C296C1C2400F4CFFD /* logo_dashboard@2x.png */,
+				B3D09A24296C1C2500F4CFFD /* logo_login.png */,
+				B3D09A20296C1C2500F4CFFD /* logo_login@2x.png */,
+				B3D09A1F296C1C2400F4CFFD /* logo_nethCTI_portrait.png */,
+				B3D09A25296C1C2500F4CFFD /* logo_nethesis.png */,
+				B3D09A27296C1C2600F4CFFD /* logout.png */,
+				B3D09A1B296C1C2400F4CFFD /* logout@2x.png */,
 				61586B7A217A16EE0038AC45 /* menu_about.png */,
 				61586B82217A16FD0038AC45 /* menu_about@2x.png */,
 				61586B84217A17070038AC45 /* menu_assistant.png */,
 				61586B86217A17150038AC45 /* menu_assistant@2x.png */,
+				C6A1BB3326E8815400540D50 /* menu_copy_text_default.png */,
+				C6A1BB3926E881E100540D50 /* menu_delete.png */,
+				C6A1BB3226E8815400540D50 /* menu_forward_default.png */,
+				C6A1BB3126E8815300540D50 /* menu_info.png */,
 				61586B88217A17220038AC45 /* menu_link_account.png */,
 				61586B8A217A17320038AC45 /* menu_link_account@2x.png */,
 				66E399F52857869200E73456 /* menu_notifications_off.png */,
@@ -3100,16 +3412,133 @@
 				61586B8E217A174F0038AC45 /* menu_options@2x.png */,
 				61586B90217A175C0038AC45 /* menu_recordings.png */,
 				61586B92217A176F0038AC45 /* menu_recordings@2x.png */,
+				C6A1BB3426E8815400540D50 /* menu_reply_default.png */,
+				C6A1BB4226E88F7C00540D50 /* menu_resend_default.png */,
+				C61B1BF12667D075001A4E4A /* menu_security_default.png */,
+				C6F55646287CCFB60056E213 /* menu_voip_meeting_schedule.png */,
+				633FECD81D3CD5580014B822 /* menu.png */,
+				633FECD91D3CD5580014B822 /* menu@2x.png */,
 				633FECDA1D3CD5580014B822 /* micro_default.png */,
 				633FECDB1D3CD5580014B822 /* micro_default@2x.png */,
 				633FECDC1D3CD5580014B822 /* micro_disabled.png */,
 				633FECDD1D3CD5580014B822 /* micro_disabled@2x.png */,
 				633FECDE1D3CD5580014B822 /* micro_selected.png */,
 				633FECDF1D3CD5580014B822 /* micro_selected@2x.png */,
+				C61B1BF32667D202001A4E4A /* more_menu_default.png */,
 				8CE24F491F8234A20077AC0A /* next_default.png */,
 				8CE24F4A1F8234A30077AC0A /* next_default@2x.png */,
 				8CB2B8F71F86229C0015CEE2 /* next_disabled.png */,
 				8CB2B8F81F86229D0015CEE2 /* next_disabled@2x.png */,
+				B3D09A4E296C1C4A00F4CFFD /* neth_dialer_background.png */,
+				B3D09A57296C1C4B00F4CFFD /* neth_splashscreen.png */,
+				B3D09A5A296C1C4C00F4CFFD /* neth-splash-landscape_2208x1242.png */,
+				B3D09A42296C1C4900F4CFFD /* neth-splash-portrait_1242x2208.png */,
+				B3D09A5F296C1C4D00F4CFFD /* nethcti_add_call_green.png */,
+				B3D09A48296C1C4A00F4CFFD /* nethcti_add_call_green@2x.png */,
+				B3D09A3A296C1C4700F4CFFD /* nethcti_add_call.png */,
+				B3D09A4F296C1C4A00F4CFFD /* nethcti_add_call@2x.png */,
+				B3D09A3E296C1C4800F4CFFD /* nethcti_add_field.png */,
+				B3D09A39296C1C4700F4CFFD /* nethcti_add_field@2x.png */,
+				B3D09A37296C1C4700F4CFFD /* nethcti_add.png */,
+				B3D09A60296C1C4D00F4CFFD /* nethcti_add@2x.png */,
+				B3D09A4A296C1C4A00F4CFFD /* nethcti_answer_video.png */,
+				B3D09A54296C1C4B00F4CFFD /* nethcti_answer_video@2x.png */,
+				B3D09A4D296C1C4A00F4CFFD /* nethcti_avatar_call.png */,
+				B3D09A45296C1C4900F4CFFD /* nethcti_avatar.png */,
+				B3D09A4B296C1C4A00F4CFFD /* nethcti_back_to_call.png */,
+				B3D09A52296C1C4B00F4CFFD /* nethcti_backspace.png */,
+				B3D09A3D296C1C4800F4CFFD /* nethcti_blue_circle.png */,
+				B3D09A56296C1C4B00F4CFFD /* nethcti_bluetooth.png */,
+				B3D09A4C296C1C4A00F4CFFD /* nethcti_bluetooth.png@2x.png */,
+				B3D09A47296C1C4900F4CFFD /* nethcti_bt_speaker.png */,
+				B3D09A49296C1C4A00F4CFFD /* nethcti_bt_speaker.png@2x.png */,
+				B3D09A3F296C1C4800F4CFFD /* nethcti_button_circle.png */,
+				B3D09A40296C1C4800F4CFFD /* nethcti_call_accept.png */,
+				B3D09A3C296C1C4800F4CFFD /* nethcti_call_accept@2x.png */,
+				B3D09A50296C1C4B00F4CFFD /* nethcti_call_status_incoming.png */,
+				B3D09A51296C1C4B00F4CFFD /* nethcti_call_status_incoming@2x.png */,
+				B3D09A43296C1C4900F4CFFD /* nethcti_call_status_missed.png */,
+				B3D09A5C296C1C4C00F4CFFD /* nethcti_call_status_missed@2x.png */,
+				B3D09A5E296C1C4C00F4CFFD /* nethcti_call_status_outgoing.png */,
+				B3D09A46296C1C4900F4CFFD /* nethcti_call_status_outgoing@2x.png */,
+				B3D09A38296C1C4700F4CFFD /* nethcti_cam.png */,
+				B3D09A58296C1C4C00F4CFFD /* nethcti_cam@2x.png */,
+				B3D09A5B296C1C4C00F4CFFD /* nethcti_cancel.png */,
+				B3D09A41296C1C4800F4CFFD /* nethcti_cancel@2x.png */,
+				B3D09A5D296C1C4C00F4CFFD /* nethcti_close_button.png */,
+				B3D09A53296C1C4B00F4CFFD /* nethcti_close_button@2x.png */,
+				B3D09A55296C1C4B00F4CFFD /* nethcti_done.png */,
+				B3D09A59296C1C4C00F4CFFD /* nethcti_done@2x.png */,
+				B3D09A44296C1C4900F4CFFD /* nethcti_edit.png */,
+				B3D09A3B296C1C4800F4CFFD /* nethcti_edit@2x.png */,
+				B3D09A94296C1C7600F4CFFD /* nethcti_green_call.png */,
+				B3D09AA5296C1C7800F4CFFD /* nethcti_green_call@2x.png */,
+				B3D09AB4296C1C7A00F4CFFD /* nethcti_green_phone.png */,
+				B3D09A8B296C1C7500F4CFFD /* nethcti_green_phone@2x.png */,
+				B3D09AA2296C1C7800F4CFFD /* nethcti_grey_circle.png */,
+				B3D09ABF296C1C7B00F4CFFD /* nethcti_grey_phone.png */,
+				B3D09AB5296C1C7A00F4CFFD /* nethcti_logo_sip.png */,
+				B3D09A95296C1C7600F4CFFD /* nethcti_logo_sip@2x.png */,
+				B3D09AAB296C1C7900F4CFFD /* nethcti_main_color_phone.png */,
+				B3D09AC1296C1C7B00F4CFFD /* nethcti_menu_home.png */,
+				B3D09AB9296C1C7B00F4CFFD /* nethcti_menu_home@2x.png */,
+				B3D09A90296C1C7600F4CFFD /* nethcti_menu.png */,
+				B3D09AAD296C1C7900F4CFFD /* nethcti_menu@2x.png */,
+				B3D09AA3296C1C7800F4CFFD /* nethcti_microphone_disabled.png */,
+				B3D09ACC296C1C7C00F4CFFD /* nethcti_microphone_disabled@2x.png */,
+				B3D09A9C296C1C7700F4CFFD /* nethcti_microphone.png */,
+				B3D09AA6296C1C7800F4CFFD /* nethcti_microphone@2x.png */,
+				B3D09A9E296C1C7700F4CFFD /* nethcti_missed_call.png */,
+				B3D09A93296C1C7600F4CFFD /* nethcti_missed_call@2x.png */,
+				B3D09AC7296C1C7C00F4CFFD /* nethcti_missed_calls.png */,
+				B3D09A92296C1C7600F4CFFD /* nethcti_missed_calls@2x.png */,
+				B3D09AAE296C1C7900F4CFFD /* nethcti_multiselect_default.png */,
+				B3D09A91296C1C7600F4CFFD /* nethcti_multiselect_default@2x.png */,
+				B3D09A9A296C1C7700F4CFFD /* nethcti_multiselect_selected.png */,
+				B3D09AA8296C1C7900F4CFFD /* nethcti_multiselect_selected@2x.png */,
+				B3D09AA7296C1C7900F4CFFD /* nethcti_numpad_0.png */,
+				B3D09AC8296C1C7C00F4CFFD /* nethcti_numpad_1.png */,
+				B3D09AA4296C1C7800F4CFFD /* nethcti_numpad_2.png */,
+				B3D09AB6296C1C7A00F4CFFD /* nethcti_numpad_3.png */,
+				B3D09AC6296C1C7C00F4CFFD /* nethcti_numpad_4.png */,
+				B3D09AB2296C1C7A00F4CFFD /* nethcti_numpad_5.png */,
+				B3D09AC9296C1C7C00F4CFFD /* nethcti_numpad_6.png */,
+				B3D09ABC296C1C7B00F4CFFD /* nethcti_numpad_7.png */,
+				B3D09AAF296C1C7900F4CFFD /* nethcti_numpad_8.png */,
+				B3D09A8E296C1C7500F4CFFD /* nethcti_numpad_9.png */,
+				B3D09AC4296C1C7C00F4CFFD /* nethcti_numpad_asterisk.png */,
+				B3D09ACD296C1C7D00F4CFFD /* nethcti_numpad_hashtag.png */,
+				B3D09AC3296C1C7C00F4CFFD /* nethcti_pause.png */,
+				B3D09A9B296C1C7700F4CFFD /* nethcti_pause@2x.png */,
+				B3D09AB8296C1C7A00F4CFFD /* nethcti_play.png */,
+				B3D09A97296C1C7600F4CFFD /* nethcti_play@2x.png */,
+				B3D09A8F296C1C7600F4CFFD /* nethcti_qr.png */,
+				B3D09ABA296C1C7B00F4CFFD /* nethcti_qr@2x.png */,
+				B3D09A98296C1C7700F4CFFD /* nethcti_record.png */,
+				B3D09ABE296C1C7B00F4CFFD /* nethcti_record@2x.png */,
+				B3D09A8D296C1C7500F4CFFD /* nethcti_refresh.png */,
+				B3D09AA0296C1C7800F4CFFD /* nethcti_refresh@2x.png */,
+				B3D09B11296C1C8800F4CFFD /* nethcti_green_circle.png */,
+				B3D09AB0296C1C7A00F4CFFD /* nethcti_remove.png */,
+				B3D09AAC296C1C7900F4CFFD /* nethcti_remove@2x.png */,
+				B3D09AC2296C1C7B00F4CFFD /* nethcti_reverse_camera.png */,
+				B3D09AC0296C1C7B00F4CFFD /* nethcti_reverse_camera@2x.png */,
+				B3D09A8C296C1C7500F4CFFD /* nethcti_three_dots.png */,
+				B3D09ACA296C1C7C00F4CFFD /* nethcti_three_dots@2x.png */,
+				B3D09AB3296C1C7A00F4CFFD /* nethcti_transfer_call_green.png */,
+				B3D09AA9296C1C7900F4CFFD /* nethcti_transfer_call_green@2x.png */,
+				B3D09A9F296C1C7700F4CFFD /* nethcti_transfer_call.png */,
+				B3D09ABB296C1C7B00F4CFFD /* nethcti_transfer_call@2x.png */,
+				B3D09AA1296C1C7800F4CFFD /* nethcti_trash_disabled.png */,
+				B3D09AB7296C1C7A00F4CFFD /* nethcti_trash_disabled@2x.png */,
+				B3D09AAA296C1C7900F4CFFD /* nethcti_trash.png */,
+				B3D09ACB296C1C7C00F4CFFD /* nethcti_trash@2x.png */,
+				B3D09A96296C1C7600F4CFFD /* nethcti_user_add.png */,
+				B3D09AB1296C1C7A00F4CFFD /* nethcti_user_add@2x.png */,
+				B3D09A9D296C1C7700F4CFFD /* nethcti_users_sip.png */,
+				B3D09AC5296C1C7C00F4CFFD /* nethcti_users_sip@2x.png */,
+				B3D09ABD296C1C7B00F4CFFD /* nethcti_volume.png */,
+				B3D09A99296C1C7700F4CFFD /* nethcti_volume@2x.png */,
 				633FECE01D3CD5580014B822 /* nowebcamCIF.jpg */,
 				633FECE11D3CD5580014B822 /* numpad_0_default.png */,
 				633FECE21D3CD5580014B822 /* numpad_0_default@2x.png */,
@@ -3252,6 +3681,7 @@
 				CF7602F2210898C400749F76 /* rec_on_default@2x.png */,
 				615A28412180C0820060F920 /* recording.png */,
 				615A28432180C08F0060F920 /* recording@2x.png */,
+				C66B040926EFDA54009B5EDC /* reply_cancel.png */,
 				633FED681D3CD5590014B822 /* route_bluetooth_default.png */,
 				633FED691D3CD5590014B822 /* route_bluetooth_default@2x.png */,
 				633FED6A1D3CD5590014B822 /* route_bluetooth_disabled.png */,
@@ -3317,6 +3747,78 @@
 				633FED971D3CD5590014B822 /* valid_disabled@2x.png */,
 				633FED981D3CD5590014B822 /* voicemail.png */,
 				633FED991D3CD5590014B822 /* voicemail@2x.png */,
+				C63F7280285A2F160066163B /* voip_audio_routes.png */,
+				C63F729B285A2F1A0066163B /* voip_bluetooth.png */,
+				C63F728A285A2F180066163B /* voip_call_add.png */,
+				C63F72A5285A2F1B0066163B /* voip_call_chat.png */,
+				C63F7282285A2F170066163B /* voip_call_forward.png */,
+				C63F729A285A2F1A0066163B /* voip_call_header_active.png */,
+				C63F7279285A2F150066163B /* voip_call_header_incoming.png */,
+				C63F72B4285A2F1D0066163B /* voip_call_header_outgoing.png */,
+				C63F727B285A2F160066163B /* voip_call_header_paused.png */,
+				C63F72A0285A2F1B0066163B /* voip_call_list_menu.png */,
+				C63F7287285A2F170066163B /* voip_call_more.png */,
+				C63F7276285A2F150066163B /* voip_call_numpad.png */,
+				C63F72A3285A2F1B0066163B /* voip_call_participants.png */,
+				C63F7281285A2F160066163B /* voip_call_record.png */,
+				C63F7288285A2F170066163B /* voip_call_stats.png */,
+				C63F729F285A2F1B0066163B /* voip_call.png */,
+				C63F727A285A2F150066163B /* voip_calls_list.png */,
+				C63F72AA285A2F1C0066163B /* voip_camera_off.png */,
+				C63F729D285A2F1A0066163B /* voip_camera_on.png */,
+				C63F72B3285A2F1D0066163B /* voip_cancel.png */,
+				C63F7283285A2F170066163B /* voip_change_camera.png */,
+				C63F7277285A2F150066163B /* voip_chat_rooms_list.png */,
+				C63F7284285A2F170066163B /* voip_checkbox_checked.png */,
+				C63F72A6285A2F1B0066163B /* voip_checkbox_unchecked.png */,
+				C63F72A1285A2F1B0066163B /* voip_conference_active_speaker.png */,
+				C63F7297285A2F190066163B /* voip_conference_audio_only.png */,
+				C63F72AE285A2F1D0066163B /* voip_conference_mosaic.png */,
+				C63F72B0285A2F1D0066163B /* voip_conference_new_selected.png */,
+				C63F7299285A2F1A0066163B /* voip_conference_new.png */,
+				C63F728C285A2F180066163B /* voip_conference_paused_big.png */,
+				C63F729E285A2F1A0066163B /* voip_conference_play_big.png */,
+				C63F728B285A2F180066163B /* voip_copy.png */,
+				C63F72B2285A2F1D0066163B /* voip_delete.png */,
+				C63F7271285A2F140066163B /* voip_dropdown.png */,
+				C63F7295285A2F190066163B /* voip_earpiece.png */,
+				C63F72A7285A2F1C0066163B /* voip_edit.png */,
+				C63F7275285A2F150066163B /* voip_export.png */,
+				C63F7291285A2F190066163B /* voip_hangup.png */,
+				C63F7285285A2F170066163B /* voip_info.png */,
+				C63F7294285A2F190066163B /* voip_mandatory.png */,
+				C6F55644287CC69F0056E213 /* voip_meeting_schedule.png */,
+				C63F7298285A2F1A0066163B /* voip_menu_more.png */,
+				C63F72A9285A2F1C0066163B /* voip_merge_calls.png */,
+				C63F729C285A2F1A0066163B /* voip_micro_off.png */,
+				C63F72AB285A2F1C0066163B /* voip_micro_on.png */,
+				C63F728F285A2F180066163B /* voip_multiple_contacts_avatar.png */,
+				C63F727C285A2F160066163B /* voip_numpad_0.png */,
+				C63F7293285A2F190066163B /* voip_numpad_1.png */,
+				C63F7296285A2F190066163B /* voip_numpad_2.png */,
+				C63F727D285A2F160066163B /* voip_numpad_3.png */,
+				C63F7278285A2F150066163B /* voip_numpad_4.png */,
+				C63F72AF285A2F1D0066163B /* voip_numpad_5.png */,
+				C63F72A2285A2F1B0066163B /* voip_numpad_6.png */,
+				C63F7273285A2F140066163B /* voip_numpad_7.png */,
+				C63F7289285A2F180066163B /* voip_numpad_8.png */,
+				C63F727E285A2F160066163B /* voip_numpad_9.png */,
+				C63F728E285A2F180066163B /* voip_numpad_hash.png */,
+				C63F728D285A2F180066163B /* voip_numpad_star.png */,
+				C63F7292285A2F190066163B /* voip_pause.png */,
+				C63F7274285A2F150066163B /* voip_radio_off.png */,
+				C63F72AC285A2F1C0066163B /* voip_radio_on.png */,
+				C63F7290285A2F180066163B /* voip_remote_recording.png */,
+				C63F72B1285A2F1D0066163B /* voip_single_contact_avatar.png */,
+				C63F7286285A2F170066163B /* voip_speaker_off.png */,
+				C63F727F285A2F160066163B /* voip_speaker_on.png */,
+				C63F7272285A2F140066163B /* voip_spinner.png */,
+				C622E3EC26A8128F004F5434 /* vr_off.png */,
+				C622E3EB26A8128F004F5434 /* vr_on.png */,
+				C622E3ED26A8128F004F5434 /* vr_pause.png */,
+				C622E3EE26A81290004F5434 /* vr_play.png */,
+				C622E3E926A8128F004F5434 /* vr_stop.png */,
+				C622E3EA26A8128F004F5434 /* vr_wave.png */,
 				633FED9A1D3CD5590014B822 /* waiting_time.png */,
 				633FED9B1D3CD5590014B822 /* waiting_time@2x.png */,
 			);
@@ -3326,6 +3828,10 @@
 		63AADBC31B6A0FF200AA16FD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3D09A19296C1B7900F4CFFD /* colors.xcassets */,
+				B3D099EE296C159200F4CFFD /* NethLocalizable.strings */,
+				B3D099F1296C15A500F4CFFD /* BrandLocalizable.strings */,
+				B3D099F0296C15A500F4CFFD /* InfoPlist.strings */,
 				C63F72F9285A31DA0066163B /* fonts */,
 				63AADBE31B6A0FF200AA16FD /* assistant_external_sip.rc */,
 				63AADBE41B6A0FF200AA16FD /* assistant_linphone_create.rc */,
@@ -3448,6 +3954,139 @@
 				A52DBCC32989FB3510AF3B1E /* Pods-msgNotificationService.distributionadhoc.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B3D099D7296C133D00F4CFFD /* NethModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3D099DC296C137100F4CFFD /* CallIdTest.swift */,
+				B3D099D9296C137000F4CFFD /* NethContact.swift */,
+				B3D099DA296C137000F4CFFD /* NethPhoneBook.swift */,
+				B3D099DB296C137000F4CFFD /* NethPhoneBookResult.swift */,
+				B3D099D8296C137000F4CFFD /* NotReturnMessage.swift */,
+				B3D099DD296C137100F4CFFD /* TransferCallManager.swift */,
+			);
+			path = NethModels;
+			sourceTree = "<group>";
+		};
+		B3D099F6296C184000F4CFFD /* RestApi */ = {
+			isa = PBXGroup;
+			children = (
+				B3D099F7296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift */,
+				B3D099F8296C184000F4CFFD /* NethCTIAPI.ErrorCodes.swift */,
+				B3D099F9296C184000F4CFFD /* Models */,
+				B3D09A08296C184000F4CFFD /* NethCTIAPI.swift */,
+			);
+			path = RestApi;
+			sourceTree = "<group>";
+		};
+		B3D099F9296C184000F4CFFD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3D099FA296C184000F4CFFD /* Endpoints.swift */,
+				B3D099FB296C184000F4CFFD /* Conversation.swift */,
+				B3D099FC296C184000F4CFFD /* MacroPermissions.swift */,
+				B3D099FD296C184000F4CFFD /* NethUser.swift */,
+				B3D099FE296C184000F4CFFD /* PresencePanel.swift */,
+				B3D099FF296C184000F4CFFD /* AdPermission.swift */,
+				B3D09A00296C184000F4CFFD /* Permissions.swift */,
+				B3D09A01296C184000F4CFFD /* Profile.swift */,
+				B3D09A02296C184000F4CFFD /* Extension.swift */,
+				B3D09A03296C184000F4CFFD /* EndpointExtensions.swift */,
+				B3D09A04296C184000F4CFFD /* Group.swift */,
+				B3D09A05296C184000F4CFFD /* PresenceUser.swift */,
+				B3D09A06296C184000F4CFFD /* Action.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B3D09B13296C1D2D00F4CFFD /* Nethesis */ = {
+			isa = PBXGroup;
+			children = (
+				B3D099F6296C184000F4CFFD /* RestApi */,
+				B3D09B5E296C21C500F4CFFD /* MBProgressHUD-1.2.0 */,
+				B3D09B34296C217B00F4CFFD /* Presence */,
+				B3D09B27296C1D4D00F4CFFD /* History */,
+				B3D09B14296C1D3D00F4CFFD /* Dashboard */,
+			);
+			path = Nethesis;
+			sourceTree = "<group>";
+		};
+		B3D09B14296C1D3D00F4CFFD /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B3D09B15296C1D3D00F4CFFD /* DashboardView.strings */,
+				B3D09B17296C1D3D00F4CFFD /* RecentCallTableViewCell.m */,
+				B3D09B18296C1D3D00F4CFFD /* DashboardViewController.m */,
+				B3D09B1A296C1D3D00F4CFFD /* DashboardHistoryTableView.m */,
+				B3D09B1B296C1D3D00F4CFFD /* DashboardView.xib */,
+				B3D09B1D296C1D3D00F4CFFD /* RecentCallTableViewCell.xib */,
+				B3D09B1E296C1D3D00F4CFFD /* DashboardViewController.h */,
+				B3D09B1F296C1D3D00F4CFFD /* RecentCallTableViewCell.h */,
+				B3D09B20296C1D3D00F4CFFD /* DashboardHistoryTableView.h */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		B3D09B27296C1D4D00F4CFFD /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B3D09B28296C1D4D00F4CFFD /* HistoryTableViewCell.swift */,
+				B3D09B29296C1D4D00F4CFFD /* IncomingCallTableViewCell.swift */,
+				B3D09B2A296C1D4D00F4CFFD /* LostCallTableViewCell.swift */,
+				B3D09B2B296C1D4D00F4CFFD /* OutgoingCallTableViewCell.swift */,
+				B3D09B2C296C1D4D00F4CFFD /* HistoryTableViewCell.xib */,
+				B3D09B2D296C1D4D00F4CFFD /* HistoryTableViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		B3D09B34296C217B00F4CFFD /* Presence */ = {
+			isa = PBXGroup;
+			children = (
+				B3D09B35296C217B00F4CFFD /* PresenceViewController.m */,
+				B3D09B36296C217B00F4CFFD /* PresenceViewController.xib */,
+				B3D09B37296C217B00F4CFFD /* PresenceSelectListGroupViewController.m */,
+				B3D09B38296C217B00F4CFFD /* PresenceSelectListViewController.m */,
+				B3D09B39296C217B00F4CFFD /* PresenceSelectListGroupViewController.xib */,
+				B3D09B3A296C217B00F4CFFD /* PresenceActionViewController.m */,
+				B3D09B3B296C217B00F4CFFD /* PresenceSelectListViewController.xib */,
+				B3D09B3C296C217B00F4CFFD /* PresenceActionViewController.xib */,
+				B3D09B3D296C217B00F4CFFD /* PresenceViewController.h */,
+				B3D09B3E296C217B00F4CFFD /* PresenceActionViewController.h */,
+				B3D09B3F296C217B00F4CFFD /* PresenceSelectListViewController.h */,
+				B3D09B40296C217B00F4CFFD /* PresenceSelectListGroupViewController.h */,
+				B3D09B41296C217B00F4CFFD /* Views */,
+			);
+			path = Presence;
+			sourceTree = "<group>";
+		};
+		B3D09B41296C217B00F4CFFD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3D09B42296C217B00F4CFFD /* PresenceTableViewCell.m */,
+				B3D09B43296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.h */,
+				B3D09B44296C217B00F4CFFD /* PresenceActionCollectionViewCell.xib */,
+				B3D09B45296C217B00F4CFFD /* PresenceSelectListTableViewCell.m */,
+				B3D09B46296C217B00F4CFFD /* PresenceActionCollectionViewCell.h */,
+				B3D09B47296C217B00F4CFFD /* PresenceSelectListTableViewCell.h */,
+				B3D09B48296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.m */,
+				B3D09B49296C217B00F4CFFD /* PresenceTableViewCell.xib */,
+				B3D09B4A296C217B00F4CFFD /* PresenceTableViewCell.h */,
+				B3D09B4B296C217B00F4CFFD /* PresenceSelectListGroupTableViewCell.xib */,
+				B3D09B4C296C217B00F4CFFD /* PresenceActionCollectionViewCell.m */,
+				B3D09B4D296C217B00F4CFFD /* PresenceSelectListTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3D09B5E296C21C500F4CFFD /* MBProgressHUD-1.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				B3D09B5F296C21C500F4CFFD /* MBProgressHUD.m */,
+				B3D09B60296C21C500F4CFFD /* MBProgressHUD.h */,
+			);
+			path = "MBProgressHUD-1.2.0";
 			sourceTree = "<group>";
 		};
 		C63F7196285A24B10066163B /* Swift */ = {
@@ -3719,6 +4358,7 @@
 		C63F72F9285A31DA0066163B /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B3D099F4296C15EF00F4CFFD /* Roboto-Light.ttf */,
 				C63F72FA285A31DA0066163B /* Roboto-Regular.ttf */,
 				C63F72FB285A31DA0066163B /* Roboto-Italic.ttf */,
 				C63F72FC285A31DA0066163B /* Roboto-Bold.ttf */,
@@ -4092,6 +4732,7 @@
 				zh_CN,
 				fr,
 				hu,
+				it,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
@@ -4125,10 +4766,14 @@
 				633FEF481D3CD55A0014B822 /* speaker_selected.png in Resources */,
 				633FEED91D3CD55A0014B822 /* numpad_7~ipad.png in Resources */,
 				633FEE2B1D3CD5590014B822 /* color_C.png in Resources */,
+				B3D09A1A296C1B7900F4CFFD /* colors.xcassets in Resources */,
 				633FEE871D3CD5590014B822 /* led_inprogress@2x.png in Resources */,
 				633FEEC61D3CD55A0014B822 /* numpad_5_over@2x.png in Resources */,
 				633FEF021D3CD55A0014B822 /* options_disabled.png in Resources */,
+				B3D09A69296C1C4D00F4CFFD /* nethcti_button_circle.png in Resources */,
 				633FEDC81D3CD5590014B822 /* call_missed.png in Resources */,
+				B3D09A2D296C1C2600F4CFFD /* logo_nethCTI_portrait.png in Resources */,
+				B3D09B0F296C1C7D00F4CFFD /* nethcti_microphone_disabled@2x.png in Resources */,
 				8CB2B8FA1F86229E0015CEE2 /* next_disabled.png in Resources */,
 				8CF25D961F9F336100BEA0C1 /* check_unselected.png in Resources */,
 				8C300D9A1E40E0CC00728EF3 /* lime_ko.png in Resources */,
@@ -4136,14 +4781,19 @@
 				633FEF1F1D3CD55A0014B822 /* presence_online@2x.png in Resources */,
 				633FEE641D3CD5590014B822 /* footer_chat_disabled.png in Resources */,
 				633FEE9C1D3CD55A0014B822 /* numpad_0_default@2x.png in Resources */,
+				B3D09B04296C1C7D00F4CFFD /* nethcti_menu_home.png in Resources */,
 				633FEE3C1D3CD5590014B822 /* contacts_all_default.png in Resources */,
 				633FEE171D3CD5590014B822 /* chat_send_disabled@2x.png in Resources */,
 				C61B1BF22667D075001A4E4A /* menu_security_default.png in Resources */,
 				633FEE6E1D3CD5590014B822 /* footer_history_default.png in Resources */,
 				633FEEB21D3CD55A0014B822 /* numpad_2~ipad@2x.png in Resources */,
+				B3D09B55296C217C00F4CFFD /* PresenceActionViewController.xib in Resources */,
 				633FEDC61D3CD5590014B822 /* call_incoming.png in Resources */,
+				B3D09AD5296C1C7D00F4CFFD /* nethcti_missed_calls@2x.png in Resources */,
 				633FEF2D1D3CD55A0014B822 /* route_earpiece_selected@2x.png in Resources */,
+				B3D09ADA296C1C7D00F4CFFD /* nethcti_play@2x.png in Resources */,
 				638F1A621C2021B2004B8E02 /* DialerView~ipad.xib in Resources */,
+				B3D099F5296C15EF00F4CFFD /* Roboto-Light.ttf in Resources */,
 				615A2817217F280C0060F920 /* chat_list_indicator.png in Resources */,
 				633FEEFF1D3CD55A0014B822 /* options_add_call_disabled@2x.png in Resources */,
 				C63F72FD285A31DA0066163B /* Roboto-Regular.ttf in Resources */,
@@ -4153,6 +4803,9 @@
 				633FEE5F1D3CD5590014B822 /* edit_list_default@2x.png in Resources */,
 				C63F72F6285A2F1E0066163B /* voip_delete.png in Resources */,
 				C63F72F0285A2F1E0066163B /* voip_radio_on.png in Resources */,
+				B3D09AF1296C1C7D00F4CFFD /* nethcti_multiselect_default.png in Resources */,
+				B3D09B00296C1C7D00F4CFFD /* nethcti_volume.png in Resources */,
+				B3D09AF7296C1C7D00F4CFFD /* nethcti_green_phone.png in Resources */,
 				C63F72EB285A2F1E0066163B /* voip_edit.png in Resources */,
 				633FEEB61D3CD55A0014B822 /* numpad_3_over@2x.png in Resources */,
 				633FEF371D3CD55A0014B822 /* routes_disabled@2x.png in Resources */,
@@ -4170,6 +4823,7 @@
 				633FEEDF1D3CD55A0014B822 /* numpad_8_over~ipad.png in Resources */,
 				C63F72C3285A2F1D0066163B /* voip_speaker_on.png in Resources */,
 				8CD99A372090A824008A7CDA /* splashscreen@2x.png in Resources */,
+				B3D09A77296C1C4D00F4CFFD /* nethcti_avatar_call.png in Resources */,
 				24BFAAA9209B0630004F47A7 /* linphone_logo@2x.png in Resources */,
 				633FEE071D3CD5590014B822 /* chat_add_default@2x.png in Resources */,
 				633FEF551D3CD55A0014B822 /* waiting_time@2x.png in Resources */,
@@ -4177,11 +4831,14 @@
 				633FEE541D3CD5590014B822 /* dialer_back_default.png in Resources */,
 				C63F72DE285A2F1E0066163B /* voip_call_header_active.png in Resources */,
 				633FEF0B1D3CD55A0014B822 /* options_transfer_call_default@2x.png in Resources */,
+				B3D09A8A296C1C4D00F4CFFD /* nethcti_add@2x.png in Resources */,
 				633FEDE81D3CD5590014B822 /* call_status_missed~ipad.png in Resources */,
 				63AADBFF1B6A0FF200AA16FD /* assistant_external_sip.rc in Resources */,
 				61CCC3E121933B660060EDEA /* UIDeviceCell.xib in Resources */,
 				C63F72F8285A2F1E0066163B /* voip_call_header_outgoing.png in Resources */,
+				B3D09AD8296C1C7D00F4CFFD /* nethcti_logo_sip@2x.png in Resources */,
 				633FEE9E1D3CD55A0014B822 /* numpad_0_over@2x.png in Resources */,
+				B3D09A7F296C1C4D00F4CFFD /* nethcti_done.png in Resources */,
 				8CE24F581F8268850077AC0A /* conference_delete@2x.png in Resources */,
 				633FEDC21D3CD5590014B822 /* call_hangup_default.png in Resources */,
 				633FEEB41D3CD55A0014B822 /* numpad_3_default@2x.png in Resources */,
@@ -4193,20 +4850,26 @@
 				633FEF231D3CD55A0014B822 /* route_bluetooth_default@2x.png in Resources */,
 				C6A1BB4526E890BD00540D50 /* file_voice_default.png in Resources */,
 				633FED9C1D3CD5590014B822 /* add_field_default.png in Resources */,
+				B3D09A74296C1C4D00F4CFFD /* nethcti_answer_video.png in Resources */,
 				633FEE411D3CD5590014B822 /* contacts_all_selected@2x.png in Resources */,
 				D38187F815FE355D00C3EDCA /* TabBarView.xib in Resources */,
 				C63F72D2285A2F1E0066163B /* voip_numpad_hash.png in Resources */,
 				C63F72F4285A2F1E0066163B /* voip_conference_new_selected.png in Resources */,
 				633FEE2F1D3CD5590014B822 /* color_G.png in Resources */,
 				633FEECE1D3CD55A0014B822 /* numpad_6_over@2x.png in Resources */,
+				B3D09B5D296C217C00F4CFFD /* PresenceSelectListTableViewCell.xib in Resources */,
+				B3D09AF8296C1C7D00F4CFFD /* nethcti_logo_sip.png in Resources */,
 				8C92ABE81FA773190006FB5D /* UIChatNotifiedEventCell.xib in Resources */,
 				C63F72C7285A2F1E0066163B /* voip_change_camera.png in Resources */,
+				B3D09B10296C1C7D00F4CFFD /* nethcti_numpad_hashtag.png in Resources */,
 				633FEDAB1D3CD5590014B822 /* backspace_disabled@2x.png in Resources */,
 				633FEDD91D3CD5590014B822 /* call_start_body_default~ipad@2x.png in Resources */,
+				B3D09A6D296C1C4D00F4CFFD /* nethcti_call_status_missed.png in Resources */,
 				633FEE401D3CD5590014B822 /* contacts_all_selected.png in Resources */,
 				633FEE0C1D3CD5590014B822 /* chat_attachment_disabled.png in Resources */,
 				C622E3EF26A81290004F5434 /* vr_stop.png in Resources */,
 				633FEF001D3CD55A0014B822 /* options_default.png in Resources */,
+				B3D09A72296C1C4D00F4CFFD /* nethcti_add_call_green@2x.png in Resources */,
 				CF15F21F20E4F9A3008B1DE6 /* UIImageViewDeletable.xib in Resources */,
 				633FEE951D3CD55A0014B822 /* micro_default@2x.png in Resources */,
 				633FEE6A1D3CD5590014B822 /* footer_dialer_default.png in Resources */,
@@ -4219,22 +4882,32 @@
 				D38187D115FE346B00C3EDCA /* HistoryListView.xib in Resources */,
 				D38187BD15FE342800C3EDCA /* ContactsListView.xib in Resources */,
 				633FEF0E1D3CD55A0014B822 /* pause_big_default.png in Resources */,
+				B3D09AE5296C1C7D00F4CFFD /* nethcti_grey_circle.png in Resources */,
 				633FEF191D3CD55A0014B822 /* pause_small_over_selected@2x.png in Resources */,
+				B3D09AEE296C1C7D00F4CFFD /* nethcti_main_color_phone.png in Resources */,
 				633FEDA71D3CD5590014B822 /* back_disabled@2x.png in Resources */,
+				B3D09ADE296C1C7D00F4CFFD /* nethcti_pause@2x.png in Resources */,
 				633FEDBD1D3CD5590014B822 /* call_audio_start_disabled@2x.png in Resources */,
 				615A2815217F24E00060F920 /* security_1_indicator@2x.png in Resources */,
 				633FEE981D3CD55A0014B822 /* micro_selected.png in Resources */,
 				633FEEB51D3CD55A0014B822 /* numpad_3_over.png in Resources */,
+				B3D09A32296C1C2600F4CFFD /* logo_login.png in Resources */,
 				633FEE041D3CD5590014B822 /* cancel_edit_disabled.png in Resources */,
 				633FEDE61D3CD5590014B822 /* call_status_missed.png in Resources */,
+				B3D09B09296C1C7D00F4CFFD /* nethcti_numpad_4.png in Resources */,
+				B3D09AE0296C1C7D00F4CFFD /* nethcti_users_sip.png in Resources */,
 				8CDC61971F84D9270087CF7F /* check_selected@2x.png in Resources */,
+				B3D09AE1296C1C7D00F4CFFD /* nethcti_missed_call.png in Resources */,
 				633FEE7A1D3CD5590014B822 /* history_missed_default.png in Resources */,
 				633FEF121D3CD55A0014B822 /* pause_big_over_selected.png in Resources */,
 				633FED9D1D3CD5590014B822 /* add_field_default@2x.png in Resources */,
 				C622E3F426A81290004F5434 /* vr_play.png in Resources */,
+				B3D09AD6296C1C7D00F4CFFD /* nethcti_missed_call@2x.png in Resources */,
 				639E9CB01C0DB83000019A75 /* SideMenuView.xib in Resources */,
 				633FEDBB1D3CD5590014B822 /* call_audio_start_default@2x.png in Resources */,
+				B3D09A2B296C1C2600F4CFFD /* login_menu@2x.png in Resources */,
 				633FEF1A1D3CD55A0014B822 /* presence_away.png in Resources */,
+				B3D09A82296C1C4D00F4CFFD /* nethcti_cam@2x.png in Resources */,
 				639E9CB51C0DB88200019A75 /* PhoneMainView.xib in Resources */,
 				633FEDB61D3CD5590014B822 /* call_alt_start_default.png in Resources */,
 				633FEF0D1D3CD55A0014B822 /* options_transfer_call_disabled@2x.png in Resources */,
@@ -4251,6 +4924,9 @@
 				63DFE04B1C40161700DA5E87 /* notes_of_the_optimistic.caf in Resources */,
 				639E9C931C0DB7BE00019A75 /* FirstLoginView.xib in Resources */,
 				633FEEF61D3CD55A0014B822 /* numpad_star_over.png in Resources */,
+				B3D099F3296C15A500F4CFFD /* BrandLocalizable.strings in Resources */,
+				B3D099F2296C15A500F4CFFD /* InfoPlist.strings in Resources */,
+				B3D09A70296C1C4D00F4CFFD /* nethcti_call_status_outgoing@2x.png in Resources */,
 				633FEEE81D3CD55A0014B822 /* numpad_9_over~ipad@2x.png in Resources */,
 				633FEEDE1D3CD55A0014B822 /* numpad_8_over@2x.png in Resources */,
 				633FEEB11D3CD55A0014B822 /* numpad_2~ipad.png in Resources */,
@@ -4260,7 +4936,10 @@
 				633FEF281D3CD55A0014B822 /* route_earpiece_default.png in Resources */,
 				633FEE4F1D3CD5590014B822 /* delete_field_over@2x.png in Resources */,
 				C622E3F226A81290004F5434 /* vr_off.png in Resources */,
+				B3D09AFA296C1C7D00F4CFFD /* nethcti_trash_disabled@2x.png in Resources */,
+				B3D09B0E296C1C7D00F4CFFD /* nethcti_trash@2x.png in Resources */,
 				633FEE531D3CD5590014B822 /* dialer_alt_back@2x.png in Resources */,
+				B3D09AEB296C1C7D00F4CFFD /* nethcti_multiselect_selected@2x.png in Resources */,
 				633FEE3E1D3CD5590014B822 /* contacts_all_disabled.png in Resources */,
 				633FEEF31D3CD55A0014B822 /* numpad_over_background.png in Resources */,
 				633FEDAD1D3CD5590014B822 /* backspace_over@2x.png in Resources */,
@@ -4272,10 +4951,16 @@
 				C6A1BB3826E8815400540D50 /* menu_reply_default.png in Resources */,
 				633FEF301D3CD55A0014B822 /* route_speaker_disabled.png in Resources */,
 				639CEAFD1A1DF4D9004DE38F /* StatusBarView.xib in Resources */,
+				B3D09AE4296C1C7D00F4CFFD /* nethcti_trash_disabled.png in Resources */,
 				633FEDE91D3CD5590014B822 /* call_status_missed~ipad@2x.png in Resources */,
 				C63F72C9285A2F1E0066163B /* voip_info.png in Resources */,
+				B3D09B52296C217B00F4CFFD /* PresenceSelectListGroupViewController.xib in Resources */,
+				B3D09A2A296C1C2600F4CFFD /* logo_dashboard@2x.png in Resources */,
 				8CE24F4C1F8234A30077AC0A /* next_default@2x.png in Resources */,
+				B3D09ADB296C1C7D00F4CFFD /* nethcti_record.png in Resources */,
+				B3D09B4F296C217B00F4CFFD /* PresenceViewController.xib in Resources */,
 				244523B11E8266CC0037A187 /* chat_read.png in Resources */,
+				B3D09B03296C1C7D00F4CFFD /* nethcti_reverse_camera@2x.png in Resources */,
 				61AEBEC62191E47500F35E7F /* chevron_list_close.png in Resources */,
 				617B4A60260A2B7800A87337 /* RecordingsListView.xib in Resources */,
 				639E9CAC1C0DB80300019A75 /* UIContactDetailsCell.xib in Resources */,
@@ -4283,6 +4968,7 @@
 				C63F72D4285A2F1E0066163B /* voip_remote_recording.png in Resources */,
 				8CF25D951F9F336100BEA0C1 /* check_unselected@2x.png in Resources */,
 				F088488A19FF8C41007FFCF3 /* UIContactCell.xib in Resources */,
+				B3D09B0B296C1C7D00F4CFFD /* nethcti_numpad_1.png in Resources */,
 				633FEE381D3CD5590014B822 /* contact_add_default.png in Resources */,
 				633FEE6F1D3CD5590014B822 /* footer_history_default@2x.png in Resources */,
 				633FEF201D3CD55A0014B822 /* presence_unregistered.png in Resources */,
@@ -4299,8 +4985,10 @@
 				24BFAA9F209B0630004F47A7 /* linphone_user.png in Resources */,
 				633FEE4B1D3CD5590014B822 /* delete_disabled@2x.png in Resources */,
 				633FEE181D3CD5590014B822 /* chat_send_over.png in Resources */,
+				B3D09A30296C1C2600F4CFFD /* login@2x.png in Resources */,
 				633FEDED1D3CD5590014B822 /* call_status_outgoing~ipad@2x.png in Resources */,
 				633FEE2D1D3CD5590014B822 /* color_E.png in Resources */,
+				B3D09AD7296C1C7D00F4CFFD /* nethcti_green_call.png in Resources */,
 				633FEED01D3CD55A0014B822 /* numpad_6_over~ipad@2x.png in Resources */,
 				C64A85502667B67A00252AD2 /* EphemeralSettingsView.xib in Resources */,
 				633FEEC81D3CD55A0014B822 /* numpad_5_over~ipad@2x.png in Resources */,
@@ -4320,6 +5008,7 @@
 				633FEEEA1D3CD55A0014B822 /* numpad_9~ipad@2x.png in Resources */,
 				633FEEC31D3CD55A0014B822 /* numpad_5_default.png in Resources */,
 				669B140827A1821F0012220A /* scroll_to_bottom_default.png in Resources */,
+				B3D09A2E296C1C2600F4CFFD /* logo_login@2x.png in Resources */,
 				633FEE3B1D3CD5590014B822 /* contact_add_disabled@2x.png in Resources */,
 				633FEF011D3CD55A0014B822 /* options_default@2x.png in Resources */,
 				633FEEC01D3CD55A0014B822 /* numpad_4_over~ipad@2x.png in Resources */,
@@ -4331,9 +5020,11 @@
 				633FEDE71D3CD5590014B822 /* call_status_missed@2x.png in Resources */,
 				615A2821217F6FBF0060F920 /* security_alert_indicator@2x.png in Resources */,
 				633FEE1E1D3CD5590014B822 /* chat_start_body_disabled.png in Resources */,
+				B3D09AFD296C1C7D00F4CFFD /* nethcti_qr@2x.png in Resources */,
 				639CEB001A1DF4E4004DE38F /* UIHistoryCell.xib in Resources */,
 				633FEE841D3CD5590014B822 /* led_error.png in Resources */,
 				633FEDEA1D3CD5590014B822 /* call_status_outgoing.png in Resources */,
+				B3D09ACE296C1C7D00F4CFFD /* nethcti_green_phone@2x.png in Resources */,
 				633FEF511D3CD55A0014B822 /* valid_disabled@2x.png in Resources */,
 				C63F72C5285A2F1E0066163B /* voip_call_record.png in Resources */,
 				633FEEBB1D3CD55A0014B822 /* numpad_4_default.png in Resources */,
@@ -4342,17 +5033,20 @@
 				633FEDD21D3CD5590014B822 /* call_quality_indicator_3.png in Resources */,
 				633FEDAF1D3CD5590014B822 /* call_add_default@2x.png in Resources */,
 				633FEE931D3CD55A0014B822 /* menu@2x.png in Resources */,
+				B3D09AD1296C1C7D00F4CFFD /* nethcti_numpad_9.png in Resources */,
 				633FEF3D1D3CD55A0014B822 /* security_ok@2x.png in Resources */,
 				633FEF161D3CD55A0014B822 /* pause_small_disabled.png in Resources */,
 				633FEF521D3CD55A0014B822 /* voicemail.png in Resources */,
 				633FEE711D3CD5590014B822 /* footer_history_disabled@2x.png in Resources */,
 				C63F72E5285A2F1E0066163B /* voip_conference_active_speaker.png in Resources */,
+				B3D09A6C296C1C4D00F4CFFD /* neth-splash-portrait_1242x2208.png in Resources */,
 				633FEF141D3CD55A0014B822 /* pause_small_default.png in Resources */,
 				D38187B115FE340500C3EDCA /* ChatsListView.xib in Resources */,
 				633FEDA41D3CD5590014B822 /* back_default.png in Resources */,
 				C63F72BE285A2F1D0066163B /* voip_calls_list.png in Resources */,
 				C63F72DF285A2F1E0066163B /* voip_bluetooth.png in Resources */,
 				633FEE2C1D3CD5590014B822 /* color_D.png in Resources */,
+				B3D09A73296C1C4D00F4CFFD /* nethcti_bt_speaker.png@2x.png in Resources */,
 				615A280F217F1FD50060F920 /* chat_add_group.png in Resources */,
 				633FEEC41D3CD55A0014B822 /* numpad_5_default@2x.png in Resources */,
 				633FEDAC1D3CD5590014B822 /* backspace_over.png in Resources */,
@@ -4361,6 +5055,8 @@
 				C63F72D7285A2F1E0066163B /* voip_numpad_1.png in Resources */,
 				633FEEE31D3CD55A0014B822 /* numpad_9_default.png in Resources */,
 				633FEE651D3CD5590014B822 /* footer_chat_disabled@2x.png in Resources */,
+				B3D09AD4296C1C7D00F4CFFD /* nethcti_multiselect_default@2x.png in Resources */,
+				B3D09A78296C1C4D00F4CFFD /* neth_dialer_background.png in Resources */,
 				633FEEDD1D3CD55A0014B822 /* numpad_8_over.png in Resources */,
 				633FEE8E1D3CD55A0014B822 /* list_details_default.png in Resources */,
 				633FEED71D3CD55A0014B822 /* numpad_7_over~ipad.png in Resources */,
@@ -4368,17 +5064,23 @@
 				633FEF2A1D3CD55A0014B822 /* route_earpiece_disabled.png in Resources */,
 				633FEDDB1D3CD5590014B822 /* call_start_body_disabled@2x.png in Resources */,
 				CFBD7A2A20E504AE007C5286 /* delete_img.png in Resources */,
+				B3D09A68296C1C4D00F4CFFD /* nethcti_add_field.png in Resources */,
 				C63F72C8285A2F1E0066163B /* voip_checkbox_checked.png in Resources */,
 				633FEDFD1D3CD5590014B822 /* camera_switch_default@2x.png in Resources */,
 				633FEEC51D3CD55A0014B822 /* numpad_5_over.png in Resources */,
 				633FEE721D3CD5590014B822 /* history_all_default.png in Resources */,
 				C6B4444326AAD0980076C517 /* file_default.png in Resources */,
+				B3D09AFC296C1C7D00F4CFFD /* nethcti_menu_home@2x.png in Resources */,
+				B3D09A83296C1C4D00F4CFFD /* nethcti_done@2x.png in Resources */,
 				615A283C2180789C0060F920 /* security_toogle_button@2x.png in Resources */,
 				633FEF0A1D3CD55A0014B822 /* options_transfer_call_default.png in Resources */,
 				633FEDA51D3CD5590014B822 /* back_default@2x.png in Resources */,
+				B3D09B32296C1D4D00F4CFFD /* HistoryTableViewCell.xib in Resources */,
 				633FEF311D3CD55A0014B822 /* route_speaker_disabled@2x.png in Resources */,
+				B3D09A80296C1C4D00F4CFFD /* nethcti_bluetooth.png in Resources */,
 				61586B81217A16EE0038AC45 /* menu_about.png in Resources */,
 				C63F72D0285A2F1E0066163B /* voip_conference_paused_big.png in Resources */,
+				B3D09AF3296C1C7D00F4CFFD /* nethcti_remove.png in Resources */,
 				633FEEE41D3CD55A0014B822 /* numpad_9_default@2x.png in Resources */,
 				C63F72CD285A2F1E0066163B /* voip_numpad_8.png in Resources */,
 				8C2A81961F87B8000012A66B /* chat_group_avatar.png in Resources */,
@@ -4386,10 +5088,12 @@
 				633FEF461D3CD55A0014B822 /* speaker_disabled.png in Resources */,
 				638F1A911C21993D004B8E02 /* UICompositeView~ipad.xib in Resources */,
 				633FEE211D3CD5590014B822 /* chat_start_body_disabled~ipad@2x.png in Resources */,
+				B3D09A7A296C1C4D00F4CFFD /* nethcti_call_status_incoming.png in Resources */,
 				63AADC011B6A0FF200AA16FD /* assistant_linphone_existing.rc in Resources */,
 				633FEE5A1D3CD5590014B822 /* edit_default.png in Resources */,
 				244523B01E8266CC0037A187 /* chat_error.png in Resources */,
 				8CBD7BA320B6B80D00E5DCC0 /* ChatConversationImdnView.xib in Resources */,
+				B3D09AD0296C1C7D00F4CFFD /* nethcti_refresh.png in Resources */,
 				633FEDD11D3CD5590014B822 /* call_quality_indicator_2@2x.png in Resources */,
 				633FEDBC1D3CD5590014B822 /* call_audio_start_disabled.png in Resources */,
 				24BFAA9E209B0630004F47A7 /* dialer_background.png in Resources */,
@@ -4407,14 +5111,20 @@
 				636316D41A1DEC650009B839 /* SettingsView.xib in Resources */,
 				24BFAAA6209B0630004F47A7 /* linphone_user~ipad.png in Resources */,
 				633FEEBF1D3CD55A0014B822 /* numpad_4_over~ipad.png in Resources */,
+				B3D09A85296C1C4D00F4CFFD /* nethcti_cancel.png in Resources */,
 				633FEEAD1D3CD55A0014B822 /* numpad_2_over.png in Resources */,
+				B3D09A31296C1C2600F4CFFD /* logo_dashboard.png in Resources */,
+				B3D09AE6296C1C7D00F4CFFD /* nethcti_microphone_disabled.png in Resources */,
+				B3D09A7B296C1C4D00F4CFFD /* nethcti_call_status_incoming@2x.png in Resources */,
 				633FEE801D3CD5590014B822 /* led_connected.png in Resources */,
 				633FEEF41D3CD55A0014B822 /* numpad_star_default.png in Resources */,
 				61586B93217A17700038AC45 /* menu_recordings@2x.png in Resources */,
 				615A2834218071FF0060F920 /* security_toogle_background_grey.png in Resources */,
+				B3D099EF296C159200F4CFFD /* NethLocalizable.strings in Resources */,
 				633FEDDE1D3CD5590014B822 /* call_start_body_over.png in Resources */,
 				24BFAAA0209B0630004F47A7 /* contacts_sip_default@2x.png in Resources */,
 				8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */,
+				B3D09AFE296C1C7D00F4CFFD /* nethcti_transfer_call@2x.png in Resources */,
 				633FEDFB1D3CD5590014B822 /* camera_selected@2x.png in Resources */,
 				633FEF051D3CD55A0014B822 /* options_selected@2x.png in Resources */,
 				633FEDD61D3CD5590014B822 /* call_start_body_default.png in Resources */,
@@ -4424,6 +5134,7 @@
 				244523BE1E8D3A6C0037A187 /* chat_unsecure.png in Resources */,
 				C63F72DC285A2F1E0066163B /* voip_menu_more.png in Resources */,
 				C63F72D5285A2F1E0066163B /* voip_hangup.png in Resources */,
+				B3D09A86296C1C4D00F4CFFD /* nethcti_call_status_missed@2x.png in Resources */,
 				633FEE031D3CD5590014B822 /* cancel_edit_default@2x.png in Resources */,
 				633FEDE01D3CD5590014B822 /* call_start_body_over~ipad.png in Resources */,
 				8CBD7BA920B6B82A00E5DCC0 /* UIChatConversationImdnTableViewCell.xib in Resources */,
@@ -4445,15 +5156,21 @@
 				63B8D68C1BCBE65600C12B09 /* ChatConversationCreateView.xib in Resources */,
 				63CDC45F1C3BDE370085F529 /* ringback.wav in Resources */,
 				8CD99A1C20908C27008A7CDA /* callkit_logo@2x.png in Resources */,
+				B3D09B01296C1C7D00F4CFFD /* nethcti_record@2x.png in Resources */,
+				B3D09B25296C1D3D00F4CFFD /* DashboardView.xib in Resources */,
 				633FEE251D3CD5590014B822 /* chat_start_body_over~ipad@2x.png in Resources */,
 				633FEDF91D3CD5590014B822 /* camera_disabled@2x.png in Resources */,
+				B3D09AE8296C1C7D00F4CFFD /* nethcti_green_call@2x.png in Resources */,
 				633FEE161D3CD5590014B822 /* chat_send_disabled.png in Resources */,
+				B3D09A67296C1C4D00F4CFFD /* nethcti_blue_circle.png in Resources */,
 				615A282421805B260060F920 /* security_toogle_icon_green.png in Resources */,
 				633FEE1A1D3CD5590014B822 /* chat_start_body_default.png in Resources */,
+				B3D09B57296C217C00F4CFFD /* PresenceActionCollectionViewCell.xib in Resources */,
 				633FEF041D3CD55A0014B822 /* options_selected.png in Resources */,
 				633FEEE61D3CD55A0014B822 /* numpad_9_over@2x.png in Resources */,
 				63E27A521C50EDB000D332AE /* hold.mkv in Resources */,
 				633FEEDC1D3CD55A0014B822 /* numpad_8_default@2x.png in Resources */,
+				B3D09A87296C1C4D00F4CFFD /* nethcti_close_button.png in Resources */,
 				633FEDAE1D3CD5590014B822 /* call_add_default.png in Resources */,
 				633FEE1D1D3CD5590014B822 /* chat_start_body_default~ipad@2x.png in Resources */,
 				633FEEEB1D3CD55A0014B822 /* numpad_hash_default.png in Resources */,
@@ -4473,11 +5190,14 @@
 				633FEF441D3CD55A0014B822 /* speaker_default.png in Resources */,
 				639CEB031A1DF4EB004DE38F /* UICompositeView.xib in Resources */,
 				C6A1BB4326E88F7C00540D50 /* menu_resend_default.png in Resources */,
+				B3D09B08296C1C7D00F4CFFD /* nethcti_users_sip@2x.png in Resources */,
 				633FEF3A1D3CD55A0014B822 /* security_ko.png in Resources */,
 				615A283A2180788E0060F920 /* security_toogle_button.png in Resources */,
 				633FEDA01D3CD5590014B822 /* avatar.png in Resources */,
 				633FEEBC1D3CD55A0014B822 /* numpad_4_default@2x.png in Resources */,
 				633FEEA91D3CD55A0014B822 /* numpad_1~ipad.png in Resources */,
+				B3D09AF6296C1C7D00F4CFFD /* nethcti_transfer_call_green.png in Resources */,
+				B3D09B5B296C217C00F4CFFD /* PresenceSelectListGroupTableViewCell.xib in Resources */,
 				615A28402180A2620060F920 /* invite_linphone@2x.png in Resources */,
 				C61B1BF42667D202001A4E4A /* more_menu_default.png in Resources */,
 				633FEDF71D3CD5590014B822 /* camera_default@2x.png in Resources */,
@@ -4492,23 +5212,29 @@
 				633FEE8F1D3CD55A0014B822 /* list_details_default@2x.png in Resources */,
 				633FEE5E1D3CD5590014B822 /* edit_list_default.png in Resources */,
 				C63F72F7285A2F1E0066163B /* voip_cancel.png in Resources */,
+				B3D09A88296C1C4D00F4CFFD /* nethcti_call_status_outgoing.png in Resources */,
 				615A282621805B320060F920 /* security_toogle_icon_green@2x.png in Resources */,
 				633FEDB11D3CD5590014B822 /* call_add_disabled@2x.png in Resources */,
+				B3D09B02296C1C7D00F4CFFD /* nethcti_grey_phone.png in Resources */,
 				CF7602F7210898CC00749F76 /* rec_off_default.png in Resources */,
 				633FEDB21D3CD5590014B822 /* call_alt_back_default.png in Resources */,
 				633FEE3D1D3CD5590014B822 /* contacts_all_default@2x.png in Resources */,
 				633FEF251D3CD55A0014B822 /* route_bluetooth_disabled@2x.png in Resources */,
 				633FEDD81D3CD5590014B822 /* call_start_body_default~ipad.png in Resources */,
+				B3D09A7D296C1C4D00F4CFFD /* nethcti_close_button@2x.png in Resources */,
 				61586B83217A16FD0038AC45 /* menu_about@2x.png in Resources */,
 				C63F72E6285A2F1E0066163B /* voip_numpad_6.png in Resources */,
 				633FEED81D3CD55A0014B822 /* numpad_7_over~ipad@2x.png in Resources */,
 				633FEDD71D3CD5590014B822 /* call_start_body_default@2x.png in Resources */,
+				B3D09AD2296C1C7D00F4CFFD /* nethcti_qr.png in Resources */,
 				C63F72D6285A2F1E0066163B /* voip_pause.png in Resources */,
+				B3D09B06296C1C7D00F4CFFD /* nethcti_pause.png in Resources */,
 				633FEE571D3CD5590014B822 /* dialer_back_disabled@2x.png in Resources */,
 				63CDC45E1C3BDE370085F529 /* msg.caf in Resources */,
 				633FEE6D1D3CD5590014B822 /* footer_dialer_disabled@2x.png in Resources */,
 				633FEF171D3CD55A0014B822 /* pause_small_disabled@2x.png in Resources */,
 				C6A1BB3626E8815400540D50 /* menu_forward_default.png in Resources */,
+				B3D09AEF296C1C7D00F4CFFD /* nethcti_remove@2x.png in Resources */,
 				D38187DD15FE348A00C3EDCA /* AssistantView.xib in Resources */,
 				633FEDA61D3CD5590014B822 /* back_disabled.png in Resources */,
 				633FEED61D3CD55A0014B822 /* numpad_7_over@2x.png in Resources */,
@@ -4518,6 +5244,7 @@
 				633FEE201D3CD5590014B822 /* chat_start_body_disabled~ipad.png in Resources */,
 				633FEE5B1D3CD5590014B822 /* edit_default@2x.png in Resources */,
 				633FEDE11D3CD5590014B822 /* call_start_body_over~ipad@2x.png in Resources */,
+				B3D09ACF296C1C7D00F4CFFD /* nethcti_three_dots.png in Resources */,
 				633FEF4F1D3CD55A0014B822 /* valid_default@2x.png in Resources */,
 				8CD99A382090A824008A7CDA /* splashscreen.png in Resources */,
 				C63F72B7285A2F1D0066163B /* voip_numpad_7.png in Resources */,
@@ -4530,16 +5257,20 @@
 				633FEF181D3CD55A0014B822 /* pause_small_over_selected.png in Resources */,
 				633FEE001D3CD5590014B822 /* camera_switch_over.png in Resources */,
 				C622E3F126A81290004F5434 /* vr_on.png in Resources */,
+				B3D09A7E296C1C4D00F4CFFD /* nethcti_answer_video@2x.png in Resources */,
 				633FEF401D3CD55A0014B822 /* select_all_default.png in Resources */,
 				C6B4444426AAD0980076C517 /* file_picture_default.png in Resources */,
 				633FEDF01D3CD5590014B822 /* call_transfer_disabled.png in Resources */,
 				633FEE351D3CD5590014B822 /* conference_exit_default@2x.png in Resources */,
 				633FEECF1D3CD55A0014B822 /* numpad_6_over~ipad.png in Resources */,
 				61586B87217A17160038AC45 /* menu_assistant@2x.png in Resources */,
+				B3D09A33296C1C2600F4CFFD /* logo_nethesis.png in Resources */,
 				633FEE9A1D3CD55A0014B822 /* nowebcamCIF.jpg in Resources */,
 				61586B89217A17220038AC45 /* menu_link_account.png in Resources */,
 				633FEF351D3CD55A0014B822 /* routes_default@2x.png in Resources */,
 				633FEEDB1D3CD55A0014B822 /* numpad_8_default.png in Resources */,
+				B3D09AFF296C1C7D00F4CFFD /* nethcti_numpad_7.png in Resources */,
+				B3D09A6B296C1C4D00F4CFFD /* nethcti_cancel@2x.png in Resources */,
 				633FEE5C1D3CD5590014B822 /* edit_disabled.png in Resources */,
 				C63F72BD285A2F1D0066163B /* voip_call_header_incoming.png in Resources */,
 				8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */,
@@ -4551,16 +5282,22 @@
 				633FEE811D3CD5590014B822 /* led_connected@2x.png in Resources */,
 				8CA70AD51F9E285C00A3D2EB /* chat_group_add.png in Resources */,
 				633FEE9B1D3CD55A0014B822 /* numpad_0_default.png in Resources */,
+				B3D09A66296C1C4D00F4CFFD /* nethcti_call_accept@2x.png in Resources */,
+				B3D09A89296C1C4D00F4CFFD /* nethcti_add_call_green.png in Resources */,
 				633FEF411D3CD55A0014B822 /* select_all_default@2x.png in Resources */,
+				B3D09AED296C1C7D00F4CFFD /* nethcti_trash.png in Resources */,
 				633FEEFD1D3CD55A0014B822 /* options_add_call_default@2x.png in Resources */,
 				633FEEA81D3CD55A0014B822 /* numpad_1_over~ipad@2x.png in Resources */,
 				C63F72B9285A2F1D0066163B /* voip_export.png in Resources */,
 				D38187AD15FE340100C3EDCA /* ChatConversationView.xib in Resources */,
+				B3D09A76296C1C4D00F4CFFD /* nethcti_bluetooth.png@2x.png in Resources */,
 				633FEE7C1D3CD5590014B822 /* history_missed_disabled.png in Resources */,
 				CF1DE92E210A0F5D00A0A97E /* UILinphoneAudioPlayer.xib in Resources */,
 				633FEDF11D3CD5590014B822 /* call_transfer_disabled@2x.png in Resources */,
+				B3D09AFB296C1C7D00F4CFFD /* nethcti_play.png in Resources */,
 				615A282821805B400060F920 /* security_toogle_icon_grey.png in Resources */,
 				633FEDFF1D3CD5590014B822 /* camera_switch_disabled@2x.png in Resources */,
+				B3D09B0D296C1C7D00F4CFFD /* nethcti_three_dots@2x.png in Resources */,
 				633FEDDF1D3CD5590014B822 /* call_start_body_over@2x.png in Resources */,
 				633FEEFA1D3CD55A0014B822 /* numpad_star~ipad.png in Resources */,
 				D38187B915FE342200C3EDCA /* ContactDetailsView.xib in Resources */,
@@ -4571,6 +5308,8 @@
 				633FEE4C1D3CD5590014B822 /* delete_field_default.png in Resources */,
 				633FEE391D3CD5590014B822 /* contact_add_default@2x.png in Resources */,
 				633FEE741D3CD5590014B822 /* history_all_disabled.png in Resources */,
+				B3D09B26296C1D3D00F4CFFD /* RecentCallTableViewCell.xib in Resources */,
+				B3D09A34296C1C2600F4CFFD /* logo_about.png in Resources */,
 				633FEE081D3CD5590014B822 /* chat_add_disabled.png in Resources */,
 				615A28422180C0870060F920 /* recording.png in Resources */,
 				C63F72EC285A2F1E0066163B /* conference_schedule_time_default.png in Resources */,
@@ -4585,6 +5324,8 @@
 				633FEF1C1D3CD55A0014B822 /* presence_offline.png in Resources */,
 				633FEE901D3CD55A0014B822 /* list_details_over.png in Resources */,
 				633FEDE31D3CD5590014B822 /* call_status_incoming@2x.png in Resources */,
+				B3D09A63296C1C4D00F4CFFD /* nethcti_add_field@2x.png in Resources */,
+				B3D09AF2296C1C7D00F4CFFD /* nethcti_numpad_8.png in Resources */,
 				633FEE821D3CD5590014B822 /* led_disconnected.png in Resources */,
 				C63F72BC285A2F1D0066163B /* voip_numpad_4.png in Resources */,
 				633FEDB01D3CD5590014B822 /* call_add_disabled.png in Resources */,
@@ -4592,6 +5333,7 @@
 				633FEE971D3CD55A0014B822 /* micro_disabled@2x.png in Resources */,
 				D38187CD15FE346700C3EDCA /* HistoryDetailsView.xib in Resources */,
 				633FEEA21D3CD55A0014B822 /* numpad_0~ipad@2x.png in Resources */,
+				B3D09A36296C1C2600F4CFFD /* login_menu.png in Resources */,
 				633FEE991D3CD55A0014B822 /* micro_selected@2x.png in Resources */,
 				633FEE621D3CD5590014B822 /* footer_chat_default.png in Resources */,
 				24BFAAA3209B0630004F47A7 /* contacts_sip_selected.png in Resources */,
@@ -4611,13 +5353,19 @@
 				C63F72EF285A2F1E0066163B /* voip_micro_on.png in Resources */,
 				633FEE731D3CD5590014B822 /* history_all_default@2x.png in Resources */,
 				633FEDE21D3CD5590014B822 /* call_status_incoming.png in Resources */,
+				B3D09B54296C217B00F4CFFD /* PresenceSelectListViewController.xib in Resources */,
 				633FEDDA1D3CD5590014B822 /* call_start_body_disabled.png in Resources */,
 				633FEDB91D3CD5590014B822 /* call_alt_start_disabled@2x.png in Resources */,
+				B3D09AD3296C1C7D00F4CFFD /* nethcti_menu.png in Resources */,
 				633FEE691D3CD5590014B822 /* footer_contacts_disabled@2x.png in Resources */,
 				8CBD7BA020B6B7FD00E5DCC0 /* ChatConversationInfoView.xib in Resources */,
+				B3D09AE2296C1C7D00F4CFFD /* nethcti_transfer_call.png in Resources */,
 				633FEF071D3CD55A0014B822 /* options_start_conference_default@2x.png in Resources */,
 				633FEE151D3CD5590014B822 /* chat_send_default@2x.png in Resources */,
 				633FEDC31D3CD5590014B822 /* call_hangup_default@2x.png in Resources */,
+				B3D09A62296C1C4D00F4CFFD /* nethcti_cam.png in Resources */,
+				B3D09AE7296C1C7D00F4CFFD /* nethcti_numpad_2.png in Resources */,
+				B3D09B21296C1D3D00F4CFFD /* DashboardView.strings in Resources */,
 				633FEF061D3CD55A0014B822 /* options_start_conference_default.png in Resources */,
 				63AADC021B6A0FF200AA16FD /* assistant_remote.rc in Resources */,
 				633FEF1E1D3CD55A0014B822 /* presence_online.png in Resources */,
@@ -4635,16 +5383,20 @@
 				633FEDBE1D3CD5590014B822 /* call_back_default.png in Resources */,
 				633FEF0F1D3CD55A0014B822 /* pause_big_default@2x.png in Resources */,
 				C66B040E26F095D1009B5EDC /* cancel_forward.png in Resources */,
+				B3D09B12296C1C8800F4CFFD /* nethcti_green_circle.png in Resources */,
+				B3D09AEC296C1C7D00F4CFFD /* nethcti_transfer_call_green@2x.png in Resources */,
 				CF7602F6210898CC00749F76 /* rec_on_default@2x.png in Resources */,
 				633FEF081D3CD55A0014B822 /* options_start_conference_disabled.png in Resources */,
 				633FEE301D3CD5590014B822 /* color_H.png in Resources */,
 				633FEE7D1D3CD5590014B822 /* history_missed_disabled@2x.png in Resources */,
+				B3D09A6F296C1C4D00F4CFFD /* nethcti_avatar.png in Resources */,
 				633FEE941D3CD55A0014B822 /* micro_default.png in Resources */,
 				633FEE611D3CD5590014B822 /* edit_list_disabled@2x.png in Resources */,
 				C63F72EE285A2F1E0066163B /* voip_camera_off.png in Resources */,
 				633FEE761D3CD5590014B822 /* history_all_selected.png in Resources */,
 				C63F72E7285A2F1E0066163B /* voip_call_participants.png in Resources */,
 				8C300D9B1E40E0CC00728EF3 /* lime_ko@2x.png in Resources */,
+				B3D09B05296C1C7D00F4CFFD /* nethcti_reverse_camera.png in Resources */,
 				633FEF321D3CD55A0014B822 /* route_speaker_selected.png in Resources */,
 				61AEBEBF2191991F00F35E7F /* DevicesListView.xib in Resources */,
 				C63F72BA285A2F1D0066163B /* voip_call_numpad.png in Resources */,
@@ -4655,10 +5407,12 @@
 				615A2832218071F30060F920 /* security_toogle_background_green@2x.png in Resources */,
 				633FEEC11D3CD55A0014B822 /* numpad_4~ipad.png in Resources */,
 				633FEE6B1D3CD5590014B822 /* footer_dialer_default@2x.png in Resources */,
+				B3D09A35296C1C2600F4CFFD /* logout.png in Resources */,
 				633FEE0E1D3CD5590014B822 /* chat_attachment_over.png in Resources */,
 				633FEE7B1D3CD5590014B822 /* history_missed_default@2x.png in Resources */,
 				633FEEC71D3CD55A0014B822 /* numpad_5_over~ipad.png in Resources */,
 				C6F55647287CCFB70056E213 /* menu_voip_meeting_schedule.png in Resources */,
+				B3D09AE9296C1C7D00F4CFFD /* nethcti_microphone@2x.png in Resources */,
 				C63F72BF285A2F1D0066163B /* voip_call_header_paused.png in Resources */,
 				633FEEAA1D3CD55A0014B822 /* numpad_1~ipad@2x.png in Resources */,
 				633FEDEC1D3CD5590014B822 /* call_status_outgoing~ipad.png in Resources */,
@@ -4669,6 +5423,7 @@
 				633FEE601D3CD5590014B822 /* edit_list_disabled.png in Resources */,
 				D38187C115FE345B00C3EDCA /* DialerView.xib in Resources */,
 				C6A1BB3726E8815400540D50 /* menu_copy_text_default.png in Resources */,
+				B3D09A6A296C1C4D00F4CFFD /* nethcti_call_accept.png in Resources */,
 				D37EE10D16035793003608A6 /* ImageView.xib in Resources */,
 				C63F72B8285A2F1D0066163B /* voip_radio_off.png in Resources */,
 				633FEE9F1D3CD55A0014B822 /* numpad_0_over~ipad.png in Resources */,
@@ -4677,6 +5432,7 @@
 				633FEDBF1D3CD5590014B822 /* call_back_default@2x.png in Resources */,
 				24BFAAA8209B0630004F47A7 /* contacts_sip_selected@2x.png in Resources */,
 				633FEE141D3CD5590014B822 /* chat_send_default.png in Resources */,
+				B3D09B0A296C1C7D00F4CFFD /* nethcti_missed_calls.png in Resources */,
 				633FEF421D3CD55A0014B822 /* select_all_disabled.png in Resources */,
 				63AADBE81B6A0FF200AA16FD /* Localizable.strings in Resources */,
 				C63F72CF285A2F1E0066163B /* voip_copy.png in Resources */,
@@ -4685,6 +5441,7 @@
 				633FEF3B1D3CD55A0014B822 /* security_ko@2x.png in Resources */,
 				C63F72F1285A2F1E0066163B /* conference_schedule_participants_default.png in Resources */,
 				633FEE4A1D3CD5590014B822 /* delete_disabled.png in Resources */,
+				B3D09ADF296C1C7D00F4CFFD /* nethcti_microphone.png in Resources */,
 				614D09CE21E74D5400C43EDF /* GoogleService-Info.plist in Resources */,
 				C6B4444526AAD0980076C517 /* file_audio_default.png in Resources */,
 				C6A1BB3526E8815400540D50 /* menu_info.png in Resources */,
@@ -4694,13 +5451,16 @@
 				633FEDCB1D3CD5590014B822 /* call_outgoing@2x.png in Resources */,
 				633FEF501D3CD55A0014B822 /* valid_disabled.png in Resources */,
 				633FEEB31D3CD55A0014B822 /* numpad_3_default.png in Resources */,
+				B3D09B5A296C217C00F4CFFD /* PresenceTableViewCell.xib in Resources */,
 				61AEBECA2191E49300F35E7F /* chevron_list_open.png in Resources */,
+				B3D09AEA296C1C7D00F4CFFD /* nethcti_numpad_0.png in Resources */,
 				633FEE1C1D3CD5590014B822 /* chat_start_body_default~ipad.png in Resources */,
 				633FEE011D3CD5590014B822 /* camera_switch_over@2x.png in Resources */,
 				633FEEA01D3CD55A0014B822 /* numpad_0_over~ipad@2x.png in Resources */,
 				66E399F72857869300E73456 /* menu_notifications_off.png in Resources */,
 				633FEF3E1D3CD55A0014B822 /* security_pending.png in Resources */,
 				633FEE7E1D3CD5590014B822 /* history_missed_selected.png in Resources */,
+				B3D09A84296C1C4D00F4CFFD /* neth-splash-landscape_2208x1242.png in Resources */,
 				633FEE261D3CD5590014B822 /* checkbox_checked.png in Resources */,
 				C63F72B6285A2F1D0066163B /* voip_spinner.png in Resources */,
 				633FEF531D3CD55A0014B822 /* voicemail@2x.png in Resources */,
@@ -4708,25 +5468,33 @@
 				633FEE681D3CD5590014B822 /* footer_contacts_disabled.png in Resources */,
 				C63F72B5285A2F1D0066163B /* voip_dropdown.png in Resources */,
 				C63F72CC285A2F1E0066163B /* voip_call_stats.png in Resources */,
+				B3D09A61296C1C4D00F4CFFD /* nethcti_add.png in Resources */,
 				633FEDB71D3CD5590014B822 /* call_alt_start_default@2x.png in Resources */,
 				D3D5126C160B3A8E00946DF8 /* AssistantViewScreens.xib in Resources */,
 				63AADBEA1B6A0FF200AA16FD /* Images.xcassets in Resources */,
+				B3D09AD9296C1C7D00F4CFFD /* nethcti_user_add.png in Resources */,
 				633FEECB1D3CD55A0014B822 /* numpad_6_default.png in Resources */,
 				C63F72DD285A2F1E0066163B /* voip_conference_new.png in Resources */,
 				633FEDC71D3CD5590014B822 /* call_incoming@2x.png in Resources */,
 				633FEDB81D3CD5590014B822 /* call_alt_start_disabled.png in Resources */,
 				615A281D217F6FA80060F920 /* security_2_indicator@2x.png in Resources */,
+				B3D09A6E296C1C4D00F4CFFD /* nethcti_edit.png in Resources */,
+				B3D09AE3296C1C7D00F4CFFD /* nethcti_refresh@2x.png in Resources */,
 				C63F72E9285A2F1E0066163B /* voip_call_chat.png in Resources */,
 				633FEF3C1D3CD55A0014B822 /* security_ok.png in Resources */,
 				633FEEAF1D3CD55A0014B822 /* numpad_2_over~ipad.png in Resources */,
 				633FEEB81D3CD55A0014B822 /* numpad_3_over~ipad@2x.png in Resources */,
+				B3D09B07296C1C7D00F4CFFD /* nethcti_numpad_asterisk.png in Resources */,
 				633FEEFB1D3CD55A0014B822 /* numpad_star~ipad@2x.png in Resources */,
 				633FED9F1D3CD5590014B822 /* add_field_over@2x.png in Resources */,
+				B3D09A2F296C1C2600F4CFFD /* login.png in Resources */,
 				633FEEB71D3CD55A0014B822 /* numpad_3_over~ipad.png in Resources */,
+				B3D09A75296C1C4D00F4CFFD /* nethcti_back_to_call.png in Resources */,
 				C63F72F3285A2F1E0066163B /* voip_numpad_5.png in Resources */,
 				633FEEF51D3CD55A0014B822 /* numpad_star_default@2x.png in Resources */,
 				639E9CA91C0DB7FB00019A75 /* UIConfirmationDialog.xib in Resources */,
 				C63F72CB285A2F1E0066163B /* voip_call_more.png in Resources */,
+				B3D09A79296C1C4D00F4CFFD /* nethcti_add_call@2x.png in Resources */,
 				633FEF111D3CD55A0014B822 /* pause_big_disabled@2x.png in Resources */,
 				C63F72FE285A31DA0066163B /* Roboto-Italic.ttf in Resources */,
 				C63F72C1285A2F1D0066163B /* voip_numpad_3.png in Resources */,
@@ -4735,9 +5503,12 @@
 				CF7602F5210898CC00749F76 /* rec_off_default@2x.png in Resources */,
 				633FEDB41D3CD5590014B822 /* call_alt_back_disabled.png in Resources */,
 				633FEE631D3CD5590014B822 /* footer_chat_default@2x.png in Resources */,
+				B3D09A64296C1C4D00F4CFFD /* nethcti_add_call.png in Resources */,
 				615A281B217F6F9C0060F920 /* security_2_indicator.png in Resources */,
 				633FEE661D3CD5590014B822 /* footer_contacts_default.png in Resources */,
 				633FEDC11D3CD5590014B822 /* call_back_disabled@2x.png in Resources */,
+				B3D09A71296C1C4D00F4CFFD /* nethcti_bt_speaker.png in Resources */,
+				B3D09ADD296C1C7D00F4CFFD /* nethcti_multiselect_selected.png in Resources */,
 				633FEEEE1D3CD55A0014B822 /* numpad_hash_over@2x.png in Resources */,
 				633FEDD01D3CD5590014B822 /* call_quality_indicator_2.png in Resources */,
 				C63F72BB285A2F1D0066163B /* voip_chat_rooms_list.png in Resources */,
@@ -4759,6 +5530,7 @@
 				66E399F82857869300E73456 /* menu_notifications_on.png in Resources */,
 				8CB2B8F91F86229E0015CEE2 /* chat_secure.png in Resources */,
 				C63F72DB285A2F1E0066163B /* voip_conference_audio_only.png in Resources */,
+				B3D09A81296C1C4D00F4CFFD /* neth_splashscreen.png in Resources */,
 				633FEF4E1D3CD55A0014B822 /* valid_default.png in Resources */,
 				570742581D5A0691004B9C84 /* ShopView.xib in Resources */,
 				633FEE361D3CD5590014B822 /* conference_exit_over.png in Resources */,
@@ -4766,14 +5538,22 @@
 				F0938159188E629800A55DFA /* iTunesArtwork in Resources */,
 				633FEE791D3CD5590014B822 /* history_chat_indicator@2x.png in Resources */,
 				633FEEBA1D3CD55A0014B822 /* numpad_3~ipad@2x.png in Resources */,
+				B3D09ADC296C1C7D00F4CFFD /* nethcti_volume@2x.png in Resources */,
+				B3D09A7C296C1C4D00F4CFFD /* nethcti_backspace.png in Resources */,
 				633FEEA61D3CD55A0014B822 /* numpad_1_over@2x.png in Resources */,
 				633FEE371D3CD5590014B822 /* conference_exit_over@2x.png in Resources */,
 				639E9CA01C0DB7E500019A75 /* UIChatBubblePhotoCell.xib in Resources */,
+				B3D09A29296C1C2600F4CFFD /* logout@2x.png in Resources */,
+				B3D09B0C296C1C7D00F4CFFD /* nethcti_numpad_6.png in Resources */,
+				B3D09AF4296C1C7D00F4CFFD /* nethcti_user_add@2x.png in Resources */,
+				B3D09AF0296C1C7D00F4CFFD /* nethcti_menu@2x.png in Resources */,
 				633FEE4E1D3CD5590014B822 /* delete_field_over.png in Resources */,
 				633FEE501D3CD5590014B822 /* deselect_all.png in Resources */,
+				B3D09AF9296C1C7D00F4CFFD /* nethcti_numpad_3.png in Resources */,
 				633FEF2F1D3CD55A0014B822 /* route_speaker_default@2x.png in Resources */,
 				633FEDDD1D3CD5590014B822 /* call_start_body_disabled~ipad@2x.png in Resources */,
 				633FEEBD1D3CD55A0014B822 /* numpad_4_over.png in Resources */,
+				B3D09A65296C1C4D00F4CFFD /* nethcti_edit@2x.png in Resources */,
 				8CA70AD41F9E285C00A3D2EB /* chat_group_add@2x.png in Resources */,
 				C66B040A26EFDA55009B5EDC /* reply_cancel.png in Resources */,
 				633FEEF11D3CD55A0014B822 /* numpad_hash~ipad.png in Resources */,
@@ -4785,7 +5565,9 @@
 				24BFAAA1209B0630004F47A7 /* linphone_user@2x.png in Resources */,
 				633FEF211D3CD55A0014B822 /* presence_unregistered@2x.png in Resources */,
 				C63F72C2285A2F1D0066163B /* voip_numpad_9.png in Resources */,
+				B3D09A2C296C1C2600F4CFFD /* logo_about@2x.png in Resources */,
 				C63F72E4285A2F1E0066163B /* voip_call_list_menu.png in Resources */,
+				B3D09AF5296C1C7D00F4CFFD /* nethcti_numpad_5.png in Resources */,
 				633FEEA71D3CD55A0014B822 /* numpad_1_over~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4878,7 +5660,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CallUITests/Pods-CallUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-ios.framework/bctoolbox-ios",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-tester.framework/bctoolbox-tester",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox.framework/bctoolbox",
@@ -4935,7 +5726,16 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
@@ -5103,10 +5903,19 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-linphone/Pods-linphone-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-ios.framework/bctoolbox-ios",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-tester.framework/bctoolbox-tester",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox.framework/bctoolbox",
@@ -5164,10 +5973,19 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-tester.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox.framework",
@@ -5200,6 +6018,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D09B51296C217B00F4CFFD /* PresenceSelectListViewController.m in Sources */,
+				B3D09A14296C184000F4CFFD /* EndpointExtensions.swift in Sources */,
 				63B81A0F1B57DA33009604A6 /* TPKeyboardAvoidingTableView.m in Sources */,
 				CF1DE92D210A0F5D00A0A97E /* UILinphoneAudioPlayer.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
@@ -5208,22 +6028,28 @@
 				C63F7218285A24B10066163B /* ScheduledConferencesCell.swift in Sources */,
 				C63F722E285A24B10066163B /* IceState.swift in Sources */,
 				6135761C240E81BB005304D4 /* UIInterfaceStyleButton.m in Sources */,
+				B3D09B58296C217C00F4CFFD /* PresenceSelectListTableViewCell.m in Sources */,
 				C63F721C285A24B10066163B /* MediatorLiveData.swift in Sources */,
 				8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */,
 				1D3623260D0F684500981E51 /* LinphoneAppDelegate.m in Sources */,
 				C63F7264285A24B10066163B /* BouncingCounter.swift in Sources */,
 				C6B4444826AADA530076C517 /* SwiftUtil.swift in Sources */,
 				C63F7257285A24B10066163B /* ConferenceLayoutPickerView.swift in Sources */,
+				B3D09B22296C1D3D00F4CFFD /* RecentCallTableViewCell.m in Sources */,
+				B3D09B33296C1D4D00F4CFFD /* HistoryTableViewController.swift in Sources */,
 				CF15F21E20E4F9A3008B1DE6 /* UIImageViewDeletable.m in Sources */,
 				22F2508E107141E100AC9B3F /* DialerView.m in Sources */,
 				C63F724F285A24B10066163B /* LocalVideoView.swift in Sources */,
 				633756451B67D2B200E21BAD /* SideMenuView.m in Sources */,
 				8CD99A422090CE6F008A7CDA /* UIChatConversationImdnTableViewCell.m in Sources */,
+				B3D09B53296C217B00F4CFFD /* PresenceActionViewController.m in Sources */,
+				B3D09B24296C1D3D00F4CFFD /* DashboardHistoryTableView.m in Sources */,
 				22E0A822111C44E100B04932 /* AboutView.m in Sources */,
 				633671611BCBAAD200BFCBDE /* ChatConversationCreateView.m in Sources */,
 				634610061B61330300548952 /* UILabel+Boldify.m in Sources */,
 				2248E90E12F7E4CF00220D9C /* UIDigitButton.m in Sources */,
 				633756391B67BAF400E21BAD /* SideMenuTableView.m in Sources */,
+				B3D09B50296C217B00F4CFFD /* PresenceSelectListGroupViewController.m in Sources */,
 				C63F7245285A24B10066163B /* VoipConferenceAudioOnlyView.swift in Sources */,
 				2214EB7A12F846B1002A5394 /* UICallButton.m in Sources */,
 				C63F7258285A24B10066163B /* ControlsView.swift in Sources */,
@@ -5246,17 +6072,23 @@
 				C63F7259285A24B10066163B /* RemotelyRecording.swift in Sources */,
 				C63F7236285A24B10066163B /* ControlsViewModel.swift in Sources */,
 				C63F7214285A24B10066163B /* Duration.swift in Sources */,
+				B3D09B59296C217C00F4CFFD /* PresenceSelectListGroupTableViewCell.m in Sources */,
 				C63F723B285A24B10066163B /* AudioRouteUtils.swift in Sources */,
 				C63F7269285A24B10066163B /* StyledLabel.swift in Sources */,
+				B3D09A0C296C184000F4CFFD /* Conversation.swift in Sources */,
+				B3D099E3296C137100F4CFFD /* TransferCallManager.swift in Sources */,
 				C63F722C285A24B10066163B /* UIColorExtensions.swift in Sources */,
 				D3F83F8E15822ABE00336684 /* PhoneMainView.m in Sources */,
 				C63F7251285A24B10066163B /* NumpadView.swift in Sources */,
 				C63F723F285A24B10066163B /* ButtonTheme.swift in Sources */,
 				C63F7213285A24B10066163B /* TimeZoneData.swift in Sources */,
 				C6A1BB3E26E882D000540D50 /* UIChatReplyBubbleView.m in Sources */,
+				B3D099E1296C137100F4CFFD /* NethPhoneBookResult.swift in Sources */,
 				6377AC801BDE4069007F7625 /* UIBackToCallButton.m in Sources */,
 				6308F9C51BF0DD6600D1234B /* XMLRPCHelper.m in Sources */,
+				B3D09A09296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift in Sources */,
 				C63F7235285A24B10066163B /* CallsViewModel.swift in Sources */,
+				B3D09A0E296C184000F4CFFD /* NethUser.swift in Sources */,
 				C63F722D285A24B10066163B /* CoreExtensions.swift in Sources */,
 				C63F722F285A24B10066163B /* AddressExtensions.swift in Sources */,
 				D3ED3E871586291E006C0DE4 /* TabBarView.m in Sources */,
@@ -5268,8 +6100,10 @@
 				D3ED3EB81587392C006C0DE4 /* HistoryListView.m in Sources */,
 				24A345A61D95798A00881A5C /* UIShopTableCell.m in Sources */,
 				C63F7268285A24B10066163B /* Avatar.swift in Sources */,
+				B3D09B5C296C217C00F4CFFD /* PresenceActionCollectionViewCell.m in Sources */,
 				C63F7247285A24B10066163B /* VoipAudioOnlyParticipantCell.swift in Sources */,
 				D35497FE15875372000081D8 /* ContactsListView.m in Sources */,
+				B3D09B2E296C1D4D00F4CFFD /* HistoryTableViewCell.swift in Sources */,
 				635173F91BA082A40095EB0A /* UIChatBubblePhotoCell.m in Sources */,
 				C63F723E285A24B10066163B /* VoipTexts.swift in Sources */,
 				C63F722A285A24B10066163B /* UIImageViewExtensions.swift in Sources */,
@@ -5284,7 +6118,10 @@
 				D326483815887D5200930C67 /* OrderedDictionary.m in Sources */,
 				D32648441588F6FC00930C67 /* UIToggleButton.m in Sources */,
 				D31C9C98158A1CDF00756B45 /* UIHistoryCell.m in Sources */,
+				B3D09B30296C1D4D00F4CFFD /* LostCallTableViewCell.swift in Sources */,
 				D35E7597159460580066B1C1 /* ChatsListView.m in Sources */,
+				B3D099DE296C137100F4CFFD /* NotReturnMessage.swift in Sources */,
+				B3D09A10296C184000F4CFFD /* AdPermission.swift in Sources */,
 				D35E759F159460B70066B1C1 /* SettingsView.m in Sources */,
 				C63F7216285A24B10066163B /* ScheduledConferencesView.swift in Sources */,
 				C63F7255285A24B10066163B /* VoipCallCell.swift in Sources */,
@@ -5313,19 +6150,25 @@
 				C63F7267285A24B10066163B /* StyledCheckBox.swift in Sources */,
 				8C9C5E0D1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.m in Sources */,
 				631098491D4660580041F2B3 /* CountryListView.m in Sources */,
+				B3D09A0D296C184000F4CFFD /* MacroPermissions.swift in Sources */,
 				D32B9DFC15A2F131000B6DEC /* FastAddressBook.m in Sources */,
 				C63F7228285A24B10066163B /* OptionalExtensions.swift in Sources */,
 				C63F7241285A24B10066163B /* ParticipantsListView.swift in Sources */,
 				D350F20E15A43BB100149E54 /* AssistantView.m in Sources */,
 				D3F795D615A582810077328B /* ChatConversationView.m in Sources */,
 				C63F723C285A24B10066163B /* LightDarkColor.swift in Sources */,
+				B3D099DF296C137100F4CFFD /* NethContact.swift in Sources */,
 				D32B6E2915A5BC440033019F /* ChatConversationTableView.m in Sources */,
+				B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */,
 				C63F7233285A24B10066163B /* ConferenceExtensions.swift in Sources */,
+				B3D099E2296C137100F4CFFD /* CallIdTest.swift in Sources */,
 				C63F7260285A24B10066163B /* StyledSwitch.swift in Sources */,
+				B3D09A12296C184000F4CFFD /* Profile.swift in Sources */,
 				C63F7252285A24B10066163B /* VoipExtraButtonsView.swift in Sources */,
 				669B140C27A29D140012220A /* FloatingScrollDownButton.swift in Sources */,
 				C63F7219285A24B10066163B /* ConferenceHistoryDetailsView.swift in Sources */,
 				D3A8BB7015A6C7D500F96BE5 /* UIChatBubbleTextCell.m in Sources */,
+				B3D09B56296C217C00F4CFFD /* PresenceTableViewCell.m in Sources */,
 				63D11C531C3D501200E8FCEE /* Log.m in Sources */,
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
@@ -5344,6 +6187,7 @@
 				63C441C31BBC23ED0053DC5E /* UIAssistantTextField.m in Sources */,
 				D35860D615B549B500513429 /* Utils.m in Sources */,
 				D3F7998115BD32370018C273 /* TPMultiLayoutViewController.m in Sources */,
+				B3D09B62296C2D2A00F4CFFD /* PresenceViewController.m in Sources */,
 				C63F721A285A24B10066163B /* ConferenceSchedulingView.swift in Sources */,
 				C63F7232285A24B10066163B /* CallExtensions.swift in Sources */,
 				D3807FBF15C28940005BE9BC /* DCRoundSwitch.m in Sources */,
@@ -5359,9 +6203,12 @@
 				C63F722B285A24B10066163B /* UIDeviceExtensions.swift in Sources */,
 				C63F724B285A24B10066163B /* VoipConferenceDisplayModeSelectionView.swift in Sources */,
 				C63D2F1529029536008F0F66 /* FileUtil.swift in Sources */,
+				B3D09A17296C184000F4CFFD /* Action.swift in Sources */,
 				CF7602E221086EB200749F76 /* RecordingsListTableView.m in Sources */,
 				C63F721E285A24B10066163B /* Pair.swift in Sources */,
+				B3D09A15296C184000F4CFFD /* Group.swift in Sources */,
 				D3807FC515C28940005BE9BC /* DCRoundSwitchToggleLayer.m in Sources */,
+				B3D09B2F296C1D4D00F4CFFD /* IncomingCallTableViewCell.swift in Sources */,
 				633E41821D74259000320475 /* AssistantLinkView.m in Sources */,
 				C63F724A285A24B10066163B /* VoipConferenceActiveSpeakerView.swift in Sources */,
 				C63F7210285A24B10066163B /* ConferenceSchedulingViewModel.swift in Sources */,
@@ -5377,9 +6224,14 @@
 				C63F7248285A24B10066163B /* MicMuted.swift in Sources */,
 				C63F7243285A24B10066163B /* AudioRoutesView.swift in Sources */,
 				D3807FF415C2894A005BE9BC /* IASKSettingsStoreUserDefaults.m in Sources */,
+				B3D09A0F296C184000F4CFFD /* PresencePanel.swift in Sources */,
+				B3D09A13296C184000F4CFFD /* Extension.swift in Sources */,
 				C63F7240285A24B10066163B /* VoipTheme.swift in Sources */,
+				B3D09B61296C21C500F4CFFD /* MBProgressHUD.m in Sources */,
 				C63F7265285A24B10066163B /* VoipExtraButton.swift in Sources */,
+				B3D09A18296C184000F4CFFD /* NethCTIAPI.swift in Sources */,
 				639E9C801C0DB13D00019A75 /* UICheckBoxTableView.m in Sources */,
+				B3D099E0296C137100F4CFFD /* NethPhoneBook.swift in Sources */,
 				CF7602E72108759A00749F76 /* UIRecordingCell.m in Sources */,
 				D3807FF615C2894A005BE9BC /* IASKSpecifier.m in Sources */,
 				D3807FF815C2894A005BE9BC /* IASKPSSliderSpecifierViewCell.m in Sources */,
@@ -5395,13 +6247,18 @@
 				C63F7224285A24B10066163B /* UIVIewControllerExtensions.swift in Sources */,
 				D380800215C2894A005BE9BC /* IASKTextField.m in Sources */,
 				D380801315C299D0005BE9BC /* ColorSpaceUtilites.m in Sources */,
+				B3D09B31296C1D4D00F4CFFD /* OutgoingCallTableViewCell.swift in Sources */,
 				C63F721D285A24B10066163B /* MutableLiveData.swift in Sources */,
 				C63F7256285A24B10066163B /* DismissableView.swift in Sources */,
 				C63F724C285A24B10066163B /* ActiveCallView.swift in Sources */,
 				C63F7225285A24B10066163B /* UIImageExtensions.swift in Sources */,
+				B3D09A11296C184000F4CFFD /* Permissions.swift in Sources */,
+				B3D09A0B296C184000F4CFFD /* Endpoints.swift in Sources */,
 				C64A854E2667B67200252AD2 /* EphemeralSettingsView.m in Sources */,
+				B3D09A16296C184000F4CFFD /* PresenceUser.swift in Sources */,
 				8C92ABF31FA773E50006FB5D /* UIChatNotifiedEventCell.m in Sources */,
 				C63F726E285A24B10066163B /* VFSUtil.swift in Sources */,
+				B3D09B23296C1D3D00F4CFFD /* DashboardViewController.m in Sources */,
 				633FEF581D3CD5E00014B822 /* UIAvatarPresence.m in Sources */,
 				C63F7230285A24B10066163B /* ParticipantExtensions.swift in Sources */,
 				637157A11B283FE200C91677 /* FileTransferDelegate.m in Sources */,
@@ -5409,6 +6266,7 @@
 				22405F001601C19200B92522 /* ImageView.m in Sources */,
 				C63F724D285A24B10066163B /* IncomingOuntgoingCommonView.swift in Sources */,
 				D37EE162160377D7003608A6 /* DTActionSheet.m in Sources */,
+				B3D09A0A296C184000F4CFFD /* NethCTIAPI.ErrorCodes.swift in Sources */,
 				D306459E1611EC2A00BB571E /* UILoadingImageView.m in Sources */,
 				C63F7246285A24B10066163B /* VoipGridParticipantCell.swift in Sources */,
 				C63F7244285A24B10066163B /* VoipActiveSpeakerParticipantCell.swift in Sources */,
@@ -5789,6 +6647,23 @@
 				6187B1D324B3272100D580FB /* hu */,
 			);
 			name = UIChatCreateCollectionViewCell.xib;
+			sourceTree = "<group>";
+		};
+		B3D09B15296C1D3D00F4CFFD /* DashboardView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3D09B16296C1D3D00F4CFFD /* en */,
+				B3D09B19296C1D3D00F4CFFD /* it */,
+			);
+			name = DashboardView.strings;
+			sourceTree = "<group>";
+		};
+		B3D09B1B296C1D3D00F4CFFD /* DashboardView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3D09B1C296C1D3D00F4CFFD /* Base */,
+			);
+			name = DashboardView.xib;
 			sourceTree = "<group>";
 		};
 		C66B03BD26E8EB1A009B5EDC /* UIChatReplyBubbleView.xib */ = {
@@ -6443,7 +7318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
@@ -6485,7 +7360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
@@ -6527,7 +7402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
@@ -6570,7 +7445,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = linphoneExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
@@ -6875,7 +7750,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/msgNotificationService/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -6927,7 +7802,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/msgNotificationService/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -6979,7 +7854,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/msgNotificationService/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -7031,7 +7906,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/msgNotificationService/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -7087,7 +7962,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -7139,7 +8014,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -7191,7 +8066,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -7243,7 +8118,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = msgNotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 4.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

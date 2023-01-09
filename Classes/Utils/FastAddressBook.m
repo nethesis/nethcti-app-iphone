@@ -24,6 +24,7 @@
 #import "LinphoneManager.h"
 #import "ContactsListView.h"
 #import "Utils.h"
+#import "linphoneapp-Swift.h"
 
 @implementation FastAddressBook {
 	CNContactStore* store;
@@ -73,38 +74,59 @@
 }
 
 + (Contact *)getContactWithAddress:(const LinphoneAddress *)address {
-	Contact *contact = nil;
-	if (address) {
-		char *uri = linphone_address_as_string_uri_only(address);
-		NSString *normalizedSipAddress = [FastAddressBook normalizeSipURI:[NSString stringWithUTF8String:uri]];
-		contact = [FastAddressBook getContact:normalizedSipAddress];
-		ms_free(uri);
+    return [self getContactWithAddress:address fromFriendsOnly:NO];
+}
 
-		if (!contact) {
-			LinphoneFriend *friend = linphone_core_find_friend(LC, address);
-			MSList *numbers = linphone_friend_get_phone_numbers(friend);
-			while (numbers) {
-				NSString *phone = [NSString stringWithUTF8String:numbers->data];
-				LinphoneAccount *account = linphone_core_get_default_account(LC);
-				
-				if (account) {
-					const char *normvalue = linphone_account_normalize_phone_number(account, phone.UTF8String);
-					LinphoneAddress *addr = linphone_account_normalize_sip_uri(account, normvalue);
-					char *phone_addr = linphone_address_as_string_uri_only(addr);
-					contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
-					ms_free(phone_addr);
-				} else {
-					contact = [FastAddressBook getContact:phone];
-				}
-				
-				if (contact) {
-					break;
-				}
-				numbers = numbers->next;
-			}
-		}
-	}
-	return contact;
++ (Contact *)getContactWithAddress:(const LinphoneAddress *)address
+                   fromFriendsOnly:(BOOL)only {
+    
+    Contact *contact = nil;
+    
+    if (address) {
+        
+        if(!only) {
+            char *uri = linphone_address_as_string_uri_only(address);
+            NSString *normalizedSipAddress = [FastAddressBook normalizeSipURI:[NSString stringWithUTF8String:uri]];
+            contact = [FastAddressBook getContact:normalizedSipAddress];
+            ms_free(uri);
+        }
+
+        if (!contact) {
+            LinphoneFriend *friend = linphone_core_find_friend(LC, address);
+            MSList *numbers = linphone_friend_get_phone_numbers(friend);
+            
+            while (numbers) {
+                NSString *phone = [NSString stringWithUTF8String:numbers->data];
+                LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+                
+                if (cfg) {
+                    const char *normvalue = linphone_proxy_config_normalize_phone_number(cfg, phone.UTF8String);
+                    LinphoneAddress *addr = linphone_proxy_config_normalize_sip_uri(cfg, normvalue);
+                    const char *phone_addr = linphone_address_as_string_uri_only(addr);
+                    const char *old_addres = linphone_address_as_string_uri_only(address);
+                    
+                    if (only) {
+                        
+                        if(strcmp(phone_addr, old_addres)) {
+                            
+                            contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
+                        }
+                    }else {
+                        contact = [FastAddressBook getContact:[NSString stringWithUTF8String:phone_addr]];
+                    }
+                }else {
+                    contact = [FastAddressBook getContact:phone];
+                }
+                
+                if (contact) {
+                    break;
+                }
+                
+                numbers = numbers->next;
+            }
+        }
+    }
+    return contact;
 }
 
 + (BOOL)isSipURI:(NSString *)address {
@@ -259,6 +281,115 @@
 		[_addressBookMap setObject:mContact forKey:([FastAddressBook normalizeSipURI:sip] ?: sip)];
 }
 
+/// Load Nethesis Contacts from remote phonebook.
+/// @param view Type of contacts to show. Can be:
+/// - person: to fetch only persons
+/// - company: to fetch only companies
+/// - all: to fetch all contacts
+/// @param term Term to search inside contact name.
+/// @param retry TO BE REMOVED: after a 401, login and retry one time.
+-(BOOL)loadNeth:(NSString *)view
+       withTerm:(NSString *)term {
+    
+    NSLog(@"loadNeth view: %@ withTerm: %@", view, term);
+
+    if (![NethCTIAPI.sharedInstance isUserAuthenticated]) {
+        // This method should send more error codes than one.
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:401], @"code", nil];
+        
+        [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
+                                                          object:self
+                                                        userInfo:dict];
+        return false;
+    }
+    
+    // Synchronize on this object to check if there's already an api call.
+    @synchronized (_addressBookMap) {
+        
+        if(_isLoading)
+            return false;
+        
+        _isLoading = YES;
+    }
+    
+    // Fetch contacts in a background thread. No more actions in this method are executed on main thread.
+    [NethCTIAPI.sharedInstance fetchContacts:view
+                                           t:term
+                                     success:^(NSArray<Contact *> * _Nonnull contacts) {
+        
+        @try {
+            
+            for (Contact *nethContact in contacts) {
+                
+                @synchronized(LinphoneManager.instance.fastAddressBook) {
+                    
+                    @synchronized(LinphoneManager.instance.fastAddressBook.addressBookMap) {
+                        
+                        [LinphoneManager.instance.fastAddressBook registerAddrsFor:nethContact];
+                    }
+                }
+            }
+            // Mark contact as updated if loaded are more than 0.
+            [LinphoneManager.instance setContactsUpdated:TRUE];
+            
+        } @catch (NSException *exception) {
+            
+            LOGE(@"[FastAddressBook] Exception thrown while loading Neth results: %s", exception.description);
+            
+        } @finally {
+            
+            // Release the block on loading action before exit callback.
+            @synchronized (_addressBookMap) {
+                _isLoading = NO;
+            }
+            
+            [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneAddressBookUpdate
+                                                              object:self];
+        }
+        
+    }errorHandler:^(NSInteger code, NSString * _Nullable string) {
+        
+        // [LinphoneManager.instance clearProxies];
+        @try {
+            // Show error message.
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithLong:code], @"code",
+                                  string, @"message",
+                                  nil];
+            [NSNotificationCenter.defaultCenter postNotificationName:kNethesisPhonebookPermissionRejection
+                                                              object:self
+                                                            userInfo:dict];
+            
+        } @catch (NSException *exception) {
+            
+            LOGE(@"[FastAddressBook] Exception thrown while error handling Neth results: %s", exception.description);
+            
+        } @finally {
+            
+            // Release the block on loading action before exit callback.
+            @synchronized (_addressBookMap) {
+                
+                _isLoading = NO;
+            }
+        }
+        
+    }];
+    
+    return true;
+}
+
+- (void) resetNeth {
+    
+    [_addressBookMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * _Nonnull stop) {
+        if (((Contact*) obj).nethesis == YES) {
+            [_addressBookMap removeObjectForKey:key];
+        }
+    }];
+    
+    [NethPhoneBook.instance reset];
+}
+
 #pragma mark - Tools
 
 + (NSString *)localizedLabel:(NSString *)label {
@@ -318,24 +449,30 @@
 }
 
 + (NSString *)displayNameForAddress:(const LinphoneAddress *)addr {
-	Contact *contact = [FastAddressBook getContactWithAddress:addr];
-	if (contact && ![contact.displayName isEqualToString:NSLocalizedString(@"Unknown", nil)])
-		return [FastAddressBook displayNameForContact:contact];
-
-	LinphoneFriend *friend = linphone_core_find_friend(LC, addr);
-	if (friend)
-		return [NSString stringWithUTF8String:linphone_friend_get_name(friend)];
-
-	const char *displayName = linphone_address_get_display_name(addr);
-	if (displayName)
-		return [NSString stringWithUTF8String:displayName];
-
-	const char *userName = linphone_address_get_username(addr);
-	if (userName)
-			return [NSString stringWithUTF8String:userName];
-
-	return NSLocalizedString(@"Unknown", nil);
+    return [self displayNameForAddress:addr fromFriendsOnly:NO];
 }
+
++ (NSString *)displayNameForAddress:(const LinphoneAddress *)addr fromFriendsOnly:(BOOL)only {
+    
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    if (contact && !only)
+        return [FastAddressBook displayNameForContact:contact];
+
+    LinphoneFriend *friend = linphone_core_find_friend(LC, addr);
+    if (friend)
+        return [NSString stringWithUTF8String:linphone_friend_get_name(friend)];
+
+    const char *displayName = linphone_address_get_display_name(addr);
+    if (displayName)
+        return [NSString stringWithUTF8String:displayName];
+
+    const char *userName = linphone_address_get_username(addr);
+    if (userName)
+        return [NSString stringWithUTF8String:userName];
+
+    return NSLocalizedString(@"Unknown", nil);
+}
+
 
 
 - (CNContact *)getCNContactFromContact:(Contact *)acontact {

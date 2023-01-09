@@ -1,0 +1,92 @@
+/* 
+  NethLocalizable.strings
+  linphone
+
+  Created by Wedo on 09/04/2020.
+  
+*/
+
+/*
+ * Others.
+ */
+
+"Cancel" = "Cancel";
+
+"Confirm" = "Confirm";
+
+/*
+ * Assistant Strings.
+ */
+
+"AUTHENTICATE-HEADER-MISSING" = "Bad credentials, please check them and retry.";
+
+"No user information provided, contact an administrator." = "No user information provided, contact an administrator.";
+
+"Error while reading the QRCODE." = "Error while reading the QRCODE.";
+
+/*
+ * Phonebook strings.
+ */
+
+"Session expired. To see contacts you need to logout and login again." = "Session expired. To see contacts you need to logout and login again.";
+
+"Unknown authentication error. Contact your system administrator with a %ld error code." = "Unknown authentication error. Contact your system administrator with a %ld error code.";
+
+"Network connection unavailable" = "Network connection unavailable";
+
+/*
+ * Phonebook filters.
+ */
+
+"company" = "Company";
+
+"all" = "All";
+
+"person" = "Person";
+
+/*
+ * Contact details.
+ */
+
+/* No comment provided by engineer. */
+"Extension" = "Extension";
+
+"Company" = "Company";
+
+"Home address" = "Home address";
+
+"Home city" = "Home city";
+
+"Home state" = "Home state";
+
+"Home country" = "Home country";
+
+"Home pob" = "Home pob";
+
+"Home Postal Code" = "Home Postal Code";
+
+"Notes" = "Notes";
+
+"Created by" = "Created by";
+
+"Source" = "Source";
+
+"SpeeddialNum" = "Speeddial Number";
+
+"Title" = "Job";
+
+"Type" = "Type";
+
+"Url" = "Url";
+
+"Work address" = "Work address";
+
+"Work city" = "Work city";
+
+"Work state" = "Work state";
+
+"Work country" = "Work country";
+
+"Work pob" = "Work pob";
+
+"Work Postal Code" = "Work Postal Code";

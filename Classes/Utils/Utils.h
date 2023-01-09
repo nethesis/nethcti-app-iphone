@@ -98,8 +98,16 @@ typedef enum {
 
 @interface ContactDisplay : NSObject
 + (void)setDisplayNameLabel:(UILabel *)label forContact:(Contact *)contact;
++ (void)setOrganizationLabel:(UILabel *)label forContact: (Contact *)contact;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel;
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel fromFriendsOnly:(BOOL)only;
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact;
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image;
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name;
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name forImage:(const UIImageView *) image;
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr;
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr forImage:(const UIImageView *) image;
 @end
 
 #import <UIKit/UIColor.h>
@@ -154,3 +162,17 @@ typedef enum {
 		return [[super initWithFrame:frame] commonInit];                                                               \
 	}                                                                                                                  \
 	INIT_WITH_COMMON_C
+
+#define kKeyOnline @"online"
+#define kKeyBusy @"busy"
+#define kKeyRinging @"ringing"
+#define kKeyOffline @"offline"
+#define kKeyCellphone @"cellphone"
+#define kKeyVoicemail @"voicemail"
+#define kKeyDnd @"dnd"
+#define kKeyCallforward @"callforward"
+#define kKeyRecallOnBusyDisabled @"disabled"
+#define kKeyRecallOnBusyEnabled @"enabled"
+#define kKeyDisconnesso @"disconnesso"
+#define kKeyPreferiti @"favorites_username_presence"
+#define kKeyIdGroup @"id_group_presence"

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresenceViewController">
+            <connections>
+                <outlet property="ibPresenceTableViewCell" destination="KGk-i7-Jjw" id="YIq-wD-LK8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="idPresenceTableViewCell" rowHeight="80" id="KGk-i7-Jjw" customClass="PresenceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWd-JN-BNm" userLabel="View - Status">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="706-e5-gfI" userLabel="Image View - BordoStatus">
+                                <rect key="frame" x="14.600000000000023" y="15.400000000000091" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q35-e4-Vhb" userLabel="Image View - SfondoLabelIniziali">
+                                <rect key="frame" x="17.5" y="18" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="SfondoButtons"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNw-Go-ANJ" userLabel="Label - Iniziali">
+                                <rect key="frame" x="17.799999999999955" y="18.200000000000045" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="21"/>
+                                <color key="textColor" name="ColorFontIniziali"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_offline" translatesAutoresizingMaskIntoConstraints="NO" id="6iR-jD-jha" userLabel="Image View - Status">
+                                <rect key="frame" x="46" y="46" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="ZWi-M0-Ri4"/>
+                            <constraint firstAttribute="width" constant="80" id="zdc-hD-AGy"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcv-QT-C9F" userLabel="Label - Name">
+                        <rect key="frame" x="96" y="16" width="144" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                        <color key="textColor" name="ColorFontIniziali"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-a5-cWI" userLabel="View - StatusPresence">
+                        <rect key="frame" x="96" y="43.5" width="25.5" height="18"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMD-hJ-ygw" userLabel="Label - Status">
+                                <rect key="frame" x="3" y="2" width="19.5" height="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="ColorStatusPresenceOffline"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LMD-hJ-ygw" secondAttribute="trailing" constant="3" id="62B-pn-htK"/>
+                            <constraint firstAttribute="height" constant="18" id="FBp-UG-JdL"/>
+                            <constraint firstAttribute="bottom" secondItem="LMD-hJ-ygw" secondAttribute="bottom" constant="2" id="FG8-fW-Ns7"/>
+                            <constraint firstItem="LMD-hJ-ygw" firstAttribute="leading" secondItem="VsM-a5-cWI" secondAttribute="leading" constant="3" id="iY0-cU-9CO"/>
+                            <constraint firstItem="LMD-hJ-ygw" firstAttribute="top" secondItem="VsM-a5-cWI" secondAttribute="top" constant="2" id="veb-te-CoW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2t-3Z-E1H" userLabel="Button - VisualizzaAzioni">
+                        <rect key="frame" x="250" y="15" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="0yT-VJ-l9h"/>
+                            <constraint firstAttribute="width" constant="50" id="Txs-oS-h5y"/>
+                        </constraints>
+                        <state key="normal" image="icn_azioni"/>
+                        <connections>
+                            <action selector="ibaVisualizzaAzioni:" destination="-1" eventType="touchUpInside" id="YTm-Ra-lSU"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VsM-a5-cWI" firstAttribute="top" secondItem="Pcv-QT-C9F" secondAttribute="bottom" constant="4" id="1jj-vG-ezW"/>
+                    <constraint firstItem="Pcv-QT-C9F" firstAttribute="leading" secondItem="LWd-JN-BNm" secondAttribute="trailing" constant="16" id="5g9-0A-wiZ"/>
+                    <constraint firstAttribute="bottom" secondItem="VsM-a5-cWI" secondAttribute="bottom" constant="6" id="9Sd-PU-ksO"/>
+                    <constraint firstItem="Pcv-QT-C9F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Hlx-s2-sZ6"/>
+                    <constraint firstItem="LWd-JN-BNm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="OVi-bI-e5p"/>
+                    <constraint firstItem="x2t-3Z-E1H" firstAttribute="leading" secondItem="Pcv-QT-C9F" secondAttribute="trailing" constant="10" id="aTB-m8-Ceo"/>
+                    <constraint firstAttribute="trailing" secondItem="x2t-3Z-E1H" secondAttribute="trailing" constant="20" symbolic="YES" id="acz-2e-6Je"/>
+                    <constraint firstAttribute="bottom" secondItem="x2t-3Z-E1H" secondAttribute="bottom" constant="10" id="gjE-lp-jOD"/>
+                    <constraint firstItem="LWd-JN-BNm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rnG-FI-Roj"/>
+                    <constraint firstAttribute="bottom" secondItem="LWd-JN-BNm" secondAttribute="bottom" id="tEF-Yd-w4E"/>
+                    <constraint firstItem="x2t-3Z-E1H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="uOe-Lx-2yc"/>
+                    <constraint firstItem="VsM-a5-cWI" firstAttribute="leading" secondItem="LWd-JN-BNm" secondAttribute="trailing" constant="16" id="xbq-fL-3wd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="ibButtonVisualizzaAzioni" destination="x2t-3Z-E1H" id="Y7K-ZR-HOD"/>
+                <outlet property="ibImageViewBordoStatus" destination="706-e5-gfI" id="091-M7-S70"/>
+                <outlet property="ibImageViewStatus" destination="6iR-jD-jha" id="57U-gQ-jAc"/>
+                <outlet property="ibLabelIniziali" destination="sNw-Go-ANJ" id="7s5-bv-tBN"/>
+                <outlet property="ibLabelName" destination="Pcv-QT-C9F" id="pa0-tL-KAK"/>
+                <outlet property="ibLabelStatus" destination="LMD-hJ-ygw" id="1sr-01-yxb"/>
+                <outlet property="ibViewSfondoLabelStatus" destination="VsM-a5-cWI" id="I7q-Pu-7au"/>
+            </connections>
+            <point key="canvasLocation" x="-407.24637681159425" y="130.58035714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icn_azioni" width="50" height="50"/>
+        <image name="icn_offline" width="36" height="36"/>
+        <namedColor name="ColorFontIniziali">
+            <color red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorStatusPresenceOffline">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SfondoButtons">
+            <color red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

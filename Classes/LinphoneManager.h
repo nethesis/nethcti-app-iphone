@@ -69,6 +69,9 @@ extern NSString *const kLinphoneMagicSearchFinished;
 
 extern NSString *const kLinphoneMsgNotificationAppGroupId;
 
+// Nethesis Notification Identifiers.
+extern NSString *const kNethesisPhonebookPermissionRejection;
+
 typedef enum _NetworkType {
     network_none = 0,
     network_2g,

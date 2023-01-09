@@ -38,9 +38,34 @@
 @property BOOL createdFromLdap;
 @property BOOL added;
 
+// Nethesis fields.
+@property(nonatomic, retain) NSString *fax;
+@property(nonatomic, retain) NSString *company;
+@property(nonatomic, retain) NSString *homeLocationAddress;
+@property(nonatomic, retain) NSString *homeLocationCity;
+@property(nonatomic, retain) NSString *homeLocationState;
+@property(nonatomic, retain) NSString *homeLocationCountry;
+@property(nonatomic, retain) NSString *homePob;
+@property(nonatomic, retain) NSString *homePostalCode;
+@property(nonatomic, retain) NSString *notes;
+@property(nonatomic, retain) NSString *ownerId;
+@property(nonatomic, retain) NSString *source;
+@property(nonatomic, retain) NSString *speeddialNum;
+@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *type;
+@property(nonatomic, retain) NSString *url;
+@property(nonatomic, retain) NSString *workLocationAddress;
+@property(nonatomic, retain) NSString *workLocationCity;
+@property(nonatomic, retain) NSString *workLocationState;
+@property(nonatomic, retain) NSString *workLocationCountry;
+@property(nonatomic, retain) NSString *workPob;
+@property(nonatomic, retain) NSString *workPostalCode;
+@property BOOL nethesis;
+
 - (void)setAvatar:(UIImage *)avatar;
 - (UIImage *)avatar;
 - (NSString *)displayName;
+- (NSString *)displayCompany;
 
 - (instancetype)initWithCNContact:(CNContact *)contact;
 - (instancetype)initWithFriend:(LinphoneFriend *) friend;

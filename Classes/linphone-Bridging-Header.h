@@ -5,6 +5,7 @@
 
 
 #import <UIKit/UIkit.h>
+#import <CommonCrypto/CommonCrypto.h>
 #import "FastAddressBook.h"
 #import "LinphoneManager.h"
 #import "Log.h"
@@ -16,4 +17,3 @@
 #import "UICamSwitch.h"
 #import "UIChatBubbleTextCell.h"
 #import "ChatConversationTableView.h"
-

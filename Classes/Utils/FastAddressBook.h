@@ -27,8 +27,11 @@
 
 @property(readonly, nonatomic) NSMutableDictionary *addressBookMap;
 @property BOOL needToUpdate;
+@property(atomic) BOOL isLoading;
 
 - (void)fetchContactsInBackGroundThread;
+- (BOOL)loadNeth:(NSString *)view withTerm:(NSString *)term;
+- (void)resetNeth;
 - (BOOL)deleteContact:(Contact *)contact;
 - (BOOL)deleteCNContact:(CNContact *)CNContact;
 - (BOOL)deleteAllContacts;
@@ -45,6 +48,7 @@
 // TOOLS
 
 + (Contact *)getContactWithAddress:(const LinphoneAddress *)address;
++ (Contact *)getContactWithAddress:(const LinphoneAddress *)address fromFriendsOnly:(BOOL)only;
 - (CNContact *)getCNContactFromContact:(Contact *)acontact;
 
 + (UIImage *)imageForContact:(Contact *)contact;
@@ -56,6 +60,7 @@
 
 + (NSString *)displayNameForContact:(Contact *)person;
 + (NSString *)displayNameForAddress:(const LinphoneAddress *)addr;
++ (NSString *)displayNameForAddress:(const LinphoneAddress *)addr fromFriendsOnly:(BOOL)only;
 
 + (BOOL)isSipURI:(NSString *)address;
 + (BOOL)isSipAddress:(CNLabeledValue<CNInstantMessageAddress *> *)sipAddr;

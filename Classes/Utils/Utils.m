@@ -620,63 +620,142 @@
 @implementation ContactDisplay
 
 + (void)setDisplayNameLabel:(UILabel *)label forContact:(Contact *)contact {
-	label.text = [FastAddressBook displayNameForContact:contact];
+    label.text = [FastAddressBook displayNameForContact:contact];
 #if 0
-	NSString *lLastName = CFBridgingRelease(ABRecordCopyValue(contact, kABPersonLastNameProperty));
-	NSString *lLocalizedLastName = [FastAddressBook localizedLabel:lLastName];
-	if (lLocalizedLastName) {
-		[label boldSubstring:lLocalizedLastName];
-	}
+    NSString *lLastName = CFBridgingRelease(ABRecordCopyValue(contact, kABPersonLastNameProperty));
+    NSString *lLocalizedLastName = [FastAddressBook localizedLabel:lLastName];
+    if (lLocalizedLastName) {
+        [label boldSubstring:lLocalizedLastName];
+    }
 #endif
 }
 
 + (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr {
-	
-	const LinphoneConferenceInfo * ci = linphone_core_find_conference_information_from_uri(LC, (LinphoneAddress *)addr);
-	if (ci != nil)  {
-		label.text = [NSString stringWithUTF8String:linphone_conference_info_get_subject(ci)];
-		return;
-	}
-	
-	Contact *contact = [FastAddressBook getContactWithAddress:addr];
-	if (contact) {
-		[ContactDisplay setDisplayNameLabel:label forContact:contact];
-	} else {
-		label.text = [FastAddressBook displayNameForAddress:addr];
-	}
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    if (contact) {
+        [ContactDisplay setDisplayNameLabel:label forContact:contact];
+    } else {
+        label.text = [FastAddressBook displayNameForAddress:addr];
+    }
 }
 
-+ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel{
-	
-	const LinphoneConferenceInfo * ci = linphone_core_find_conference_information_from_uri(LC, (LinphoneAddress *)addr);
-	if (ci != nil)  {
-		label.text = [NSString stringWithUTF8String:linphone_conference_info_get_subject(ci)];
-		addressLabel.text = NSLocalizedString(@"Conference",nil);
-		return;
-	}
-	
-	Contact *contact = [FastAddressBook getContactWithAddress:addr];
-	NSString *tmpAddress = nil;
-	char *uri = linphone_address_as_string_uri_only(addr);
-	if (contact) {
-		[ContactDisplay setDisplayNameLabel:label forContact:contact];
-		tmpAddress = [NSString stringWithUTF8String:uri];
-		addressLabel.hidden = FALSE;
-	} else {
-		label.text = [FastAddressBook displayNameForAddress:addr];
-		if([LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"])
-			addressLabel.hidden = TRUE;
-		else
-			tmpAddress = [NSString stringWithUTF8String:uri];
-	}
-	ms_free(uri);
-	NSRange range = [tmpAddress rangeOfString:@";"];
-	if (range.location != NSNotFound) {
-		tmpAddress = [tmpAddress substringToIndex:range.location];
-	}
-	addressLabel.text = tmpAddress;
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel {
+    [self setDisplayNameLabel:label forAddress:addr withAddressLabel:addressLabel fromFriendsOnly:NO];
 }
 
++ (void)setDisplayNameLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr withAddressLabel:(UILabel*)addressLabel fromFriendsOnly:(BOOL)only {
+    Contact *contact = [FastAddressBook getContactWithAddress:addr fromFriendsOnly:only];
+    if (contact) {
+        [ContactDisplay setDisplayNameLabel:label forContact:contact];
+    } else {
+        label.text = [FastAddressBook displayNameForAddress:addr fromFriendsOnly:YES];
+    }
+    
+    const bool display_phone_only = [LinphoneManager.instance lpConfigBoolForKey:@"display_phone_only" inSection:@"app"];
+    if(display_phone_only) {
+        addressLabel.hidden = YES;
+        return;
+    }
+    
+    addressLabel.hidden = NO;
+    NSString *tmpAddress = [NSString stringWithUTF8String:linphone_address_as_string_uri_only(addr)];
+    NSRange range = [tmpAddress rangeOfString:@";"];
+    if (range.location != NSNotFound) {
+        tmpAddress = [tmpAddress substringToIndex:range.location];
+    }
+    NSRange at = [tmpAddress rangeOfString:@"@"]; // TODO: Hide ip address in sip address in call outgoing view.
+    addressLabel.text = tmpAddress;
+}
+
++ (void)setOrganizationLabel: (UILabel *)label forContact: (Contact *)contact{
+    label.text = contact.company;
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name {
+    if (name.length > 0){
+        
+        NSArray *names = [name componentsSeparatedByString: @" "];
+        int max = names.count > 2 ? 2 : (int)names.count;
+        
+        NSMutableString *resultString = [[NSMutableString alloc] initWithString:@""];
+
+        for (int i = 0; i < max; i++) {
+            NSString *asd = [names objectAtIndex:i];
+            if (asd.length > 0){
+                [resultString appendString:[asd substringToIndex:1].uppercaseString];
+            }
+        }
+        
+        label.text = resultString;
+    } else {
+        label.text = @"";
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forName:(NSString *)name forImage:(const UIImageView *) image{
+    if (name.length > 0){
+        
+        NSArray *names = [name componentsSeparatedByString: @" "];
+        int max = names.count > 2 ? 2 : (int)names.count;
+        
+        NSMutableString *resultString = [[NSMutableString alloc] initWithString:@""];
+
+        for (int i = 0; i < max; i++) {
+            NSString *asd = [names objectAtIndex:i];
+            if (asd.length > 0){
+                [resultString appendString:[asd substringToIndex:1].uppercaseString];
+            }
+        }
+        
+        label.text = resultString;
+        // [image setImage:[UIImage imageNamed:@"nethcti_grey_circle.png"]];
+
+    } else {
+        label.text = @"";
+        [image setImage:[UIImage imageNamed:@"avatar.png"]];
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact {
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
+    } else {
+        label.text = @"";
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forContact:(Contact *)contact forImage:(const UIImageView *) image{
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forName:contact.displayName];
+        if (![contact.displayName isEqual: @""]){
+            [image setImage:[UIImage imageNamed:@"nethcti_avatar_call.png"]];
+            return;
+        }
+    }
+    label.text = @"";
+    [image setImage:[UIImage imageNamed:@"avatar.png"]];
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr {
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forContact:contact];
+    } else {
+        [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr]];
+    }
+}
+
++ (void)setDisplayInitialsLabel:(UILabel *)label forAddress:(const LinphoneAddress *)addr forImage:(const UIImageView *) image{
+    Contact *contact = [FastAddressBook getContactWithAddress:addr];
+    
+    if (contact) {
+        [ContactDisplay setDisplayInitialsLabel:label forContact:contact forImage:image];
+    } else {
+        [ContactDisplay setDisplayInitialsLabel:label forName:[FastAddressBook displayNameForAddress:addr] forImage:image];
+    }
+    
+}
 
 @end
 
@@ -969,6 +1048,5 @@ static NSMutableDictionary *letterColors = nil;
     
     return imgRef;
 }
-
 
 @end

@@ -23,6 +23,7 @@
 #import "AssistantLinkView.h"
 #import "UITextField+DoneButton.h"
 #import "UIAssistantTextField.h"
+#import "linphoneapp-Swift.h"
 
 @implementation AssistantLinkView {
 	LinphoneAccountCreator *account_creator;

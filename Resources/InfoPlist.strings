@@ -1,0 +1,23 @@
+/* 
+  InfoPlist.strings
+  linphone
+
+  Created by Administrator on 25/09/2020.
+  
+*/
+
+"NSBluetoothPeripheralUsageDescription" = "Use your BT headset";
+
+"NSCameraUsageDescription" = "Share photos with your friends and customize avatars";
+
+"NSContactsUsageDescription" = "Make calls with your friends, we don't send your contacts to any server.";
+
+"NSLocationWhenInUseUsageDescription" = "${PRODUCT_NAME} will not use, store or communicate your location. The authorization allows us to detect Wifi connection changes.";
+
+"NSMicrophoneUsageDescription" = "Use microphone to make audio calls";
+
+"NSPhotoLibraryAddUsageDescription" = "Add tranfered files to your library";
+
+"NSPhotoLibraryUsageDescription" = "Share photos with your friends and customize avatars";
+
+"NSVoIPUsageDescription" = "Make audio/video calls with sip protocol";

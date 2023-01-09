@@ -161,6 +161,10 @@
 	return NSLocalizedString(@"Unknown", nil);
 }
 
+- (NSString *)displayCompany {
+    return [[NSString alloc] initWithFormat:@"%@ %@", _company, _title];
+}
+
 #pragma mark - Setters
 
 - (void)setAvatar:(UIImage *)avatar {
