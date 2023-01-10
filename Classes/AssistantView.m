@@ -43,7 +43,9 @@ typedef enum _ViewElement {
 	ViewElement_TextFieldCount = ViewElement_PhoneCC - 100 + 1,
 	ViewElement_Transport = 110,
 	ViewElement_Username_Label = 120,
-	ViewElement_NextButton = 130,
+	
+    ViewElement_NextButton = 130,
+    ViewElement_QrCodeButton = 131,
 
 	ViewElement_PhoneButton = 150,
 
@@ -129,7 +131,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 		new_account = NULL;
 		number_of_accounts_before = bctbx_list_size(linphone_core_get_account_list(LC));
 		[self resetTextFields];
-		[self changeView:_welcomeView back:FALSE animation:FALSE];
+		[self changeView:_loginView back:FALSE animation:FALSE];
 	}
 	mustRestoreView = NO;
 	_outgoingView = DialerView.compositeViewDescription;
@@ -152,11 +154,53 @@ static UICompositeViewDescription *compositeDescription = nil;
 	_acceptText.attributedText = attributedString;
 	_acceptText.editable = NO;
 	_acceptText.delegate = self;
+    
+    [self styleContent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	[NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void)styleContent {
+    
+    [self setStyleForField:ViewElement_Domain];
+    [self setStyleForField:ViewElement_Username];
+    [self setStyleForField:ViewElement_Password];
+    [self setStyleForButton:ViewElement_NextButton];
+    [self setStyleForButton:ViewElement_QrCodeButton];
+    
+    
+    UIImage *loginImage = [[UIImage imageNamed:@"login.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [[self findButton:ViewElement_NextButton] setImage:loginImage forState:UIControlStateNormal];
+    
+    UIImage *qrImage = [[UIImage imageNamed:@"qr.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [[self findButton:ViewElement_QrCodeButton] setImage:qrImage forState:UIControlStateNormal];
+}
+
+- (void)setStyleForField:(ViewElement)field {
+    
+    UIAssistantTextField *assistantTextField = [self findTextField:field];
+    if (assistantTextField != nil) {
+        [assistantTextField style];
+    }
+}
+
+- (void)setStyleForButton:(ViewElement)field {
+    UIRoundBorderedButton *button = [self findButton:field];
+    if(button != nil) {
+        // TODO: Change to NETHCTI_DARK_GRAY.
+        UIColor *grey;
+        if (@available(iOS 11.0, *)) {
+            grey = [UIColor colorNamed: @"iconTint"];
+        } else {
+            grey = [UIColor color:@"Grey"];
+        }
+        [button setTintColor:grey];
+        button.titleLabel.textColor = [UIColor clearColor];
+        [button.layer setCornerRadius:36.f];
+    }
 }
 
 - (void)fitContent {
@@ -225,7 +269,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)reset {
 	[LinphoneManager.instance removeAllAccounts];
 	[self resetTextFields];
-	[self changeView:_welcomeView back:FALSE animation:FALSE];
+	[self changeView:_loginView back:FALSE animation:FALSE];
 	_waitView.hidden = TRUE;
 }
 
@@ -624,6 +668,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 		}
 		[_contentView.layer addAnimation:trans forKey:@"Transition"];
 	}
+    
+    if(currentView == _loginView) {
+        [self styleContent];
+    }
 
 	// Stack current view
 	if (currentView != nil) {
@@ -1497,72 +1545,184 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 	});
 }
 
+-(void)performLogin:(PortableNethUser*)meUser domain:(NSString*)domain {
+    [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, domain] waitUntilDone:YES];
+}
+
 - (IBAction)onLoginClick:(id)sender {
-	ONCLICKBUTTON(sender, 100, {
-		_waitView.hidden = NO;
-		NSString *domain = [self findTextField:ViewElement_Domain].text;
-		NSString *username = [self findTextField:ViewElement_Username].text;
-		NSString *displayName = [self findTextField:ViewElement_DisplayName].text;
-		NSString *pwd = [self findTextField:ViewElement_Password].text;
-		LinphoneAccountParams *accountParams =  linphone_core_create_account_params(LC);
-		LinphoneAddress *addr = linphone_address_new(NULL);
-		LinphoneAddress *tmpAddr = linphone_address_new([NSString stringWithFormat:@"sip:%@",domain].UTF8String);
-		if (tmpAddr == nil) {
-			[self displayAssistantConfigurationError];
-			return;
-		}
-		
-		linphone_address_set_username(addr, username.UTF8String);
-		linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
-		linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
-		if (displayName && ![displayName isEqualToString:@""]) {
-			linphone_address_set_display_name(addr, displayName.UTF8String);
-		}
-		
-		linphone_account_params_set_identity_address(accountParams, addr);
-		// set transport
-		UISegmentedControl *transports = (UISegmentedControl *)[self findView:ViewElement_Transport
-																	   inView:self.contentView
-																	   ofType:UISegmentedControl.class];
-		if (transports) {
-			NSString *type = [transports titleForSegmentAtIndex:[transports selectedSegmentIndex]];
-			LinphoneAddress *transportAddr = linphone_address_new([NSString stringWithFormat:@"sip:%s;transport=%s", domain.UTF8String, type.lowercaseString.UTF8String].UTF8String);
-			linphone_account_params_set_routes_addresses(accountParams, bctbx_list_new(transportAddr));
-			linphone_account_params_set_server_addr(accountParams, [NSString stringWithFormat:@"%s;transport=%s", domain.UTF8String, type.lowercaseString.UTF8String].UTF8String);
-			
-			linphone_address_unref(transportAddr);
-		}
-		linphone_account_params_set_publish_enabled(accountParams, FALSE);
-		linphone_account_params_set_register_enabled(accountParams, TRUE);
-		
-		LinphoneAuthInfo *info =
-			linphone_auth_info_new(linphone_address_get_username(addr), // username
-								   NULL,								// user id
-								   pwd.UTF8String,						// passwd
-								   NULL,								// ha1
-								   linphone_address_get_domain(addr),   // realm - assumed to be domain
-								   linphone_address_get_domain(addr)	// domain
-								   );
-		linphone_core_add_auth_info(LC, info);
-		linphone_address_unref(addr);
-		linphone_address_unref(tmpAddr);
-		
-		LinphoneAccount *account = linphone_core_create_account(LC, accountParams);
-		linphone_account_params_unref(accountParams);
-		if (account) {
-			if (linphone_core_add_account(LC, account) != -1) {
-				linphone_core_set_default_account(LC, account);
-				// reload address book to prepend proxy config domain to contacts' phone number
-				// todo: STOP doing that!
-				[[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
-                [PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
-			} else {
-			  [self displayAssistantConfigurationError];
-			}
-		} else {
-		  [self displayAssistantConfigurationError];
-		}
-	});
+    ONCLICKBUTTON(sender, 100, {
+        
+        _waitView.hidden = NO;
+        NSString* domain = [NSString stringWithUTF8String:[self findTextField:ViewElement_Domain].text.UTF8String];
+        NSString* username = [NSString stringWithUTF8String:[self findTextField:ViewElement_Username].text.UTF8String];
+        NSString* pwd = [NSString stringWithUTF8String:[self findTextField:ViewElement_Password].text.UTF8String];
+        
+        NethCTIAPI* api = [NethCTIAPI sharedInstance];
+        [api postLogin:username password:pwd domain:domain successHandler:^(NSString * _Nullable digest) {
+            [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+                [self performLogin:meUser domain:domain];
+            } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                // Get me error handling.
+                LOGE(@"API_ERROR: %@", string);
+                [self performSelectorOnMainThread:@selector(showErrorController:)
+                                       withObject:string
+                                    waitUntilDone:YES];
+            }];
+        } errorHandler:^(NSInteger code, NSString * _Nullable string) {
+            // Post login error handling.
+            [self performSelectorOnMainThread:@selector(showErrorController:)
+                                   withObject:string
+                                waitUntilDone:YES];
+        }];
+        
+    });
+}
+
+- (void)showErrorController:(NSString * _Nonnull)message completion:(void (^)(void))completion {
+    
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Connection failure", nil)
+                                                                     message:NSLocalizedStringFromTable(message, @"NethLocalizable", nil)
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [errView addAction:defaultAction];
+    
+    [self presentViewController:errView animated:YES completion:completion];
+}
+
+
+- (void)showErrorController:(NSString*)error {
+    
+    return [self showErrorController:error completion:nil];
+}
+
+- (void)exLinphoneLogin:(NSArray*)objs {
+    
+    PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
+    NSString *domain = (NSString*)[objs objectAtIndex:1];
+    NSString *intern = [meUser intern];
+    //NSLog(@"intern: %@", intern);
+    NSString *secret = [meUser secret];
+    //NSLog(@"secret: %@", secret);
+
+    // From here the Username and Password became another things.
+    LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
+    LinphoneAddress *addr = linphone_address_new(NULL);
+    NSMutableString *address = [NSString stringWithFormat:@"sip:%@",domain].mutableCopy;
+    
+    // NethCTI Proxy Settings
+    linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
+    
+    if(meUser.proxyPort != -1) {
+        
+        [address appendString:[NSString stringWithFormat:@":%ld", (long)meUser.proxyPort]];
+        linphone_proxy_config_set_push_notification_allowed(config, YES); // Enable pushNotification flag.
+        linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], YES); // Enable Media Encryption Mandatory flag.
+        linphone_core_set_http_proxy_port([LinphoneManager getLc], (int) meUser.proxyPort); // Set core proxy port.
+        linphone_proxy_config_set_expires(config, 2678400); // Set Expiration Time from proxy values.
+        
+    } else {
+        
+        linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], NO); // Disable pushNotification flag.
+        linphone_proxy_config_set_push_notification_allowed(config, NO); // Disable Media Encryption Mandatory flag.
+        linphone_proxy_config_set_expires(config, 3600); // Set Expiration Time from proxy values.
+    }
+    
+    LinphoneAddress *tmpAddr = linphone_address_new(address.UTF8String);
+    if (tmpAddr == nil) {
+        [self displayAssistantConfigurationError];
+        return;
+    }
+    
+    linphone_address_set_username(addr, intern.UTF8String);
+    linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
+    linphone_address_set_display_name(addr, [meUser name].UTF8String);
+    linphone_proxy_config_set_identity_address(config, addr);
+    linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
+    
+    NSString *type = @"TLS";
+    char *fullAddr = ms_strdup([NSString stringWithFormat:@"%s;transport=%s", address.UTF8String, type.lowercaseString.UTF8String].UTF8String);
+    linphone_proxy_config_set_route(config, fullAddr);
+    linphone_proxy_config_set_server_addr(config, fullAddr);
+    
+    linphone_proxy_config_enable_publish(config, FALSE);
+    linphone_proxy_config_enable_register(config, TRUE);// abilita proxy
+    
+    LinphoneAuthInfo *info =
+    linphone_auth_info_new(linphone_address_get_username(addr), // username
+                           linphone_address_get_username(addr), // user id
+                           secret.UTF8String,                   // passwd
+                           NULL,                                // ha1
+                           linphone_address_get_domain(addr),   // realm - assumed to be domain
+                           linphone_address_get_domain(addr)    // domain
+                           );
+    linphone_core_add_auth_info(LC, info);
+    linphone_address_unref(addr);
+    linphone_address_unref(tmpAddr);
+    
+    if (config) {
+        
+        [[LinphoneManager instance] configurePushTokenForProxyConfig:config];
+        
+        if (linphone_core_add_proxy_config(LC, config) != -1) {
+            // set boolean
+            [[LinphoneManager instance] lpConfigSetBool:YES forKey:@"hide_run_assistant_preference"];
+            linphone_core_set_default_proxy_config(LC, config);
+            
+            // Register for Voip Notifications like Linphone.
+            LinphoneAppDelegate* delegate = (LinphoneAppDelegate *)[[UIApplication sharedApplication] delegate];
+            [delegate registerForNotifications];
+            
+            [[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
+            
+            [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+            
+        } else {
+            
+            [self displayAssistantConfigurationError];
+        }
+        
+    } else {
+        
+        [self displayAssistantConfigurationError];
+    }
+    
+}
+
+- (IBAction)onLaunchQRCodeView:(id)sender {
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(qrCodeFound:) name:kLinphoneQRCodeFound object:nil];
+    LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
+    delegate.onlyPortrait = TRUE;
+    NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    //[UIViewController attemptRotationToDeviceOrientation];
+    AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+    if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
+        bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
+        NSMutableArray *devices = [NSMutableArray array];
+        
+        while (deviceList) {
+            char *data = deviceList->data;
+            if (data) [devices addObject:[NSString stringWithUTF8String:data]];
+            deviceList = deviceList->next;
+        }
+        bctbx_list_free(deviceList);
+        
+        for (NSString *device in devices) {
+            if ([device containsString:backCamera.uniqueID]) {
+                linphone_core_set_video_device(LC, device.UTF8String);
+            }
+        }
+    }
+    
+    linphone_core_set_native_preview_window_id(LC, (__bridge void *)(_qrCodeView));
+    linphone_core_enable_video_preview(LC, TRUE);
+    linphone_core_enable_qrcode_video_preview(LC, TRUE);
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(qrCodeFound:) name:kLinphoneQRCodeFound object:nil];
+    [self changeView:_qrCodeView back:FALSE animation:TRUE];
 }
 
 - (IBAction)onRemoteProvisioningLoginClick:(id)sender {
@@ -1593,49 +1753,6 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 			[self resetLiblinphone:TRUE];
 		}
     });
-}
-
-- (IBAction)onLaunchQRCodeView:(id)sender {
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(qrCodeFound:)
-                                               name:kLinphoneQRCodeFound
-                                             object:nil];
-    LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
-    delegate.onlyPortrait = TRUE;
-    NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    //[UIViewController attemptRotationToDeviceOrientation];
-    AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
-    if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
-        
-        bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
-        NSMutableArray *devices = [NSMutableArray array];
-        
-        while (deviceList) {
-            char *data = deviceList->data;
-            if (data) [devices addObject:[NSString stringWithUTF8String:data]];
-            deviceList = deviceList->next;
-        }
-        bctbx_list_free(deviceList);
-        
-        for (NSString *device in devices) {
-            if ([device containsString:backCamera.uniqueID]) {
-                linphone_core_set_video_device(LC, device.UTF8String);
-            }
-        }
-    }
-    
-    
-    linphone_core_set_native_preview_window_id(LC, (__bridge void *)(_qrCodeView));
-    linphone_core_enable_video_preview(LC, TRUE);
-    linphone_core_enable_qrcode_video_preview(LC, TRUE);
-    
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(qrCodeFound:)
-                                               name:kLinphoneQRCodeFound
-                                             object:nil];
-    
-    [self changeView:_qrCodeView back:FALSE animation:TRUE];
 }
 
 - (void)refreshYourUsername {

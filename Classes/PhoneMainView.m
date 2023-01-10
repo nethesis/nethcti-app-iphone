@@ -459,7 +459,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 		if (![[self currentView].name isEqualToString:@"ChatConversationView"]) {
 
 			if (linphone_core_get_global_state(LC) != LinphoneGlobalOn) {
-				[self changeCurrentView:DialerView.compositeViewDescription];
+				[self changeCurrentView:DashboardViewController.compositeViewDescription];
 			} else if ([LinphoneManager.instance lpConfigBoolForKey:@"enable_first_login_view_preference"] == true) {
 				[PhoneMainView.instance changeCurrentView:FirstLoginView.compositeViewDescription];
 			} else {
@@ -467,7 +467,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 				// Change to default view
 				const MSList *accountList = linphone_core_get_account_list(LC);
 				if (accountList != NULL || ([lm lpConfigBoolForKey:@"hide_assistant_preference"] == true) || lm.isTesting) {
-					[self changeCurrentView:DialerView.compositeViewDescription];
+					[self changeCurrentView:DashboardViewController.compositeViewDescription];
 				} else {
 					AssistantView *view = VIEW(AssistantView);
 					[PhoneMainView.instance	changeCurrentView:view.compositeViewDescription];

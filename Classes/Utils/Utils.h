@@ -128,6 +128,8 @@ typedef enum {
 
 +(UIColor *)color:(NSString *)letter;
 
++ (UIColor *)getColorByName:(NSString *)name;
+
 @end
 
 @interface UIImage (ForceDecode)

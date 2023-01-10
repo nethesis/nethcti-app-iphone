@@ -48,6 +48,7 @@
 #import "Utils.h"
 #import "LaunchScreen.h"
 #import "DevicesListView.h"
+#import "DashboardViewController.h"
 
 #define DYNAMIC_CAST(x, cls)                                                                                           \
 	({                                                                                                                 \
