@@ -220,6 +220,39 @@ import AVFoundation
 		providerDelegate.reportIncomingCall(call:call, uuid: uuid, handle: handle, hasVideo: hasVideo, displayName: displayName)
 		
 	}
+    
+    // From ios13, display the callkit view when the notification is received.
+    @objc func displayIncomingCall(callId: String) {
+        
+        let uuid = CallManager.instance().providerDelegate.uuids["\(callId)"]
+        
+        if (uuid != nil) {
+            
+            let callInfo = providerDelegate.callInfos[uuid!]
+            if (callInfo?.declined ?? false) {
+                // This call was declined.
+                providerDelegate.reportIncomingCall(call:nil, uuid: uuid!, handle: "Calling", hasVideo: true, displayName: callInfo?.displayName ?? "Calling")
+                providerDelegate.endCall(uuid: uuid!)
+            }
+            return
+        }
+        
+        let call = CallManager.instance().callByCallId(callId: callId)
+        
+        if (call != nil) {
+            
+            let displayName = FastAddressBook.displayName(for: call?.remoteAddress?.getCobject) ?? "Unknow"
+            let video = UIApplication.shared.applicationState == .active && (lc!.videoActivationPolicy?.automaticallyAccept ?? false) && (call!.remoteParams?.videoEnabled ?? false)
+            // Calllkit mostra tutti i dettagli della chiamata.
+            displayIncomingCall(call: call, handle: (call!.remoteAddress?.asStringUriOnly())!, hasVideo: video, callId: callId, displayName: displayName)
+            
+        }else {
+            //let video = UIApplication.shared.applicationState == .active && (lc?.videoActivationPolicy?.automaticallyAccept ?? false) && (call?.remoteParams?.videoEnabled ?? false)
+            
+            // Callkit mostra solo la chiamata ricevuta.
+            displayIncomingCall(call: nil, handle: "Calling", hasVideo: true, callId: callId, displayName: "Calling")
+        }
+    }
 
 	@objc func acceptCall(call: OpaquePointer?, hasVideo:Bool) {
 		if (call == nil) {

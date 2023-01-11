@@ -29,6 +29,7 @@ import os
 	var toAddr: Address?
 	var isOutgoing = false
 	var sasEnabled = false
+    var declined = false
 	var connected = false
 	var reason: Reason = Reason.None
 	var displayName: String?

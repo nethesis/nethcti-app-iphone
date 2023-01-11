@@ -355,8 +355,60 @@
     }
 
 	[PhoneMainView.instance.mainViewController getCachedController:ActiveCallOrConferenceView.compositeViewDescription.name]; // This will create the single instance of the ActiveCallOrConferenceView including listeneres
+    
+    [self setDefaultNethesis];
 	
 	return YES;
+}
+
+// Set default settings by Nethesis.
+- (void)setDefaultNethesis {
+    
+    // This may be a problem if user can set this settings.
+    LinphoneVideoPolicy policy;
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"it.nethesis.nethcti"];
+    
+    bool has_already_launched_once = [defaults valueForKey:@"has_already_launched_once"];
+    
+    if(!has_already_launched_once) {
+        
+        policy.automatically_initiate = NO; // Video start automatically.
+        policy.automatically_accept = NO; // Video accept automatically.
+        
+        linphone_core_set_video_policy(LC, &policy);
+        linphone_core_set_media_encryption(LC, LinphoneMediaEncryptionSRTP); // Set media enc to SRTP.
+        
+        [defaults setBool:YES forKey:@"has_already_launched_once"];
+    }
+    
+    // Bugfix sip address visualization.
+    [LinphoneManager.instance lpConfigSetBool:YES forKey:@"display_phone_only" inSection:@"app"];
+    
+    int last_version_used = [defaults valueForKey:@"last_version_used"];
+    
+    if(last_version_used < 1) {
+        
+        const bool cred = [ApiCredentials checkCredentials];
+        const bool main_ext = [ApiCredentials.MainExtension isEqualToString:@""];
+        
+        // Get info only if authenticated without main extension.
+        if(cred && main_ext) {
+            
+            [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+                
+                const int expire = meUser.proxyPort != -1 ? 2678400 : 3600;
+                const size_t l = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
+                LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
+                linphone_proxy_config_set_expires(cfg, expire); // Set Expiration Time from proxy values.
+                linphone_core_set_default_proxy_config(LC, cfg);
+            }
+                                                  errorHandler:^(NSInteger code, NSString * _Nullable string) {
+                LOGE(@"[WEDO] error: %@", string);
+            }];
+        }
+    }
+    
+    [defaults setInteger:1 forKey:@"last_version_used"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -508,6 +560,70 @@
 	return NULL;
 }
 
+- (void)nethAdaptPayload:(NSDictionary *)userInfo {
+    NSMutableDictionary* mut = userInfo.mutableCopy;
+    NSString* cf1 = [mut objectForKey:@"custom-field-1"];
+    NSString* cf2 = [mut objectForKey:@"custom-field-2"];
+    
+    NSMutableDictionary* aps = ((NSDictionary*)[mut objectForKey:@"aps"]).mutableCopy;
+    [aps setValue:cf1 forKey:@"loc-key"];
+    [aps setValue:cf2 forKey:@"call-id"];
+    [mut setValue:aps forKey:@"aps"];
+    [self processRemoteNotification:mut];
+}
+
+- (void)processRemoteNotification:(NSDictionary *)userInfo {
+    // support only for calls
+    NSDictionary *aps = [userInfo objectForKey:@"aps"];
+    //NSString *loc_key = [aps objectForKey:@"loc-key"] ?: [[aps objectForKey:@"alert"] objectForKey:@"loc-key"];
+    NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
+    [CallIdTest.instance setMCallId:callId];
+    
+    if ([CallManager callKitEnabled]) {
+        // Since ios13, a new Incoming call must be displayed when the callkit is enabled and app is in background.
+        // Otherwise it will cause a crash.
+        if(UIApplication.sharedApplication.applicationState != UIApplicationStateActive) {
+            
+            [CallManager.instance displayIncomingCallWithCallId:callId];
+        }
+        
+    }else {
+        
+        if (linphone_core_get_calls(LC)) {
+            // if there are calls, obviously our TCP socket shall be working
+            LOGD(@"Notification [%p] has no need to be processed because there already is an active call.", userInfo);
+            return;
+        }
+        
+        if ([callId isEqualToString:@""]) {
+            // Present apn pusher notifications for info
+            LOGD(@"Notification [%p] came from flexisip-pusher.", userInfo);
+            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
+                
+                UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+                content.title = @"APN Pusher";
+                content.body = @"Push notification received !";
+                
+                UNNotificationRequest *req = [UNNotificationRequest requestWithIdentifier:@"call_request" content:content trigger:NULL];
+                [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:req withCompletionHandler:^(NSError * _Nullable error) {
+                    // Enable or disable features based on authorization.
+                    if (error) {
+                        LOGD(@"Error while adding notification request :");
+                        LOGD(error.description);
+                    }
+                }];
+            }
+        }
+    }
+    
+    LOGI(@"Notification [%p] processed", userInfo);
+    // Tell the core to make sure that we are registered.
+    // It will initiate socket connections, which seems to be required.
+    // Indeed it is observed that if no network action is done in the notification handler, then
+    // iOS kills us.
+    linphone_core_ensure_registered(LC);
+}
+
 #pragma mark - PushNotification Functions
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -521,6 +637,63 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     LOGI(@"[APNs] %@ : %@", NSStringFromSelector(_cmd), [error localizedDescription]);
     [LinphoneManager.instance setRemoteNotificationToken:nil];
+}
+
+#pragma mark - PushKit Functions
+
+- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(PKPushType)type {
+    LOGI(@"[PushKit] credentials updated with voip token: %@", credentials.token);
+    
+    const unsigned char *tokenBuffer = [credentials.token bytes];
+    NSMutableString *tokenString = [NSMutableString stringWithCapacity:[credentials.token length] * 2];
+    
+    for (int i = 0; i < [credentials.token length]; ++i) {
+        [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
+    }
+    
+    [ApiCredentials setDeviceToken:tokenString];
+    [[NethCTIAPI sharedInstance] registerPushToken:tokenString unregister: FALSE success:^(BOOL response) {
+        if(response)
+            LOGD(@"[WEDO PUSH] chiamato notificatore: risultato positivo.");
+        else
+            LOGE(@"[WEDO PUSH] chiamato notificatore: risultato negativo");
+    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LinphoneManager.instance setPushKitToken:credentials.token];
+    });
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didInvalidatePushTokenForType:(NSString *)type {
+    LOGI(@"[PushKit] Token invalidated");
+    dispatch_async(dispatch_get_main_queue(), ^{[LinphoneManager.instance setPushKitToken:nil];});
+}
+
+- (void)processPush:(NSDictionary *)userInfo {
+    LOGI(@"[PushKit] Notification [%p] received with payload : %@", userInfo, userInfo.description);
+    
+    // prevent app to crash if PushKit received for msg
+    if ([userInfo[@"aps"][@"loc-key"] isEqualToString:@"IM_MSG"]) {
+        LOGE(@"Received a legacy PushKit notification for a chat message");
+        [LinphoneManager.instance lpConfigSetInt:[LinphoneManager.instance lpConfigIntForKey:@"unexpected_pushkit" withDefault:0]+1 forKey:@"unexpected_pushkit"];
+        return;
+    }
+    [LinphoneManager.instance startLinphoneCore];
+    
+    [self configureUINotification];
+    //to avoid IOS to suspend the app before being able to launch long running task
+    [self nethAdaptPayload:userInfo];
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion {
+    LOGI(@"[WEDO] didReceiveIncomingPushWithPayload withCompletionHandler.");
+    [self processPush:payload.dictionaryPayload];
+    dispatch_async(dispatch_get_main_queue(), ^{completion();});
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
+    LOGI(@"[WEDO] didReceiveIncomingPushWithPayload.");
+    [self processPush:payload.dictionaryPayload];
 }
 
 #pragma mark - UNUserNotifications Framework
