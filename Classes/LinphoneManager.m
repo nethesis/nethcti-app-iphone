@@ -822,7 +822,10 @@ static void linphone_iphone_popup_password_request(LinphoneCore *lc, LinphoneAut
 		[alertView addAction:defaultAction];
 		[alertView addAction:continueAction];
 		[alertView addAction:settingsAction];
-		[PhoneMainView.instance presentViewController:alertView animated:YES completion:nil];
+		
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [PhoneMainView.instance presentViewController:alertView animated:YES completion:nil];
+        });
 	}
 }
 

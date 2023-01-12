@@ -69,7 +69,7 @@
         addr = linphone_call_log_get_to_address(recentCall);
     }
     
-    [_addressLabel setTextColor:[UIColor color:@"MainColor"]];
+    [_addressLabel setTextColor:[UIColor getColorByName:@"MainColor"]];
     [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel fromFriendsOnly:YES];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
 }

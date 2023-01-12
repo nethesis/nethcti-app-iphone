@@ -785,7 +785,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 #if DEBUG
 		UIAssistantTextField *atf =
 			(UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
-		atf.text = @"test.linphone.org";
+		atf.text = @"nethctiapp.nethserver.net";
+        UIAssistantTextField *atf2 =
+            (UIAssistantTextField *)[self findView:ViewElement_Username inView:view ofType:UIAssistantTextField.class];
+        atf2.text = @"mrtestuser2";
+        UIAssistantTextField *atf3 =
+            (UIAssistantTextField *)[self findView:ViewElement_Password inView:view ofType:UIAssistantTextField.class];
+        atf3.text = @"FRXokwXe";
 #endif
 	}
 	phone_number_length = 0;
