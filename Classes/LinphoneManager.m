@@ -246,6 +246,7 @@ struct codec_name_pref_table codec_pref_table[] = {{"speex", 8000, "speex_8k_pre
 		_pushDict = [[NSMutableDictionary alloc] init];
 		_database = NULL;
 		_conf = FALSE;
+        _canConfigurePushTokenForProxyConfigs = FALSE;
 		_fileTransferDelegates = [[NSMutableArray alloc] init];
 		_linphoneManagerAddressBookMap = [[OrderedDictionary alloc] init];
 		pushCallIDs = [[NSMutableArray alloc] init];
@@ -732,6 +733,9 @@ message:(const char *)cmessage {
 	case LinphoneReasonUnknown:
 		message = NSLocalizedString(@"Unknown error", nil);
 		break;
+    default:
+        message = @"";
+        break;
 	}
 
 	// Post event
@@ -740,6 +744,114 @@ message:(const char *)cmessage {
 		 [NSValue valueWithPointer:account], @"account", message, @"message", nil];
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneRegistrationUpdate object:self userInfo:dict];
 }
+/*
+- (void)onRegister:(LinphoneCore *)lc
+               cfg:(LinphoneProxyConfig *)cfg
+             state:(LinphoneRegistrationState)state
+           message:(const char *)cmessage {
+    
+    LOGI(@"New registration state: %s (message: %s)", linphone_registration_state_to_string(state), cmessage);
+    
+    NSString *message = nil;
+
+    LinphoneReason reason = linphone_proxy_config_get_error(cfg);
+    
+    switch (reason) {
+        case LinphoneReasonBadCredentials:
+            
+            message = NSLocalizedString(@"Bad credentials, check your account settings", nil);
+            break;
+            
+        case LinphoneReasonNoResponse:
+            
+            message = NSLocalizedString(@"No response received from remote", nil);
+            break;
+            
+        case LinphoneReasonUnsupportedContent:
+            
+            message = NSLocalizedString(@"Unsupported content", nil);
+            break;
+            
+        case LinphoneReasonIOError:
+            
+            message = NSLocalizedString(@"Cannot reach the server: either it is an invalid address or it may be temporary down.", nil);
+            break;
+            
+        case LinphoneReasonUnauthorized:
+            
+            message = NSLocalizedString(@"Operation is unauthorized because missing credential", nil);
+            break;
+            
+        case LinphoneReasonNoMatch:
+            
+            message = NSLocalizedString(@"Operation could not be executed by server or remote client because it "
+                                        @"didn't have any context for it",
+                                        nil);
+            break;
+            
+        case LinphoneReasonMovedPermanently:
+            
+            message = NSLocalizedString(@"Resource moved permanently", nil);
+            break;
+            
+        case LinphoneReasonGone:
+            
+            message = NSLocalizedString(@"Resource no longer exists", nil);
+            break;
+            
+        case LinphoneReasonTemporarilyUnavailable:
+            
+            message = NSLocalizedString(@"Temporarily unavailable", nil);
+            break;
+            
+        case LinphoneReasonAddressIncomplete:
+            
+            message = NSLocalizedString(@"Address incomplete", nil);
+            break;
+            
+        case LinphoneReasonNotImplemented:
+            
+            message = NSLocalizedString(@"Not implemented", nil);
+            break;
+            
+        case LinphoneReasonBadGateway:
+            
+            message = NSLocalizedString(@"Bad gateway", nil);
+            break;
+            
+        case LinphoneReasonServerTimeout:
+            
+            message = NSLocalizedString(@"Server timeout", nil);
+            break;
+            
+        case LinphoneReasonNotAcceptable:
+        case LinphoneReasonDoNotDisturb:
+        case LinphoneReasonDeclined:
+        case LinphoneReasonNotFound:
+        case LinphoneReasonNotAnswered:
+        case LinphoneReasonBusy:
+        case LinphoneReasonNone:
+        case LinphoneReasonUnknown:
+        case LinphoneReasonBadEvent:
+        case LinphoneReasonTransferred:
+            
+        case LinphoneReasonSessionIntervalTooSmall:
+            
+            message = NSLocalizedString(@"Unknown error", nil);
+            break;
+    }
+    
+    // Post event
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:state], @"state",
+                          [NSValue valueWithPointer:cfg], @"cfg", message, @"message", nil];
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneRegistrationUpdate object:self userInfo:dict];
+}
+
+static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyConfig *cfg, LinphoneRegistrationState state, const char *message) {
+    
+    [(__bridge LinphoneManager *)linphone_core_cbs_get_user_data(linphone_core_get_current_callbacks(lc)) onRegister:lc cfg:cfg state:state message:message];
+}*/
 
 static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneAccount *account,
 					       LinphoneRegistrationState state, const char *message) {
@@ -824,7 +936,9 @@ static void linphone_iphone_popup_password_request(LinphoneCore *lc, LinphoneAut
 		[alertView addAction:settingsAction];
 		
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [PhoneMainView.instance presentViewController:alertView animated:YES completion:nil];
+            if(PhoneMainView.instance.presentedViewController == nil) {
+                [PhoneMainView.instance presentViewController:alertView animated:YES completion:nil];
+            }
         });
 	}
 }
@@ -1378,7 +1492,7 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 }
 
 - (void)createLinphoneCore {
-	[self migrationAllPre];
+	//[self migrationAllPre];
 	if (theLinphoneCore != nil) {
 		LOGI(@"linphonecore is already created");
 		return;
@@ -1405,6 +1519,7 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	LinphoneFactory *factory = linphone_factory_get();
 	LinphoneCoreCbs *cbs = linphone_factory_create_core_cbs(factory);
 	linphone_core_cbs_set_account_registration_state_changed(cbs,linphone_iphone_registration_state);
+    //linphone_core_cbs_set_registration_state_changed(cbs,linphone_iphone_registration_state);
 	linphone_core_cbs_set_notify_presence_received_for_uri_or_tel(cbs, linphone_iphone_notify_presence_received_for_uri_or_tel);
 	linphone_core_cbs_set_authentication_requested(cbs, linphone_iphone_popup_password_request);
 	linphone_core_cbs_set_message_received(cbs, linphone_iphone_message_received);
@@ -1449,7 +1564,7 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	libmscodec2_init(f);
 
 	linphone_core_reload_ms_plugins(theLinphoneCore, NULL);
-	[self migrationAllPost];
+	//[self migrationAllPost];
 	
 	linphone_core_enable_record_aware(theLinphoneCore, true); //force record aware enable
 
@@ -2210,6 +2325,14 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
         NSData *data = [NSJSONSerialization dataWithJSONObject:appDataDict options:0 error:nil];
         NSString *appdataJSON = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         linphone_chat_message_set_appdata(msg, [appdataJSON UTF8String]);
+}
+
++ (void)updateMissingCallsBadge {
+    int count = 0;
+    count += linphone_core_get_missed_calls_count(LC);
+    count += [LinphoneManager unreadMessageCount];
+    count += linphone_core_get_calls_nb(LC);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
 }
 
 #pragma mark - LPConfig Functions

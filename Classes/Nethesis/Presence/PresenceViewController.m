@@ -570,7 +570,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     if (arrayFirstLastStrings.count > 1) {
         
-        NSString *cognome = [arrayFirstLastStrings objectAtIndex:1];
+        NSString *cognome = [arrayFirstLastStrings lastObject];
         
         char cognomeInitialChar = [cognome characterAtIndex:0];
         //NSLog(@"cognomeInitialChar: %c", cognomeInitialChar);

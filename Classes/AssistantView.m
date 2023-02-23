@@ -782,17 +782,17 @@ static UICompositeViewDescription *compositeDescription = nil;
 			 _remoteProvisioningLoginView
 		 ]) {
 		[AssistantView cleanTextField:view];
-#if DEBUG
+//#if DEBUG
 		UIAssistantTextField *atf =
 			(UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
 		atf.text = @"nethctiapp.nethserver.net";
         UIAssistantTextField *atf2 =
             (UIAssistantTextField *)[self findView:ViewElement_Username inView:view ofType:UIAssistantTextField.class];
-        atf2.text = @"mrtestuser2";
+        atf2.text = @"mrtestuser1";
         UIAssistantTextField *atf3 =
             (UIAssistantTextField *)[self findView:ViewElement_Password inView:view ofType:UIAssistantTextField.class];
-        atf3.text = @"FRXokwXe";
-#endif
+        atf3.text = @"IgRZezpk";
+//#endif
 	}
 	phone_number_length = 0;
 }
@@ -1606,7 +1606,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 }
 
 - (void)exLinphoneLogin:(NSArray*)objs {
-    
+    /*
     PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
     NSString *domain = (NSString*)[objs objectAtIndex:1];
     NSString *intern = [meUser intern];
@@ -1663,7 +1663,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
                            secret.UTF8String,                   // passwd
                            NULL,                                // ha1
                            linphone_address_get_domain(addr),   // realm - assumed to be domain
-                           linphone_address_get_domain(addr)    // domain
+                           linphone_address_get_domain(addr)   // domain
                            );
     linphone_core_add_auth_info(LC, info);
     linphone_address_unref(addr);
@@ -1694,8 +1694,100 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     } else {
         
         [self displayAssistantConfigurationError];
+    }*/
+    
+    if (new_account != NULL) {
+        const LinphoneAuthInfo *auth = linphone_account_find_auth_info(new_account);
+        linphone_core_remove_account(LC, new_account);
+        if (auth) {
+            linphone_core_remove_auth_info(LC, auth);
+        }
     }
     
+    PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
+    NSString *domain = (NSString*)[objs objectAtIndex:1];
+    NSString *intern = meUser.intern;
+    NSString *displayName = meUser.name;
+    NSString *secret = meUser.secret;
+    LinphoneAccountParams *accountParams =  linphone_core_create_account_params(LC);
+    char *identity_str = _get_identity(account_creator);
+    LinphoneAddress *addr = linphone_address_new(identity_str);
+    NSMutableString *address = [NSString stringWithFormat:@"sip:%@",domain].mutableCopy;
+    ms_free(identity_str);
+    
+    // NethCTI Proxy Settings
+    //linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
+    
+    LinphoneAddress *tmpAddr = linphone_address_new(address.UTF8String);
+    if (tmpAddr == nil) {
+        [self displayAssistantConfigurationError];
+        return;
+    }
+    
+    linphone_address_set_username(addr, intern.UTF8String);
+    linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
+    linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
+    if (displayName && ![displayName isEqualToString:@""]) {
+        linphone_address_set_display_name(addr, displayName.UTF8String);
+    }
+    linphone_account_params_set_identity_address(accountParams, addr);
+    
+    // set transport
+    NSString *type = @"TLS";
+    char *fullAddr = ms_strdup([NSString stringWithFormat:@"%s;transport=%s", address.UTF8String, type.lowercaseString.UTF8String].UTF8String);
+    LinphoneAddress *transportAddr = linphone_address_new(fullAddr);
+    linphone_account_params_set_routes_addresses(accountParams, bctbx_list_new(transportAddr));
+    linphone_account_params_set_server_addr(accountParams, fullAddr);
+    linphone_address_unref(transportAddr);
+    
+    char const* creatorDomain = linphone_account_creator_get_domain(account_creator);
+    if (linphone_account_params_get_server_addr(accountParams) == NULL && creatorDomain != NULL) {
+        char *url = ms_strdup([NSString stringWithFormat:@"%s;transport=%s", address.UTF8String, @"tls".UTF8String].UTF8String);
+        LinphoneAddress *proxy_addr = linphone_address_new(url);
+        if (proxy_addr) {
+            linphone_address_set_transport(proxy_addr, linphone_account_creator_get_transport(account_creator));
+            linphone_account_params_set_routes_addresses(accountParams, bctbx_list_new(proxy_addr));
+            linphone_account_params_set_server_addr(accountParams, linphone_address_as_string_uri_only(proxy_addr));
+            linphone_address_unref(proxy_addr);
+        } else {
+            linphone_account_params_set_server_addr(accountParams, creatorDomain);
+        }
+        ms_free(url);
+    }
+    
+    linphone_account_params_set_publish_enabled(accountParams, FALSE);
+    linphone_account_params_set_register_enabled(accountParams, TRUE);
+    
+    LinphoneAuthInfo *info =
+    linphone_auth_info_new_for_algorithm(linphone_address_get_username(addr), // username
+                           linphone_address_get_username(addr), // user id
+                           secret.UTF8String,                   // passwd
+                           NULL,                                // ha1
+                           NULL,//linphone_address_get_domain(addr),   // realm - assumed to be domain
+                           linphone_address_get_domain(addr),   // domain
+                           NULL);
+    linphone_core_add_auth_info(LC, info);
+    linphone_address_unref(addr);
+    linphone_address_unref(tmpAddr);
+    
+    LinphoneAccount *account = linphone_core_create_account(LC, accountParams);
+    linphone_account_params_unref(accountParams);
+    if (account) {
+        if (linphone_core_add_account(LC, account) != -1) {
+            linphone_core_set_default_account(LC, account);
+            linphone_account_params_set_outbound_proxy_enabled(accountParams, true);
+            // reload address book to prepend proxy config domain to contacts' phone number
+            // todo: STOP doing that!
+            LinphoneAppDelegate* delegate = (LinphoneAppDelegate *)[[UIApplication sharedApplication] delegate];
+            [delegate registerForNotifications];
+            [[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
+            [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+        } else {
+            [self displayAssistantConfigurationError];
+        }
+    } else {
+        [self displayAssistantConfigurationError];
+    }
 }
 
 - (IBAction)onLaunchQRCodeView:(id)sender {

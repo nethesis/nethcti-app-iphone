@@ -483,11 +483,11 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 - (void)updateApplicationBadgeNumber {
-	int count = 0;
+	/*int count = 0;
 	count += linphone_core_get_missed_calls_count(LC);
 	count += [LinphoneManager unreadMessageCount];
 	count += linphone_core_get_calls_nb(LC);
-	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];*/
 	TabBarView *view = (TabBarView *)[PhoneMainView.instance.mainViewController getCachedController:NSStringFromClass(TabBarView.class)];
 	[view update:TRUE];
 }

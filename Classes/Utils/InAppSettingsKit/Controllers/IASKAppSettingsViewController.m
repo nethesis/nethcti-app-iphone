@@ -71,7 +71,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 	return _settingsReader;
 }
 
-- (id<IASKSettingsStore>)settingsStore {
+- (id<IASKSettingsStore>) settingsStore {
 	if (!_settingsStore) {
 		_settingsStore = [[IASKSettingsStoreUserDefaults alloc] init];
 	}

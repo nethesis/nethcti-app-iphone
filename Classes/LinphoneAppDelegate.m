@@ -74,6 +74,7 @@
 			[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
 		}
 		[CallManager.instance stopLinphoneCore];
+        [CoreManager.instance stopLinphoneCore];
 	}
 	[SwiftUtil resetCachedAsset];
 }
@@ -105,7 +106,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	LOGI(@"%@", NSStringFromSelector(_cmd));
-	
+    
 	if (!startedInBackground || PhoneMainView.instance.currentView == nil) {
 		startedInBackground = TRUE;
 		// initialize UI
@@ -148,7 +149,7 @@
 
 			// in this case, the ringing sound comes from the notification.
             // To stop it we have to do the iOS7 ring fix...
-            [self fixRing];
+            //[self fixRing];
 		}
 	}
 	[LinphoneManager.instance.iapManager check];
@@ -183,6 +184,7 @@
 		
 	}];
 	
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 #pragma deploymate push "ignored-api-availability"
@@ -319,7 +321,8 @@
 
 	BOOL background_mode = [instance lpConfigBoolForKey:@"backgroundmode_preference"];
 	BOOL start_at_boot = [instance lpConfigBoolForKey:@"start_at_boot_preference"];
-		
+    [self registerForNotifications];
+    
 	if (state == UIApplicationStateBackground) {
 		// we've been woken up directly to background;
 		if (!start_at_boot || !background_mode) {
@@ -357,6 +360,7 @@
 	[PhoneMainView.instance.mainViewController getCachedController:ActiveCallOrConferenceView.compositeViewDescription.name]; // This will create the single instance of the ActiveCallOrConferenceView including listeneres
     
     [self setDefaultNethesis];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 	
 	return YES;
 }
@@ -641,13 +645,13 @@
 
 #pragma mark - PushKit Functions
 
-- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(PKPushType)type {
-    LOGI(@"[PushKit] credentials updated with voip token: %@", credentials.token);
+- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)pushCredentials forType:(PKPushType)type {
+    LOGI(@"[PushKit] credentials updated with voip token: %@", pushCredentials.token);
     
-    const unsigned char *tokenBuffer = [credentials.token bytes];
-    NSMutableString *tokenString = [NSMutableString stringWithCapacity:[credentials.token length] * 2];
+    const unsigned char *tokenBuffer = [pushCredentials.token bytes];
+    NSMutableString *tokenString = [NSMutableString stringWithCapacity:[pushCredentials.token length] * 2];
     
-    for (int i = 0; i < [credentials.token length]; ++i) {
+    for (int i = 0; i < [pushCredentials.token length]; ++i) {
         [tokenString appendFormat:@"%02X", (unsigned int)tokenBuffer[i]];
     }
     
@@ -660,11 +664,11 @@
     }];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [LinphoneManager.instance setPushKitToken:credentials.token];
+        [LinphoneManager.instance setPushKitToken:pushCredentials.token];
     });
 }
 
-- (void)pushRegistry:(PKPushRegistry *)registry didInvalidatePushTokenForType:(NSString *)type {
+- (void)pushRegistry:(PKPushRegistry *)registry didInvalidatePushTokenForType:(PKPushType)type {
     LOGI(@"[PushKit] Token invalidated");
     dispatch_async(dispatch_get_main_queue(), ^{[LinphoneManager.instance setPushKitToken:nil];});
 }
@@ -688,12 +692,9 @@
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion {
     LOGI(@"[WEDO] didReceiveIncomingPushWithPayload withCompletionHandler.");
     [self processPush:payload.dictionaryPayload];
-    dispatch_async(dispatch_get_main_queue(), ^{completion();});
-}
-
-- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
-    LOGI(@"[WEDO] didReceiveIncomingPushWithPayload.");
-    [self processPush:payload.dictionaryPayload];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        completion();
+    });
 }
 
 #pragma mark - UNUserNotifications Framework

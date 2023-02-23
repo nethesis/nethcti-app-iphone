@@ -696,6 +696,10 @@ import AVFoundation
 							Log.directLog(BCTBX_LOG_ERROR, text: "Error while adding notification request : \(error!.localizedDescription)")
 							}
 						}
+                        DispatchQueue.main.async {
+                            UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber + 1
+                            //LinphoneManager.updateMissingCallsBadge()
+                        }
 					}
 
 					if (CallManager.callKitEnabled()) {

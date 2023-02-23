@@ -199,6 +199,7 @@ typedef struct _LinphoneManagerSounds {
 - (void)setDnsServer;
 
 - (void)clearProxies;
++ (void)updateMissingCallsBadge;
 
 @property (readonly) BOOL isTesting;
 @property(readonly, strong) FastAddressBook *fastAddressBook;
