@@ -22,7 +22,6 @@
 #import "Utils.h"
 #import "PhoneMainView.h"
 #import "StatusBarView.h"
-#import "ShopView.h"
 #import "LinphoneManager.h"
 #import "RecordingsListView.h"
 #import "linphoneapp-Swift.h"
@@ -105,16 +104,6 @@
                                  tapBlock:^() {
         [PhoneMainView.instance changeCurrentView:RecordingsListView.compositeViewDescription];
     }]];
-    
-    InAppProductsManager *iapm = LinphoneManager.instance.iapManager;
-    if (iapm.enabled){
-        [_sideMenuEntries addObject:
-         [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Shop", nil)
-                                        image:nil
-                                     tapBlock:^() {
-            [PhoneMainView.instance changeCurrentView:ShopView.compositeViewDescription];
-        }]];
-    }
     
     [_sideMenuEntries addObject:
      [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"About", nil)

@@ -746,9 +746,7 @@ void update_hash_cbs(LinphoneAccountCreator *creator, LinphoneAccountCreatorStat
 		}
 	}
 
-	if (![[LinphoneManager.instance iapManager] enabled]) {
-		[hiddenKeys addObject:@"in_app_products_button"];
-	}
+    [hiddenKeys addObject:@"in_app_products_button"];
 
 	if ([[UIDevice currentDevice].systemVersion floatValue] < 8) {
 		[hiddenKeys addObject:@"repeat_call_notification_preference"];

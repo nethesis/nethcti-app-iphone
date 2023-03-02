@@ -477,8 +477,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)configureAccount {
-	LinphoneManager *lm = LinphoneManager.instance;
-
 	if (!linphone_core_is_network_reachable(LC)) {
 		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Network Error", nil)
 																		 message:NSLocalizedString(@"There is no network connection available, enable "
@@ -1606,7 +1604,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 }
 
 - (void)exLinphoneLogin:(NSArray*)objs {
-    /*
+    
     PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
     NSString *domain = (NSString*)[objs objectAtIndex:1];
     NSString *intern = [meUser intern];
@@ -1614,16 +1612,18 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     NSString *secret = [meUser secret];
     //NSLog(@"secret: %@", secret);
 
-    // From here the Username and Password became another things.
-    LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
     LinphoneAddress *addr = linphone_address_new(NULL);
     NSMutableString *address = [NSString stringWithFormat:@"sip:%@",domain].mutableCopy;
     
     // NethCTI Proxy Settings
     linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
     
+    // From here the Username and Password became another things.
+    LinphoneProxyConfig *config = linphone_core_create_proxy_config(LC);
+    linphone_proxy_config_enable_publish(config, FALSE);
+    linphone_proxy_config_enable_register(config, TRUE);// abilita proxy
+    
     if(meUser.proxyPort != -1) {
-        
         [address appendString:[NSString stringWithFormat:@":%ld", (long)meUser.proxyPort]];
         linphone_proxy_config_set_push_notification_allowed(config, YES); // Enable pushNotification flag.
         linphone_core_set_media_encryption_mandatory([LinphoneManager getLc], YES); // Enable Media Encryption Mandatory flag.
@@ -1653,9 +1653,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     char *fullAddr = ms_strdup([NSString stringWithFormat:@"%s;transport=%s", address.UTF8String, type.lowercaseString.UTF8String].UTF8String);
     linphone_proxy_config_set_route(config, fullAddr);
     linphone_proxy_config_set_server_addr(config, fullAddr);
-    
-    linphone_proxy_config_enable_publish(config, FALSE);
-    linphone_proxy_config_enable_register(config, TRUE);// abilita proxy
+
     
     LinphoneAuthInfo *info =
     linphone_auth_info_new(linphone_address_get_username(addr), // username
@@ -1670,13 +1668,15 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     linphone_address_unref(tmpAddr);
     
     if (config) {
-        
-        [[LinphoneManager instance] configurePushTokenForProxyConfig:config];
-        
+                
         if (linphone_core_add_proxy_config(LC, config) != -1) {
+            [[LinphoneManager instance] configurePushTokenForProxyConfig:config];
+
             // set boolean
             [[LinphoneManager instance] lpConfigSetBool:YES forKey:@"hide_run_assistant_preference"];
             linphone_core_set_default_proxy_config(LC, config);
+            
+            [LinphoneManager.instance startLinphoneCore];
             
             // Register for Voip Notifications like Linphone.
             LinphoneAppDelegate* delegate = (LinphoneAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -1694,8 +1694,9 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     } else {
         
         [self displayAssistantConfigurationError];
-    }*/
+    }
     
+/*
     if (new_account != NULL) {
         const LinphoneAuthInfo *auth = linphone_account_find_auth_info(new_account);
         linphone_core_remove_account(LC, new_account);
@@ -1716,8 +1717,8 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     ms_free(identity_str);
     
     // NethCTI Proxy Settings
-    //linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
-    
+    linphone_core_set_media_encryption([LinphoneManager getLc], LinphoneMediaEncryptionSRTP); //Setta la Media Encryptiona SRTP
+
     LinphoneAddress *tmpAddr = linphone_address_new(address.UTF8String);
     if (tmpAddr == nil) {
         [self displayAssistantConfigurationError];
@@ -1788,6 +1789,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     } else {
         [self displayAssistantConfigurationError];
     }
+ */
 }
 
 - (IBAction)onLaunchQRCodeView:(id)sender {

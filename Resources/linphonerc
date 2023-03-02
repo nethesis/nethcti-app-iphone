@@ -1,6 +1,6 @@
 [app]
 animations_preference=1
-autoanswer_notif_preference=1
+autoanswer_notif_preference=0
 backgroundmode_preference=1
 edge_opt_preference=0
 enable_log_collect=0
@@ -13,7 +13,7 @@ start_at_boot_preference=1
 stun_preference=stun.linphone.org
 voiceproc_preference=1
 repeat_call_notification=1
-display_phone_only=0
+display_phone_only=1
 auto_download_incoming_files_max_size=0
 lime_migration_done=0
 use_rls_presence=1
@@ -52,7 +52,6 @@ reg_expires=1314000
 file_transfer_server_url=https://www.linphone.org:444/lft.php
 real_early_media=1
 prefer_basic_chat_room=-1
-conference_layout=1
 
 [net]
 edge_bw=10
@@ -95,7 +94,7 @@ automatically_accept=0
 automatically_initiate=0
 capture=1
 display=1
-enabled=1
+enabled=0
 show_local=0
 size=vga
 

@@ -21,7 +21,6 @@
 #import "ContactDetailsView.h"
 #import "ContactsListView.h"
 #import "PhoneMainView.h"
-#import "ShopView.h"
 
 #import "CoreTelephony/CTCallCenter.h"
 #import "CoreTelephony/CTCall.h"
@@ -152,7 +151,6 @@
             //[self fixRing];
 		}
 	}
-	[LinphoneManager.instance.iapManager check];
     if (_shortcutItem) {
         [self handleShortcut:_shortcutItem];
         _shortcutItem = nil;
@@ -339,7 +337,6 @@
 	}];
 
 	[LinphoneManager.instance launchLinphoneCore];
-	LinphoneManager.instance.iapManager.notificationCategory = @"expiry_notification";
 	// initialize UI
 	[self.window makeKeyAndVisible];
 	[RootViewManager setupWithPortrait:(PhoneMainView *)self.window.rootViewController];
@@ -361,8 +358,16 @@
     
     [self setDefaultNethesis];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    if(![[NethCTIAPI sharedInstance] isUserAuthenticated]){
+        [self performSelector:@selector(showAssistantView) withObject:nil afterDelay:0.5];
+    }
 	
 	return YES;
+}
+
+- (void)showAssistantView{
+    [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
 }
 
 // Set default settings by Nethesis.
@@ -401,7 +406,6 @@
             [NethCTIAPI.sharedInstance getMeWithSuccessHandler:^(PortableNethUser* meUser) {
                 
                 const int expire = meUser.proxyPort != -1 ? 2678400 : 3600;
-                const size_t l = bctbx_list_size(linphone_core_get_proxy_config_list(LC));
                 LinphoneProxyConfig *cfg = linphone_core_get_default_proxy_config(LC);
                 linphone_proxy_config_set_expires(cfg, expire); // Set Expiration Time from proxy values.
                 linphone_core_set_default_proxy_config(LC, cfg);
@@ -413,6 +417,7 @@
     }
     
     [defaults setInteger:1 forKey:@"last_version_used"];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

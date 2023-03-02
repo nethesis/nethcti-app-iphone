@@ -695,7 +695,7 @@ message:(const char *)cmessage {
 		break;
 
 	case LinphoneReasonUnauthorized:
-		message = NSLocalizedString(@"Operation is unauthorized because missing credential", nil);
+		 message = NSLocalizedString(@"Operation is unauthorized because missing credential", nil);
 		break;
 	case LinphoneReasonNoMatch:
 		message = NSLocalizedString(@"Operation could not be executed by server or remote client because it "
@@ -1341,7 +1341,6 @@ static BOOL libStarted = FALSE;
 
 	// create linphone core
 	[self createLinphoneCore];
-	_iapManager = [[InAppProductsManager alloc] init];
 
 	// - Security fix - remove multi transport migration, because it enables tcp or udp, if by factoring settings only
 	// tls is enabled. 	This is a problem for new installations.
@@ -1540,14 +1539,15 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	linphone_core_cbs_set_conference_state_changed(cbs, linphone_iphone_conference_state_changed);
 
 
-
 	theLinphoneCore = linphone_factory_create_shared_core_with_config(factory, _configDb, NULL, [kLinphoneMsgNotificationAppGroupId UTF8String], true);
 	linphone_core_add_callbacks(theLinphoneCore, cbs);
 
 	[ConfigManager.instance setDbWithDb:_configDb];
 	[CallManager.instance setCoreWithCore:theLinphoneCore];
 	
-	[LinphoneManager.instance startLinphoneCore];
+    if([[NethCTIAPI sharedInstance] isUserAuthenticated]){
+        [LinphoneManager.instance startLinphoneCore];
+    }
 
 	// Let the core handle cbs
 	linphone_core_cbs_unref(cbs);
@@ -1580,7 +1580,6 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	 selector:@selector(globalStateChangedNotificationHandler:)
 	 name:kLinphoneGlobalStateUpdate
 	 object:nil];
-	[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(inappReady:) name:kIAPReady object:nil];
 
 	/*call iterate once immediately in order to initiate background connections with sip server or remote provisioning
 	 * grab, if any */
@@ -1752,7 +1751,6 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
                          LOGW(@"It seems that Linphone BG mode was deactivated, just skipping");
                          return;
                      }
-                     [_iapManager check];
                      if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
                          // For registration register
                          [self refreshRegisters];
@@ -2131,6 +2129,8 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
                     stringWithFormat:@"pn-provider=apns%@;pn-prid=%@;pn-param=%@.%@.%@;pn-msg-str=IM_MSG;pn-call-str=IC_MSG;pn-groupchat-str=GC_MSG;pn-"
                     @"call-snd=%@;pn-msg-snd=msg.caf%@;pn-silent=1",
                     APPMODE_SUFFIX, token, teamId, [[NSBundle mainBundle] bundleIdentifier], services, ring, timeout];
+        
+       // NSString *params = [NSString stringWithFormat:@"pn-provider=apns%@;", APPMODE_SUFFIX];
 
         LOGI(@"Proxy config %s configured for push notifications with contact: %@",
         linphone_proxy_config_get_identity(proxyCfg), params);
@@ -2468,12 +2468,6 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	return filter;
 }
 
-#pragma mark - InApp Purchase events
-
-- (void)inappReady:(NSNotification *)notif {
-	// Query our in-app server to retrieve InApp purchases
-	//[_iapManager retrievePurchases];
-}
 
 #pragma mark -
 

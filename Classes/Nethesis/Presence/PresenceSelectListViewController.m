@@ -40,7 +40,7 @@
 
     self.ibLabelNessunDato.text = NSLocalizedString(@"Nessun status", nil);
 
-    /*
+    
     // Set observer
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(globalStateUpdate:) name:kLinphoneGlobalStateUpdate object:nil];
     
@@ -55,7 +55,7 @@
     
     BOOL is_network_reachable = linphone_core_is_network_reachable(LC);
     NSLog(@"is_network_reachable: %@", is_network_reachable ? @"YES" : @"NO");
-    */
+    
     
     self.ibLabelTitolo.text = NSLocalizedString(@"IMPOSTA STATO", nil);;
     
