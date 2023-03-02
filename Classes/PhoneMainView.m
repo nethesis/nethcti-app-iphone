@@ -219,7 +219,7 @@ static RootViewManager *rootViewManagerInstance = nil;
 }
 
 + (int)iphoneStatusBarHeight{
-	return IPHONE_STATUSBAR_HEIGHT;
+    return [UIApplication sharedApplication].windows.firstObject.safeAreaInsets.top >= 51 ? 50 : IPHONE_STATUSBAR_HEIGHT;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
