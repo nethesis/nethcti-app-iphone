@@ -786,10 +786,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 		atf.text = @"nethctiapp.nethserver.net";
         UIAssistantTextField *atf2 =
             (UIAssistantTextField *)[self findView:ViewElement_Username inView:view ofType:UIAssistantTextField.class];
-        atf2.text = @"mrtestuser1";
+        atf2.text = @"mrtestuser2";
         UIAssistantTextField *atf3 =
             (UIAssistantTextField *)[self findView:ViewElement_Password inView:view ofType:UIAssistantTextField.class];
-        atf3.text = @"IgRZezpk";
+        atf3.text = @"FRXokwXe";
 //#endif
 	}
 	phone_number_length = 0;
@@ -2014,20 +2014,60 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     if ([notif.userInfo count] == 0){
         return;
     }
-    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
+    
+    // Allow other screen orientations.
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.urlLabel.text = [notif.userInfo objectForKey:@"qrcode"];
+        LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
+        delegate.onlyPortrait = TRUE;
+    });
+    
+    // Doesn't allow other qrcode founds notifications from cam view.
+    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
+    
+    // Check the number of components in the qrcode text.
+    NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
+    NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
+    if(components.count != 3) {
+        return [self dismissViewWithMessage:NSLocalizedStringFromTable(@"Error while reading the QRCODE.", @"NethLocalizable", @"Error message thrown when user had scanned a wrong QrCode.")];
+    }
 
-		if ([historyViews count] > 0) {
-			if (currentView == _qrCodeView) {
-				UIView *view = [historyViews lastObject];
-				[historyViews removeLastObject];
-				[self changeView:view back:TRUE animation:TRUE];
-			} else {
-				[self changeView:_welcomeView back:TRUE animation:TRUE];
-			}
-		}
-	});
+    NethCTIAPI* api = [NethCTIAPI sharedInstance];
+    [api setAuthTokenWithUsername:components[0] token:components[1] domain:components[2]];
+    [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {
+        [self performSelectorOnMainThread:@selector(exLinphoneLogin:) withObject:@[meUser, components[2]] waitUntilDone:YES];
+    } errorHandler:^(NSInteger code, NSString * _Nullable string) {// Allow other screen orientations.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissViewWithMessage:string];
+        });
+    }];
+}
+
+/// Return to _loginView while we are not ready to go to Dashboard after show an error dialog.
+/// @param message Optional message to show to user.
+/// @param title Optional title of the dialog to show to user.
+- (void)dismissViewWithMessage:(NSString * _Nonnull)message {
+    return [self showErrorController:message completion:^{
+        [self dismissView];
+    }];
+}
+
+/// Return to _loginView while we are not ready to go to Dashboard.
+- (void)dismissView {
+    if ([historyViews count] > 0) {
+        // This mage must return correct fields to login page.
+        if (currentView == _qrCodeView) {
+            UIView *view = [historyViews lastObject];
+            [historyViews removeLastObject];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeView:view back:TRUE animation:TRUE];
+            });
+        } else {
+            // _loginView is the new default view for Nethesis.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeView:_loginView back:TRUE animation:TRUE];
+            });
+        }
+    }
 }
 
 @end
