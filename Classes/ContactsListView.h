@@ -39,6 +39,18 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 + (void)enableSipFilter:(BOOL)enabled;
 
 /*!
+ * Filters contacts by SIP domain.
+ * @param domain SIP domain to filter. Use @"*" or nil to disable it.
+ */
++ (void)setSipFilter:(NSString *)domain;
+
+/*!
+ * Weither contacts are filtered by SIP domain or not.
+ * @return the filter used, or nil if none.
+ */
++ (NSString *)getSipFilter;
+
+/*!
  * Wether SIP domain filter is enabled
  * @return the filter used, or nil if none.
  */
@@ -51,18 +63,22 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 @property(strong, nonatomic) IBOutlet ContactsListTableView *tableController;
 @property(strong, nonatomic) IBOutlet UIView *topBar;
 @property(nonatomic, strong) IBOutlet UIButton *allButton;
-@property(nonatomic, strong) IBOutlet UIButton *linphoneButton;
+@property(nonatomic, strong) IBOutlet UIButton *linphoneButton; // sipButton in .xib file
 @property(nonatomic, strong) IBOutlet UIButton *addButton;
-@property(strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property(weak, nonatomic) IBOutlet UIImageView *selectedButtonImage;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *backSpaceButton;
+
 @property (weak, nonatomic) IBOutlet UIInterfaceStyleButton *toggleSelectionButton;
-@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
-@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIPickerView *filterPicker;
+@property (weak, nonatomic) IBOutlet UIView *searchBaseline;
 
 - (IBAction)onAllClick:(id)event;
 - (IBAction)onLinphoneClick:(id)event;
 - (IBAction)onAddContactClick:(id)event;
 - (IBAction)onDeleteClick:(id)sender;
 - (IBAction)onEditionChangeClick:(id)sender;
+
+- (IBAction)searchEditingChanged:(id)sender;
+- (IBAction)onBackPressed:(id)sender;
 
 @end

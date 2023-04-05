@@ -41,6 +41,8 @@ import AVFoundation
 	let callController: CXCallController! // to support callkit
 	var lc: Core?
 	@objc var speakerBeforePause : Bool = false
+    @objc var speakerEnabled : Bool = false
+    @objc var bluetoothEnabled : Bool = false
 	@objc var nextCallIsTransfer: Bool = false
 	var referedFromCall: String?
 	var referedToCall: String?
@@ -187,6 +189,39 @@ import AVFoundation
 		return false
 	}
 	
+    @objc func allowSpeaker() -> Bool {
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            // For now, ipad support only speaker.
+            return true
+        }
+        
+        var allow = true
+        let newRoute = AVAudioSession.sharedInstance().currentRoute
+        if (newRoute.outputs.count > 0) {
+            let route = newRoute.outputs[0].portType
+            allow = !( route == .lineOut || route == .headphones || (AudioHelper.bluetoothRoutes() as Array).contains(where: {($0 as! AVAudioSession.Port) == route}))
+        }
+        
+        return allow
+    }
+    
+    @objc func enableSpeaker(enable: Bool) {
+        speakerEnabled = enable
+        do {
+            if (enable && allowSpeaker()) {
+                try AVAudioSession.sharedInstance().overrideOutputAudioPort(.speaker)
+                UIDevice.current.isProximityMonitoringEnabled = false
+                bluetoothEnabled = false
+            } else {
+                try AVAudioSession.sharedInstance().overrideOutputAudioPort(.none)
+                let buildinPort = AudioHelper.builtinAudioDevice()
+                try AVAudioSession.sharedInstance().setPreferredInput(buildinPort)
+                UIDevice.current.isProximityMonitoringEnabled = (lc!.callsNb > 0)
+            }
+        } catch {
+            Log.directLog(BCTBX_LOG_ERROR, text: "Failed to change audio route: err \(error)")
+        }
+    }
 	
 	func requestTransaction(_ transaction: CXTransaction, action: String) {
 		callController.request(transaction) { error in
@@ -335,6 +370,37 @@ import AVFoundation
 			Log.e("[CallManager] unable to create address for a new outgoing call : \(addr) \(error) ")
 		}
 	}
+    
+    // for outgoing call. There is not yet callId
+    @objc func startCall(addr: OpaquePointer?, isSas: Bool) {
+        
+        if (addr == nil) {
+            print("Can not start a call with null address!")
+            return
+        }
+        
+        let sAddr = Address.getSwiftObject(cObject: addr!)
+        //Removed check "nextCallIsTransfer" to support correctly attended transfer
+        if (CallManager.callKitEnabled()) {
+            
+            let uuid = UUID()
+            let name = FastAddressBook.displayName(for: addr) ?? "unknow"
+            let handle = CXHandle(type: .generic, value: sAddr.asStringUriOnly())
+            let startCallAction = CXStartCallAction(call: uuid, handle: handle)
+            let transaction = CXTransaction(action: startCallAction)
+            
+            let callInfo = CallInfo.newOutgoingCallInfo(addr: sAddr, isSas: isSas, displayName: name, isVideo: false, isConference: false)
+            providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
+            providerDelegate.uuids.updateValue(uuid, forKey: "")
+            
+            setHeldOtherCalls(exceptCallid: "")
+            requestTransaction(transaction, action: "startCall")
+            
+        }else {
+            
+            try? doCall(addr: sAddr, isSas: isSas, isVideo: false, isConference: false)
+        }
+    }
 
 	func doCall(addr: Address, isSas: Bool, isVideo: Bool, isConference:Bool = false) throws {
 		let displayName = FastAddressBook.displayName(for: addr.getCobject)
@@ -394,6 +460,24 @@ import AVFoundation
 			}
 		}
 	}
+    
+    @objc func transferCall() {
+        if TransferCallManager.instance().isCallTransfer,
+           let origin = TransferCallManager.instance().origin,
+           let destination = TransferCallManager.instance().destination {
+            do{
+                // Get the call pointer unwrapped from optional.
+                // Execute the transfer.
+                try destination.transferToAnother(dest: origin)
+                // Reset state of Transfer Call Manager after doing his work.
+                TransferCallManager.instance().isCallTransfer = false
+                CallManager.instance().nextCallIsTransfer = false
+            } catch (let errorThrown) {
+                print("[WEDO] Error in transfer to another: \(errorThrown.localizedDescription)")
+                return
+            }
+        }
+    }
 
 	@objc func groupCall() {
 		if (CallManager.callKitEnabled()) {

@@ -183,11 +183,11 @@ import SVProgressHUD
 		}
 		
 		ConferenceSchedulingViewModel.shared.conferenceCreationInProgress.observe { progress in
-			if (progress == true) {
+			/*if (progress == true) {
 				SVProgressHUD.show()
 			} else {
 				SVProgressHUD.dismiss()
-			}
+			}*/
 		}
 		
 		var enableCreationTimeOut = false

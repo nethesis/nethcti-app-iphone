@@ -95,20 +95,24 @@
 }
 
 - (void)updateIcon {
-	if (linphone_core_video_capture_enabled(LC) && linphone_core_get_video_policy(LC)->automatically_initiate) {
-		[self setImage:[UIImage imageNamed:@"call_video_start_default.png"] forState:UIControlStateNormal];
-		[self setImage:[UIImage imageNamed:@"call_video_start_disabled.png"] forState:UIControlStateDisabled];
-	} else {
-		[self setImage:[UIImage imageNamed:@"call_audio_start_default.png"] forState:UIControlStateNormal];
-		[self setImage:[UIImage imageNamed:@"call_audio_start_disabled.png"] forState:UIControlStateDisabled];
-	}
+    if (linphone_core_video_capture_enabled(LC) && linphone_core_get_video_policy(LC)->automatically_initiate) {
+        
+        [self setImage:[UIImage imageNamed:@"call_video_start_default.png"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"call_video_start_disabled.png"] forState:UIControlStateDisabled];
+    }else {
+        [self setImage:[UIImage imageNamed:@"nethcti_green_phone.png"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"nethcti_grey_phone.png"] forState:UIControlStateDisabled];
+    }
 
-	if (CallManager.instance.nextCallIsTransfer) {
-		[self setImage:[UIImage imageNamed:@"call_transfer_default.png"] forState:UIControlStateNormal];
-		[self setImage:[UIImage imageNamed:@"call_transfer_disabled.png"] forState:UIControlStateDisabled];
-	} else if (linphone_core_get_calls_nb(LC) > 0) {
-		[self setImage:[UIImage imageNamed:@"call_add_default.png"] forState:UIControlStateNormal];
-		[self setImage:[UIImage imageNamed:@"call_add_disabled.png"] forState:UIControlStateDisabled];
-	}
+    if (CallManager.instance.nextCallIsTransfer || TransferCallManager.instance.isCallTransfer) {
+        
+        [self setImage:[UIImage imageNamed:@"nethcti_transfer_call_green.png"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"nethcti_transfer_call.png"] forState:UIControlStateDisabled];
+        
+    }else if (linphone_core_get_calls_nb(LC) > 0) {
+        
+        [self setImage:[UIImage imageNamed:@"nethcti_add_call_green.png"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"nethcti_add_call.png"] forState:UIControlStateDisabled];
+    }
 }
 @end

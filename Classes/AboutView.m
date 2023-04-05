@@ -20,6 +20,7 @@
 #import "PhoneMainView.h"
 #import "LinphoneManager.h"
 #import "LinphoneIOSVersion.h"
+#import "Utils/Utils.h"
 
 @implementation AboutView
 
@@ -27,84 +28,98 @@
 
 static UICompositeViewDescription *compositeDescription = nil;
 + (UICompositeViewDescription *)compositeViewDescription {
-	if (compositeDescription == nil) {
-		compositeDescription = [[UICompositeViewDescription alloc] init:self.class
-															  statusBar:StatusBarView.class
-																 tabBar:nil
-															   sideMenu:SideMenuView.class
-															 fullscreen:false
-														 isLeftFragment:YES
-														   fragmentWith:nil];
-	}
-	return compositeDescription;
+    if (compositeDescription == nil) {
+        compositeDescription = [[UICompositeViewDescription alloc] init:self.class
+                                                              statusBar:StatusBarView.class
+                                                                 tabBar:nil
+                                                               sideMenu:SideMenuView.class
+                                                             fullscreen:false
+                                                         isLeftFragment:YES
+                                                           fragmentWith:nil];
+    }
+    return compositeDescription;
 }
 
 - (UICompositeViewDescription *)compositeViewDescription {
-	return self.class.compositeViewDescription;
+    return self.class.compositeViewDescription;
 }
 
 #pragma mark - ViewController Functions
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	NSString *name = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-	_nameLabel.text = name;
-	NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString *curVersion = [NSString stringWithFormat:@"version %@",[infoDict objectForKey:@"CFBundleShortVersionString"]];
-	_appVersionLabel.text = [NSString stringWithFormat:@"%@ iOS %@", name, curVersion];
-	_libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", name, LINPHONE_SDK_VERSION];
-	_translateLabel.text = [NSString stringWithString:NSLocalizedString(@"Help us translate Linphone", nil)];
-	
-	UITapGestureRecognizer *tapGestureRecognizer =
-		[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLicenceTap)];
-	tapGestureRecognizer.numberOfTapsRequired = 1;
-	[_licenceLabel addGestureRecognizer:tapGestureRecognizer];
-	_licenceLabel.userInteractionEnabled = YES;
-	
-	UITapGestureRecognizer *tapGestureRecognizerTranslate =
-		[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTranslateTap)];
-	tapGestureRecognizer.numberOfTapsRequired = 1;
-	[_translateLabel addGestureRecognizer:tapGestureRecognizerTranslate];
-	_translateLabel.userInteractionEnabled = YES;
-	
-	UITapGestureRecognizer *tapGestureRecognizerPolicy =
-		[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPolicyTap)];
-	tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
-	[_policyLabel addGestureRecognizer:tapGestureRecognizerPolicy];
-	_policyLabel.userInteractionEnabled = YES;
+    [super viewDidLoad];
+    
+    // Set the bundle name and version.
+    NSString *name = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    _nameLabel.text = name;
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *curVersion = [NSString stringWithFormat:@"version %@(%@)",[infoDict objectForKey:@"CFBundleShortVersionString"], [infoDict objectForKey:@"CFBundleVersion"]];
+    _appVersionLabel.text = [NSString stringWithFormat:@"%@ iOS %@", name, curVersion];
+    _libVersionLabel.text = [NSString stringWithFormat:@"%@ SDK %s", @"Linphone", LINPHONE_SDK_VERSION];
+    
+    // Set the license tap gesture.
+    [self addTapGesture:_licenceLabel action:@selector(onLicenceTap)];
+    
+    // Set the policy tap gesture.
+    [self addTapGesture:_policyLabel action:@selector(onPolicyTap)];
+    
+    // Change title label color.
+    _titleLabel.textColor = LINPHONE_MAIN_COLOR;
+    _addressLabel.text = NSLocalizedStringFromTable(@"addressLabel.text", @"BrandLocalizable", @"");
+    _cityLabel.text = NSLocalizedStringFromTable(@"cityLabel.text", @"BrandLocalizable", @"");
+    _descriptionLabel.text = NSLocalizedStringFromTable(@"descriptionLabel.text", @"BrandLocalizable", @"");
+    _descriptionLabel.textColor = LINPHONE_MAIN_COLOR;
+    _faxLabel.text = NSLocalizedStringFromTable(@"faxLabel.text", @"BrandLocalizable", @"");
+    _telLabel.text = NSLocalizedStringFromTable(@"telLabel.text", @"BrandLocalizable", @"");
+    _urlLabel.text = NSLocalizedStringFromTable(@"urlLabel.text", @"BrandLocalizable", @"");
+    
+    // CGRect fullScreenRect = [[UIScreen mainScreen] applicationFrame];
+    // UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:_outerView.frame];
+    // _midView.frame = CGRectMake(_outerView.frame.origin.x, _outerView.frame.origin.y, _outerView.frame.size.width, _outerView.frame.size.height);
+    [_midView setContentSize:CGSizeMake(_innerView.frame.size.width - 100, _innerView.frame.size.height + 100)];
+    
+    // do any further configuration to the scroll view
+    // add a view, or views, as a subview of the scroll view.
+    
+    // release scrollView as self.view retains it
+    // [scrollView addSubview:_innerView];
+    // [_outerView addSubview:scrollView];
+}
+
+- (void)addTapGesture:(UILabel*)label action:(SEL)action {
+    UITapGestureRecognizer *tapGestureRecognizerPolicy = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    tapGestureRecognizerPolicy.numberOfTapsRequired = 1;
+    [label addGestureRecognizer:tapGestureRecognizerPolicy];
+    label.userInteractionEnabled = YES;
 }
 
 #pragma mark - Action Functions
 
 - (IBAction)onLinkTap:(id)sender {
-	UIGestureRecognizer *gest = sender;
-	NSString *url = ((UILabel *)gest.view).text;
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
+    UIGestureRecognizer *gest = sender;
+    NSString *url = ((UILabel *)gest.view).text;
+    if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
+        LOGE(@"Failed to open %@, invalid URL", url);
+    }
 }
 
 - (IBAction)onPolicyTap {
-	NSString *url = @"https://www.linphone.org/privacy-policy";
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
+    // TODO: This link must change.
+    NSString *url = NSLocalizedStringFromTable(@"terms-and-privacy-url", @"BrandLocalizable", @"");;
+    if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
+        LOGE(@"Failed to open %@, invalid URL", url);
+    }
 }
 
 - (IBAction)onLicenceTap {
-	NSString *url = @"https://www.gnu.org/licenses/gpl-3.0.html";
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
-}
-- (IBAction)onTranslateTap {
-	NSString *url = @"https://weblate.linphone.org/projects/linphone-iphone";
-	if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
-		LOGE(@"Failed to open %@, invalid URL", url);
-	}
+    NSString *url = @"https://www.gnu.org/licenses/gpl-3.0.html";
+    if (![UIApplication.sharedApplication openURL:[NSURL URLWithString:url]]) {
+        LOGE(@"Failed to open %@, invalid URL", url);
+    }
 }
 
 - (IBAction)onDialerBackClick:(id)sender {
-	[PhoneMainView.instance popCurrentView];
+    [PhoneMainView.instance popCurrentView];
 }
+
 @end

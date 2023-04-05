@@ -66,7 +66,26 @@ static UICompositeViewDescription *compositeDescription = nil;
 	linphone_core_reset_missed_calls_count(LC);
 	// Fake event
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
-	[_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
+	[_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
+    UIImage *allLogs = [[UIImage imageNamed:@"nethcti_grey_phone.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *loseLogs = [[UIImage imageNamed:@"nethcti_missed_calls.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_allButton setImage:allLogs forState:UIControlStateNormal];
+    [_missedButton setImage:loseLogs forState:UIControlStateNormal];
+    
+    [self setUIColors];
+}
+
+- (void) setUIColors {
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [_tableController.tableView setSeparatorColor:separator];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -84,23 +103,32 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[_tableController removeFIlters];
 		_missedButton.selected = FALSE;
 		_conferenceButton.selected = false;
+        [_allButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+        [_missedButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+        [_conferenceButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
 	} else if (view == History_Conference) {
 		frame.origin.x = _conferenceButton.frame.origin.x;
 		_conferenceButton.selected = TRUE;
 		[_tableController setConfFilter:true];
 		_missedButton.selected = FALSE;
 		_allButton.selected = FALSE;
+        [_allButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+        [_missedButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+        [_conferenceButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
 	} else {
 		frame.origin.x = _missedButton.frame.origin.x;
 		_missedButton.selected = TRUE;
 		[_tableController setMissedFilter:TRUE];
 		_allButton.selected = FALSE;
 		_conferenceButton.selected = false;
+        [_allButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+        [_missedButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
+        [_conferenceButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
 	}
 	_selectedButtonImage.frame = frame;
 }
 
-#pragma m ~ark - Action Functions
+#pragma mark - Action Functions
 
 - (IBAction)onAllClick:(id)event {
 	[self changeView:History_All];
@@ -130,7 +158,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {
-	_allButton.hidden = _missedButton.hidden = _selectedButtonImage.hidden = self.tableController.isEditing;
+    _allButton.hidden = _missedButton.hidden = self.tableController.isEditing;
+    _selectedButtonImage.hidden = true;
 }
 
 @end

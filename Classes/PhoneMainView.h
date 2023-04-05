@@ -33,6 +33,7 @@
 #import "ChatConversationView.h"
 #import "ChatsListView.h"
 #import "ContactDetailsView.h"
+#import "ContactDetailsViewNethesis.h"
 #import "ContactsListView.h"
 #import "CountryListView.h"
 #import "DTActionSheet.h"

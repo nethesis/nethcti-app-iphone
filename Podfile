@@ -5,7 +5,7 @@ source "https://github.com/CocoaPods/Specs.git"
 
 def all_pods
 	if ENV['PODFILE_PATH'].nil?
-		pod 'linphone-sdk', '~>5.2.0'
+		pod 'linphone-sdk', '5.2.1'
 	else
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # local sdk
 	end
@@ -25,7 +25,7 @@ target 'linphone' do
   use_frameworks!
 
   # Pods for linphone
-	pod 'SVProgressHUD'
+  pod 'SVProgressHUD'
 	pod 'SnapKit', '~> 5.6.0'
         pod 'DropDown'
         pod 'IQKeyboardManager'

@@ -193,6 +193,7 @@ typedef struct _LinphoneManagerSounds {
 - (void)migrationPerAccount;
 
 - (void)setupGSMInteraction;
+- (void)setBluetoothEnabled:(BOOL)enable;
 - (BOOL)isCTCallCenterExist;
 - (void)checkLocalNetworkPermission;
 - (void)setDnsServer;
@@ -211,6 +212,7 @@ typedef struct _LinphoneManagerSounds {
 @property(nonatomic, strong) NSData *remoteNotificationToken;
 @property (readonly) LinphoneManagerSounds sounds;
 @property (readonly) NSMutableArray *logs;
+@property (nonatomic, assign) BOOL bluetoothAvailable;
 @property (readonly) NSString* contactSipField;
 @property (readonly,copy) NSString* contactFilter;
 @property (copy) void (^silentPushCompletion)(UIBackgroundFetchResult);

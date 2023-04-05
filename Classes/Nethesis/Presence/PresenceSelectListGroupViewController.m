@@ -247,7 +247,7 @@
 
     if ([self.id_groupSelezionato isEqualToString:groupSelezionato.id_group]) {
         
-        presenceSelectListGroupTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"mainColor"];
+        presenceSelectListGroupTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"MainColor"];
         
         presenceSelectListGroupTableViewCell.ibImageViewGruppoSelezionato.image = [UIImage imageNamed:@"icn_check_blu"];
         

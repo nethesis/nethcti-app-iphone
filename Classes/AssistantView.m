@@ -780,7 +780,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 			 _remoteProvisioningLoginView
 		 ]) {
 		[AssistantView cleanTextField:view];
-//#if DEBUG
+#if DEBUG
 		UIAssistantTextField *atf =
 			(UIAssistantTextField *)[self findView:ViewElement_Domain inView:view ofType:UIAssistantTextField.class];
 		atf.text = @"nethctiapp.nethserver.net";
@@ -790,7 +790,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         UIAssistantTextField *atf3 =
             (UIAssistantTextField *)[self findView:ViewElement_Password inView:view ofType:UIAssistantTextField.class];
         atf3.text = @"FRXokwXe";
-//#endif
+#endif
 	}
 	phone_number_length = 0;
 }

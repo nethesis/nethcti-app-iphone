@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordingsListView">
             <connections>
@@ -16,7 +21,6 @@
                 <outlet property="tableController" destination="1pR-qo-CIP" id="FD0-NI-8ox"/>
                 <outlet property="toggleSelectionButton" destination="16S-9G-2cb" id="D22-yK-HPS"/>
                 <outlet property="topBar" destination="See-Aw-LPP" id="daF-pK-NHy"/>
-                <outlet property="videoView" destination="5gX-xE-my9" id="I5t-Ex-N4v"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,15 +29,91 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="See-Aw-LPP" userLabel="topBar">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="See-Aw-LPP" userLabel="topBar">
+                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
                     <subviews>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqG-tB-maQ" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="0.0" y="0.0" width="82" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-tI-AVp" userLabel="backButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                            <accessibility key="accessibilityConfiguration" label="Back"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="rAc-tI-AVp" secondAttribute="height" multiplier="1:1" id="435-8a-Feh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="back.png">
+                                <color key="titleColor" red="0.28619974850000002" green="0.3214434981" blue="0.3598001301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled" image="back_disabled.png"/>
+                            <connections>
+                                <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="Quz-zf-q3K"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recordings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWC-5R-rmm" userLabel="titleLabel">
+                            <rect key="frame" x="66" y="12" width="348" height="42"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
+                            <color key="textColor" red="0.0" green="0.63529411759999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="2lw-I7-eiI"/>
+                        <constraint firstItem="qWC-5R-rmm" firstAttribute="leading" secondItem="rAc-tI-AVp" secondAttribute="trailing" id="5Qr-dY-EVb"/>
+                        <constraint firstItem="rAc-tI-AVp" firstAttribute="leading" secondItem="See-Aw-LPP" secondAttribute="leading" id="FRc-pQ-Ryh"/>
+                        <constraint firstItem="rAc-tI-AVp" firstAttribute="centerY" secondItem="See-Aw-LPP" secondAttribute="centerY" id="o47-sq-QGv"/>
+                        <constraint firstAttribute="trailing" secondItem="qWC-5R-rmm" secondAttribute="trailing" id="pWm-ES-Wol"/>
+                        <constraint firstItem="rAc-tI-AVp" firstAttribute="height" secondItem="See-Aw-LPP" secondAttribute="height" id="ynm-LU-eUU"/>
+                        <constraint firstItem="qWC-5R-rmm" firstAttribute="centerY" secondItem="See-Aw-LPP" secondAttribute="centerY" id="zTl-Ej-csJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfZ-QC-CRs" userLabel="buttonBar">
+                    <rect key="frame" x="0.0" y="110" width="414" height="66"/>
+                    <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDs-pW-vyA" userLabel="deleteButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="332" y="0.0" width="66" height="66"/>
                             <accessibility key="accessibilityConfiguration" label="Delete all"/>
-                            <state key="normal" image="cancel_edit_default.png">
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="zDs-pW-vyA" secondAttribute="height" multiplier="1:1" id="lCO-A0-3oW"/>
+                            </constraints>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <state key="normal" image="nethcti_trash.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled" image="nethcti_trash.png"/>
+                            <state key="highlighted" backgroundImage="color_E.png"/>
+                            <connections>
+                                <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="8LI-ry-dTU"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16S-9G-2cb" userLabel="toggleSelectionButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="250" y="0.0" width="66" height="66"/>
+                            <accessibility key="accessibilityConfiguration" label="Select all"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="16S-9G-2cb" secondAttribute="height" multiplier="1:1" id="Hhr-bg-Xkm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <state key="normal" image="nethcti_multiselect_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled" image="nethcti_multiselect_default.png"/>
+                            <state key="selected" image="nethcti_multiselect_selected.png"/>
+                            <state key="highlighted" backgroundImage="color_E.png"/>
+                            <connections>
+                                <action selector="onSelectionToggle:" destination="1pR-qo-CIP" eventType="touchUpInside" id="Hfi-f6-qfI"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqG-tB-maQ" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="16" y="0.0" width="66" height="66"/>
+                            <accessibility key="accessibilityConfiguration" label="Delete all"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="CqG-tB-maQ" secondAttribute="height" multiplier="1:1" id="14a-U5-QJZ"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <state key="normal" image="nethcti_cancel.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled" image="cancel_edit_disabled.png"/>
@@ -43,101 +123,85 @@
                                 <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="vly-0H-4W2"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDs-pW-vyA" userLabel="deleteButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="331" y="0.0" width="83" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="Delete all"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="delete_default.png">
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <state key="disabled" image="delete_disabled.png"/>
-                            <state key="highlighted" backgroundImage="color_E.png"/>
-                            <connections>
-                                <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="8LI-ry-dTU"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWx-9g-0JG" userLabel="editButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="331" y="0.0" width="83" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWx-9g-0JG" userLabel="editButton" customClass="UIInterfaceStyleButton">
+                            <rect key="frame" x="16" y="0.0" width="66" height="66"/>
                             <accessibility key="accessibilityConfiguration" label="Edit"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="CWx-9g-0JG" secondAttribute="height" multiplier="1:1" id="xfB-0b-SdQ"/>
+                            </constraints>
                             <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="delete_default.png">
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <state key="normal" image="nethcti_trash.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="disabled" image="delete_disabled.png"/>
+                            <state key="disabled" image="nethcti_trash.png"/>
                             <state key="highlighted" backgroundImage="color_E.png"/>
                             <connections>
                                 <action selector="onEditClick:" destination="1pR-qo-CIP" eventType="touchUpInside" id="0LH-n9-p0c"/>
                                 <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="IeY-Yd-XP2"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16S-9G-2cb" userLabel="toggleSelectionButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="248" y="0.0" width="83" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="Select all"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="deselect_all.png">
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <state key="disabled" image="select_all_disabled.png"/>
-                            <state key="selected" image="select_all_default.png"/>
-                            <state key="highlighted" backgroundImage="color_E.png"/>
-                            <connections>
-                                <action selector="onSelectionToggle:" destination="1pR-qo-CIP" eventType="touchUpInside" id="Hfi-f6-qfI"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-tI-AVp" userLabel="backButton" customClass="UIInterfaceStyleButton">
-                            <rect key="frame" x="0.0" y="0.0" width="82" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                            <accessibility key="accessibilityConfiguration" label="Back"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="back_default.png">
-                                <color key="titleColor" red="0.28619974850000002" green="0.3214434981" blue="0.3598001301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <state key="disabled" image="back_disabled.png"/>
-                            <state key="highlighted" backgroundImage="color_E.png"/>
-                            <connections>
-                                <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="Quz-zf-q3K"/>
-                            </connections>
-                        </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3b0-Nd-4r0">
-                    <rect key="frame" x="0.0" y="74" width="414" height="822"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="0C6-QB-3Pp"/>
+                        <constraint firstItem="CWx-9g-0JG" firstAttribute="leading" secondItem="kfZ-QC-CRs" secondAttribute="leading" constant="16" id="6cC-RO-jar"/>
+                        <constraint firstItem="zDs-pW-vyA" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="CHc-Ms-jJC"/>
+                        <constraint firstItem="CqG-tB-maQ" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="Dv3-Df-y9h"/>
+                        <constraint firstItem="CWx-9g-0JG" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="E7U-ZJ-cRc"/>
+                        <constraint firstAttribute="trailing" secondItem="zDs-pW-vyA" secondAttribute="trailing" constant="16" id="MJE-rE-ySW"/>
+                        <constraint firstItem="CqG-tB-maQ" firstAttribute="leading" secondItem="kfZ-QC-CRs" secondAttribute="leading" constant="16" id="ToS-Vl-7wK"/>
+                        <constraint firstItem="zDs-pW-vyA" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="ZYF-zz-v1Q"/>
+                        <constraint firstItem="16S-9G-2cb" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="qcX-ZI-wk6"/>
+                        <constraint firstItem="CqG-tB-maQ" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="uSd-6n-LiT"/>
+                        <constraint firstItem="16S-9G-2cb" firstAttribute="centerY" secondItem="kfZ-QC-CRs" secondAttribute="centerY" id="wmr-Up-hC4"/>
+                        <constraint firstItem="zDs-pW-vyA" firstAttribute="leading" secondItem="16S-9G-2cb" secondAttribute="trailing" constant="16" id="xsX-8V-6n8"/>
+                        <constraint firstItem="CWx-9g-0JG" firstAttribute="height" secondItem="kfZ-QC-CRs" secondAttribute="height" id="yTs-rt-mmL"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3b0-Nd-4r0">
+                    <rect key="frame" x="0.0" y="176" width="414" height="686"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="1pR-qo-CIP" id="z2V-Yd-AwQ"/>
                         <outlet property="delegate" destination="1pR-qo-CIP" id="eJQ-AV-7ts"/>
                     </connections>
                 </tableView>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No recording found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXd-Ic-rwm" userLabel="emptyTableLabel">
-                    <rect key="frame" x="0.0" y="74" width="414" height="822"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No recording" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXd-Ic-rwm" userLabel="emptyTableLabel">
+                    <rect key="frame" x="0.0" y="176" width="414" height="686"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gX-xE-my9">
-                    <rect key="frame" x="136" y="575" width="278" height="321"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="24.637681159420293" y="50.892857142857139"/>
+            <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="kfZ-QC-CRs" secondAttribute="trailing" id="3P2-zl-ZFx"/>
+                <constraint firstItem="kfZ-QC-CRs" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="7Eh-Rf-mYw"/>
+                <constraint firstItem="See-Aw-LPP" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="7en-85-fos"/>
+                <constraint firstItem="3b0-Nd-4r0" firstAttribute="top" secondItem="kfZ-QC-CRs" secondAttribute="bottom" id="FPY-P2-7MC"/>
+                <constraint firstItem="See-Aw-LPP" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="GIa-iY-Tm1"/>
+                <constraint firstItem="kfZ-QC-CRs" firstAttribute="top" secondItem="See-Aw-LPP" secondAttribute="bottom" id="GXl-xL-pyS"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="3b0-Nd-4r0" secondAttribute="bottom" id="MF3-P7-Eav"/>
+                <constraint firstItem="zXd-Ic-rwm" firstAttribute="centerX" secondItem="3b0-Nd-4r0" secondAttribute="centerX" id="RVD-5t-ffX"/>
+                <constraint firstItem="zXd-Ic-rwm" firstAttribute="width" secondItem="3b0-Nd-4r0" secondAttribute="width" id="TU3-Wx-PSe"/>
+                <constraint firstItem="See-Aw-LPP" firstAttribute="leading" secondItem="zXd-Ic-rwm" secondAttribute="leading" id="iKD-un-tzF"/>
+                <constraint firstItem="See-Aw-LPP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jwN-6G-r4g"/>
+                <constraint firstItem="3b0-Nd-4r0" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mFx-9M-Dm0"/>
+                <constraint firstItem="See-Aw-LPP" firstAttribute="trailing" secondItem="zXd-Ic-rwm" secondAttribute="trailing" id="pSo-on-dNf"/>
+                <constraint firstItem="zXd-Ic-rwm" firstAttribute="centerY" secondItem="3b0-Nd-4r0" secondAttribute="centerY" id="r5H-ah-l7d"/>
+                <constraint firstItem="zXd-Ic-rwm" firstAttribute="height" secondItem="3b0-Nd-4r0" secondAttribute="height" id="sfS-u4-bcO"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3b0-Nd-4r0" secondAttribute="trailing" id="xp8-vY-4tx"/>
+            </constraints>
+            <point key="canvasLocation" x="-204" y="52"/>
         </view>
         <tableViewController id="1pR-qo-CIP" customClass="RecordingsListTableView">
             <connections>
                 <outlet property="cancelButton" destination="CqG-tB-maQ" id="C90-0S-5WL"/>
-                <outlet property="deleteButton" destination="zDs-pW-vyA" id="mgV-PB-law"/>
+                <outlet property="deleteButton" destination="zDs-pW-vyA" id="tdw-88-xbf"/>
                 <outlet property="editButton" destination="CWx-9g-0JG" id="hAA-6f-kX8"/>
                 <outlet property="emptyView" destination="zXd-Ic-rwm" id="D4k-nO-LKW"/>
                 <outlet property="toggleSelectionButton" destination="16S-9G-2cb" id="6pj-Yn-hy1"/>
@@ -147,19 +211,14 @@
         </tableViewController>
     </objects>
     <resources>
-        <image name="back_default.png" width="38.400001525878906" height="35.200000762939453"/>
+        <image name="back.png" width="32" height="32"/>
         <image name="back_disabled.png" width="38.400001525878906" height="35.200000762939453"/>
-        <image name="cancel_edit_default.png" width="47.200000762939453" height="47.200000762939453"/>
         <image name="cancel_edit_disabled.png" width="47.200000762939453" height="47.200000762939453"/>
         <image name="color_E.png" width="2" height="2"/>
-        <image name="delete_default.png" width="34.400001525878906" height="44.799999237060547"/>
-        <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
-        <image name="deselect_all.png" width="43.200000762939453" height="43.200000762939453"/>
-        <image name="select_all_default.png" width="43.200000762939453" height="43.200000762939453"/>
-        <image name="select_all_disabled.png" width="43.200000762939453" height="43.200000762939453"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="nethcti_cancel.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_default.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
+        <image name="nethcti_trash.png" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -313,6 +313,10 @@
 	}
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
+}
+
 - (void)removeSelectionUsing:(void (^)(NSIndexPath *))remover {
 	[super removeSelectionUsing:^(NSIndexPath *indexPath) {
 	  id log = [_sections objectForKey:_sortedDays[indexPath.section]][indexPath.row];

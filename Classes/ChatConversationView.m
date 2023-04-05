@@ -26,9 +26,9 @@
 #import "FileTransferDelegate.h"
 #import "UIChatBubbleTextCell.h"
 #import "DevicesListView.h"
-#import "SVProgressHUD.h"
 #import "EphemeralSettingsView.h"
 #import "Utils.h"
+#import "SVProgressHUD.h"
 
 @implementation FileContext
 
@@ -1716,7 +1716,7 @@ void on_chat_room_conference_alert(LinphoneChatRoom *cr, const LinphoneEventLog 
 			normSip = [normSip hasPrefix:@"sips:"] ? [normSip substringFromIndex:5] : normSip;
 			[ContactSelection setAddAddress:normSip];
 			[ContactSelection setSelectionMode:ContactSelectionModeEdit];
-			[ContactSelection enableSipFilter:FALSE];
+			//[ContactSelection enableSipFilter:FALSE];
 			[PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
 			ms_free(lAddress);
 		}

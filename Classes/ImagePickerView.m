@@ -20,11 +20,10 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "ImagePickerView.h"
 #import "PhoneMainView.h"
-#import "SVProgressHUD.h"
 #import "ShareViewController.h"
 #import "linphoneapp-Swift.h"
 #import <UIKit/UIKit.h>
-
+#import "SVProgressHUD.h"
 
 @implementation ImagePickerView
 

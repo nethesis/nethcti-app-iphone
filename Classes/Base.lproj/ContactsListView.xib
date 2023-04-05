@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactsListView">
             <connections>
                 <outlet property="addButton" destination="6" id="91"/>
                 <outlet property="allButton" destination="4" id="27"/>
+                <outlet property="backSpaceButton" destination="GWc-jx-y4x" id="W3d-aS-y2R"/>
+                <outlet property="filterPicker" destination="W2W-PV-1J5" id="TaD-S3-Ikh"/>
                 <outlet property="linphoneButton" destination="5" id="31"/>
-                <outlet property="loadingLabel" destination="qSa-Ba-dq9" id="CPa-pO-OQD"/>
-                <outlet property="loadingView" destination="CM2-Aq-Q3g" id="uie-SJ-TKf"/>
-                <outlet property="searchBar" destination="5jE-oF-d45" id="xfS-xo-2Bm"/>
-                <outlet property="selectedButtonImage" destination="A9k-KU-Dlm" id="4dX-pd-Y2D"/>
+                <outlet property="searchBaseline" destination="SMg-QK-QhZ" id="fqJ-Pn-Bij"/>
+                <outlet property="searchField" destination="Tqm-iI-V4a" id="A80-fO-m0t"/>
                 <outlet property="tableController" destination="TJG-JZ-YRR" id="0lt-gC-EOm"/>
                 <outlet property="toggleSelectionButton" destination="5lZ-u7-Yex" id="ULR-WM-Yuo"/>
                 <outlet property="topBar" destination="3" id="w1O-2o-b18"/>
@@ -25,191 +30,287 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1YR-9t-hRk" userLabel="iphone6MetricsView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2">
-                    <rect key="frame" x="0.0" y="42" width="375" height="559"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" id="2">
+                    <rect key="frame" x="0.0" y="42" width="375" height="675"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3" userLabel="topBar">
+                        <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3" userLabel="topBar">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93" userLabel="switchView">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93" userLabel="switchView">
+                                    <rect key="frame" x="0.0" y="0.0" width="132" height="66"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="allButton" customClass="UIInterfaceStyleButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="66"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="allButton" customClass="UIInterfaceStyleButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                             <accessibility key="accessibilityConfiguration" label="All contacts filter"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="4" secondAttribute="height" multiplier="1:1" id="VzS-hH-Nuc"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                            <inset key="titleEdgeInsets" minX="-38" minY="15" maxX="0.0" maxY="0.0"/>
-                                            <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" image="contacts_all_default.png">
+                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <state key="normal" image="users.png">
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="disabled" image="contacts_all_disabled.png"/>
-                                            <state key="selected" image="contacts_all_selected.png">
+                                            <state key="selected">
                                                 <color key="titleColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
                                             <connections>
                                                 <action selector="onAllClick:" destination="-1" eventType="touchUpInside" id="29"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color_A.png" translatesAutoresizingMaskIntoConstraints="NO" id="A9k-KU-Dlm" userLabel="selectedButtonImage">
-                                            <rect key="frame" x="0.0" y="63" width="75" height="3"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="sipButton" customClass="UIInterfaceStyleButton">
-                                            <rect key="frame" x="75" y="0.0" width="75" height="66"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="sipButton" customClass="UIInterfaceStyleButton">
+                                            <rect key="frame" x="66" y="0.0" width="66" height="66"/>
                                             <accessibility key="accessibilityConfiguration" label="Linphone contacts filter"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="5" secondAttribute="height" multiplier="1:1" id="VIr-RI-gjh"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                            <state key="normal" image="contacts_sip_default.png">
+                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <state key="normal" image="nethcti_users_sip.png">
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="disabled" image="contacts_sip_disabled.png"/>
-                                            <state key="selected" image="contacts_sip_selected.png">
+                                            <state key="selected">
                                                 <color key="titleColor" red="0.98766469955444336" green="0.27512490749359131" blue="0.029739789664745331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="highlighted" backgroundImage="color_E.png"/>
                                             <connections>
                                                 <action selector="onLinphoneClick:" destination="-1" eventType="touchUpInside" id="47"/>
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="Fb7-zw-T1c"/>
+                                        <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="QvH-Ur-Gee"/>
+                                        <constraint firstItem="4" firstAttribute="top" secondItem="93" secondAttribute="top" id="R0Y-RE-oq3"/>
+                                        <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="Tw8-sH-82U"/>
+                                        <constraint firstItem="5" firstAttribute="top" secondItem="93" secondAttribute="top" id="fpz-HA-Vzo"/>
+                                        <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="opL-jc-W5s"/>
+                                        <constraint firstItem="4" firstAttribute="leading" secondItem="93" secondAttribute="leading" id="pXy-jZ-E33"/>
+                                    </constraints>
                                 </view>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZP-cb-ntf" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZP-cb-ntf" userLabel="cancelButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete all"/>
-                                    <state key="normal" image="cancel_edit_default.png">
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="MZP-cb-ntf" secondAttribute="height" multiplier="1:1" id="b1W-q9-RV4"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                    <state key="normal" image="nethcti_cancel.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="cancel_edit_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onCancelClick:" destination="TJG-JZ-YRR" eventType="touchUpInside" id="1nW-5f-kbI"/>
                                         <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="PL4-Js-Xvg"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFB-Vf-lUX" userLabel="deleteButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="300" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFB-Vf-lUX" userLabel="deleteButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="309" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete all"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="tFB-Vf-lUX" secondAttribute="height" multiplier="1:1" id="yOS-02-jDH"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="delete_default.png">
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                    <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="delete_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                    <state key="disabled" image="nethcti_trash_disabled.png"/>
                                     <connections>
                                         <action selector="onDeleteClick:" destination="-1" eventType="touchUpInside" id="VJS-p2-Jsp"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZc-zR-1Q7" userLabel="editButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="300" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZc-zR-1Q7" userLabel="editButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="309" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="DZc-zR-1Q7" secondAttribute="height" multiplier="1:1" id="zdL-u1-xJX"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="delete_default.png">
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                    <state key="normal" image="nethcti_trash.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="delete_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onEditClick:" destination="TJG-JZ-YRR" eventType="touchUpInside" id="CKU-6b-3F2"/>
                                         <action selector="onEditionChangeClick:" destination="-1" eventType="touchUpInside" id="uvi-82-4ka"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lZ-u7-Yex" userLabel="toggleSelectionButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="225" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lZ-u7-Yex" userLabel="toggleSelectionButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="243" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Select all"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="5lZ-u7-Yex" secondAttribute="height" multiplier="1:1" id="mlh-YI-EQH"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="deselect_all.png">
+                                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                    <state key="normal" image="nethcti_multiselect_default.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="disabled" image="select_all_disabled.png"/>
-                                    <state key="selected" image="select_all_default.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
+                                    <state key="selected" image="nethcti_multiselect_selected.png"/>
                                     <connections>
                                         <action selector="onSelectionToggle:" destination="TJG-JZ-YRR" eventType="touchUpInside" id="YcH-HT-zyi"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="addButton" customClass="UIInterfaceStyleButton">
-                                    <rect key="frame" x="225" y="0.0" width="75" height="66"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="addButton" customClass="UIInterfaceStyleButton">
+                                    <rect key="frame" x="243" y="0.0" width="66" height="66"/>
                                     <accessibility key="accessibilityConfiguration" label="Add contact"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="6" secondAttribute="height" multiplier="1:1" id="NOq-ew-iTw"/>
+                                    </constraints>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="contact_add_default.png">
+                                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <state key="normal" image="nethcti_user_add.png">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" image="contact_add_disabled.png"/>
-                                    <state key="highlighted" backgroundImage="color_E.png"/>
                                     <connections>
                                         <action selector="onAddContactClick:" destination="-1" eventType="touchUpInside" id="86"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="MZP-cb-ntf" secondAttribute="bottom" id="0h6-jY-XWG"/>
+                                <constraint firstItem="MZP-cb-ntf" firstAttribute="top" secondItem="3" secondAttribute="top" id="12c-j5-GvG"/>
+                                <constraint firstItem="6" firstAttribute="top" secondItem="3" secondAttribute="top" id="5a7-BI-As8"/>
+                                <constraint firstItem="tFB-Vf-lUX" firstAttribute="top" secondItem="3" secondAttribute="top" id="JjJ-fz-d4m"/>
+                                <constraint firstAttribute="bottom" secondItem="tFB-Vf-lUX" secondAttribute="bottom" id="M0s-jp-RI6"/>
+                                <constraint firstItem="93" firstAttribute="top" secondItem="3" secondAttribute="top" id="OWd-PB-Zca"/>
+                                <constraint firstAttribute="trailing" secondItem="DZc-zR-1Q7" secondAttribute="trailing" id="OvE-gH-c0P"/>
+                                <constraint firstItem="93" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="QOu-8j-lNc"/>
+                                <constraint firstItem="tFB-Vf-lUX" firstAttribute="leading" secondItem="5lZ-u7-Yex" secondAttribute="trailing" id="SSB-LG-zkX"/>
+                                <constraint firstItem="tFB-Vf-lUX" firstAttribute="leading" secondItem="6" secondAttribute="trailing" id="UWA-9v-rN1"/>
+                                <constraint firstAttribute="trailing" secondItem="tFB-Vf-lUX" secondAttribute="trailing" id="Y7f-1s-fKM"/>
+                                <constraint firstItem="MZP-cb-ntf" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="ZKJ-pb-HtB"/>
+                                <constraint firstItem="5lZ-u7-Yex" firstAttribute="top" secondItem="3" secondAttribute="top" id="Zq2-DR-fub"/>
+                                <constraint firstAttribute="height" constant="66" id="ebf-Xe-3yu"/>
+                                <constraint firstItem="93" firstAttribute="height" secondItem="3" secondAttribute="height" id="faE-Ht-47v"/>
+                                <constraint firstItem="DZc-zR-1Q7" firstAttribute="top" secondItem="3" secondAttribute="top" id="h6x-Sp-5YO"/>
+                                <constraint firstItem="6" firstAttribute="height" secondItem="3" secondAttribute="height" id="kJQ-n4-PGy"/>
+                                <constraint firstAttribute="bottom" secondItem="5lZ-u7-Yex" secondAttribute="bottom" id="mlS-gg-gPk"/>
+                                <constraint firstAttribute="bottom" secondItem="93" secondAttribute="bottom" id="nMT-yw-IwO"/>
+                                <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="r0Z-8g-9Ih"/>
+                                <constraint firstAttribute="bottom" secondItem="DZc-zR-1Q7" secondAttribute="bottom" id="vjX-eJ-0oG"/>
+                            </constraints>
                         </view>
-                        <searchBar contentMode="redraw" fixedFrame="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5jE-oF-d45" userLabel="searchBar">
-                            <rect key="frame" x="0.0" y="66" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="Fk3-Tl-dY0"/>
-                            </connections>
-                        </searchBar>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zOo-FS-W6l" userLabel="tableView">
-                            <rect key="frame" x="0.0" y="110" width="375" height="449"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <view clipsSubviews="YES" alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad9-PV-eYg" userLabel="searchBar">
+                            <rect key="frame" x="0.0" y="66" width="375" height="48"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="StM-za-nD1">
+                                    <rect key="frame" x="16" y="16" width="343" height="32"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tH-6O-aDu">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                            <subviews>
+                                                <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-iI-V4a" userLabel="searchField">
+                                                    <rect key="frame" x="0.0" y="1.3333333333333286" width="311" height="27.666666666666668"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Search"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="22"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="search"/>
+                                                    <connections>
+                                                        <action selector="searchEditingChanged:" destination="-1" eventType="editingChanged" id="373-Oj-JIJ"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWc-jx-y4x" userLabel="backspaceButton" customClass="UIInterfaceStyleButton">
+                                                    <rect key="frame" x="311" y="-1" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="E5T-kK-Xq5"/>
+                                                        <constraint firstAttribute="width" secondItem="GWc-jx-y4x" secondAttribute="height" multiplier="1:1" id="eb9-6S-xnI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                    <state key="normal" image="nethcti_backspace.png">
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="disabled" image="nethcti_backspace.png"/>
+                                                    <state key="highlighted" image="nethcti_backspace.png"/>
+                                                    <connections>
+                                                        <action selector="onBackPressed:" destination="-1" eventType="touchUpInside" id="t3z-De-iCk"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GWc-jx-y4x" firstAttribute="centerY" secondItem="8tH-6O-aDu" secondAttribute="centerY" id="07m-SS-3Rp"/>
+                                                <constraint firstItem="GWc-jx-y4x" firstAttribute="leading" secondItem="Tqm-iI-V4a" secondAttribute="trailing" id="1Vm-2O-bgd"/>
+                                                <constraint firstItem="Tqm-iI-V4a" firstAttribute="centerY" secondItem="8tH-6O-aDu" secondAttribute="centerY" id="3wB-lD-avd"/>
+                                                <constraint firstItem="Tqm-iI-V4a" firstAttribute="leading" secondItem="8tH-6O-aDu" secondAttribute="leading" id="usv-uM-ejW"/>
+                                                <constraint firstAttribute="trailing" secondItem="GWc-jx-y4x" secondAttribute="trailing" id="zXM-QL-VPl"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMg-QK-QhZ" userLabel="baseline">
+                                            <rect key="frame" x="0.0" y="30" width="343" height="2"/>
+                                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="2" id="LCJ-ce-4Lb"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="32" id="SOk-RE-jlb"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="StM-za-nD1" firstAttribute="top" secondItem="Ad9-PV-eYg" secondAttribute="top" constant="16" id="3gS-oF-ugk"/>
+                                <constraint firstAttribute="bottom" secondItem="StM-za-nD1" secondAttribute="bottom" id="BPx-xr-Hfl"/>
+                                <constraint firstAttribute="trailing" secondItem="StM-za-nD1" secondAttribute="trailing" constant="16" id="TRJ-dS-Bs7"/>
+                                <constraint firstItem="StM-za-nD1" firstAttribute="leading" secondItem="Ad9-PV-eYg" secondAttribute="leading" constant="16" id="jrs-em-iAt"/>
+                            </constraints>
+                        </view>
+                        <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2W-PV-1J5">
+                            <rect key="frame" x="0.0" y="114" width="375" height="0.0"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="7GP-T2-SCc"/>
+                            </constraints>
+                        </pickerView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zOo-FS-W6l" userLabel="tableView">
+                            <rect key="frame" x="4" y="130" width="355" height="545"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <color key="separatorColor" red="0.67030966281890869" green="0.71867996454238892" blue="0.75078284740447998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             <connections>
                                 <outlet property="dataSource" destination="TJG-JZ-YRR" id="334-RR-jEi"/>
                                 <outlet property="delegate" destination="TJG-JZ-YRR" id="V1N-gI-U4J"/>
                             </connections>
                         </tableView>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No contact found in your address book" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-k7-gVP" userLabel="emptyTableLabel">
-                            <rect key="frame" x="0.0" y="110" width="375" height="449"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No contact found in your address book" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-k7-gVP" userLabel="emptyTableLabel">
+                            <rect key="frame" x="4" y="130" width="355" height="545"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view hidden="YES" contentMode="scaleToFill" id="CM2-Aq-Q3g">
-                            <rect key="frame" x="0.0" y="110" width="375" height="449"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="udQ-TE-UlZ">
-                                    <rect key="frame" x="80" y="8" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading contacts..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qSa-Ba-dq9">
-                                    <rect key="frame" x="108" y="8" width="145" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="zOo-FS-W6l" secondAttribute="bottom" id="6Rt-L9-d87"/>
+                        <constraint firstAttribute="trailing" secondItem="W2W-PV-1J5" secondAttribute="trailing" id="BL0-N2-Jeb"/>
+                        <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" id="EBj-a8-6kC"/>
+                        <constraint firstItem="Ad9-PV-eYg" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="IA2-jY-cw2"/>
+                        <constraint firstItem="zOo-FS-W6l" firstAttribute="top" secondItem="W2W-PV-1J5" secondAttribute="bottom" constant="16" id="JPg-mB-Vof"/>
+                        <constraint firstAttribute="trailing" secondItem="zOo-FS-W6l" secondAttribute="trailing" constant="16" id="KvY-bF-gWJ"/>
+                        <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="MOX-nf-AQD"/>
+                        <constraint firstItem="zOo-FS-W6l" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="4" id="TBb-4V-DOa"/>
+                        <constraint firstItem="Ad9-PV-eYg" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="TFQ-Nd-sBC"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="leading" secondItem="zOo-FS-W6l" secondAttribute="leading" id="X0e-J2-RfJ"/>
+                        <constraint firstItem="W2W-PV-1J5" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="jkV-50-gbv"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="top" secondItem="zOo-FS-W6l" secondAttribute="top" id="lsa-Ke-6ze"/>
+                        <constraint firstAttribute="trailing" secondItem="Ad9-PV-eYg" secondAttribute="trailing" id="nnv-zQ-OYv"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="trailing" secondItem="zOo-FS-W6l" secondAttribute="trailing" id="q7N-PY-alC"/>
+                        <constraint firstItem="W2W-PV-1J5" firstAttribute="top" secondItem="Ad9-PV-eYg" secondAttribute="bottom" id="riq-px-zJG"/>
+                        <constraint firstItem="JR3-k7-gVP" firstAttribute="bottom" secondItem="zOo-FS-W6l" secondAttribute="bottom" id="xSA-cK-kZE"/>
+                        <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="yCe-wL-V0M"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="6.5217391304347831" y="142.29910714285714"/>
+            <point key="canvasLocation" x="-23.199999999999999" y="158.12807881773401"/>
         </view>
         <tableViewController id="TJG-JZ-YRR" userLabel="tableController" customClass="ContactsListTableView">
             <connections>
@@ -220,32 +321,25 @@
                 <outlet property="toggleSelectionButton" destination="5lZ-u7-Yex" id="C99-nu-2wJ"/>
                 <outlet property="view" destination="zOo-FS-W6l" id="cM7-Da-i7e"/>
             </connections>
-            <point key="canvasLocation" x="739.13043478260875" y="137.94642857142856"/>
+            <point key="canvasLocation" x="916" y="158"/>
         </tableViewController>
     </objects>
     <resources>
-        <image name="cancel_edit_default.png" width="47.200000762939453" height="47.200000762939453"/>
-        <image name="cancel_edit_disabled.png" width="47.200000762939453" height="47.200000762939453"/>
-        <image name="color_A.png" width="2" height="2"/>
-        <image name="color_E.png" width="2" height="2"/>
-        <image name="contact_add_default.png" width="55.200000762939453" height="47.200000762939453"/>
-        <image name="contact_add_disabled.png" width="55.200000762939453" height="47.200000762939453"/>
-        <image name="contacts_all_default.png" width="52" height="44"/>
-        <image name="contacts_all_disabled.png" width="52" height="44"/>
-        <image name="contacts_all_selected.png" width="52" height="44"/>
-        <image name="contacts_sip_default.png" width="39.5" height="39.5"/>
-        <image name="contacts_sip_disabled.png" width="38" height="30"/>
-        <image name="contacts_sip_selected.png" width="39.5" height="39.5"/>
-        <image name="delete_default.png" width="34.400001525878906" height="44.799999237060547"/>
-        <image name="delete_disabled.png" width="34.400001525878906" height="44.799999237060547"/>
-        <image name="deselect_all.png" width="43.200000762939453" height="43.200000762939453"/>
-        <image name="select_all_default.png" width="43.200000762939453" height="43.200000762939453"/>
+        <image name="nethcti_backspace.png" width="256" height="256"/>
+        <image name="nethcti_cancel.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_default.png" width="40" height="40"/>
+        <image name="nethcti_multiselect_selected.png" width="40" height="40"/>
+        <image name="nethcti_trash.png" width="40" height="40"/>
+        <image name="nethcti_trash_disabled.png" width="40" height="40"/>
+        <image name="nethcti_user_add.png" width="40" height="40"/>
+        <image name="nethcti_users_sip.png" width="32" height="32"/>
         <image name="select_all_disabled.png" width="43.200000762939453" height="43.200000762939453"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="users.png" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

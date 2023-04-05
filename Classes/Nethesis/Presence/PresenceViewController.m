@@ -106,7 +106,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtons"];
 
     
-    self.ibLabelGruppi.textColor = [UIColor colorNamed: @"mainColor"];
+    self.ibLabelGruppi.textColor = [UIColor colorNamed: @"MainColor"];
 
     [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_on"] forState:UIControlStateNormal];
     self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
@@ -416,7 +416,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 
         self.isGroupsFilter = NO;
         
-        self.ibLabelPreferiti.textColor = [UIColor colorNamed: @"mainColor"];
+        self.ibLabelPreferiti.textColor = [UIColor colorNamed: @"MainColor"];
         
         [self.ibButtonSelezionaPreferiti setImage:[UIImage imageNamed:@"icn_preferiti_on"] forState:UIControlStateNormal];
         self.ibButtonSelezionaPreferiti.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];
@@ -453,7 +453,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         // GRUPPI
         self.isGroupsFilter = YES;
         
-        self.ibLabelGruppi.textColor = [UIColor colorNamed: @"mainColor"];
+        self.ibLabelGruppi.textColor = [UIColor colorNamed: @"MainColor"];
 
         [self.ibButtonSelezionaGruppi setImage:[UIImage imageNamed:@"icn_gruppi_on"] forState:UIControlStateNormal];
         self.ibButtonSelezionaGruppi.backgroundColor = [UIColor colorNamed: @"SfondoButtonsOn"];

@@ -25,7 +25,7 @@
 #import "Utils.h"
 
 @implementation ContactsListTableView
-
+int rowHeight = 70;
 #pragma mark - Lifecycle Functions
 
 - (void)initContactsTableViewController {
@@ -239,6 +239,10 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 	return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return rowHeight;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.sectionHeaderHeight);
 	UIView *tempView = [[UIView alloc] initWithFrame:frame];
@@ -266,18 +270,43 @@ static int ms_strcmpfuz(const char *fuzzy_word, const char *sentence) {
 		NSMutableArray *subAr = [addressBookMap objectForKey:[addressBookMap keyAtIndex:[indexPath section]]];
 		Contact *contact = subAr[indexPath.row];
 
-		// Go to Contact details view
-		ContactDetailsView *view = VIEW(ContactDetailsView);
-		[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-		if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
-			[view setContact:contact];
-		} else {
-			if (IPAD) {
-				[view resetContact];
-				view.isAdding = FALSE;
-			}
-			[view editContact:contact address:[ContactSelection getAddAddress]];
-		}
+        // Go to right ContactDetailsView(Nethesis)
+        if ([ContactSelection getSipFilter] && contact.nethesis) {
+            
+            ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            
+            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+                
+                [view setContact:contact];
+                
+            }else {
+                
+                if (IPAD) {
+                    [view resetContact];
+                    view.isAdding = FALSE;
+                }
+                [view editContact:contact address:[ContactSelection getAddAddress]];
+            }
+            
+        }else {
+            
+            ContactDetailsView *view = VIEW(ContactDetailsView);
+            [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+            
+            if (([ContactSelection getSelectionMode] != ContactSelectionModeEdit) || !([ContactSelection getAddAddress])) {
+                
+                [view setContact:contact];
+                
+            }else {
+                
+                if (IPAD) {
+                    [view resetContact];
+                    view.isAdding = FALSE;
+                }
+                [view editContact:contact address:[ContactSelection getAddAddress]];
+            }
+        }
 	}
 }
 

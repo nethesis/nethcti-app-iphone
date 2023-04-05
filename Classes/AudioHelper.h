@@ -17,21 +17,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import <AddressBook/AddressBook.h>
+#ifndef AudioHelper_h
+#define AudioHelper_h
 
-#import "Contact.h"
-#import "LinphoneUI/UIToggleButton.h"
+#import <Foundation/Foundation.h>
 
-@interface ContactDetailsTableView : UITableViewController <UITextFieldDelegate>
+@import AVFoundation;
 
-@property(strong, nonatomic) Contact *contact;
-@property(weak, nonatomic) IBOutlet UIToggleButton *editButton;
+@interface AudioHelper : NSObject
 
-- (void)addPhoneField:(NSString *)number;
-- (void)addSipField:(NSString *)address;
-- (void)addEmailField:(NSString *)address;
-- (void)setContact:(Contact *)contact;
-@property (weak, nonatomic) UIView *waitView;
-
++ (NSArray *)bluetoothRoutes;
++ (AVAudioSessionPortDescription *)bluetoothAudioDevice;
++ (AVAudioSessionPortDescription *)builtinAudioDevice;
++ (AVAudioSessionPortDescription *)speakerAudioDevice;
++ (AVAudioSessionPortDescription *)audioDeviceFromTypes:(NSArray *)types;
 @end
+
+#endif /* AudioHelper_h */

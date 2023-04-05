@@ -648,6 +648,12 @@
 		8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9B1F9F76BC00BEA0C1 /* chat_group_informations.png */; };
 		8CF25D9E1F9F76BD00BEA0C1 /* chat_group_informations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF25D9C1F9F76BD00BEA0C1 /* chat_group_informations@2x.png */; };
 		AC76CCEFDCD59EB01C2DE3F8 /* Pods_msgNotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA35546364BBF65F0DF5E8F /* Pods_msgNotificationContent.framework */; };
+		B31A256D29D5CDCC00A70D81 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = B31A256B29D5CDCC00A70D81 /* users.png */; };
+		B31A256E29D5CDCC00A70D81 /* users@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B31A256C29D5CDCC00A70D81 /* users@2x.png */; };
+		B31A257229D5D44300A70D81 /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = B31A257029D5D44300A70D81 /* ContactDetailsViewNethesis.m */; };
+		B31A257329D5D44300A70D81 /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31A257129D5D44300A70D81 /* ContactDetailsViewNethesis.xib */; };
+		B31A257629D5D47000A70D81 /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = B31A257429D5D47000A70D81 /* ContactDetailsTableViewNethesis.m */; };
+		B354BA3E29DB1FD5007478DF /* AudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B354BA3D29DB1FD5007478DF /* AudioHelper.m */; };
 		B39FEE73296C726600183642 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA2004B1D8158440095F859 /* PushKit.framework */; };
 		B39FEE76296C7BC600183642 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE74296C7BC500183642 /* settings.png */; };
 		B39FEE77296C7BC600183642 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE75296C7BC600183642 /* settings@2x.png */; };
@@ -2036,6 +2042,16 @@
 		A6FD9930E5B1F4149D45BB1C /* Pods_linphone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_linphone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD31E0BAAE2E50305E05B683 /* Pods-msgNotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationService.debug.xcconfig"; path = "Target Support Files/Pods-msgNotificationService/Pods-msgNotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D404E542E5871F7437A060 /* Pods-msgNotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msgNotificationContent.debug.xcconfig"; path = "Target Support Files/Pods-msgNotificationContent/Pods-msgNotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
+		B31A256B29D5CDCC00A70D81 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
+		B31A256C29D5CDCC00A70D81 /* users@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "users@2x.png"; sourceTree = "<group>"; };
+		B31A256F29D5D44300A70D81 /* ContactDetailsViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewNethesis.h; sourceTree = "<group>"; };
+		B31A257029D5D44300A70D81 /* ContactDetailsViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewNethesis.m; sourceTree = "<group>"; };
+		B31A257129D5D44300A70D81 /* ContactDetailsViewNethesis.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailsViewNethesis.xib; sourceTree = "<group>"; };
+		B31A257429D5D47000A70D81 /* ContactDetailsTableViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewNethesis.m; sourceTree = "<group>"; };
+		B31A257529D5D47000A70D81 /* ContactDetailsTableViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewNethesis.h; sourceTree = "<group>"; };
+		B31A257829D5D63D00A70D81 /* ContactSections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSections.h; sourceTree = "<group>"; };
+		B354BA3C29DB1FD5007478DF /* AudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelper.h; sourceTree = "<group>"; };
+		B354BA3D29DB1FD5007478DF /* AudioHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioHelper.m; sourceTree = "<group>"; };
 		B39FEE74296C7BC500183642 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		B39FEE75296C7BC600183642 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		B39FEE78296C7BE300183642 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -2745,8 +2761,8 @@
 				63EC8D3B1D7438660066547B /* AssistantLinkView.xib */,
 				D350F20B15A43BB100149E54 /* AssistantView.h */,
 				D350F20C15A43BB100149E54 /* AssistantView.m */,
-				D38187E015FE348A00C3EDCA /* AssistantView.xib */,
 				D3D5126A160B3A8E00946DF8 /* AssistantViewScreens.xib */,
+				D38187E015FE348A00C3EDCA /* AssistantView.xib */,
 				8C9C5E0B1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.h */,
 				8C9C5E0C1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.m */,
 				6341807A1BBC103100F71761 /* ChatConversationCreateTableView.h */,
@@ -2772,6 +2788,12 @@
 				D38187B415FE340500C3EDCA /* ChatsListView.xib */,
 				D37C639915AADEF4009D0BAC /* ContactDetailsTableView.h */,
 				D37C639A15AADEF5009D0BAC /* ContactDetailsTableView.m */,
+				B31A257829D5D63D00A70D81 /* ContactSections.h */,
+				B31A256F29D5D44300A70D81 /* ContactDetailsViewNethesis.h */,
+				B31A257029D5D44300A70D81 /* ContactDetailsViewNethesis.m */,
+				B31A257129D5D44300A70D81 /* ContactDetailsViewNethesis.xib */,
+				B31A257529D5D47000A70D81 /* ContactDetailsTableViewNethesis.h */,
+				B31A257429D5D47000A70D81 /* ContactDetailsTableViewNethesis.m */,
 				D3128FDE15AABC7E00A2147A /* ContactDetailsView.h */,
 				D3128FDF15AABC7E00A2147A /* ContactDetailsView.m */,
 				D38187BC15FE342200C3EDCA /* ContactDetailsView.xib */,
@@ -3090,6 +3112,8 @@
 		633FEBE11D3CD5570014B822 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B31A256B29D5CDCC00A70D81 /* users.png */,
+				B31A256C29D5CDCC00A70D81 /* users@2x.png */,
 				633FEBE21D3CD5570014B822 /* add_field_default.png */,
 				633FEBE31D3CD5570014B822 /* add_field_default@2x.png */,
 				633FEBE41D3CD5570014B822 /* add_field_over.png */,
@@ -4402,6 +4426,8 @@
 				63D11C541C3D503A00E8FCEE /* Log.h */,
 				63423C081C4501D000D9A050 /* Contact.h */,
 				63423C091C4501D000D9A050 /* Contact.m */,
+				B354BA3C29DB1FD5007478DF /* AudioHelper.h */,
+				B354BA3D29DB1FD5007478DF /* AudioHelper.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -5316,11 +5342,13 @@
 				B3D09AFB296C1C7D00F4CFFD /* nethcti_play.png in Resources */,
 				615A282821805B400060F920 /* security_toogle_icon_grey.png in Resources */,
 				633FEDFF1D3CD5590014B822 /* camera_switch_disabled@2x.png in Resources */,
+				B31A256E29D5CDCC00A70D81 /* users@2x.png in Resources */,
 				B3D09B0D296C1C7D00F4CFFD /* nethcti_three_dots@2x.png in Resources */,
 				633FEDDF1D3CD5590014B822 /* call_start_body_over@2x.png in Resources */,
 				633FEEFA1D3CD55A0014B822 /* numpad_star~ipad.png in Resources */,
 				D38187B915FE342200C3EDCA /* ContactDetailsView.xib in Resources */,
 				633FEE921D3CD55A0014B822 /* menu.png in Resources */,
+				B31A257329D5D44300A70D81 /* ContactDetailsViewNethesis.xib in Resources */,
 				C622E3F026A81290004F5434 /* vr_wave.png in Resources */,
 				C63F72E3285A2F1E0066163B /* voip_call.png in Resources */,
 				633FEDE41D3CD5590014B822 /* call_status_incoming~ipad.png in Resources */,
@@ -5414,6 +5442,7 @@
 				633FEE611D3CD5590014B822 /* edit_list_disabled@2x.png in Resources */,
 				B3D09B70296C5E0B00F4CFFD /* color_L.png in Resources */,
 				C63F72EE285A2F1E0066163B /* voip_camera_off.png in Resources */,
+				B31A256D29D5CDCC00A70D81 /* users.png in Resources */,
 				633FEE761D3CD5590014B822 /* history_all_selected.png in Resources */,
 				C63F72E7285A2F1E0066163B /* voip_call_participants.png in Resources */,
 				8C300D9B1E40E0CC00728EF3 /* lime_ko@2x.png in Resources */,
@@ -5683,12 +5712,15 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CallUITests/Pods-CallUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreExtension/FirebaseCoreExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseSessions/FirebaseSessions.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
 				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/linphone-sdk/bctoolbox-ios.framework/bctoolbox-ios",
@@ -5748,12 +5780,15 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSessions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bctoolbox-ios.framework",
@@ -5924,13 +5959,16 @@
 				"${PODS_ROOT}/Target Support Files/Pods-linphone/Pods-linphone-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreExtension/FirebaseCoreExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseSessions/FirebaseSessions.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/linphone-sdk/linphonesw.framework",
@@ -5993,13 +6031,16 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSessions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/linphonesw.framework",
@@ -6127,6 +6168,7 @@
 				D3549816158761D0000081D8 /* ContactsListTableView.m in Sources */,
 				633888461BFB2C49001D5E7B /* HPTextViewInternal.m in Sources */,
 				C63F7242285A24B10066163B /* VoipParticipantCell.swift in Sources */,
+				B31A257229D5D44300A70D81 /* ContactDetailsViewNethesis.m in Sources */,
 				D35498211587716B000081D8 /* StatusBarView.m in Sources */,
 				D3A55FBC15877E5E003FD403 /* UIContactCell.m in Sources */,
 				6341807C1BBC103100F71761 /* ChatConversationCreateTableView.m in Sources */,
@@ -6149,6 +6191,7 @@
 				C63F7238285A24B10066163B /* ConferenceParticipantData.swift in Sources */,
 				63B81A0D1B57DA33009604A6 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C63F726D285A24B10066163B /* ProviderDelegate.swift in Sources */,
+				B31A257629D5D47000A70D81 /* ContactDetailsTableViewNethesis.m in Sources */,
 				C63F7266285A24B10066163B /* UICallTimer.swift in Sources */,
 				C63F726C285A24B10066163B /* StyledTextView.swift in Sources */,
 				D37DC6C11594AE1800B2A5EB /* LinphoneCoreSettingsStore.m in Sources */,
@@ -6275,6 +6318,7 @@
 				B3D09B23296C1D3D00F4CFFD /* DashboardViewController.m in Sources */,
 				633FEF581D3CD5E00014B822 /* UIAvatarPresence.m in Sources */,
 				C63F7230285A24B10066163B /* ParticipantExtensions.swift in Sources */,
+				B354BA3E29DB1FD5007478DF /* AudioHelper.m in Sources */,
 				637157A11B283FE200C91677 /* FileTransferDelegate.m in Sources */,
 				D378AB2A15DCDB4A0098505D /* ImagePickerView.m in Sources */,
 				22405F001601C19200B92522 /* ImageView.m in Sources */,
@@ -6852,7 +6896,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -6891,7 +6935,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.22\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -6984,7 +7028,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7021,7 +7065,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.22\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -7108,15 +7152,13 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_ENTITLEMENTS = linphone.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -7150,7 +7192,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.22\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -7158,7 +7200,6 @@
 				PRODUCT_NAME = linphone;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nethesis ad hoc - Samuele";
 				PUSH_WEDO_AUTH_KEY = "5badf168-2cfb-4151-a4cb-bbf5982bf422";
 				SKIP_INSTALL = NO;
 				STRIP_SWIFT_SYMBOLS = NO;
@@ -7241,7 +7282,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7278,7 +7319,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.22\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -7320,7 +7361,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7360,14 +7401,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = linphoneExtension/linphoneExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -7381,7 +7420,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nethesis ad hoc extension - Samuele";
 				SKIP_INSTALL = YES;
 				STRIP_SWIFT_SYMBOLS = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7409,7 +7447,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7455,7 +7493,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7757,7 +7795,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7809,14 +7847,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = msgNotificationService/msgNotificationService.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -7834,7 +7870,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3.msgNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nethesis ad hoc notification service - Samuele";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
@@ -7867,7 +7902,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7921,7 +7956,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7974,7 +8009,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8027,12 +8062,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = msgNotificationContent/msgNotificationContent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -8082,7 +8116,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -8134,7 +8168,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;

@@ -421,7 +421,7 @@
     // SELEZIONATO
     if ([self.presenceSelezionata isEqualToString:presence]) {
         
-        presenceSelectListTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"mainColor"];
+        presenceSelectListTableViewCell.ibLabelNome.textColor = [UIColor colorNamed: @"MainColor"];
         
         presenceSelectListTableViewCell.ibImageViewSelezionato.image = [UIImage imageNamed:@"icn_check_blu"];
         

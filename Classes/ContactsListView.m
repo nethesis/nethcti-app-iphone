@@ -25,6 +25,7 @@
 static ContactSelectionMode sSelectionMode = ContactSelectionModeNone;
 static NSString *sAddAddress = nil;
 static BOOL bSipFilterEnabled = FALSE;
+static NSString *sSipFilter = nil;
 static BOOL addAddressFromOthers = FALSE;
 
 + (void)setSelectionMode:(ContactSelectionMode)selectionMode {
@@ -42,6 +43,14 @@ static BOOL addAddressFromOthers = FALSE;
 
 + (NSString *)getAddAddress {
 	return sAddAddress;
+}
+
++ (void)setSipFilter:(NSString *)domain {
+    sSipFilter = domain;
+}
+
++ (NSString *)getSipFilter {
+    return sSipFilter;
 }
 
 + (void)enableSipFilter:(BOOL)enabled {
@@ -90,11 +99,12 @@ static UICompositeViewDescription *compositeDescription = nil;
 - (void)viewDidLoad {
 	NSLog(@"Debuglog viewDidLoad");
 	[super viewDidLoad];
-	_searchBar.text = [MagicSearchSingleton.instance currentFilter];
+	_searchField.text = [MagicSearchSingleton.instance currentFilter];
 	tableController.tableView.accessibilityIdentifier = @"Contacts table";
+    [tableController.tableView setContentInset:UIEdgeInsetsMake(-44, 0, 0, 0)];
 	
 	if (![[PhoneMainView.instance  getPreviousViewName] isEqualToString:@"ContactDetailsView"]) {
-		_searchBar.text = @"";
+        _searchField.text = @"";
 	}
 	[self changeView:ContactsAll];
 	
@@ -110,9 +120,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	
 	NSLog(@"Debuglog viewWillAppear");
 	[super viewWillAppear:animated];
-	_searchBar.showsCancelButton = (_searchBar.text.length > 0);
 
-	int y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
+	int y = _searchField.frame.origin.y + _searchField.frame.size.height;
 	[tableController.tableView setFrame:CGRectMake(tableController.tableView.frame.origin.x,
 												   y,
 												   tableController.tableView.frame.size.width,
@@ -129,7 +138,6 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
 	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
 		self.linphoneButton.hidden = TRUE;
-		self.selectedButtonImage.hidden = TRUE;
 	}
 	
 	[[NSNotificationCenter defaultCenter]
@@ -145,10 +153,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void)onMagicSearchStarted:(NSNotification *)k {
-	_loadingView.hidden = FALSE;
+	//_loadingView.hidden = FALSE;
 }
 - (void)onMagicSearchFinished:(NSNotification *)k {
-	_loadingView.hidden = TRUE;
+	//_loadingView.hidden = TRUE;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -198,27 +206,23 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)changeView:(ContactsCategory)view {
 	NSLog(@"Debuglog changeView");
-	CGRect frame = _selectedButtonImage.frame;
 	if (view == ContactsAll && !allButton.selected) {
 		//REQUIRED TO RELOAD WITH FILTER
 		[LinphoneManager.instance setContactsUpdated:TRUE];
-		frame.origin.x = allButton.frame.origin.x;
 		[ContactSelection enableSipFilter:FALSE];
 		allButton.selected = TRUE;
 		linphoneButton.selected = FALSE;
 		[tableController setReloadMagicSearch:TRUE];
-		[tableController loadDataWithFilter: _searchBar.text];
+		[tableController loadDataWithFilter: _searchField.text];
 	} else if (view == ContactsLinphone && !linphoneButton.selected) {
 		//REQUIRED TO RELOAD WITH FILTER
 		[LinphoneManager.instance setContactsUpdated:TRUE];
-		frame.origin.x = linphoneButton.frame.origin.x;
 		[ContactSelection enableSipFilter:TRUE];
 		linphoneButton.selected = TRUE;
 		allButton.selected = FALSE;
 		[tableController setReloadMagicSearch:TRUE];
-		[tableController loadDataWithFilter: _searchBar.text];
+		[tableController loadDataWithFilter: _searchField.text];
 	}
-	_selectedButtonImage.frame = frame;
 	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
 		allButton.selected = FALSE;
 	}
@@ -267,45 +271,33 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {
-	allButton.hidden = linphoneButton.hidden = _selectedButtonImage.hidden = addButton.hidden =	self.tableController.isEditing;
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-	searchBar.text = @"";
-	[LinphoneManager.instance setContactsUpdated:TRUE];
-	[self searchBar:searchBar textDidChange:@""];
-	
-	[searchBar resignFirstResponder];
+    allButton.hidden = linphoneButton.hidden = addButton.hidden = self.tableController.isEditing;
 }
 
 - (void)dismissKeyboards {
-	if ([self.searchBar isFirstResponder]){
-		[self.searchBar resignFirstResponder];
+	if ([self.searchField isFirstResponder]){
+		[self.searchField resignFirstResponder];
 	}
 }
 
-#pragma mark - searchBar delegate
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-	NSLog(@"Debuglog textdidchange");
-	if (![searchText isEqualToString:[MagicSearchSingleton.instance currentFilter]]) {
-		if (searchText.length == 0) {
-			[LinphoneManager.instance setContactsUpdated:TRUE];
-		}
-		[tableController loadDataWithFilter:searchText];
-	}
+- (IBAction)onBackPressed:(id)sender {
+    if ([_searchField.text length] > 0) {
+        [_searchField setText:[_searchField.text substringToIndex:[_searchField.text length] - 1]];
+    }
+    
+    [self searchEditingChanged:(id)nil];
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-	[searchBar setShowsCancelButton:FALSE animated:TRUE];
-}
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-	[searchBar setShowsCancelButton:TRUE animated:TRUE];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	[searchBar resignFirstResponder];
+- (IBAction)searchEditingChanged:(id)sender {
+    
+    NSString* searchText = _searchField.text;
+    
+    if (![searchText isEqualToString:[MagicSearchSingleton.instance currentFilter]]) {
+        if (searchText.length == 0) {
+            [LinphoneManager.instance setContactsUpdated:TRUE];
+        }
+        [tableController loadDataWithFilter:searchText];
+    }
 }
 
 #pragma mark - GestureRecognizerDelegate

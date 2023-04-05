@@ -181,38 +181,19 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Buttons signals
 
 - (IBAction)onBackClick:(id)sender {
-	[_tableController.contactsGroup removeAllObjects];
-	if (_isForVoipConference) {
-		if (_isForOngoingVoipConference) {
-			[PhoneMainView.instance changeCurrentView:VIEW(ActiveCallOrConferenceView).compositeViewDescription];
-			[ControlsViewModelBridge showParticipants];
-		} else {
-			[PhoneMainView.instance popToView:ConferenceSchedulingView.compositeViewDescription];
-		}
-	} else {
-		if (_tableController.isForEditing)
-			[PhoneMainView.instance popToView:ChatConversationInfoView.compositeViewDescription];
-		else
-			[PhoneMainView.instance popToView:ChatsListView.compositeViewDescription];
-	}
+    [_tableController.contactsGroup removeAllObjects];
+    if (_tableController.isForEditing)
+        [PhoneMainView.instance popToView:ChatConversationInfoView.compositeViewDescription];
+    else
+        [PhoneMainView.instance popToView:ChatsListView.compositeViewDescription];
 }
 
 - (IBAction)onNextClick:(id)sender {
-	if (_isForVoipConference) {
-		if (_isForOngoingVoipConference) {
-			[PhoneMainView.instance changeCurrentView:VIEW(ActiveCallOrConferenceView).compositeViewDescription];
-			[ConferenceViewModelBridge updateParticipantsListWithAddresses:_tableController.contactsGroup];
-		} else {
-			[PhoneMainView.instance changeCurrentView:VIEW(ConferenceSchedulingSummaryView).compositeViewDescription];
-			[VIEW(ConferenceSchedulingSummaryView) setParticipantsWithAddresses:_tableController.contactsGroup];
-		}
-	} else {
-		ChatConversationInfoView *view = VIEW(ChatConversationInfoView);
-		view.contacts = _tableController.contactsGroup;
-		view.create = !_isForEditing;
-    	view.encrypted = _isEncrypted;
-		[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-	}
+    ChatConversationInfoView *view = VIEW(ChatConversationInfoView);
+    view.contacts = _tableController.contactsGroup;
+    view.create = !_isForEditing;
+    view.encrypted = _isEncrypted;
+    [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
 }
 
 - (IBAction)onChiffreClick:(id)sender {
