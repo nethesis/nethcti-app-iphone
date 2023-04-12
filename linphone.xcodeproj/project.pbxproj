@@ -860,6 +860,25 @@
 		B3D09B75296C5E0B00F4CFFD /* color_A.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B6B296C5E0A00F4CFFD /* color_A.png */; };
 		B3D09B76296C5E0B00F4CFFD /* color_D.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B6C296C5E0B00F4CFFD /* color_D.png */; };
 		B3D09B77296C5E0B00F4CFFD /* color_G.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D09B6D296C5E0B00F4CFFD /* color_G.png */; };
+		B3EA35A829E6BC37009DDF9C /* CallView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35A529E6BC37009DDF9C /* CallView.m */; };
+		B3EA35A929E6BC37009DDF9C /* CallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35A629E6BC37009DDF9C /* CallView.xib */; };
+		B3EA35AA29E6BC37009DDF9C /* CallView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35A729E6BC37009DDF9C /* CallView~ipad.xib */; };
+		B3EA35AF29E6BC5B009DDF9C /* UIPauseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35AC29E6BC5B009DDF9C /* UIPauseButton.m */; };
+		B3EA35B029E6BC5B009DDF9C /* UIMutedMicroButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35AD29E6BC5B009DDF9C /* UIMutedMicroButton.m */; };
+		B3EA35B329E6BC6C009DDF9C /* UISpeakerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35B229E6BC6C009DDF9C /* UISpeakerButton.m */; };
+		B3EA35B629E6BC78009DDF9C /* UIVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35B529E6BC78009DDF9C /* UIVideoButton.m */; };
+		B3EA35B929E6BC83009DDF9C /* UIHangUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35B829E6BC83009DDF9C /* UIHangUpButton.m */; };
+		B3EA35C529E6BCDE009DDF9C /* CallPausedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35C429E6BCDE009DDF9C /* CallPausedTableView.m */; };
+		B3EA35C829E6BD04009DDF9C /* VideoZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35C629E6BD04009DDF9C /* VideoZoomHandler.m */; };
+		B3EA35CC29E6BE08009DDF9C /* UICallPausedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35C929E6BE08009DDF9C /* UICallPausedCell.m */; };
+		B3EA35CD29E6BE08009DDF9C /* UICallPausedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35CA29E6BE08009DDF9C /* UICallPausedCell.xib */; };
+		B3EA35D129E6BE96009DDF9C /* CallSideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35CE29E6BE96009DDF9C /* CallSideMenuView.m */; };
+		B3EA35D229E6BE96009DDF9C /* CallSideMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35D029E6BE96009DDF9C /* CallSideMenuView.xib */; };
+		B3EA35D929E6BFC1009DDF9C /* CallOutgoingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35D329E6BFC0009DDF9C /* CallOutgoingView.xib */; };
+		B3EA35DA29E6BFC1009DDF9C /* CallIncomingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35D529E6BFC0009DDF9C /* CallIncomingView.m */; };
+		B3EA35DB29E6BFC1009DDF9C /* CallIncomingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35D629E6BFC0009DDF9C /* CallIncomingView.xib */; };
+		B3EA35DC29E6BFC1009DDF9C /* CallOutgoingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35D829E6BFC1009DDF9C /* CallOutgoingView.m */; };
+		B3EA35DF29E6C01E009DDF9C /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35DE29E6C01E009DDF9C /* UIBluetoothButton.m */; };
 		C61B1BF22667D075001A4E4A /* menu_security_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF12667D075001A4E4A /* menu_security_default.png */; };
 		C61B1BF42667D202001A4E4A /* more_menu_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF32667D202001A4E4A /* more_menu_default.png */; };
 		C61B1BF72667EC6B001A4E4A /* ephemeral_messages_color_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */; };
@@ -2270,6 +2289,38 @@
 		B3D09B6B296C5E0A00F4CFFD /* color_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_A.png; sourceTree = "<group>"; };
 		B3D09B6C296C5E0B00F4CFFD /* color_D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_D.png; sourceTree = "<group>"; };
 		B3D09B6D296C5E0B00F4CFFD /* color_G.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_G.png; sourceTree = "<group>"; };
+		B3EA35A429E6BC37009DDF9C /* CallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallView.h; sourceTree = "<group>"; };
+		B3EA35A529E6BC37009DDF9C /* CallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallView.m; sourceTree = "<group>"; };
+		B3EA35A629E6BC37009DDF9C /* CallView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallView.xib; sourceTree = "<group>"; };
+		B3EA35A729E6BC37009DDF9C /* CallView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CallView~ipad.xib"; sourceTree = "<group>"; };
+		B3EA35AB29E6BC5B009DDF9C /* UIPauseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPauseButton.h; sourceTree = "<group>"; };
+		B3EA35AC29E6BC5B009DDF9C /* UIPauseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPauseButton.m; sourceTree = "<group>"; };
+		B3EA35AD29E6BC5B009DDF9C /* UIMutedMicroButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMutedMicroButton.m; sourceTree = "<group>"; };
+		B3EA35AE29E6BC5B009DDF9C /* UIMutedMicroButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMutedMicroButton.h; sourceTree = "<group>"; };
+		B3EA35B129E6BC6C009DDF9C /* UISpeakerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISpeakerButton.h; sourceTree = "<group>"; };
+		B3EA35B229E6BC6C009DDF9C /* UISpeakerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISpeakerButton.m; sourceTree = "<group>"; };
+		B3EA35B429E6BC78009DDF9C /* UIVideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIVideoButton.h; sourceTree = "<group>"; };
+		B3EA35B529E6BC78009DDF9C /* UIVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIVideoButton.m; sourceTree = "<group>"; };
+		B3EA35B729E6BC83009DDF9C /* UIHangUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHangUpButton.h; sourceTree = "<group>"; };
+		B3EA35B829E6BC83009DDF9C /* UIHangUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHangUpButton.m; sourceTree = "<group>"; };
+		B3EA35C329E6BCDD009DDF9C /* CallPausedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallPausedTableView.h; sourceTree = "<group>"; };
+		B3EA35C429E6BCDE009DDF9C /* CallPausedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallPausedTableView.m; sourceTree = "<group>"; };
+		B3EA35C629E6BD04009DDF9C /* VideoZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoZoomHandler.m; sourceTree = "<group>"; };
+		B3EA35C729E6BD04009DDF9C /* VideoZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoZoomHandler.h; sourceTree = "<group>"; };
+		B3EA35C929E6BE08009DDF9C /* UICallPausedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICallPausedCell.m; sourceTree = "<group>"; };
+		B3EA35CA29E6BE08009DDF9C /* UICallPausedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UICallPausedCell.xib; sourceTree = "<group>"; };
+		B3EA35CB29E6BE08009DDF9C /* UICallPausedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICallPausedCell.h; sourceTree = "<group>"; };
+		B3EA35CE29E6BE96009DDF9C /* CallSideMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallSideMenuView.m; sourceTree = "<group>"; };
+		B3EA35CF29E6BE96009DDF9C /* CallSideMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallSideMenuView.h; sourceTree = "<group>"; };
+		B3EA35D029E6BE96009DDF9C /* CallSideMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallSideMenuView.xib; sourceTree = "<group>"; };
+		B3EA35D329E6BFC0009DDF9C /* CallOutgoingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallOutgoingView.xib; sourceTree = "<group>"; };
+		B3EA35D429E6BFC0009DDF9C /* CallIncomingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallIncomingView.h; sourceTree = "<group>"; };
+		B3EA35D529E6BFC0009DDF9C /* CallIncomingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallIncomingView.m; sourceTree = "<group>"; };
+		B3EA35D629E6BFC0009DDF9C /* CallIncomingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallIncomingView.xib; sourceTree = "<group>"; };
+		B3EA35D729E6BFC1009DDF9C /* CallOutgoingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOutgoingView.h; sourceTree = "<group>"; };
+		B3EA35D829E6BFC1009DDF9C /* CallOutgoingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallOutgoingView.m; sourceTree = "<group>"; };
+		B3EA35DD29E6C01E009DDF9C /* UIBluetoothButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBluetoothButton.h; sourceTree = "<group>"; };
+		B3EA35DE29E6C01E009DDF9C /* UIBluetoothButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBluetoothButton.m; sourceTree = "<group>"; };
 		C61B1BF12667D075001A4E4A /* menu_security_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_security_default.png; sourceTree = "<group>"; };
 		C61B1BF32667D202001A4E4A /* more_menu_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_menu_default.png; sourceTree = "<group>"; };
 		C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ephemeral_messages_color_A.png; sourceTree = "<group>"; };
@@ -2749,6 +2800,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B3EA35A329E6BC25009DDF9C /* Old call */,
 				B3D09B13296C1D2D00F4CFFD /* Nethesis */,
 				B3D099EA296C13A900F4CFFD /* CoreManager.swift */,
 				614C087623D1A35E00217F80 /* linphone-Bridging-Header.h */,
@@ -4123,6 +4175,45 @@
 			path = "MBProgressHUD-1.2.0";
 			sourceTree = "<group>";
 		};
+		B3EA35A329E6BC25009DDF9C /* Old call */ = {
+			isa = PBXGroup;
+			children = (
+				B3EA35A429E6BC37009DDF9C /* CallView.h */,
+				B3EA35A529E6BC37009DDF9C /* CallView.m */,
+				B3EA35A629E6BC37009DDF9C /* CallView.xib */,
+				B3EA35A729E6BC37009DDF9C /* CallView~ipad.xib */,
+				B3EA35D429E6BFC0009DDF9C /* CallIncomingView.h */,
+				B3EA35D529E6BFC0009DDF9C /* CallIncomingView.m */,
+				B3EA35D629E6BFC0009DDF9C /* CallIncomingView.xib */,
+				B3EA35D729E6BFC1009DDF9C /* CallOutgoingView.h */,
+				B3EA35D829E6BFC1009DDF9C /* CallOutgoingView.m */,
+				B3EA35D329E6BFC0009DDF9C /* CallOutgoingView.xib */,
+				B3EA35AE29E6BC5B009DDF9C /* UIMutedMicroButton.h */,
+				B3EA35AD29E6BC5B009DDF9C /* UIMutedMicroButton.m */,
+				B3EA35AB29E6BC5B009DDF9C /* UIPauseButton.h */,
+				B3EA35AC29E6BC5B009DDF9C /* UIPauseButton.m */,
+				B3EA35DD29E6C01E009DDF9C /* UIBluetoothButton.h */,
+				B3EA35DE29E6C01E009DDF9C /* UIBluetoothButton.m */,
+				B3EA35B129E6BC6C009DDF9C /* UISpeakerButton.h */,
+				B3EA35B229E6BC6C009DDF9C /* UISpeakerButton.m */,
+				B3EA35B429E6BC78009DDF9C /* UIVideoButton.h */,
+				B3EA35B529E6BC78009DDF9C /* UIVideoButton.m */,
+				B3EA35B729E6BC83009DDF9C /* UIHangUpButton.h */,
+				B3EA35B829E6BC83009DDF9C /* UIHangUpButton.m */,
+				B3EA35C329E6BCDD009DDF9C /* CallPausedTableView.h */,
+				B3EA35C429E6BCDE009DDF9C /* CallPausedTableView.m */,
+				B3EA35C729E6BD04009DDF9C /* VideoZoomHandler.h */,
+				B3EA35C629E6BD04009DDF9C /* VideoZoomHandler.m */,
+				B3EA35CB29E6BE08009DDF9C /* UICallPausedCell.h */,
+				B3EA35C929E6BE08009DDF9C /* UICallPausedCell.m */,
+				B3EA35CA29E6BE08009DDF9C /* UICallPausedCell.xib */,
+				B3EA35CF29E6BE96009DDF9C /* CallSideMenuView.h */,
+				B3EA35CE29E6BE96009DDF9C /* CallSideMenuView.m */,
+				B3EA35D029E6BE96009DDF9C /* CallSideMenuView.xib */,
+			);
+			path = "Old call";
+			sourceTree = "<group>";
+		};
 		C63F7196285A24B10066163B /* Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -4806,9 +4897,11 @@
 				633FEEC61D3CD55A0014B822 /* numpad_5_over@2x.png in Resources */,
 				633FEF021D3CD55A0014B822 /* options_disabled.png in Resources */,
 				B3D09A69296C1C4D00F4CFFD /* nethcti_button_circle.png in Resources */,
+				B3EA35D229E6BE96009DDF9C /* CallSideMenuView.xib in Resources */,
 				633FEDC81D3CD5590014B822 /* call_missed.png in Resources */,
 				B3D09A2D296C1C2600F4CFFD /* logo_nethCTI_portrait.png in Resources */,
 				B3D09B0F296C1C7D00F4CFFD /* nethcti_microphone_disabled@2x.png in Resources */,
+				B3EA35A929E6BC37009DDF9C /* CallView.xib in Resources */,
 				8CB2B8FA1F86229E0015CEE2 /* next_disabled.png in Resources */,
 				8CF25D961F9F336100BEA0C1 /* check_unselected.png in Resources */,
 				8C300D9A1E40E0CC00728EF3 /* lime_ko.png in Resources */,
@@ -4978,6 +5071,7 @@
 				B3D09AEB296C1C7D00F4CFFD /* nethcti_multiselect_selected@2x.png in Resources */,
 				633FEE3E1D3CD5590014B822 /* contacts_all_disabled.png in Resources */,
 				633FEEF31D3CD55A0014B822 /* numpad_over_background.png in Resources */,
+				B3EA35AA29E6BC37009DDF9C /* CallView~ipad.xib in Resources */,
 				633FEDAD1D3CD5590014B822 /* backspace_over@2x.png in Resources */,
 				633FEEEF1D3CD55A0014B822 /* numpad_hash_over~ipad.png in Resources */,
 				633FEEE21D3CD55A0014B822 /* numpad_8~ipad@2x.png in Resources */,
@@ -5290,6 +5384,7 @@
 				B3D09B74296C5E0B00F4CFFD /* color_I.png in Resources */,
 				633FEDE11D3CD5590014B822 /* call_start_body_over~ipad@2x.png in Resources */,
 				B3D09ACF296C1C7D00F4CFFD /* nethcti_three_dots.png in Resources */,
+				B3EA35D929E6BFC1009DDF9C /* CallOutgoingView.xib in Resources */,
 				633FEF4F1D3CD55A0014B822 /* valid_default@2x.png in Resources */,
 				8CD99A382090A824008A7CDA /* splashscreen.png in Resources */,
 				C63F72B7285A2F1D0066163B /* voip_numpad_7.png in Resources */,
@@ -5323,6 +5418,7 @@
 				633FEDCA1D3CD5590014B822 /* call_outgoing.png in Resources */,
 				633FEDF81D3CD5590014B822 /* camera_disabled.png in Resources */,
 				8CB2B8FB1F86229E0015CEE2 /* next_disabled@2x.png in Resources */,
+				B3EA35DB29E6BFC1009DDF9C /* CallIncomingView.xib in Resources */,
 				633FEEE91D3CD55A0014B822 /* numpad_9~ipad.png in Resources */,
 				633FEE811D3CD5590014B822 /* led_connected@2x.png in Resources */,
 				8CA70AD51F9E285C00A3D2EB /* chat_group_add.png in Resources */,
@@ -5464,6 +5560,7 @@
 				C6F55647287CCFB70056E213 /* menu_voip_meeting_schedule.png in Resources */,
 				B3D09AE9296C1C7D00F4CFFD /* nethcti_microphone@2x.png in Resources */,
 				C63F72BF285A2F1D0066163B /* voip_call_header_paused.png in Resources */,
+				B3EA35CD29E6BE08009DDF9C /* UICallPausedCell.xib in Resources */,
 				633FEEAA1D3CD55A0014B822 /* numpad_1~ipad@2x.png in Resources */,
 				633FEDEC1D3CD5590014B822 /* call_status_outgoing~ipad.png in Resources */,
 				633FEDE51D3CD5590014B822 /* call_status_incoming~ipad@2x.png in Resources */,
@@ -6081,6 +6178,7 @@
 				B3D09A14296C184000F4CFFD /* EndpointExtensions.swift in Sources */,
 				63B81A0F1B57DA33009604A6 /* TPKeyboardAvoidingTableView.m in Sources */,
 				CF1DE92D210A0F5D00A0A97E /* UILinphoneAudioPlayer.m in Sources */,
+				B3EA35DA29E6BFC1009DDF9C /* CallIncomingView.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				C63F725C285A24B10066163B /* IncomingCallView.swift in Sources */,
 				C63F726B285A24B10066163B /* ButtonWithStateBackgrounds.swift in Sources */,
@@ -6117,6 +6215,7 @@
 				8C9C5E111F83BD97006987FA /* UIChatCreateCollectionViewCell.m in Sources */,
 				C63F7231285A24B10066163B /* PayloadType.swift in Sources */,
 				63701DDF1BA32039006A9AE3 /* UIConfirmationDialog.m in Sources */,
+				B3EA35B929E6BC83009DDF9C /* UIHangUpButton.m in Sources */,
 				22AA8B0113D83F6300B30535 /* UICamSwitch.m in Sources */,
 				63B8D6A21BCBF43100C12B09 /* UIChatCreateCell.m in Sources */,
 				636BC9971B5F921B00C754CE /* UIIconButton.m in Sources */,
@@ -6130,6 +6229,7 @@
 				C63F7226285A24B10066163B /* UIVIewExtensions.swift in Sources */,
 				C63F7259285A24B10066163B /* RemotelyRecording.swift in Sources */,
 				C63F7236285A24B10066163B /* ControlsViewModel.swift in Sources */,
+				B3EA35B329E6BC6C009DDF9C /* UISpeakerButton.m in Sources */,
 				C63F7214285A24B10066163B /* Duration.swift in Sources */,
 				B3D09B59296C217C00F4CFFD /* PresenceSelectListGroupTableViewCell.m in Sources */,
 				C63F723B285A24B10066163B /* AudioRouteUtils.swift in Sources */,
@@ -6164,6 +6264,7 @@
 				B3D09B2E296C1D4D00F4CFFD /* HistoryTableViewCell.swift in Sources */,
 				635173F91BA082A40095EB0A /* UIChatBubblePhotoCell.m in Sources */,
 				C63F723E285A24B10066163B /* VoipTexts.swift in Sources */,
+				B3EA35CC29E6BE08009DDF9C /* UICallPausedCell.m in Sources */,
 				C63F722A285A24B10066163B /* UIImageViewExtensions.swift in Sources */,
 				D3549816158761D0000081D8 /* ContactsListTableView.m in Sources */,
 				633888461BFB2C49001D5E7B /* HPTextViewInternal.m in Sources */,
@@ -6171,6 +6272,7 @@
 				B31A257229D5D44300A70D81 /* ContactDetailsViewNethesis.m in Sources */,
 				D35498211587716B000081D8 /* StatusBarView.m in Sources */,
 				D3A55FBC15877E5E003FD403 /* UIContactCell.m in Sources */,
+				B3EA35DF29E6C01E009DDF9C /* UIBluetoothButton.m in Sources */,
 				6341807C1BBC103100F71761 /* ChatConversationCreateTableView.m in Sources */,
 				C63F7254285A24B10066163B /* CallsListView.swift in Sources */,
 				D326483815887D5200930C67 /* OrderedDictionary.m in Sources */,
@@ -6189,6 +6291,7 @@
 				C63F7212285A24B10066163B /* ScheduledConferenceData.swift in Sources */,
 				C63F7239285A24B10066163B /* ConferenceParticipantDeviceData.swift in Sources */,
 				C63F7238285A24B10066163B /* ConferenceParticipantData.swift in Sources */,
+				B3EA35AF29E6BC5B009DDF9C /* UIPauseButton.m in Sources */,
 				63B81A0D1B57DA33009604A6 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C63F726D285A24B10066163B /* ProviderDelegate.swift in Sources */,
 				B31A257629D5D47000A70D81 /* ContactDetailsTableViewNethesis.m in Sources */,
@@ -6199,6 +6302,7 @@
 				D3EA53FD159850E80037DC6B /* LinphoneManager.m in Sources */,
 				63B81A0E1B57DA33009604A6 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				633888451BFB2C49001D5E7B /* HPGrowingTextView.m in Sources */,
+				B3EA35B029E6BC5B009DDF9C /* UIMutedMicroButton.m in Sources */,
 				63F1DF441BCE618E00EDED90 /* UIAddressTextField.m in Sources */,
 				D3EA540D1598528B0037DC6B /* ChatsListTableView.m in Sources */,
 				C63F725E285A24B10066163B /* VoipDialog.swift in Sources */,
@@ -6207,6 +6311,7 @@
 				D31B4B21159876C0002E6C72 /* UICompositeView.m in Sources */,
 				C63F7267285A24B10066163B /* StyledCheckBox.swift in Sources */,
 				8C9C5E0D1F83B2EF006987FA /* ChatConversationCreateCollectionViewController.m in Sources */,
+				B3EA35A829E6BC37009DDF9C /* CallView.m in Sources */,
 				631098491D4660580041F2B3 /* CountryListView.m in Sources */,
 				B3D09A0D296C184000F4CFFD /* MacroPermissions.swift in Sources */,
 				D32B9DFC15A2F131000B6DEC /* FastAddressBook.m in Sources */,
@@ -6215,6 +6320,7 @@
 				D350F20E15A43BB100149E54 /* AssistantView.m in Sources */,
 				D3F795D615A582810077328B /* ChatConversationView.m in Sources */,
 				C63F723C285A24B10066163B /* LightDarkColor.swift in Sources */,
+				B3EA35D129E6BE96009DDF9C /* CallSideMenuView.m in Sources */,
 				B3D099DF296C137100F4CFFD /* NethContact.swift in Sources */,
 				D32B6E2915A5BC440033019F /* ChatConversationTableView.m in Sources */,
 				B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */,
@@ -6227,7 +6333,9 @@
 				C63F7219285A24B10066163B /* ConferenceHistoryDetailsView.swift in Sources */,
 				D3A8BB7015A6C7D500F96BE5 /* UIChatBubbleTextCell.m in Sources */,
 				B3D09B56296C217C00F4CFFD /* PresenceTableViewCell.m in Sources */,
+				B3EA35C529E6BCDE009DDF9C /* CallPausedTableView.m in Sources */,
 				63D11C531C3D501200E8FCEE /* Log.m in Sources */,
+				B3EA35DC29E6BFC1009DDF9C /* CallOutgoingView.m in Sources */,
 				D3128FE115AABC7E00A2147A /* ContactDetailsView.m in Sources */,
 				6135761F240E81D0005304D4 /* UIInterfaceStyleToggleButton.m in Sources */,
 				C63F7221285A24B10066163B /* AppManager.swift in Sources */,
@@ -6239,6 +6347,7 @@
 				C63F7253285A24B10066163B /* VoipCallContextMenu.swift in Sources */,
 				C63F725A285A24B10066163B /* OutgoingCallView.swift in Sources */,
 				63FB30351A680E73008CA393 /* UIRoundedImageView.m in Sources */,
+				B3EA35B629E6BC78009DDF9C /* UIVideoButton.m in Sources */,
 				635775251B6673EC00C8B704 /* HistoryDetailsTableView.m in Sources */,
 				C63F720E285A24B10066163B /* CallManager.swift in Sources */,
 				63C441C31BBC23ED0053DC5E /* UIAssistantTextField.m in Sources */,
@@ -6246,6 +6355,7 @@
 				D3F7998115BD32370018C273 /* TPMultiLayoutViewController.m in Sources */,
 				B3D09B62296C2D2A00F4CFFD /* PresenceViewController.m in Sources */,
 				C63F721A285A24B10066163B /* ConferenceSchedulingView.swift in Sources */,
+				B3EA35C829E6BD04009DDF9C /* VideoZoomHandler.m in Sources */,
 				C63F7232285A24B10066163B /* CallExtensions.swift in Sources */,
 				D3807FBF15C28940005BE9BC /* DCRoundSwitch.m in Sources */,
 				D3807FC115C28940005BE9BC /* DCRoundSwitchKnobLayer.m in Sources */,
@@ -6935,7 +7045,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.1\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -7065,7 +7175,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.1\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -7192,7 +7302,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.1\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
@@ -7319,7 +7429,7 @@
 					"-DENABLE_QRCODE=TRUE",
 					"-DENABLE_SMS_INVITE=TRUE",
 					"$(inherited)",
-					"-DLINPHONE_SDK_VERSION=\\\"5.2.45\\\"",
+					"-DLINPHONE_SDK_VERSION=\\\"5.2.1\\\"",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.nethesis.nethcti3;
