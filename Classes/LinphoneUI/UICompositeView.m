@@ -155,6 +155,7 @@
 	customView.frame = self.view.frame;
 	customView.tag = 999;
 	[self.view addSubview:customView];
+    self.view.backgroundColor = [UIColor systemBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -313,7 +314,7 @@
 		bool remove = true;
 
 		/*ImagePickerView can be used as popover and we do NOT want to free it*/;
-		if ([key isEqualToString:ImagePickerView.compositeViewDescription.name] || [key isEqualToString:ActiveCallOrConferenceView.compositeViewDescription.name]) {
+		if ([key isEqualToString:ImagePickerView.compositeViewDescription.name] || [key isEqualToString:CallView.compositeViewDescription.name]) {
 			remove = false;
 		} else if (exclude != nil) {
 			for (UICompositeViewDescription *description in exclude) {

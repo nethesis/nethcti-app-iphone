@@ -139,7 +139,7 @@
 			if ((floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max)) {
 				if ([LinphoneManager.instance lpConfigBoolForKey:@"autoanswer_notif_preference"]) {
 					linphone_call_accept(call);
-					[PhoneMainView.instance changeCurrentView:ActiveCallOrConferenceView.compositeViewDescription];
+					[PhoneMainView.instance changeCurrentView:CallView.compositeViewDescription];
 				} else {
 					[PhoneMainView.instance displayIncomingCall:call];
 				}
@@ -356,7 +356,7 @@
         return NO;
     }
 
-	[PhoneMainView.instance.mainViewController getCachedController:ActiveCallOrConferenceView.compositeViewDescription.name]; // This will create the single instance of the ActiveCallOrConferenceView including listeneres
+	[PhoneMainView.instance.mainViewController getCachedController:CallView.compositeViewDescription.name]; // This will create the single instance of the CallView including listeneres
     
     [self setDefaultNethesis];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -751,6 +751,7 @@
 
 	if ([response.actionIdentifier isEqual:@"Answer"]) {
 		// use the standard handler
+        [PhoneMainView.instance changeCurrentView:CallView.compositeViewDescription];
 		[CallManager.instance acceptCallWithCall:call hasVideo:NO];
 		linphone_call_accept(call);
 	} else if ([response.actionIdentifier isEqual:@"Decline"]) {
@@ -789,6 +790,7 @@
 			return;
 
 		[[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+        [PhoneMainView.instance changeCurrentView:CallView.compositeViewDescription];
 		[CallManager.instance acceptVideoWithCall:call confirm:TRUE];
   	} else if ([response.actionIdentifier isEqual:@"Confirm"]) {
 	  	if (linphone_core_get_current_call(LC) == call)
@@ -821,7 +823,7 @@
 			}
 		} else if ([response.notification.request.content.categoryIdentifier isEqual:@"video_request"]) {
 			if (!call) return;
-				[PhoneMainView.instance changeCurrentView:ActiveCallOrConferenceView.compositeViewDescription];
+				[PhoneMainView.instance changeCurrentView:CallView.compositeViewDescription];
 		  	NSTimer *videoDismissTimer = nil;
 		  	UIConfirmationDialog *sheet = [UIConfirmationDialog ShowWithMessage:response.notification.request.content.body
 																  cancelMessage:nil
@@ -942,6 +944,7 @@
 	if ([notification.category isEqualToString:@"incoming_call"]) {
 		if ([identifier isEqualToString:@"answer"]) {
 			// use the standard handler
+            [PhoneMainView.instance changeCurrentView:CallView.compositeViewDescription];
 			[CallManager.instance acceptCallWithCall:call hasVideo:NO];
 		} else if ([identifier isEqualToString:@"decline"]) {
 			LinphoneCall *call = linphone_core_get_current_call(LC);

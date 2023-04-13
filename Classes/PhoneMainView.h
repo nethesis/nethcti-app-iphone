@@ -50,6 +50,8 @@
 #import "LaunchScreen.h"
 #import "DevicesListView.h"
 #import "DashboardViewController.h"
+#import "CallOutgoingView.h"
+#import "CallIncomingView.h"
 
 #define DYNAMIC_CAST(x, cls)                                                                                           \
 	({                                                                                                                 \

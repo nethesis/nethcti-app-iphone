@@ -499,7 +499,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	_durationLabel.text = [LinphoneUtils durationToString:duration];
 
 	[_pausedCallsTable update];
-	[_conferenceCallsTable update];
+	//[_conferenceCallsTable update];
 }
 
 - (void)onCurrentCallChange {
@@ -603,7 +603,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 
 	// Update tables
 	[_pausedCallsTable update];
-	[_conferenceCallsTable update];
+	//[_conferenceCallsTable update];
 
 	static LinphoneCall *currentCall = NULL;
 	if (!currentCall || linphone_core_get_current_call(LC) != currentCall) {

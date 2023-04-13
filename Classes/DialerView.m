@@ -399,7 +399,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (IBAction)onBackClick:(id)event {
-	[PhoneMainView.instance popToView:ActiveCallOrConferenceView.compositeViewDescription];
+	[PhoneMainView.instance popToView:CallView.compositeViewDescription];
 }
 
 - (IBAction)onAddressChange:(id)sender {

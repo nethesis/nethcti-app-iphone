@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -733,6 +734,7 @@
                                                         <button opaque="NO" tag="50" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDb-mD-sWV" userLabel="videoButton" customClass="UIVideoButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <accessibility key="accessibilityConfiguration" label="Video"/>
+                                                            <color key="tintColor" name="iconTint"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                             <state key="normal" image="nethcti_cam.png" backgroundImage="nethcti_grey_circle.png">
@@ -762,6 +764,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="pRH-Ao-h65" secondAttribute="height" multiplier="1:1" id="XeW-4K-JoN"/>
                                                     </constraints>
+                                                    <color key="tintColor" name="iconTint"/>
                                                     <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="nethcti_microphone.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -774,7 +777,7 @@
                                                         <button opaque="NO" tag="53" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5S-kV-7Kv" userLabel="speakerButton" customClass="UISpeakerButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <accessibility key="accessibilityConfiguration" label="Speaker"/>
-                                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="iconTint"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="nethcti_volume.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -783,6 +786,7 @@
                                                         <button hidden="YES" opaque="NO" tag="54" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-5y-kTy" userLabel="routesButton" customClass="UIToggleButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <accessibility key="accessibilityConfiguration" label="Route"/>
+                                                            <color key="tintColor" name="iconTint"/>
                                                             <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="nethcti_bt_speaker.png" backgroundImage="nethcti_grey_circle.png">
                                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -813,6 +817,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="MAI-av-LMz" secondAttribute="height" multiplier="1:1" id="4gi-AQ-4R0"/>
                                                     </constraints>
+                                                    <color key="tintColor" name="iconTint"/>
                                                     <state key="normal" image="nethcti_record.png" backgroundImage="nethcti_grey_circle.png">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
@@ -847,6 +852,7 @@
                                                 <constraint firstAttribute="height" constant="60" id="FSC-16-nbd"/>
                                                 <constraint firstAttribute="width" secondItem="SRu-dB-r3e" secondAttribute="height" multiplier="1:1" id="xso-09-XTA"/>
                                             </constraints>
+                                            <color key="tintColor" name="iconTint"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                             <state key="normal" image="dialpad.png" backgroundImage="nethcti_grey_circle.png">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2538,6 +2544,9 @@ AAAAAAAAAAAAAAAALa4
         <image name="speaker_disabled.png" width="44" height="41.599998474121094"/>
         <image name="speaker_selected.png" width="44" height="41.599998474121094"/>
         <image name="waiting_time.png" width="96.800003051757812" height="115.19999694824219"/>
+        <namedColor name="iconTint">
+            <color red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

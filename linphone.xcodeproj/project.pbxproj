@@ -879,6 +879,8 @@
 		B3EA35DB29E6BFC1009DDF9C /* CallIncomingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35D629E6BFC0009DDF9C /* CallIncomingView.xib */; };
 		B3EA35DC29E6BFC1009DDF9C /* CallOutgoingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35D829E6BFC1009DDF9C /* CallOutgoingView.m */; };
 		B3EA35DF29E6C01E009DDF9C /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA35DE29E6C01E009DDF9C /* UIBluetoothButton.m */; };
+		B3EA35E229E6F4C1009DDF9C /* dialpad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35E029E6F4C0009DDF9C /* dialpad@2x.png */; };
+		B3EA35E329E6F4C1009DDF9C /* dialpad.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EA35E129E6F4C1009DDF9C /* dialpad.png */; };
 		C61B1BF22667D075001A4E4A /* menu_security_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF12667D075001A4E4A /* menu_security_default.png */; };
 		C61B1BF42667D202001A4E4A /* more_menu_default.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF32667D202001A4E4A /* more_menu_default.png */; };
 		C61B1BF72667EC6B001A4E4A /* ephemeral_messages_color_A.png in Resources */ = {isa = PBXBuildFile; fileRef = C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */; };
@@ -2321,6 +2323,8 @@
 		B3EA35D829E6BFC1009DDF9C /* CallOutgoingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallOutgoingView.m; sourceTree = "<group>"; };
 		B3EA35DD29E6C01E009DDF9C /* UIBluetoothButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBluetoothButton.h; sourceTree = "<group>"; };
 		B3EA35DE29E6C01E009DDF9C /* UIBluetoothButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBluetoothButton.m; sourceTree = "<group>"; };
+		B3EA35E029E6F4C0009DDF9C /* dialpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialpad@2x.png"; sourceTree = "<group>"; };
+		B3EA35E129E6F4C1009DDF9C /* dialpad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialpad.png; sourceTree = "<group>"; };
 		C61B1BF12667D075001A4E4A /* menu_security_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_security_default.png; sourceTree = "<group>"; };
 		C61B1BF32667D202001A4E4A /* more_menu_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_menu_default.png; sourceTree = "<group>"; };
 		C61B1BF62667EC6B001A4E4A /* ephemeral_messages_color_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ephemeral_messages_color_A.png; sourceTree = "<group>"; };
@@ -4210,6 +4214,8 @@
 				B3EA35CF29E6BE96009DDF9C /* CallSideMenuView.h */,
 				B3EA35CE29E6BE96009DDF9C /* CallSideMenuView.m */,
 				B3EA35D029E6BE96009DDF9C /* CallSideMenuView.xib */,
+				B3EA35E129E6F4C1009DDF9C /* dialpad.png */,
+				B3EA35E029E6F4C0009DDF9C /* dialpad@2x.png */,
 			);
 			path = "Old call";
 			sourceTree = "<group>";
@@ -4922,6 +4928,7 @@
 				B3D09ADA296C1C7D00F4CFFD /* nethcti_play@2x.png in Resources */,
 				638F1A621C2021B2004B8E02 /* DialerView~ipad.xib in Resources */,
 				B3D099F5296C15EF00F4CFFD /* Roboto-Light.ttf in Resources */,
+				B3EA35E229E6F4C1009DDF9C /* dialpad@2x.png in Resources */,
 				615A2817217F280C0060F920 /* chat_list_indicator.png in Resources */,
 				633FEEFF1D3CD55A0014B822 /* options_add_call_disabled@2x.png in Resources */,
 				C63F72FD285A31DA0066163B /* Roboto-Regular.ttf in Resources */,
@@ -5578,6 +5585,7 @@
 				633FEE561D3CD5590014B822 /* dialer_back_disabled.png in Resources */,
 				633FEDBF1D3CD5590014B822 /* call_back_default@2x.png in Resources */,
 				24BFAAA8209B0630004F47A7 /* contacts_sip_selected@2x.png in Resources */,
+				B3EA35E329E6F4C1009DDF9C /* dialpad.png in Resources */,
 				633FEE141D3CD5590014B822 /* chat_send_default.png in Resources */,
 				B3D09B0A296C1C7D00F4CFFD /* nethcti_missed_calls.png in Resources */,
 				633FEF421D3CD55A0014B822 /* select_all_disabled.png in Resources */,

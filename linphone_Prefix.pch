@@ -10,5 +10,6 @@
 #import "Log.h"
 #import "Utils.h"
 #import "Contact.h"
+#import "CallView.h"
 
 #import "UIChatBubbleTextCell.h"
