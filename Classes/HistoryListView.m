@@ -23,50 +23,47 @@
 
 @implementation HistoryListView
 
-typedef enum _HistoryView { History_All, History_Missed, History_Conference, History_MAX } HistoryView;
+typedef enum _HistoryView { History_All, History_Missed, History_MAX } HistoryView;
 
 #pragma mark - UICompositeViewDelegate Functions
 
 static UICompositeViewDescription *compositeDescription = nil;
 
 + (UICompositeViewDescription *)compositeViewDescription {
-	if (compositeDescription == nil) {
-		compositeDescription = [[UICompositeViewDescription alloc] init:self.class
-															  statusBar:StatusBarView.class
-																 tabBar:TabBarView.class
-															   sideMenu:SideMenuView.class
-															 fullscreen:false
-														 isLeftFragment:YES
-														   fragmentWith:HistoryDetailsView.class];
-	}
-	return compositeDescription;
+    if (compositeDescription == nil) {
+        compositeDescription = [[UICompositeViewDescription alloc] init:self.class
+                                                              statusBar:StatusBarView.class
+                                                                 tabBar:TabBarView.class
+                                                               sideMenu:SideMenuView.class
+                                                             fullscreen:false
+                                                         isLeftFragment:YES
+                                                           fragmentWith:HistoryDetailsView.class];
+    }
+    return compositeDescription;
 }
 
 - (UICompositeViewDescription *)compositeViewDescription {
-	return self.class.compositeViewDescription;
+    return self.class.compositeViewDescription;
 }
 
 #pragma mark - ViewController Functions
 
--(void) viewDidLoad {
-	[super viewDidLoad];
-	_conferenceButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+    [super viewWillAppear:animated];
 
-	if ([_tableController isEditing]) {
-		[_tableController setEditing:FALSE animated:FALSE];
-	}
-	[self changeView:History_All];
-	[self onEditionChangeClick:nil];
+    if ([_tableController isEditing]) {
+        [_tableController setEditing:FALSE animated:FALSE];
+    }
+    [self changeView:History_All];
+    [self onEditionChangeClick:nil];
 
-	// Reset missed call
-	linphone_core_reset_missed_calls_count(LC);
-	// Fake event
-	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
-	[_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
+    // Reset missed call
+    linphone_core_reset_missed_calls_count(LC);
+    // Fake event
+    [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneCallUpdate object:self];
+    
+    // Set btn images.
+    [_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
     UIImage *allLogs = [[UIImage imageNamed:@"nethcti_grey_phone.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIImage *loseLogs = [[UIImage imageNamed:@"nethcti_missed_calls.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_allButton setImage:allLogs forState:UIControlStateNormal];
@@ -89,72 +86,50 @@ static UICompositeViewDescription *compositeDescription = nil;
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-	self.view = NULL;
+    self.view = NULL;
 }
 
 #pragma mark -
 
-
 - (void)changeView:(HistoryView)view {
-	CGRect frame = _selectedButtonImage.frame;
-	if (view == History_All) {
-		frame.origin.x = _allButton.frame.origin.x;
-		_allButton.selected = TRUE;
-		[_tableController removeFIlters];
-		_missedButton.selected = FALSE;
-		_conferenceButton.selected = false;
+    if (view == History_All) {
+        _allButton.selected = TRUE;
+        [_tableController setMissedFilter:FALSE];
+        _missedButton.selected = FALSE;
         [_allButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
         [_missedButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-        [_conferenceButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-	} else if (view == History_Conference) {
-		frame.origin.x = _conferenceButton.frame.origin.x;
-		_conferenceButton.selected = TRUE;
-		[_tableController setConfFilter:true];
-		_missedButton.selected = FALSE;
-		_allButton.selected = FALSE;
-        [_allButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-        [_missedButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-        [_conferenceButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-	} else {
-		frame.origin.x = _missedButton.frame.origin.x;
-		_missedButton.selected = TRUE;
-		[_tableController setMissedFilter:TRUE];
-		_allButton.selected = FALSE;
-		_conferenceButton.selected = false;
+    } else {
+        _missedButton.selected = TRUE;
+        [_tableController setMissedFilter:TRUE];
+        _allButton.selected = FALSE;
         [_allButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
         [_missedButton.imageView setTintColor:[UIColor getColorByName:@"MainColor"]];
-        [_conferenceButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
-	}
-	_selectedButtonImage.frame = frame;
+    }
 }
 
-#pragma mark - Action Functions
+#pragma m ~ark - Action Functions
 
 - (IBAction)onAllClick:(id)event {
-	[self changeView:History_All];
+    [self changeView:History_All];
 }
 
 - (IBAction)onMissedClick:(id)event {
-	[self changeView:History_Missed];
-}
-
-- (IBAction)onConferenceClick:(id)sender {
-	[self changeView:History_Conference];
+    [self changeView:History_Missed];
 }
 
 - (IBAction)onDeleteClick:(id)event {
-	NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete selected logs?", nil)];
-	[UIConfirmationDialog ShowWithMessage:msg
-		cancelMessage:nil
-		confirmMessage:nil
-		onCancelClick:^() {
-		  [self onEditionChangeClick:nil];
-		}
-		onConfirmationClick:^() {
-		  [_tableController removeSelectionUsing:nil];
-		  [_tableController loadData];
-		  [self onEditionChangeClick:nil];
-		}];
+    NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete the selected calls from  call logs?", nil)];
+    [UIConfirmationDialog ShowWithMessage:msg
+        cancelMessage:nil
+        confirmMessage:nil
+        onCancelClick:^() {
+          [self onEditionChangeClick:nil];
+        }
+        onConfirmationClick:^() {
+          [_tableController removeSelectionUsing:nil];
+          [_tableController loadData];
+          [self onEditionChangeClick:nil];
+        }];
 }
 
 - (IBAction)onEditionChangeClick:(id)sender {

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
- * This file is part of linphone-iphone 
+ * This file is part of linphone-iphone
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,12 +34,6 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 + (NSString *)getAddAddress;
 /*!
  * Filters contacts by SIP domain.
- * @param enabled  Wether SIP domain filter is enabled
- */
-+ (void)enableSipFilter:(BOOL)enabled;
-
-/*!
- * Filters contacts by SIP domain.
  * @param domain SIP domain to filter. Use @"*" or nil to disable it.
  */
 + (void)setSipFilter:(NSString *)domain;
@@ -51,14 +45,44 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 + (NSString *)getSipFilter;
 
 /*!
- * Wether SIP domain filter is enabled
+ * Weither always keep contacts with an email address or not.
+ * @param enable TRUE if you want to always keep contacts with an email.
+ */
++ (void)enableEmailFilter:(BOOL)enable;
+
+/*!
+ * Weither always keep contacts with an email address or not.
+ * @return TRUE if this behaviour is enabled.
+ */
++ (BOOL)emailFilterEnabled;
+
+/*!
+ * Filters contacts by name and/or email fuzzy matching pattern.
+ * @param fuzzyName fuzzy word to match. Use nil to disable it.
+ */
++ (void)setNameOrEmailFilter:(NSString *)fuzzyName;
+
+/*!
+ * Weither contacts are filtered by name and/or email.
  * @return the filter used, or nil if none.
  */
-+ (BOOL)getSipFilterEnabled;
++ (NSString *)getNameOrEmailFilter;
+
+/*!
+ * Filters contacts by name and/or email fuzzy matching pattern.
+ * @param fuzzyName fuzzy word to match. Use nil to disable it.
+ */
++ (void)setPickerFilter:(NSString *)value;
+
+/*!
+ * Weither contacts are filtered by name and/or email.
+ * @return the filter used, or nil if none.
+ */
++ (NSString *)getPickerFilter;
 
 @end
 
-@interface ContactsListView : UIViewController <UICompositeViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate>
+@interface ContactsListView : UIViewController <UICompositeViewDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(strong, nonatomic) IBOutlet ContactsListTableView *tableController;
 @property(strong, nonatomic) IBOutlet UIView *topBar;
@@ -80,5 +104,6 @@ typedef enum _ContactSelectionMode { ContactSelectionModeNone, ContactSelectionM
 
 - (IBAction)searchEditingChanged:(id)sender;
 - (IBAction)onBackPressed:(id)sender;
+
 
 @end

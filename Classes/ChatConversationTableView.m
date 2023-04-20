@@ -306,6 +306,14 @@ static const int BASIC_EVENT_LIST=15;
     return FALSE;
 }
 
+- (NSInteger)totalNumberOfItems {
+    NSInteger total = 0;
+    for (int i = 0; i < [self numberOfSectionsInTableView:self.tableView]; i++) {
+        total += [self tableView:self.tableView numberOfRowsInSection:i];
+    }
+    return total;
+}
+
 #pragma mark - UITableViewDataSource Functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -24,25 +24,27 @@
 
 static ContactSelectionMode sSelectionMode = ContactSelectionModeNone;
 static NSString *sAddAddress = nil;
-static BOOL bSipFilterEnabled = FALSE;
 static NSString *sSipFilter = nil;
+static BOOL sEnableEmailFilter = FALSE;
+static NSString *sNameOrEmailFilter;
 static BOOL addAddressFromOthers = FALSE;
+static NSString* pickerFilter = @"all";
 
 + (void)setSelectionMode:(ContactSelectionMode)selectionMode {
-	sSelectionMode = selectionMode;
+    sSelectionMode = selectionMode;
 }
 
 + (ContactSelectionMode)getSelectionMode {
-	return sSelectionMode;
+    return sSelectionMode;
 }
 
 + (void)setAddAddress:(NSString *)address {
-	sAddAddress = address;
-	addAddressFromOthers = true;
+    sAddAddress = address;
+    addAddressFromOthers = true;
 }
 
 + (NSString *)getAddAddress {
-	return sAddAddress;
+    return sAddAddress;
 }
 
 + (void)setSipFilter:(NSString *)domain {
@@ -53,17 +55,38 @@ static BOOL addAddressFromOthers = FALSE;
     return sSipFilter;
 }
 
-+ (void)enableSipFilter:(BOOL)enabled {
-	bSipFilterEnabled = enabled;
++ (void)enableEmailFilter:(BOOL)enable {
+    sEnableEmailFilter = enable;
 }
 
-+ (BOOL)getSipFilterEnabled {
-	return bSipFilterEnabled;
++ (BOOL)emailFilterEnabled {
+    return sEnableEmailFilter;
+}
+
++ (void)setNameOrEmailFilter:(NSString *)fuzzyName {
+    sNameOrEmailFilter = fuzzyName;
+}
+
++ (NSString *)getNameOrEmailFilter {
+    return sNameOrEmailFilter;
+}
+
++ (void)setPickerFilter:(NSString *)value {
+    pickerFilter = value;
+}
+
++ (NSString *)getPickerFilter {
+    return pickerFilter;
 }
 
 @end
 
 @implementation ContactsListView
+
+{
+    NSArray *_pickerData;
+    int tableViewHeight;
+}
 
 @synthesize tableController;
 @synthesize allButton;
@@ -78,206 +101,372 @@ typedef enum { ContactsAll, ContactsLinphone, ContactsMAX } ContactsCategory;
 static UICompositeViewDescription *compositeDescription = nil;
 
 + (UICompositeViewDescription *)compositeViewDescription {
-	if (compositeDescription == nil) {
-		compositeDescription = [[UICompositeViewDescription alloc] init:self.class
-															  statusBar:StatusBarView.class
-																 tabBar:TabBarView.class
-															   sideMenu:SideMenuView.class
-															 fullscreen:false
-														 isLeftFragment:YES
-														   fragmentWith:ContactDetailsView.class];
-	}
-	return compositeDescription;
+    if (compositeDescription == nil) {
+        compositeDescription = [[UICompositeViewDescription alloc] init:self.class
+                                                              statusBar:StatusBarView.class
+                                                                 tabBar:TabBarView.class
+                                                               sideMenu:SideMenuView.class
+                                                             fullscreen:false
+                                                         isLeftFragment:YES
+                                                           fragmentWith:ContactDetailsView.class]; // We have to change it for Nethesis?
+    }
+    return compositeDescription;
 }
 
 - (UICompositeViewDescription *)compositeViewDescription {
-	return self.class.compositeViewDescription;
+    return self.class.compositeViewDescription;
 }
 
 #pragma mark - ViewController Functions
 
 - (void)viewDidLoad {
-	NSLog(@"Debuglog viewDidLoad");
-	[super viewDidLoad];
-	_searchField.text = [MagicSearchSingleton.instance currentFilter];
-	tableController.tableView.accessibilityIdentifier = @"Contacts table";
-    [tableController.tableView setContentInset:UIEdgeInsetsMake(-44, 0, 0, 0)];
-	
-	if (![[PhoneMainView.instance  getPreviousViewName] isEqualToString:@"ContactDetailsView"]) {
-        _searchField.text = @"";
-	}
-	[self changeView:ContactsAll];
-	
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-								   initWithTarget:self
-								   action:@selector(dismissKeyboards)];
-	
-	[tap setDelegate:self];
-	[self.view addGestureRecognizer:tap];
+    [super viewDidLoad];
+    
+    [[NethPhoneBook instance] reset];
+    
+    tableController.tableView.accessibilityIdentifier = @"Contacts table";
+    
+    if([ContactSelection getSipFilter])
+        [self changeView:ContactsLinphone];
+    else
+        [self changeView:ContactsAll];
+    
+    if([ContactSelection getNameOrEmailFilter])
+        _searchField.text = [ContactSelection getNameOrEmailFilter];
+    
+    /*if ([tableController totalNumberOfItems] == 0) {
+     [self changeView:ContactsAll];
+     }*/
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboards)];
+    
+    [tap setDelegate:self];
+    [self.view addGestureRecognizer:tap];
+    
+    // Picker to change. Select data view to show.
+    _pickerData = @[@"company", @"all", @"person"];
+    self.filterPicker.dataSource = self;
+    self.filterPicker.delegate = self;
+    [self.filterPicker selectRow:[_pickerData indexOfObject:pickerFilter] inComponent:0 animated:NO];
+    
+    UIImage *allContactsImg = [[UIImage imageNamed:@"users.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *sipContactsImg = [[UIImage imageNamed:@"nethcti_users_sip.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    [self.allButton setImage:allContactsImg forState:UIControlStateNormal];
+    [self.linphoneButton setImage:sipContactsImg forState:UIControlStateNormal];
+    
+    bool isSip = [ContactSelection getSipFilter] != nil;
+    [self.allButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"Grey" : @"MainColor"]];
+    [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"MainColor" : @"Grey"]];
+
+    [self.searchBaseline setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	
-	NSLog(@"Debuglog viewWillAppear");
-	[super viewWillAppear:animated];
-
-	int y = _searchField.frame.origin.y + _searchField.frame.size.height;
-	[tableController.tableView setFrame:CGRectMake(tableController.tableView.frame.origin.x,
-												   y,
-												   tableController.tableView.frame.size.width,
-												   tableController.tableView.frame.size.height)];
-	[tableController.emptyView setFrame:CGRectMake(tableController.emptyView.frame.origin.x,
-												   y,
-												   tableController.emptyView.frame.size.width,
-												   tableController.emptyView.frame.size.height)];
-
-	if (tableController.isEditing) {
-		tableController.editing = NO;
-	}
-	[self refreshButtons];
-	[_toggleSelectionButton setImage:[UIImage imageNamed:@"select_all_default.png"] forState:UIControlStateSelected];
-	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
-		self.linphoneButton.hidden = TRUE;
-	}
-	
-	[[NSNotificationCenter defaultCenter]
-	 addObserver:self
-	 selector:@selector(onMagicSearchStarted:)
-	 name:kLinphoneMagicSearchStarted
-	 object:nil];
-	[[NSNotificationCenter defaultCenter]
-	 addObserver:self
-	 selector:@selector(onMagicSearchFinished:)
-	 name:kLinphoneMagicSearchFinished
-	 object:nil];
-}
-
-- (void)onMagicSearchStarted:(NSNotification *)k {
-	//_loadingView.hidden = FALSE;
-}
-- (void)onMagicSearchFinished:(NSNotification *)k {
-	//_loadingView.hidden = TRUE;
+    [super viewWillAppear:animated];
+    // [ContactSelection setNameOrEmailFilter:@""];
+    
+    tableViewHeight = tableController.tableView.frame.size.height;
+    [self resizeTableView: YES]; // allButton.selected]; Hide picker.
+    
+    if (tableController.isEditing) {
+        tableController.editing = NO;
+    }
+    [self refreshButtons];
+    [_toggleSelectionButton setImage:[UIImage imageNamed:@"nethcti_multiselect_selected.png"] forState:UIControlStateSelected];
+    if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
+        self.linphoneButton.hidden = TRUE;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	NSLog(@"Debuglog viewDidAppear");
-	[super viewDidAppear:animated];
-	if (![FastAddressBook isAuthorized]) {
-		UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
-																		 message:NSLocalizedString(@"You must authorize the application to have access to address book.\n"
-																								   "Toggle the application in Settings > Privacy > Contacts",
-																								   nil)
-																  preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
-																style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction * action) {}];
-		
-		[errView addAction:defaultAction];
-		[self presentViewController:errView animated:YES completion:nil];
-		[PhoneMainView.instance popCurrentView];
-	}
-	
-	// show message toast when add contact from address
-	if ([ContactSelection getAddAddress] != nil && addAddressFromOthers) {
-		UIAlertController *infoView = [UIAlertController
-									   alertControllerWithTitle:NSLocalizedString(@"Info", nil)
-									   message:NSLocalizedString(@"Select a contact or create a new one.",nil)
-									   preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
-																style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction *action){
-															  }];
-		
-		[infoView addAction:defaultAction];
-		addAddressFromOthers = FALSE;
-		[PhoneMainView.instance presentViewController:infoView animated:YES completion:nil];
-	}
+    [super viewDidAppear:animated];
+    // Subscribe to Phonebook Permission Rejection Notification.
+    // TODO: We can send arguments to selector?
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onPhonebookPermissionRejection:)
+                                               name:kNethesisPhonebookPermissionRejection
+                                             object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(onAddressBookUpdate:)
+                                               name:kLinphoneAddressBookUpdate
+                                             object:nil];
+    
+    if (![FastAddressBook isAuthorized]) {
+        UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
+                                                                         message:NSLocalizedString(@"You must authorize the application to have access to address book.\n" "Toggle the application in Settings > Privacy > Contacts", nil)
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [errView addAction:defaultAction];
+        [self presentViewController:errView animated:YES completion:nil];
+        
+        [PhoneMainView.instance popCurrentView];
+    }
+    
+    // show message toast when add contact from address
+    if ([ContactSelection getAddAddress] != nil && addAddressFromOthers) {
+        
+        UIAlertController *infoView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Info", nil)
+                                                                          message:NSLocalizedString(@"Select a contact or create a new one.",nil)
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action){
+        }];
+        
+        [infoView addAction:defaultAction];
+        addAddressFromOthers = FALSE;
+        
+        [PhoneMainView.instance presentViewController:infoView animated:YES completion:nil];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	self.view = NULL;
-	[self.tableController removeAllContacts];
+    self.view = NULL;
+    [self.tableController removeAllContacts];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void) resizeTableView:(BOOL) check {
+    CGRect tableRect = tableController.tableView.frame;
+    CGRect emptyRect = tableController.emptyView.frame;
+    
+    // Get original height and change accordly to check value.
+    if(check) {
+        /*
+        tableRect.origin.y = emptyRect.origin.y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
+         */
+        tableRect.size.height = emptyRect.size.height = tableViewHeight;
+    } else {
+        tableRect.origin.y = emptyRect.origin.y = _filterPicker.frame.origin.y + _filterPicker.frame.size.height;
+        tableRect.size.height = emptyRect.size.height = tableViewHeight - _filterPicker.frame.size.height;
+    }
+    
+    // Why application crash at this point? Why is in a background thread?
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [tableController.tableView setFrame: tableRect];
+        [tableController.emptyView setFrame: emptyRect];
+    });
+}
+
+// The number of columns of data
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return _pickerData.count;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSString* localizedString = NSLocalizedStringFromTable(_pickerData[row], @"NethLocalizable", @"");
+    return localizedString;
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    [ContactSelection setPickerFilter:_pickerData[row]];
+    NSString *picker = pickerFilter;
+    NSString *search = _searchField.text;
+    
+    [LinphoneManager.instance.fastAddressBook resetNeth];
+    
+    [LinphoneManager.instance.fastAddressBook loadNeth:picker withTerm:search];
+}
+
+-(NSString*) getSelectedPickerItem {
+    int component = 0;
+    NSInteger row = [_filterPicker selectedRowInComponent:component];
+    return _pickerData[row];
 }
 
 #pragma mark -
 
 - (void)changeView:(ContactsCategory)view {
-	NSLog(@"Debuglog changeView");
-	if (view == ContactsAll && !allButton.selected) {
-		//REQUIRED TO RELOAD WITH FILTER
-		[LinphoneManager.instance setContactsUpdated:TRUE];
-		[ContactSelection enableSipFilter:FALSE];
-		allButton.selected = TRUE;
-		linphoneButton.selected = FALSE;
-		[tableController setReloadMagicSearch:TRUE];
-		[tableController loadDataWithFilter: _searchField.text];
-	} else if (view == ContactsLinphone && !linphoneButton.selected) {
-		//REQUIRED TO RELOAD WITH FILTER
-		[LinphoneManager.instance setContactsUpdated:TRUE];
-		[ContactSelection enableSipFilter:TRUE];
-		linphoneButton.selected = TRUE;
-		allButton.selected = FALSE;
-		[tableController setReloadMagicSearch:TRUE];
-		[tableController loadDataWithFilter: _searchField.text];
-	}
-	if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
-		allButton.selected = FALSE;
-	}
+    // REQUIRED TO RELOAD WITH FILTER.
+    [LinphoneManager.instance setContactsUpdated:TRUE];
+    
+    if (view == ContactsAll && !allButton.selected) {
+        // REQUIRED TO RELOAD WITH FILTER.
+        // [LinphoneManager.instance setContactsUpdated:TRUE];
+        [ContactSelection setSipFilter:nil];
+        [ContactSelection enableEmailFilter:FALSE];
+        allButton.selected = TRUE;
+        linphoneButton.selected = FALSE;
+        [tableController loadData];
+        [self.allButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        
+    } else if (view == ContactsLinphone && !linphoneButton.selected) {
+        /*
+         * Wedo: ContactsLinphone mean to show only contacts downloaded from remote phonebook.
+         * Those contacts have contact.nethesis at YES instead of NO.
+         */
+        NSString *searchText = [ContactSelection getNameOrEmailFilter];
+        
+        [LinphoneManager.instance.fastAddressBook resetNeth];
+        
+        if(![LinphoneManager.instance.fastAddressBook loadNeth:[self getSelectedPickerItem] withTerm:searchText]) {
+            return;
+        };
+        
+        [ContactSelection setSipFilter:LinphoneManager.instance.contactFilter];
+        
+        [ContactSelection enableEmailFilter:FALSE];
+        
+        linphoneButton.selected = TRUE;
+        allButton.selected = FALSE;
+        [self.allButton.imageView setTintColor:[UIColor getColorByName: @"Grey"]];
+        [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: @"MainColor"]];
+        // [tableController loadData];
+    }
+    bool sipFilter = [ContactSelection getSipFilter];
+    [addButton setHidden:sipFilter];
+    [tableController.deleteButton setHidden:sipFilter];
+    [tableController.editButton setHidden:sipFilter];
+    
+    if ([LinphoneManager.instance lpConfigBoolForKey:@"hide_linphone_contacts" inSection:@"app"]) {
+        allButton.selected = FALSE;
+    }
 }
 
+- (void)onPhonebookPermissionRejection:(NSNotification *)notif {
+    
+    if ([notif.userInfo count] == 0){
+        return;
+    }
+    
+    long code = [[notif.userInfo valueForKey:@"code"] integerValue];
+    NSString *message = @"";
+    // Add more error codes with future remote permissions.
+    switch (code) {
+        case 2:
+            message = NSLocalizedStringFromTable(@"Network connection unavailable", @"NethLocalizable", nil);
+            break;
+            
+        case 401:
+            message = NSLocalizedStringFromTable(@"Session expired. To see contacts you need to logout and login again.", @"NethLocalizable", nil);
+            break;
+            
+        default:{
+            NSString *errorMessage = [notif.userInfo valueForKey:@"message"];
+            message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unknown authentication error. Contact your system administrator with a %ld error code and %@ message.", @"NethLocalizable", nil), code, errorMessage];
+            break;
+        }
+    }
+    
+    UIAlertController *errView = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Address book", nil)
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Continue", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [errView addAction:defaultAction];
+    
+    // Always run this UI action on main thread.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:errView animated:YES completion:^(void) {
+            // Is this action always right?
+            switch (code) {
+                case 401:
+                    [self changeView:ContactsAll];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }];
+    });
+}
+
+/// Set view buttons consistently to the sip filter mode selected.
 - (void)refreshButtons {
-	[addButton setHidden:FALSE];
-	[self changeView:[ContactSelection getSipFilterEnabled] ? ContactsLinphone : ContactsAll];
+    bool sipFilter = [ContactSelection getSipFilter];
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [addButton setTintColor:grey];
+    [addButton setHidden:sipFilter];
+    [_backSpaceButton setTintColor:grey];
+    [tableController.deleteButton setHidden:sipFilter];
+    [tableController.editButton setHidden:sipFilter];
+    [tableController.tableView setSeparatorColor:separator];
+    [self changeView:sipFilter ? ContactsLinphone : ContactsAll];
 }
 
 #pragma mark - Action Functions
 
 - (IBAction)onAllClick:(id)event {
-	[self changeView:ContactsAll];
+    [self changeView:ContactsAll];
+    [self resizeTableView:YES];
+    [self.allButton.imageView setTintColor: [UIColor getColorByName:@"MainColor"]];
+    [self.linphoneButton.imageView setTintColor: [UIColor getColorByName:@"Grey"]];
+
 }
 
 - (IBAction)onLinphoneClick:(id)event {
-	[self changeView:ContactsLinphone];
+    [self changeView:ContactsLinphone];
+    [self resizeTableView:YES];
+    [self.linphoneButton.imageView setTintColor: [UIColor getColorByName:@"MainColor"]];
+    [self.allButton.imageView setTintColor: [UIColor getColorByName:@"Grey"]];
 }
 
 - (IBAction)onAddContactClick:(id)event {
-	ContactDetailsView *view = VIEW(ContactDetailsView);
-	[PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
-	view.isAdding = TRUE;
-	if ([ContactSelection getAddAddress] == nil) {
-		[view newContact];
-	} else {
-		[view newContact:[ContactSelection getAddAddress]];
-	}
+    
+    if([ContactSelection getSipFilter]) {
+        
+        ContactDetailsViewNethesis *view = VIEW(ContactDetailsViewNethesis);
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        view.isAdding = TRUE;
+        if ([ContactSelection getAddAddress] == nil) {
+            [view newContact];
+        } else {
+            [view newContact:[ContactSelection getAddAddress]];
+        }
+        
+    }else {
+        
+        ContactDetailsView *view = VIEW(ContactDetailsView);
+        [PhoneMainView.instance changeCurrentView:view.compositeViewDescription];
+        view.isAdding = TRUE;
+        if ([ContactSelection getAddAddress] == nil) {
+            [view newContact];
+        } else {
+            [view newContact:[ContactSelection getAddAddress]];
+        }
+    }
 }
+
 
 - (IBAction)onDeleteClick:(id)sender {
-	NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete selected contacts?\nThey will also be deleted from your phone's address book.", nil)];
-	[LinphoneManager.instance setContactsUpdated:TRUE];
-	[UIConfirmationDialog ShowWithMessage:msg
-		cancelMessage:nil
-		confirmMessage:nil
-		onCancelClick:^() {
-		  [self onEditionChangeClick:nil];
-		}
-		onConfirmationClick:^() {
-		  [tableController removeSelectionUsing:nil];
-		  [tableController loadData];
-		  [self onEditionChangeClick:nil];
-		}];
-}
-
-- (IBAction)onEditionChangeClick:(id)sender {
-    allButton.hidden = linphoneButton.hidden = addButton.hidden = self.tableController.isEditing;
-}
-
-- (void)dismissKeyboards {
-	if ([self.searchField isFirstResponder]){
-		[self.searchField resignFirstResponder];
-	}
+    NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"Do you want to delete selected contacts?\nThey will also be deleted from your phone's address book.", nil)];
+    [LinphoneManager.instance setContactsUpdated:TRUE];
+    [UIConfirmationDialog ShowWithMessage:msg
+                            cancelMessage:nil
+                           confirmMessage:nil
+                            onCancelClick:^() {
+        [self onEditionChangeClick:nil];
+    }
+                      onConfirmationClick:^() {
+        [tableController removeSelectionUsing:nil];
+        [tableController loadData];
+        [self onEditionChangeClick:nil];
+    }];
 }
 
 - (IBAction)onBackPressed:(id)sender {
@@ -292,19 +481,123 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     NSString* searchText = _searchField.text;
     
-    if (![searchText isEqualToString:[MagicSearchSingleton.instance currentFilter]]) {
-        if (searchText.length == 0) {
-            [LinphoneManager.instance setContactsUpdated:TRUE];
-        }
-        [tableController loadDataWithFilter:searchText];
+    if (searchText.length > 0){
+        [self.backSpaceButton setTintColor:[UIColor getColorByName:@"Magenta"]];
+        [self.backSpaceButton setEnabled:TRUE];
+    } else {
+        [self.backSpaceButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        [self.backSpaceButton setEnabled:FALSE];
+    }
+    
+    [ContactSelection setNameOrEmailFilter:searchText];
+    
+    // WEDO: Perform the search api call after 0.5 seconds after finished input text.
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:1];
+    return;
+    
+    // display searchtext in UPPERCASE
+    // searchBar.text = [searchText uppercaseString];
+    
+    if (searchText.length == 0) { // No filter, no search data.
+        [LinphoneManager.instance setContactsUpdated:TRUE];
+        
+        [tableController loadData];
+        
+    } else {
+        
+        // Before loading searched data, we have to search them!
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter]
+                                                  withTerm:searchText];
+        [tableController loadSearchedData];
     }
 }
+
+- (IBAction)onEditionChangeClick:(id)sender {
+    allButton.hidden = linphoneButton.hidden = addButton.hidden = self.tableController.isEditing;
+}
+
+/*
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text = @"";
+    [self searchBar:searchBar textDidChange:@""];
+    [LinphoneManager.instance setContactsUpdated:TRUE];
+    [tableController loadData];
+    [searchBar resignFirstResponder];
+}
+*/
+
+- (void)dismissKeyboards {
+    if ([self.searchField isFirstResponder]) {
+        [self.searchField resignFirstResponder];
+    }
+}
+
+#pragma mark - searchBar delegate
+
+- (void)onAddressBookUpdate:(NSNotification *)k {
+    // Allow again user interactions on search bar.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _searchField.userInteractionEnabled = YES;
+    });
+}
+
+- (void)performSearch {
+    
+    NSString * text = [ContactSelection getNameOrEmailFilter];
+    
+    [LinphoneManager.instance.fastAddressBook resetNeth];
+    
+    [LinphoneManager.instance setContactsUpdated:TRUE];
+    
+    if([LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:text]) {
+        // Deny any other input until search is finished.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _searchField.userInteractionEnabled = NO;
+        });
+    }
+}
+
+/*
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [ContactSelection setNameOrEmailFilter:searchText];
+    
+    // WEDO: Perform the search api call after 0.5 seconds after finished input text.
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(performSearch) object:nil];
+    [self performSelector:@selector(performSearch) withObject:nil afterDelay:0.5];
+    return;
+    
+    // display searchtext in UPPERCASE
+    // searchBar.text = [searchText uppercaseString];
+    
+    if (searchText.length == 0) { // No filter, no search data.
+        [LinphoneManager.instance setContactsUpdated:TRUE];
+        [tableController loadData];
+    } else {
+        // Before loading searched data, we have to search them!
+        [LinphoneManager.instance.fastAddressBook loadNeth:[ContactSelection getPickerFilter] withTerm:searchText];
+        [tableController loadSearchedData];
+    }
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:FALSE animated:TRUE];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:TRUE animated:TRUE];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+*/
 
 #pragma mark - GestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-	return NO;
+    return NO;
 }
 
 @end

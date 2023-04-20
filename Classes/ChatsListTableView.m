@@ -273,4 +273,12 @@ void deletion_chat_room_state_changed(LinphoneChatRoom *cr, LinphoneChatRoomStat
 	[self setEditing:NO animated:YES];
 }
 
+- (NSInteger)totalNumberOfItems {
+    NSInteger total = 0;
+    for (int i = 0; i < [self numberOfSectionsInTableView:self.tableView]; i++) {
+        total += [self tableView:self.tableView numberOfRowsInSection:i];
+    }
+    return total;
+}
+
 @end

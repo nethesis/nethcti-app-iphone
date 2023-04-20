@@ -654,6 +654,12 @@
 		B31A257329D5D44300A70D81 /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31A257129D5D44300A70D81 /* ContactDetailsViewNethesis.xib */; };
 		B31A257629D5D47000A70D81 /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = B31A257429D5D47000A70D81 /* ContactDetailsTableViewNethesis.m */; };
 		B354BA3E29DB1FD5007478DF /* AudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B354BA3D29DB1FD5007478DF /* AudioHelper.m */; };
+		B37504DD29F18BF900EA49C6 /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37504D829F18BF800EA49C6 /* CallIdTest.swift */; };
+		B37504DE29F18BF900EA49C6 /* NethPhoneBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37504D929F18BF800EA49C6 /* NethPhoneBookResult.swift */; };
+		B37504DF29F18BF900EA49C6 /* NethPhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37504DA29F18BF800EA49C6 /* NethPhoneBook.swift */; };
+		B37504E029F18BF900EA49C6 /* NethContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37504DB29F18BF800EA49C6 /* NethContact.swift */; };
+		B37504E129F18BF900EA49C6 /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37504DC29F18BF900EA49C6 /* NotReturnMessage.swift */; };
+		B37504E329F18C2700EA49C6 /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37504E229F18C2700EA49C6 /* TransferCallManager.swift */; };
 		B39FEE73296C726600183642 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA2004B1D8158440095F859 /* PushKit.framework */; };
 		B39FEE76296C7BC600183642 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE74296C7BC500183642 /* settings.png */; };
 		B39FEE77296C7BC600183642 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE75296C7BC600183642 /* settings@2x.png */; };
@@ -669,12 +675,6 @@
 		B39FEE8B297008C900183642 /* dashboard_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE83297008C900183642 /* dashboard_settings@2x.png */; };
 		B39FEE8E29700D9800183642 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE8C29700D9800183642 /* back.png */; };
 		B39FEE8F29700D9800183642 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE8D29700D9800183642 /* back@2x.png */; };
-		B3D099DE296C137100F4CFFD /* NotReturnMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099D8296C137000F4CFFD /* NotReturnMessage.swift */; };
-		B3D099DF296C137100F4CFFD /* NethContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099D9296C137000F4CFFD /* NethContact.swift */; };
-		B3D099E0296C137100F4CFFD /* NethPhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DA296C137000F4CFFD /* NethPhoneBook.swift */; };
-		B3D099E1296C137100F4CFFD /* NethPhoneBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DB296C137000F4CFFD /* NethPhoneBookResult.swift */; };
-		B3D099E2296C137100F4CFFD /* CallIdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DC296C137100F4CFFD /* CallIdTest.swift */; };
-		B3D099E3296C137100F4CFFD /* TransferCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099DD296C137100F4CFFD /* TransferCallManager.swift */; };
 		B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099EA296C13A900F4CFFD /* CoreManager.swift */; };
 		B3D099EF296C159200F4CFFD /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099EE296C159200F4CFFD /* NethLocalizable.strings */; };
 		B3D099F2296C15A500F4CFFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F0296C15A500F4CFFD /* InfoPlist.strings */; };
@@ -2073,6 +2073,12 @@
 		B31A257829D5D63D00A70D81 /* ContactSections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSections.h; sourceTree = "<group>"; };
 		B354BA3C29DB1FD5007478DF /* AudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelper.h; sourceTree = "<group>"; };
 		B354BA3D29DB1FD5007478DF /* AudioHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioHelper.m; sourceTree = "<group>"; };
+		B37504D829F18BF800EA49C6 /* CallIdTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
+		B37504D929F18BF800EA49C6 /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
+		B37504DA29F18BF800EA49C6 /* NethPhoneBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethPhoneBook.swift; sourceTree = "<group>"; };
+		B37504DB29F18BF800EA49C6 /* NethContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
+		B37504DC29F18BF900EA49C6 /* NotReturnMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
+		B37504E229F18C2700EA49C6 /* TransferCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
 		B39FEE74296C7BC500183642 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		B39FEE75296C7BC600183642 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		B39FEE78296C7BE300183642 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -2087,12 +2093,6 @@
 		B39FEE83297008C900183642 /* dashboard_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard_settings@2x.png"; sourceTree = "<group>"; };
 		B39FEE8C29700D9800183642 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		B39FEE8D29700D9800183642 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
-		B3D099D8296C137000F4CFFD /* NotReturnMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotReturnMessage.swift; sourceTree = "<group>"; };
-		B3D099D9296C137000F4CFFD /* NethContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethContact.swift; sourceTree = "<group>"; };
-		B3D099DA296C137000F4CFFD /* NethPhoneBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethPhoneBook.swift; sourceTree = "<group>"; };
-		B3D099DB296C137000F4CFFD /* NethPhoneBookResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethPhoneBookResult.swift; sourceTree = "<group>"; };
-		B3D099DC296C137100F4CFFD /* CallIdTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallIdTest.swift; sourceTree = "<group>"; };
-		B3D099DD296C137100F4CFFD /* TransferCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferCallManager.swift; sourceTree = "<group>"; };
 		B3D099EA296C13A900F4CFFD /* CoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreManager.swift; sourceTree = "<group>"; };
 		B3D099EE296C159200F4CFFD /* NethLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = NethLocalizable.strings; sourceTree = "<group>"; };
 		B3D099F0296C15A500F4CFFD /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -3048,7 +3048,6 @@
 			children = (
 				8C23BCB71D82AAC3005F19BB /* linphone.entitlements */,
 				614D09CD21E74D5400C43EDF /* GoogleService-Info.plist */,
-				B3D099D7296C133D00F4CFFD /* NethModels */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				61AE364C20C00B370089D9D3 /* linphoneExtension */,
 				EA5F25DA232BD3E200475F2E /* msgNotificationService */,
@@ -4046,15 +4045,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		B3D099D7296C133D00F4CFFD /* NethModels */ = {
+		B37504D729F18BEB00EA49C6 /* NethModels */ = {
 			isa = PBXGroup;
 			children = (
-				B3D099DC296C137100F4CFFD /* CallIdTest.swift */,
-				B3D099D9296C137000F4CFFD /* NethContact.swift */,
-				B3D099DA296C137000F4CFFD /* NethPhoneBook.swift */,
-				B3D099DB296C137000F4CFFD /* NethPhoneBookResult.swift */,
-				B3D099D8296C137000F4CFFD /* NotReturnMessage.swift */,
-				B3D099DD296C137100F4CFFD /* TransferCallManager.swift */,
+				B37504D829F18BF800EA49C6 /* CallIdTest.swift */,
+				B37504DB29F18BF800EA49C6 /* NethContact.swift */,
+				B37504DA29F18BF800EA49C6 /* NethPhoneBook.swift */,
+				B37504D929F18BF800EA49C6 /* NethPhoneBookResult.swift */,
+				B37504DC29F18BF900EA49C6 /* NotReturnMessage.swift */,
+				B37504E229F18C2700EA49C6 /* TransferCallManager.swift */,
 			);
 			path = NethModels;
 			sourceTree = "<group>";
@@ -4093,6 +4092,7 @@
 		B3D09B13296C1D2D00F4CFFD /* Nethesis */ = {
 			isa = PBXGroup;
 			children = (
+				B37504D729F18BEB00EA49C6 /* NethModels */,
 				B3D099F6296C184000F4CFFD /* RestApi */,
 				B3D09B5E296C21C500F4CFFD /* MBProgressHUD-1.2.0 */,
 				B3D09B34296C217B00F4CFFD /* Presence */,
@@ -6193,6 +6193,7 @@
 				C63F7218285A24B10066163B /* ScheduledConferencesCell.swift in Sources */,
 				C63F722E285A24B10066163B /* IceState.swift in Sources */,
 				6135761C240E81BB005304D4 /* UIInterfaceStyleButton.m in Sources */,
+				B37504E129F18BF900EA49C6 /* NotReturnMessage.swift in Sources */,
 				B3D09B58296C217C00F4CFFD /* PresenceSelectListTableViewCell.m in Sources */,
 				C63F721C285A24B10066163B /* MediatorLiveData.swift in Sources */,
 				8CD99A3C2090B9FA008A7CDA /* ChatConversationImdnView.m in Sources */,
@@ -6243,15 +6244,14 @@
 				C63F723B285A24B10066163B /* AudioRouteUtils.swift in Sources */,
 				C63F7269285A24B10066163B /* StyledLabel.swift in Sources */,
 				B3D09A0C296C184000F4CFFD /* Conversation.swift in Sources */,
-				B3D099E3296C137100F4CFFD /* TransferCallManager.swift in Sources */,
 				C63F722C285A24B10066163B /* UIColorExtensions.swift in Sources */,
 				D3F83F8E15822ABE00336684 /* PhoneMainView.m in Sources */,
 				C63F7251285A24B10066163B /* NumpadView.swift in Sources */,
 				C63F723F285A24B10066163B /* ButtonTheme.swift in Sources */,
 				C63F7213285A24B10066163B /* TimeZoneData.swift in Sources */,
 				C6A1BB3E26E882D000540D50 /* UIChatReplyBubbleView.m in Sources */,
-				B3D099E1296C137100F4CFFD /* NethPhoneBookResult.swift in Sources */,
 				6377AC801BDE4069007F7625 /* UIBackToCallButton.m in Sources */,
+				B37504DD29F18BF900EA49C6 /* CallIdTest.swift in Sources */,
 				6308F9C51BF0DD6600D1234B /* XMLRPCHelper.m in Sources */,
 				B3D09A09296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift in Sources */,
 				C63F7235285A24B10066163B /* CallsViewModel.swift in Sources */,
@@ -6288,7 +6288,6 @@
 				D31C9C98158A1CDF00756B45 /* UIHistoryCell.m in Sources */,
 				B3D09B30296C1D4D00F4CFFD /* LostCallTableViewCell.swift in Sources */,
 				D35E7597159460580066B1C1 /* ChatsListView.m in Sources */,
-				B3D099DE296C137100F4CFFD /* NotReturnMessage.swift in Sources */,
 				B3D09A10296C184000F4CFFD /* AdPermission.swift in Sources */,
 				D35E759F159460B70066B1C1 /* SettingsView.m in Sources */,
 				C63F7216285A24B10066163B /* ScheduledConferencesView.swift in Sources */,
@@ -6327,13 +6326,12 @@
 				C63F7241285A24B10066163B /* ParticipantsListView.swift in Sources */,
 				D350F20E15A43BB100149E54 /* AssistantView.m in Sources */,
 				D3F795D615A582810077328B /* ChatConversationView.m in Sources */,
+				B37504DF29F18BF900EA49C6 /* NethPhoneBook.swift in Sources */,
 				C63F723C285A24B10066163B /* LightDarkColor.swift in Sources */,
 				B3EA35D129E6BE96009DDF9C /* CallSideMenuView.m in Sources */,
-				B3D099DF296C137100F4CFFD /* NethContact.swift in Sources */,
 				D32B6E2915A5BC440033019F /* ChatConversationTableView.m in Sources */,
 				B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */,
 				C63F7233285A24B10066163B /* ConferenceExtensions.swift in Sources */,
-				B3D099E2296C137100F4CFFD /* CallIdTest.swift in Sources */,
 				C63F7260285A24B10066163B /* StyledSwitch.swift in Sources */,
 				B3D09A12296C184000F4CFFD /* Profile.swift in Sources */,
 				C63F7252285A24B10066163B /* VoipExtraButtonsView.swift in Sources */,
@@ -6394,6 +6392,7 @@
 				D3807FF015C2894A005BE9BC /* IASKSettingsStore.m in Sources */,
 				C63F7234285A24B10066163B /* ConferenceViewModel.swift in Sources */,
 				8CA70AD11F9E0AE100A3D2EB /* ChatConversationInfoView.m in Sources */,
+				B37504DE29F18BF900EA49C6 /* NethPhoneBookResult.swift in Sources */,
 				D3807FF215C2894A005BE9BC /* IASKSettingsStoreFile.m in Sources */,
 				C63F720F285A24B10066163B /* ConferenceWaitingRoomViewModel.swift in Sources */,
 				C63F7248285A24B10066163B /* MicMuted.swift in Sources */,
@@ -6406,13 +6405,13 @@
 				C63F7265285A24B10066163B /* VoipExtraButton.swift in Sources */,
 				B3D09A18296C184000F4CFFD /* NethCTIAPI.swift in Sources */,
 				639E9C801C0DB13D00019A75 /* UICheckBoxTableView.m in Sources */,
-				B3D099E0296C137100F4CFFD /* NethPhoneBook.swift in Sources */,
 				CF7602E72108759A00749F76 /* UIRecordingCell.m in Sources */,
 				D3807FF615C2894A005BE9BC /* IASKSpecifier.m in Sources */,
 				D3807FF815C2894A005BE9BC /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				C63F726A285A24B10066163B /* StyledDatePicker.swift in Sources */,
 				C63F7237285A24B10066163B /* CallStatisticsData.swift in Sources */,
 				D3807FFA15C2894A005BE9BC /* IASKPSTextFieldSpecifierViewCell.m in Sources */,
+				B37504E329F18C2700EA49C6 /* TransferCallManager.swift in Sources */,
 				D3807FFC15C2894A005BE9BC /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
 				C63F721B285A24B10066163B /* ConferenceSchedulingSummaryView.swift in Sources */,
 				D3807FFE15C2894A005BE9BC /* IASKSlider.m in Sources */,
@@ -6422,6 +6421,7 @@
 				C63F7224285A24B10066163B /* UIVIewControllerExtensions.swift in Sources */,
 				D380800215C2894A005BE9BC /* IASKTextField.m in Sources */,
 				D380801315C299D0005BE9BC /* ColorSpaceUtilites.m in Sources */,
+				B37504E029F18BF900EA49C6 /* NethContact.swift in Sources */,
 				B3D09B31296C1D4D00F4CFFD /* OutgoingCallTableViewCell.swift in Sources */,
 				C63F721D285A24B10066163B /* MutableLiveData.swift in Sources */,
 				C63F7256285A24B10066163B /* DismissableView.swift in Sources */,
@@ -7014,7 +7014,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7146,7 +7146,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7274,7 +7274,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7400,7 +7400,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7479,7 +7479,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7522,7 +7522,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7565,7 +7565,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7611,7 +7611,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7913,7 +7913,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7968,7 +7968,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8020,7 +8020,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -8074,7 +8074,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -8127,7 +8127,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8182,7 +8182,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8234,7 +8234,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -8286,7 +8286,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;

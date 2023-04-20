@@ -116,6 +116,7 @@ typedef struct _LinphoneManagerSounds {
 + (NSString *)getUserAgent;
 + (int)unreadMessageCount;
 
+- (OrderedDictionary*) getLinphoneManagerAddressBookMap;
 - (void)configurePushProviderForAccounts;
 - (void)playMessageSound;
 - (void)resetLinphoneCore;

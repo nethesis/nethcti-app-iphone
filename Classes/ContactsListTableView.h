@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
- * This file is part of linphone-iphone 
+ * This file is part of linphone-iphone
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,14 +23,18 @@
 #import "UICheckBoxTableView.h"
 
 #import "OrderedDictionary.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface ContactsListTableView : UICheckBoxTableView {
-  @private
-	OrderedDictionary *addressBookMap;
+    
+  @private OrderedDictionary *addressBookMap;
 }
-@property(atomic) BOOL reloadMagicSearch;
+
+@property(nonatomic) BOOL ongoing;
+
 - (void)loadData;
-- (void)loadDataWithFilter:(NSString *)filter;
+- (void)loadSearchedData;
 - (void)removeAllContacts;
 
 @end

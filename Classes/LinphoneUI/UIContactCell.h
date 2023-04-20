@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
- * This file is part of linphone-iphone 
+ * This file is part of linphone-iphone
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,9 +24,11 @@
 @interface UIContactCell : UITableViewCell
 
 @property(nonatomic, strong) IBOutlet UILabel *nameLabel;
-@property(nonatomic, strong) IBOutlet UIRoundedImageView *avatarImage;
+@property(nonatomic, strong) IBOutlet UILabel *companyLabel;
+@property(nonatomic, strong) IBOutlet UIImageView *avatarImage;
 @property(weak, nonatomic) IBOutlet UIImageView *linphoneImage;
 @property(nonatomic, assign) Contact *contact;
+@property (weak, nonatomic) IBOutlet UILabel *nameInitialLabel;
 
 - (id)initWithIdentifier:(NSString*)identifier;
 

@@ -289,6 +289,10 @@ struct codec_name_pref_table codec_pref_table[] = {{"speex", 8000, "speex_8k_pre
 	[NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
+- (OrderedDictionary*) getLinphoneManagerAddressBookMap{
+    return _linphoneManagerAddressBookMap;
+}
+
 #pragma mark - Contacts Updated
 
 - (void) setContactsUpdated:(BOOL) updated{

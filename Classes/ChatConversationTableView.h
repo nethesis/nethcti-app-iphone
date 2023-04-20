@@ -70,5 +70,6 @@
 - (void) dismissMessagesPopups;
 - (void) scrollToMessage:(LinphoneChatMessage *)message;
 - (int) indexOfMesssage:(LinphoneChatMessage *)message;
+- (NSInteger)totalNumberOfItems;
 
 @end
