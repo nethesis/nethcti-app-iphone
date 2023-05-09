@@ -33,7 +33,7 @@
 #include "linphone/linphonecore.h"
 #include "bctoolbox/list.h"
 #import "OrderedDictionary.h"
-
+#import "InAppProductsManager.h"
 
 extern NSString *const LINPHONERC_APPLICATION_KEY;
 
@@ -219,6 +219,7 @@ typedef struct _LinphoneManagerSounds {
 @property (copy) void (^silentPushCompletion)(UIBackgroundFetchResult);
 @property (readonly) BOOL wasRemoteProvisioned;
 @property (readonly) LpConfig *configDb;
+@property(readonly) InAppProductsManager *iapManager;
 @property(strong, nonatomic) NSMutableArray *fileTransferDelegates;
 @property BOOL conf;
 @property NSDictionary *pushDict;

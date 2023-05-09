@@ -12,6 +12,8 @@
 	<string>https://push.wedo.io</string>
 	<key>AppApnsBaseUrl_Dev2</key>
 	<string>http://notificatore.apexnet.it/Notificatore.aspx</string>
+	<key>ButtonSelectedBackground</key>
+	<string>$(BUTTON_SELECTED)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
@@ -100,12 +102,32 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>Cyan</key>
+	<string>$(CYAN)</string>
+	<key>Green</key>
+	<string>$(GREEN)</string>
+	<key>Grey</key>
+	<string>$(GREY)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>ITSEncryptionExportComplianceCode</key>
 	<string>b5cb085f-772a-4a4f-8c77-5d1332b1f93f</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LightCyan</key>
+	<string>$(LIGHT_CYAN)</string>
+	<key>LightGreen</key>
+	<string>$(LIGHT_GREEN)</string>
+	<key>LightGrey</key>
+	<string>$(LIGHT_GREY)</string>
+	<key>LightMagenta</key>
+	<string>$(LIGHT_MAGENTA)</string>
+	<key>Magenta</key>
+	<string>$(MAGENTA)</string>
+	<key>MainColor</key>
+	<string>$(MAIN_COLOR)</string>
+	<key>MidGrey</key>
+	<string>$(MID_GREY)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -158,6 +180,8 @@
 	</dict>
 	<key>NSVoIPUsageDescription</key>
 	<string>Make audio/video calls</string>
+	<key>StatusBarBgColor</key>
+	<string>$(WHITE)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Regular.ttf</string>

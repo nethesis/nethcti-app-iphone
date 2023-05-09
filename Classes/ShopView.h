@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2010-2020 Belledonne Communications SARL.
  *
- * This file is part of linphone-iphone
+ * This file is part of linphone-iphone 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,23 +19,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ShopTableView.h"
 #import "UICompositeView.h"
-#import "IASKAppSettingsViewController.h"
-#import "LinphoneCoreSettingsStore.h"
 
-@interface SettingsView: UIViewController <IASKSettingsDelegate, UICompositeViewDelegate, MFMailComposeViewControllerDelegate> {
-  @private
-    LinphoneCoreSettingsStore *settingsStore;
-        BOOL isRoot;
-}
+@interface ShopView : UIViewController <UICompositeViewDelegate>
 
-@property(nonatomic, strong) IBOutlet UINavigationController *navigationController;
-@property(nonatomic, strong) IBOutlet IASKAppSettingsViewController *settingsController;
-@property(weak, nonatomic) IBOutlet UIView *subView;
-@property(weak, nonatomic) IBOutlet UIButton *backButton;
-@property(weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property(nonatomic) NSString* tmpPwd;
-
-- (IBAction)onBackClick:(id)sender;
+@property(strong, nonatomic) IBOutlet ShopTableView *tableViewController;
+@property(weak, nonatomic) IBOutlet UIView *waitingView;
+- (IBAction)onDialerBackClick:(id)sender;
 
 @end

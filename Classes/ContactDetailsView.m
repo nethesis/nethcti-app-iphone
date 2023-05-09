@@ -257,8 +257,9 @@
 
 	_tableController.tableView.accessibilityIdentifier = @"Contact table";
 
-	[_editButton setImage:[UIImage imageNamed:@"valid_disabled.png"]
-				 forState:(UIControlStateDisabled | UIControlStateSelected)];
+    [_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"]
+                 forState:(UIControlStateDisabled | UIControlStateSelected)];
+    [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
 	
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
 								   initWithTarget:self
@@ -293,9 +294,27 @@
 				cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]] shouldHideLinphoneImageOfAddress];
 		}
 	}
-	[_editButton setImage:[UIImage imageNamed:@"valid_default.png"] forState:UIControlStateSelected];
+	[_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
 	
 	[self updateBackOrCancelButton];
+    [self setUIColors];
+}
+
+- (void)setUIColors{
+    [_editButton setImage:[UIImage imageNamed:@"nethcti_done.png"] forState:UIControlStateSelected];
+    UIColor *grey;
+    UIColor *separator;
+    if (@available(iOS 11.0, *)) {
+        grey = [UIColor colorNamed: @"iconTint"];
+        separator = [UIColor colorNamed: @"tableSeparator"];
+    } else {
+        grey = [UIColor getColorByName:@"Grey"];
+        separator = [UIColor getColorByName:@"LightGrey"];
+    }
+    [_backButton setTintColor:grey];
+    [_cancelButton setTintColor:grey];
+    [_deleteButton setTintColor:grey];
+    [_tableController.tableView setSeparatorColor:separator];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification*)notif {
@@ -389,6 +408,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[UIView setAnimationDuration:1.0];
 	}
 	[_tableController setEditing:editing animated:animated];
+    if (editing) {
+        [_editButton setOn];
+        [_editButton.imageView setTintColor:[UIColor getColorByName:@"Green"]];
+    } else {
+        [_editButton setOff];
+        [_editButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    }
 	if (editing) {
 		[_editButton setOn];
 	} else {

@@ -70,6 +70,12 @@ post_install do |installer|
 			end
 		end
 	end
+    
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = "13.0"
+        end
+    end
 			
 	app_project = Xcodeproj::Project.open(Dir.glob("*.xcodeproj")[0])
 	app_project.native_targets.each do |target|

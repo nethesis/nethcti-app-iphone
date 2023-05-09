@@ -6,9 +6,9 @@
 //  Luc Vandal, Edovia Inc., http://www.edovia.com
 //  Ortwin Gentz, FutureTap GmbH, http://www.futuretap.com
 //  All rights reserved.
-// 
-//  It is appreciated but not required that you give credit to Luc Vandal and Ortwin Gentz, 
-//  as the original authors of this code. You can give credit in a blog post, a tweet or on 
+//
+//  It is appreciated but not required that you give credit to Luc Vandal and Ortwin Gentz,
+//  as the original authors of this code. You can give credit in a blog post, a tweet or on
 //  a info page of your app. Also, the original authors appreciate letting them know if you use this code.
 //
 //  This code is licensed under the BSD license that is available at: http://www.opensource.org/licenses/bsd-license.php
@@ -33,7 +33,7 @@
         [self setSpecifierDict:specifier];
         
         if ([[self type] isEqualToString:kIASKPSMultiValueSpecifier] ||
-			[[self type] isEqualToString:kIASKPSTitleValueSpecifier]) {
+            [[self type] isEqualToString:kIASKPSTitleValueSpecifier]) {
             [self _reinterpretValues:[self specifierDict]];
         }
     }
@@ -41,10 +41,10 @@
 }
 
 - (void)dealloc {
-	_specifierDict = nil;
-	_multipleValuesDict = nil;
+    _specifierDict = nil;
+    _multipleValuesDict = nil;
 
-	_settingsReader = nil;
+    _settingsReader = nil;
 
 }
 
@@ -52,20 +52,20 @@
     NSArray *values = [_specifierDict objectForKey:kIASKValues];
     NSArray *titles = [_specifierDict objectForKey:kIASKTitles];
 
-	NSMutableDictionary *multipleValuesDict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *multipleValuesDict = [[NSMutableDictionary alloc] init];
 
-	if (values) {
-		[multipleValuesDict setObject:values forKey:kIASKValues];
-	}
-	
+    if (values) {
+        [multipleValuesDict setObject:values forKey:kIASKValues];
+    }
+    
     if (titles) {
-		[multipleValuesDict setObject:titles forKey:kIASKTitles];
-	}
+        [multipleValuesDict setObject:titles forKey:kIASKTitles];
+    }
     
     [self setMultipleValuesDict:multipleValuesDict];
 }
 - (NSString*)localizedObjectForKey:(NSString*)key {
-	return [self.settingsReader titleForStringId:[_specifierDict objectForKey:key]];
+    return [self.settingsReader titleForStringId:[_specifierDict objectForKey:key]];
 }
 
 - (NSString*)title {
@@ -101,20 +101,20 @@
 }
 
 - (NSString*)titleForCurrentValue:(id)currentValue {
-	NSArray *values = [self multipleValues];
-	NSArray *titles = [self multipleTitles];
-	if (values.count != titles.count) {
-		return nil;
-	}
+    NSArray *values = [self multipleValues];
+    NSArray *titles = [self multipleTitles];
+    if (values.count != titles.count) {
+        return nil;
+    }
     NSInteger keyIndex = [values indexOfObject:currentValue];
-	if (keyIndex == NSNotFound) {
-		return nil;
-	}
-	@try {
-		return [self.settingsReader titleForStringId:[titles objectAtIndex:keyIndex]];
-	}
-	@catch (NSException * e) {}
-	return nil;
+    if (keyIndex == NSNotFound) {
+        return nil;
+    }
+    @try {
+        return [self.settingsReader titleForStringId:[titles objectAtIndex:keyIndex]];
+    }
+    @catch (NSException * e) {}
+    return nil;
 }
 
 - (NSInteger)multipleValuesCount {
@@ -142,14 +142,14 @@
 }
 
 - (BOOL)defaultBoolValue {
-	id defaultValue = [self defaultValue];
-	if ([defaultValue isEqual:[self trueValue]]) {
-		return YES;
-	}
-	if ([defaultValue isEqual:[self falseValue]]) {
-		return NO;
-	}
-	return [defaultValue boolValue];
+    id defaultValue = [self defaultValue];
+    if ([defaultValue isEqual:[self trueValue]]) {
+        return YES;
+    }
+    if ([defaultValue isEqual:[self falseValue]]) {
+        return NO;
+    }
+    return [defaultValue boolValue];
 }
 
 - (id)trueValue {
@@ -191,12 +191,12 @@
         return UIKeyboardTypeNumberPad;
     }
     else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardDecimalPad]) {
-		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_4_1) {
-			return UIKeyboardTypeDecimalPad;
-		}
-		else {
-			return UIKeyboardTypeNumbersAndPunctuation;
-		}
+        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_4_1) {
+            return UIKeyboardTypeDecimalPad;
+        }
+        else {
+            return UIKeyboardTypeNumbersAndPunctuation;
+        }
     }
     else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:KIASKKeyboardURL]) {
         return UIKeyboardTypeURL;
@@ -247,23 +247,23 @@
 }
 
 - (BOOL)adjustsFontSizeToFitWidth {
-	NSNumber *boxedResult = [_specifierDict objectForKey:kIASKAdjustsFontSizeToFitWidth];
-	return !boxedResult || [boxedResult boolValue];
+    NSNumber *boxedResult = [_specifierDict objectForKey:kIASKAdjustsFontSizeToFitWidth];
+    return !boxedResult || [boxedResult boolValue];
 }
 
 - (NSTextAlignment)textAlignment {
-	if ([[_specifierDict objectForKey:kIASKTextLabelAlignment] isEqualToString:kIASKTextLabelAlignmentLeft]) {
-		return NSTextAlignmentLeft;
-	} else if ([[_specifierDict objectForKey:kIASKTextLabelAlignment] isEqualToString:kIASKTextLabelAlignmentCenter]) {
-		return NSTextAlignmentCenter;
-	} else if ([[_specifierDict objectForKey:kIASKTextLabelAlignment] isEqualToString:kIASKTextLabelAlignmentRight]) {
-		return NSTextAlignmentRight;
-	}
-	if ([self.type isEqualToString:kIASKButtonSpecifier] && !self.cellImage) {
-		return NSTextAlignmentCenter;
-	} else if ([self.type isEqualToString:kIASKPSMultiValueSpecifier] || [self.type isEqualToString:kIASKPSTitleValueSpecifier]) {
-		return NSTextAlignmentRight;
-	}
-	return NSTextAlignmentLeft;
+    if ([[_specifierDict objectForKey:kIASKTextLabelAlignment] isEqualToString:kIASKTextLabelAlignmentLeft]) {
+        return NSTextAlignmentLeft;
+    } else if ([[_specifierDict objectForKey:kIASKTextLabelAlignment] isEqualToString:kIASKTextLabelAlignmentCenter]) {
+        return NSTextAlignmentCenter;
+    } else if ([[_specifierDict objectForKey:kIASKTextLabelAlignment] isEqualToString:kIASKTextLabelAlignmentRight]) {
+        return NSTextAlignmentRight;
+    }
+    if ([self.type isEqualToString:kIASKButtonSpecifier] && !self.cellImage) {
+        return NSTextAlignmentCenter;
+    } else if ([self.type isEqualToString:kIASKPSMultiValueSpecifier] || [self.type isEqualToString:kIASKPSTitleValueSpecifier]) {
+        return NSTextAlignmentRight;
+    }
+    return NSTextAlignmentLeft;
 }
 @end

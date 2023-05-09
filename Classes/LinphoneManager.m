@@ -1345,7 +1345,7 @@ static BOOL libStarted = FALSE;
 
 	// create linphone core
 	[self createLinphoneCore];
-
+    _iapManager = [[InAppProductsManager alloc] init];
 	// - Security fix - remove multi transport migration, because it enables tcp or udp, if by factoring settings only
 	// tls is enabled. 	This is a problem for new installations.
 	// linphone_core_migrate_to_multi_transport(theLinphoneCore);
@@ -1755,6 +1755,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
                          LOGW(@"It seems that Linphone BG mode was deactivated, just skipping");
                          return;
                      }
+                    [_iapManager check];
                      if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
                          // For registration register
                          [self refreshRegisters];
