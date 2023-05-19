@@ -123,6 +123,8 @@ typedef struct _LinphoneManagerSounds {
 - (void)launchLinphoneCore;
 - (void)destroyLinphoneCore;
 - (void)startLinphoneCore;
+- (void)stopLinphoneCore;
+- (void)linkCamera;
 - (BOOL)resignActive;
 - (void)becomeActive;
 - (BOOL)enterBackgroundMode;

@@ -28,6 +28,7 @@
 #import "UIAssistantTextField.h"
 #import "UITextField+DoneButton.h"
 #import "LinphoneAppDelegate.h"
+#import "linphoneApp-Swift.h"
 
 typedef enum _ViewElement {
 	ViewElement_Username = 100,
@@ -786,10 +787,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 		atf.text = @"nethctiapp.nethserver.net";
         UIAssistantTextField *atf2 =
             (UIAssistantTextField *)[self findView:ViewElement_Username inView:view ofType:UIAssistantTextField.class];
-        atf2.text = @"mrtestuser2";
+        atf2.text = @"mrtestuser3";
         UIAssistantTextField *atf3 =
             (UIAssistantTextField *)[self findView:ViewElement_Password inView:view ofType:UIAssistantTextField.class];
-        atf3.text = @"FRXokwXe";
+        atf3.text = @"4jPmrZ3D";
 #endif
 	}
 	phone_number_length = 0;
@@ -1604,7 +1605,6 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 }
 
 - (void)exLinphoneLogin:(NSArray*)objs {
-    
     PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
     NSString *domain = (NSString*)[objs objectAtIndex:1];
     NSString *intern = [meUser intern];
@@ -1677,6 +1677,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
             linphone_core_set_default_proxy_config(LC, config);
             
             [LinphoneManager.instance startLinphoneCore];
+            [LinphoneManager.instance linkCamera];
             
             // Register for Voip Notifications like Linphone.
             LinphoneAppDelegate* delegate = (LinphoneAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -1793,36 +1794,16 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 }
 
 - (IBAction)onLaunchQRCodeView:(id)sender {
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(qrCodeFound:) name:kLinphoneQRCodeFound object:nil];
     LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
     delegate.onlyPortrait = TRUE;
     NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     //[UIViewController attemptRotationToDeviceOrientation];
-    AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
-    if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
-        bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
-        NSMutableArray *devices = [NSMutableArray array];
-        
-        while (deviceList) {
-            char *data = deviceList->data;
-            if (data) [devices addObject:[NSString stringWithUTF8String:data]];
-            deviceList = deviceList->next;
-        }
-        bctbx_list_free(deviceList);
-        
-        for (NSString *device in devices) {
-            if ([device containsString:backCamera.uniqueID]) {
-                linphone_core_set_video_device(LC, device.UTF8String);
-            }
-        }
-    }
     
-    linphone_core_set_native_preview_window_id(LC, (__bridge void *)(_qrCodeView));
-    linphone_core_enable_video_preview(LC, TRUE);
-    linphone_core_enable_qrcode_video_preview(LC, TRUE);
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(qrCodeFound:) name:kLinphoneQRCodeFound object:nil];
-    [self changeView:_qrCodeView back:FALSE animation:TRUE];
+    ScanQRViewController *qrCodeViewController = [[ScanQRViewController alloc] initOnScanComplete:^(NSString * _Nullable qrCode) {
+        [self qrCodeFound:qrCode];
+    }];
+    [self presentViewController:qrCodeViewController animated:true completion:nil];
 }
 
 - (IBAction)onRemoteProvisioningLoginClick:(id)sender {
@@ -2010,8 +1991,8 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 	[self shouldEnableNextButton];
 }
 
--(void)qrCodeFound:(NSNotification *)notif {
-    if ([notif.userInfo count] == 0){
+-(void)qrCodeFound:(NSString *)qrCode {
+    if (qrCode == nil){
         return;
     }
     
@@ -2021,16 +2002,12 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
         delegate.onlyPortrait = TRUE;
     });
     
-    // Doesn't allow other qrcode founds notifications from cam view.
-    [NSNotificationCenter.defaultCenter removeObserver:self name:kLinphoneQRCodeFound object:nil];
-    
     // Check the number of components in the qrcode text.
-    NSString* qrCode = (NSString*)[notif.userInfo objectForKey:@"qrcode"];
     NSArray<NSString*>* components = [qrCode componentsSeparatedByString:@";"];
     if(components.count != 3) {
         return [self dismissViewWithMessage:NSLocalizedStringFromTable(@"Error while reading the QRCODE.", @"NethLocalizable", @"Error message thrown when user had scanned a wrong QrCode.")];
     }
-
+    
     NethCTIAPI* api = [NethCTIAPI sharedInstance];
     [api setAuthTokenWithUsername:components[0] token:components[1] domain:components[2]];
     [api getMeWithSuccessHandler:^(PortableNethUser* meUser) {

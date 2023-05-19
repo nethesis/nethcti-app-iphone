@@ -96,6 +96,11 @@ static UICompositeViewDescription *compositeDescription = nil;
 		linphone_core_enable_video_preview(LC, FALSE);
 	}
 	[_addressField setText:@""];
+    
+    UIImage *addUserContact = [[UIImage imageNamed:@"nethcti_user_add.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.addContactButton setImage:addUserContact forState:UIControlStateNormal];
+    [self.addContactButton setImage:addUserContact forState:UIControlStateDisabled];
+    [self.addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -145,7 +150,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 			[_videoCameraSwitch setHidden:FALSE];
 		}
 	}
-	[_addContactButton setImage:[UIImage imageNamed:@"voip_conference_new"] forState:UIControlStateNormal];
+	//[_addContactButton setImage:[UIImage imageNamed:@"voip_conference_new"] forState:UIControlStateNormal];
 	_addContactButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
 	_addContactButton.enabled = true;
 }
@@ -393,9 +398,13 @@ static UICompositeViewDescription *compositeDescription = nil;
 #pragma mark - Action Functions
 
 - (IBAction)onAddContactClick:(id)event {
-	ConferenceSchedulingView *view = VIEW(ConferenceSchedulingView);
-	[view resetViewModel];
-	[PhoneMainView.instance changeCurrentView:ConferenceSchedulingView.compositeViewDescription];
+    [ContactSelection setSelectionMode:ContactSelectionModeEdit];
+    [ContactSelection setAddAddress:[_addressField text]];
+    [ContactSelection setSipFilter:nil];
+    [ContactSelection setNameOrEmailFilter:nil];
+    [ContactSelection enableEmailFilter:FALSE];
+    
+    [PhoneMainView.instance changeCurrentView:ContactsListView.compositeViewDescription];
 }
 
 - (IBAction)onBackClick:(id)event {
@@ -406,6 +415,22 @@ static UICompositeViewDescription *compositeDescription = nil;
 	if ([self displayDebugPopup:_addressField.text]) {
 		_addressField.text = @"";
 	}
+    bool wasPresent = _backspaceButton.enabled;
+    bool addressPresence = [[_addressField text] length] > 0;
+    _addContactButton.enabled = _backspaceButton.enabled = addressPresence;
+    
+    if(!wasPresent && addressPresence) {
+        // Set pink color only if we have to change button state.
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"AccentColor"]];
+    }
+    
+    if(!addressPresence) {
+        [_backspaceButton setTintColor:[UIColor getColorByName:@"MidGrey"]];
+        [self.view endEditing:YES];
+        [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"MidGrey"]];
+    } else {
+        [_addContactButton.imageView setTintColor:[UIColor getColorByName:@"Grey"]];
+    }
 }
 
 - (IBAction)onBackspaceClick:(id)sender {

@@ -685,6 +685,7 @@
 		B39FEE8B297008C900183642 /* dashboard_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE83297008C900183642 /* dashboard_settings@2x.png */; };
 		B39FEE8E29700D9800183642 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE8C29700D9800183642 /* back.png */; };
 		B39FEE8F29700D9800183642 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE8D29700D9800183642 /* back@2x.png */; };
+		B3CAC9BD2A0E36EA00ECA57A /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CAC9BC2A0E36EA00ECA57A /* ScanQRViewController.swift */; };
 		B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099EA296C13A900F4CFFD /* CoreManager.swift */; };
 		B3D099EF296C159200F4CFFD /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099EE296C159200F4CFFD /* NethLocalizable.strings */; };
 		B3D099F2296C15A500F4CFFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F0296C15A500F4CFFD /* InfoPlist.strings */; };
@@ -2115,6 +2116,7 @@
 		B39FEE83297008C900183642 /* dashboard_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard_settings@2x.png"; sourceTree = "<group>"; };
 		B39FEE8C29700D9800183642 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		B39FEE8D29700D9800183642 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		B3CAC9BC2A0E36EA00ECA57A /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 		B3D099EA296C13A900F4CFFD /* CoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreManager.swift; sourceTree = "<group>"; };
 		B3D099EE296C159200F4CFFD /* NethLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = NethLocalizable.strings; sourceTree = "<group>"; };
 		B3D099F0296C15A500F4CFFD /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -2952,6 +2954,7 @@
 				D38187FB15FE355D00C3EDCA /* TabBarView.xib */,
 				D326483415887D4400930C67 /* Utils */,
 				669B140B27A29D140012220A /* FloatingScrollDownButton.swift */,
+				B3CAC9BC2A0E36EA00ECA57A /* ScanQRViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -6340,6 +6343,7 @@
 				63B81A0D1B57DA33009604A6 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C63F726D285A24B10066163B /* ProviderDelegate.swift in Sources */,
 				B31A257629D5D47000A70D81 /* ContactDetailsTableViewNethesis.m in Sources */,
+				B3CAC9BD2A0E36EA00ECA57A /* ScanQRViewController.swift in Sources */,
 				C63F7266285A24B10066163B /* UICallTimer.swift in Sources */,
 				C63F726C285A24B10066163B /* StyledTextView.swift in Sources */,
 				D37DC6C11594AE1800B2A5EB /* LinphoneCoreSettingsStore.m in Sources */,
@@ -7055,7 +7059,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
@@ -7199,7 +7203,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
@@ -7339,7 +7343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
@@ -7477,7 +7481,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";

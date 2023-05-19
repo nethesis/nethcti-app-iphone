@@ -1494,6 +1494,31 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	[self activateBasicChatroomCPIMForLinphoneAccounts];
 }
 
+- (void)stopLinphoneCore {
+    linphone_core_stop([LinphoneManager getLc]);
+}
+
+- (void)linkCamera {
+    AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+    if (![[NSString stringWithUTF8String:linphone_core_get_video_device(LC) ?: ""] containsString:[backCamera uniqueID]]) {
+        bctbx_list_t *deviceList = linphone_core_get_video_devices_list(LC);
+        NSMutableArray *devices = [NSMutableArray array];
+        
+        while (deviceList) {
+            char *data = deviceList->data;
+            if (data) [devices addObject:[NSString stringWithUTF8String:data]];
+            deviceList = deviceList->next;
+        }
+        bctbx_list_free(deviceList);
+        
+        for (NSString *device in devices) {
+            if ([device containsString:backCamera.uniqueID]) {
+                linphone_core_set_video_device(LC, device.UTF8String);
+            }
+        }
+    }
+}
+
 - (void)createLinphoneCore {
 	//[self migrationAllPre];
 	if (theLinphoneCore != nil) {

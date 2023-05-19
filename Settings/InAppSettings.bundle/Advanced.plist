@@ -103,12 +103,6 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
-			<key>Title</key>
-			<string>Other</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
@@ -137,12 +131,6 @@
 			<string>First login view</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Primary account</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>AutocapitalizationType</key>
