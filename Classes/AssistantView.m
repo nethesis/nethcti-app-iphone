@@ -135,7 +135,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 		[self changeView:_loginView back:FALSE animation:FALSE];
 	}
 	mustRestoreView = NO;
-	_outgoingView = DialerView.compositeViewDescription;
+	_outgoingView = DashboardViewController.compositeViewDescription;
     _qrCodeButton.hidden = !ENABLE_QRCODE;
 	[self resetLiblinphone:FALSE];
 	[self enableWelcomeViewButtons];
@@ -651,7 +651,7 @@ static UICompositeViewDescription *compositeDescription = nil;
         linphone_core_enable_video_preview(LC, FALSE);
         linphone_core_enable_qrcode_video_preview(LC, FALSE);
         LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
-        delegate.onlyPortrait = FALSE;
+        delegate.onlyPortrait = true;
     }
 
 	// Animation
@@ -669,6 +669,7 @@ static UICompositeViewDescription *compositeDescription = nil;
 	}
     
     if(currentView == _loginView) {
+        [self resetLiblinphone:true];
         [self styleContent];
     }
 
@@ -1608,9 +1609,8 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
     NSString *domain = (NSString*)[objs objectAtIndex:1];
     NSString *intern = [meUser intern];
-    //NSLog(@"intern: %@", intern);
     NSString *secret = [meUser secret];
-    //NSLog(@"secret: %@", secret);
+    NSString *displayName = [meUser name];
 
     LinphoneAddress *addr = linphone_address_new(NULL);
     NSMutableString *address = [NSString stringWithFormat:@"sip:%@",domain].mutableCopy;
@@ -1645,7 +1645,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
     
     linphone_address_set_username(addr, intern.UTF8String);
     linphone_address_set_domain(addr, linphone_address_get_domain(tmpAddr));
-    linphone_address_set_display_name(addr, [meUser name].UTF8String);
+    linphone_address_set_display_name(addr, displayName.UTF8String);
     linphone_proxy_config_set_identity_address(config, addr);
     linphone_address_set_port(addr, linphone_address_get_port(tmpAddr));
     
@@ -1696,8 +1696,8 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
         
         [self displayAssistantConfigurationError];
     }
-    
-/*
+    /*
+
     if (new_account != NULL) {
         const LinphoneAuthInfo *auth = linphone_account_find_auth_info(new_account);
         linphone_core_remove_account(LC, new_account);
@@ -1705,12 +1705,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
             linphone_core_remove_auth_info(LC, auth);
         }
     }
-    
-    PortableNethUser *meUser = (PortableNethUser*)[objs objectAtIndex:0];
-    NSString *domain = (NSString*)[objs objectAtIndex:1];
-    NSString *intern = meUser.intern;
-    NSString *displayName = meUser.name;
-    NSString *secret = meUser.secret;
+
     LinphoneAccountParams *accountParams =  linphone_core_create_account_params(LC);
     char *identity_str = _get_identity(account_creator);
     LinphoneAddress *addr = linphone_address_new(identity_str);
@@ -1794,6 +1789,7 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
 }
 
 - (IBAction)onLaunchQRCodeView:(id)sender {
+    [self resetLiblinphone:true];
     LinphoneAppDelegate *delegate = (LinphoneAppDelegate *)UIApplication.sharedApplication.delegate;
     delegate.onlyPortrait = TRUE;
     NSNumber *value = [NSNumber numberWithInt:UIDeviceOrientationPortrait];

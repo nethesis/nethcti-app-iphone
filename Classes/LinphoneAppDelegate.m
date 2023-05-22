@@ -52,7 +52,7 @@
 	if (self != nil) {
 		startedInBackground = FALSE;
 	}
-	_onlyPortrait = FALSE;
+	_onlyPortrait = true;
 	return self;
 	[[UIApplication sharedApplication] setDelegate:self];
 }
@@ -1036,13 +1036,14 @@
 #pragma mark - Prevent ImagePickerView from rotating
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-	if ([[(PhoneMainView*)self.window.rootViewController currentView] equal:ImagePickerView.compositeViewDescription] || _onlyPortrait)
+	/*if ([[(PhoneMainView*)self.window.rootViewController currentView] equal:ImagePickerView.compositeViewDescription] || _onlyPortrait)
 	{
 		//Prevent rotation of camera
 		NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
 		[[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 		return UIInterfaceOrientationMaskPortrait;
-	} else return UIInterfaceOrientationMaskAllButUpsideDown;
+	} else return UIInterfaceOrientationMaskAllButUpsideDown;*/
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

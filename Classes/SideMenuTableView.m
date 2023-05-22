@@ -79,7 +79,7 @@
             [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
         }]];
     }
-    
+    /*
     BOOL mustLink = ([LinphoneManager.instance lpConfigIntForKey:@"must_link_account_time"] > 0);
     
     if (mustLink) {
@@ -89,7 +89,7 @@
                                      tapBlock:^() {
             [PhoneMainView.instance changeCurrentView:AssistantLinkView.compositeViewDescription];
         }]];
-    }
+    }*/
     
     [_sideMenuEntries addObject:
      [[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Settings", nil)
@@ -141,7 +141,6 @@
         
         // Remove remote sip proxies info.
         [LinphoneManager.instance clearProxies];
-        
     }]];
     
     // BTN Annulla

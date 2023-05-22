@@ -81,6 +81,8 @@ typealias StringBlock = (String?) -> Void
             failed()
             return
         }
+        
+        btnClose.addTarget(self, action: #selector(close), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {

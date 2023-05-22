@@ -674,7 +674,7 @@ static void linphone_iphone_configuring_status_changed(LinphoneCore *lc, Linphon
 }
 
 #pragma mark - Registration State Functions
-
+/*
 - (void)onRegister:(LinphoneCore *)lc
 account:(LinphoneAccount *)account
 state:(LinphoneRegistrationState)state
@@ -747,8 +747,8 @@ message:(const char *)cmessage {
 		[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:state], @"state",
 		 [NSValue valueWithPointer:account], @"account", message, @"message", nil];
 	[NSNotificationCenter.defaultCenter postNotificationName:kLinphoneRegistrationUpdate object:self userInfo:dict];
-}
-/*
+}*/
+
 - (void)onRegister:(LinphoneCore *)lc
                cfg:(LinphoneProxyConfig *)cfg
              state:(LinphoneRegistrationState)state
@@ -855,12 +855,12 @@ message:(const char *)cmessage {
 static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneProxyConfig *cfg, LinphoneRegistrationState state, const char *message) {
     
     [(__bridge LinphoneManager *)linphone_core_cbs_get_user_data(linphone_core_get_current_callbacks(lc)) onRegister:lc cfg:cfg state:state message:message];
-}*/
-
+}
+/*
 static void linphone_iphone_registration_state(LinphoneCore *lc, LinphoneAccount *account,
 					       LinphoneRegistrationState state, const char *message) {
 	[(__bridge LinphoneManager *)linphone_core_cbs_get_user_data(linphone_core_get_current_callbacks(lc)) onRegister:lc account:account state:state message:message];
-}
+}*/
 
 #pragma mark - Auth info Function
 
@@ -1546,8 +1546,8 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 
 	LinphoneFactory *factory = linphone_factory_get();
 	LinphoneCoreCbs *cbs = linphone_factory_create_core_cbs(factory);
-	linphone_core_cbs_set_account_registration_state_changed(cbs,linphone_iphone_registration_state);
-    //linphone_core_cbs_set_registration_state_changed(cbs,linphone_iphone_registration_state);
+	//linphone_core_cbs_set_account_registration_state_changed(cbs,linphone_iphone_registration_state);
+    linphone_core_cbs_set_registration_state_changed(cbs,linphone_iphone_registration_state);
 	linphone_core_cbs_set_notify_presence_received_for_uri_or_tel(cbs, linphone_iphone_notify_presence_received_for_uri_or_tel);
 	linphone_core_cbs_set_authentication_requested(cbs, linphone_iphone_popup_password_request);
 	linphone_core_cbs_set_message_received(cbs, linphone_iphone_message_received);
@@ -2626,16 +2626,19 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 - (void)clearProxies {
     
     NSLog(@"LinphoneManager - clearProxies");
+    //LinphoneCoreSettingsStore *settingsStore = [[LinphoneCoreSettingsStore alloc] init];
+    //[settingsStore removeAccount];
 
     // --- rimozione configurazioni e autenticazione al Linphone SDK ---
     // Get the default proxy configured.
     LinphoneProxyConfig *config = linphone_core_get_default_proxy_config(LC);
-
+    
     // Find authentication info matching proxy config, if any, similarly to linphone_core_find_auth_info.
     const LinphoneAuthInfo *authInfo = linphone_proxy_config_find_auth_info(config);
     
     // Remove the selected proxy configuration
     linphone_core_remove_proxy_config(LC, config);
+    linphone_core_remove_account(LC, linphone_core_get_default_account(LC));
     
     if (authInfo) {
         // Removes an authentication information object
@@ -2647,6 +2650,8 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
     linphone_core_clear_all_auth_info(LC);
     // Commits modification made to the proxy configuration
     linphone_proxy_config_done(config);
+    
+    linphone_core_clear_accounts(LC);
     // -----------------------------------------------------------------
     
     [[NethCTIAPI sharedInstance] postLogoutWithSuccessHandler:^(NSString* result) {

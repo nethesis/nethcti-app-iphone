@@ -50,7 +50,7 @@
 	return NO;
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
+/*#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
 - (NSUInteger)supportedInterfaceOrientations {
 	return UIInterfaceOrientationMaskPortrait;
 }
@@ -58,7 +58,10 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
 	return UIInterfaceOrientationMaskPortrait;
 }
-#endif
+#endif*/
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 #pragma mark - UICompositeViewDelegate Functions
 

@@ -63,7 +63,7 @@
 	self.tabBarEnabled = YES;
 	self.sideMenuEnabled = NO;
 	self.fullscreen = fullscreen;
-	self.landscapeMode = YES;
+	self.landscapeMode = false;
 	self.portraitMode = YES;
 	self.otherFragment = IPAD ? NSStringFromClass(otherFragment) : nil;
 	self.isLeftFragment = isLeftFragment || (self.otherFragment == nil);

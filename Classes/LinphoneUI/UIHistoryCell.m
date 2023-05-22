@@ -98,7 +98,6 @@
         addr = linphone_call_log_get_to_address(callLog);
     }
     _stateImage.image = image;
-
     [ContactDisplay setDisplayNameLabel:displayNameLabel forAddress:addr];
 
     size_t count = bctbx_list_size(linphone_call_log_get_user_data(callLog)) + 1;

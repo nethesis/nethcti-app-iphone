@@ -600,7 +600,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		[PhoneMainView.instance setVolumeHidden:FALSE];
 		hiddenVolume = FALSE;
 	}
-
+    [_speakerButton update];
 	// Update tables
 	[_pausedCallsTable update];
 	//[_conferenceCallsTable update];

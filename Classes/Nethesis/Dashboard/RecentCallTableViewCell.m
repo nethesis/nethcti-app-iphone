@@ -70,8 +70,9 @@
     }
     
     [_addressLabel setTextColor:[UIColor getColorByName:@"MainColor"]];
-    [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr withAddressLabel:_addressLabel fromFriendsOnly:YES];
+    [ContactDisplay setDisplayNameLabel:_nameLabel forAddress:addr];
     [ContactDisplay setDisplayInitialsLabel:_nameInitialsLabel forAddress:addr];
+    _addressLabel.text = @"";
 }
 
 /// Retreive the right icon from the call log status.

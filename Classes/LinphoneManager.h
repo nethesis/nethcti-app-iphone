@@ -119,6 +119,7 @@ typedef struct _LinphoneManagerSounds {
 - (OrderedDictionary*) getLinphoneManagerAddressBookMap;
 - (void)configurePushProviderForAccounts;
 - (void)playMessageSound;
+- (void)createLinphoneCore;
 - (void)resetLinphoneCore;
 - (void)launchLinphoneCore;
 - (void)destroyLinphoneCore;

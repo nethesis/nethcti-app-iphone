@@ -1170,9 +1170,7 @@
 	linphone_core_remove_account(LC, account);
 	if (ai) {
 		// Friend list unsubscription above is not instantanous, so give a bit of a time margin before finishing the removal of the auth info
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-			linphone_core_remove_auth_info(LC, ai);
-		});
+        linphone_core_remove_auth_info(LC, ai);
 	}
 	[self setInteger:-1 forKey:@"current_proxy_config_preference"];
 
