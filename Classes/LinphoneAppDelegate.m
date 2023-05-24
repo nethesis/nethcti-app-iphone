@@ -73,7 +73,7 @@
 			// To avoid crash
 			[PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
 		}
-		[CallManager.instance stopLinphoneCore];
+		//[CallManager.instance stopLinphoneCore];
         [CoreManager.instance stopLinphoneCore];
 	}
 	[SwiftUtil resetCachedAsset];

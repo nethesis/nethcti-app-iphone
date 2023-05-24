@@ -509,6 +509,17 @@ import AVFoundation
 		providerDelegate.callInfos.removeAll()
 		providerDelegate.uuids.removeAll()
 	}
+    
+    static func configAudioSession(audioSession: AVAudioSession) {
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.voiceChat, options: AVAudioSession.CategoryOptions(rawValue: AVAudioSession.CategoryOptions.allowBluetooth.rawValue | AVAudioSession.CategoryOptions.allowBluetoothA2DP.rawValue))
+            try audioSession.setMode(AVAudioSession.Mode.voiceChat)
+            try audioSession.setPreferredSampleRate(48000.0)
+            try AVAudioSession.sharedInstance().setActive(true, options: [])
+        } catch {
+            Log.directLog(BCTBX_LOG_WARNING, text: "CallKit: Unable to config audio session because : \(error)")
+        }
+    }
 
 	@objc func terminateCall(call: OpaquePointer?) {
 		if (call == nil) {

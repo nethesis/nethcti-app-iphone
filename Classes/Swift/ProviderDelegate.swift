@@ -26,6 +26,7 @@ import os
 
 @objc class CallInfo: NSObject {
 	var callId: String = ""
+    var accepted = false
 	var toAddr: Address?
 	var isOutgoing = false
 	var sasEnabled = false
@@ -184,22 +185,22 @@ extension ProviderDelegate: CXProviderDelegate {
 	}
 
 	func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
-		let uuid = action.callUUID
-		let callInfo = callInfos[uuid]
-		let callId = callInfo?.callId
-		Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: answer call with call-id: \(String(describing: callId)) and UUID: \(uuid.description).")
-
-		let call = CallManager.instance().callByCallId(callId: callId)
-		
-		if (UIApplication.shared.applicationState != .active) {
-			CallManager.instance().backgroundContextCall = call
-			CallManager.instance().backgroundContextCameraIsEnabled = call!.params?.videoEnabled ?? false
-			call?.cameraEnabled = false // Disable camera while app is not on foreground
-		}
-		CallManager.instance().callkitAudioSessionActivated = false
-		CallManager.instance().lc?.configureAudioSession()
-		CallManager.instance().acceptCall(call: call!, hasVideo: call!.params?.videoEnabled ?? false)
-		action.fulfill()
+        let uuid = action.callUUID
+        let callInfo = callInfos[uuid]
+        let callId = callInfo?.callId
+        Log.directLog(BCTBX_LOG_MESSAGE, text: "CallKit: answer call with call-id: \(String(describing: callId)) and UUID: \(uuid.description).")
+        
+        let call = CallManager.instance().callByCallId(callId: callId)
+        if (call == nil || call?.state != Call.State.IncomingReceived) {
+            // The application is not yet registered or the call is not yet received, mark the call as accepted. The audio session must be configured here.
+            CallManager.configAudioSession(audioSession: AVAudioSession.sharedInstance())
+            callInfo?.accepted = true
+            callInfos.updateValue(callInfo!, forKey: uuid)
+            CallManager.instance().providerDelegate.endCallNotExist(uuid: uuid, timeout: .now() + 10)
+        } else {
+            CallManager.instance().acceptCall(call: call!, hasVideo: false)
+        }
+        action.fulfill()
 	}
 
 	func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
