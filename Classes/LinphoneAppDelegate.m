@@ -77,6 +77,7 @@
         [CoreManager.instance stopLinphoneCore];
 	}
 	[SwiftUtil resetCachedAsset];
+    exit(-1);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

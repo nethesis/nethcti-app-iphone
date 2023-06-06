@@ -747,7 +747,9 @@ static RootViewManager *rootViewManagerInstance = nil;
 	
 	UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
 															style:UIAlertActionStyleDefault
-														  handler:^(UIAlertAction * action) {}];
+														  handler:^(UIAlertAction * action) {
+        [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+    }];
 	
 	[errView addAction:defaultAction];
 	[self presentViewController:errView animated:YES completion:nil];
