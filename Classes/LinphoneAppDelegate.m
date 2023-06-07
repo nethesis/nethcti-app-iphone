@@ -77,7 +77,9 @@
         [CoreManager.instance stopLinphoneCore];
 	}
 	[SwiftUtil resetCachedAsset];
-    exit(-1);
+    if (PhoneMainView.instance.currentView != CallView.compositeViewDescription) {
+        exit(-1);
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

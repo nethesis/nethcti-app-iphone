@@ -787,8 +787,8 @@ static RootViewManager *rootViewManagerInstance = nil;
 			[CallManager.instance acceptCallWithCall:call hasVideo:YES];
 		} else {
 			AudioServicesPlaySystemSound(lm.sounds.vibrate);
-            CallIncomingView *view = VIEW(CallIncomingView);
-			[self changeCurrentView:view.compositeViewDescription];
+            //CallIncomingView *view = VIEW(CallIncomingView);
+			//[self changeCurrentVi ew:view.compositeViewDescription];
 			//[view setCallWithCall:call];
 			//CDFIX [view setDelegate:self];
 		}
