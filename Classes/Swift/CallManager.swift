@@ -344,7 +344,7 @@ import AVFoundation
 		}
 
 		let sAddr = Address.getSwiftObject(cObject: addr!)
-		if (CallManager.callKitEnabled() && !CallManager.instance().nextCallIsTransfer && lc?.conference?.isIn != true) {
+		if (CallManager.callKitEnabled()) {
 			let uuid = UUID()
 			let name = FastAddressBook.displayName(for: addr) ?? "unknow"
 			let handle = CXHandle(type: .generic, value: sAddr.asStringUriOnly())
