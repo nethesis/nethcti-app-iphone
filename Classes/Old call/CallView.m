@@ -264,7 +264,7 @@ static UICompositeViewDescription *compositeDescription = nil;
          }
          onConfirmationClick:^() {
              LinphoneAddress *addr = linphone_address_new(address.UTF8String);
-             [CallManager.instance startCallWithAddr:addr isSas:TRUE];
+            [CallManager.instance startCallWithAddr:addr isSas:true isVideo:false isConference:false];
              linphone_address_unref(addr);
          } ];
         [securityDialog.securityImage setImage:[UIImage imageNamed:@"security_alert_indicator.png"]];

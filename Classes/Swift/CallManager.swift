@@ -344,7 +344,7 @@ import AVFoundation
 		}
 
 		let sAddr = Address.getSwiftObject(cObject: addr!)
-		if (CallManager.callKitEnabled()) {
+        if (CallManager.callKitEnabled() && !TransferCallManager.instance().isCallTransfer) {
 			let uuid = UUID()
 			let name = FastAddressBook.displayName(for: addr) ?? "unknow"
 			let handle = CXHandle(type: .generic, value: sAddr.asStringUriOnly())
@@ -370,37 +370,6 @@ import AVFoundation
 			Log.e("[CallManager] unable to create address for a new outgoing call : \(addr) \(error) ")
 		}
 	}
-    
-    // for outgoing call. There is not yet callId
-    @objc func startCall(addr: OpaquePointer?, isSas: Bool) {
-        
-        if (addr == nil) {
-            print("Can not start a call with null address!")
-            return
-        }
-        
-        let sAddr = Address.getSwiftObject(cObject: addr!)
-        //Removed check "nextCallIsTransfer" to support correctly attended transfer
-        if (CallManager.callKitEnabled()) {
-            
-            let uuid = UUID()
-            let name = FastAddressBook.displayName(for: addr) ?? "unknow"
-            let handle = CXHandle(type: .generic, value: sAddr.asStringUriOnly())
-            let startCallAction = CXStartCallAction(call: uuid, handle: handle)
-            let transaction = CXTransaction(action: startCallAction)
-            
-            let callInfo = CallInfo.newOutgoingCallInfo(addr: sAddr, isSas: isSas, displayName: name, isVideo: false, isConference: false)
-            providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
-            providerDelegate.uuids.updateValue(uuid, forKey: "")
-            
-            setHeldOtherCalls(exceptCallid: "")
-            requestTransaction(transaction, action: "startCall")
-            
-        }else {
-            
-            try? doCall(addr: sAddr, isSas: isSas, isVideo: false, isConference: false)
-        }
-    }
 
 	func doCall(addr: Address, isSas: Bool, isVideo: Bool, isConference:Bool = false) throws {
 		let displayName = FastAddressBook.displayName(for: addr.getCobject)
@@ -419,7 +388,7 @@ import AVFoundation
 			try addr.setDomain(newValue: ConfigManager.instance().lpConfigStringForKey(key: "domain", section: "assistant"))
 		}
 
-		if (CallManager.instance().nextCallIsTransfer) {
+		if (CallManager.instance().nextCallIsTransfer && false) {
 			let call = CallManager.instance().lc!.currentCall
 			try call?.transferTo(referTo: addr)
 			CallManager.instance().nextCallIsTransfer = false
@@ -457,6 +426,10 @@ import AVFoundation
 					data!.videoRequested = lcallParams.videoEnabled
 					CallManager.setAppData(sCall: call!, appData: data)
 				}
+                
+                if TransferCallManager.instance().isCallTransfer, let _ = TransferCallManager.instance().origin {
+                    TransferCallManager.instance().destination = call
+                }
 			}
 		}
 	}
@@ -761,6 +734,22 @@ import AVFoundation
 					break
 				case .End,
 					 .Error:
+                    // Try to resume a previous call.
+                    if(TransferCallManager.instance().isCallTransfer &&
+                        TransferCallManager.instance().mTransferCallOrigin != nil) {
+                        guard let pointer = TransferCallManager.instance().mTransferCallOrigin else { return }
+                        let call = Call.getSwiftObject(cObject: pointer)
+                        do {
+                            try call.resume()
+                        } catch (let errorThrown) {
+                            print("[WEDO] Error in resuming previous call: \(errorThrown.localizedDescription)")
+                            return
+                        }
+                    }
+                    
+                    // No more call transfer.
+                    TransferCallManager.instance().isCallTransfer = false
+                
 					var displayName = "Unknown"
 					if (call.dir == .Incoming) {
 						displayName = incomingDisplayName(call: call)

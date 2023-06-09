@@ -84,10 +84,16 @@
 			// return after filling the address, let the user confirm the call by pressing again
 			return;
 		}
-	}
-
-	if ([address length] > 0) {
+	} else if ([address length] > 0) {
 		LinphoneAddress *addr = [LinphoneUtils normalizeSipOrPhoneAddress:address];
+        if ([TransferCallManager.instance isCallTransfer]) {
+            
+            LinphoneCore *core = [LinphoneManager getLc];
+            LinphoneCall *call = linphone_core_get_current_call(core);
+            
+            // Save the origin address for attended transfer.
+            TransferCallManager.instance.mTransferCallOrigin = call;
+        }
 		[LinphoneManager.instance call:addr];
 		if (addr)
 			linphone_address_unref(addr);
