@@ -161,6 +161,8 @@ static UICompositeViewDescription *compositeDescription = nil;
     [self.linphoneButton.imageView setTintColor:[UIColor getColorByName: isSip ? @"MainColor" : @"Grey"]];
 
     [self.searchBaseline setBackgroundColor:[UIColor getColorByName: @"MainColor"]];
+    
+    _searchField.placeholder = NSLocalizedStringFromTable(@"Search", @"NethLocalizable", nil);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
