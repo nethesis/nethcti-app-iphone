@@ -41,7 +41,7 @@
     [dialog.cancelButton setTitle:cancelText forState:UIControlStateNormal];
     
     NSString *confirmText = confirm ? confirm : NSLocalizedStringFromTable(@"Confirm", @"NethLocalizable", nil);
-    [dialog.confirmationButton setTitle:confirm forState:UIControlStateNormal];
+    [dialog.confirmationButton setTitle:confirmText forState:UIControlStateNormal];
     
     dialog.confirmationButton.layer.borderColor =
     [[UIColor colorWithPatternImage:[UIImage imageNamed:@"color_A.png"]] CGColor];
