@@ -70,7 +70,7 @@
 													  _addressLabel.text.UTF8String) &&
 			   [FastAddressBook isSipURIValid:_addressLabel.text]));
         ContactDetailsView *contactDetailsView = VIEW(ContactDetailsView);
-        self.inviteButton.hidden = !ENABLE_SMS_INVITE || [[contactDetailsView.contact sipAddresses] count] > 0 || !self.linphoneImage.hidden;
+        self.inviteButton.hidden = true;//!ENABLE_SMS_INVITE || [[contactDetailsView.contact sipAddresses] count] > 0 || !self.linphoneImage.hidden;
 		[self shouldHideEncryptedChatView:account && linphone_account_params_get_conference_factory_uri(linphone_account_get_params(account)) && model && linphone_presence_model_has_capability(model, LinphoneFriendCapabilityLimeX3dh)];
 	}
 
@@ -84,8 +84,9 @@
 /// @param value a simple string which doesn't contains an address.
 - (void)setNonAddress:(NSString *)value {
     [self hideDeleteButton:YES];
+    _callButton.hidden = true;
     _addressLabel.text = value;
-    _inviteButton.hidden = _linphoneImage.hidden = _callButton.hidden = YES;
+    _inviteButton.hidden = true;//_linphoneImage.hidden = _callButton.hidden = YES;
     _isAddress = NO;
 }
 

@@ -41,7 +41,7 @@
     } else if (section == ContactSections_Sip) {
         return _contact.sipAddresses;
     } else if (section == ContactSections_Email) {
-        BOOL showEmails = [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"];
+        BOOL showEmails = true;//[LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"];
         if (showEmails == true) {
             return _contact.emails;
         }
@@ -218,8 +218,8 @@
     } else if (section == ContactSections_Number) {
         return _contact.phones.count;
     } else if (section == ContactSections_Email) {
-        BOOL showEmails = [LinphoneManager.instance
-                           lpConfigBoolForKey:@"show_contacts_emails_preference"];
+        BOOL showEmails = true;/*[LinphoneManager.instance
+                           lpConfigBoolForKey:@"show_contacts_emails_preference"];*/
         return showEmails ? _contact.emails.count : 0;
     } else if((section == ContactSections_HomeLocationAddress && _contact.homeLocationAddress.length > 0) ||
               (section == ContactSections_HomeLocationCity && _contact.homeLocationCity.length > 0) ||
@@ -348,6 +348,7 @@
     if ([value hasPrefix:@" "])
         value = [value substringFromIndex:1];
     [cell setAddress:value];
+    cell.callButton.hidden = section != ContactSections_Number;
     return cell;
 }
 
@@ -372,7 +373,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark - UITableViewDelegate Functions
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-	BOOL showEmails = [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"];
+    BOOL showEmails = true;//[LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"];
 	if (editing) {
 		// add phone/SIP/email entries so that the user can add new data
 		for (int section = 0; section < [self numberOfSectionsInTableView:[self tableView]]; ++section) {
@@ -424,8 +425,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         } else if (section == ContactSections_Sip) {
             text = NSLocalizedStringFromTable(@"Extension", @"NethLocalizable", @"");
             addEntryName = NSLocalizedString(@"Add new SIP address", nil);
-        } else if (section == ContactSections_Email &&
-                   [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]) {
+        } else if (section == ContactSections_Email/* &&
+                   [LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"]*/) {
             text = NSLocalizedString(@"Email addresses", nil);
             addEntryName = NSLocalizedString(@"Add new email", nil);
         } else if(section == ContactSections_HomeLocationAddress) {

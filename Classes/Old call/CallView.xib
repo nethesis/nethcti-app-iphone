@@ -621,7 +621,7 @@
                                 <constraint firstItem="QYd-ca-Lpe" firstAttribute="width" secondItem="ukG-i4-YMY" secondAttribute="width" multiplier="0.8" id="vj4-uM-xbu"/>
                             </constraints>
                         </view>
-                        <view tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWj-c1-fp9" userLabel="routesView">
+                        <view hidden="YES" tag="48" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWj-c1-fp9" userLabel="routesView">
                             <rect key="frame" x="51" y="431" width="308" height="60"/>
                             <subviews>
                                 <imageView hidden="YES" userInteractionEnabled="NO" tag="49" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ji0-Ax-qEE" userLabel="backgroundColor">

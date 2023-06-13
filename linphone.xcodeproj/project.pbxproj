@@ -653,6 +653,8 @@
 		B31A257229D5D44300A70D81 /* ContactDetailsViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = B31A257029D5D44300A70D81 /* ContactDetailsViewNethesis.m */; };
 		B31A257329D5D44300A70D81 /* ContactDetailsViewNethesis.xib in Resources */ = {isa = PBXBuildFile; fileRef = B31A257129D5D44300A70D81 /* ContactDetailsViewNethesis.xib */; };
 		B31A257629D5D47000A70D81 /* ContactDetailsTableViewNethesis.m in Sources */ = {isa = PBXBuildFile; fileRef = B31A257429D5D47000A70D81 /* ContactDetailsTableViewNethesis.m */; };
+		B34C96872A376BC7006E4DA4 /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B34C96892A376BC7006E4DA4 /* NethLocalizable.strings */; };
+		B34C968B2A376C15006E4DA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B34C968D2A376C15006E4DA4 /* InfoPlist.strings */; };
 		B354BA3E29DB1FD5007478DF /* AudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B354BA3D29DB1FD5007478DF /* AudioHelper.m */; };
 		B358158A2A08EACA00462AAD /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = B35815882A08EACA00462AAD /* history.png */; };
 		B358158B2A08EACA00462AAD /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B35815892A08EACA00462AAD /* history@2x.png */; };
@@ -687,8 +689,6 @@
 		B39FEE8F29700D9800183642 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39FEE8D29700D9800183642 /* back@2x.png */; };
 		B3CAC9BD2A0E36EA00ECA57A /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CAC9BC2A0E36EA00ECA57A /* ScanQRViewController.swift */; };
 		B3D099EB296C13A900F4CFFD /* CoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099EA296C13A900F4CFFD /* CoreManager.swift */; };
-		B3D099EF296C159200F4CFFD /* NethLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099EE296C159200F4CFFD /* NethLocalizable.strings */; };
-		B3D099F2296C15A500F4CFFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F0296C15A500F4CFFD /* InfoPlist.strings */; };
 		B3D099F3296C15A500F4CFFD /* BrandLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F1296C15A500F4CFFD /* BrandLocalizable.strings */; };
 		B3D099F5296C15EF00F4CFFD /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3D099F4296C15EF00F4CFFD /* Roboto-Light.ttf */; };
 		B3D09A09296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D099F7296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift */; };
@@ -2080,6 +2080,18 @@
 		B31A257429D5D47000A70D81 /* ContactDetailsTableViewNethesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewNethesis.m; sourceTree = "<group>"; };
 		B31A257529D5D47000A70D81 /* ContactDetailsTableViewNethesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewNethesis.h; sourceTree = "<group>"; };
 		B31A257829D5D63D00A70D81 /* ContactSections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSections.h; sourceTree = "<group>"; };
+		B34C96862A376024006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B34C968A2A376BCB006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
+		B34C968C2A376C15006E4DA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B34C968E2A376C18006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B34C968F2A376C1C006E4DA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NethLocalizable.strings; sourceTree = "<group>"; };
+		B34C96902A376CDA006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AssistantViewScreens.strings; sourceTree = "<group>"; };
+		B34C96912A376EBE006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DialerView.strings; sourceTree = "<group>"; };
+		B34C96922A376F67006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ContactsListView.strings; sourceTree = "<group>"; };
+		B34C96932A376F79006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ContactDetailsView.strings; sourceTree = "<group>"; };
+		B34C96942A376F8D006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HistoryDetailsView.strings; sourceTree = "<group>"; };
+		B34C96952A376F93006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HistoryListView.strings; sourceTree = "<group>"; };
+		B34C96972A376FA8006E4DA4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RecordingsListView.strings; sourceTree = "<group>"; };
 		B354BA3C29DB1FD5007478DF /* AudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelper.h; sourceTree = "<group>"; };
 		B354BA3D29DB1FD5007478DF /* AudioHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioHelper.m; sourceTree = "<group>"; };
 		B35815882A08EACA00462AAD /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
@@ -2118,8 +2130,6 @@
 		B39FEE8D29700D9800183642 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		B3CAC9BC2A0E36EA00ECA57A /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 		B3D099EA296C13A900F4CFFD /* CoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreManager.swift; sourceTree = "<group>"; };
-		B3D099EE296C159200F4CFFD /* NethLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = NethLocalizable.strings; sourceTree = "<group>"; };
-		B3D099F0296C15A500F4CFFD /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		B3D099F1296C15A500F4CFFD /* BrandLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = BrandLocalizable.strings; sourceTree = "<group>"; };
 		B3D099F4296C15EF00F4CFFD /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		B3D099F7296C184000F4CFFD /* NethCTIAPI.ApiCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NethCTIAPI.ApiCredentials.swift; sourceTree = "<group>"; };
@@ -3955,9 +3965,9 @@
 			isa = PBXGroup;
 			children = (
 				B3D09A19296C1B7900F4CFFD /* colors.xcassets */,
-				B3D099EE296C159200F4CFFD /* NethLocalizable.strings */,
+				B34C96892A376BC7006E4DA4 /* NethLocalizable.strings */,
 				B3D099F1296C15A500F4CFFD /* BrandLocalizable.strings */,
-				B3D099F0296C15A500F4CFFD /* InfoPlist.strings */,
+				B34C968D2A376C15006E4DA4 /* InfoPlist.strings */,
 				C63F72F9285A31DA0066163B /* fonts */,
 				63AADBE31B6A0FF200AA16FD /* assistant_external_sip.rc */,
 				63AADBE41B6A0FF200AA16FD /* assistant_linphone_create.rc */,
@@ -5096,7 +5106,7 @@
 				639E9C931C0DB7BE00019A75 /* FirstLoginView.xib in Resources */,
 				633FEEF61D3CD55A0014B822 /* numpad_star_over.png in Resources */,
 				B3D099F3296C15A500F4CFFD /* BrandLocalizable.strings in Resources */,
-				B3D099F2296C15A500F4CFFD /* InfoPlist.strings in Resources */,
+				B34C968B2A376C15006E4DA4 /* InfoPlist.strings in Resources */,
 				B3D09A70296C1C4D00F4CFFD /* nethcti_call_status_outgoing@2x.png in Resources */,
 				633FEEE81D3CD55A0014B822 /* numpad_9_over~ipad@2x.png in Resources */,
 				633FEEDE1D3CD55A0014B822 /* numpad_8_over@2x.png in Resources */,
@@ -5298,7 +5308,7 @@
 				633FEEF41D3CD55A0014B822 /* numpad_star_default.png in Resources */,
 				61586B93217A17700038AC45 /* menu_recordings@2x.png in Resources */,
 				615A2834218071FF0060F920 /* security_toogle_background_grey.png in Resources */,
-				B3D099EF296C159200F4CFFD /* NethLocalizable.strings in Resources */,
+				B34C96872A376BC7006E4DA4 /* NethLocalizable.strings in Resources */,
 				633FEDDE1D3CD5590014B822 /* call_start_body_over.png in Resources */,
 				24BFAAA0209B0630004F47A7 /* contacts_sip_default@2x.png in Resources */,
 				8CF25D9D1F9F76BD00BEA0C1 /* chat_group_informations.png in Resources */,
@@ -6576,6 +6586,7 @@
 				617B4A61260A2B7800A87337 /* Base */,
 				617B4A64260A2B8500A87337 /* fr */,
 				617B4A75260A3F5500A87337 /* en */,
+				B34C96972A376FA8006E4DA4 /* it */,
 			);
 			name = RecordingsListView.xib;
 			sourceTree = "<group>";
@@ -6785,6 +6796,7 @@
 				63AADBDD1B6A0FF200AA16FD /* nl */,
 				63AADBE11B6A0FF200AA16FD /* ru */,
 				666D795C283E67E300B07215 /* fr */,
+				B34C96862A376024006E4DA4 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -6859,6 +6871,24 @@
 			name = UIChatCreateCollectionViewCell.xib;
 			sourceTree = "<group>";
 		};
+		B34C96892A376BC7006E4DA4 /* NethLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B34C968A2A376BCB006E4DA4 /* it */,
+				B34C968F2A376C1C006E4DA4 /* en */,
+			);
+			name = NethLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		B34C968D2A376C15006E4DA4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B34C968C2A376C15006E4DA4 /* en */,
+				B34C968E2A376C18006E4DA4 /* it */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B3D09B15296C1D3D00F4CFFD /* DashboardView.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -6930,6 +6960,7 @@
 				F0AF06F41A24BA760086C9C1 /* ar */,
 				8CBD7BBC20B6B87200E5DCC0 /* fr */,
 				6187B1C224B3271A00D580FB /* hu */,
+				B34C96932A376F79006E4DA4 /* it */,
 			);
 			name = ContactDetailsView.xib;
 			sourceTree = "<group>";
@@ -6942,6 +6973,7 @@
 				F0AF06F51A24BA760086C9C1 /* ar */,
 				8CBD7BBD20B6B87300E5DCC0 /* fr */,
 				6187B1C324B3271B00D580FB /* hu */,
+				B34C96922A376F67006E4DA4 /* it */,
 			);
 			name = ContactsListView.xib;
 			sourceTree = "<group>";
@@ -6954,6 +6986,7 @@
 				F0AF06F61A24BA760086C9C1 /* ar */,
 				8CBD7BBF20B6B87400E5DCC0 /* fr */,
 				6187B1C524B3271B00D580FB /* hu */,
+				B34C96912A376EBE006E4DA4 /* it */,
 			);
 			name = DialerView.xib;
 			sourceTree = "<group>";
@@ -6966,6 +6999,7 @@
 				F0AF06F91A24BA760086C9C1 /* ar */,
 				8CBD7BC220B6B87600E5DCC0 /* fr */,
 				6187B1C824B3271D00D580FB /* hu */,
+				B34C96942A376F8D006E4DA4 /* it */,
 			);
 			name = HistoryDetailsView.xib;
 			sourceTree = "<group>";
@@ -6978,6 +7012,7 @@
 				F0AF06FA1A24BA770086C9C1 /* ar */,
 				8CBD7BC320B6B87700E5DCC0 /* fr */,
 				6187B1C924B3271D00D580FB /* hu */,
+				B34C96952A376F93006E4DA4 /* it */,
 			);
 			name = HistoryListView.xib;
 			sourceTree = "<group>";
@@ -7015,6 +7050,7 @@
 				F0AF07111A24BA770086C9C1 /* ar */,
 				8CBD7BB220B6B86A00E5DCC0 /* fr */,
 				6187B1B824B3271600D580FB /* hu */,
+				B34C96902A376CDA006E4DA4 /* it */,
 			);
 			name = AssistantViewScreens.xib;
 			sourceTree = "<group>";
@@ -7059,7 +7095,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
@@ -7203,7 +7239,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
@@ -7343,7 +7379,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
@@ -7481,7 +7517,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				CYAN = "#00A2DE";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
@@ -7571,7 +7607,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7614,7 +7650,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -7657,7 +7693,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -7703,7 +7739,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -8005,7 +8041,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8060,7 +8096,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8112,7 +8148,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -8166,7 +8202,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;
@@ -8219,7 +8255,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8274,7 +8310,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8D66VDADVH;
 				ENABLE_BITCODE = NO;
@@ -8326,7 +8362,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -8378,7 +8414,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8D66VDADVH;

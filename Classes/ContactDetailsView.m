@@ -150,8 +150,8 @@
 	NSString *username =
 		linphoneAddress ? [NSString stringWithUTF8String:linphone_address_get_username(linphoneAddress)] : address;
 
-	if (([username rangeOfString:@"@"].length > 0) &&
-		([LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"] == true)) {
+	if (([username rangeOfString:@"@"].length > 0)/* &&
+		([LinphoneManager.instance lpConfigBoolForKey:@"show_contacts_emails_preference"] == true)*/) {
 		[_tableController addEmailField:username];
 	} else if ((linphone_account_is_phone_number(NULL, [username UTF8String])) &&
 			   ([LinphoneManager.instance lpConfigBoolForKey:@"save_new_contacts_as_phone_number"] == true)) {

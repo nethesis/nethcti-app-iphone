@@ -405,7 +405,7 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 		_pausedCallsTable.tableView.alpha =
             _videoCameraSwitch.alpha =
             _centerBarView.alpha =
-            _routesView.alpha =
+            //_routesView.alpha =
 			_optionsView.alpha =
             _numpadView.alpha =
             _bottomBar.alpha = (hidden ? 0 : 1);
@@ -549,14 +549,14 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 	_routesBluetoothButton.selected = CallManager.instance.bluetoothEnabled;
 	_routesSpeakerButton.selected = CallManager.instance.speakerEnabled;
 	_routesEarpieceButton.selected = !_routesBluetoothButton.selected && !_routesSpeakerButton.selected;
-
+/*
 	if (hidden != _routesView.hidden) {
 		if (animated) {
 			[self hideAnimation:hidden forView:_routesView completion:nil];
 		} else {
 			[_routesView setHidden:hidden];
 		}
-	}
+	}*/
 }
 
 - (void)hideOptions:(BOOL)hidden animated:(BOOL)animated {
@@ -904,11 +904,11 @@ static void hideSpinner(LinphoneCall *call, void *user_data) {
 }
 
 - (IBAction)onRoutesClick:(id)sender {
-	if ([_routesView isHidden]) {
+	/*if ([_routesView isHidden]) {
 		[self hideRoutes:FALSE animated:ANIMATED];
 	} else {
 		[self hideRoutes:TRUE animated:ANIMATED];
-	}
+	}*/
 }
 
 - (IBAction)onOptionsClick:(id)sender {
