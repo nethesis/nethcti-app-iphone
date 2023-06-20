@@ -748,11 +748,7 @@
 
 	NSString *callId = (NSString *)[response.notification.request.content.userInfo objectForKey:@"CallId"];
     if (!callId) {
-        BOOL account_configured = (linphone_core_get_default_proxy_config(LC) == NULL);
-        if (!account_configured)
-            [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
-        else
-            [PhoneMainView.instance changeCurrentView:AssistantView.compositeViewDescription];
+        [PhoneMainView.instance resetLostCall];
         return;
     }
 

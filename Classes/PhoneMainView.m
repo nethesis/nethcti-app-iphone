@@ -420,8 +420,9 @@ static RootViewManager *rootViewManagerInstance = nil;
         case LinphoneCallReleased:
             if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-					[PhoneMainView.instance popToView:DialerView.compositeViewDescription];
+					//[PhoneMainView.instance popToView:DialerView.compositeViewDescription];
 					[CallManager.instance stopLinphoneCore];
+                    exit(-1);
                 });
             }
             break;
@@ -590,6 +591,14 @@ static RootViewManager *rootViewManagerInstance = nil;
 
 - (void)hideStatusBar:(BOOL)hide {
 	[mainViewController hideStatusBar:hide];
+}
+
+- (void)resetLostCall {
+    BOOL account_configured = (linphone_core_get_default_proxy_config(LC) == NULL);
+    if (!account_configured)
+        [self changeCurrentView:DashboardViewController.compositeViewDescription];
+    else
+        [self changeCurrentView:AssistantView.compositeViewDescription];
 }
 
 - (void)updateStatusBar:(UICompositeViewDescription *)to_view {

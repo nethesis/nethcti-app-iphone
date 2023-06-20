@@ -123,6 +123,7 @@
 - (BOOL)isIphoneXDevice;
 + (int)iphoneStatusBarHeight;
 -(BOOL) darkMode;
+- (void)resetLostCall;
 
 @end
 
