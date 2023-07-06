@@ -1734,7 +1734,7 @@ import FirebaseMessaging
             return
         }
         Messaging.messaging().subscribe(toTopic: appName)
-        Messaging.messaging().subscribe(toTopic: user)
+        Messaging.messaging().subscribe(toTopic: "\(user)%\(domain)")
         Messaging.messaging().subscribe(toTopic: domain)
         didSubscribeToNotificationTopics = true
         print("[NethCTIAPI] Subscribed to notification topics")
@@ -1749,7 +1749,7 @@ import FirebaseMessaging
             return
         }
         Messaging.messaging().unsubscribe(fromTopic: appName)
-        Messaging.messaging().unsubscribe(fromTopic: user)
+        Messaging.messaging().unsubscribe(fromTopic: "\(user)%\(domain)")
         Messaging.messaging().unsubscribe(fromTopic: domain)
         didSubscribeToNotificationTopics = false
         print("[NethCTIAPI] Unsubscribed from notification topics")
