@@ -8,6 +8,7 @@
 
 import Foundation
 //import Alamofire
+import FirebaseMessaging
 
 
 @objc class NethCTIAPI : NSObject, URLSessionTaskDelegate {
@@ -247,6 +248,7 @@ import Foundation
                                                 // Ok handling.
                                                 
                                                 // Rimozione username, dominio, token nethesis e preferiti
+                                                self.unsubscribeFromNotificationTopics()
                                                 ApiCredentials.clear()
                                                 
                                                 successHandler("Logged out.")
@@ -1712,5 +1714,56 @@ import Foundation
         return NetworkReachabilityManager()!.isReachable
     }
     */
+    // MARK: - Notifications Handlers
+    private var didSubscribeToNotificationTopics: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "didSubscribeToNotificationTopics")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "didSubscribeToNotificationTopics")
+        }
+    }
     
+    @objc func subscribeToNotificationTopics() {
+        guard
+            let user = ApiCredentials.Username as String?,
+            let domain = ApiCredentials.Domain as String?,
+            let appName = Bundle.main.appName,
+            !user.isEmpty && !domain.isEmpty,
+            !didSubscribeToNotificationTopics else {
+            return
+        }
+        Messaging.messaging().subscribe(toTopic: appName)
+        Messaging.messaging().subscribe(toTopic: user)
+        Messaging.messaging().subscribe(toTopic: domain)
+        didSubscribeToNotificationTopics = true
+        print("[NethCTIAPI] Subscribed to notification topics")
+    }
+    
+    @objc func unsubscribeFromNotificationTopics() {
+        guard
+            let user = ApiCredentials.Username as String?,
+            let domain = ApiCredentials.Domain as String?,
+            let appName = Bundle.main.appName,
+            !user.isEmpty && !domain.isEmpty else {
+            return
+        }
+        Messaging.messaging().unsubscribe(fromTopic: appName)
+        Messaging.messaging().unsubscribe(fromTopic: user)
+        Messaging.messaging().unsubscribe(fromTopic: domain)
+        didSubscribeToNotificationTopics = false
+        print("[NethCTIAPI] Unsubscribed from notification topics")
+    }
+}
+
+
+extension Bundle {
+    var appName: String? {
+        if let displayName = self.infoDictionary?["CFBundleDisplayName"] as? String {
+            return displayName
+        } else if let name = self.infoDictionary?["CFBundleName"] as? String {
+            return name
+        }
+        return nil
+    }
 }

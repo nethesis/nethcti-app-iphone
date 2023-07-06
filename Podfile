@@ -9,15 +9,9 @@ def all_pods
 	else
 		pod 'linphone-sdk', :path => ENV['PODFILE_PATH']  # local sdk
 	end
-
-	crashlytics
-end
-
-def crashlytics
-	#if not ENV['USE_CRASHLYTICS'].nil?
-		pod 'Firebase/Analytics'
-		pod 'Firebase/Crashlytics'
-	#end
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
 end
 
 target 'linphone' do

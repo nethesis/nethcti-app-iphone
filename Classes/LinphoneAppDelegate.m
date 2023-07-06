@@ -36,9 +36,7 @@
 #import "linphoneapp-Swift.h"
 
 
-#ifdef USE_CRASHLYTICS
 #include "FIRApp.h"
-#endif
 
 @implementation LinphoneAppDelegate
 
@@ -287,10 +285,7 @@
 #pragma deploymate pop
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-#ifdef USE_CRASHLYTICS
-	[FIRApp configure];
-#endif
-
+    [FIRApp configure];
 	
 	if ([VFSUtil vfsEnabledWithGroupName:kLinphoneMsgNotificationAppGroupId]) {
 		if (TARGET_IPHONE_SIMULATOR) {
@@ -366,6 +361,8 @@
     
     if(![[NethCTIAPI sharedInstance] isUserAuthenticated]){
         [self performSelector:@selector(showAssistantView) withObject:nil afterDelay:0.5];
+    } else {
+        [[NethCTIAPI sharedInstance] subscribeToNotificationTopics];
     }
 	
 	return YES;
