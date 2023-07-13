@@ -422,7 +422,7 @@ static RootViewManager *rootViewManagerInstance = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
 					//[PhoneMainView.instance popToView:DialerView.compositeViewDescription];
 					[CallManager.instance stopLinphoneCore];
-                    exit(-1);
+                    //exit(-1);
                 });
             }
             break;

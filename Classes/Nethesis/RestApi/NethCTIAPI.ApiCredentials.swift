@@ -146,6 +146,16 @@ extension NethCTIAPI {
             return ["username": Username, "password": password] as [String: String]
         }
         
+        /**
+         Header token
+         */
+        static var HeaderToken: String? {
+            let token = ApiCredentials.NethApiToken
+            if token != "No token.", !token.isEmpty {
+                return token
+            }
+            return nil
+        }
         
         /**
          Use this after a successful login.

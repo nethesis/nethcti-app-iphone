@@ -909,7 +909,17 @@ import AVFoundation
 		}
 	}
 	
-	
+    func onPushNotificationReceived(core: Core, payload: String) {
+        guard let data = payload.data(using: .utf8) else {
+            return
+        }
+        do {
+            let json = try JSONSerialization.jsonObject(with: data)
+            print("[CallManager] Notification Payload: \(json)")
+        } catch {
+            
+        }
+    }
 	
 }
 
