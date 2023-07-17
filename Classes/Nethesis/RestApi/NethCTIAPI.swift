@@ -209,16 +209,14 @@ import FirebaseMessaging
      Make a POST logout request to NethCTI server.
      */
     @objc public func postLogout(successHandler: @escaping (String?) -> Void) -> Void {
-        
         print("postLogout")
 
         if !ApiCredentials.checkCredentials() {
-            
             print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
-            
             return
         }
         
+
         // Before unregister from notificatore push.
         registerPushToken(ApiCredentials.DeviceToken,
                           unregister: true,
@@ -248,7 +246,6 @@ import FirebaseMessaging
                                                 // Ok handling.
                                                 
                                                 // Rimozione username, dominio, token nethesis e preferiti
-                                                self.unsubscribeFromNotificationTopics()
                                                 ApiCredentials.clear()
                                                 
                                                 successHandler("Logged out.")
@@ -398,40 +395,32 @@ import FirebaseMessaging
         // Check input values.
         guard
             let d = deviceId as String?,
+                !d.isEmpty,
             let user = ApiCredentials.Username as String?,
             let domain = ApiCredentials.Domain as String?,
             !user.isEmpty && !domain.isEmpty else {
             
-            print("[WEDO] Missing information for notificator.")
+            print("[FIREBASE] Missing information for notificator.")
             
             return
         }
         
-        // Generate the necessary headers. Content type is already in the header.
-        var headers: [String: Any] = [:]
-        headers["X-HTTP-Method-Override"] = "Register"
-        
+        let endpoint = unregister ? "deregister" : "register"
         #if DEBUG
-        headers["X-AuthKey"] = self.authKeyForSandNot
-        let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
+        let endpointUrl = "\(self.baseUrlForSandNot)/\(endpoint)"
         let mode = "Sandbox";
         #else
-        headers["X-AuthKey"] = self.authKeyForProdNot
-        let endpointUrl = "\(self.baseUrlForProdNot)/NotificaPush"
+        let endpointUrl = "\(self.baseUrlForProdNot)/\(endpoint)"
         let mode = "Production";
         #endif
         
         // Generate the necessary bodies.
         var body: [String: Any] = [:]
-        body["Os"] = 1
-        body["DevToken"] = d
-        body["RegID"] = d
-        body["User"] = unregister ? "" : "\(user)@\(domain)"
-        body["Language"] = ""
-        body["Custom"] = ""
+        body["token"] = d
+        body["topic"] = ApiCredentials.HeaderToken?.sha256()
         
         // Build the final endpoint to notificator.
-        print("[WEDO] [APNS SERVER]: You are in \(mode) Notification endpoint url \(endpointUrl) sending \(d)")
+        print("[FIREBASE] [APNS SERVER]: You are in \(mode) Notification endpoint url \(endpointUrl) sending \(d)")
         
         guard let url = URL(string: endpointUrl) else {
             
@@ -440,14 +429,16 @@ import FirebaseMessaging
         
         self.baseCall(url: url,
                       method: "POST",
-                      headers: headers,
+                      headers: [
+                        "Instance-Token": self.authKeyForProdNot
+                      ],
                       body: body,
                       successHandler: {
                         
                         data, response in
                         guard let responseData = data as Data? else {
                             
-                            print("[WEDO] [APNS SERVER]: No data provided")
+                            print("[FIREBASE] [APNS SERVER]: No data provided")
                             
                             success(false)
                             
@@ -456,7 +447,7 @@ import FirebaseMessaging
                         
                         let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
                         
-                        print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
+                        print("[FIREBASE] [APNS SERVER]: response: \(String(describing: dataString))")
                         
                         success(true)
                         
@@ -465,6 +456,19 @@ import FirebaseMessaging
                         
                         success(false)
                       })
+    }
+    
+    @objc public func refreshPushToken() {
+        if !ApiCredentials.checkCredentials() {
+            print(NethCTIAPI.ErrorCodes.MissingAuthentication.rawValue)
+            return
+        }
+        
+        registerPushToken(ApiCredentials.DeviceToken,
+                          unregister: true,
+                          success: { result in
+
+                          })
     }
     
     /*
@@ -1725,7 +1729,8 @@ import FirebaseMessaging
     }
     
     @objc func subscribeToNotificationTopics() {
-        guard let token = ApiCredentials.HeaderToken else {
+        guard let token = ApiCredentials.HeaderToken,
+              !didSubscribeToNotificationTopics else {
             return
         }
         Messaging.messaging().subscribe(toTopic: token.sha256())

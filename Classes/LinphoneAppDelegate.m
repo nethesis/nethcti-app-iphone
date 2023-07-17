@@ -36,8 +36,6 @@
 #import "linphoneapp-Swift.h"
 
 
-#include "FIRApp.h"
-
 @implementation LinphoneAppDelegate
 
 @synthesize configURL;
@@ -361,9 +359,8 @@
     
     if(![[NethCTIAPI sharedInstance] isUserAuthenticated]){
         [self performSelector:@selector(showAssistantView) withObject:nil afterDelay:0.5];
-    } else {
-        [[NethCTIAPI sharedInstance] subscribeToNotificationTopics];
     }
+    [[NethCTIAPI sharedInstance] refreshPushToken];
 	
 	return YES;
 }
@@ -665,9 +662,9 @@
     [ApiCredentials setDeviceToken:tokenString];
     [[NethCTIAPI sharedInstance] registerPushToken:tokenString unregister: FALSE success:^(BOOL response) {
         if(response)
-            LOGD(@"[WEDO PUSH] chiamato notificatore: risultato positivo.");
+            LOGD(@"[FIREBASE PUSH] chiamato notificatore: risultato positivo.");
         else
-            LOGE(@"[WEDO PUSH] chiamato notificatore: risultato negativo");
+            LOGE(@"[FIREBASE PUSH] chiamato notificatore: risultato negativo");
     }];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -678,6 +675,29 @@
 - (void)pushRegistry:(PKPushRegistry *)registry didInvalidatePushTokenForType:(PKPushType)type {
     LOGI(@"[PushKit] Token invalidated");
     dispatch_async(dispatch_get_main_queue(), ^{[LinphoneManager.instance setPushKitToken:nil];});
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion {
+    LOGI(@"[PushKit] didReceiveIncomingPushWithPayload withCompletionHandler.");
+    [self processPush:payload.dictionaryPayload];
+    dispatch_async(dispatch_get_main_queue(), ^{completion();});
+}
+
+- (void)processPush:(NSDictionary *)userInfo {
+    LOGI(@"[PushKit] Notification [%p] received with payload : %@", userInfo, userInfo.description);
+    
+    // prevent app to crash if PushKit received for msg
+    if ([userInfo[@"aps"][@"loc-key"] isEqualToString:@"IM_MSG"]) {
+        LOGE(@"Received a legacy PushKit notification for a chat message");
+        [LinphoneManager.instance lpConfigSetInt:[LinphoneManager.instance lpConfigIntForKey:@"unexpected_pushkit" withDefault:0]+1 forKey:@"unexpected_pushkit"];
+        return;
+    }
+    [LinphoneManager.instance startLinphoneCore];
+    
+    [self configureUINotification];
+    //to avoid IOS to suspend the app before being able to launch long running task
+    //[self nethAdaptPayload:userInfo];
+    [self processRemoteNotification:userInfo];
 }
 
 #pragma mark - UNUserNotifications Framework
@@ -710,7 +730,7 @@
 }
 
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-	
+    NSLog(@"CIAO");
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
@@ -1022,6 +1042,12 @@
 		return UIInterfaceOrientationMaskPortrait;
 	} else return UIInterfaceOrientationMaskAllButUpsideDown;*/
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - FIRMessaging Delegate
+
+- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
+    NSLog(@"[LinphoneAppDelegate] NEW FCM TOKEN: %@", fcmToken);
 }
 
 @end

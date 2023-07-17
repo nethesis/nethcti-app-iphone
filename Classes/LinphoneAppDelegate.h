@@ -26,7 +26,10 @@
 #import <PushKit/PushKit.h>
 #import "linphoneapp-Swift.h"
 
-@interface LinphoneAppDelegate : NSObject <UIApplicationDelegate, PKPushRegistryDelegate, UNUserNotificationCenterDelegate, CLLocationManagerDelegate> {
+#include "FIRApp.h"
+#import <FirebaseMessaging/FirebaseMessaging.h>
+
+@interface LinphoneAppDelegate : NSObject <UIApplicationDelegate, PKPushRegistryDelegate, UNUserNotificationCenterDelegate, CLLocationManagerDelegate, FIRMessagingDelegate> {
     @private
 	UIBackgroundTaskIdentifier bgStartId;
     BOOL startedInBackground;
