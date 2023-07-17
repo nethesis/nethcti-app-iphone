@@ -465,7 +465,7 @@ import FirebaseMessaging
         }
         
         registerPushToken(ApiCredentials.DeviceToken,
-                          unregister: true,
+                          unregister: false,
                           success: { result in
 
                           })
