@@ -571,12 +571,13 @@
 - (void)nethAdaptPayload:(NSDictionary *)userInfo {
     NSMutableDictionary* mut = userInfo.mutableCopy;
     NSString* cf1 = [mut objectForKey:@"custom-field-1"];
-    NSString* cf2 = [mut objectForKey:@"custom-field-2"];
-    
-    NSMutableDictionary* aps = ((NSDictionary*)[mut objectForKey:@"aps"]).mutableCopy;
-    [aps setValue:cf1 forKey:@"loc-key"];
-    [aps setValue:cf2 forKey:@"call-id"];
-    [mut setValue:aps forKey:@"aps"];
+    if (cf1) {
+        NSString* cf2 = [mut objectForKey:@"custom-field-2"];
+        NSMutableDictionary* aps = ((NSDictionary*)[mut objectForKey:@"aps"]).mutableCopy;
+        [aps setValue:cf1 forKey:@"loc-key"];
+        [aps setValue:cf2 forKey:@"call-id"];
+        [mut setValue:aps forKey:@"aps"];
+    }
     [self processRemoteNotification:mut];
 }
 
@@ -696,8 +697,8 @@
     
     [self configureUINotification];
     //to avoid IOS to suspend the app before being able to launch long running task
-    //[self nethAdaptPayload:userInfo];
-    [self processRemoteNotification:userInfo];
+    [self nethAdaptPayload:userInfo];
+    //[self processRemoteNotification:userInfo];
 }
 
 #pragma mark - UNUserNotifications Framework

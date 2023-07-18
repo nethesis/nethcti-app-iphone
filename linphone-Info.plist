@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>AppApnsAuthKey</key>
-	<string>991f39d5ae45ae77ed8b2d1bfa6f9d08c055c73ae0a28263f112efc0d594df81</string>
+	<string>$(PUSH_WEDO_AUTH_KEY)</string>
 	<key>AppApnsAuthKeyDev</key>
-	<string>991f39d5ae45ae77ed8b2d1bfa6f9d08c055c73ae0a28263f112efc0d594df81</string>
+	<string>9b7008dc-20c2-4157-8b3e-5b97a9ff5061</string>
 	<key>AppApnsBaseUrl</key>
-	<string>https://fpp.gs.nethserver.net/nethesis</string>
+	<string>https://push.wedo.io</string>
 	<key>AppApnsBaseUrl_Dev</key>
-	<string>https://fpp.gs.nethserver.net/dev</string>
+	<string>https://push.wedo.io</string>
 	<key>AppApnsBaseUrl_Dev2</key>
-	<string>https://fpp.gs.nethserver.net/dev</string>
+	<string>http://notificatore.apexnet.it/Notificatore.aspx</string>
 	<key>ButtonSelectedBackground</key>
 	<string>$(BUTTON_SELECTED)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -104,6 +104,12 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Cyan</key>
 	<string>$(CYAN)</string>
+	<key>FirebaseNotificationsAuthKey</key>
+	<string>991f39d5ae45ae77ed8b2d1bfa6f9d08c055c73ae0a28263f112efc0d594df81</string>
+	<key>FirebaseNotificationsBaseUrl</key>
+	<string>https://fpp.gs.nethserver.net/nethesis</string>
+	<key>FirebaseNotificationsBaseUrlDev</key>
+	<string>https://fpp.gs.nethserver.net/dev</string>
 	<key>Green</key>
 	<string>$(GREEN)</string>
 	<key>Grey</key>
