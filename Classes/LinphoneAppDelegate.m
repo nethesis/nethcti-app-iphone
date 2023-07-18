@@ -360,7 +360,6 @@
     if(![[NethCTIAPI sharedInstance] isUserAuthenticated]){
         [self performSelector:@selector(showAssistantView) withObject:nil afterDelay:0.5];
     }
-    [[NethCTIAPI sharedInstance] refreshPushToken];
 	
 	return YES;
 }
