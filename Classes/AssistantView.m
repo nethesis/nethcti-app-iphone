@@ -1687,8 +1687,6 @@ UIColor *previousColor = (UIColor*)[sender backgroundColor]; \
             
             [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
             
-            //[[NethCTIAPI sharedInstance] subscribeToNotificationTopics];
-            
         } else {
             
             [self displayAssistantConfigurationError];

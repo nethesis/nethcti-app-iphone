@@ -28,6 +28,10 @@ import FirebaseMessaging
         return "https://\(domain)/webrest"
     }
     
+    private var brandCode : String {
+        return getStringFromInfo(keyString: "BrandCode")
+    }
+    
     private var firebaseNotificationsBaseUrl : String {
         return getStringFromInfo(keyString: "FirebaseNotificationsBaseUrl")
     }
@@ -470,7 +474,7 @@ import FirebaseMessaging
                             
                           },
                           errorHandler: { error, response in
-                            
+                            print("[WEDO] [APNS SERVER]: Error")
                             success(false)
                           })
         }
@@ -479,6 +483,9 @@ import FirebaseMessaging
     @objc public func registerPushToken(_ deviceId: String,
                                         unregister: Bool,
                                         success:@escaping (Bool) -> Void) -> Void {
+        legacyRegisterPushToken(deviceId, unregister: unregister) { success in
+            
+        }
         
         // Check input values.
         guard
@@ -495,17 +502,20 @@ import FirebaseMessaging
         
         let endpoint = unregister ? "deregister" : "register"
         #if DEBUG
-        let endpointUrl = "\(self.firebaseNotificationsBaseUrlDev)/\(endpoint)"
+        var endpointUrl = self.firebaseNotificationsBaseUrlDev
         let mode = "Sandbox";
         #else
-        let endpointUrl = "\(self.firebaseNotificationsBaseUrl)/\(endpoint)"
+        var endpointUrl = self.firebaseNotificationsBaseUrl
         let mode = "Production";
         #endif
+        
+        endpointUrl.append("/\(self.brandCode)/\(endpoint)")
         
         // Generate the necessary bodies.
         var body: [String: Any] = [:]
         body["token"] = d
         body["topic"] = ApiCredentials.HeaderToken?.sha256()
+        body["type"] = "apple"
         
         // Build the final endpoint to notificator.
         print("[FIREBASE] [APNS SERVER]: You are in \(mode) Notification endpoint url \(endpointUrl) sending \(d)")
@@ -527,9 +537,7 @@ import FirebaseMessaging
                         guard let responseData = data as Data? else {
                             
                             print("[FIREBASE] [APNS SERVER]: No data provided")
-                            self.legacyRegisterPushToken(deviceId, unregister: unregister) { completed in
-                                success(completed)
-                            }
+                            success(false)
                             return
                         }
                         
@@ -541,9 +549,8 @@ import FirebaseMessaging
                         
                       },
                       errorHandler: { error, response in
-                        self.legacyRegisterPushToken(deviceId, unregister: unregister) { completed in
-                            success(completed)
-                        }
+                        print("[FIREBASE] [APNS SERVER]: Error")
+                        success(false)
                       })
     }
     

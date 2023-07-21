@@ -2638,7 +2638,6 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
     
     // Remove the selected proxy configuration
     linphone_core_remove_proxy_config(LC, config);
-    linphone_core_remove_account(LC, linphone_core_get_default_account(LC));
     
     if (authInfo) {
         // Removes an authentication information object
@@ -2648,9 +2647,11 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
     linphone_core_clear_proxy_config(LC);
     // Clear all authentication information
     linphone_core_clear_all_auth_info(LC);
+    
     // Commits modification made to the proxy configuration
     linphone_proxy_config_done(config);
     
+    linphone_core_remove_account(LC, linphone_core_get_default_account(LC));
     linphone_core_clear_accounts(LC);
     // -----------------------------------------------------------------
     
