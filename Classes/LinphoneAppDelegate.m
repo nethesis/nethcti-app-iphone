@@ -83,6 +83,11 @@
 	
     [LinphoneManager.instance startLinphoneCore];
     [LinphoneManager.instance.fastAddressBook reloadFriends];
+    
+    LinphoneCall *call = linphone_core_get_current_call(LC);
+    if (!call && startedInBackground) {
+        [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+    }
 	
     [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneMessageReceived object:nil];
 }
@@ -151,7 +156,8 @@
             // To stop it we have to do the iOS7 ring fix...
             //[self fixRing];
 		}
-	}
+    }
+    
     if (_shortcutItem) {
         [self handleShortcut:_shortcutItem];
         _shortcutItem = nil;
@@ -184,6 +190,7 @@
 	}];
 	
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    startedInBackground = false;
 }
 
 #pragma deploymate push "ignored-api-availability"

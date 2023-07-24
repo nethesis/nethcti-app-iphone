@@ -502,14 +502,12 @@ import FirebaseMessaging
         
         let endpoint = unregister ? "deregister" : "register"
         #if DEBUG
-        var endpointUrl = self.firebaseNotificationsBaseUrlDev
+        let endpointUrl = "\(self.firebaseNotificationsBaseUrlDev)/\(self.brandCode)-dev/\(endpoint)"
         let mode = "Sandbox";
         #else
-        var endpointUrl = self.firebaseNotificationsBaseUrl
+        let endpointUrl = "\(self.firebaseNotificationsBaseUrl)/\(self.brandCode)/\(endpoint)"
         let mode = "Production";
         #endif
-        
-        endpointUrl.append("/\(self.brandCode)/\(endpoint)")
         
         // Generate the necessary bodies.
         var body: [String: Any] = [:]
