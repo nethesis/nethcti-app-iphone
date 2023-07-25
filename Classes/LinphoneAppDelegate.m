@@ -85,8 +85,9 @@
     [LinphoneManager.instance.fastAddressBook reloadFriends];
     
     LinphoneCall *call = linphone_core_get_current_call(LC);
-    if (!call && startedInBackground) {
+    if (!call && startedInBackground && ![[PhoneMainView.instance currentView] equal:CallView.compositeViewDescription]) {
         [PhoneMainView.instance changeCurrentView:DashboardViewController.compositeViewDescription];
+        startedInBackground = false;
     }
 	
     [NSNotificationCenter.defaultCenter postNotificationName:kLinphoneMessageReceived object:nil];
@@ -190,7 +191,6 @@
 	}];
 	
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    startedInBackground = false;
 }
 
 #pragma deploymate push "ignored-api-availability"
@@ -335,7 +335,8 @@
 			return YES;
 		}
 		startedInBackground = true;
-	}
+    }
+    
 	bgStartId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
 	  LOGW(@"Background task for application launching expired.");
 	  [[UIApplication sharedApplication] endBackgroundTask:bgStartId];
