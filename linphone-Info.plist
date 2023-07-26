@@ -108,9 +108,9 @@
 	<string>$(CYAN)</string>
 	<key>FirebaseNotificationsAuthKey</key>
 	<string>${FIREBASE_NOTIFICATIONS_AUTH_KEY}</string>
+	<key>FirebaseNotificationsAuthKeyDev</key>
+	<string>${FIREBASE_NOTIFICATIONS_AUTH_KEY_DEV}</string>
 	<key>FirebaseNotificationsBaseUrl</key>
-	<string>https://fpp.nethesis.it</string>
-	<key>FirebaseNotificationsBaseUrlDev</key>
 	<string>https://fpp.nethesis.it</string>
 	<key>Green</key>
 	<string>$(GREEN)</string>

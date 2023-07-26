@@ -36,12 +36,12 @@ import FirebaseMessaging
         return getStringFromInfo(keyString: "FirebaseNotificationsBaseUrl")
     }
     
-    private var firebaseNotificationsBaseUrlDev : String {
-        return getStringFromInfo(keyString: "FirebaseNotificationsBaseUrlDev")
-    }
-    
     private var firebaseNotificationsAuthKey : String {
         return getStringFromInfo(keyString: "FirebaseNotificationsAuthKey")
+    }
+    
+    private var firebaseNotificationsAuthKeyDev : String {
+        return getStringFromInfo(keyString: "FirebaseNotificationsAuthKeyDev")
     }
     
     private var authKeyForSandNot : String {
@@ -502,10 +502,12 @@ import FirebaseMessaging
         
         let endpoint = unregister ? "deregister" : "register"
         #if DEBUG
-        let endpointUrl = "\(self.firebaseNotificationsBaseUrlDev)/\(self.brandCode)-dev/\(endpoint)"
+        let endpointUrl = "\(self.firebaseNotificationsBaseUrl)/\(self.brandCode)-dev/\(endpoint)"
+        let instanceToken = self.firebaseNotificationsAuthKeyDev
         let mode = "Sandbox";
         #else
         let endpointUrl = "\(self.firebaseNotificationsBaseUrl)/\(self.brandCode)/\(endpoint)"
+        let instanceToken = self.firebaseNotificationsAuthKey
         let mode = "Production";
         #endif
         
@@ -526,7 +528,7 @@ import FirebaseMessaging
         self.baseCall(url: url,
                       method: "POST",
                       headers: [
-                        "Instance-Token": self.firebaseNotificationsAuthKey
+                        "Instance-Token": instanceToken
                       ],
                       body: body,
                       successHandler: {

@@ -20,4 +20,38 @@ linphone-iphone.ipa
 TutorialHellowWorld/hello-world.xcodeproj/project.xcworkspace/
 diff-format.patch
 *.xcscmblueprint
+# fastlane specific
+**/fastlane/report.xml
+# deliver temporary files
+**/fastlane/Preview.html
+# snapshot generated screenshots
+**/fastlane/screenshots
+# scan temporary files
+**/fastlane/test_output
 liblinphone-iphone-sdk-*
+Config-extension.xcconfig
+Config-msgNotificationContent.xcconfig
+Config-msgNotificationService.xcconfig
+Config.xcconfig
+extension.entitlements
+linphone.entitlements
+.env.appstore
+.env.development
+.env.config
+Resources/it.lproj/BrandLocalizable.strings
+Resources/en.lproj/BrandLocalizable.strings
+Resources/images/logo_about.png
+Resources/images/logo_about@2x.png
+Resources/images/logo_dashboard.png
+Resources/images/logo_dashboard@2x.png
+Resources/images/logo_login.png
+Resources/images/logo_login@2x.png
+Resources/images/logo_nethCTI_portrait.png
+Resources/images/logo_nethesis.png
+Resources/images/neth_dialer_background.png
+Resources/images/neth-splash-portrait_1242x2208.png
+Resources/images/nethcti_logo_sip.png
+Resources/images/nethcti_logo_sip@2x.png
+Resources/AccentColor.colorset/Contents.json
+Resources/Images.xcassets/AppIcon.appiconset/
+.gitlab-ci.yml
