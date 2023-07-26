@@ -412,7 +412,8 @@ import FirebaseMessaging
                 let d = deviceId as String?,
                 let user = ApiCredentials.Username as String?,
                 let domain = ApiCredentials.Domain as String?,
-                !user.isEmpty && !domain.isEmpty else {
+                !user.isEmpty && !domain.isEmpty,
+                    !authKeyForProdNot.isEmpty else {
                 
                 print("[WEDO] Missing information for notificator.")
                 
@@ -493,7 +494,8 @@ import FirebaseMessaging
                 !d.isEmpty,
             let user = ApiCredentials.Username as String?,
             let domain = ApiCredentials.Domain as String?,
-            !user.isEmpty && !domain.isEmpty else {
+            !user.isEmpty && !domain.isEmpty,
+                !firebaseNotificationsAuthKey.isEmpty else {
             
             print("[FIREBASE] Missing information for notificator.")
             
