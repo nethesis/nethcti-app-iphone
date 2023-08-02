@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AppApnsAuthKey</key>
-	<string>$(PUSH_WEDO_AUTH_KEY)</string>
-	<key>AppApnsAuthKeyDev</key>
-	<string>9b7008dc-20c2-4157-8b3e-5b97a9ff5061</string>
-	<key>AppApnsBaseUrl</key>
-	<string>https://push.wedo.io</string>
-	<key>AppApnsBaseUrl_Dev</key>
-	<string>https://push.wedo.io</string>
-	<key>AppApnsBaseUrl_Dev2</key>
-	<string>http://notificatore.apexnet.it/Notificatore.aspx</string>
 	<key>BrandCode</key>
 	<string>${BRAND_CODE}</string>
 	<key>ButtonSelectedBackground</key>
