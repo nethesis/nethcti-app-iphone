@@ -44,24 +44,8 @@ import FirebaseMessaging
         return getStringFromInfo(keyString: "FirebaseNotificationsAuthKeyDev")
     }
     
-    private var authKeyForSandNot : String {
-        return getStringFromInfo(keyString: "AppApnsAuthKeyDev")
-    }
-    
     private var firebase : String {
         return getStringFromInfo(keyString: "AppApnsAuthKey")
-    }
-    
-    private var authKeyForProdNot : String {
-        return getStringFromInfo(keyString: "AppApnsAuthKey")
-    }
-    
-    private var baseUrlForSandNot : String {
-        return getStringFromInfo(keyString: "AppApnsBaseUrl_Dev")
-    }
-    
-    private var baseUrlForProdNot : String {
-        return getStringFromInfo(keyString: "AppApnsBaseUrl")
     }
     
     
@@ -402,91 +386,11 @@ import FirebaseMessaging
         
         return ApiCredentials.checkCredentials()
     }
-    
-    @objc public func legacyRegisterPushToken(_ deviceId: String,
-                                            unregister: Bool,
-                                            success:@escaping (Bool) -> Void) -> Void {
-            
-            // Check input values.
-            guard
-                let d = deviceId as String?,
-                let user = ApiCredentials.Username as String?,
-                let domain = ApiCredentials.Domain as String?,
-                !user.isEmpty && !domain.isEmpty,
-                    !authKeyForProdNot.isEmpty else {
-                
-                print("[WEDO] Missing information for notificator.")
-                
-                return
-            }
-            
-            // Generate the necessary headers. Content type is already in the header.
-            var headers: [String: Any] = [:]
-            headers["X-HTTP-Method-Override"] = "Register"
-            
-            #if DEBUG
-            headers["X-AuthKey"] = self.authKeyForSandNot
-            let endpointUrl = "\(self.baseUrlForSandNot)/NotificaPush"
-            let mode = "Sandbox";
-            #else
-            headers["X-AuthKey"] = self.authKeyForProdNot
-            let endpointUrl = "\(self.baseUrlForProdNot)/NotificaPush"
-            let mode = "Production";
-            #endif
-            
-            // Generate the necessary bodies.
-            var body: [String: Any] = [:]
-            body["Os"] = 1
-            body["DevToken"] = d
-            body["RegID"] = d
-            body["User"] = unregister ? "" : "\(user)@\(domain)"
-            body["Language"] = ""
-            body["Custom"] = ""
-            
-            // Build the final endpoint to notificator.
-            print("[WEDO] [APNS SERVER]: You are in \(mode) Notification endpoint url \(endpointUrl) sending \(d)")
-            
-            guard let url = URL(string: endpointUrl) else {
-                
-                return
-            }
-            
-            self.baseCall(url: url,
-                          method: "POST",
-                          headers: headers,
-                          body: body,
-                          successHandler: {
-                            
-                            data, response in
-                            guard let responseData = data as Data? else {
-                                
-                                print("[WEDO] [APNS SERVER]: No data provided")
-                                
-                                success(false)
-                                
-                                return
-                            }
-                            
-                            let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-                            
-                            print("[WEDO] [APNS SERVER]: response: \(String(describing: dataString))")
-                            
-                            success(true)
-                            
-                          },
-                          errorHandler: { error, response in
-                            print("[WEDO] [APNS SERVER]: Error")
-                            success(false)
-                          })
-        }
-    
+
     
     @objc public func registerPushToken(_ deviceId: String,
                                         unregister: Bool,
                                         success:@escaping (Bool) -> Void) -> Void {
-        legacyRegisterPushToken(deviceId, unregister: unregister) { success in
-            
-        }
         
         // Check input values.
         guard
